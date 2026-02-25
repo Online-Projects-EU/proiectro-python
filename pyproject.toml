@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proiectro"
+version = "0.1.0"
+description = "Official Python SDK for the Proiect.ro API"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Online Projects EU", email = "support@proiect.ro" },
+]
+keywords = ["proiectro", "api", "sdk", "project-management"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.23.0,<0.29.0",
+    "attrs>=22.2.0",
+    "python-dateutil>=2.8.0,<3",
+]
+
+[project.urls]
+Homepage = "https://proiect.ro"
+Repository = "https://github.com/Online-Projects-EU/proiectro-python"
+Documentation = "https://proiect.ro/api/v1/docs"
+
+[tool.setuptools.packages.find]
+include = ["proiectro*"]

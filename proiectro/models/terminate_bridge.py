@@ -1,0 +1,93 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="TerminateBridge")
+
+
+@_attrs_define
+class TerminateBridge:
+    """Input schema for permanently terminating an active or suspended partnership
+
+    Attributes:
+        confirm_partner_path (str):
+        reason (None | str | Unset):
+        confirm_permanent (bool | Unset):  Default: False.
+    """
+
+    confirm_partner_path: str
+    reason: None | str | Unset = UNSET
+    confirm_permanent: bool | Unset = False
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        confirm_partner_path = self.confirm_partner_path
+
+        reason: None | str | Unset
+        if isinstance(self.reason, Unset):
+            reason = UNSET
+        else:
+            reason = self.reason
+
+        confirm_permanent = self.confirm_permanent
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "confirm_partner_path": confirm_partner_path,
+            }
+        )
+        if reason is not UNSET:
+            field_dict["reason"] = reason
+        if confirm_permanent is not UNSET:
+            field_dict["confirm_permanent"] = confirm_permanent
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        confirm_partner_path = d.pop("confirm_partner_path")
+
+        def _parse_reason(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        reason = _parse_reason(d.pop("reason", UNSET))
+
+        confirm_permanent = d.pop("confirm_permanent", UNSET)
+
+        terminate_bridge = cls(
+            confirm_partner_path=confirm_partner_path,
+            reason=reason,
+            confirm_permanent=confirm_permanent,
+        )
+
+        terminate_bridge.additional_properties = d
+        return terminate_bridge
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties
