@@ -45,15 +45,6 @@ client = AuthenticatedClient(
 )
 ```
 
-To point at a different server (e.g. staging or self-hosted), override the `base_url`:
-
-```python
-client = AuthenticatedClient(
-    base_url="https://staging.proiect.ro",
-    token="your_api_key_here",
-)
-```
-
 ## Sync and Async
 
 Every endpoint has four variants:
