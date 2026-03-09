@@ -26,6 +26,7 @@ class AcceptBridge:
         grant_product_reject (bool | None | Unset):  Default: False.
         grant_payment_view (bool | None | Unset):  Default: False.
         grant_support_use (bool | None | Unset):  Default: False.
+        grant_asset_view (bool | None | Unset):  Default: False.
     """
 
     proxy_subtenant_id: str
@@ -38,6 +39,7 @@ class AcceptBridge:
     grant_product_reject: bool | None | Unset = False
     grant_payment_view: bool | None | Unset = False
     grant_support_use: bool | None | Unset = False
+    grant_asset_view: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -97,6 +99,12 @@ class AcceptBridge:
         else:
             grant_support_use = self.grant_support_use
 
+        grant_asset_view: bool | None | Unset
+        if isinstance(self.grant_asset_view, Unset):
+            grant_asset_view = UNSET
+        else:
+            grant_asset_view = self.grant_asset_view
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -122,6 +130,8 @@ class AcceptBridge:
             field_dict["grant_payment_view"] = grant_payment_view
         if grant_support_use is not UNSET:
             field_dict["grant_support_use"] = grant_support_use
+        if grant_asset_view is not UNSET:
+            field_dict["grant_asset_view"] = grant_asset_view
 
         return field_dict
 
@@ -225,6 +235,15 @@ class AcceptBridge:
 
         grant_support_use = _parse_grant_support_use(d.pop("grant_support_use", UNSET))
 
+        def _parse_grant_asset_view(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        grant_asset_view = _parse_grant_asset_view(d.pop("grant_asset_view", UNSET))
+
         accept_bridge = cls(
             proxy_subtenant_id=proxy_subtenant_id,
             grant_rfp_create=grant_rfp_create,
@@ -236,6 +255,7 @@ class AcceptBridge:
             grant_product_reject=grant_product_reject,
             grant_payment_view=grant_payment_view,
             grant_support_use=grant_support_use,
+            grant_asset_view=grant_asset_view,
         )
 
         accept_bridge.additional_properties = d

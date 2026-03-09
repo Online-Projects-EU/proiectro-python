@@ -23,6 +23,7 @@ class AddPartnerSupportRequest:
         description (str):
         project_id (None | str | Unset):
         product_id (None | str | Unset):
+        reported_asset (None | str | Unset):
     """
 
     bridge_id: str
@@ -32,6 +33,7 @@ class AddPartnerSupportRequest:
     description: str
     project_id: None | str | Unset = UNSET
     product_id: None | str | Unset = UNSET
+    reported_asset: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -57,6 +59,12 @@ class AddPartnerSupportRequest:
         else:
             product_id = self.product_id
 
+        reported_asset: None | str | Unset
+        if isinstance(self.reported_asset, Unset):
+            reported_asset = UNSET
+        else:
+            reported_asset = self.reported_asset
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -72,6 +80,8 @@ class AddPartnerSupportRequest:
             field_dict["project_id"] = project_id
         if product_id is not UNSET:
             field_dict["product_id"] = product_id
+        if reported_asset is not UNSET:
+            field_dict["reported_asset"] = reported_asset
 
         return field_dict
 
@@ -106,6 +116,15 @@ class AddPartnerSupportRequest:
 
         product_id = _parse_product_id(d.pop("product_id", UNSET))
 
+        def _parse_reported_asset(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        reported_asset = _parse_reported_asset(d.pop("reported_asset", UNSET))
+
         add_partner_support_request = cls(
             bridge_id=bridge_id,
             request_type=request_type,
@@ -114,6 +133,7 @@ class AddPartnerSupportRequest:
             description=description,
             project_id=project_id,
             product_id=product_id,
+            reported_asset=reported_asset,
         )
 
         add_partner_support_request.additional_properties = d

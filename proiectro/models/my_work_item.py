@@ -25,7 +25,9 @@ class MyWorkItem:
         planned_end (None | str | Unset):
         project_name (None | str | Unset):
         project_id (None | str | Unset):
+        hierarchy_id (None | str | Unset):
         item_type_name (None | str | Unset):
+        item_type_behaviour (None | str | Unset):
     """
 
     id: str
@@ -37,7 +39,9 @@ class MyWorkItem:
     planned_end: None | str | Unset = UNSET
     project_name: None | str | Unset = UNSET
     project_id: None | str | Unset = UNSET
+    hierarchy_id: None | str | Unset = UNSET
     item_type_name: None | str | Unset = UNSET
+    item_type_behaviour: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -71,11 +75,23 @@ class MyWorkItem:
         else:
             project_id = self.project_id
 
+        hierarchy_id: None | str | Unset
+        if isinstance(self.hierarchy_id, Unset):
+            hierarchy_id = UNSET
+        else:
+            hierarchy_id = self.hierarchy_id
+
         item_type_name: None | str | Unset
         if isinstance(self.item_type_name, Unset):
             item_type_name = UNSET
         else:
             item_type_name = self.item_type_name
+
+        item_type_behaviour: None | str | Unset
+        if isinstance(self.item_type_behaviour, Unset):
+            item_type_behaviour = UNSET
+        else:
+            item_type_behaviour = self.item_type_behaviour
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -95,8 +111,12 @@ class MyWorkItem:
             field_dict["project_name"] = project_name
         if project_id is not UNSET:
             field_dict["project_id"] = project_id
+        if hierarchy_id is not UNSET:
+            field_dict["hierarchy_id"] = hierarchy_id
         if item_type_name is not UNSET:
             field_dict["item_type_name"] = item_type_name
+        if item_type_behaviour is not UNSET:
+            field_dict["item_type_behaviour"] = item_type_behaviour
 
         return field_dict
 
@@ -142,6 +162,15 @@ class MyWorkItem:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
+        def _parse_hierarchy_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        hierarchy_id = _parse_hierarchy_id(d.pop("hierarchy_id", UNSET))
+
         def _parse_item_type_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -150,6 +179,17 @@ class MyWorkItem:
             return cast(None | str | Unset, data)
 
         item_type_name = _parse_item_type_name(d.pop("item_type_name", UNSET))
+
+        def _parse_item_type_behaviour(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        item_type_behaviour = _parse_item_type_behaviour(
+            d.pop("item_type_behaviour", UNSET)
+        )
 
         my_work_item = cls(
             id=id,
@@ -161,7 +201,9 @@ class MyWorkItem:
             planned_end=planned_end,
             project_name=project_name,
             project_id=project_id,
+            hierarchy_id=hierarchy_id,
             item_type_name=item_type_name,
+            item_type_behaviour=item_type_behaviour,
         )
 
         my_work_item.additional_properties = d

@@ -24,6 +24,7 @@ class MyBookingItem:
         hours_per_day (int):
         tenant_name (str):
         tenant_path (str):
+        member_id (str):
         schedule_group (str):
         project_id (None | str | Unset):
         product_name (None | str | Unset):
@@ -37,6 +38,7 @@ class MyBookingItem:
     hours_per_day: int
     tenant_name: str
     tenant_path: str
+    member_id: str
     schedule_group: str
     project_id: None | str | Unset = UNSET
     product_name: None | str | Unset = UNSET
@@ -58,6 +60,8 @@ class MyBookingItem:
         tenant_name = self.tenant_name
 
         tenant_path = self.tenant_path
+
+        member_id = self.member_id
 
         schedule_group = self.schedule_group
 
@@ -85,6 +89,7 @@ class MyBookingItem:
                 "hours_per_day": hours_per_day,
                 "tenant_name": tenant_name,
                 "tenant_path": tenant_path,
+                "member_id": member_id,
                 "schedule_group": schedule_group,
             }
         )
@@ -113,6 +118,8 @@ class MyBookingItem:
         tenant_name = d.pop("tenant_name")
 
         tenant_path = d.pop("tenant_path")
+
+        member_id = d.pop("member_id")
 
         schedule_group = d.pop("schedule_group")
 
@@ -143,6 +150,7 @@ class MyBookingItem:
             hours_per_day=hours_per_day,
             tenant_name=tenant_name,
             tenant_path=tenant_path,
+            member_id=member_id,
             schedule_group=schedule_group,
             project_id=project_id,
             product_name=product_name,

@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="EditExternalSupportRequest")
 
@@ -17,12 +19,14 @@ class EditExternalSupportRequest:
         description (str):
         request_type (str):
         request_severity (str):
+        root_cause_asset (None | str | Unset):
     """
 
     title: str
     description: str
     request_type: str
     request_severity: str
+    root_cause_asset: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -34,6 +38,12 @@ class EditExternalSupportRequest:
 
         request_severity = self.request_severity
 
+        root_cause_asset: None | str | Unset
+        if isinstance(self.root_cause_asset, Unset):
+            root_cause_asset = UNSET
+        else:
+            root_cause_asset = self.root_cause_asset
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -44,6 +54,8 @@ class EditExternalSupportRequest:
                 "request_severity": request_severity,
             }
         )
+        if root_cause_asset is not UNSET:
+            field_dict["root_cause_asset"] = root_cause_asset
 
         return field_dict
 
@@ -58,11 +70,21 @@ class EditExternalSupportRequest:
 
         request_severity = d.pop("request_severity")
 
+        def _parse_root_cause_asset(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        root_cause_asset = _parse_root_cause_asset(d.pop("root_cause_asset", UNSET))
+
         edit_external_support_request = cls(
             title=title,
             description=description,
             request_type=request_type,
             request_severity=request_severity,
+            root_cause_asset=root_cause_asset,
         )
 
         edit_external_support_request.additional_properties = d

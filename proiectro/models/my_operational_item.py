@@ -30,6 +30,7 @@ class MyOperationalItem:
         owner_name (None | str | Unset):
         customer_name (None | str | Unset):
         requires_approval (bool | Unset):  Default: False.
+        stage_age_hours (int | Unset):  Default: 0.
     """
 
     id: str
@@ -46,6 +47,7 @@ class MyOperationalItem:
     owner_name: None | str | Unset = UNSET
     customer_name: None | str | Unset = UNSET
     requires_approval: bool | Unset = False
+    stage_age_hours: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -89,6 +91,8 @@ class MyOperationalItem:
 
         requires_approval = self.requires_approval
 
+        stage_age_hours = self.stage_age_hours
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -113,6 +117,8 @@ class MyOperationalItem:
             field_dict["customer_name"] = customer_name
         if requires_approval is not UNSET:
             field_dict["requires_approval"] = requires_approval
+        if stage_age_hours is not UNSET:
+            field_dict["stage_age_hours"] = stage_age_hours
 
         return field_dict
 
@@ -168,6 +174,8 @@ class MyOperationalItem:
 
         requires_approval = d.pop("requires_approval", UNSET)
 
+        stage_age_hours = d.pop("stage_age_hours", UNSET)
+
         my_operational_item = cls(
             id=id,
             name=name,
@@ -183,6 +191,7 @@ class MyOperationalItem:
             owner_name=owner_name,
             customer_name=customer_name,
             requires_approval=requires_approval,
+            stage_age_hours=stage_age_hours,
         )
 
         my_operational_item.additional_properties = d

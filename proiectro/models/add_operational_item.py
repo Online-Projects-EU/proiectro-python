@@ -20,6 +20,7 @@ class AddOperationalItem:
         name (str):
         description (str | Unset):  Default: ''.
         customer (None | str | Unset):
+        customer_asset (None | str | Unset):
         priority (AddOperationalItemPriority | Unset):  Default: AddOperationalItemPriority.NORMAL.
         due_date (None | str | Unset):
     """
@@ -28,6 +29,7 @@ class AddOperationalItem:
     name: str
     description: str | Unset = ""
     customer: None | str | Unset = UNSET
+    customer_asset: None | str | Unset = UNSET
     priority: AddOperationalItemPriority | Unset = AddOperationalItemPriority.NORMAL
     due_date: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -44,6 +46,12 @@ class AddOperationalItem:
             customer = UNSET
         else:
             customer = self.customer
+
+        customer_asset: None | str | Unset
+        if isinstance(self.customer_asset, Unset):
+            customer_asset = UNSET
+        else:
+            customer_asset = self.customer_asset
 
         priority: str | Unset = UNSET
         if not isinstance(self.priority, Unset):
@@ -67,6 +75,8 @@ class AddOperationalItem:
             field_dict["description"] = description
         if customer is not UNSET:
             field_dict["customer"] = customer
+        if customer_asset is not UNSET:
+            field_dict["customer_asset"] = customer_asset
         if priority is not UNSET:
             field_dict["priority"] = priority
         if due_date is not UNSET:
@@ -92,6 +102,15 @@ class AddOperationalItem:
 
         customer = _parse_customer(d.pop("customer", UNSET))
 
+        def _parse_customer_asset(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        customer_asset = _parse_customer_asset(d.pop("customer_asset", UNSET))
+
         _priority = d.pop("priority", UNSET)
         priority: AddOperationalItemPriority | Unset
         if isinstance(_priority, Unset):
@@ -113,6 +132,7 @@ class AddOperationalItem:
             name=name,
             description=description,
             customer=customer,
+            customer_asset=customer_asset,
             priority=priority,
             due_date=due_date,
         )

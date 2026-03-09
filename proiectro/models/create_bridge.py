@@ -26,6 +26,7 @@ class CreateBridge:
         grant_product_reject (bool | None | Unset):  Default: False.
         grant_payment_view (bool | None | Unset):  Default: False.
         grant_support_use (bool | None | Unset):  Default: False.
+        grant_asset_view (bool | None | Unset):  Default: False.
         invitation_message (None | str | Unset):
     """
 
@@ -39,6 +40,7 @@ class CreateBridge:
     grant_product_reject: bool | None | Unset = False
     grant_payment_view: bool | None | Unset = False
     grant_support_use: bool | None | Unset = False
+    grant_asset_view: bool | None | Unset = False
     invitation_message: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -99,6 +101,12 @@ class CreateBridge:
         else:
             grant_support_use = self.grant_support_use
 
+        grant_asset_view: bool | None | Unset
+        if isinstance(self.grant_asset_view, Unset):
+            grant_asset_view = UNSET
+        else:
+            grant_asset_view = self.grant_asset_view
+
         invitation_message: None | str | Unset
         if isinstance(self.invitation_message, Unset):
             invitation_message = UNSET
@@ -130,6 +138,8 @@ class CreateBridge:
             field_dict["grant_payment_view"] = grant_payment_view
         if grant_support_use is not UNSET:
             field_dict["grant_support_use"] = grant_support_use
+        if grant_asset_view is not UNSET:
+            field_dict["grant_asset_view"] = grant_asset_view
         if invitation_message is not UNSET:
             field_dict["invitation_message"] = invitation_message
 
@@ -235,6 +245,15 @@ class CreateBridge:
 
         grant_support_use = _parse_grant_support_use(d.pop("grant_support_use", UNSET))
 
+        def _parse_grant_asset_view(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        grant_asset_view = _parse_grant_asset_view(d.pop("grant_asset_view", UNSET))
+
         def _parse_invitation_message(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -257,6 +276,7 @@ class CreateBridge:
             grant_product_reject=grant_product_reject,
             grant_payment_view=grant_payment_view,
             grant_support_use=grant_support_use,
+            grant_asset_view=grant_asset_view,
             invitation_message=invitation_message,
         )
 

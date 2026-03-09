@@ -7,7 +7,9 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
-from ...models.edit_external_support_request import EditExternalSupportRequest
+from ...models.portal_edit_external_support_request import (
+    PortalEditExternalSupportRequest,
+)
 from ...types import Response
 
 
@@ -15,7 +17,7 @@ def _get_kwargs(
     customer_org_id: str,
     support_request_id: str,
     *,
-    body: EditExternalSupportRequest,
+    body: PortalEditExternalSupportRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -75,7 +77,7 @@ def sync_detailed(
     support_request_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: EditExternalSupportRequest,
+    body: PortalEditExternalSupportRequest,
 ) -> Response[APIResponse]:
     """Portal Edit Support Request
 
@@ -86,7 +88,8 @@ def sync_detailed(
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (EditExternalSupportRequest):
+        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+            (internal-only field).
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -114,7 +117,7 @@ def sync(
     support_request_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: EditExternalSupportRequest,
+    body: PortalEditExternalSupportRequest,
 ) -> APIResponse | None:
     """Portal Edit Support Request
 
@@ -125,7 +128,8 @@ def sync(
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (EditExternalSupportRequest):
+        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+            (internal-only field).
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -148,7 +152,7 @@ async def asyncio_detailed(
     support_request_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: EditExternalSupportRequest,
+    body: PortalEditExternalSupportRequest,
 ) -> Response[APIResponse]:
     """Portal Edit Support Request
 
@@ -159,7 +163,8 @@ async def asyncio_detailed(
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (EditExternalSupportRequest):
+        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+            (internal-only field).
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -185,7 +190,7 @@ async def asyncio(
     support_request_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: EditExternalSupportRequest,
+    body: PortalEditExternalSupportRequest,
 ) -> APIResponse | None:
     """Portal Edit Support Request
 
@@ -196,7 +201,8 @@ async def asyncio(
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (EditExternalSupportRequest):
+        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+            (internal-only field).
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

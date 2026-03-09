@@ -40,6 +40,8 @@ class OutputOperationalItem:
         owner_name (None | str | Unset):
         customer_id (None | str | Unset):
         customer_name (None | str | Unset):
+        customer_asset_id (None | str | Unset):
+        customer_asset_name (None | str | Unset):
         customer_visible (bool | Unset):  Default: True.
         due_date (None | str | Unset):
         created_display (str | Unset):  Default: ''.
@@ -68,6 +70,8 @@ class OutputOperationalItem:
     owner_name: None | str | Unset = UNSET
     customer_id: None | str | Unset = UNSET
     customer_name: None | str | Unset = UNSET
+    customer_asset_id: None | str | Unset = UNSET
+    customer_asset_name: None | str | Unset = UNSET
     customer_visible: bool | Unset = True
     due_date: None | str | Unset = UNSET
     created_display: str | Unset = ""
@@ -132,6 +136,18 @@ class OutputOperationalItem:
         else:
             customer_name = self.customer_name
 
+        customer_asset_id: None | str | Unset
+        if isinstance(self.customer_asset_id, Unset):
+            customer_asset_id = UNSET
+        else:
+            customer_asset_id = self.customer_asset_id
+
+        customer_asset_name: None | str | Unset
+        if isinstance(self.customer_asset_name, Unset):
+            customer_asset_name = UNSET
+        else:
+            customer_asset_name = self.customer_asset_name
+
         customer_visible = self.customer_visible
 
         due_date: None | str | Unset
@@ -184,6 +200,10 @@ class OutputOperationalItem:
             field_dict["customer_id"] = customer_id
         if customer_name is not UNSET:
             field_dict["customer_name"] = customer_name
+        if customer_asset_id is not UNSET:
+            field_dict["customer_asset_id"] = customer_asset_id
+        if customer_asset_name is not UNSET:
+            field_dict["customer_asset_name"] = customer_asset_name
         if customer_visible is not UNSET:
             field_dict["customer_visible"] = customer_visible
         if due_date is not UNSET:
@@ -274,6 +294,26 @@ class OutputOperationalItem:
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
 
+        def _parse_customer_asset_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        customer_asset_id = _parse_customer_asset_id(d.pop("customer_asset_id", UNSET))
+
+        def _parse_customer_asset_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        customer_asset_name = _parse_customer_asset_name(
+            d.pop("customer_asset_name", UNSET)
+        )
+
         customer_visible = d.pop("customer_visible", UNSET)
 
         def _parse_due_date(data: object) -> None | str | Unset:
@@ -324,6 +364,8 @@ class OutputOperationalItem:
             owner_name=owner_name,
             customer_id=customer_id,
             customer_name=customer_name,
+            customer_asset_id=customer_asset_id,
+            customer_asset_name=customer_asset_name,
             customer_visible=customer_visible,
             due_date=due_date,
             created_display=created_display,

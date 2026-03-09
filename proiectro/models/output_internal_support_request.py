@@ -41,6 +41,8 @@ class OutputInternalSupportRequest:
         customer_name (None | str | Unset):
         work_item_name (None | str | Unset):
         work_item_hierarchy_id (None | str | Unset):
+        reported_asset_name (None | str | Unset):
+        root_cause_asset_name (None | str | Unset):
         can_reopen (bool | Unset):  Default: False.
         resolution (None | str | Unset):
         resolution_display (None | str | Unset):
@@ -73,6 +75,8 @@ class OutputInternalSupportRequest:
     customer_name: None | str | Unset = UNSET
     work_item_name: None | str | Unset = UNSET
     work_item_hierarchy_id: None | str | Unset = UNSET
+    reported_asset_name: None | str | Unset = UNSET
+    root_cause_asset_name: None | str | Unset = UNSET
     can_reopen: bool | Unset = False
     resolution: None | str | Unset = UNSET
     resolution_display: None | str | Unset = UNSET
@@ -167,6 +171,18 @@ class OutputInternalSupportRequest:
         else:
             work_item_hierarchy_id = self.work_item_hierarchy_id
 
+        reported_asset_name: None | str | Unset
+        if isinstance(self.reported_asset_name, Unset):
+            reported_asset_name = UNSET
+        else:
+            reported_asset_name = self.reported_asset_name
+
+        root_cause_asset_name: None | str | Unset
+        if isinstance(self.root_cause_asset_name, Unset):
+            root_cause_asset_name = UNSET
+        else:
+            root_cause_asset_name = self.root_cause_asset_name
+
         can_reopen = self.can_reopen
 
         resolution: None | str | Unset
@@ -230,6 +246,10 @@ class OutputInternalSupportRequest:
             field_dict["work_item_name"] = work_item_name
         if work_item_hierarchy_id is not UNSET:
             field_dict["work_item_hierarchy_id"] = work_item_hierarchy_id
+        if reported_asset_name is not UNSET:
+            field_dict["reported_asset_name"] = reported_asset_name
+        if root_cause_asset_name is not UNSET:
+            field_dict["root_cause_asset_name"] = root_cause_asset_name
         if can_reopen is not UNSET:
             field_dict["can_reopen"] = can_reopen
         if resolution is not UNSET:
@@ -363,6 +383,28 @@ class OutputInternalSupportRequest:
             d.pop("work_item_hierarchy_id", UNSET)
         )
 
+        def _parse_reported_asset_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        reported_asset_name = _parse_reported_asset_name(
+            d.pop("reported_asset_name", UNSET)
+        )
+
+        def _parse_root_cause_asset_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        root_cause_asset_name = _parse_root_cause_asset_name(
+            d.pop("root_cause_asset_name", UNSET)
+        )
+
         can_reopen = d.pop("can_reopen", UNSET)
 
         def _parse_resolution(data: object) -> None | str | Unset:
@@ -422,6 +464,8 @@ class OutputInternalSupportRequest:
             customer_name=customer_name,
             work_item_name=work_item_name,
             work_item_hierarchy_id=work_item_hierarchy_id,
+            reported_asset_name=reported_asset_name,
+            root_cause_asset_name=root_cause_asset_name,
             can_reopen=can_reopen,
             resolution=resolution,
             resolution_display=resolution_display,

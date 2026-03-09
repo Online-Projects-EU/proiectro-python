@@ -6,6 +6,7 @@ from .active_partner_item import ActivePartnerItem
 from .active_proposal_item import ActiveProposalItem
 from .active_proposals_list import ActiveProposalsList
 from .add_api_key import AddApiKey
+from .add_asset_category import AddAssetCategory
 from .add_availability import AddAvailability
 from .add_catalog_product import AddCatalogProduct
 from .add_catalog_product_pricing_type import AddCatalogProductPricingType
@@ -16,6 +17,8 @@ from .add_custom_product import AddCustomProduct
 from .add_custom_product_pricing_type import AddCustomProductPricingType
 from .add_custom_product_product_type import AddCustomProductProductType
 from .add_custom_product_response import AddCustomProductResponse
+from .add_customer_asset import AddCustomerAsset
+from .add_customer_location import AddCustomerLocation
 from .add_exchange import AddExchange
 from .add_external_support_request import AddExternalSupportRequest
 from .add_external_support_request_comment import AddExternalSupportRequestComment
@@ -45,6 +48,7 @@ from .add_label_to_resource import AddLabelToResource
 from .add_label_to_role import AddLabelToRole
 from .add_label_to_work_item import AddLabelToWorkItem
 from .add_label_to_work_item_template import AddLabelToWorkItemTemplate
+from .add_location import AddLocation
 from .add_member_to_role import AddMemberToRole
 from .add_operational_item import AddOperationalItem
 from .add_operational_item_priority import AddOperationalItemPriority
@@ -262,6 +266,7 @@ from .contact_invitation import ContactInvitation
 from .cost_item import CostItem
 from .create_bridge import CreateBridge
 from .create_calendar_token import CreateCalendarToken
+from .customer_asset_ticket_item import CustomerAssetTicketItem
 from .customer_portal_project_product_item import CustomerPortalProjectProductItem
 from .daily_availability import DailyAvailability
 from .dashboard_metric import DashboardMetric
@@ -271,6 +276,7 @@ from .delivery_kp_is import DeliveryKPIs
 from .dependency_item import DependencyItem
 from .download_url_gcs import DownloadUrlGCS
 from .edit_api_key import EditApiKey
+from .edit_asset_category import EditAssetCategory
 from .edit_automation import EditAutomation
 from .edit_bridge_grants import EditBridgeGrants
 from .edit_catalog_product import EditCatalogProduct
@@ -279,6 +285,8 @@ from .edit_catalog_product_product_type import EditCatalogProductProductType
 from .edit_comment import EditComment
 from .edit_contact import EditContact
 from .edit_cost_type import EditCostType
+from .edit_customer_asset import EditCustomerAsset
+from .edit_customer_location import EditCustomerLocation
 from .edit_exchange import EditExchange
 from .edit_external_support_request import EditExternalSupportRequest
 from .edit_external_support_request_comment import EditExternalSupportRequestComment
@@ -288,6 +296,7 @@ from .edit_holiday import EditHoliday
 from .edit_internal_support_request import EditInternalSupportRequest
 from .edit_internal_support_request_comment import EditInternalSupportRequestComment
 from .edit_label import EditLabel
+from .edit_location import EditLocation
 from .edit_member_misc_preferences import EditMemberMiscPreferences
 from .edit_member_preferences import EditMemberPreferences
 from .edit_operational_item import EditOperationalItem
@@ -429,12 +438,39 @@ from .output_active_campaigns import OutputActiveCampaigns
 from .output_active_partners import OutputActivePartners
 from .output_api_key import OutputApiKey
 from .output_api_key_list import OutputApiKeyList
+from .output_asset_categories import OutputAssetCategories
+from .output_asset_category import OutputAssetCategory
 from .output_block_payments import OutputBlockPayments
 from .output_business_process import OutputBusinessProcess
 from .output_business_processes_list import OutputBusinessProcessesList
 from .output_calendar_tokens import OutputCalendarTokens
 from .output_campaign_progress import OutputCampaignProgress
 from .output_comments_feed import OutputCommentsFeed
+from .output_customer_asset import OutputCustomerAsset
+from .output_customer_asset_tickets import OutputCustomerAssetTickets
+from .output_customer_assets import OutputCustomerAssets
+from .output_customer_location import OutputCustomerLocation
+from .output_customer_locations import OutputCustomerLocations
+from .output_customer_portal_asset_detail import OutputCustomerPortalAssetDetail
+from .output_customer_portal_asset_detail_asset import (
+    OutputCustomerPortalAssetDetailAsset,
+)
+from .output_customer_portal_asset_detail_org import OutputCustomerPortalAssetDetailOrg
+from .output_customer_portal_asset_tickets import OutputCustomerPortalAssetTickets
+from .output_customer_portal_asset_tickets_org import (
+    OutputCustomerPortalAssetTicketsOrg,
+)
+from .output_customer_portal_asset_tickets_tickets_item import (
+    OutputCustomerPortalAssetTicketsTicketsItem,
+)
+from .output_customer_portal_assets import OutputCustomerPortalAssets
+from .output_customer_portal_assets_customer_locations_item import (
+    OutputCustomerPortalAssetsCustomerLocationsItem,
+)
+from .output_customer_portal_assets_org import OutputCustomerPortalAssetsOrg
+from .output_customer_portal_assets_unlocated_assets_item import (
+    OutputCustomerPortalAssetsUnlocatedAssetsItem,
+)
 from .output_customer_portal_payments import OutputCustomerPortalPayments
 from .output_customer_portal_payments_chart import OutputCustomerPortalPaymentsChart
 from .output_customer_portal_payments_chart_series_by_currency import (
@@ -634,6 +670,8 @@ from .output_tenant_cost_types import OutputTenantCostTypes
 from .output_tenant_cost_types_cost_types import OutputTenantCostTypesCostTypes
 from .output_tenant_info import OutputTenantInfo
 from .output_tenant_legal_info import OutputTenantLegalInfo
+from .output_tenant_locations import OutputTenantLocations
+from .output_tenant_locations_locations import OutputTenantLocationsLocations
 from .output_tenant_portal_settings import OutputTenantPortalSettings
 from .output_tenant_project_defaults import OutputTenantProjectDefaults
 from .output_tenant_resource_types import OutputTenantResourceTypes
@@ -662,8 +700,11 @@ from .output_work_item_type import OutputWorkItemType
 from .output_work_item_types import OutputWorkItemTypes
 from .overview_kp_is import OverviewKPIs
 from .partner_approve_product import PartnerApproveProduct
+from .partner_portal_asset_item import PartnerPortalAssetItem
+from .partner_portal_assets import PartnerPortalAssets
 from .partner_portal_file_names import PartnerPortalFileNames
 from .partner_portal_file_names_node_type import PartnerPortalFileNamesNodeType
+from .partner_portal_location_with_assets import PartnerPortalLocationWithAssets
 from .partner_portal_payment_item import PartnerPortalPaymentItem
 from .partner_portal_payments import PartnerPortalPayments
 from .partner_portal_project_item import PartnerPortalProjectItem
@@ -723,6 +764,7 @@ from .permissions import Permissions
 from .portal_accept_proposal import PortalAcceptProposal
 from .portal_action_status import PortalActionStatus
 from .portal_approve_product import PortalApproveProduct
+from .portal_edit_external_support_request import PortalEditExternalSupportRequest
 from .portal_reject_product import PortalRejectProduct
 from .product_budget_breakdown_item import ProductBudgetBreakdownItem
 from .product_cost_type_breakdown import ProductCostTypeBreakdown
@@ -932,12 +974,15 @@ __all__ = (
     "ActiveProposalItem",
     "ActiveProposalsList",
     "AddApiKey",
+    "AddAssetCategory",
     "AddAvailability",
     "AddCatalogProduct",
     "AddCatalogProductPricingType",
     "AddCatalogProductProductType",
     "AddContactToOrg",
     "AddCostType",
+    "AddCustomerAsset",
+    "AddCustomerLocation",
     "AddCustomProduct",
     "AddCustomProductPricingType",
     "AddCustomProductProductType",
@@ -963,6 +1008,7 @@ __all__ = (
     "AddLabelToRole",
     "AddLabelToWorkItem",
     "AddLabelToWorkItemTemplate",
+    "AddLocation",
     "AddMemberToRole",
     "AddOperationalItem",
     "AddOperationalItemPriority",
@@ -1164,6 +1210,7 @@ __all__ = (
     "CostItem",
     "CreateBridge",
     "CreateCalendarToken",
+    "CustomerAssetTicketItem",
     "CustomerPortalProjectProductItem",
     "DailyAvailability",
     "DashboardMetric",
@@ -1173,6 +1220,7 @@ __all__ = (
     "DependencyItem",
     "DownloadUrlGCS",
     "EditApiKey",
+    "EditAssetCategory",
     "EditAutomation",
     "EditBridgeGrants",
     "EditCatalogProduct",
@@ -1181,6 +1229,8 @@ __all__ = (
     "EditComment",
     "EditContact",
     "EditCostType",
+    "EditCustomerAsset",
+    "EditCustomerLocation",
     "EditExchange",
     "EditExternalSupportRequest",
     "EditExternalSupportRequestComment",
@@ -1190,6 +1240,7 @@ __all__ = (
     "EditInternalSupportRequest",
     "EditInternalSupportRequestComment",
     "EditLabel",
+    "EditLocation",
     "EditMemberMiscPreferences",
     "EditMemberPreferences",
     "EditOperationalItem",
@@ -1307,12 +1358,29 @@ __all__ = (
     "OutputActivePartners",
     "OutputApiKey",
     "OutputApiKeyList",
+    "OutputAssetCategories",
+    "OutputAssetCategory",
     "OutputBlockPayments",
     "OutputBusinessProcess",
     "OutputBusinessProcessesList",
     "OutputCalendarTokens",
     "OutputCampaignProgress",
     "OutputCommentsFeed",
+    "OutputCustomerAsset",
+    "OutputCustomerAssets",
+    "OutputCustomerAssetTickets",
+    "OutputCustomerLocation",
+    "OutputCustomerLocations",
+    "OutputCustomerPortalAssetDetail",
+    "OutputCustomerPortalAssetDetailAsset",
+    "OutputCustomerPortalAssetDetailOrg",
+    "OutputCustomerPortalAssets",
+    "OutputCustomerPortalAssetsCustomerLocationsItem",
+    "OutputCustomerPortalAssetsOrg",
+    "OutputCustomerPortalAssetsUnlocatedAssetsItem",
+    "OutputCustomerPortalAssetTickets",
+    "OutputCustomerPortalAssetTicketsOrg",
+    "OutputCustomerPortalAssetTicketsTicketsItem",
     "OutputCustomerPortalPayments",
     "OutputCustomerPortalPaymentsChart",
     "OutputCustomerPortalPaymentsChartSeriesByCurrency",
@@ -1456,6 +1524,8 @@ __all__ = (
     "OutputTenantCostTypesCostTypes",
     "OutputTenantInfo",
     "OutputTenantLegalInfo",
+    "OutputTenantLocations",
+    "OutputTenantLocationsLocations",
     "OutputTenantPortalSettings",
     "OutputTenantProjectDefaults",
     "OutputTenantResourceTypes",
@@ -1482,8 +1552,11 @@ __all__ = (
     "OutputWorkItemTypes",
     "OverviewKPIs",
     "PartnerApproveProduct",
+    "PartnerPortalAssetItem",
+    "PartnerPortalAssets",
     "PartnerPortalFileNames",
     "PartnerPortalFileNamesNodeType",
+    "PartnerPortalLocationWithAssets",
     "PartnerPortalPaymentItem",
     "PartnerPortalPayments",
     "PartnerPortalProjectItem",
@@ -1523,6 +1596,7 @@ __all__ = (
     "PortalAcceptProposal",
     "PortalActionStatus",
     "PortalApproveProduct",
+    "PortalEditExternalSupportRequest",
     "PortalRejectProduct",
     "ProductBudgetBreakdownItem",
     "ProductCostTypeBreakdown",

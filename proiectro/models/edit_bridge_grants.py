@@ -25,6 +25,7 @@ class EditBridgeGrants:
         grant_product_reject (bool | None | Unset):
         grant_payment_view (bool | None | Unset):
         grant_support_use (bool | None | Unset):
+        grant_asset_view (bool | None | Unset):
     """
 
     grant_rfp_create: bool | None | Unset = UNSET
@@ -36,6 +37,7 @@ class EditBridgeGrants:
     grant_product_reject: bool | None | Unset = UNSET
     grant_payment_view: bool | None | Unset = UNSET
     grant_support_use: bool | None | Unset = UNSET
+    grant_asset_view: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -93,6 +95,12 @@ class EditBridgeGrants:
         else:
             grant_support_use = self.grant_support_use
 
+        grant_asset_view: bool | None | Unset
+        if isinstance(self.grant_asset_view, Unset):
+            grant_asset_view = UNSET
+        else:
+            grant_asset_view = self.grant_asset_view
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -114,6 +122,8 @@ class EditBridgeGrants:
             field_dict["grant_payment_view"] = grant_payment_view
         if grant_support_use is not UNSET:
             field_dict["grant_support_use"] = grant_support_use
+        if grant_asset_view is not UNSET:
+            field_dict["grant_asset_view"] = grant_asset_view
 
         return field_dict
 
@@ -216,6 +226,15 @@ class EditBridgeGrants:
 
         grant_support_use = _parse_grant_support_use(d.pop("grant_support_use", UNSET))
 
+        def _parse_grant_asset_view(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        grant_asset_view = _parse_grant_asset_view(d.pop("grant_asset_view", UNSET))
+
         edit_bridge_grants = cls(
             grant_rfp_create=grant_rfp_create,
             grant_proposal_view=grant_proposal_view,
@@ -226,6 +245,7 @@ class EditBridgeGrants:
             grant_product_reject=grant_product_reject,
             grant_payment_view=grant_payment_view,
             grant_support_use=grant_support_use,
+            grant_asset_view=grant_asset_view,
         )
 
         edit_bridge_grants.additional_properties = d
