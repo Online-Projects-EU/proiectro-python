@@ -1,29 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="ResourceActivityItem")
+
 
 
 @_attrs_define
 class ResourceActivityItem:
-    """
-    Attributes:
-        external_id (str):
-        booking_name (str):
-        booking_id (str):
-        work_item_name (str):
-        work_item_id (str):
-        member_full_name (str):
-        member_id (str):
-        usage (int):
-        date (str):
-        note (str):
-    """
+    """ 
+        Attributes:
+            external_id (str):
+            booking_name (str):
+            booking_id (str):
+            work_item_name (str):
+            work_item_id (str):
+            member_full_name (str):
+            member_id (str):
+            usage (int):
+            date (datetime.date):
+            note (str):
+     """
 
     external_id: str
     booking_name: str
@@ -33,9 +45,13 @@ class ResourceActivityItem:
     member_full_name: str
     member_id: str
     usage: int
-    date: str
+    date: datetime.date
     note: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -54,28 +70,29 @@ class ResourceActivityItem:
 
         usage = self.usage
 
-        date = self.date
+        date = self.date.isoformat()
 
         note = self.note
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id": external_id,
-                "booking_name": booking_name,
-                "booking_id": booking_id,
-                "work_item_name": work_item_name,
-                "work_item_id": work_item_id,
-                "member_full_name": member_full_name,
-                "member_id": member_id,
-                "usage": usage,
-                "date": date,
-                "note": note,
-            }
-        )
+        field_dict.update({
+            "external_id": external_id,
+            "booking_name": booking_name,
+            "booking_id": booking_id,
+            "work_item_name": work_item_name,
+            "work_item_id": work_item_id,
+            "member_full_name": member_full_name,
+            "member_id": member_id,
+            "usage": usage,
+            "date": date,
+            "note": note,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -96,7 +113,10 @@ class ResourceActivityItem:
 
         usage = d.pop("usage")
 
-        date = d.pop("date")
+        date = isoparse(d.pop("date")).date()
+
+
+
 
         note = d.pop("note")
 
@@ -112,6 +132,7 @@ class ResourceActivityItem:
             date=date,
             note=note,
         )
+
 
         resource_activity_item.additional_properties = d
         return resource_activity_item

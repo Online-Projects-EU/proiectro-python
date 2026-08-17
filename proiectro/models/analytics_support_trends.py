@@ -1,63 +1,67 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Literal,
-    TypeVar,
-    cast,
-)
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+from typing import Literal, cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.analytics_issue_type_item import AnalyticsIssueTypeItem
-    from ..models.analytics_trend_month_item import AnalyticsTrendMonthItem
-    from ..models.compare_option import CompareOption
-    from ..models.horizon_option import HorizonOption
+  from ..models.analytics_issue_type_item import AnalyticsIssueTypeItem
+  from ..models.analytics_trend_month_item import AnalyticsTrendMonthItem
+  from ..models.compare_option import CompareOption
+  from ..models.horizon_option import HorizonOption
+
+
+
 
 
 T = TypeVar("T", bound="AnalyticsSupportTrends")
 
 
+
 @_attrs_define
 class AnalyticsSupportTrends:
-    """Support trend analysis
+    """ Support trend analysis
 
-    Attributes:
-        period (str | Unset):  Default: 'YTD'.
-        temporal_type (str | Unset):  Default: 'snapshot'.
-        generated_at (str | Unset):  Default: ''.
-        period_label (None | str | Unset):
-        horizon (None | str | Unset):
-        horizon_label (None | str | Unset):
-        horizon_options (list[HorizonOption] | None | Unset):
-        compare (None | str | Unset):
-        compare_label (None | str | Unset):
-        compare_options (list[CompareOption] | None | Unset):
-        filter_severity (None | str | Unset):
-        filter_severity_label (None | str | Unset):
-        filter_category (None | str | Unset):
-        filter_category_label (None | str | Unset):
-        filter_type (None | str | Unset):
-        filter_type_label (None | str | Unset):
-        monthly_trend (list[AnalyticsTrendMonthItem] | Unset):
-        top_issue_types (list[AnalyticsIssueTypeItem] | Unset):
-        total_created (int | Unset):  Default: 0.
-        total_closed (int | Unset):  Default: 0.
-        prev_total_created (int | None | Unset):
-        prev_total_closed (int | None | Unset):
-        created_change_pct (float | Literal['new'] | None | Unset):
-        closed_change_pct (float | Literal['new'] | None | Unset):
-    """
+        Attributes:
+            period (str | Unset):  Default: 'YTD'.
+            temporal_type (str | Unset):  Default: 'snapshot'.
+            generated_at (datetime.datetime | None | Unset):
+            period_label (None | str | Unset):
+            horizon (None | str | Unset):
+            horizon_label (None | str | Unset):
+            horizon_options (list[HorizonOption] | None | Unset):
+            compare (None | str | Unset):
+            compare_label (None | str | Unset):
+            compare_options (list[CompareOption] | None | Unset):
+            filter_severity (None | str | Unset):
+            filter_severity_label (None | str | Unset):
+            filter_category (None | str | Unset):
+            filter_category_label (None | str | Unset):
+            filter_type (None | str | Unset):
+            filter_type_label (None | str | Unset):
+            monthly_trend (list[AnalyticsTrendMonthItem] | Unset):
+            top_issue_types (list[AnalyticsIssueTypeItem] | Unset):
+            total_created (int | Unset):  Default: 0.
+            total_closed (int | Unset):  Default: 0.
+            prev_total_created (int | None | Unset):
+            prev_total_closed (int | None | Unset):
+            created_change_pct (float | Literal['new'] | None | Unset):
+            closed_change_pct (float | Literal['new'] | None | Unset):
+     """
 
-    period: str | Unset = "YTD"
-    temporal_type: str | Unset = "snapshot"
-    generated_at: str | Unset = ""
+    period: str | Unset = 'YTD'
+    temporal_type: str | Unset = 'snapshot'
+    generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
     horizon_label: None | str | Unset = UNSET
@@ -77,16 +81,30 @@ class AnalyticsSupportTrends:
     total_closed: int | Unset = 0
     prev_total_created: int | None | Unset = UNSET
     prev_total_closed: int | None | Unset = UNSET
-    created_change_pct: float | Literal["new"] | None | Unset = UNSET
-    closed_change_pct: float | Literal["new"] | None | Unset = UNSET
+    created_change_pct: float | Literal['new'] | None | Unset = UNSET
+    closed_change_pct: float | Literal['new'] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.analytics_trend_month_item import AnalyticsTrendMonthItem
+        from ..models.compare_option import CompareOption
+        from ..models.analytics_issue_type_item import AnalyticsIssueTypeItem
+        from ..models.horizon_option import HorizonOption
         period = self.period
 
         temporal_type = self.temporal_type
 
-        generated_at = self.generated_at
+        generated_at: None | str | Unset
+        if isinstance(self.generated_at, Unset):
+            generated_at = UNSET
+        elif isinstance(self.generated_at, datetime.datetime):
+            generated_at = self.generated_at.isoformat()
+        else:
+            generated_at = self.generated_at
 
         period_label: None | str | Unset
         if isinstance(self.period_label, Unset):
@@ -115,6 +133,7 @@ class AnalyticsSupportTrends:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
+
         else:
             horizon_options = self.horizon_options
 
@@ -138,6 +157,7 @@ class AnalyticsSupportTrends:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
+
 
         else:
             compare_options = self.compare_options
@@ -185,12 +205,16 @@ class AnalyticsSupportTrends:
                 monthly_trend_item = monthly_trend_item_data.to_dict()
                 monthly_trend.append(monthly_trend_item)
 
+
+
         top_issue_types: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.top_issue_types, Unset):
             top_issue_types = []
             for top_issue_types_item_data in self.top_issue_types:
                 top_issue_types_item = top_issue_types_item_data.to_dict()
                 top_issue_types.append(top_issue_types_item)
+
+
 
         total_created = self.total_created
 
@@ -208,21 +232,23 @@ class AnalyticsSupportTrends:
         else:
             prev_total_closed = self.prev_total_closed
 
-        created_change_pct: float | Literal["new"] | None | Unset
+        created_change_pct: float | Literal['new'] | None | Unset
         if isinstance(self.created_change_pct, Unset):
             created_change_pct = UNSET
         else:
             created_change_pct = self.created_change_pct
 
-        closed_change_pct: float | Literal["new"] | None | Unset
+        closed_change_pct: float | Literal['new'] | None | Unset
         if isinstance(self.closed_change_pct, Unset):
             closed_change_pct = UNSET
         else:
             closed_change_pct = self.closed_change_pct
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update({
+        })
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -274,19 +300,38 @@ class AnalyticsSupportTrends:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_issue_type_item import AnalyticsIssueTypeItem
         from ..models.analytics_trend_month_item import AnalyticsTrendMonthItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
-
         d = dict(src_dict)
         period = d.pop("period", UNSET)
 
         temporal_type = d.pop("temporal_type", UNSET)
 
-        generated_at = d.pop("generated_at", UNSET)
+        def _parse_generated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                generated_at_type_0 = isoparse(data)
+
+
+
+                return generated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
+
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -297,6 +342,7 @@ class AnalyticsSupportTrends:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
+
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -306,6 +352,7 @@ class AnalyticsSupportTrends:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
+
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -314,6 +361,7 @@ class AnalyticsSupportTrends:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
+
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -325,10 +373,10 @@ class AnalyticsSupportTrends:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in _horizon_options_type_0:
-                    horizon_options_type_0_item = HorizonOption.from_dict(
-                        horizon_options_type_0_item_data
-                    )
+                for horizon_options_type_0_item_data in (_horizon_options_type_0):
+                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
+
+
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -339,6 +387,7 @@ class AnalyticsSupportTrends:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
+
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -348,6 +397,7 @@ class AnalyticsSupportTrends:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
+
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -356,6 +406,7 @@ class AnalyticsSupportTrends:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
+
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -367,10 +418,10 @@ class AnalyticsSupportTrends:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in _compare_options_type_0:
-                    compare_options_type_0_item = CompareOption.from_dict(
-                        compare_options_type_0_item_data
-                    )
+                for compare_options_type_0_item_data in (_compare_options_type_0):
+                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
+
+
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -381,6 +432,7 @@ class AnalyticsSupportTrends:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
+
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -390,6 +442,7 @@ class AnalyticsSupportTrends:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
+
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -397,9 +450,8 @@ class AnalyticsSupportTrends:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(
-            d.pop("filter_severity_label", UNSET)
-        )
+        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
+
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -410,6 +462,7 @@ class AnalyticsSupportTrends:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
+
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -417,9 +470,8 @@ class AnalyticsSupportTrends:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(
-            d.pop("filter_category_label", UNSET)
-        )
+        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
+
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -430,6 +482,7 @@ class AnalyticsSupportTrends:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
+
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -439,27 +492,30 @@ class AnalyticsSupportTrends:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+
         _monthly_trend = d.pop("monthly_trend", UNSET)
         monthly_trend: list[AnalyticsTrendMonthItem] | Unset = UNSET
         if _monthly_trend is not UNSET:
             monthly_trend = []
             for monthly_trend_item_data in _monthly_trend:
-                monthly_trend_item = AnalyticsTrendMonthItem.from_dict(
-                    monthly_trend_item_data
-                )
+                monthly_trend_item = AnalyticsTrendMonthItem.from_dict(monthly_trend_item_data)
+
+
 
                 monthly_trend.append(monthly_trend_item)
+
 
         _top_issue_types = d.pop("top_issue_types", UNSET)
         top_issue_types: list[AnalyticsIssueTypeItem] | Unset = UNSET
         if _top_issue_types is not UNSET:
             top_issue_types = []
             for top_issue_types_item_data in _top_issue_types:
-                top_issue_types_item = AnalyticsIssueTypeItem.from_dict(
-                    top_issue_types_item_data
-                )
+                top_issue_types_item = AnalyticsIssueTypeItem.from_dict(top_issue_types_item_data)
+
+
 
                 top_issue_types.append(top_issue_types_item)
+
 
         total_created = d.pop("total_created", UNSET)
 
@@ -472,9 +528,8 @@ class AnalyticsSupportTrends:
                 return data
             return cast(int | None | Unset, data)
 
-        prev_total_created = _parse_prev_total_created(
-            d.pop("prev_total_created", UNSET)
-        )
+        prev_total_created = _parse_prev_total_created(d.pop("prev_total_created", UNSET))
+
 
         def _parse_prev_total_closed(data: object) -> int | None | Unset:
             if data is None:
@@ -485,41 +540,34 @@ class AnalyticsSupportTrends:
 
         prev_total_closed = _parse_prev_total_closed(d.pop("prev_total_closed", UNSET))
 
-        def _parse_created_change_pct(
-            data: object,
-        ) -> float | Literal["new"] | None | Unset:
+
+        def _parse_created_change_pct(data: object) -> float | Literal['new'] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            created_change_pct_type_1 = cast(Literal["new"], data)
-            if created_change_pct_type_1 != "new":
-                raise ValueError(
-                    f"created_change_pct_type_1 must match const 'new', got '{created_change_pct_type_1}'"
-                )
+            created_change_pct_type_1 = cast(Literal['new'] , data)
+            if created_change_pct_type_1 != 'new':
+                raise ValueError(f"created_change_pct_type_1 must match const 'new', got '{created_change_pct_type_1}'")
             return created_change_pct_type_1
-            return cast(float | Literal["new"] | None | Unset, data)
+            return cast(float | Literal['new'] | None | Unset, data)
 
-        created_change_pct = _parse_created_change_pct(
-            d.pop("created_change_pct", UNSET)
-        )
+        created_change_pct = _parse_created_change_pct(d.pop("created_change_pct", UNSET))
 
-        def _parse_closed_change_pct(
-            data: object,
-        ) -> float | Literal["new"] | None | Unset:
+
+        def _parse_closed_change_pct(data: object) -> float | Literal['new'] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            closed_change_pct_type_1 = cast(Literal["new"], data)
-            if closed_change_pct_type_1 != "new":
-                raise ValueError(
-                    f"closed_change_pct_type_1 must match const 'new', got '{closed_change_pct_type_1}'"
-                )
+            closed_change_pct_type_1 = cast(Literal['new'] , data)
+            if closed_change_pct_type_1 != 'new':
+                raise ValueError(f"closed_change_pct_type_1 must match const 'new', got '{closed_change_pct_type_1}'")
             return closed_change_pct_type_1
-            return cast(float | Literal["new"] | None | Unset, data)
+            return cast(float | Literal['new'] | None | Unset, data)
 
         closed_change_pct = _parse_closed_change_pct(d.pop("closed_change_pct", UNSET))
+
 
         analytics_support_trends = cls(
             period=period,
@@ -547,6 +595,7 @@ class AnalyticsSupportTrends:
             created_change_pct=created_change_pct,
             closed_change_pct=closed_change_pct,
         )
+
 
         analytics_support_trends.additional_properties = d
         return analytics_support_trends

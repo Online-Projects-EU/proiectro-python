@@ -1,42 +1,58 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="AllPartnersProposalItem")
+
 
 
 @_attrs_define
 class AllPartnersProposalItem:
-    """Proposal item with partner context for aggregated view
+    """ Proposal item with partner context for aggregated view
 
-    Attributes:
-        id (str):
-        title (str):
-        description (None | str):
-        status (str):
-        created_at (str):
-        estimated_value (None | str):
-        currency (None | str):
-        partner_tenant_name (str):
-        proxy_subtenant_id (str):
-        bridge_id (str):
-    """
+        Attributes:
+            id (str):
+            title (str):
+            description (None | str):
+            status (str):
+            created_at (datetime.datetime):
+            estimated_value (None | str):
+            currency (None | str):
+            partner_tenant_name (str):
+            proxy_subtenant_id (str):
+            bridge_id (str):
+     """
 
     id: str
     title: str
     description: None | str
     status: str
-    created_at: str
+    created_at: datetime.datetime
     estimated_value: None | str
     currency: None | str
     partner_tenant_name: str
     proxy_subtenant_id: str
     bridge_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -48,7 +64,7 @@ class AllPartnersProposalItem:
 
         status = self.status
 
-        created_at = self.created_at
+        created_at = self.created_at.isoformat()
 
         estimated_value: None | str
         estimated_value = self.estimated_value
@@ -62,24 +78,25 @@ class AllPartnersProposalItem:
 
         bridge_id = self.bridge_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "title": title,
-                "description": description,
-                "status": status,
-                "created_at": created_at,
-                "estimated_value": estimated_value,
-                "currency": currency,
-                "partner_tenant_name": partner_tenant_name,
-                "proxy_subtenant_id": proxy_subtenant_id,
-                "bridge_id": bridge_id,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "title": title,
+            "description": description,
+            "status": status,
+            "created_at": created_at,
+            "estimated_value": estimated_value,
+            "currency": currency,
+            "partner_tenant_name": partner_tenant_name,
+            "proxy_subtenant_id": proxy_subtenant_id,
+            "bridge_id": bridge_id,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,9 +112,13 @@ class AllPartnersProposalItem:
 
         description = _parse_description(d.pop("description"))
 
+
         status = d.pop("status")
 
-        created_at = d.pop("created_at")
+        created_at = isoparse(d.pop("created_at"))
+
+
+
 
         def _parse_estimated_value(data: object) -> None | str:
             if data is None:
@@ -106,12 +127,14 @@ class AllPartnersProposalItem:
 
         estimated_value = _parse_estimated_value(d.pop("estimated_value"))
 
+
         def _parse_currency(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         currency = _parse_currency(d.pop("currency"))
+
 
         partner_tenant_name = d.pop("partner_tenant_name")
 
@@ -131,6 +154,7 @@ class AllPartnersProposalItem:
             proxy_subtenant_id=proxy_subtenant_id,
             bridge_id=bridge_id,
         )
+
 
         all_partners_proposal_item.additional_properties = d
         return all_partners_proposal_item

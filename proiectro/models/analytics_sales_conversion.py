@@ -1,34 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Literal,
-    TypeVar,
-    cast,
-)
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+from typing import Literal, cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.analytics_sales_conversion_funnel_summary import (
-        AnalyticsSalesConversionFunnelSummary,
-    )
-    from ..models.analytics_sales_conversion_stage import AnalyticsSalesConversionStage
-    from ..models.compare_option import CompareOption
-    from ..models.horizon_option import HorizonOption
+  from ..models.analytics_sales_conversion_funnel_summary import AnalyticsSalesConversionFunnelSummary
+  from ..models.analytics_sales_conversion_stage import AnalyticsSalesConversionStage
+  from ..models.compare_option import CompareOption
+  from ..models.horizon_option import HorizonOption
+
+
+
 
 
 T = TypeVar("T", bound="AnalyticsSalesConversion")
 
 
+
 @_attrs_define
 class AnalyticsSalesConversion:
-    """Sales conversion funnel analysis with overall summary and per-funnel detail.
+    """ Sales conversion funnel analysis with overall summary and per-funnel detail.
 
     Shows:
     - Overall conversion metrics across all funnels
@@ -47,7 +49,7 @@ class AnalyticsSalesConversion:
             funnel_name (str):
             period (str | Unset):  Default: 'YTD'.
             temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (str | Unset):  Default: ''.
+            generated_at (datetime.datetime | None | Unset):
             period_label (None | str | Unset):
             horizon (None | str | Unset):
             horizon_label (None | str | Unset):
@@ -69,7 +71,7 @@ class AnalyticsSalesConversion:
             stages (list[AnalyticsSalesConversionStage] | Unset):
             bottleneck_stage (None | str | Unset):
             fastest_stage (None | str | Unset):
-    """
+     """
 
     overall_conversion_rate: float | str
     total_deals_created: int
@@ -80,9 +82,9 @@ class AnalyticsSalesConversion:
     win_rate: float | str
     funnel_id: str
     funnel_name: str
-    period: str | Unset = "YTD"
-    temporal_type: str | Unset = "snapshot"
-    generated_at: str | Unset = ""
+    period: str | Unset = 'YTD'
+    temporal_type: str | Unset = 'snapshot'
+    generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
     horizon_label: None | str | Unset = UNSET
@@ -98,15 +100,23 @@ class AnalyticsSalesConversion:
     filter_type_label: None | str | Unset = UNSET
     prev_conversion_rate: float | None | str | Unset = UNSET
     prev_win_rate: float | None | str | Unset = UNSET
-    conversion_rate_change: float | Literal["new"] | None | str | Unset = UNSET
-    win_rate_change: float | Literal["new"] | None | str | Unset = UNSET
+    conversion_rate_change: float | Literal['new'] | None | str | Unset = UNSET
+    win_rate_change: float | Literal['new'] | None | str | Unset = UNSET
     available_funnels: list[AnalyticsSalesConversionFunnelSummary] | Unset = UNSET
     stages: list[AnalyticsSalesConversionStage] | Unset = UNSET
     bottleneck_stage: None | str | Unset = UNSET
     fastest_stage: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.analytics_sales_conversion_funnel_summary import AnalyticsSalesConversionFunnelSummary
+        from ..models.compare_option import CompareOption
+        from ..models.horizon_option import HorizonOption
+        from ..models.analytics_sales_conversion_stage import AnalyticsSalesConversionStage
         overall_conversion_rate: float | str
         overall_conversion_rate = self.overall_conversion_rate
 
@@ -131,7 +141,13 @@ class AnalyticsSalesConversion:
 
         temporal_type = self.temporal_type
 
-        generated_at = self.generated_at
+        generated_at: None | str | Unset
+        if isinstance(self.generated_at, Unset):
+            generated_at = UNSET
+        elif isinstance(self.generated_at, datetime.datetime):
+            generated_at = self.generated_at.isoformat()
+        else:
+            generated_at = self.generated_at
 
         period_label: None | str | Unset
         if isinstance(self.period_label, Unset):
@@ -160,6 +176,7 @@ class AnalyticsSalesConversion:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
+
         else:
             horizon_options = self.horizon_options
 
@@ -183,6 +200,7 @@ class AnalyticsSalesConversion:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
+
 
         else:
             compare_options = self.compare_options
@@ -235,13 +253,13 @@ class AnalyticsSalesConversion:
         else:
             prev_win_rate = self.prev_win_rate
 
-        conversion_rate_change: float | Literal["new"] | None | str | Unset
+        conversion_rate_change: float | Literal['new'] | None | str | Unset
         if isinstance(self.conversion_rate_change, Unset):
             conversion_rate_change = UNSET
         else:
             conversion_rate_change = self.conversion_rate_change
 
-        win_rate_change: float | Literal["new"] | None | str | Unset
+        win_rate_change: float | Literal['new'] | None | str | Unset
         if isinstance(self.win_rate_change, Unset):
             win_rate_change = UNSET
         else:
@@ -254,12 +272,16 @@ class AnalyticsSalesConversion:
                 available_funnels_item = available_funnels_item_data.to_dict()
                 available_funnels.append(available_funnels_item)
 
+
+
         stages: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.stages, Unset):
             stages = []
             for stages_item_data in self.stages:
                 stages_item = stages_item_data.to_dict()
                 stages.append(stages_item)
+
+
 
         bottleneck_stage: None | str | Unset
         if isinstance(self.bottleneck_stage, Unset):
@@ -273,21 +295,20 @@ class AnalyticsSalesConversion:
         else:
             fastest_stage = self.fastest_stage
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "overall_conversion_rate": overall_conversion_rate,
-                "total_deals_created": total_deals_created,
-                "total_deals_won": total_deals_won,
-                "total_deals_lost": total_deals_lost,
-                "total_deals_open": total_deals_open,
-                "avg_sales_cycle_days": avg_sales_cycle_days,
-                "win_rate": win_rate,
-                "funnel_id": funnel_id,
-                "funnel_name": funnel_name,
-            }
-        )
+        field_dict.update({
+            "overall_conversion_rate": overall_conversion_rate,
+            "total_deals_created": total_deals_created,
+            "total_deals_won": total_deals_won,
+            "total_deals_lost": total_deals_lost,
+            "total_deals_open": total_deals_open,
+            "avg_sales_cycle_days": avg_sales_cycle_days,
+            "win_rate": win_rate,
+            "funnel_id": funnel_id,
+            "funnel_name": funnel_name,
+        })
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -339,25 +360,20 @@ class AnalyticsSalesConversion:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analytics_sales_conversion_funnel_summary import (
-            AnalyticsSalesConversionFunnelSummary,
-        )
-        from ..models.analytics_sales_conversion_stage import (
-            AnalyticsSalesConversionStage,
-        )
+        from ..models.analytics_sales_conversion_funnel_summary import AnalyticsSalesConversionFunnelSummary
+        from ..models.analytics_sales_conversion_stage import AnalyticsSalesConversionStage
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
-
         d = dict(src_dict)
-
         def _parse_overall_conversion_rate(data: object) -> float | str:
             return cast(float | str, data)
 
-        overall_conversion_rate = _parse_overall_conversion_rate(
-            d.pop("overall_conversion_rate")
-        )
+        overall_conversion_rate = _parse_overall_conversion_rate(d.pop("overall_conversion_rate"))
+
 
         total_deals_created = d.pop("total_deals_created")
 
@@ -374,6 +390,7 @@ class AnalyticsSalesConversion:
 
         win_rate = _parse_win_rate(d.pop("win_rate"))
 
+
         funnel_id = d.pop("funnel_id")
 
         funnel_name = d.pop("funnel_name")
@@ -382,7 +399,25 @@ class AnalyticsSalesConversion:
 
         temporal_type = d.pop("temporal_type", UNSET)
 
-        generated_at = d.pop("generated_at", UNSET)
+        def _parse_generated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                generated_at_type_0 = isoparse(data)
+
+
+
+                return generated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
+
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -393,6 +428,7 @@ class AnalyticsSalesConversion:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
+
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -402,6 +438,7 @@ class AnalyticsSalesConversion:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
+
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -410,6 +447,7 @@ class AnalyticsSalesConversion:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
+
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -421,10 +459,10 @@ class AnalyticsSalesConversion:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in _horizon_options_type_0:
-                    horizon_options_type_0_item = HorizonOption.from_dict(
-                        horizon_options_type_0_item_data
-                    )
+                for horizon_options_type_0_item_data in (_horizon_options_type_0):
+                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
+
+
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -435,6 +473,7 @@ class AnalyticsSalesConversion:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
+
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -444,6 +483,7 @@ class AnalyticsSalesConversion:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
+
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -452,6 +492,7 @@ class AnalyticsSalesConversion:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
+
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -463,10 +504,10 @@ class AnalyticsSalesConversion:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in _compare_options_type_0:
-                    compare_options_type_0_item = CompareOption.from_dict(
-                        compare_options_type_0_item_data
-                    )
+                for compare_options_type_0_item_data in (_compare_options_type_0):
+                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
+
+
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -477,6 +518,7 @@ class AnalyticsSalesConversion:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
+
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -486,6 +528,7 @@ class AnalyticsSalesConversion:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
+
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -493,9 +536,8 @@ class AnalyticsSalesConversion:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(
-            d.pop("filter_severity_label", UNSET)
-        )
+        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
+
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -506,6 +548,7 @@ class AnalyticsSalesConversion:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
+
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -513,9 +556,8 @@ class AnalyticsSalesConversion:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(
-            d.pop("filter_category_label", UNSET)
-        )
+        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
+
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -526,6 +568,7 @@ class AnalyticsSalesConversion:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
+
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -535,6 +578,7 @@ class AnalyticsSalesConversion:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+
         def _parse_prev_conversion_rate(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -542,9 +586,8 @@ class AnalyticsSalesConversion:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_conversion_rate = _parse_prev_conversion_rate(
-            d.pop("prev_conversion_rate", UNSET)
-        )
+        prev_conversion_rate = _parse_prev_conversion_rate(d.pop("prev_conversion_rate", UNSET))
+
 
         def _parse_prev_win_rate(data: object) -> float | None | str | Unset:
             if data is None:
@@ -555,54 +598,46 @@ class AnalyticsSalesConversion:
 
         prev_win_rate = _parse_prev_win_rate(d.pop("prev_win_rate", UNSET))
 
-        def _parse_conversion_rate_change(
-            data: object,
-        ) -> float | Literal["new"] | None | str | Unset:
+
+        def _parse_conversion_rate_change(data: object) -> float | Literal['new'] | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            conversion_rate_change_type_2 = cast(Literal["new"], data)
-            if conversion_rate_change_type_2 != "new":
-                raise ValueError(
-                    f"conversion_rate_change_type_2 must match const 'new', got '{conversion_rate_change_type_2}'"
-                )
+            conversion_rate_change_type_2 = cast(Literal['new'] , data)
+            if conversion_rate_change_type_2 != 'new':
+                raise ValueError(f"conversion_rate_change_type_2 must match const 'new', got '{conversion_rate_change_type_2}'")
             return conversion_rate_change_type_2
-            return cast(float | Literal["new"] | None | str | Unset, data)
+            return cast(float | Literal['new'] | None | str | Unset, data)
 
-        conversion_rate_change = _parse_conversion_rate_change(
-            d.pop("conversion_rate_change", UNSET)
-        )
+        conversion_rate_change = _parse_conversion_rate_change(d.pop("conversion_rate_change", UNSET))
 
-        def _parse_win_rate_change(
-            data: object,
-        ) -> float | Literal["new"] | None | str | Unset:
+
+        def _parse_win_rate_change(data: object) -> float | Literal['new'] | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            win_rate_change_type_2 = cast(Literal["new"], data)
-            if win_rate_change_type_2 != "new":
-                raise ValueError(
-                    f"win_rate_change_type_2 must match const 'new', got '{win_rate_change_type_2}'"
-                )
+            win_rate_change_type_2 = cast(Literal['new'] , data)
+            if win_rate_change_type_2 != 'new':
+                raise ValueError(f"win_rate_change_type_2 must match const 'new', got '{win_rate_change_type_2}'")
             return win_rate_change_type_2
-            return cast(float | Literal["new"] | None | str | Unset, data)
+            return cast(float | Literal['new'] | None | str | Unset, data)
 
         win_rate_change = _parse_win_rate_change(d.pop("win_rate_change", UNSET))
+
 
         _available_funnels = d.pop("available_funnels", UNSET)
         available_funnels: list[AnalyticsSalesConversionFunnelSummary] | Unset = UNSET
         if _available_funnels is not UNSET:
             available_funnels = []
             for available_funnels_item_data in _available_funnels:
-                available_funnels_item = (
-                    AnalyticsSalesConversionFunnelSummary.from_dict(
-                        available_funnels_item_data
-                    )
-                )
+                available_funnels_item = AnalyticsSalesConversionFunnelSummary.from_dict(available_funnels_item_data)
+
+
 
                 available_funnels.append(available_funnels_item)
+
 
         _stages = d.pop("stages", UNSET)
         stages: list[AnalyticsSalesConversionStage] | Unset = UNSET
@@ -611,7 +646,10 @@ class AnalyticsSalesConversion:
             for stages_item_data in _stages:
                 stages_item = AnalyticsSalesConversionStage.from_dict(stages_item_data)
 
+
+
                 stages.append(stages_item)
+
 
         def _parse_bottleneck_stage(data: object) -> None | str | Unset:
             if data is None:
@@ -622,6 +660,7 @@ class AnalyticsSalesConversion:
 
         bottleneck_stage = _parse_bottleneck_stage(d.pop("bottleneck_stage", UNSET))
 
+
         def _parse_fastest_stage(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -630,6 +669,7 @@ class AnalyticsSalesConversion:
             return cast(None | str | Unset, data)
 
         fastest_stage = _parse_fastest_stage(d.pop("fastest_stage", UNSET))
+
 
         analytics_sales_conversion = cls(
             overall_conversion_rate=overall_conversion_rate,
@@ -666,6 +706,7 @@ class AnalyticsSalesConversion:
             bottleneck_stage=bottleneck_stage,
             fastest_stage=fastest_stage,
         )
+
 
         analytics_sales_conversion.additional_properties = d
         return analytics_sales_conversion

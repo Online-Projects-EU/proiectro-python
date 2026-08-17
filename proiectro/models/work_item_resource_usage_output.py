@@ -1,29 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.resource_usage_item import ResourceUsageItem
+  from ..models.resource_usage_item import ResourceUsageItem
+
+
+
 
 
 T = TypeVar("T", bound="WorkItemResourceUsageOutput")
 
 
+
 @_attrs_define
 class WorkItemResourceUsageOutput:
-    """
-    Attributes:
-        resource_usage (list[ResourceUsageItem]):
-        total_usage (int):
-        usage_count (int):
-        work_item_id (str):
-        work_item_name (str):
-        project_id (str):
-    """
+    """ 
+        Attributes:
+            resource_usage (list[ResourceUsageItem]):
+            total_usage (int):
+            usage_count (int):
+            work_item_id (str):
+            work_item_name (str):
+            project_id (str):
+     """
 
     resource_usage: list[ResourceUsageItem]
     total_usage: int
@@ -33,11 +41,18 @@ class WorkItemResourceUsageOutput:
     project_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.resource_usage_item import ResourceUsageItem
         resource_usage = []
         for resource_usage_item_data in self.resource_usage:
             resource_usage_item = resource_usage_item_data.to_dict()
             resource_usage.append(resource_usage_item)
+
+
 
         total_usage = self.total_usage
 
@@ -49,32 +64,35 @@ class WorkItemResourceUsageOutput:
 
         project_id = self.project_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "resource_usage": resource_usage,
-                "total_usage": total_usage,
-                "usage_count": usage_count,
-                "work_item_id": work_item_id,
-                "work_item_name": work_item_name,
-                "project_id": project_id,
-            }
-        )
+        field_dict.update({
+            "resource_usage": resource_usage,
+            "total_usage": total_usage,
+            "usage_count": usage_count,
+            "work_item_id": work_item_id,
+            "work_item_name": work_item_name,
+            "project_id": project_id,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.resource_usage_item import ResourceUsageItem
-
         d = dict(src_dict)
         resource_usage = []
         _resource_usage = d.pop("resource_usage")
-        for resource_usage_item_data in _resource_usage:
+        for resource_usage_item_data in (_resource_usage):
             resource_usage_item = ResourceUsageItem.from_dict(resource_usage_item_data)
 
+
+
             resource_usage.append(resource_usage_item)
+
 
         total_usage = d.pop("total_usage")
 
@@ -94,6 +112,7 @@ class WorkItemResourceUsageOutput:
             work_item_name=work_item_name,
             project_id=project_id,
         )
+
 
         work_item_resource_usage_output.additional_properties = d
         return work_item_resource_usage_output

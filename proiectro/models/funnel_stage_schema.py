@@ -1,31 +1,40 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="FunnelStageSchema")
+
 
 
 @_attrs_define
 class FunnelStageSchema:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        description (str):
-        is_lead (bool):
-        proposal_count (int):
-        total_value (float | str):
-        average_deal_size (float | str):
-        average_days_in_stage (float | str):
-        total_value_symbol (str):
-        currency_breakdown (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            description (str):
+            is_lead (bool):
+            proposal_count (int):
+            total_value (float | str):
+            average_deal_size (float | str):
+            average_days_in_stage (float | str):
+            total_value_symbol (str):
+            currency_breakdown (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -38,6 +47,10 @@ class FunnelStageSchema:
     total_value_symbol: str
     currency_breakdown: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -67,25 +80,26 @@ class FunnelStageSchema:
         else:
             currency_breakdown = self.currency_breakdown
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "description": description,
-                "is_lead": is_lead,
-                "proposal_count": proposal_count,
-                "total_value": total_value,
-                "average_deal_size": average_deal_size,
-                "average_days_in_stage": average_days_in_stage,
-                "total_value_symbol": total_value_symbol,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "description": description,
+            "is_lead": is_lead,
+            "proposal_count": proposal_count,
+            "total_value": total_value,
+            "average_deal_size": average_deal_size,
+            "average_days_in_stage": average_days_in_stage,
+            "total_value_symbol": total_value_symbol,
+        })
         if currency_breakdown is not UNSET:
             field_dict["currency_breakdown"] = currency_breakdown
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -105,17 +119,18 @@ class FunnelStageSchema:
 
         total_value = _parse_total_value(d.pop("total_value"))
 
+
         def _parse_average_deal_size(data: object) -> float | str:
             return cast(float | str, data)
 
         average_deal_size = _parse_average_deal_size(d.pop("average_deal_size"))
 
+
         def _parse_average_days_in_stage(data: object) -> float | str:
             return cast(float | str, data)
 
-        average_days_in_stage = _parse_average_days_in_stage(
-            d.pop("average_days_in_stage")
-        )
+        average_days_in_stage = _parse_average_days_in_stage(d.pop("average_days_in_stage"))
+
 
         total_value_symbol = d.pop("total_value_symbol")
 
@@ -126,9 +141,8 @@ class FunnelStageSchema:
                 return data
             return cast(None | str | Unset, data)
 
-        currency_breakdown = _parse_currency_breakdown(
-            d.pop("currency_breakdown", UNSET)
-        )
+        currency_breakdown = _parse_currency_breakdown(d.pop("currency_breakdown", UNSET))
+
 
         funnel_stage_schema = cls(
             id=id,
@@ -142,6 +156,7 @@ class FunnelStageSchema:
             total_value_symbol=total_value_symbol,
             currency_breakdown=currency_breakdown,
         )
+
 
         funnel_stage_schema.additional_properties = d
         return funnel_stage_schema

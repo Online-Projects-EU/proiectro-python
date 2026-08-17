@@ -1,88 +1,101 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_customer_portal_asset_tickets_org import (
-        OutputCustomerPortalAssetTicketsOrg,
-    )
-    from ..models.output_customer_portal_asset_tickets_tickets_item import (
-        OutputCustomerPortalAssetTicketsTicketsItem,
-    )
+  from ..models.output_customer_portal_asset_tickets_org import OutputCustomerPortalAssetTicketsOrg
+  from ..models.output_customer_portal_asset_tickets_tickets_item import OutputCustomerPortalAssetTicketsTicketsItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputCustomerPortalAssetTickets")
 
 
+
 @_attrs_define
 class OutputCustomerPortalAssetTickets:
-    """Customer portal asset linked tickets (ESRs with reported_asset)
+    """ Customer portal asset linked tickets (ESRs with reported_asset)
 
-    Attributes:
-        tickets (list[OutputCustomerPortalAssetTicketsTicketsItem]):
-        asset_id (str):
-        org (OutputCustomerPortalAssetTicketsOrg):
-    """
+        Attributes:
+            tickets (list[OutputCustomerPortalAssetTicketsTicketsItem]):
+            asset_id (str):
+            org (OutputCustomerPortalAssetTicketsOrg):
+     """
 
     tickets: list[OutputCustomerPortalAssetTicketsTicketsItem]
     asset_id: str
     org: OutputCustomerPortalAssetTicketsOrg
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_customer_portal_asset_tickets_org import OutputCustomerPortalAssetTicketsOrg
+        from ..models.output_customer_portal_asset_tickets_tickets_item import OutputCustomerPortalAssetTicketsTicketsItem
         tickets = []
         for tickets_item_data in self.tickets:
             tickets_item = tickets_item_data.to_dict()
             tickets.append(tickets_item)
 
+
+
         asset_id = self.asset_id
 
         org = self.org.to_dict()
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tickets": tickets,
-                "asset_id": asset_id,
-                "org": org,
-            }
-        )
+        field_dict.update({
+            "tickets": tickets,
+            "asset_id": asset_id,
+            "org": org,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_customer_portal_asset_tickets_org import (
-            OutputCustomerPortalAssetTicketsOrg,
-        )
-        from ..models.output_customer_portal_asset_tickets_tickets_item import (
-            OutputCustomerPortalAssetTicketsTicketsItem,
-        )
-
+        from ..models.output_customer_portal_asset_tickets_org import OutputCustomerPortalAssetTicketsOrg
+        from ..models.output_customer_portal_asset_tickets_tickets_item import OutputCustomerPortalAssetTicketsTicketsItem
         d = dict(src_dict)
         tickets = []
         _tickets = d.pop("tickets")
-        for tickets_item_data in _tickets:
-            tickets_item = OutputCustomerPortalAssetTicketsTicketsItem.from_dict(
-                tickets_item_data
-            )
+        for tickets_item_data in (_tickets):
+            tickets_item = OutputCustomerPortalAssetTicketsTicketsItem.from_dict(tickets_item_data)
+
+
 
             tickets.append(tickets_item)
+
 
         asset_id = d.pop("asset_id")
 
         org = OutputCustomerPortalAssetTicketsOrg.from_dict(d.pop("org"))
+
+
+
 
         output_customer_portal_asset_tickets = cls(
             tickets=tickets,
             asset_id=asset_id,
             org=org,
         )
+
 
         output_customer_portal_asset_tickets.additional_properties = d
         return output_customer_portal_asset_tickets

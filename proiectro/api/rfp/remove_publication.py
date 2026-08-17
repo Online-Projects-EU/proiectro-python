@@ -34,10 +34,15 @@ def _parse_response(
 
         return response_200
 
-    if response.status_code == 400:
-        response_400 = APIResponse.from_dict(response.json())
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
 
-        return response_400
+        return response_404
+
+    if response.status_code == 409:
+        response_409 = APIResponse.from_dict(response.json())
+
+        return response_409
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)

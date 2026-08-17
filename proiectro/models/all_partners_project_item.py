@@ -1,42 +1,58 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="AllPartnersProjectItem")
+
 
 
 @_attrs_define
 class AllPartnersProjectItem:
-    """Project item with partner context for aggregated view
+    """ Project item with partner context for aggregated view
 
-    Attributes:
-        id (str):
-        name (str):
-        description (None | str):
-        status (str):
-        start_date (None | str):
-        target_date (None | str):
-        progress_percentage (int | None):
-        partner_tenant_name (str):
-        proxy_subtenant_id (str):
-        bridge_id (str):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            description (None | str):
+            status (str):
+            start_date (datetime.date | None):
+            target_date (datetime.date | None):
+            progress_percentage (int | None):
+            partner_tenant_name (str):
+            proxy_subtenant_id (str):
+            bridge_id (str):
+     """
 
     id: str
     name: str
     description: None | str
     status: str
-    start_date: None | str
-    target_date: None | str
+    start_date: datetime.date | None
+    target_date: datetime.date | None
     progress_percentage: int | None
     partner_tenant_name: str
     proxy_subtenant_id: str
     bridge_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -49,10 +65,16 @@ class AllPartnersProjectItem:
         status = self.status
 
         start_date: None | str
-        start_date = self.start_date
+        if isinstance(self.start_date, datetime.date):
+            start_date = self.start_date.isoformat()
+        else:
+            start_date = self.start_date
 
         target_date: None | str
-        target_date = self.target_date
+        if isinstance(self.target_date, datetime.date):
+            target_date = self.target_date.isoformat()
+        else:
+            target_date = self.target_date
 
         progress_percentage: int | None
         progress_percentage = self.progress_percentage
@@ -63,24 +85,25 @@ class AllPartnersProjectItem:
 
         bridge_id = self.bridge_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "description": description,
-                "status": status,
-                "start_date": start_date,
-                "target_date": target_date,
-                "progress_percentage": progress_percentage,
-                "partner_tenant_name": partner_tenant_name,
-                "proxy_subtenant_id": proxy_subtenant_id,
-                "bridge_id": bridge_id,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "description": description,
+            "status": status,
+            "start_date": start_date,
+            "target_date": target_date,
+            "progress_percentage": progress_percentage,
+            "partner_tenant_name": partner_tenant_name,
+            "proxy_subtenant_id": proxy_subtenant_id,
+            "bridge_id": bridge_id,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -96,21 +119,44 @@ class AllPartnersProjectItem:
 
         description = _parse_description(d.pop("description"))
 
+
         status = d.pop("status")
 
-        def _parse_start_date(data: object) -> None | str:
+        def _parse_start_date(data: object) -> datetime.date | None:
             if data is None:
                 return data
-            return cast(None | str, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                start_date_type_0 = isoparse(data).date()
+
+
+
+                return start_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None, data)
 
         start_date = _parse_start_date(d.pop("start_date"))
 
-        def _parse_target_date(data: object) -> None | str:
+
+        def _parse_target_date(data: object) -> datetime.date | None:
             if data is None:
                 return data
-            return cast(None | str, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                target_date_type_0 = isoparse(data).date()
+
+
+
+                return target_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None, data)
 
         target_date = _parse_target_date(d.pop("target_date"))
+
 
         def _parse_progress_percentage(data: object) -> int | None:
             if data is None:
@@ -118,6 +164,7 @@ class AllPartnersProjectItem:
             return cast(int | None, data)
 
         progress_percentage = _parse_progress_percentage(d.pop("progress_percentage"))
+
 
         partner_tenant_name = d.pop("partner_tenant_name")
 
@@ -137,6 +184,7 @@ class AllPartnersProjectItem:
             proxy_subtenant_id=proxy_subtenant_id,
             bridge_id=bridge_id,
         )
+
 
         all_partners_project_item.additional_properties = d
         return all_partners_project_item

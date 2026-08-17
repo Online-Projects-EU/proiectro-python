@@ -1,29 +1,40 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="ActivePartnerItem")
+
 
 
 @_attrs_define
 class ActivePartnerItem:
-    """Single active partner item - partner subtenant names are never exposed for privacy
+    """ Single active partner item - partner subtenant names are never exposed for privacy
 
-    Attributes:
-        bridge_id (str):
-        subtenant_id (str):
-        subtenant_name (str):
-        partner_tenant_name (str):
-        partner_logo_url (str):
-        status (str):
-        established_at (None | str | Unset):
-    """
+        Attributes:
+            bridge_id (str):
+            subtenant_id (str):
+            subtenant_name (str):
+            partner_tenant_name (str):
+            partner_logo_url (str):
+            status (str):
+            established_at (datetime.datetime | None | Unset):
+     """
 
     bridge_id: str
     subtenant_id: str
@@ -31,8 +42,12 @@ class ActivePartnerItem:
     partner_tenant_name: str
     partner_logo_url: str
     status: str
-    established_at: None | str | Unset = UNSET
+    established_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         bridge_id = self.bridge_id
@@ -50,25 +65,28 @@ class ActivePartnerItem:
         established_at: None | str | Unset
         if isinstance(self.established_at, Unset):
             established_at = UNSET
+        elif isinstance(self.established_at, datetime.datetime):
+            established_at = self.established_at.isoformat()
         else:
             established_at = self.established_at
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "subtenant_id": subtenant_id,
-                "subtenant_name": subtenant_name,
-                "partner_tenant_name": partner_tenant_name,
-                "partner_logo_url": partner_logo_url,
-                "status": status,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "subtenant_id": subtenant_id,
+            "subtenant_name": subtenant_name,
+            "partner_tenant_name": partner_tenant_name,
+            "partner_logo_url": partner_logo_url,
+            "status": status,
+        })
         if established_at is not UNSET:
             field_dict["established_at"] = established_at
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -85,14 +103,25 @@ class ActivePartnerItem:
 
         status = d.pop("status")
 
-        def _parse_established_at(data: object) -> None | str | Unset:
+        def _parse_established_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                established_at_type_0 = isoparse(data)
+
+
+
+                return established_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
         established_at = _parse_established_at(d.pop("established_at", UNSET))
+
 
         active_partner_item = cls(
             bridge_id=bridge_id,
@@ -103,6 +132,7 @@ class ActivePartnerItem:
             status=status,
             established_at=established_at,
         )
+
 
         active_partner_item.additional_properties = d
         return active_partner_item

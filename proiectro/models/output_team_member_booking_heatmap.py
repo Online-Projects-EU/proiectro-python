@@ -1,28 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.output_team_member_booking_heatmap_data import (
-        OutputTeamMemberBookingHeatmapData,
-    )
-    from ..models.output_team_member_booking_heatmap_week_labels import (
-        OutputTeamMemberBookingHeatmapWeekLabels,
-    )
+  from ..models.output_team_member_booking_heatmap_data import OutputTeamMemberBookingHeatmapData
+  from ..models.output_team_member_booking_heatmap_week_labels import OutputTeamMemberBookingHeatmapWeekLabels
+
+
+
 
 
 T = TypeVar("T", bound="OutputTeamMemberBookingHeatmap")
 
 
+
 @_attrs_define
 class OutputTeamMemberBookingHeatmap:
-    """Heatmap data for team member bookings in a project
+    """ Heatmap data for team member bookings in a project
 
     Shows three metrics per cell:
     - activity: Actual logged work hours from WorkLog records
@@ -44,10 +49,10 @@ class OutputTeamMemberBookingHeatmap:
             avg_availability (float):
             has_booking_data (bool):
             has_effort_data (bool):
-            earliest_booking_date (None | str | Unset):
-            latest_booking_date (None | str | Unset):
+            earliest_booking_date (datetime.date | None | Unset):
+            latest_booking_date (datetime.date | None | Unset):
             weekdays (list[int] | Unset):
-    """
+     """
 
     team_member_id: str
     team_member_name: str
@@ -63,12 +68,18 @@ class OutputTeamMemberBookingHeatmap:
     avg_availability: float
     has_booking_data: bool
     has_effort_data: bool
-    earliest_booking_date: None | str | Unset = UNSET
-    latest_booking_date: None | str | Unset = UNSET
+    earliest_booking_date: datetime.date | None | Unset = UNSET
+    latest_booking_date: datetime.date | None | Unset = UNSET
     weekdays: list[int] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_team_member_booking_heatmap_data import OutputTeamMemberBookingHeatmapData
+        from ..models.output_team_member_booking_heatmap_week_labels import OutputTeamMemberBookingHeatmapWeekLabels
         team_member_id = self.team_member_id
 
         team_member_name = self.team_member_name
@@ -80,6 +91,8 @@ class OutputTeamMemberBookingHeatmap:
         total_weeks = self.total_weeks
 
         weeks = self.weeks
+
+
 
         week_labels = self.week_labels.to_dict()
 
@@ -100,12 +113,16 @@ class OutputTeamMemberBookingHeatmap:
         earliest_booking_date: None | str | Unset
         if isinstance(self.earliest_booking_date, Unset):
             earliest_booking_date = UNSET
+        elif isinstance(self.earliest_booking_date, datetime.date):
+            earliest_booking_date = self.earliest_booking_date.isoformat()
         else:
             earliest_booking_date = self.earliest_booking_date
 
         latest_booking_date: None | str | Unset
         if isinstance(self.latest_booking_date, Unset):
             latest_booking_date = UNSET
+        elif isinstance(self.latest_booking_date, datetime.date):
+            latest_booking_date = self.latest_booking_date.isoformat()
         else:
             latest_booking_date = self.latest_booking_date
 
@@ -113,26 +130,27 @@ class OutputTeamMemberBookingHeatmap:
         if not isinstance(self.weekdays, Unset):
             weekdays = self.weekdays
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "team_member_id": team_member_id,
-                "team_member_name": team_member_name,
-                "project_id": project_id,
-                "project_name": project_name,
-                "total_weeks": total_weeks,
-                "weeks": weeks,
-                "week_labels": week_labels,
-                "data": data,
-                "total_bookings": total_bookings,
-                "avg_activity": avg_activity,
-                "avg_booking": avg_booking,
-                "avg_availability": avg_availability,
-                "has_booking_data": has_booking_data,
-                "has_effort_data": has_effort_data,
-            }
-        )
+        field_dict.update({
+            "team_member_id": team_member_id,
+            "team_member_name": team_member_name,
+            "project_id": project_id,
+            "project_name": project_name,
+            "total_weeks": total_weeks,
+            "weeks": weeks,
+            "week_labels": week_labels,
+            "data": data,
+            "total_bookings": total_bookings,
+            "avg_activity": avg_activity,
+            "avg_booking": avg_booking,
+            "avg_availability": avg_availability,
+            "has_booking_data": has_booking_data,
+            "has_effort_data": has_effort_data,
+        })
         if earliest_booking_date is not UNSET:
             field_dict["earliest_booking_date"] = earliest_booking_date
         if latest_booking_date is not UNSET:
@@ -142,15 +160,12 @@ class OutputTeamMemberBookingHeatmap:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_team_member_booking_heatmap_data import (
-            OutputTeamMemberBookingHeatmapData,
-        )
-        from ..models.output_team_member_booking_heatmap_week_labels import (
-            OutputTeamMemberBookingHeatmapWeekLabels,
-        )
-
+        from ..models.output_team_member_booking_heatmap_data import OutputTeamMemberBookingHeatmapData
+        from ..models.output_team_member_booking_heatmap_week_labels import OutputTeamMemberBookingHeatmapWeekLabels
         d = dict(src_dict)
         team_member_id = d.pop("team_member_id")
 
@@ -164,11 +179,16 @@ class OutputTeamMemberBookingHeatmap:
 
         weeks = cast(list[str], d.pop("weeks"))
 
-        week_labels = OutputTeamMemberBookingHeatmapWeekLabels.from_dict(
-            d.pop("week_labels")
-        )
+
+        week_labels = OutputTeamMemberBookingHeatmapWeekLabels.from_dict(d.pop("week_labels"))
+
+
+
 
         data = OutputTeamMemberBookingHeatmapData.from_dict(d.pop("data"))
+
+
+
 
         total_bookings = d.pop("total_bookings")
 
@@ -182,29 +202,48 @@ class OutputTeamMemberBookingHeatmap:
 
         has_effort_data = d.pop("has_effort_data")
 
-        def _parse_earliest_booking_date(data: object) -> None | str | Unset:
+        def _parse_earliest_booking_date(data: object) -> datetime.date | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                earliest_booking_date_type_0 = isoparse(data).date()
 
-        earliest_booking_date = _parse_earliest_booking_date(
-            d.pop("earliest_booking_date", UNSET)
-        )
 
-        def _parse_latest_booking_date(data: object) -> None | str | Unset:
+
+                return earliest_booking_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
+
+        earliest_booking_date = _parse_earliest_booking_date(d.pop("earliest_booking_date", UNSET))
+
+
+        def _parse_latest_booking_date(data: object) -> datetime.date | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                latest_booking_date_type_0 = isoparse(data).date()
 
-        latest_booking_date = _parse_latest_booking_date(
-            d.pop("latest_booking_date", UNSET)
-        )
+
+
+                return latest_booking_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
+
+        latest_booking_date = _parse_latest_booking_date(d.pop("latest_booking_date", UNSET))
+
 
         weekdays = cast(list[int], d.pop("weekdays", UNSET))
+
 
         output_team_member_booking_heatmap = cls(
             team_member_id=team_member_id,
@@ -225,6 +264,7 @@ class OutputTeamMemberBookingHeatmap:
             latest_booking_date=latest_booking_date,
             weekdays=weekdays,
         )
+
 
         output_team_member_booking_heatmap.additional_properties = d
         return output_team_member_booking_heatmap

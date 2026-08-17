@@ -1,33 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputOurRFPItem")
+
 
 
 @_attrs_define
 class OutputOurRFPItem:
-    """Single RFP in tenant's full list (all statuses)
+    """ Single RFP in tenant's full list (all statuses)
 
-    Attributes:
-        id (str):
-        name (str):
-        internal_code (None | str):
-        category (str):
-        category_display (str):
-        currency_code (str):
-        budget_min (float | None | str):
-        budget_max (float | None | str):
-        submission_deadline (str):
-        status (str):
-        status_display (str):
-        is_active (bool):
-        publication_count (int):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            internal_code (None | str):
+            category (str):
+            category_display (str):
+            currency_code (str):
+            budget_min (float | None | str):
+            budget_max (float | None | str):
+            submission_deadline (datetime.date):
+            status (str):
+            status_display (str):
+            is_active (bool):
+            publication_count (int):
+     """
 
     id: str
     name: str
@@ -37,12 +49,16 @@ class OutputOurRFPItem:
     currency_code: str
     budget_min: float | None | str
     budget_max: float | None | str
-    submission_deadline: str
+    submission_deadline: datetime.date
     status: str
     status_display: str
     is_active: bool
     publication_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -64,7 +80,7 @@ class OutputOurRFPItem:
         budget_max: float | None | str
         budget_max = self.budget_max
 
-        submission_deadline = self.submission_deadline
+        submission_deadline = self.submission_deadline.isoformat()
 
         status = self.status
 
@@ -74,27 +90,28 @@ class OutputOurRFPItem:
 
         publication_count = self.publication_count
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "internal_code": internal_code,
-                "category": category,
-                "category_display": category_display,
-                "currency_code": currency_code,
-                "budget_min": budget_min,
-                "budget_max": budget_max,
-                "submission_deadline": submission_deadline,
-                "status": status,
-                "status_display": status_display,
-                "is_active": is_active,
-                "publication_count": publication_count,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "internal_code": internal_code,
+            "category": category,
+            "category_display": category_display,
+            "currency_code": currency_code,
+            "budget_min": budget_min,
+            "budget_max": budget_max,
+            "submission_deadline": submission_deadline,
+            "status": status,
+            "status_display": status_display,
+            "is_active": is_active,
+            "publication_count": publication_count,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -110,6 +127,7 @@ class OutputOurRFPItem:
 
         internal_code = _parse_internal_code(d.pop("internal_code"))
 
+
         category = d.pop("category")
 
         category_display = d.pop("category_display")
@@ -123,6 +141,7 @@ class OutputOurRFPItem:
 
         budget_min = _parse_budget_min(d.pop("budget_min"))
 
+
         def _parse_budget_max(data: object) -> float | None | str:
             if data is None:
                 return data
@@ -130,7 +149,11 @@ class OutputOurRFPItem:
 
         budget_max = _parse_budget_max(d.pop("budget_max"))
 
-        submission_deadline = d.pop("submission_deadline")
+
+        submission_deadline = isoparse(d.pop("submission_deadline")).date()
+
+
+
 
         status = d.pop("status")
 
@@ -155,6 +178,7 @@ class OutputOurRFPItem:
             is_active=is_active,
             publication_count=publication_count,
         )
+
 
         output_our_rfp_item.additional_properties = d
         return output_our_rfp_item

@@ -1,26 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditWebhook")
+
 
 
 @_attrs_define
 class EditWebhook:
-    """
-    Attributes:
-        name (None | str | Unset):
-        target_url (None | str | Unset):
-        event_types (list[str] | None | Unset):
-        is_active (bool | None | Unset):  Default: False.
-        is_secure (bool | None | Unset):  Default: False.
-    """
+    """ 
+        Attributes:
+            name (None | str | Unset):
+            target_url (None | str | Unset):
+            event_types (list[str] | None | Unset):
+            is_active (bool | None | Unset):  Default: False.
+            is_secure (bool | None | Unset):  Default: False.
+     """
 
     name: None | str | Unset = UNSET
     target_url: None | str | Unset = UNSET
@@ -28,6 +37,10 @@ class EditWebhook:
     is_active: bool | None | Unset = False
     is_secure: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name: None | str | Unset
@@ -48,6 +61,7 @@ class EditWebhook:
         elif isinstance(self.event_types, list):
             event_types = self.event_types
 
+
         else:
             event_types = self.event_types
 
@@ -63,9 +77,11 @@ class EditWebhook:
         else:
             is_secure = self.is_secure
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update({
+        })
         if name is not UNSET:
             field_dict["name"] = name
         if target_url is not UNSET:
@@ -79,10 +95,11 @@ class EditWebhook:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -92,6 +109,7 @@ class EditWebhook:
 
         name = _parse_name(d.pop("name", UNSET))
 
+
         def _parse_target_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -100,6 +118,7 @@ class EditWebhook:
             return cast(None | str | Unset, data)
 
         target_url = _parse_target_url(d.pop("target_url", UNSET))
+
 
         def _parse_event_types(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -118,6 +137,7 @@ class EditWebhook:
 
         event_types = _parse_event_types(d.pop("event_types", UNSET))
 
+
         def _parse_is_active(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -126,6 +146,7 @@ class EditWebhook:
             return cast(bool | None | Unset, data)
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
+
 
         def _parse_is_secure(data: object) -> bool | None | Unset:
             if data is None:
@@ -136,6 +157,7 @@ class EditWebhook:
 
         is_secure = _parse_is_secure(d.pop("is_secure", UNSET))
 
+
         edit_webhook = cls(
             name=name,
             target_url=target_url,
@@ -143,6 +165,7 @@ class EditWebhook:
             is_active=is_active,
             is_secure=is_secure,
         )
+
 
         edit_webhook.additional_properties = d
         return edit_webhook

@@ -1,42 +1,49 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.allowed_child_type import AllowedChildType
-    from ..models.work_item_node_children import WorkItemNodeChildren
+  from ..models.allowed_child_type import AllowedChildType
+  from ..models.work_item_node_children import WorkItemNodeChildren
+
+
+
 
 
 T = TypeVar("T", bound="WorkItemNode")
 
 
+
 @_attrs_define
 class WorkItemNode:
-    """Single work item in the hierarchy
+    """ Single work item in the hierarchy
 
-    Attributes:
-        external_id (str):
-        name (str):
-        hierarchy_id (str):
-        item_type_id (str):
-        item_type_name (str):
-        scheduling_behaviour (str):
-        is_finished (bool):
-        is_accepted (bool):
-        estimated_work_hours (float | None | str | Unset):
-        owner_id (None | str | Unset):
-        owner_name (None | str | Unset):
-        planned_start (None | str | Unset):
-        planned_end (None | str | Unset):
-        children (WorkItemNodeChildren | Unset):
-        add_children (list[AllowedChildType] | Unset):
-    """
+        Attributes:
+            external_id (str):
+            name (str):
+            hierarchy_id (str):
+            item_type_id (str):
+            item_type_name (str):
+            scheduling_behaviour (str):
+            is_finished (bool):
+            is_accepted (bool):
+            estimated_work_hours (float | None | str | Unset):
+            owner_id (None | str | Unset):
+            owner_name (None | str | Unset):
+            planned_start (None | str | Unset):
+            planned_end (None | str | Unset):
+            children (WorkItemNodeChildren | Unset):
+            add_children (list[AllowedChildType] | Unset):
+     """
 
     external_id: str
     name: str
@@ -55,7 +62,13 @@ class WorkItemNode:
     add_children: list[AllowedChildType] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.work_item_node_children import WorkItemNodeChildren
+        from ..models.allowed_child_type import AllowedChildType
         external_id = self.external_id
 
         name = self.name
@@ -113,20 +126,21 @@ class WorkItemNode:
                 add_children_item = add_children_item_data.to_dict()
                 add_children.append(add_children_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id": external_id,
-                "name": name,
-                "hierarchy_id": hierarchy_id,
-                "item_type_id": item_type_id,
-                "item_type_name": item_type_name,
-                "scheduling_behaviour": scheduling_behaviour,
-                "is_finished": is_finished,
-                "is_accepted": is_accepted,
-            }
-        )
+        field_dict.update({
+            "external_id": external_id,
+            "name": name,
+            "hierarchy_id": hierarchy_id,
+            "item_type_id": item_type_id,
+            "item_type_name": item_type_name,
+            "scheduling_behaviour": scheduling_behaviour,
+            "is_finished": is_finished,
+            "is_accepted": is_accepted,
+        })
         if estimated_work_hours is not UNSET:
             field_dict["estimated_work_hours"] = estimated_work_hours
         if owner_id is not UNSET:
@@ -144,11 +158,12 @@ class WorkItemNode:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.allowed_child_type import AllowedChildType
         from ..models.work_item_node_children import WorkItemNodeChildren
-
         d = dict(src_dict)
         external_id = d.pop("external_id")
 
@@ -173,9 +188,8 @@ class WorkItemNode:
                 return data
             return cast(float | None | str | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(
-            d.pop("estimated_work_hours", UNSET)
-        )
+        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
+
 
         def _parse_owner_id(data: object) -> None | str | Unset:
             if data is None:
@@ -186,6 +200,7 @@ class WorkItemNode:
 
         owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
 
+
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -194,6 +209,7 @@ class WorkItemNode:
             return cast(None | str | Unset, data)
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
+
 
         def _parse_planned_start(data: object) -> None | str | Unset:
             if data is None:
@@ -204,6 +220,7 @@ class WorkItemNode:
 
         planned_start = _parse_planned_start(d.pop("planned_start", UNSET))
 
+
         def _parse_planned_end(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -213,12 +230,16 @@ class WorkItemNode:
 
         planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
 
+
         _children = d.pop("children", UNSET)
         children: WorkItemNodeChildren | Unset
-        if isinstance(_children, Unset):
+        if isinstance(_children,  Unset):
             children = UNSET
         else:
             children = WorkItemNodeChildren.from_dict(_children)
+
+
+
 
         _add_children = d.pop("add_children", UNSET)
         add_children: list[AllowedChildType] | Unset = UNSET
@@ -227,7 +248,10 @@ class WorkItemNode:
             for add_children_item_data in _add_children:
                 add_children_item = AllowedChildType.from_dict(add_children_item_data)
 
+
+
                 add_children.append(add_children_item)
+
 
         work_item_node = cls(
             external_id=external_id,
@@ -246,6 +270,7 @@ class WorkItemNode:
             children=children,
             add_children=add_children,
         )
+
 
         work_item_node.additional_properties = d
         return work_item_node

@@ -66,8 +66,7 @@ def sync_detailed(
 
      Remove incorrect or duplicate activity entries to maintain clean deal history.
     Use sparingly as activities form the audit trail for customer relationships.
-    Deletion is permanent and may affect activity metrics. Consider editing instead
-    of deleting when correcting information.
+    Deletion is permanent and cannot be undone, and may affect activity metrics.
 
     Args:
         tenant_path (str):
@@ -103,8 +102,7 @@ def sync(
 
      Remove incorrect or duplicate activity entries to maintain clean deal history.
     Use sparingly as activities form the audit trail for customer relationships.
-    Deletion is permanent and may affect activity metrics. Consider editing instead
-    of deleting when correcting information.
+    Deletion is permanent and cannot be undone, and may affect activity metrics.
 
     Args:
         tenant_path (str):
@@ -135,8 +133,7 @@ async def asyncio_detailed(
 
      Remove incorrect or duplicate activity entries to maintain clean deal history.
     Use sparingly as activities form the audit trail for customer relationships.
-    Deletion is permanent and may affect activity metrics. Consider editing instead
-    of deleting when correcting information.
+    Deletion is permanent and cannot be undone, and may affect activity metrics.
 
     Args:
         tenant_path (str):
@@ -170,8 +167,7 @@ async def asyncio(
 
      Remove incorrect or duplicate activity entries to maintain clean deal history.
     Use sparingly as activities form the audit trail for customer relationships.
-    Deletion is permanent and may affect activity metrics. Consider editing instead
-    of deleting when correcting information.
+    Deletion is permanent and cannot be undone, and may affect activity metrics.
 
     Args:
         tenant_path (str):

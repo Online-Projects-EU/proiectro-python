@@ -1,30 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsTeamWorkloadItem")
+
 
 
 @_attrs_define
 class AnalyticsTeamWorkloadItem:
-    """Workload for a single team member
+    """ Workload for a single team member.
 
-    Attributes:
-        remaining_hours (float):
-        pending_items (int):
-        overdue_items (int):
-        status (str):
-        member_id (None | str | Unset):
-        member_name (None | str | Unset):
-        booked_capacity (float | None | Unset):
-        utilization_pct (float | None | Unset):
-    """
+    ``remaining_hours`` is the open work-item backlog and has no time horizon. ``booked_hours`` and
+    ``available_hours`` are both summed over the utilization horizon, and utilization is the ratio
+    of the two — ``available_hours`` is None when the member has no weekly schedule on file, which
+    makes utilization unknowable rather than zero.
+
+        Attributes:
+            remaining_hours (float):
+            pending_items (int):
+            overdue_items (int):
+            status (str):
+            member_id (None | str | Unset):
+            member_name (None | str | Unset):
+            booked_hours (float | Unset):  Default: 0.0.
+            available_hours (float | None | Unset):
+            utilization_pct (float | None | Unset):
+     """
 
     remaining_hours: float
     pending_items: int
@@ -32,9 +47,14 @@ class AnalyticsTeamWorkloadItem:
     status: str
     member_id: None | str | Unset = UNSET
     member_name: None | str | Unset = UNSET
-    booked_capacity: float | None | Unset = UNSET
+    booked_hours: float | Unset = 0.0
+    available_hours: float | None | Unset = UNSET
     utilization_pct: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         remaining_hours = self.remaining_hours
@@ -57,11 +77,13 @@ class AnalyticsTeamWorkloadItem:
         else:
             member_name = self.member_name
 
-        booked_capacity: float | None | Unset
-        if isinstance(self.booked_capacity, Unset):
-            booked_capacity = UNSET
+        booked_hours = self.booked_hours
+
+        available_hours: float | None | Unset
+        if isinstance(self.available_hours, Unset):
+            available_hours = UNSET
         else:
-            booked_capacity = self.booked_capacity
+            available_hours = self.available_hours
 
         utilization_pct: float | None | Unset
         if isinstance(self.utilization_pct, Unset):
@@ -69,26 +91,29 @@ class AnalyticsTeamWorkloadItem:
         else:
             utilization_pct = self.utilization_pct
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "remaining_hours": remaining_hours,
-                "pending_items": pending_items,
-                "overdue_items": overdue_items,
-                "status": status,
-            }
-        )
+        field_dict.update({
+            "remaining_hours": remaining_hours,
+            "pending_items": pending_items,
+            "overdue_items": overdue_items,
+            "status": status,
+        })
         if member_id is not UNSET:
             field_dict["member_id"] = member_id
         if member_name is not UNSET:
             field_dict["member_name"] = member_name
-        if booked_capacity is not UNSET:
-            field_dict["booked_capacity"] = booked_capacity
+        if booked_hours is not UNSET:
+            field_dict["booked_hours"] = booked_hours
+        if available_hours is not UNSET:
+            field_dict["available_hours"] = available_hours
         if utilization_pct is not UNSET:
             field_dict["utilization_pct"] = utilization_pct
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -110,6 +135,7 @@ class AnalyticsTeamWorkloadItem:
 
         member_id = _parse_member_id(d.pop("member_id", UNSET))
 
+
         def _parse_member_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -119,14 +145,18 @@ class AnalyticsTeamWorkloadItem:
 
         member_name = _parse_member_name(d.pop("member_name", UNSET))
 
-        def _parse_booked_capacity(data: object) -> float | None | Unset:
+
+        booked_hours = d.pop("booked_hours", UNSET)
+
+        def _parse_available_hours(data: object) -> float | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(float | None | Unset, data)
 
-        booked_capacity = _parse_booked_capacity(d.pop("booked_capacity", UNSET))
+        available_hours = _parse_available_hours(d.pop("available_hours", UNSET))
+
 
         def _parse_utilization_pct(data: object) -> float | None | Unset:
             if data is None:
@@ -137,6 +167,7 @@ class AnalyticsTeamWorkloadItem:
 
         utilization_pct = _parse_utilization_pct(d.pop("utilization_pct", UNSET))
 
+
         analytics_team_workload_item = cls(
             remaining_hours=remaining_hours,
             pending_items=pending_items,
@@ -144,9 +175,11 @@ class AnalyticsTeamWorkloadItem:
             status=status,
             member_id=member_id,
             member_name=member_name,
-            booked_capacity=booked_capacity,
+            booked_hours=booked_hours,
+            available_hours=available_hours,
             utilization_pct=utilization_pct,
         )
+
 
         analytics_team_workload_item.additional_properties = d
         return analytics_team_workload_item

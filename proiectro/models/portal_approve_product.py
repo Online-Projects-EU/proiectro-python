@@ -1,26 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="PortalApproveProduct")
+
 
 
 @_attrs_define
 class PortalApproveProduct:
-    """Input schema for customer approving a product in portal
+    """ Input schema for customer approving a product in portal
 
-    Attributes:
-        notes (None | str | Unset):
-    """
+        Attributes:
+            notes (None | str | Unset):
+     """
 
     notes: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         notes: None | str | Unset
@@ -29,18 +42,21 @@ class PortalApproveProduct:
         else:
             notes = self.notes
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update({
+        })
         if notes is not UNSET:
             field_dict["notes"] = notes
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-
         def _parse_notes(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -50,9 +66,11 @@ class PortalApproveProduct:
 
         notes = _parse_notes(d.pop("notes", UNSET))
 
+
         portal_approve_product = cls(
             notes=notes,
         )
+
 
         portal_approve_product.additional_properties = d
         return portal_approve_product

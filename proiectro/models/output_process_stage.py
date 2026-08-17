@@ -1,36 +1,43 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_process_stage_link import OutputProcessStageLink
+  from ..models.output_process_stage_link import OutputProcessStageLink
+
+
+
 
 
 T = TypeVar("T", bound="OutputProcessStage")
 
 
+
 @_attrs_define
 class OutputProcessStage:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        description (str):
-        instructions (str):
-        stage_type (str):
-        sequence_no (int):
-        is_active (bool):
-        requires_approval (bool):
-        can_link (bool | Unset):  Default: False.
-        item_count (int | Unset):  Default: 0.
-        linked_stages (list[OutputProcessStageLink] | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            description (str):
+            instructions (str):
+            stage_type (str):
+            sequence_no (int):
+            is_active (bool):
+            requires_approval (bool):
+            can_link (bool | Unset):  Default: False.
+            item_count (int | Unset):  Default: 0.
+            linked_stages (list[OutputProcessStageLink] | Unset):
+     """
 
     id: str
     name: str
@@ -45,7 +52,12 @@ class OutputProcessStage:
     linked_stages: list[OutputProcessStageLink] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_process_stage_link import OutputProcessStageLink
         id = self.id
 
         name = self.name
@@ -73,20 +85,21 @@ class OutputProcessStage:
                 linked_stages_item = linked_stages_item_data.to_dict()
                 linked_stages.append(linked_stages_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "description": description,
-                "instructions": instructions,
-                "stage_type": stage_type,
-                "sequence_no": sequence_no,
-                "is_active": is_active,
-                "requires_approval": requires_approval,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "description": description,
+            "instructions": instructions,
+            "stage_type": stage_type,
+            "sequence_no": sequence_no,
+            "is_active": is_active,
+            "requires_approval": requires_approval,
+        })
         if can_link is not UNSET:
             field_dict["can_link"] = can_link
         if item_count is not UNSET:
@@ -96,10 +109,11 @@ class OutputProcessStage:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_process_stage_link import OutputProcessStageLink
-
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -126,11 +140,12 @@ class OutputProcessStage:
         if _linked_stages is not UNSET:
             linked_stages = []
             for linked_stages_item_data in _linked_stages:
-                linked_stages_item = OutputProcessStageLink.from_dict(
-                    linked_stages_item_data
-                )
+                linked_stages_item = OutputProcessStageLink.from_dict(linked_stages_item_data)
+
+
 
                 linked_stages.append(linked_stages_item)
+
 
         output_process_stage = cls(
             id=id,
@@ -145,6 +160,7 @@ class OutputProcessStage:
             item_count=item_count,
             linked_stages=linked_stages,
         )
+
 
         output_process_stage.additional_properties = d
         return output_process_stage

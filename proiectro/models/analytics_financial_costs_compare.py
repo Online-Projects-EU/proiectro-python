@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class AnalyticsFinancialCostsCompare(str, Enum):
     MOM = "mom"
     NONE = "none"

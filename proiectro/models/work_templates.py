@@ -1,59 +1,78 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.work_template import WorkTemplate
+  from ..models.work_template import WorkTemplate
+
+
+
 
 
 T = TypeVar("T", bound="WorkTemplates")
 
 
+
 @_attrs_define
 class WorkTemplates:
-    """
-    Attributes:
-        work_templates (list[WorkTemplate]):
-    """
+    """ 
+        Attributes:
+            work_templates (list[WorkTemplate]):
+     """
 
     work_templates: list[WorkTemplate]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.work_template import WorkTemplate
         work_templates = []
         for work_templates_item_data in self.work_templates:
             work_templates_item = work_templates_item_data.to_dict()
             work_templates.append(work_templates_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "work_templates": work_templates,
-            }
-        )
+        field_dict.update({
+            "work_templates": work_templates,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.work_template import WorkTemplate
-
         d = dict(src_dict)
         work_templates = []
         _work_templates = d.pop("work_templates")
-        for work_templates_item_data in _work_templates:
+        for work_templates_item_data in (_work_templates):
             work_templates_item = WorkTemplate.from_dict(work_templates_item_data)
 
+
+
             work_templates.append(work_templates_item)
+
 
         work_templates = cls(
             work_templates=work_templates,
         )
+
 
         work_templates.additional_properties = d
         return work_templates

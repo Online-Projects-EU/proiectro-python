@@ -1,28 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="ActiveProposalItem")
+
 
 
 @_attrs_define
 class ActiveProposalItem:
-    """Proposal item for projects view (active proposals list)
+    """ Proposal item for projects view (active proposals list)
 
-    Attributes:
-        id (str):
-        name (str):
-        stage_name (str):
-        stage_type (str):
-        product_count (int):
-        customer_name (None | str | Unset):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            stage_name (str):
+            stage_type (str):
+            product_count (int):
+            customer_name (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -31,6 +40,10 @@ class ActiveProposalItem:
     product_count: int
     customer_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -49,21 +62,22 @@ class ActiveProposalItem:
         else:
             customer_name = self.customer_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "stage_name": stage_name,
-                "stage_type": stage_type,
-                "product_count": product_count,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "stage_name": stage_name,
+            "stage_type": stage_type,
+            "product_count": product_count,
+        })
         if customer_name is not UNSET:
             field_dict["customer_name"] = customer_name
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -87,6 +101,7 @@ class ActiveProposalItem:
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
 
+
         active_proposal_item = cls(
             id=id,
             name=name,
@@ -95,6 +110,7 @@ class ActiveProposalItem:
             product_count=product_count,
             customer_name=customer_name,
         )
+
 
         active_proposal_item.additional_properties = d
         return active_proposal_item

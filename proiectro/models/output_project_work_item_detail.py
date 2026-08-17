@@ -1,64 +1,67 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.output_project_work_item_detail_scheduling_behaviour import (
-    OutputProjectWorkItemDetailSchedulingBehaviour,
-)
-from ..models.output_project_work_item_detail_timeline_source import (
-    OutputProjectWorkItemDetailTimelineSource,
-)
 from ..types import UNSET, Unset
 
+from ..models.output_project_work_item_detail_scheduling_behaviour import OutputProjectWorkItemDetailSchedulingBehaviour
+from ..models.output_project_work_item_detail_timeline_source import OutputProjectWorkItemDetailTimelineSource
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.output_project_work_item_detail_project_settings import (
-        OutputProjectWorkItemDetailProjectSettings,
-    )
+  from ..models.output_project_work_item_detail_project_settings import OutputProjectWorkItemDetailProjectSettings
+
+
+
 
 
 T = TypeVar("T", bound="OutputProjectWorkItemDetail")
 
 
+
 @_attrs_define
 class OutputProjectWorkItemDetail:
-    """Detail output for a single project work item
+    """ Detail output for a single project work item
 
-    Attributes:
-        external_id (str):
-        name (str):
-        hierarchy_id (str):
-        work_item_type_id (str):
-        work_item_type_name (str):
-        scheduling_behaviour (OutputProjectWorkItemDetailSchedulingBehaviour):
-        project_id (str):
-        project_name (str):
-        timeline_source (OutputProjectWorkItemDetailTimelineSource):
-        is_finished (bool):
-        is_accepted (bool):
-        visible_to_customer (bool):
-        is_parent (bool):
-        can_have_dependencies (bool):
-        description (None | str | Unset):
-        project_settings (OutputProjectWorkItemDetailProjectSettings | Unset):
-        parent_id (None | str | Unset):
-        parent_name (None | str | Unset):
-        parent_is_not_root (bool | Unset):  Default: False.
-        owner_id (None | str | Unset):
-        owner_name (None | str | Unset):
-        owner_avatar_url (None | str | Unset):
-        estimated_work_hours (int | None | Unset):
-        percent_complete (int | None | Unset):
-        planned_start (None | str | Unset):
-        planned_end (None | str | Unset):
-        actual_start (None | str | Unset):
-        actual_end (None | str | Unset):
-        finished_at (None | str | Unset):
-        can_have_children (bool | Unset):  Default: False.
-    """
+        Attributes:
+            external_id (str):
+            name (str):
+            hierarchy_id (str):
+            work_item_type_id (str):
+            work_item_type_name (str):
+            scheduling_behaviour (OutputProjectWorkItemDetailSchedulingBehaviour):
+            project_id (str):
+            project_name (str):
+            timeline_source (OutputProjectWorkItemDetailTimelineSource):
+            is_finished (bool):
+            is_accepted (bool):
+            visible_to_customer (bool):
+            is_parent (bool):
+            can_have_dependencies (bool):
+            description (None | str | Unset):
+            project_settings (OutputProjectWorkItemDetailProjectSettings | Unset):
+            parent_id (None | str | Unset):
+            parent_name (None | str | Unset):
+            parent_is_not_root (bool | Unset):  Default: False.
+            owner_id (None | str | Unset):
+            owner_name (None | str | Unset):
+            owner_avatar_url (None | str | Unset):
+            estimated_work_hours (int | None | Unset):
+            percent_complete (int | None | Unset):
+            planned_start (None | str | Unset):
+            planned_end (None | str | Unset):
+            actual_start (None | str | Unset):
+            actual_end (None | str | Unset):
+            finished_at (datetime.datetime | None | Unset):
+            can_have_children (bool | Unset):  Default: False.
+     """
 
     external_id: str
     name: str
@@ -88,11 +91,16 @@ class OutputProjectWorkItemDetail:
     planned_end: None | str | Unset = UNSET
     actual_start: None | str | Unset = UNSET
     actual_end: None | str | Unset = UNSET
-    finished_at: None | str | Unset = UNSET
+    finished_at: datetime.datetime | None | Unset = UNSET
     can_have_children: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_project_work_item_detail_project_settings import OutputProjectWorkItemDetailProjectSettings
         external_id = self.external_id
 
         name = self.name
@@ -202,31 +210,32 @@ class OutputProjectWorkItemDetail:
         finished_at: None | str | Unset
         if isinstance(self.finished_at, Unset):
             finished_at = UNSET
+        elif isinstance(self.finished_at, datetime.datetime):
+            finished_at = self.finished_at.isoformat()
         else:
             finished_at = self.finished_at
 
         can_have_children = self.can_have_children
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id": external_id,
-                "name": name,
-                "hierarchy_id": hierarchy_id,
-                "work_item_type_id": work_item_type_id,
-                "work_item_type_name": work_item_type_name,
-                "scheduling_behaviour": scheduling_behaviour,
-                "project_id": project_id,
-                "project_name": project_name,
-                "timeline_source": timeline_source,
-                "is_finished": is_finished,
-                "is_accepted": is_accepted,
-                "visible_to_customer": visible_to_customer,
-                "is_parent": is_parent,
-                "can_have_dependencies": can_have_dependencies,
-            }
-        )
+        field_dict.update({
+            "external_id": external_id,
+            "name": name,
+            "hierarchy_id": hierarchy_id,
+            "work_item_type_id": work_item_type_id,
+            "work_item_type_name": work_item_type_name,
+            "scheduling_behaviour": scheduling_behaviour,
+            "project_id": project_id,
+            "project_name": project_name,
+            "timeline_source": timeline_source,
+            "is_finished": is_finished,
+            "is_accepted": is_accepted,
+            "visible_to_customer": visible_to_customer,
+            "is_parent": is_parent,
+            "can_have_dependencies": can_have_dependencies,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if project_settings is not UNSET:
@@ -262,12 +271,11 @@ class OutputProjectWorkItemDetail:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_project_work_item_detail_project_settings import (
-            OutputProjectWorkItemDetailProjectSettings,
-        )
-
+        from ..models.output_project_work_item_detail_project_settings import OutputProjectWorkItemDetailProjectSettings
         d = dict(src_dict)
         external_id = d.pop("external_id")
 
@@ -279,17 +287,19 @@ class OutputProjectWorkItemDetail:
 
         work_item_type_name = d.pop("work_item_type_name")
 
-        scheduling_behaviour = OutputProjectWorkItemDetailSchedulingBehaviour(
-            d.pop("scheduling_behaviour")
-        )
+        scheduling_behaviour = OutputProjectWorkItemDetailSchedulingBehaviour(d.pop("scheduling_behaviour"))
+
+
+
 
         project_id = d.pop("project_id")
 
         project_name = d.pop("project_name")
 
-        timeline_source = OutputProjectWorkItemDetailTimelineSource(
-            d.pop("timeline_source")
-        )
+        timeline_source = OutputProjectWorkItemDetailTimelineSource(d.pop("timeline_source"))
+
+
+
 
         is_finished = d.pop("is_finished")
 
@@ -310,14 +320,16 @@ class OutputProjectWorkItemDetail:
 
         description = _parse_description(d.pop("description", UNSET))
 
+
         _project_settings = d.pop("project_settings", UNSET)
         project_settings: OutputProjectWorkItemDetailProjectSettings | Unset
-        if isinstance(_project_settings, Unset):
+        if isinstance(_project_settings,  Unset):
             project_settings = UNSET
         else:
-            project_settings = OutputProjectWorkItemDetailProjectSettings.from_dict(
-                _project_settings
-            )
+            project_settings = OutputProjectWorkItemDetailProjectSettings.from_dict(_project_settings)
+
+
+
 
         def _parse_parent_id(data: object) -> None | str | Unset:
             if data is None:
@@ -328,6 +340,7 @@ class OutputProjectWorkItemDetail:
 
         parent_id = _parse_parent_id(d.pop("parent_id", UNSET))
 
+
         def _parse_parent_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -336,6 +349,7 @@ class OutputProjectWorkItemDetail:
             return cast(None | str | Unset, data)
 
         parent_name = _parse_parent_name(d.pop("parent_name", UNSET))
+
 
         parent_is_not_root = d.pop("parent_is_not_root", UNSET)
 
@@ -348,6 +362,7 @@ class OutputProjectWorkItemDetail:
 
         owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
 
+
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -356,6 +371,7 @@ class OutputProjectWorkItemDetail:
             return cast(None | str | Unset, data)
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
+
 
         def _parse_owner_avatar_url(data: object) -> None | str | Unset:
             if data is None:
@@ -366,6 +382,7 @@ class OutputProjectWorkItemDetail:
 
         owner_avatar_url = _parse_owner_avatar_url(d.pop("owner_avatar_url", UNSET))
 
+
         def _parse_estimated_work_hours(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -373,9 +390,8 @@ class OutputProjectWorkItemDetail:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(
-            d.pop("estimated_work_hours", UNSET)
-        )
+        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
+
 
         def _parse_percent_complete(data: object) -> int | None | Unset:
             if data is None:
@@ -386,6 +402,7 @@ class OutputProjectWorkItemDetail:
 
         percent_complete = _parse_percent_complete(d.pop("percent_complete", UNSET))
 
+
         def _parse_planned_start(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -394,6 +411,7 @@ class OutputProjectWorkItemDetail:
             return cast(None | str | Unset, data)
 
         planned_start = _parse_planned_start(d.pop("planned_start", UNSET))
+
 
         def _parse_planned_end(data: object) -> None | str | Unset:
             if data is None:
@@ -404,6 +422,7 @@ class OutputProjectWorkItemDetail:
 
         planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
 
+
         def _parse_actual_start(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -412,6 +431,7 @@ class OutputProjectWorkItemDetail:
             return cast(None | str | Unset, data)
 
         actual_start = _parse_actual_start(d.pop("actual_start", UNSET))
+
 
         def _parse_actual_end(data: object) -> None | str | Unset:
             if data is None:
@@ -422,14 +442,26 @@ class OutputProjectWorkItemDetail:
 
         actual_end = _parse_actual_end(d.pop("actual_end", UNSET))
 
-        def _parse_finished_at(data: object) -> None | str | Unset:
+
+        def _parse_finished_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                finished_at_type_0 = isoparse(data)
+
+
+
+                return finished_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
         finished_at = _parse_finished_at(d.pop("finished_at", UNSET))
+
 
         can_have_children = d.pop("can_have_children", UNSET)
 
@@ -465,6 +497,7 @@ class OutputProjectWorkItemDetail:
             finished_at=finished_at,
             can_have_children=can_have_children,
         )
+
 
         output_project_work_item_detail.additional_properties = d
         return output_project_work_item_detail

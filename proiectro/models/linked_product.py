@@ -1,27 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="LinkedProduct")
+
 
 
 @_attrs_define
 class LinkedProduct:
-    """Catalog product that uses a work item template
+    """ Catalog product that uses a work item template
 
-    Attributes:
-        id (str):
-        name (str):
-        product_type (str):
-        is_active (bool):
-        internal_code (None | str | Unset):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            product_type (str):
+            is_active (bool):
+            internal_code (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -29,6 +38,10 @@ class LinkedProduct:
     is_active: bool
     internal_code: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -45,20 +58,21 @@ class LinkedProduct:
         else:
             internal_code = self.internal_code
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "product_type": product_type,
-                "is_active": is_active,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "product_type": product_type,
+            "is_active": is_active,
+        })
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -80,6 +94,7 @@ class LinkedProduct:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
+
         linked_product = cls(
             id=id,
             name=name,
@@ -87,6 +102,7 @@ class LinkedProduct:
             is_active=is_active,
             internal_code=internal_code,
         )
+
 
         linked_product.additional_properties = d
         return linked_product

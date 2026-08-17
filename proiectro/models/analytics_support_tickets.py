@@ -1,58 +1,67 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.analytics_ticket_category_item import AnalyticsTicketCategoryItem
-    from ..models.compare_option import CompareOption
-    from ..models.horizon_option import HorizonOption
+  from ..models.analytics_ticket_category_item import AnalyticsTicketCategoryItem
+  from ..models.compare_option import CompareOption
+  from ..models.horizon_option import HorizonOption
+
+
+
 
 
 T = TypeVar("T", bound="AnalyticsSupportTickets")
 
 
+
 @_attrs_define
 class AnalyticsSupportTickets:
-    """Support ticket volume and distribution analysis - Internal and External sections
+    """ Support ticket volume and distribution analysis - Internal and External sections
 
-    Attributes:
-        internal_total (int):
-        internal_open (int):
-        internal_closed (int):
-        external_total (int):
-        external_open (int):
-        external_closed (int):
-        period (str | Unset):  Default: 'YTD'.
-        temporal_type (str | Unset):  Default: 'snapshot'.
-        generated_at (str | Unset):  Default: ''.
-        period_label (None | str | Unset):
-        horizon (None | str | Unset):
-        horizon_label (None | str | Unset):
-        horizon_options (list[HorizonOption] | None | Unset):
-        compare (None | str | Unset):
-        compare_label (None | str | Unset):
-        compare_options (list[CompareOption] | None | Unset):
-        filter_severity (None | str | Unset):
-        filter_severity_label (None | str | Unset):
-        filter_category (None | str | Unset):
-        filter_category_label (None | str | Unset):
-        filter_type (None | str | Unset):
-        filter_type_label (None | str | Unset):
-        internal_by_status (list[AnalyticsTicketCategoryItem] | Unset):
-        internal_by_severity (list[AnalyticsTicketCategoryItem] | Unset):
-        internal_by_type (list[AnalyticsTicketCategoryItem] | Unset):
-        internal_by_queue (list[AnalyticsTicketCategoryItem] | Unset):
-        external_by_status (list[AnalyticsTicketCategoryItem] | Unset):
-        external_by_severity (list[AnalyticsTicketCategoryItem] | Unset):
-        external_by_type (list[AnalyticsTicketCategoryItem] | Unset):
-        external_by_queue (list[AnalyticsTicketCategoryItem] | Unset):
-    """
+        Attributes:
+            internal_total (int):
+            internal_open (int):
+            internal_closed (int):
+            external_total (int):
+            external_open (int):
+            external_closed (int):
+            period (str | Unset):  Default: 'YTD'.
+            temporal_type (str | Unset):  Default: 'snapshot'.
+            generated_at (datetime.datetime | None | Unset):
+            period_label (None | str | Unset):
+            horizon (None | str | Unset):
+            horizon_label (None | str | Unset):
+            horizon_options (list[HorizonOption] | None | Unset):
+            compare (None | str | Unset):
+            compare_label (None | str | Unset):
+            compare_options (list[CompareOption] | None | Unset):
+            filter_severity (None | str | Unset):
+            filter_severity_label (None | str | Unset):
+            filter_category (None | str | Unset):
+            filter_category_label (None | str | Unset):
+            filter_type (None | str | Unset):
+            filter_type_label (None | str | Unset):
+            internal_by_status (list[AnalyticsTicketCategoryItem] | Unset):
+            internal_by_severity (list[AnalyticsTicketCategoryItem] | Unset):
+            internal_by_type (list[AnalyticsTicketCategoryItem] | Unset):
+            internal_by_queue (list[AnalyticsTicketCategoryItem] | Unset):
+            external_by_status (list[AnalyticsTicketCategoryItem] | Unset):
+            external_by_severity (list[AnalyticsTicketCategoryItem] | Unset):
+            external_by_type (list[AnalyticsTicketCategoryItem] | Unset):
+            external_by_queue (list[AnalyticsTicketCategoryItem] | Unset):
+     """
 
     internal_total: int
     internal_open: int
@@ -60,9 +69,9 @@ class AnalyticsSupportTickets:
     external_total: int
     external_open: int
     external_closed: int
-    period: str | Unset = "YTD"
-    temporal_type: str | Unset = "snapshot"
-    generated_at: str | Unset = ""
+    period: str | Unset = 'YTD'
+    temporal_type: str | Unset = 'snapshot'
+    generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
     horizon_label: None | str | Unset = UNSET
@@ -86,7 +95,14 @@ class AnalyticsSupportTickets:
     external_by_queue: list[AnalyticsTicketCategoryItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.compare_option import CompareOption
+        from ..models.horizon_option import HorizonOption
+        from ..models.analytics_ticket_category_item import AnalyticsTicketCategoryItem
         internal_total = self.internal_total
 
         internal_open = self.internal_open
@@ -103,7 +119,13 @@ class AnalyticsSupportTickets:
 
         temporal_type = self.temporal_type
 
-        generated_at = self.generated_at
+        generated_at: None | str | Unset
+        if isinstance(self.generated_at, Unset):
+            generated_at = UNSET
+        elif isinstance(self.generated_at, datetime.datetime):
+            generated_at = self.generated_at.isoformat()
+        else:
+            generated_at = self.generated_at
 
         period_label: None | str | Unset
         if isinstance(self.period_label, Unset):
@@ -132,6 +154,7 @@ class AnalyticsSupportTickets:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
+
         else:
             horizon_options = self.horizon_options
 
@@ -155,6 +178,7 @@ class AnalyticsSupportTickets:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
+
 
         else:
             compare_options = self.compare_options
@@ -202,12 +226,16 @@ class AnalyticsSupportTickets:
                 internal_by_status_item = internal_by_status_item_data.to_dict()
                 internal_by_status.append(internal_by_status_item)
 
+
+
         internal_by_severity: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.internal_by_severity, Unset):
             internal_by_severity = []
             for internal_by_severity_item_data in self.internal_by_severity:
                 internal_by_severity_item = internal_by_severity_item_data.to_dict()
                 internal_by_severity.append(internal_by_severity_item)
+
+
 
         internal_by_type: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.internal_by_type, Unset):
@@ -216,12 +244,16 @@ class AnalyticsSupportTickets:
                 internal_by_type_item = internal_by_type_item_data.to_dict()
                 internal_by_type.append(internal_by_type_item)
 
+
+
         internal_by_queue: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.internal_by_queue, Unset):
             internal_by_queue = []
             for internal_by_queue_item_data in self.internal_by_queue:
                 internal_by_queue_item = internal_by_queue_item_data.to_dict()
                 internal_by_queue.append(internal_by_queue_item)
+
+
 
         external_by_status: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.external_by_status, Unset):
@@ -230,12 +262,16 @@ class AnalyticsSupportTickets:
                 external_by_status_item = external_by_status_item_data.to_dict()
                 external_by_status.append(external_by_status_item)
 
+
+
         external_by_severity: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.external_by_severity, Unset):
             external_by_severity = []
             for external_by_severity_item_data in self.external_by_severity:
                 external_by_severity_item = external_by_severity_item_data.to_dict()
                 external_by_severity.append(external_by_severity_item)
+
+
 
         external_by_type: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.external_by_type, Unset):
@@ -244,6 +280,8 @@ class AnalyticsSupportTickets:
                 external_by_type_item = external_by_type_item_data.to_dict()
                 external_by_type.append(external_by_type_item)
 
+
+
         external_by_queue: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.external_by_queue, Unset):
             external_by_queue = []
@@ -251,18 +289,19 @@ class AnalyticsSupportTickets:
                 external_by_queue_item = external_by_queue_item_data.to_dict()
                 external_by_queue.append(external_by_queue_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "internal_total": internal_total,
-                "internal_open": internal_open,
-                "internal_closed": internal_closed,
-                "external_total": external_total,
-                "external_open": external_open,
-                "external_closed": external_closed,
-            }
-        )
+        field_dict.update({
+            "internal_total": internal_total,
+            "internal_open": internal_open,
+            "internal_closed": internal_closed,
+            "external_total": external_total,
+            "external_open": external_open,
+            "external_closed": external_closed,
+        })
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -314,12 +353,13 @@ class AnalyticsSupportTickets:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_ticket_category_item import AnalyticsTicketCategoryItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
-
         d = dict(src_dict)
         internal_total = d.pop("internal_total")
 
@@ -337,7 +377,25 @@ class AnalyticsSupportTickets:
 
         temporal_type = d.pop("temporal_type", UNSET)
 
-        generated_at = d.pop("generated_at", UNSET)
+        def _parse_generated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                generated_at_type_0 = isoparse(data)
+
+
+
+                return generated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
+
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -348,6 +406,7 @@ class AnalyticsSupportTickets:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
+
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -357,6 +416,7 @@ class AnalyticsSupportTickets:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
+
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -365,6 +425,7 @@ class AnalyticsSupportTickets:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
+
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -376,10 +437,10 @@ class AnalyticsSupportTickets:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in _horizon_options_type_0:
-                    horizon_options_type_0_item = HorizonOption.from_dict(
-                        horizon_options_type_0_item_data
-                    )
+                for horizon_options_type_0_item_data in (_horizon_options_type_0):
+                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
+
+
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -390,6 +451,7 @@ class AnalyticsSupportTickets:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
+
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -399,6 +461,7 @@ class AnalyticsSupportTickets:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
+
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -407,6 +470,7 @@ class AnalyticsSupportTickets:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
+
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -418,10 +482,10 @@ class AnalyticsSupportTickets:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in _compare_options_type_0:
-                    compare_options_type_0_item = CompareOption.from_dict(
-                        compare_options_type_0_item_data
-                    )
+                for compare_options_type_0_item_data in (_compare_options_type_0):
+                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
+
+
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -432,6 +496,7 @@ class AnalyticsSupportTickets:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
+
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -441,6 +506,7 @@ class AnalyticsSupportTickets:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
+
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -448,9 +514,8 @@ class AnalyticsSupportTickets:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(
-            d.pop("filter_severity_label", UNSET)
-        )
+        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
+
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -461,6 +526,7 @@ class AnalyticsSupportTickets:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
+
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -468,9 +534,8 @@ class AnalyticsSupportTickets:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(
-            d.pop("filter_category_label", UNSET)
-        )
+        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
+
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -481,6 +546,7 @@ class AnalyticsSupportTickets:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
+
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -490,93 +556,102 @@ class AnalyticsSupportTickets:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+
         _internal_by_status = d.pop("internal_by_status", UNSET)
         internal_by_status: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _internal_by_status is not UNSET:
             internal_by_status = []
             for internal_by_status_item_data in _internal_by_status:
-                internal_by_status_item = AnalyticsTicketCategoryItem.from_dict(
-                    internal_by_status_item_data
-                )
+                internal_by_status_item = AnalyticsTicketCategoryItem.from_dict(internal_by_status_item_data)
+
+
 
                 internal_by_status.append(internal_by_status_item)
+
 
         _internal_by_severity = d.pop("internal_by_severity", UNSET)
         internal_by_severity: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _internal_by_severity is not UNSET:
             internal_by_severity = []
             for internal_by_severity_item_data in _internal_by_severity:
-                internal_by_severity_item = AnalyticsTicketCategoryItem.from_dict(
-                    internal_by_severity_item_data
-                )
+                internal_by_severity_item = AnalyticsTicketCategoryItem.from_dict(internal_by_severity_item_data)
+
+
 
                 internal_by_severity.append(internal_by_severity_item)
+
 
         _internal_by_type = d.pop("internal_by_type", UNSET)
         internal_by_type: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _internal_by_type is not UNSET:
             internal_by_type = []
             for internal_by_type_item_data in _internal_by_type:
-                internal_by_type_item = AnalyticsTicketCategoryItem.from_dict(
-                    internal_by_type_item_data
-                )
+                internal_by_type_item = AnalyticsTicketCategoryItem.from_dict(internal_by_type_item_data)
+
+
 
                 internal_by_type.append(internal_by_type_item)
+
 
         _internal_by_queue = d.pop("internal_by_queue", UNSET)
         internal_by_queue: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _internal_by_queue is not UNSET:
             internal_by_queue = []
             for internal_by_queue_item_data in _internal_by_queue:
-                internal_by_queue_item = AnalyticsTicketCategoryItem.from_dict(
-                    internal_by_queue_item_data
-                )
+                internal_by_queue_item = AnalyticsTicketCategoryItem.from_dict(internal_by_queue_item_data)
+
+
 
                 internal_by_queue.append(internal_by_queue_item)
+
 
         _external_by_status = d.pop("external_by_status", UNSET)
         external_by_status: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _external_by_status is not UNSET:
             external_by_status = []
             for external_by_status_item_data in _external_by_status:
-                external_by_status_item = AnalyticsTicketCategoryItem.from_dict(
-                    external_by_status_item_data
-                )
+                external_by_status_item = AnalyticsTicketCategoryItem.from_dict(external_by_status_item_data)
+
+
 
                 external_by_status.append(external_by_status_item)
+
 
         _external_by_severity = d.pop("external_by_severity", UNSET)
         external_by_severity: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _external_by_severity is not UNSET:
             external_by_severity = []
             for external_by_severity_item_data in _external_by_severity:
-                external_by_severity_item = AnalyticsTicketCategoryItem.from_dict(
-                    external_by_severity_item_data
-                )
+                external_by_severity_item = AnalyticsTicketCategoryItem.from_dict(external_by_severity_item_data)
+
+
 
                 external_by_severity.append(external_by_severity_item)
+
 
         _external_by_type = d.pop("external_by_type", UNSET)
         external_by_type: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _external_by_type is not UNSET:
             external_by_type = []
             for external_by_type_item_data in _external_by_type:
-                external_by_type_item = AnalyticsTicketCategoryItem.from_dict(
-                    external_by_type_item_data
-                )
+                external_by_type_item = AnalyticsTicketCategoryItem.from_dict(external_by_type_item_data)
+
+
 
                 external_by_type.append(external_by_type_item)
+
 
         _external_by_queue = d.pop("external_by_queue", UNSET)
         external_by_queue: list[AnalyticsTicketCategoryItem] | Unset = UNSET
         if _external_by_queue is not UNSET:
             external_by_queue = []
             for external_by_queue_item_data in _external_by_queue:
-                external_by_queue_item = AnalyticsTicketCategoryItem.from_dict(
-                    external_by_queue_item_data
-                )
+                external_by_queue_item = AnalyticsTicketCategoryItem.from_dict(external_by_queue_item_data)
+
+
 
                 external_by_queue.append(external_by_queue_item)
+
 
         analytics_support_tickets = cls(
             internal_total=internal_total,
@@ -610,6 +685,7 @@ class AnalyticsSupportTickets:
             external_by_type=external_by_type,
             external_by_queue=external_by_queue,
         )
+
 
         analytics_support_tickets.additional_properties = d
         return analytics_support_tickets

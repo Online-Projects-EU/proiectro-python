@@ -1,4 +1,3 @@
-import datetime
 from http import HTTPStatus
 from typing import Any
 from urllib.parse import quote
@@ -25,11 +24,11 @@ def _get_kwargs(
     resource: None | str | Unset = UNSET,
     assignee: None | str | Unset = UNSET,
     requester: None | str | Unset = UNSET,
-    has_assignee: bool | None | Unset = UNSET,
-    created_from: datetime.date | None | Unset = UNSET,
-    created_to: datetime.date | None | Unset = UNSET,
-    updated_from: datetime.date | None | Unset = UNSET,
-    updated_to: datetime.date | None | Unset = UNSET,
+    has_assignee: None | str | Unset = UNSET,
+    created_from: None | str | Unset = UNSET,
+    created_to: None | str | Unset = UNSET,
+    updated_from: None | str | Unset = UNSET,
+    updated_to: None | str | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -111,7 +110,7 @@ def _get_kwargs(
         json_requester = requester
     params["requester"] = json_requester
 
-    json_has_assignee: bool | None | Unset
+    json_has_assignee: None | str | Unset
     if isinstance(has_assignee, Unset):
         json_has_assignee = UNSET
     else:
@@ -121,8 +120,6 @@ def _get_kwargs(
     json_created_from: None | str | Unset
     if isinstance(created_from, Unset):
         json_created_from = UNSET
-    elif isinstance(created_from, datetime.date):
-        json_created_from = created_from.isoformat()
     else:
         json_created_from = created_from
     params["created_from"] = json_created_from
@@ -130,8 +127,6 @@ def _get_kwargs(
     json_created_to: None | str | Unset
     if isinstance(created_to, Unset):
         json_created_to = UNSET
-    elif isinstance(created_to, datetime.date):
-        json_created_to = created_to.isoformat()
     else:
         json_created_to = created_to
     params["created_to"] = json_created_to
@@ -139,8 +134,6 @@ def _get_kwargs(
     json_updated_from: None | str | Unset
     if isinstance(updated_from, Unset):
         json_updated_from = UNSET
-    elif isinstance(updated_from, datetime.date):
-        json_updated_from = updated_from.isoformat()
     else:
         json_updated_from = updated_from
     params["updated_from"] = json_updated_from
@@ -148,8 +141,6 @@ def _get_kwargs(
     json_updated_to: None | str | Unset
     if isinstance(updated_to, Unset):
         json_updated_to = UNSET
-    elif isinstance(updated_to, datetime.date):
-        json_updated_to = updated_to.isoformat()
     else:
         json_updated_to = updated_to
     params["updated_to"] = json_updated_to
@@ -207,11 +198,11 @@ def sync_detailed(
     resource: None | str | Unset = UNSET,
     assignee: None | str | Unset = UNSET,
     requester: None | str | Unset = UNSET,
-    has_assignee: bool | None | Unset = UNSET,
-    created_from: datetime.date | None | Unset = UNSET,
-    created_to: datetime.date | None | Unset = UNSET,
-    updated_from: datetime.date | None | Unset = UNSET,
-    updated_to: datetime.date | None | Unset = UNSET,
+    has_assignee: None | str | Unset = UNSET,
+    created_from: None | str | Unset = UNSET,
+    created_to: None | str | Unset = UNSET,
+    updated_from: None | str | Unset = UNSET,
+    updated_to: None | str | Unset = UNSET,
 ) -> Response[OutputMySupportRequests]:
     """My External Support Requests
 
@@ -233,11 +224,11 @@ def sync_detailed(
         resource (None | str | Unset): Filter by resource
         assignee (None | str | Unset): Filter by assigned team member
         requester (None | str | Unset): Filter by requester
-        has_assignee (bool | None | Unset): Filter by assignment status
-        created_from (datetime.date | None | Unset): Filter by creation date (from)
-        created_to (datetime.date | None | Unset): Filter by creation date (to)
-        updated_from (datetime.date | None | Unset): Filter by last update date (from)
-        updated_to (datetime.date | None | Unset): Filter by last update date (to)
+        has_assignee (None | str | Unset): Filter by assignment status: 'assigned' or 'unassigned'
+        created_from (None | str | Unset): Filter by creation date (from), e.g. '02 Jan, 2025'
+        created_to (None | str | Unset): Filter by creation date (to), e.g. '02 Jan, 2025'
+        updated_from (None | str | Unset): Filter by last update date (from), e.g. '02 Jan, 2025'
+        updated_to (None | str | Unset): Filter by last update date (to), e.g. '02 Jan, 2025'
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -289,11 +280,11 @@ def sync(
     resource: None | str | Unset = UNSET,
     assignee: None | str | Unset = UNSET,
     requester: None | str | Unset = UNSET,
-    has_assignee: bool | None | Unset = UNSET,
-    created_from: datetime.date | None | Unset = UNSET,
-    created_to: datetime.date | None | Unset = UNSET,
-    updated_from: datetime.date | None | Unset = UNSET,
-    updated_to: datetime.date | None | Unset = UNSET,
+    has_assignee: None | str | Unset = UNSET,
+    created_from: None | str | Unset = UNSET,
+    created_to: None | str | Unset = UNSET,
+    updated_from: None | str | Unset = UNSET,
+    updated_to: None | str | Unset = UNSET,
 ) -> OutputMySupportRequests | None:
     """My External Support Requests
 
@@ -315,11 +306,11 @@ def sync(
         resource (None | str | Unset): Filter by resource
         assignee (None | str | Unset): Filter by assigned team member
         requester (None | str | Unset): Filter by requester
-        has_assignee (bool | None | Unset): Filter by assignment status
-        created_from (datetime.date | None | Unset): Filter by creation date (from)
-        created_to (datetime.date | None | Unset): Filter by creation date (to)
-        updated_from (datetime.date | None | Unset): Filter by last update date (from)
-        updated_to (datetime.date | None | Unset): Filter by last update date (to)
+        has_assignee (None | str | Unset): Filter by assignment status: 'assigned' or 'unassigned'
+        created_from (None | str | Unset): Filter by creation date (from), e.g. '02 Jan, 2025'
+        created_to (None | str | Unset): Filter by creation date (to), e.g. '02 Jan, 2025'
+        updated_from (None | str | Unset): Filter by last update date (from), e.g. '02 Jan, 2025'
+        updated_to (None | str | Unset): Filter by last update date (to), e.g. '02 Jan, 2025'
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -366,11 +357,11 @@ async def asyncio_detailed(
     resource: None | str | Unset = UNSET,
     assignee: None | str | Unset = UNSET,
     requester: None | str | Unset = UNSET,
-    has_assignee: bool | None | Unset = UNSET,
-    created_from: datetime.date | None | Unset = UNSET,
-    created_to: datetime.date | None | Unset = UNSET,
-    updated_from: datetime.date | None | Unset = UNSET,
-    updated_to: datetime.date | None | Unset = UNSET,
+    has_assignee: None | str | Unset = UNSET,
+    created_from: None | str | Unset = UNSET,
+    created_to: None | str | Unset = UNSET,
+    updated_from: None | str | Unset = UNSET,
+    updated_to: None | str | Unset = UNSET,
 ) -> Response[OutputMySupportRequests]:
     """My External Support Requests
 
@@ -392,11 +383,11 @@ async def asyncio_detailed(
         resource (None | str | Unset): Filter by resource
         assignee (None | str | Unset): Filter by assigned team member
         requester (None | str | Unset): Filter by requester
-        has_assignee (bool | None | Unset): Filter by assignment status
-        created_from (datetime.date | None | Unset): Filter by creation date (from)
-        created_to (datetime.date | None | Unset): Filter by creation date (to)
-        updated_from (datetime.date | None | Unset): Filter by last update date (from)
-        updated_to (datetime.date | None | Unset): Filter by last update date (to)
+        has_assignee (None | str | Unset): Filter by assignment status: 'assigned' or 'unassigned'
+        created_from (None | str | Unset): Filter by creation date (from), e.g. '02 Jan, 2025'
+        created_to (None | str | Unset): Filter by creation date (to), e.g. '02 Jan, 2025'
+        updated_from (None | str | Unset): Filter by last update date (from), e.g. '02 Jan, 2025'
+        updated_to (None | str | Unset): Filter by last update date (to), e.g. '02 Jan, 2025'
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -446,11 +437,11 @@ async def asyncio(
     resource: None | str | Unset = UNSET,
     assignee: None | str | Unset = UNSET,
     requester: None | str | Unset = UNSET,
-    has_assignee: bool | None | Unset = UNSET,
-    created_from: datetime.date | None | Unset = UNSET,
-    created_to: datetime.date | None | Unset = UNSET,
-    updated_from: datetime.date | None | Unset = UNSET,
-    updated_to: datetime.date | None | Unset = UNSET,
+    has_assignee: None | str | Unset = UNSET,
+    created_from: None | str | Unset = UNSET,
+    created_to: None | str | Unset = UNSET,
+    updated_from: None | str | Unset = UNSET,
+    updated_to: None | str | Unset = UNSET,
 ) -> OutputMySupportRequests | None:
     """My External Support Requests
 
@@ -472,11 +463,11 @@ async def asyncio(
         resource (None | str | Unset): Filter by resource
         assignee (None | str | Unset): Filter by assigned team member
         requester (None | str | Unset): Filter by requester
-        has_assignee (bool | None | Unset): Filter by assignment status
-        created_from (datetime.date | None | Unset): Filter by creation date (from)
-        created_to (datetime.date | None | Unset): Filter by creation date (to)
-        updated_from (datetime.date | None | Unset): Filter by last update date (from)
-        updated_to (datetime.date | None | Unset): Filter by last update date (to)
+        has_assignee (None | str | Unset): Filter by assignment status: 'assigned' or 'unassigned'
+        created_from (None | str | Unset): Filter by creation date (from), e.g. '02 Jan, 2025'
+        created_to (None | str | Unset): Filter by creation date (to), e.g. '02 Jan, 2025'
+        updated_from (None | str | Unset): Filter by last update date (from), e.g. '02 Jan, 2025'
+        updated_to (None | str | Unset): Filter by last update date (to), e.g. '02 Jan, 2025'
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

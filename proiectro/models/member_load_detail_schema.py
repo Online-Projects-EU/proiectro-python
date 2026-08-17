@@ -1,49 +1,59 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.day_column_schema import DayColumnSchema
-    from ..models.team_member_summary_schema import TeamMemberSummarySchema
+  from ..models.day_column_schema import DayColumnSchema
+  from ..models.team_member_summary_schema import TeamMemberSummarySchema
+
+
+
 
 
 T = TypeVar("T", bound="MemberLoadDetailSchema")
 
 
+
 @_attrs_define
 class MemberLoadDetailSchema:
-    """Detailed load data for an individual team member
+    """ Detailed load data for an individual team member
 
-    Attributes:
-        member_id (str):
-        member_name (str):
-        period (str):
-        start_date (str):
-        end_date (str):
-        week_dates (list[DayColumnSchema]):
-        week_label (str):
-        week_number (int):
-        is_current (bool):
-        is_past (bool):
-        is_future (bool):
-        member_data (TeamMemberSummarySchema): Team member with their weekly load data
-        has_holidays (bool):
-        max_bookings (int):
-        booking_indices (list[int]):
-        total_hours (float):
-        total_available (float):
-        utilization_percentage (float):
-    """
+        Attributes:
+            member_id (str):
+            member_name (str):
+            period (str):
+            start_date (datetime.date):
+            end_date (datetime.date):
+            week_dates (list[DayColumnSchema]):
+            week_label (str):
+            week_number (int):
+            is_current (bool):
+            is_past (bool):
+            is_future (bool):
+            member_data (TeamMemberSummarySchema): Team member with their weekly load data
+            has_holidays (bool):
+            max_bookings (int):
+            booking_indices (list[int]):
+            total_hours (float):
+            total_available (float):
+            utilization_percentage (float):
+     """
 
     member_id: str
     member_name: str
     period: str
-    start_date: str
-    end_date: str
+    start_date: datetime.date
+    end_date: datetime.date
     week_dates: list[DayColumnSchema]
     week_label: str
     week_number: int
@@ -59,21 +69,29 @@ class MemberLoadDetailSchema:
     utilization_percentage: float
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.day_column_schema import DayColumnSchema
+        from ..models.team_member_summary_schema import TeamMemberSummarySchema
         member_id = self.member_id
 
         member_name = self.member_name
 
         period = self.period
 
-        start_date = self.start_date
+        start_date = self.start_date.isoformat()
 
-        end_date = self.end_date
+        end_date = self.end_date.isoformat()
 
         week_dates = []
         for week_dates_item_data in self.week_dates:
             week_dates_item = week_dates_item_data.to_dict()
             week_dates.append(week_dates_item)
+
+
 
         week_label = self.week_label
 
@@ -93,44 +111,46 @@ class MemberLoadDetailSchema:
 
         booking_indices = self.booking_indices
 
+
+
         total_hours = self.total_hours
 
         total_available = self.total_available
 
         utilization_percentage = self.utilization_percentage
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "member_id": member_id,
-                "member_name": member_name,
-                "period": period,
-                "start_date": start_date,
-                "end_date": end_date,
-                "week_dates": week_dates,
-                "week_label": week_label,
-                "week_number": week_number,
-                "is_current": is_current,
-                "is_past": is_past,
-                "is_future": is_future,
-                "member_data": member_data,
-                "has_holidays": has_holidays,
-                "max_bookings": max_bookings,
-                "booking_indices": booking_indices,
-                "total_hours": total_hours,
-                "total_available": total_available,
-                "utilization_percentage": utilization_percentage,
-            }
-        )
+        field_dict.update({
+            "member_id": member_id,
+            "member_name": member_name,
+            "period": period,
+            "start_date": start_date,
+            "end_date": end_date,
+            "week_dates": week_dates,
+            "week_label": week_label,
+            "week_number": week_number,
+            "is_current": is_current,
+            "is_past": is_past,
+            "is_future": is_future,
+            "member_data": member_data,
+            "has_holidays": has_holidays,
+            "max_bookings": max_bookings,
+            "booking_indices": booking_indices,
+            "total_hours": total_hours,
+            "total_available": total_available,
+            "utilization_percentage": utilization_percentage,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.day_column_schema import DayColumnSchema
         from ..models.team_member_summary_schema import TeamMemberSummarySchema
-
         d = dict(src_dict)
         member_id = d.pop("member_id")
 
@@ -138,16 +158,25 @@ class MemberLoadDetailSchema:
 
         period = d.pop("period")
 
-        start_date = d.pop("start_date")
+        start_date = isoparse(d.pop("start_date")).date()
 
-        end_date = d.pop("end_date")
+
+
+
+        end_date = isoparse(d.pop("end_date")).date()
+
+
+
 
         week_dates = []
         _week_dates = d.pop("week_dates")
-        for week_dates_item_data in _week_dates:
+        for week_dates_item_data in (_week_dates):
             week_dates_item = DayColumnSchema.from_dict(week_dates_item_data)
 
+
+
             week_dates.append(week_dates_item)
+
 
         week_label = d.pop("week_label")
 
@@ -161,11 +190,15 @@ class MemberLoadDetailSchema:
 
         member_data = TeamMemberSummarySchema.from_dict(d.pop("member_data"))
 
+
+
+
         has_holidays = d.pop("has_holidays")
 
         max_bookings = d.pop("max_bookings")
 
         booking_indices = cast(list[int], d.pop("booking_indices"))
+
 
         total_hours = d.pop("total_hours")
 
@@ -193,6 +226,7 @@ class MemberLoadDetailSchema:
             total_available=total_available,
             utilization_percentage=utilization_percentage,
         )
+
 
         member_load_detail_schema.additional_properties = d
         return member_load_detail_schema

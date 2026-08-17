@@ -1,27 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..models.edit_tenant_lead_visibility_type_0 import EditTenantLeadVisibilityType0
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditTenant")
+
 
 
 @_attrs_define
 class EditTenant:
-    """
-    Attributes:
-        name (str):
-        timezone (str):
-        default_currency (str):
-        country (str):
-        minimum_acceptable_margin (float | str):
-        bridge_requests_allowed (bool | None | Unset):  Default: False.
-    """
+    """ 
+        Attributes:
+            name (str):
+            timezone (str):
+            default_currency (str):
+            country (str):
+            minimum_acceptable_margin (float | str):
+            bridge_requests_allowed (bool | None | Unset):  Default: False.
+            lead_visibility (EditTenantLeadVisibilityType0 | None | Unset):
+     """
 
     name: str
     timezone: str
@@ -29,7 +40,12 @@ class EditTenant:
     country: str
     minimum_acceptable_margin: float | str
     bridge_requests_allowed: bool | None | Unset = False
+    lead_visibility: EditTenantLeadVisibilityType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -49,21 +65,32 @@ class EditTenant:
         else:
             bridge_requests_allowed = self.bridge_requests_allowed
 
+        lead_visibility: None | str | Unset
+        if isinstance(self.lead_visibility, Unset):
+            lead_visibility = UNSET
+        elif isinstance(self.lead_visibility, EditTenantLeadVisibilityType0):
+            lead_visibility = self.lead_visibility.value
+        else:
+            lead_visibility = self.lead_visibility
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "timezone": timezone,
-                "default_currency": default_currency,
-                "country": country,
-                "minimum_acceptable_margin": minimum_acceptable_margin,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "timezone": timezone,
+            "default_currency": default_currency,
+            "country": country,
+            "minimum_acceptable_margin": minimum_acceptable_margin,
+        })
         if bridge_requests_allowed is not UNSET:
             field_dict["bridge_requests_allowed"] = bridge_requests_allowed
+        if lead_visibility is not UNSET:
+            field_dict["lead_visibility"] = lead_visibility
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -79,9 +106,8 @@ class EditTenant:
         def _parse_minimum_acceptable_margin(data: object) -> float | str:
             return cast(float | str, data)
 
-        minimum_acceptable_margin = _parse_minimum_acceptable_margin(
-            d.pop("minimum_acceptable_margin")
-        )
+        minimum_acceptable_margin = _parse_minimum_acceptable_margin(d.pop("minimum_acceptable_margin"))
+
 
         def _parse_bridge_requests_allowed(data: object) -> bool | None | Unset:
             if data is None:
@@ -90,9 +116,28 @@ class EditTenant:
                 return data
             return cast(bool | None | Unset, data)
 
-        bridge_requests_allowed = _parse_bridge_requests_allowed(
-            d.pop("bridge_requests_allowed", UNSET)
-        )
+        bridge_requests_allowed = _parse_bridge_requests_allowed(d.pop("bridge_requests_allowed", UNSET))
+
+
+        def _parse_lead_visibility(data: object) -> EditTenantLeadVisibilityType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                lead_visibility_type_0 = EditTenantLeadVisibilityType0(data)
+
+
+
+                return lead_visibility_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditTenantLeadVisibilityType0 | None | Unset, data)
+
+        lead_visibility = _parse_lead_visibility(d.pop("lead_visibility", UNSET))
+
 
         edit_tenant = cls(
             name=name,
@@ -101,7 +146,9 @@ class EditTenant:
             country=country,
             minimum_acceptable_margin=minimum_acceptable_margin,
             bridge_requests_allowed=bridge_requests_allowed,
+            lead_visibility=lead_visibility,
         )
+
 
         edit_tenant.additional_properties = d
         return edit_tenant

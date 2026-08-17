@@ -1,31 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.partner_portal_proposal_item import PartnerPortalProposalItem
+  from ..models.partner_portal_proposal_item import PartnerPortalProposalItem
+
+
+
 
 
 T = TypeVar("T", bound="PartnerPortalProposals")
 
 
+
 @_attrs_define
 class PartnerPortalProposals:
-    """Partner's proposals visible through bridge
+    """ Partner's proposals visible through bridge
 
-    Attributes:
-        bridge_id (str):
-        partner_tenant_name (str):
-        proposals (list[PartnerPortalProposalItem]):
-        grant_given_by_partner (bool | Unset):  Default: True.
-        grant_label (None | str | Unset):
-    """
+        Attributes:
+            bridge_id (str):
+            partner_tenant_name (str):
+            proposals (list[PartnerPortalProposalItem]):
+            grant_given_by_partner (bool | Unset):  Default: True.
+            grant_label (None | str | Unset):
+     """
 
     bridge_id: str
     partner_tenant_name: str
@@ -34,7 +41,12 @@ class PartnerPortalProposals:
     grant_label: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.partner_portal_proposal_item import PartnerPortalProposalItem
         bridge_id = self.bridge_id
 
         partner_tenant_name = self.partner_tenant_name
@@ -44,6 +56,8 @@ class PartnerPortalProposals:
             proposals_item = proposals_item_data.to_dict()
             proposals.append(proposals_item)
 
+
+
         grant_given_by_partner = self.grant_given_by_partner
 
         grant_label: None | str | Unset
@@ -52,15 +66,14 @@ class PartnerPortalProposals:
         else:
             grant_label = self.grant_label
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "partner_tenant_name": partner_tenant_name,
-                "proposals": proposals,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "partner_tenant_name": partner_tenant_name,
+            "proposals": proposals,
+        })
         if grant_given_by_partner is not UNSET:
             field_dict["grant_given_by_partner"] = grant_given_by_partner
         if grant_label is not UNSET:
@@ -68,10 +81,11 @@ class PartnerPortalProposals:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.partner_portal_proposal_item import PartnerPortalProposalItem
-
         d = dict(src_dict)
         bridge_id = d.pop("bridge_id")
 
@@ -79,10 +93,13 @@ class PartnerPortalProposals:
 
         proposals = []
         _proposals = d.pop("proposals")
-        for proposals_item_data in _proposals:
+        for proposals_item_data in (_proposals):
             proposals_item = PartnerPortalProposalItem.from_dict(proposals_item_data)
 
+
+
             proposals.append(proposals_item)
+
 
         grant_given_by_partner = d.pop("grant_given_by_partner", UNSET)
 
@@ -95,6 +112,7 @@ class PartnerPortalProposals:
 
         grant_label = _parse_grant_label(d.pop("grant_label", UNSET))
 
+
         partner_portal_proposals = cls(
             bridge_id=bridge_id,
             partner_tenant_name=partner_tenant_name,
@@ -102,6 +120,7 @@ class PartnerPortalProposals:
             grant_given_by_partner=grant_given_by_partner,
             grant_label=grant_label,
         )
+
 
         partner_portal_proposals.additional_properties = d
         return partner_portal_proposals

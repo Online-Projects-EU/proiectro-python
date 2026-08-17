@@ -1,34 +1,47 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.business_process_summary import BusinessProcessSummary
+  from ..models.business_process_summary import BusinessProcessSummary
+
+
+
 
 
 T = TypeVar("T", bound="BusinessProcessCategory")
 
 
+
 @_attrs_define
 class BusinessProcessCategory:
-    """Category grouping of business processes
+    """ Category grouping of business processes
 
-    Attributes:
-        category_name (str):
-        category_key (str):
-        processes (list[BusinessProcessSummary]):
-    """
+        Attributes:
+            category_name (str):
+            category_key (str):
+            processes (list[BusinessProcessSummary]):
+     """
 
     category_name: str
     category_key: str
     processes: list[BusinessProcessSummary]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.business_process_summary import BusinessProcessSummary
         category_name = self.category_name
 
         category_key = self.category_key
@@ -38,22 +51,24 @@ class BusinessProcessCategory:
             processes_item = processes_item_data.to_dict()
             processes.append(processes_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "category_name": category_name,
-                "category_key": category_key,
-                "processes": processes,
-            }
-        )
+        field_dict.update({
+            "category_name": category_name,
+            "category_key": category_key,
+            "processes": processes,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.business_process_summary import BusinessProcessSummary
-
         d = dict(src_dict)
         category_name = d.pop("category_name")
 
@@ -61,16 +76,20 @@ class BusinessProcessCategory:
 
         processes = []
         _processes = d.pop("processes")
-        for processes_item_data in _processes:
+        for processes_item_data in (_processes):
             processes_item = BusinessProcessSummary.from_dict(processes_item_data)
 
+
+
             processes.append(processes_item)
+
 
         business_process_category = cls(
             category_name=category_name,
             category_key=category_key,
             processes=processes,
         )
+
 
         business_process_category.additional_properties = d
         return business_process_category

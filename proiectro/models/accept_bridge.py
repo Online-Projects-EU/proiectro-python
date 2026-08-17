@@ -1,33 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AcceptBridge")
+
 
 
 @_attrs_define
 class AcceptBridge:
-    """Input schema for accepting a tenant bridge (partnership) invitation
+    """ Input schema for accepting a tenant bridge (partnership) invitation
 
-    Attributes:
-        proxy_subtenant_id (str):
-        grant_rfp_create (bool | None | Unset):  Default: False.
-        grant_proposal_view (bool | None | Unset):  Default: False.
-        grant_proposal_accept (bool | None | Unset):  Default: False.
-        grant_project_view (bool | None | Unset):  Default: False.
-        grant_product_view (bool | None | Unset):  Default: False.
-        grant_product_accept (bool | None | Unset):  Default: False.
-        grant_product_reject (bool | None | Unset):  Default: False.
-        grant_payment_view (bool | None | Unset):  Default: False.
-        grant_support_use (bool | None | Unset):  Default: False.
-        grant_asset_view (bool | None | Unset):  Default: False.
-    """
+        Attributes:
+            proxy_subtenant_id (str):
+            grant_rfp_create (bool | None | Unset):  Default: False.
+            grant_proposal_view (bool | None | Unset):  Default: False.
+            grant_proposal_accept (bool | None | Unset):  Default: False.
+            grant_project_view (bool | None | Unset):  Default: False.
+            grant_product_view (bool | None | Unset):  Default: False.
+            grant_product_accept (bool | None | Unset):  Default: False.
+            grant_product_reject (bool | None | Unset):  Default: False.
+            grant_payment_view (bool | None | Unset):  Default: False.
+            grant_support_use (bool | None | Unset):  Default: False.
+            grant_asset_view (bool | None | Unset):  Default: False.
+     """
 
     proxy_subtenant_id: str
     grant_rfp_create: bool | None | Unset = False
@@ -41,6 +50,10 @@ class AcceptBridge:
     grant_support_use: bool | None | Unset = False
     grant_asset_view: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         proxy_subtenant_id = self.proxy_subtenant_id
@@ -105,13 +118,12 @@ class AcceptBridge:
         else:
             grant_asset_view = self.grant_asset_view
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "proxy_subtenant_id": proxy_subtenant_id,
-            }
-        )
+        field_dict.update({
+            "proxy_subtenant_id": proxy_subtenant_id,
+        })
         if grant_rfp_create is not UNSET:
             field_dict["grant_rfp_create"] = grant_rfp_create
         if grant_proposal_view is not UNSET:
@@ -135,6 +147,8 @@ class AcceptBridge:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -149,6 +163,7 @@ class AcceptBridge:
 
         grant_rfp_create = _parse_grant_rfp_create(d.pop("grant_rfp_create", UNSET))
 
+
         def _parse_grant_proposal_view(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -156,9 +171,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_proposal_view = _parse_grant_proposal_view(
-            d.pop("grant_proposal_view", UNSET)
-        )
+        grant_proposal_view = _parse_grant_proposal_view(d.pop("grant_proposal_view", UNSET))
+
 
         def _parse_grant_proposal_accept(data: object) -> bool | None | Unset:
             if data is None:
@@ -167,9 +181,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_proposal_accept = _parse_grant_proposal_accept(
-            d.pop("grant_proposal_accept", UNSET)
-        )
+        grant_proposal_accept = _parse_grant_proposal_accept(d.pop("grant_proposal_accept", UNSET))
+
 
         def _parse_grant_project_view(data: object) -> bool | None | Unset:
             if data is None:
@@ -178,9 +191,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_project_view = _parse_grant_project_view(
-            d.pop("grant_project_view", UNSET)
-        )
+        grant_project_view = _parse_grant_project_view(d.pop("grant_project_view", UNSET))
+
 
         def _parse_grant_product_view(data: object) -> bool | None | Unset:
             if data is None:
@@ -189,9 +201,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_product_view = _parse_grant_product_view(
-            d.pop("grant_product_view", UNSET)
-        )
+        grant_product_view = _parse_grant_product_view(d.pop("grant_product_view", UNSET))
+
 
         def _parse_grant_product_accept(data: object) -> bool | None | Unset:
             if data is None:
@@ -200,9 +211,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_product_accept = _parse_grant_product_accept(
-            d.pop("grant_product_accept", UNSET)
-        )
+        grant_product_accept = _parse_grant_product_accept(d.pop("grant_product_accept", UNSET))
+
 
         def _parse_grant_product_reject(data: object) -> bool | None | Unset:
             if data is None:
@@ -211,9 +221,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_product_reject = _parse_grant_product_reject(
-            d.pop("grant_product_reject", UNSET)
-        )
+        grant_product_reject = _parse_grant_product_reject(d.pop("grant_product_reject", UNSET))
+
 
         def _parse_grant_payment_view(data: object) -> bool | None | Unset:
             if data is None:
@@ -222,9 +231,8 @@ class AcceptBridge:
                 return data
             return cast(bool | None | Unset, data)
 
-        grant_payment_view = _parse_grant_payment_view(
-            d.pop("grant_payment_view", UNSET)
-        )
+        grant_payment_view = _parse_grant_payment_view(d.pop("grant_payment_view", UNSET))
+
 
         def _parse_grant_support_use(data: object) -> bool | None | Unset:
             if data is None:
@@ -235,6 +243,7 @@ class AcceptBridge:
 
         grant_support_use = _parse_grant_support_use(d.pop("grant_support_use", UNSET))
 
+
         def _parse_grant_asset_view(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -243,6 +252,7 @@ class AcceptBridge:
             return cast(bool | None | Unset, data)
 
         grant_asset_view = _parse_grant_asset_view(d.pop("grant_asset_view", UNSET))
+
 
         accept_bridge = cls(
             proxy_subtenant_id=proxy_subtenant_id,
@@ -257,6 +267,7 @@ class AcceptBridge:
             grant_support_use=grant_support_use,
             grant_asset_view=grant_asset_view,
         )
+
 
         accept_bridge.additional_properties = d
         return accept_bridge

@@ -1,37 +1,49 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="MyOperationalItem")
+
 
 
 @_attrs_define
 class MyOperationalItem:
-    """Individual operational item for cross-tenant welcome page
+    """ Individual operational item for cross-tenant welcome page
 
-    Attributes:
-        id (str):
-        name (str):
-        process_name (str):
-        current_stage_name (str):
-        current_stage_type (str):
-        priority (str):
-        is_finished (bool):
-        tenant_name (str):
-        tenant_path (str):
-        created_at (str):
-        due_date (None | str | Unset):
-        owner_name (None | str | Unset):
-        customer_name (None | str | Unset):
-        requires_approval (bool | Unset):  Default: False.
-        stage_age_hours (int | Unset):  Default: 0.
-    """
+        Attributes:
+            id (str):
+            name (str):
+            process_name (str):
+            current_stage_name (str):
+            current_stage_type (str):
+            priority (str):
+            is_finished (bool):
+            tenant_name (str):
+            tenant_path (str):
+            created_at (datetime.datetime):
+            url (str):
+            due_date (datetime.date | None | Unset):
+            owner_name (None | str | Unset):
+            customer_name (None | str | Unset):
+            requires_approval (bool | Unset):  Default: False.
+            stage_age_hours (int | Unset):  Default: 0.
+     """
 
     id: str
     name: str
@@ -42,13 +54,18 @@ class MyOperationalItem:
     is_finished: bool
     tenant_name: str
     tenant_path: str
-    created_at: str
-    due_date: None | str | Unset = UNSET
+    created_at: datetime.datetime
+    url: str
+    due_date: datetime.date | None | Unset = UNSET
     owner_name: None | str | Unset = UNSET
     customer_name: None | str | Unset = UNSET
     requires_approval: bool | Unset = False
     stage_age_hours: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -69,11 +86,15 @@ class MyOperationalItem:
 
         tenant_path = self.tenant_path
 
-        created_at = self.created_at
+        created_at = self.created_at.isoformat()
+
+        url = self.url
 
         due_date: None | str | Unset
         if isinstance(self.due_date, Unset):
             due_date = UNSET
+        elif isinstance(self.due_date, datetime.date):
+            due_date = self.due_date.isoformat()
         else:
             due_date = self.due_date
 
@@ -93,22 +114,22 @@ class MyOperationalItem:
 
         stage_age_hours = self.stage_age_hours
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "process_name": process_name,
-                "current_stage_name": current_stage_name,
-                "current_stage_type": current_stage_type,
-                "priority": priority,
-                "is_finished": is_finished,
-                "tenant_name": tenant_name,
-                "tenant_path": tenant_path,
-                "created_at": created_at,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "process_name": process_name,
+            "current_stage_name": current_stage_name,
+            "current_stage_type": current_stage_type,
+            "priority": priority,
+            "is_finished": is_finished,
+            "tenant_name": tenant_name,
+            "tenant_path": tenant_path,
+            "created_at": created_at,
+            "url": url,
+        })
         if due_date is not UNSET:
             field_dict["due_date"] = due_date
         if owner_name is not UNSET:
@@ -121,6 +142,8 @@ class MyOperationalItem:
             field_dict["stage_age_hours"] = stage_age_hours
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -143,16 +166,32 @@ class MyOperationalItem:
 
         tenant_path = d.pop("tenant_path")
 
-        created_at = d.pop("created_at")
+        created_at = isoparse(d.pop("created_at"))
 
-        def _parse_due_date(data: object) -> None | str | Unset:
+
+
+
+        url = d.pop("url")
+
+        def _parse_due_date(data: object) -> datetime.date | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                due_date_type_0 = isoparse(data).date()
+
+
+
+                return due_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
+
 
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
@@ -163,6 +202,7 @@ class MyOperationalItem:
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
 
+
         def _parse_customer_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -171,6 +211,7 @@ class MyOperationalItem:
             return cast(None | str | Unset, data)
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
+
 
         requires_approval = d.pop("requires_approval", UNSET)
 
@@ -187,12 +228,14 @@ class MyOperationalItem:
             tenant_name=tenant_name,
             tenant_path=tenant_path,
             created_at=created_at,
+            url=url,
             due_date=due_date,
             owner_name=owner_name,
             customer_name=customer_name,
             requires_approval=requires_approval,
             stage_age_hours=stage_age_hours,
         )
+
 
         my_operational_item.additional_properties = d
         return my_operational_item

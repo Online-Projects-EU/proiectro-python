@@ -1,30 +1,44 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsResolutionBySeverityItem")
+
 
 
 @_attrs_define
 class AnalyticsResolutionBySeverityItem:
-    """Resolution time by severity
+    """ Resolution time by severity
 
-    Attributes:
-        severity (str):
-        ticket_type (str):
-        count (int):
-        avg_resolution_hours (float | str):
-    """
+        Attributes:
+            severity (str):
+            ticket_type (str):
+            count (int):
+            avg_resolution_hours (float | str):
+     """
 
     severity: str
     ticket_type: str
     count: int
     avg_resolution_hours: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         severity = self.severity
@@ -36,18 +50,19 @@ class AnalyticsResolutionBySeverityItem:
         avg_resolution_hours: float | str
         avg_resolution_hours = self.avg_resolution_hours
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "severity": severity,
-                "ticket_type": ticket_type,
-                "count": count,
-                "avg_resolution_hours": avg_resolution_hours,
-            }
-        )
+        field_dict.update({
+            "severity": severity,
+            "ticket_type": ticket_type,
+            "count": count,
+            "avg_resolution_hours": avg_resolution_hours,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -61,9 +76,8 @@ class AnalyticsResolutionBySeverityItem:
         def _parse_avg_resolution_hours(data: object) -> float | str:
             return cast(float | str, data)
 
-        avg_resolution_hours = _parse_avg_resolution_hours(
-            d.pop("avg_resolution_hours")
-        )
+        avg_resolution_hours = _parse_avg_resolution_hours(d.pop("avg_resolution_hours"))
+
 
         analytics_resolution_by_severity_item = cls(
             severity=severity,
@@ -71,6 +85,7 @@ class AnalyticsResolutionBySeverityItem:
             count=count,
             avg_resolution_hours=avg_resolution_hours,
         )
+
 
         analytics_resolution_by_severity_item.additional_properties = d
         return analytics_resolution_by_severity_item

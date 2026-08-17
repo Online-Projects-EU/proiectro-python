@@ -24,6 +24,8 @@ def _get_kwargs(
     closed_won_after: None | str | Unset = UNSET,
     closed_won_before: None | str | Unset = UNSET,
     has_products: bool | None | Unset = UNSET,
+    lifecycle_status: list[str] | None | Unset = UNSET,
+    archived: bool | None | Unset = UNSET,
     tags1: list[str] | None | Unset = UNSET,
     tags2: list[str] | None | Unset = UNSET,
     tags3: list[str] | None | Unset = UNSET,
@@ -116,6 +118,23 @@ def _get_kwargs(
     else:
         json_has_products = has_products
     params["has_products"] = json_has_products
+
+    json_lifecycle_status: list[str] | None | Unset
+    if isinstance(lifecycle_status, Unset):
+        json_lifecycle_status = UNSET
+    elif isinstance(lifecycle_status, list):
+        json_lifecycle_status = lifecycle_status
+
+    else:
+        json_lifecycle_status = lifecycle_status
+    params["lifecycle_status"] = json_lifecycle_status
+
+    json_archived: bool | None | Unset
+    if isinstance(archived, Unset):
+        json_archived = UNSET
+    else:
+        json_archived = archived
+    params["archived"] = json_archived
 
     json_tags1: list[str] | None | Unset
     if isinstance(tags1, Unset):
@@ -263,6 +282,8 @@ def sync_detailed(
     closed_won_after: None | str | Unset = UNSET,
     closed_won_before: None | str | Unset = UNSET,
     has_products: bool | None | Unset = UNSET,
+    lifecycle_status: list[str] | None | Unset = UNSET,
+    archived: bool | None | Unset = UNSET,
     tags1: list[str] | None | Unset = UNSET,
     tags2: list[str] | None | Unset = UNSET,
     tags3: list[str] | None | Unset = UNSET,
@@ -297,6 +318,9 @@ def sync_detailed(
         closed_won_before (None | str | Unset): Show projects that moved to closed_won before this
             date (YYYY-MM-DD)
         has_products (bool | None | Unset): Filter projects that have products attached
+        lifecycle_status (list[str] | None | Unset): Filter by lifecycle status. Pass repeated
+            query params (?lifecycle_status=delivered&lifecycle_status=cancelled).
+        archived (bool | None | Unset): Filter by archive flag.
         tags1 (list[str] | None | Unset): Filter by tags (first set - match ANY tag in this set)
         tags2 (list[str] | None | Unset): Filter by tags (second set - match ANY tag in this set)
         tags3 (list[str] | None | Unset): Filter by tags (third set - match ANY tag in this set)
@@ -331,6 +355,8 @@ def sync_detailed(
         closed_won_after=closed_won_after,
         closed_won_before=closed_won_before,
         has_products=has_products,
+        lifecycle_status=lifecycle_status,
+        archived=archived,
         tags1=tags1,
         tags2=tags2,
         tags3=tags3,
@@ -367,6 +393,8 @@ def sync(
     closed_won_after: None | str | Unset = UNSET,
     closed_won_before: None | str | Unset = UNSET,
     has_products: bool | None | Unset = UNSET,
+    lifecycle_status: list[str] | None | Unset = UNSET,
+    archived: bool | None | Unset = UNSET,
     tags1: list[str] | None | Unset = UNSET,
     tags2: list[str] | None | Unset = UNSET,
     tags3: list[str] | None | Unset = UNSET,
@@ -401,6 +429,9 @@ def sync(
         closed_won_before (None | str | Unset): Show projects that moved to closed_won before this
             date (YYYY-MM-DD)
         has_products (bool | None | Unset): Filter projects that have products attached
+        lifecycle_status (list[str] | None | Unset): Filter by lifecycle status. Pass repeated
+            query params (?lifecycle_status=delivered&lifecycle_status=cancelled).
+        archived (bool | None | Unset): Filter by archive flag.
         tags1 (list[str] | None | Unset): Filter by tags (first set - match ANY tag in this set)
         tags2 (list[str] | None | Unset): Filter by tags (second set - match ANY tag in this set)
         tags3 (list[str] | None | Unset): Filter by tags (third set - match ANY tag in this set)
@@ -436,6 +467,8 @@ def sync(
         closed_won_after=closed_won_after,
         closed_won_before=closed_won_before,
         has_products=has_products,
+        lifecycle_status=lifecycle_status,
+        archived=archived,
         tags1=tags1,
         tags2=tags2,
         tags3=tags3,
@@ -466,6 +499,8 @@ async def asyncio_detailed(
     closed_won_after: None | str | Unset = UNSET,
     closed_won_before: None | str | Unset = UNSET,
     has_products: bool | None | Unset = UNSET,
+    lifecycle_status: list[str] | None | Unset = UNSET,
+    archived: bool | None | Unset = UNSET,
     tags1: list[str] | None | Unset = UNSET,
     tags2: list[str] | None | Unset = UNSET,
     tags3: list[str] | None | Unset = UNSET,
@@ -500,6 +535,9 @@ async def asyncio_detailed(
         closed_won_before (None | str | Unset): Show projects that moved to closed_won before this
             date (YYYY-MM-DD)
         has_products (bool | None | Unset): Filter projects that have products attached
+        lifecycle_status (list[str] | None | Unset): Filter by lifecycle status. Pass repeated
+            query params (?lifecycle_status=delivered&lifecycle_status=cancelled).
+        archived (bool | None | Unset): Filter by archive flag.
         tags1 (list[str] | None | Unset): Filter by tags (first set - match ANY tag in this set)
         tags2 (list[str] | None | Unset): Filter by tags (second set - match ANY tag in this set)
         tags3 (list[str] | None | Unset): Filter by tags (third set - match ANY tag in this set)
@@ -534,6 +572,8 @@ async def asyncio_detailed(
         closed_won_after=closed_won_after,
         closed_won_before=closed_won_before,
         has_products=has_products,
+        lifecycle_status=lifecycle_status,
+        archived=archived,
         tags1=tags1,
         tags2=tags2,
         tags3=tags3,
@@ -568,6 +608,8 @@ async def asyncio(
     closed_won_after: None | str | Unset = UNSET,
     closed_won_before: None | str | Unset = UNSET,
     has_products: bool | None | Unset = UNSET,
+    lifecycle_status: list[str] | None | Unset = UNSET,
+    archived: bool | None | Unset = UNSET,
     tags1: list[str] | None | Unset = UNSET,
     tags2: list[str] | None | Unset = UNSET,
     tags3: list[str] | None | Unset = UNSET,
@@ -602,6 +644,9 @@ async def asyncio(
         closed_won_before (None | str | Unset): Show projects that moved to closed_won before this
             date (YYYY-MM-DD)
         has_products (bool | None | Unset): Filter projects that have products attached
+        lifecycle_status (list[str] | None | Unset): Filter by lifecycle status. Pass repeated
+            query params (?lifecycle_status=delivered&lifecycle_status=cancelled).
+        archived (bool | None | Unset): Filter by archive flag.
         tags1 (list[str] | None | Unset): Filter by tags (first set - match ANY tag in this set)
         tags2 (list[str] | None | Unset): Filter by tags (second set - match ANY tag in this set)
         tags3 (list[str] | None | Unset): Filter by tags (third set - match ANY tag in this set)
@@ -638,6 +683,8 @@ async def asyncio(
             closed_won_after=closed_won_after,
             closed_won_before=closed_won_before,
             has_products=has_products,
+            lifecycle_status=lifecycle_status,
+            archived=archived,
             tags1=tags1,
             tags2=tags2,
             tags3=tags3,

@@ -1,0 +1,181 @@
+from http import HTTPStatus
+from typing import Any
+from urllib.parse import quote
+
+import httpx
+
+from ... import errors
+from ...client import AuthenticatedClient, Client
+from ...models.output_lead_buckets import OutputLeadBuckets
+from ...types import Response
+
+
+def _get_kwargs(
+    tenant_path: str,
+    lead_list_id: str,
+) -> dict[str, Any]:
+
+    _kwargs: dict[str, Any] = {
+        "method": "get",
+        "url": "/api/v1/{tenant_path}/lead_list/{lead_list_id}".format(
+            tenant_path=quote(str(tenant_path), safe=""),
+            lead_list_id=quote(str(lead_list_id), safe=""),
+        ),
+    }
+
+    return _kwargs
+
+
+def _parse_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> OutputLeadBuckets | None:
+    if response.status_code == 200:
+        response_200 = OutputLeadBuckets.from_dict(response.json())
+
+        return response_200
+
+    if client.raise_on_unexpected_status:
+        raise errors.UnexpectedStatus(response.status_code, response.content)
+    else:
+        return None
+
+
+def _build_response(
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[OutputLeadBuckets]:
+    return Response(
+        status_code=HTTPStatus(response.status_code),
+        content=response.content,
+        headers=response.headers,
+        parsed=_parse_response(client=client, response=response),
+    )
+
+
+def sync_detailed(
+    tenant_path: str,
+    lead_list_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Response[OutputLeadBuckets]:
+    """Tenant Lead List Detail
+
+     The leads inside one list, grouped into overdue, due today, untriaged, and scheduled so you
+    can see what needs working next.
+
+    Args:
+        tenant_path (str):
+        lead_list_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[OutputLeadBuckets]
+    """
+
+    kwargs = _get_kwargs(
+        tenant_path=tenant_path,
+        lead_list_id=lead_list_id,
+    )
+
+    response = client.get_httpx_client().request(
+        **kwargs,
+    )
+
+    return _build_response(client=client, response=response)
+
+
+def sync(
+    tenant_path: str,
+    lead_list_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> OutputLeadBuckets | None:
+    """Tenant Lead List Detail
+
+     The leads inside one list, grouped into overdue, due today, untriaged, and scheduled so you
+    can see what needs working next.
+
+    Args:
+        tenant_path (str):
+        lead_list_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        OutputLeadBuckets
+    """
+
+    return sync_detailed(
+        tenant_path=tenant_path,
+        lead_list_id=lead_list_id,
+        client=client,
+    ).parsed
+
+
+async def asyncio_detailed(
+    tenant_path: str,
+    lead_list_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Response[OutputLeadBuckets]:
+    """Tenant Lead List Detail
+
+     The leads inside one list, grouped into overdue, due today, untriaged, and scheduled so you
+    can see what needs working next.
+
+    Args:
+        tenant_path (str):
+        lead_list_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[OutputLeadBuckets]
+    """
+
+    kwargs = _get_kwargs(
+        tenant_path=tenant_path,
+        lead_list_id=lead_list_id,
+    )
+
+    response = await client.get_async_httpx_client().request(**kwargs)
+
+    return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    tenant_path: str,
+    lead_list_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> OutputLeadBuckets | None:
+    """Tenant Lead List Detail
+
+     The leads inside one list, grouped into overdue, due today, untriaged, and scheduled so you
+    can see what needs working next.
+
+    Args:
+        tenant_path (str):
+        lead_list_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        OutputLeadBuckets
+    """
+
+    return (
+        await asyncio_detailed(
+            tenant_path=tenant_path,
+            lead_list_id=lead_list_id,
+            client=client,
+        )
+    ).parsed

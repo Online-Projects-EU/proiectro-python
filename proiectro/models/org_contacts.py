@@ -1,34 +1,48 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.contact_invitation import ContactInvitation
-    from ..models.org_contact import OrgContact
+  from ..models.contact_invitation import ContactInvitation
+  from ..models.org_contact import OrgContact
+
+
+
 
 
 T = TypeVar("T", bound="OrgContacts")
 
 
+
 @_attrs_define
 class OrgContacts:
-    """
-    Attributes:
-        org_id (str):
-        contacts (list[OrgContact]):
-        invitations (list[ContactInvitation]):
-    """
+    """ 
+        Attributes:
+            org_id (str):
+            contacts (list[OrgContact]):
+            invitations (list[ContactInvitation]):
+     """
 
     org_id: str
     contacts: list[OrgContact]
     invitations: list[ContactInvitation]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.org_contact import OrgContact
+        from ..models.contact_invitation import ContactInvitation
         org_id = self.org_id
 
         contacts = []
@@ -36,50 +50,61 @@ class OrgContacts:
             contacts_item = contacts_item_data.to_dict()
             contacts.append(contacts_item)
 
+
+
         invitations = []
         for invitations_item_data in self.invitations:
             invitations_item = invitations_item_data.to_dict()
             invitations.append(invitations_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "org_id": org_id,
-                "contacts": contacts,
-                "invitations": invitations,
-            }
-        )
+        field_dict.update({
+            "org_id": org_id,
+            "contacts": contacts,
+            "invitations": invitations,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.contact_invitation import ContactInvitation
         from ..models.org_contact import OrgContact
-
         d = dict(src_dict)
         org_id = d.pop("org_id")
 
         contacts = []
         _contacts = d.pop("contacts")
-        for contacts_item_data in _contacts:
+        for contacts_item_data in (_contacts):
             contacts_item = OrgContact.from_dict(contacts_item_data)
+
+
 
             contacts.append(contacts_item)
 
+
         invitations = []
         _invitations = d.pop("invitations")
-        for invitations_item_data in _invitations:
+        for invitations_item_data in (_invitations):
             invitations_item = ContactInvitation.from_dict(invitations_item_data)
 
+
+
             invitations.append(invitations_item)
+
 
         org_contacts = cls(
             org_id=org_id,
             contacts=contacts,
             invitations=invitations,
         )
+
 
         org_contacts.additional_properties = d
         return org_contacts

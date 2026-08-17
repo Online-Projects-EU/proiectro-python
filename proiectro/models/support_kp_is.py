@@ -1,24 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.compare_option import CompareOption
-    from ..models.horizon_option import HorizonOption
+  from ..models.compare_option import CompareOption
+  from ..models.horizon_option import HorizonOption
+
+
+
 
 
 T = TypeVar("T", bound="SupportKPIs")
 
 
+
 @_attrs_define
 class SupportKPIs:
-    """Support KPIs - Ticket volume and performance from real data.
+    """ Support KPIs - Ticket volume and performance from real data.
 
     Shows: Open tickets (internal/external), resolution time, first response, success rate.
 
@@ -36,7 +45,7 @@ class SupportKPIs:
             success_status (str):
             period (str | Unset):  Default: 'YTD'.
             temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (str | Unset):  Default: ''.
+            generated_at (datetime.datetime | None | Unset):
             period_label (None | str | Unset):
             horizon (None | str | Unset):
             horizon_label (None | str | Unset):
@@ -50,7 +59,7 @@ class SupportKPIs:
             filter_category_label (None | str | Unset):
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
-    """
+     """
 
     internal_open: int
     external_open: int
@@ -63,9 +72,9 @@ class SupportKPIs:
     avg_first_response_hours: float | str
     success_rate: float | str
     success_status: str
-    period: str | Unset = "YTD"
-    temporal_type: str | Unset = "snapshot"
-    generated_at: str | Unset = ""
+    period: str | Unset = 'YTD'
+    temporal_type: str | Unset = 'snapshot'
+    generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
     horizon_label: None | str | Unset = UNSET
@@ -81,7 +90,13 @@ class SupportKPIs:
     filter_type_label: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.compare_option import CompareOption
+        from ..models.horizon_option import HorizonOption
         internal_open = self.internal_open
 
         external_open = self.external_open
@@ -111,7 +126,13 @@ class SupportKPIs:
 
         temporal_type = self.temporal_type
 
-        generated_at = self.generated_at
+        generated_at: None | str | Unset
+        if isinstance(self.generated_at, Unset):
+            generated_at = UNSET
+        elif isinstance(self.generated_at, datetime.datetime):
+            generated_at = self.generated_at.isoformat()
+        else:
+            generated_at = self.generated_at
 
         period_label: None | str | Unset
         if isinstance(self.period_label, Unset):
@@ -140,6 +161,7 @@ class SupportKPIs:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
+
         else:
             horizon_options = self.horizon_options
 
@@ -163,6 +185,7 @@ class SupportKPIs:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
+
 
         else:
             compare_options = self.compare_options
@@ -203,23 +226,22 @@ class SupportKPIs:
         else:
             filter_type_label = self.filter_type_label
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "internal_open": internal_open,
-                "external_open": external_open,
-                "total_open": total_open,
-                "volume_status": volume_status,
-                "internal_closed": internal_closed,
-                "external_closed": external_closed,
-                "total_closed": total_closed,
-                "avg_resolution_hours": avg_resolution_hours,
-                "avg_first_response_hours": avg_first_response_hours,
-                "success_rate": success_rate,
-                "success_status": success_status,
-            }
-        )
+        field_dict.update({
+            "internal_open": internal_open,
+            "external_open": external_open,
+            "total_open": total_open,
+            "volume_status": volume_status,
+            "internal_closed": internal_closed,
+            "external_closed": external_closed,
+            "total_closed": total_closed,
+            "avg_resolution_hours": avg_resolution_hours,
+            "avg_first_response_hours": avg_first_response_hours,
+            "success_rate": success_rate,
+            "success_status": success_status,
+        })
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -255,11 +277,12 @@ class SupportKPIs:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
-
         d = dict(src_dict)
         internal_open = d.pop("internal_open")
 
@@ -278,21 +301,20 @@ class SupportKPIs:
         def _parse_avg_resolution_hours(data: object) -> float | str:
             return cast(float | str, data)
 
-        avg_resolution_hours = _parse_avg_resolution_hours(
-            d.pop("avg_resolution_hours")
-        )
+        avg_resolution_hours = _parse_avg_resolution_hours(d.pop("avg_resolution_hours"))
+
 
         def _parse_avg_first_response_hours(data: object) -> float | str:
             return cast(float | str, data)
 
-        avg_first_response_hours = _parse_avg_first_response_hours(
-            d.pop("avg_first_response_hours")
-        )
+        avg_first_response_hours = _parse_avg_first_response_hours(d.pop("avg_first_response_hours"))
+
 
         def _parse_success_rate(data: object) -> float | str:
             return cast(float | str, data)
 
         success_rate = _parse_success_rate(d.pop("success_rate"))
+
 
         success_status = d.pop("success_status")
 
@@ -300,7 +322,25 @@ class SupportKPIs:
 
         temporal_type = d.pop("temporal_type", UNSET)
 
-        generated_at = d.pop("generated_at", UNSET)
+        def _parse_generated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                generated_at_type_0 = isoparse(data)
+
+
+
+                return generated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
+
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -311,6 +351,7 @@ class SupportKPIs:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
+
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -320,6 +361,7 @@ class SupportKPIs:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
+
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -328,6 +370,7 @@ class SupportKPIs:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
+
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -339,10 +382,10 @@ class SupportKPIs:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in _horizon_options_type_0:
-                    horizon_options_type_0_item = HorizonOption.from_dict(
-                        horizon_options_type_0_item_data
-                    )
+                for horizon_options_type_0_item_data in (_horizon_options_type_0):
+                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
+
+
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -353,6 +396,7 @@ class SupportKPIs:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
+
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -362,6 +406,7 @@ class SupportKPIs:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
+
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -370,6 +415,7 @@ class SupportKPIs:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
+
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -381,10 +427,10 @@ class SupportKPIs:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in _compare_options_type_0:
-                    compare_options_type_0_item = CompareOption.from_dict(
-                        compare_options_type_0_item_data
-                    )
+                for compare_options_type_0_item_data in (_compare_options_type_0):
+                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
+
+
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -395,6 +441,7 @@ class SupportKPIs:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
+
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -404,6 +451,7 @@ class SupportKPIs:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
+
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -411,9 +459,8 @@ class SupportKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(
-            d.pop("filter_severity_label", UNSET)
-        )
+        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
+
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -424,6 +471,7 @@ class SupportKPIs:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
+
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -431,9 +479,8 @@ class SupportKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(
-            d.pop("filter_category_label", UNSET)
-        )
+        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
+
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -444,6 +491,7 @@ class SupportKPIs:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
+
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -452,6 +500,7 @@ class SupportKPIs:
             return cast(None | str | Unset, data)
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
+
 
         support_kp_is = cls(
             internal_open=internal_open,
@@ -482,6 +531,7 @@ class SupportKPIs:
             filter_type=filter_type,
             filter_type_label=filter_type_label,
         )
+
 
         support_kp_is.additional_properties = d
         return support_kp_is

@@ -1,60 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.calendar_token import CalendarToken
+  from ..models.calendar_token import CalendarToken
+
+
+
 
 
 T = TypeVar("T", bound="OutputCalendarTokens")
 
 
+
 @_attrs_define
 class OutputCalendarTokens:
-    """Output schema for listing calendar tokens
+    """ Output schema for listing calendar tokens
 
-    Attributes:
-        tokens (list[CalendarToken]):
-    """
+        Attributes:
+            tokens (list[CalendarToken]):
+     """
 
     tokens: list[CalendarToken]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.calendar_token import CalendarToken
         tokens = []
         for tokens_item_data in self.tokens:
             tokens_item = tokens_item_data.to_dict()
             tokens.append(tokens_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tokens": tokens,
-            }
-        )
+        field_dict.update({
+            "tokens": tokens,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.calendar_token import CalendarToken
-
         d = dict(src_dict)
         tokens = []
         _tokens = d.pop("tokens")
-        for tokens_item_data in _tokens:
+        for tokens_item_data in (_tokens):
             tokens_item = CalendarToken.from_dict(tokens_item_data)
 
+
+
             tokens.append(tokens_item)
+
 
         output_calendar_tokens = cls(
             tokens=tokens,
         )
+
 
         output_calendar_tokens.additional_properties = d
         return output_calendar_tokens

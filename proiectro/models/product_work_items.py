@@ -1,30 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.product_work_item import ProductWorkItem
+  from ..models.product_work_item import ProductWorkItem
+
+
+
 
 
 T = TypeVar("T", bound="ProductWorkItems")
 
 
+
 @_attrs_define
 class ProductWorkItems:
-    """List of work items linked to a product in a project
+    """ List of work items linked to a product in a project
 
-    Attributes:
-        product_id (str):
-        product_name (str):
-        project_id (str):
-        project_name (str):
-        work_items (list[ProductWorkItem]):
-        total (int):
-    """
+        Attributes:
+            product_id (str):
+            product_name (str):
+            project_id (str):
+            project_name (str):
+            work_items (list[ProductWorkItem]):
+            total (int):
+     """
 
     product_id: str
     product_name: str
@@ -34,7 +42,12 @@ class ProductWorkItems:
     total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.product_work_item import ProductWorkItem
         product_id = self.product_id
 
         product_name = self.product_name
@@ -48,27 +61,29 @@ class ProductWorkItems:
             work_items_item = work_items_item_data.to_dict()
             work_items.append(work_items_item)
 
+
+
         total = self.total
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "product_id": product_id,
-                "product_name": product_name,
-                "project_id": project_id,
-                "project_name": project_name,
-                "work_items": work_items,
-                "total": total,
-            }
-        )
+        field_dict.update({
+            "product_id": product_id,
+            "product_name": product_name,
+            "project_id": project_id,
+            "project_name": project_name,
+            "work_items": work_items,
+            "total": total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_work_item import ProductWorkItem
-
         d = dict(src_dict)
         product_id = d.pop("product_id")
 
@@ -80,10 +95,13 @@ class ProductWorkItems:
 
         work_items = []
         _work_items = d.pop("work_items")
-        for work_items_item_data in _work_items:
+        for work_items_item_data in (_work_items):
             work_items_item = ProductWorkItem.from_dict(work_items_item_data)
 
+
+
             work_items.append(work_items_item)
+
 
         total = d.pop("total")
 
@@ -95,6 +113,7 @@ class ProductWorkItems:
             work_items=work_items,
             total=total,
         )
+
 
         product_work_items.additional_properties = d
         return product_work_items

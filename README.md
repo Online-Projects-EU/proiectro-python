@@ -112,6 +112,52 @@ delete_subtenant.sync_detailed(
 )
 ```
 
+### Leads
+
+```python
+from datetime import datetime, timezone
+from proiectro.api.leads import add_lead, tenant_all_leads, update_lead_status, mark_lead_converted
+from proiectro.models import AddLead, AddLeadSource, UpdateLeadStatus, UpdateLeadStatusStatus, MarkLeadConverted
+
+# Capture an inbound lead
+add_lead.sync_detailed(
+    tenant_path="my-workspace",
+    client=client,
+    body=AddLead(
+        name="Jane Doe",
+        company_name="Acme Corp",
+        email="jane@acme.example",
+        source=AddLeadSource.WEB_FORM,
+    ),
+)
+
+# List leads, filtered
+leads = tenant_all_leads.sync(tenant_path="my-workspace", client=client, status="new", has_email=True)
+
+# Move a lead through the pipeline. `updated_at` is the value you last read —
+# the API rejects the write if someone else changed the lead in between.
+update_lead_status.sync_detailed(
+    tenant_path="my-workspace",
+    lead_id="lead-uuid",
+    client=client,
+    body=UpdateLeadStatus(
+        status=UpdateLeadStatusStatus.QUALIFIED,
+        updated_at=datetime(2026, 3, 15, 10, 0, tzinfo=timezone.utc),
+    ),
+)
+
+# Convert it into a customer
+mark_lead_converted.sync_detailed(
+    tenant_path="my-workspace",
+    lead_id="lead-uuid",
+    client=client,
+    body=MarkLeadConverted(
+        updated_at=datetime(2026, 3, 15, 10, 5, tzinfo=timezone.utc),
+        new_org_name="Acme Corp",
+    ),
+)
+```
+
 ### Proposals
 
 ```python
@@ -154,8 +200,9 @@ change_proposal_stage.sync_detailed(
 ### Projects
 
 ```python
-from proiectro.api.projects import list_projects, project_work_items, add_work_item
-from proiectro.models import AddWorkItem
+from proiectro.api.projects import list_projects, project_work_items, add_work_item, update_work_item_status
+from proiectro.api.comments import add_work_item_comment
+from proiectro.models import AddWorkItem, UpdateWorkItemStatus, AddWorkItemComment
 
 # List all projects
 projects = list_projects.sync(tenant_path="my-workspace", client=client)
@@ -176,6 +223,27 @@ add_work_item.sync_detailed(
         project_id="project-uuid",
         work_item_type_id="type-uuid",
     ),
+)
+
+# Report progress, then finish it
+update_work_item_status.sync_detailed(
+    tenant_path="my-workspace",
+    work_item_id="work-item-uuid",
+    client=client,
+    body=UpdateWorkItemStatus(percent_complete=60),
+)
+update_work_item_status.sync_detailed(
+    tenant_path="my-workspace",
+    work_item_id="work-item-uuid",
+    client=client,
+    body=UpdateWorkItemStatus(finished_at="2026-03-10T16:00:00Z"),
+)
+
+# Comment on it
+add_work_item_comment.sync_detailed(
+    tenant_path="my-workspace",
+    client=client,
+    body=AddWorkItemComment(work_item_id="work-item-uuid", content="Mockups approved by the customer."),
 )
 ```
 
@@ -204,6 +272,27 @@ mark_payment_paid.sync_detailed(
     client=client,
     body=MarkPaymentPaid(paid_date="2026-03-15"),
 )
+```
+
+### Documents
+
+```python
+from proiectro.api.documents import tenant_document_templates_list, generate_proposal_document, tenant_documents_list
+from proiectro.models import GenerateDocument
+
+# Templates available in the workspace
+templates = tenant_document_templates_list.sync(tenant_path="my-workspace", client=client)
+
+# Generate a numbered document for a proposal
+generate_proposal_document.sync_detailed(
+    tenant_path="my-workspace",
+    proposal_id="proposal-uuid",
+    client=client,
+    body=GenerateDocument(template_id="template-uuid"),
+)
+
+# Documents, filtered
+documents = tenant_documents_list.sync(tenant_path="my-workspace", client=client, org_id="customer-uuid")
 ```
 
 ### Tags
@@ -247,6 +336,43 @@ invite_to_team.sync_detailed(
     body=InviteMemberToTenant(email="colleague@example.com"),
 )
 ```
+
+### Webhooks
+
+Subscribe to platform events instead of polling:
+
+```python
+from proiectro.api.webhooks import add_webhook, tenant_webhooks
+from proiectro.models import AddWebhook
+
+add_webhook.sync_detailed(
+    tenant_path="my-workspace",
+    client=client,
+    body=AddWebhook(
+        name="CRM sync",
+        target_url="https://example.com/hooks/proiectro",
+        event_types=["changeProposalStage", "markPaymentPaid"],
+        is_active=True,
+        is_secure=True,
+    ),
+)
+
+hooks = tenant_webhooks.sync(tenant_path="my-workspace", client=client)
+```
+
+## Namespaces
+
+Operations live under `proiectro.api.<namespace>`, one module per operation:
+
+| Area | Namespaces |
+|---|---|
+| Sales | `leads`, `proposals`, `orgs`, `rfp`, `bridge` (partnerships), `partnerportal` |
+| Delivery | `projects`, `work`, `operations`, `comments`, `timers`, `booking`, `capacity`, `resources`, `holidays`, `calendar` |
+| Money | `costs`, `exchange`, `analytics`, `kpis` |
+| Support & assets | `support`, `assets`, `locations`, `custom_forms` |
+| Documents & files | `documents`, `files`, `cdn` |
+| Workspace | `tenant`, `team`, `rbac`, `tags`, `labels`, `notifications`, `feed`, `welcome`, `auth` |
+| Automation | `webhooks`, `automation`, `integrations`, `portal` |
 
 ## Error Handling
 
@@ -304,6 +430,10 @@ async with AuthenticatedClient(
 ## API Documentation
 
 Full API reference is available at [proiect.ro/api/v1/docs](https://proiect.ro/api/v1/docs).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

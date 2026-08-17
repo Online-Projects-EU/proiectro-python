@@ -1,44 +1,57 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
 T = TypeVar("T", bound="ApproveOperationalItem")
+
 
 
 @_attrs_define
 class ApproveOperationalItem:
-    """
-    Attributes:
-        target_stage (str):
-        notes (str | Unset):  Default: ''.
-    """
+    """ 
+        Attributes:
+            target_stage (str):
+            notes (str | Unset):  Default: ''.
+     """
 
     target_stage: str
-    notes: str | Unset = ""
+    notes: str | Unset = ''
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         target_stage = self.target_stage
 
         notes = self.notes
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "target_stage": target_stage,
-            }
-        )
+        field_dict.update({
+            "target_stage": target_stage,
+        })
         if notes is not UNSET:
             field_dict["notes"] = notes
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -51,6 +64,7 @@ class ApproveOperationalItem:
             target_stage=target_stage,
             notes=notes,
         )
+
 
         approve_operational_item.additional_properties = d
         return approve_operational_item

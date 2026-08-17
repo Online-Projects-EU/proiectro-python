@@ -1,34 +1,53 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AutomationAction")
+
 
 
 @_attrs_define
 class AutomationAction:
-    """An available action as returned by the automation_actions endpoint.
+    """ An available action as returned by the automation_actions endpoint.
 
-    Attributes:
-        action_id (str):
-        name (str):
-        category (str):
-        fields (str | Unset):  Default: '[]'.
-        form_url (None | str | Unset):
-    """
+        Attributes:
+            action_id (str):
+            name (str):
+            category (str):
+            fields (str | Unset):  Default: '[]'.
+            form_url (None | str | Unset):
+            returns_list (bool | Unset):  Default: False.
+            output_fields (str | Unset):  Default: '{}'.
+            summary_fields (str | Unset):  Default: '{}'.
+     """
 
     action_id: str
     name: str
     category: str
-    fields: str | Unset = "[]"
+    fields: str | Unset = '[]'
     form_url: None | str | Unset = UNSET
+    returns_list: bool | Unset = False
+    output_fields: str | Unset = '{}'
+    summary_fields: str | Unset = '{}'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         action_id = self.action_id
@@ -45,21 +64,34 @@ class AutomationAction:
         else:
             form_url = self.form_url
 
+        returns_list = self.returns_list
+
+        output_fields = self.output_fields
+
+        summary_fields = self.summary_fields
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "action_id": action_id,
-                "name": name,
-                "category": category,
-            }
-        )
+        field_dict.update({
+            "action_id": action_id,
+            "name": name,
+            "category": category,
+        })
         if fields is not UNSET:
             field_dict["fields"] = fields
         if form_url is not UNSET:
             field_dict["form_url"] = form_url
+        if returns_list is not UNSET:
+            field_dict["returns_list"] = returns_list
+        if output_fields is not UNSET:
+            field_dict["output_fields"] = output_fields
+        if summary_fields is not UNSET:
+            field_dict["summary_fields"] = summary_fields
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -81,13 +113,24 @@ class AutomationAction:
 
         form_url = _parse_form_url(d.pop("form_url", UNSET))
 
+
+        returns_list = d.pop("returns_list", UNSET)
+
+        output_fields = d.pop("output_fields", UNSET)
+
+        summary_fields = d.pop("summary_fields", UNSET)
+
         automation_action = cls(
             action_id=action_id,
             name=name,
             category=category,
             fields=fields,
             form_url=form_url,
+            returns_list=returns_list,
+            output_fields=output_fields,
+            summary_fields=summary_fields,
         )
+
 
         automation_action.additional_properties = d
         return automation_action

@@ -1,61 +1,78 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_customer_location import OutputCustomerLocation
+  from ..models.output_customer_location import OutputCustomerLocation
+
+
+
 
 
 T = TypeVar("T", bound="OutputCustomerLocations")
 
 
+
 @_attrs_define
 class OutputCustomerLocations:
-    """
-    Attributes:
-        customer_locations (list[OutputCustomerLocation]):
-    """
+    """ 
+        Attributes:
+            customer_locations (list[OutputCustomerLocation]):
+     """
 
     customer_locations: list[OutputCustomerLocation]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_customer_location import OutputCustomerLocation
         customer_locations = []
         for customer_locations_item_data in self.customer_locations:
             customer_locations_item = customer_locations_item_data.to_dict()
             customer_locations.append(customer_locations_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "customer_locations": customer_locations,
-            }
-        )
+        field_dict.update({
+            "customer_locations": customer_locations,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_customer_location import OutputCustomerLocation
-
         d = dict(src_dict)
         customer_locations = []
         _customer_locations = d.pop("customer_locations")
-        for customer_locations_item_data in _customer_locations:
-            customer_locations_item = OutputCustomerLocation.from_dict(
-                customer_locations_item_data
-            )
+        for customer_locations_item_data in (_customer_locations):
+            customer_locations_item = OutputCustomerLocation.from_dict(customer_locations_item_data)
+
+
 
             customer_locations.append(customer_locations_item)
+
 
         output_customer_locations = cls(
             customer_locations=customer_locations,
         )
+
 
         output_customer_locations.additional_properties = d
         return output_customer_locations

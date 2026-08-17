@@ -1,26 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputProcessSummary")
+
 
 
 @_attrs_define
 class OutputProcessSummary:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        total_items (int | Unset):  Default: 0.
-        input_items (int | Unset):  Default: 0.
-        pending_approval (int | Unset):  Default: 0.
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            total_items (int | Unset):  Default: 0.
+            input_items (int | Unset):  Default: 0.
+            pending_approval (int | Unset):  Default: 0.
+     """
 
     id: str
     name: str
@@ -28,6 +36,10 @@ class OutputProcessSummary:
     input_items: int | Unset = 0
     pending_approval: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -40,14 +52,13 @@ class OutputProcessSummary:
 
         pending_approval = self.pending_approval
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+        })
         if total_items is not UNSET:
             field_dict["total_items"] = total_items
         if input_items is not UNSET:
@@ -56,6 +67,8 @@ class OutputProcessSummary:
             field_dict["pending_approval"] = pending_approval
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -77,6 +90,7 @@ class OutputProcessSummary:
             input_items=input_items,
             pending_approval=pending_approval,
         )
+
 
         output_process_summary.additional_properties = d
         return output_process_summary

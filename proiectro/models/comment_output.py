@@ -1,36 +1,47 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
 
 T = TypeVar("T", bound="CommentOutput")
 
 
+
 @_attrs_define
 class CommentOutput:
-    """Output schema for a single comment
+    """ Output schema for a single comment
 
-    Attributes:
-        id (str):
-        author_name (str):
-        content (str):
-        internal (bool):
-        created (datetime.datetime):
-        updated (datetime.datetime):
-        edited (bool):
-        attachments (bool):
-        author_avatar (None | str | Unset):
-        replies (list[CommentOutput] | Unset):
-    """
+        Attributes:
+            id (str):
+            author_id (str):
+            author_name (str):
+            content (str):
+            internal (bool):
+            created (datetime.datetime):
+            updated (datetime.datetime):
+            edited (bool):
+            attachments (bool):
+            author_avatar (None | str | Unset):
+            replies (list[CommentOutput] | Unset):
+     """
 
     id: str
+    author_id: str
     author_name: str
     content: str
     internal: bool
@@ -42,8 +53,14 @@ class CommentOutput:
     replies: list[CommentOutput] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
         id = self.id
+
+        author_id = self.author_id
 
         author_name = self.author_name
 
@@ -72,20 +89,22 @@ class CommentOutput:
                 replies_item = replies_item_data.to_dict()
                 replies.append(replies_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "author_name": author_name,
-                "content": content,
-                "internal": internal,
-                "created": created,
-                "updated": updated,
-                "edited": edited,
-                "attachments": attachments,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "author_id": author_id,
+            "author_name": author_name,
+            "content": content,
+            "internal": internal,
+            "created": created,
+            "updated": updated,
+            "edited": edited,
+            "attachments": attachments,
+        })
         if author_avatar is not UNSET:
             field_dict["author_avatar"] = author_avatar
         if replies is not UNSET:
@@ -93,10 +112,14 @@ class CommentOutput:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         id = d.pop("id")
+
+        author_id = d.pop("author_id")
 
         author_name = d.pop("author_name")
 
@@ -106,7 +129,13 @@ class CommentOutput:
 
         created = isoparse(d.pop("created"))
 
+
+
+
         updated = isoparse(d.pop("updated"))
+
+
+
 
         edited = d.pop("edited")
 
@@ -121,6 +150,7 @@ class CommentOutput:
 
         author_avatar = _parse_author_avatar(d.pop("author_avatar", UNSET))
 
+
         _replies = d.pop("replies", UNSET)
         replies: list[CommentOutput] | Unset = UNSET
         if _replies is not UNSET:
@@ -128,10 +158,14 @@ class CommentOutput:
             for replies_item_data in _replies:
                 replies_item = CommentOutput.from_dict(replies_item_data)
 
+
+
                 replies.append(replies_item)
+
 
         comment_output = cls(
             id=id,
+            author_id=author_id,
             author_name=author_name,
             content=content,
             internal=internal,
@@ -142,6 +176,7 @@ class CommentOutput:
             author_avatar=author_avatar,
             replies=replies,
         )
+
 
         comment_output.additional_properties = d
         return comment_output

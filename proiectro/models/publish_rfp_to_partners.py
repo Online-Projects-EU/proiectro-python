@@ -1,42 +1,59 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="PublishRFPToPartners")
+
 
 
 @_attrs_define
 class PublishRFPToPartners:
-    """Input schema for publishing an RFP to selected partners
+    """ Input schema for publishing an RFP to selected partners
 
-    Attributes:
-        rfp_id (str):
-        partners (list[str]):
-    """
+        Attributes:
+            rfp_id (str):
+            partners (list[str]):
+     """
 
     rfp_id: str
     partners: list[str]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         rfp_id = self.rfp_id
 
         partners = self.partners
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "rfp_id": rfp_id,
-                "partners": partners,
-            }
-        )
+        field_dict.update({
+            "rfp_id": rfp_id,
+            "partners": partners,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -45,10 +62,12 @@ class PublishRFPToPartners:
 
         partners = cast(list[str], d.pop("partners"))
 
+
         publish_rfp_to_partners = cls(
             rfp_id=rfp_id,
             partners=partners,
         )
+
 
         publish_rfp_to_partners.additional_properties = d
         return publish_rfp_to_partners

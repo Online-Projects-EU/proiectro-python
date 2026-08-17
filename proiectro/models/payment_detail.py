@@ -1,40 +1,55 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+if TYPE_CHECKING:
+  from ..models.payment_detail_sources_item import PaymentDetailSourcesItem
+
+
+
+
+
 T = TypeVar("T", bound="PaymentDetail")
+
 
 
 @_attrs_define
 class PaymentDetail:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        due_date (str):
-        amount (float | str):
-        currency_symbol (str):
-        paid (bool):
-        block_id (str):
-        block_name (str):
-        block_type (str):
-        project_id (str):
-        internal_code (None | str | Unset):
-        paid_date (None | str | Unset):
-        payment_integration_id (None | str | Unset):
-        product_id (None | str | Unset):
-        product_name (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            due_date (datetime.date):
+            amount (float | str):
+            currency_symbol (str):
+            paid (bool):
+            block_id (str):
+            block_name (str):
+            block_type (str):
+            project_id (str):
+            internal_code (None | str | Unset):
+            paid_date (datetime.date | None | Unset):
+            payment_integration_id (None | str | Unset):
+            product_id (None | str | Unset):
+            product_name (None | str | Unset):
+            show_sources (bool | Unset):  Default: True.
+            sources (list[PaymentDetailSourcesItem] | Unset):
+     """
 
     id: str
     name: str
-    due_date: str
+    due_date: datetime.date
     amount: float | str
     currency_symbol: str
     paid: bool
@@ -43,18 +58,25 @@ class PaymentDetail:
     block_type: str
     project_id: str
     internal_code: None | str | Unset = UNSET
-    paid_date: None | str | Unset = UNSET
+    paid_date: datetime.date | None | Unset = UNSET
     payment_integration_id: None | str | Unset = UNSET
     product_id: None | str | Unset = UNSET
     product_name: None | str | Unset = UNSET
+    show_sources: bool | Unset = True
+    sources: list[PaymentDetailSourcesItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.payment_detail_sources_item import PaymentDetailSourcesItem
         id = self.id
 
         name = self.name
 
-        due_date = self.due_date
+        due_date = self.due_date.isoformat()
 
         amount: float | str
         amount = self.amount
@@ -80,6 +102,8 @@ class PaymentDetail:
         paid_date: None | str | Unset
         if isinstance(self.paid_date, Unset):
             paid_date = UNSET
+        elif isinstance(self.paid_date, datetime.date):
+            paid_date = self.paid_date.isoformat()
         else:
             paid_date = self.paid_date
 
@@ -101,22 +125,32 @@ class PaymentDetail:
         else:
             product_name = self.product_name
 
+        show_sources = self.show_sources
+
+        sources: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.sources, Unset):
+            sources = []
+            for sources_item_data in self.sources:
+                sources_item = sources_item_data.to_dict()
+                sources.append(sources_item)
+
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "due_date": due_date,
-                "amount": amount,
-                "currency_symbol": currency_symbol,
-                "paid": paid,
-                "block_id": block_id,
-                "block_name": block_name,
-                "block_type": block_type,
-                "project_id": project_id,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "due_date": due_date,
+            "amount": amount,
+            "currency_symbol": currency_symbol,
+            "paid": paid,
+            "block_id": block_id,
+            "block_name": block_name,
+            "block_type": block_type,
+            "project_id": project_id,
+        })
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if paid_date is not UNSET:
@@ -127,22 +161,33 @@ class PaymentDetail:
             field_dict["product_id"] = product_id
         if product_name is not UNSET:
             field_dict["product_name"] = product_name
+        if show_sources is not UNSET:
+            field_dict["show_sources"] = show_sources
+        if sources is not UNSET:
+            field_dict["sources"] = sources
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.payment_detail_sources_item import PaymentDetailSourcesItem
         d = dict(src_dict)
         id = d.pop("id")
 
         name = d.pop("name")
 
-        due_date = d.pop("due_date")
+        due_date = isoparse(d.pop("due_date")).date()
+
+
+
 
         def _parse_amount(data: object) -> float | str:
             return cast(float | str, data)
 
         amount = _parse_amount(d.pop("amount"))
+
 
         currency_symbol = d.pop("currency_symbol")
 
@@ -165,14 +210,26 @@ class PaymentDetail:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-        def _parse_paid_date(data: object) -> None | str | Unset:
+
+        def _parse_paid_date(data: object) -> datetime.date | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                paid_date_type_0 = isoparse(data).date()
+
+
+
+                return paid_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
 
         paid_date = _parse_paid_date(d.pop("paid_date", UNSET))
+
 
         def _parse_payment_integration_id(data: object) -> None | str | Unset:
             if data is None:
@@ -181,9 +238,8 @@ class PaymentDetail:
                 return data
             return cast(None | str | Unset, data)
 
-        payment_integration_id = _parse_payment_integration_id(
-            d.pop("payment_integration_id", UNSET)
-        )
+        payment_integration_id = _parse_payment_integration_id(d.pop("payment_integration_id", UNSET))
+
 
         def _parse_product_id(data: object) -> None | str | Unset:
             if data is None:
@@ -194,6 +250,7 @@ class PaymentDetail:
 
         product_id = _parse_product_id(d.pop("product_id", UNSET))
 
+
         def _parse_product_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -202,6 +259,21 @@ class PaymentDetail:
             return cast(None | str | Unset, data)
 
         product_name = _parse_product_name(d.pop("product_name", UNSET))
+
+
+        show_sources = d.pop("show_sources", UNSET)
+
+        _sources = d.pop("sources", UNSET)
+        sources: list[PaymentDetailSourcesItem] | Unset = UNSET
+        if _sources is not UNSET:
+            sources = []
+            for sources_item_data in _sources:
+                sources_item = PaymentDetailSourcesItem.from_dict(sources_item_data)
+
+
+
+                sources.append(sources_item)
+
 
         payment_detail = cls(
             id=id,
@@ -219,7 +291,10 @@ class PaymentDetail:
             payment_integration_id=payment_integration_id,
             product_id=product_id,
             product_name=product_name,
+            show_sources=show_sources,
+            sources=sources,
         )
+
 
         payment_detail.additional_properties = d
         return payment_detail

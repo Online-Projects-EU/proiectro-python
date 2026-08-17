@@ -1,54 +1,63 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.analytics_project_remaining_item import AnalyticsProjectRemainingItem
-    from ..models.compare_option import CompareOption
-    from ..models.horizon_option import HorizonOption
+  from ..models.analytics_project_remaining_item import AnalyticsProjectRemainingItem
+  from ..models.compare_option import CompareOption
+  from ..models.horizon_option import HorizonOption
+
+
+
 
 
 T = TypeVar("T", bound="AnalyticsDeliveryProjects")
 
 
+
 @_attrs_define
 class AnalyticsDeliveryProjects:
-    """Remaining work by project
+    """ Remaining work by project
 
-    Attributes:
-        total_projects (int):
-        total_remaining_hours (float):
-        period (str | Unset):  Default: 'YTD'.
-        temporal_type (str | Unset):  Default: 'snapshot'.
-        generated_at (str | Unset):  Default: ''.
-        period_label (None | str | Unset):
-        horizon (None | str | Unset):
-        horizon_label (None | str | Unset):
-        horizon_options (list[HorizonOption] | None | Unset):
-        compare (None | str | Unset):
-        compare_label (None | str | Unset):
-        compare_options (list[CompareOption] | None | Unset):
-        filter_severity (None | str | Unset):
-        filter_severity_label (None | str | Unset):
-        filter_category (None | str | Unset):
-        filter_category_label (None | str | Unset):
-        filter_type (None | str | Unset):
-        filter_type_label (None | str | Unset):
-        most_remaining_project (None | str | Unset):
-        projects (list[AnalyticsProjectRemainingItem] | Unset):
-    """
+        Attributes:
+            total_projects (int):
+            total_remaining_hours (float):
+            period (str | Unset):  Default: 'YTD'.
+            temporal_type (str | Unset):  Default: 'snapshot'.
+            generated_at (datetime.datetime | None | Unset):
+            period_label (None | str | Unset):
+            horizon (None | str | Unset):
+            horizon_label (None | str | Unset):
+            horizon_options (list[HorizonOption] | None | Unset):
+            compare (None | str | Unset):
+            compare_label (None | str | Unset):
+            compare_options (list[CompareOption] | None | Unset):
+            filter_severity (None | str | Unset):
+            filter_severity_label (None | str | Unset):
+            filter_category (None | str | Unset):
+            filter_category_label (None | str | Unset):
+            filter_type (None | str | Unset):
+            filter_type_label (None | str | Unset):
+            most_remaining_project (None | str | Unset):
+            projects (list[AnalyticsProjectRemainingItem] | Unset):
+     """
 
     total_projects: int
     total_remaining_hours: float
-    period: str | Unset = "YTD"
-    temporal_type: str | Unset = "snapshot"
-    generated_at: str | Unset = ""
+    period: str | Unset = 'YTD'
+    temporal_type: str | Unset = 'snapshot'
+    generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
     horizon_label: None | str | Unset = UNSET
@@ -66,7 +75,14 @@ class AnalyticsDeliveryProjects:
     projects: list[AnalyticsProjectRemainingItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.compare_option import CompareOption
+        from ..models.horizon_option import HorizonOption
+        from ..models.analytics_project_remaining_item import AnalyticsProjectRemainingItem
         total_projects = self.total_projects
 
         total_remaining_hours = self.total_remaining_hours
@@ -75,7 +91,13 @@ class AnalyticsDeliveryProjects:
 
         temporal_type = self.temporal_type
 
-        generated_at = self.generated_at
+        generated_at: None | str | Unset
+        if isinstance(self.generated_at, Unset):
+            generated_at = UNSET
+        elif isinstance(self.generated_at, datetime.datetime):
+            generated_at = self.generated_at.isoformat()
+        else:
+            generated_at = self.generated_at
 
         period_label: None | str | Unset
         if isinstance(self.period_label, Unset):
@@ -104,6 +126,7 @@ class AnalyticsDeliveryProjects:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
+
         else:
             horizon_options = self.horizon_options
 
@@ -127,6 +150,7 @@ class AnalyticsDeliveryProjects:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
+
 
         else:
             compare_options = self.compare_options
@@ -180,14 +204,15 @@ class AnalyticsDeliveryProjects:
                 projects_item = projects_item_data.to_dict()
                 projects.append(projects_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "total_projects": total_projects,
-                "total_remaining_hours": total_remaining_hours,
-            }
-        )
+        field_dict.update({
+            "total_projects": total_projects,
+            "total_remaining_hours": total_remaining_hours,
+        })
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -227,14 +252,13 @@ class AnalyticsDeliveryProjects:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analytics_project_remaining_item import (
-            AnalyticsProjectRemainingItem,
-        )
+        from ..models.analytics_project_remaining_item import AnalyticsProjectRemainingItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
-
         d = dict(src_dict)
         total_projects = d.pop("total_projects")
 
@@ -244,7 +268,25 @@ class AnalyticsDeliveryProjects:
 
         temporal_type = d.pop("temporal_type", UNSET)
 
-        generated_at = d.pop("generated_at", UNSET)
+        def _parse_generated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                generated_at_type_0 = isoparse(data)
+
+
+
+                return generated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
+
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -255,6 +297,7 @@ class AnalyticsDeliveryProjects:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
+
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -264,6 +307,7 @@ class AnalyticsDeliveryProjects:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
+
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -272,6 +316,7 @@ class AnalyticsDeliveryProjects:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
+
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -283,10 +328,10 @@ class AnalyticsDeliveryProjects:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in _horizon_options_type_0:
-                    horizon_options_type_0_item = HorizonOption.from_dict(
-                        horizon_options_type_0_item_data
-                    )
+                for horizon_options_type_0_item_data in (_horizon_options_type_0):
+                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
+
+
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -297,6 +342,7 @@ class AnalyticsDeliveryProjects:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
+
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -306,6 +352,7 @@ class AnalyticsDeliveryProjects:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
+
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -314,6 +361,7 @@ class AnalyticsDeliveryProjects:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
+
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -325,10 +373,10 @@ class AnalyticsDeliveryProjects:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in _compare_options_type_0:
-                    compare_options_type_0_item = CompareOption.from_dict(
-                        compare_options_type_0_item_data
-                    )
+                for compare_options_type_0_item_data in (_compare_options_type_0):
+                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
+
+
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -339,6 +387,7 @@ class AnalyticsDeliveryProjects:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
+
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -348,6 +397,7 @@ class AnalyticsDeliveryProjects:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
+
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -355,9 +405,8 @@ class AnalyticsDeliveryProjects:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(
-            d.pop("filter_severity_label", UNSET)
-        )
+        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
+
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -368,6 +417,7 @@ class AnalyticsDeliveryProjects:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
+
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -375,9 +425,8 @@ class AnalyticsDeliveryProjects:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(
-            d.pop("filter_category_label", UNSET)
-        )
+        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
+
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -388,6 +437,7 @@ class AnalyticsDeliveryProjects:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
+
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -397,6 +447,7 @@ class AnalyticsDeliveryProjects:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+
         def _parse_most_remaining_project(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -404,20 +455,20 @@ class AnalyticsDeliveryProjects:
                 return data
             return cast(None | str | Unset, data)
 
-        most_remaining_project = _parse_most_remaining_project(
-            d.pop("most_remaining_project", UNSET)
-        )
+        most_remaining_project = _parse_most_remaining_project(d.pop("most_remaining_project", UNSET))
+
 
         _projects = d.pop("projects", UNSET)
         projects: list[AnalyticsProjectRemainingItem] | Unset = UNSET
         if _projects is not UNSET:
             projects = []
             for projects_item_data in _projects:
-                projects_item = AnalyticsProjectRemainingItem.from_dict(
-                    projects_item_data
-                )
+                projects_item = AnalyticsProjectRemainingItem.from_dict(projects_item_data)
+
+
 
                 projects.append(projects_item)
+
 
         analytics_delivery_projects = cls(
             total_projects=total_projects,
@@ -441,6 +492,7 @@ class AnalyticsDeliveryProjects:
             most_remaining_project=most_remaining_project,
             projects=projects,
         )
+
 
         analytics_delivery_projects.additional_properties = d
         return analytics_delivery_projects

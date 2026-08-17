@@ -1,35 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.tenant_automation_action import TenantAutomationAction
+  from ..models.tenant_automation_action import TenantAutomationAction
+
+
+
 
 
 T = TypeVar("T", bound="TenantAutomation")
 
 
+
 @_attrs_define
 class TenantAutomation:
-    """A single automation rule in the list.
+    """ A single automation rule in the list.
 
-    Attributes:
-        id (str):
-        name (str):
-        trigger_event (None | str | Unset):
-        trigger_label (None | str | Unset):
-        filter_count (int | Unset):  Default: 0.
-        actions (list[TenantAutomationAction] | Unset):
-        is_active (bool | Unset):  Default: True.
-        source (str | Unset):  Default: 'ui'.
-        source_webhook_name (None | str | Unset):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            trigger_event (None | str | Unset):
+            trigger_label (None | str | Unset):
+            filter_count (int | Unset):  Default: 0.
+            actions (list[TenantAutomationAction] | Unset):
+            is_active (bool | Unset):  Default: True.
+            source (str | Unset):  Default: 'ui'.
+            source_webhook_name (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -38,11 +45,16 @@ class TenantAutomation:
     filter_count: int | Unset = 0
     actions: list[TenantAutomationAction] | Unset = UNSET
     is_active: bool | Unset = True
-    source: str | Unset = "ui"
+    source: str | Unset = 'ui'
     source_webhook_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.tenant_automation_action import TenantAutomationAction
         id = self.id
 
         name = self.name
@@ -68,6 +80,8 @@ class TenantAutomation:
                 actions_item = actions_item_data.to_dict()
                 actions.append(actions_item)
 
+
+
         is_active = self.is_active
 
         source = self.source
@@ -78,14 +92,13 @@ class TenantAutomation:
         else:
             source_webhook_name = self.source_webhook_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+        })
         if trigger_event is not UNSET:
             field_dict["trigger_event"] = trigger_event
         if trigger_label is not UNSET:
@@ -103,10 +116,11 @@ class TenantAutomation:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tenant_automation_action import TenantAutomationAction
-
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -121,6 +135,7 @@ class TenantAutomation:
 
         trigger_event = _parse_trigger_event(d.pop("trigger_event", UNSET))
 
+
         def _parse_trigger_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -129,6 +144,7 @@ class TenantAutomation:
             return cast(None | str | Unset, data)
 
         trigger_label = _parse_trigger_label(d.pop("trigger_label", UNSET))
+
 
         filter_count = d.pop("filter_count", UNSET)
 
@@ -139,7 +155,10 @@ class TenantAutomation:
             for actions_item_data in _actions:
                 actions_item = TenantAutomationAction.from_dict(actions_item_data)
 
+
+
                 actions.append(actions_item)
+
 
         is_active = d.pop("is_active", UNSET)
 
@@ -152,9 +171,8 @@ class TenantAutomation:
                 return data
             return cast(None | str | Unset, data)
 
-        source_webhook_name = _parse_source_webhook_name(
-            d.pop("source_webhook_name", UNSET)
-        )
+        source_webhook_name = _parse_source_webhook_name(d.pop("source_webhook_name", UNSET))
+
 
         tenant_automation = cls(
             id=id,
@@ -167,6 +185,7 @@ class TenantAutomation:
             source=source,
             source_webhook_name=source_webhook_name,
         )
+
 
         tenant_automation.additional_properties = d
         return tenant_automation

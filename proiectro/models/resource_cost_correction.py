@@ -1,26 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="ResourceCostCorrection")
+
 
 
 @_attrs_define
 class ResourceCostCorrection:
-    """
-    Attributes:
-        name (str):
-        value (float | str):
-        currency (str):
-        uom (str):
-        description (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            value (float | str):
+            currency (str):
+            uom (str):
+            description (None | str | Unset):
+     """
 
     name: str
     value: float | str
@@ -28,6 +37,10 @@ class ResourceCostCorrection:
     uom: str
     description: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -45,20 +58,21 @@ class ResourceCostCorrection:
         else:
             description = self.description
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "value": value,
-                "currency": currency,
-                "uom": uom,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "value": value,
+            "currency": currency,
+            "uom": uom,
+        })
         if description is not UNSET:
             field_dict["description"] = description
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -69,6 +83,7 @@ class ResourceCostCorrection:
             return cast(float | str, data)
 
         value = _parse_value(d.pop("value"))
+
 
         currency = d.pop("currency")
 
@@ -83,6 +98,7 @@ class ResourceCostCorrection:
 
         description = _parse_description(d.pop("description", UNSET))
 
+
         resource_cost_correction = cls(
             name=name,
             value=value,
@@ -90,6 +106,7 @@ class ResourceCostCorrection:
             uom=uom,
             description=description,
         )
+
 
         resource_cost_correction.additional_properties = d
         return resource_cost_correction

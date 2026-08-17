@@ -1,55 +1,68 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.resource_availability_days import ResourceAvailabilityDays
+  from ..models.resource_availability_days import ResourceAvailabilityDays
+
+
+
 
 
 T = TypeVar("T", bound="ResourceAvailability")
 
 
+
 @_attrs_define
 class ResourceAvailability:
-    """
-    Attributes:
-        resource (str):
-        resource_timezone (str):
-        days (ResourceAvailabilityDays):
-    """
+    """ 
+        Attributes:
+            resource (str):
+            resource_timezone (str):
+            days (ResourceAvailabilityDays):
+     """
 
     resource: str
     resource_timezone: str
     days: ResourceAvailabilityDays
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.resource_availability_days import ResourceAvailabilityDays
         resource = self.resource
 
         resource_timezone = self.resource_timezone
 
         days = self.days.to_dict()
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "resource": resource,
-                "resource_timezone": resource_timezone,
-                "days": days,
-            }
-        )
+        field_dict.update({
+            "resource": resource,
+            "resource_timezone": resource_timezone,
+            "days": days,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.resource_availability_days import ResourceAvailabilityDays
-
         d = dict(src_dict)
         resource = d.pop("resource")
 
@@ -57,11 +70,15 @@ class ResourceAvailability:
 
         days = ResourceAvailabilityDays.from_dict(d.pop("days"))
 
+
+
+
         resource_availability = cls(
             resource=resource,
             resource_timezone=resource_timezone,
             days=days,
         )
+
 
         resource_availability.additional_properties = d
         return resource_availability

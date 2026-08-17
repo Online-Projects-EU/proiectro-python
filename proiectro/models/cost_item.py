@@ -1,45 +1,56 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="CostItem")
+
 
 
 @_attrs_define
 class CostItem:
-    """
-    Attributes:
-        external_id (str):
-        cost_type_name (str):
-        cost_type_id (str):
-        expected_amount (str):
-        currency_symbol (str):
-        expected_date (str):
-        units (int):
-        uom (str):
-        note (str):
-        resource_name (None | str | Unset):
-        resource_id (None | str | Unset):
-        booking_name (None | str | Unset):
-        booking_id (None | str | Unset):
-        member_full_name (None | str | Unset):
-        member_id (None | str | Unset):
-        work_item_name (None | str | Unset):
-        work_item_id (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            external_id (str):
+            cost_type_name (str):
+            cost_type_id (str):
+            expected_amount (str):
+            currency_symbol (str):
+            expected_date (datetime.date):
+            units (int):
+            uom (str):
+            note (str):
+            resource_name (None | str | Unset):
+            resource_id (None | str | Unset):
+            booking_name (None | str | Unset):
+            booking_id (None | str | Unset):
+            member_full_name (None | str | Unset):
+            member_id (None | str | Unset):
+            work_item_name (None | str | Unset):
+            work_item_id (None | str | Unset):
+     """
 
     external_id: str
     cost_type_name: str
     cost_type_id: str
     expected_amount: str
     currency_symbol: str
-    expected_date: str
+    expected_date: datetime.date
     units: int
     uom: str
     note: str
@@ -53,6 +64,10 @@ class CostItem:
     work_item_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
 
@@ -64,7 +79,7 @@ class CostItem:
 
         currency_symbol = self.currency_symbol
 
-        expected_date = self.expected_date
+        expected_date = self.expected_date.isoformat()
 
         units = self.units
 
@@ -120,21 +135,20 @@ class CostItem:
         else:
             work_item_id = self.work_item_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id": external_id,
-                "cost_type_name": cost_type_name,
-                "cost_type_id": cost_type_id,
-                "expected_amount": expected_amount,
-                "currency_symbol": currency_symbol,
-                "expected_date": expected_date,
-                "units": units,
-                "uom": uom,
-                "note": note,
-            }
-        )
+        field_dict.update({
+            "external_id": external_id,
+            "cost_type_name": cost_type_name,
+            "cost_type_id": cost_type_id,
+            "expected_amount": expected_amount,
+            "currency_symbol": currency_symbol,
+            "expected_date": expected_date,
+            "units": units,
+            "uom": uom,
+            "note": note,
+        })
         if resource_name is not UNSET:
             field_dict["resource_name"] = resource_name
         if resource_id is not UNSET:
@@ -154,6 +168,8 @@ class CostItem:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -167,7 +183,10 @@ class CostItem:
 
         currency_symbol = d.pop("currency_symbol")
 
-        expected_date = d.pop("expected_date")
+        expected_date = isoparse(d.pop("expected_date")).date()
+
+
+
 
         units = d.pop("units")
 
@@ -184,6 +203,7 @@ class CostItem:
 
         resource_name = _parse_resource_name(d.pop("resource_name", UNSET))
 
+
         def _parse_resource_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -192,6 +212,7 @@ class CostItem:
             return cast(None | str | Unset, data)
 
         resource_id = _parse_resource_id(d.pop("resource_id", UNSET))
+
 
         def _parse_booking_name(data: object) -> None | str | Unset:
             if data is None:
@@ -202,6 +223,7 @@ class CostItem:
 
         booking_name = _parse_booking_name(d.pop("booking_name", UNSET))
 
+
         def _parse_booking_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -210,6 +232,7 @@ class CostItem:
             return cast(None | str | Unset, data)
 
         booking_id = _parse_booking_id(d.pop("booking_id", UNSET))
+
 
         def _parse_member_full_name(data: object) -> None | str | Unset:
             if data is None:
@@ -220,6 +243,7 @@ class CostItem:
 
         member_full_name = _parse_member_full_name(d.pop("member_full_name", UNSET))
 
+
         def _parse_member_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -228,6 +252,7 @@ class CostItem:
             return cast(None | str | Unset, data)
 
         member_id = _parse_member_id(d.pop("member_id", UNSET))
+
 
         def _parse_work_item_name(data: object) -> None | str | Unset:
             if data is None:
@@ -238,6 +263,7 @@ class CostItem:
 
         work_item_name = _parse_work_item_name(d.pop("work_item_name", UNSET))
 
+
         def _parse_work_item_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -246,6 +272,7 @@ class CostItem:
             return cast(None | str | Unset, data)
 
         work_item_id = _parse_work_item_id(d.pop("work_item_id", UNSET))
+
 
         cost_item = cls(
             external_id=external_id,
@@ -266,6 +293,7 @@ class CostItem:
             work_item_name=work_item_name,
             work_item_id=work_item_id,
         )
+
 
         cost_item.additional_properties = d
         return cost_item

@@ -6,6 +6,10 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
+from ...models.partner_portal_support_request_timeline_response import (
+    PartnerPortalSupportRequestTimelineResponse,
+)
 from ...types import Response
 
 
@@ -29,9 +33,23 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | None:
+) -> APIResponse | PartnerPortalSupportRequestTimelineResponse | None:
     if response.status_code == 200:
-        return None
+        response_200 = PartnerPortalSupportRequestTimelineResponse.from_dict(
+            response.json()
+        )
+
+        return response_200
+
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -41,7 +59,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any]:
+) -> Response[APIResponse | PartnerPortalSupportRequestTimelineResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,7 +74,7 @@ def sync_detailed(
     support_request_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> Response[APIResponse | PartnerPortalSupportRequestTimelineResponse]:
     """Partner Portal Support Request Timeline
 
      Get support request timeline with events and comments.
@@ -71,7 +89,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        Response[APIResponse | PartnerPortalSupportRequestTimelineResponse]
     """
 
     kwargs = _get_kwargs(
@@ -87,13 +105,13 @@ def sync_detailed(
     return _build_response(client=client, response=response)
 
 
-async def asyncio_detailed(
+def sync(
     tenant_path: str,
     bridge_id: str,
     support_request_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Any]:
+) -> APIResponse | PartnerPortalSupportRequestTimelineResponse | None:
     """Partner Portal Support Request Timeline
 
      Get support request timeline with events and comments.
@@ -108,7 +126,39 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any]
+        APIResponse | PartnerPortalSupportRequestTimelineResponse
+    """
+
+    return sync_detailed(
+        tenant_path=tenant_path,
+        bridge_id=bridge_id,
+        support_request_id=support_request_id,
+        client=client,
+    ).parsed
+
+
+async def asyncio_detailed(
+    tenant_path: str,
+    bridge_id: str,
+    support_request_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> Response[APIResponse | PartnerPortalSupportRequestTimelineResponse]:
+    """Partner Portal Support Request Timeline
+
+     Get support request timeline with events and comments.
+
+    Args:
+        tenant_path (str):
+        bridge_id (str):
+        support_request_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[APIResponse | PartnerPortalSupportRequestTimelineResponse]
     """
 
     kwargs = _get_kwargs(
@@ -120,3 +170,37 @@ async def asyncio_detailed(
     response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
+
+
+async def asyncio(
+    tenant_path: str,
+    bridge_id: str,
+    support_request_id: str,
+    *,
+    client: AuthenticatedClient,
+) -> APIResponse | PartnerPortalSupportRequestTimelineResponse | None:
+    """Partner Portal Support Request Timeline
+
+     Get support request timeline with events and comments.
+
+    Args:
+        tenant_path (str):
+        bridge_id (str):
+        support_request_id (str):
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        APIResponse | PartnerPortalSupportRequestTimelineResponse
+    """
+
+    return (
+        await asyncio_detailed(
+            tenant_path=tenant_path,
+            bridge_id=bridge_id,
+            support_request_id=support_request_id,
+            client=client,
+        )
+    ).parsed

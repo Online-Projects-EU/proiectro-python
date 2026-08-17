@@ -1,32 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.tenant_org_tags_item import TenantOrgTagsItem
+  from ..models.tenant_org_tags_item import TenantOrgTagsItem
+
+
+
 
 
 T = TypeVar("T", bound="TenantOrg")
 
 
+
 @_attrs_define
 class TenantOrg:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        first_letter (str):
-        manager_name (None | str | Unset):
-        manager_avatar_url (None | str | Unset):
-        managed_by_me (bool | Unset):  Default: False.
-        tags (list[TenantOrgTagsItem] | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            first_letter (str):
+            manager_name (None | str | Unset):
+            manager_avatar_url (None | str | Unset):
+            managed_by_me (bool | Unset):  Default: False.
+            tags (list[TenantOrgTagsItem] | Unset):
+     """
 
     id: str
     name: str
@@ -37,7 +44,12 @@ class TenantOrg:
     tags: list[TenantOrgTagsItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.tenant_org_tags_item import TenantOrgTagsItem
         id = self.id
 
         name = self.name
@@ -65,15 +77,16 @@ class TenantOrg:
                 tags_item = tags_item_data.to_dict()
                 tags.append(tags_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "first_letter": first_letter,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "first_letter": first_letter,
+        })
         if manager_name is not UNSET:
             field_dict["manager_name"] = manager_name
         if manager_avatar_url is not UNSET:
@@ -85,10 +98,11 @@ class TenantOrg:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tenant_org_tags_item import TenantOrgTagsItem
-
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -105,6 +119,7 @@ class TenantOrg:
 
         manager_name = _parse_manager_name(d.pop("manager_name", UNSET))
 
+
         def _parse_manager_avatar_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -112,9 +127,8 @@ class TenantOrg:
                 return data
             return cast(None | str | Unset, data)
 
-        manager_avatar_url = _parse_manager_avatar_url(
-            d.pop("manager_avatar_url", UNSET)
-        )
+        manager_avatar_url = _parse_manager_avatar_url(d.pop("manager_avatar_url", UNSET))
+
 
         managed_by_me = d.pop("managed_by_me", UNSET)
 
@@ -125,7 +139,10 @@ class TenantOrg:
             for tags_item_data in _tags:
                 tags_item = TenantOrgTagsItem.from_dict(tags_item_data)
 
+
+
                 tags.append(tags_item)
+
 
         tenant_org = cls(
             id=id,
@@ -136,6 +153,7 @@ class TenantOrg:
             managed_by_me=managed_by_me,
             tags=tags,
         )
+
 
         tenant_org.additional_properties = d
         return tenant_org

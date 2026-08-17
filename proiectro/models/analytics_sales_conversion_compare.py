@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class AnalyticsSalesConversionCompare(str, Enum):
     MOM = "mom"
     NONE = "none"

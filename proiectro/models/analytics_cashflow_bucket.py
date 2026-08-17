@@ -1,28 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsCashflowBucket")
+
 
 
 @_attrs_define
 class AnalyticsCashflowBucket:
-    """Cash flow for a single time bucket (quarter, month, or week)
+    """ Cash flow for a single time bucket (quarter, month, or week)
 
-    Attributes:
-        label (str):
-        sublabel (str):
-        income_projected (float | str):
-        income_realized (float | str):
-        payments_projected (float | str):
-        payments_realized (float | str):
-        net_projected (float | str):
-        net_realized (float | str):
-    """
+        Attributes:
+            label (str):
+            sublabel (str):
+            income_projected (float | str):
+            income_realized (float | str):
+            payments_projected (float | str):
+            payments_realized (float | str):
+            net_projected (float | str):
+            net_realized (float | str):
+     """
 
     label: str
     sublabel: str
@@ -33,6 +43,10 @@ class AnalyticsCashflowBucket:
     net_projected: float | str
     net_realized: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         label = self.label
@@ -57,22 +71,23 @@ class AnalyticsCashflowBucket:
         net_realized: float | str
         net_realized = self.net_realized
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "label": label,
-                "sublabel": sublabel,
-                "income_projected": income_projected,
-                "income_realized": income_realized,
-                "payments_projected": payments_projected,
-                "payments_realized": payments_realized,
-                "net_projected": net_projected,
-                "net_realized": net_realized,
-            }
-        )
+        field_dict.update({
+            "label": label,
+            "sublabel": sublabel,
+            "income_projected": income_projected,
+            "income_realized": income_realized,
+            "payments_projected": payments_projected,
+            "payments_realized": payments_realized,
+            "net_projected": net_projected,
+            "net_realized": net_realized,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -86,30 +101,36 @@ class AnalyticsCashflowBucket:
 
         income_projected = _parse_income_projected(d.pop("income_projected"))
 
+
         def _parse_income_realized(data: object) -> float | str:
             return cast(float | str, data)
 
         income_realized = _parse_income_realized(d.pop("income_realized"))
+
 
         def _parse_payments_projected(data: object) -> float | str:
             return cast(float | str, data)
 
         payments_projected = _parse_payments_projected(d.pop("payments_projected"))
 
+
         def _parse_payments_realized(data: object) -> float | str:
             return cast(float | str, data)
 
         payments_realized = _parse_payments_realized(d.pop("payments_realized"))
+
 
         def _parse_net_projected(data: object) -> float | str:
             return cast(float | str, data)
 
         net_projected = _parse_net_projected(d.pop("net_projected"))
 
+
         def _parse_net_realized(data: object) -> float | str:
             return cast(float | str, data)
 
         net_realized = _parse_net_realized(d.pop("net_realized"))
+
 
         analytics_cashflow_bucket = cls(
             label=label,
@@ -121,6 +142,7 @@ class AnalyticsCashflowBucket:
             net_projected=net_projected,
             net_realized=net_realized,
         )
+
 
         analytics_cashflow_bucket.additional_properties = d
         return analytics_cashflow_bucket

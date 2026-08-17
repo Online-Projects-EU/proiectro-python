@@ -1,25 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="AutomationFilter")
+
 
 
 @_attrs_define
 class AutomationFilter:
-    """A single filter condition in a rule.
+    """ A single filter condition in a rule.
 
-    Attributes:
-        id (int):
-        filter_ (str):
-        filter_label (str):
-        operator (str):
-        value (str):
-    """
+        Attributes:
+            id (int):
+            filter_ (str):
+            filter_label (str):
+            operator (str):
+            value (str):
+     """
 
     id: int
     filter_: str
@@ -27,6 +36,10 @@ class AutomationFilter:
     operator: str
     value: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -39,19 +52,20 @@ class AutomationFilter:
 
         value = self.value
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "filter": filter_,
-                "filter_label": filter_label,
-                "operator": operator,
-                "value": value,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "filter": filter_,
+            "filter_label": filter_label,
+            "operator": operator,
+            "value": value,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -73,6 +87,7 @@ class AutomationFilter:
             operator=operator,
             value=value,
         )
+
 
         automation_filter.additional_properties = d
         return automation_filter

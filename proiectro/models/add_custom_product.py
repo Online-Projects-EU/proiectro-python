@@ -1,38 +1,47 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 from ..models.add_custom_product_pricing_type import AddCustomProductPricingType
 from ..models.add_custom_product_product_type import AddCustomProductProductType
 from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
 
 T = TypeVar("T", bound="AddCustomProduct")
 
 
+
 @_attrs_define
 class AddCustomProduct:
-    """
-    Attributes:
-        proposal_id (str):
-        name (str):
-        description (str):
-        description_for_customer (str):
-        product_type (AddCustomProductProductType):
-        lifecycle (str):
-        pricing_type (AddCustomProductPricingType):
-        pricing_currency (str):
-        cost_value (float | str):
-        cost_currency (str):
-        pricing_value (float | None | str | Unset):
-        product_count (int | Unset):  Default: 1.
-        planned_start (None | str | Unset):
-        planned_end (None | str | Unset):
-        tracks_project (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            proposal_id (str):
+            name (str):
+            description (str):
+            description_for_customer (str):
+            product_type (AddCustomProductProductType):
+            lifecycle (str):
+            pricing_type (AddCustomProductPricingType):
+            pricing_currency (str):
+            cost_value (float | str):
+            cost_currency (str):
+            pricing_value (float | None | str | Unset):
+            product_count (int | Unset):  Default: 1.
+            planned_start (None | str | Unset):
+            planned_end (None | str | Unset):
+            tracks_project (None | str | Unset):
+     """
 
     proposal_id: str
     name: str
@@ -50,6 +59,10 @@ class AddCustomProduct:
     planned_end: None | str | Unset = UNSET
     tracks_project: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         proposal_id = self.proposal_id
@@ -99,22 +112,21 @@ class AddCustomProduct:
         else:
             tracks_project = self.tracks_project
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "proposal_id": proposal_id,
-                "name": name,
-                "description": description,
-                "description_for_customer": description_for_customer,
-                "product_type": product_type,
-                "lifecycle": lifecycle,
-                "pricing_type": pricing_type,
-                "pricing_currency": pricing_currency,
-                "cost_value": cost_value,
-                "cost_currency": cost_currency,
-            }
-        )
+        field_dict.update({
+            "proposal_id": proposal_id,
+            "name": name,
+            "description": description,
+            "description_for_customer": description_for_customer,
+            "product_type": product_type,
+            "lifecycle": lifecycle,
+            "pricing_type": pricing_type,
+            "pricing_currency": pricing_currency,
+            "cost_value": cost_value,
+            "cost_currency": cost_currency,
+        })
         if pricing_value is not UNSET:
             field_dict["pricing_value"] = pricing_value
         if product_count is not UNSET:
@@ -127,6 +139,8 @@ class AddCustomProduct:
             field_dict["tracks_project"] = tracks_project
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -141,9 +155,15 @@ class AddCustomProduct:
 
         product_type = AddCustomProductProductType(d.pop("product_type"))
 
+
+
+
         lifecycle = d.pop("lifecycle")
 
         pricing_type = AddCustomProductPricingType(d.pop("pricing_type"))
+
+
+
 
         pricing_currency = d.pop("pricing_currency")
 
@@ -151,6 +171,7 @@ class AddCustomProduct:
             return cast(float | str, data)
 
         cost_value = _parse_cost_value(d.pop("cost_value"))
+
 
         cost_currency = d.pop("cost_currency")
 
@@ -163,6 +184,7 @@ class AddCustomProduct:
 
         pricing_value = _parse_pricing_value(d.pop("pricing_value", UNSET))
 
+
         product_count = d.pop("product_count", UNSET)
 
         def _parse_planned_start(data: object) -> None | str | Unset:
@@ -174,6 +196,7 @@ class AddCustomProduct:
 
         planned_start = _parse_planned_start(d.pop("planned_start", UNSET))
 
+
         def _parse_planned_end(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -183,6 +206,7 @@ class AddCustomProduct:
 
         planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
 
+
         def _parse_tracks_project(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -191,6 +215,7 @@ class AddCustomProduct:
             return cast(None | str | Unset, data)
 
         tracks_project = _parse_tracks_project(d.pop("tracks_project", UNSET))
+
 
         add_custom_product = cls(
             proposal_id=proposal_id,
@@ -209,6 +234,7 @@ class AddCustomProduct:
             planned_end=planned_end,
             tracks_project=tracks_project,
         )
+
 
         add_custom_product.additional_properties = d
         return add_custom_product

@@ -1,32 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputSupportRequestQueue")
+
 
 
 @_attrs_define
 class OutputSupportRequestQueue:
-    """Output schema for a single support request queue
+    """ Output schema for a single support request queue
 
-    Attributes:
-        id (str):
-        name (str):
-        internal (bool):
-        active (bool):
-        sequence_no (int):
-        automatically_assign (bool):
-        owner_role_id (None | str | Unset):
-        owner_role_name (None | str | Unset):
-        open_count (int | Unset):  Default: 0.
-        unassigned_count (int | Unset):  Default: 0.
-    """
+        Attributes:
+            id (str):
+            name (str):
+            internal (bool):
+            active (bool):
+            sequence_no (int):
+            automatically_assign (bool):
+            owner_role_id (None | str | Unset):
+            owner_role_name (None | str | Unset):
+            open_count (int | Unset):  Default: 0.
+            unassigned_count (int | Unset):  Default: 0.
+     """
 
     id: str
     name: str
@@ -39,6 +48,10 @@ class OutputSupportRequestQueue:
     open_count: int | Unset = 0
     unassigned_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -69,18 +82,17 @@ class OutputSupportRequestQueue:
 
         unassigned_count = self.unassigned_count
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "internal": internal,
-                "active": active,
-                "sequence_no": sequence_no,
-                "automatically_assign": automatically_assign,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "internal": internal,
+            "active": active,
+            "sequence_no": sequence_no,
+            "automatically_assign": automatically_assign,
+        })
         if owner_role_id is not UNSET:
             field_dict["owner_role_id"] = owner_role_id
         if owner_role_name is not UNSET:
@@ -91,6 +103,8 @@ class OutputSupportRequestQueue:
             field_dict["unassigned_count"] = unassigned_count
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -116,6 +130,7 @@ class OutputSupportRequestQueue:
 
         owner_role_id = _parse_owner_role_id(d.pop("owner_role_id", UNSET))
 
+
         def _parse_owner_role_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -124,6 +139,7 @@ class OutputSupportRequestQueue:
             return cast(None | str | Unset, data)
 
         owner_role_name = _parse_owner_role_name(d.pop("owner_role_name", UNSET))
+
 
         open_count = d.pop("open_count", UNSET)
 
@@ -141,6 +157,7 @@ class OutputSupportRequestQueue:
             open_count=open_count,
             unassigned_count=unassigned_count,
         )
+
 
         output_support_request_queue.additional_properties = d
         return output_support_request_queue

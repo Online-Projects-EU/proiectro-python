@@ -1,31 +1,44 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditWorkLog")
+
 
 
 @_attrs_define
 class EditWorkLog:
-    """
-    Attributes:
-        hours (int):
-        date (str):
-        booking (None | str | Unset):
-        note (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            hours (int):
+            date (str):
+            booking (None | str | Unset):
+            note (None | str | Unset):
+     """
 
     hours: int
     date: str
     booking: None | str | Unset = UNSET
     note: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         hours = self.hours
@@ -44,20 +57,21 @@ class EditWorkLog:
         else:
             note = self.note
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "hours": hours,
-                "date": date,
-            }
-        )
+        field_dict.update({
+            "hours": hours,
+            "date": date,
+        })
         if booking is not UNSET:
             field_dict["booking"] = booking
         if note is not UNSET:
             field_dict["note"] = note
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -75,6 +89,7 @@ class EditWorkLog:
 
         booking = _parse_booking(d.pop("booking", UNSET))
 
+
         def _parse_note(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -84,12 +99,14 @@ class EditWorkLog:
 
         note = _parse_note(d.pop("note", UNSET))
 
+
         edit_work_log = cls(
             hours=hours,
             date=date,
             booking=booking,
             note=note,
         )
+
 
         edit_work_log.additional_properties = d
         return edit_work_log

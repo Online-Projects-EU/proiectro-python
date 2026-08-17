@@ -1,30 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddTeamBooking")
+
 
 
 @_attrs_define
 class AddTeamBooking:
-    """Input schema for adding a team booking
+    """ Input schema for adding a team booking
 
-    Attributes:
-        project (str):
-        member (str):
-        start_date (str):
-        end_date (str):
-        name (str):
-        product (None | str | Unset):
-        hours_per_day (int | None | Unset):  Default: 0.
-        only_working_days (bool | None | Unset):  Default: False.
-    """
+        Attributes:
+            project (str):
+            member (str):
+            start_date (str):
+            end_date (str):
+            name (str):
+            product (None | str | Unset):
+            hours_per_day (int | None | Unset):  Default: 0.
+            only_working_days (bool | None | Unset):  Default: False.
+     """
 
     project: str
     member: str
@@ -35,6 +44,10 @@ class AddTeamBooking:
     hours_per_day: int | None | Unset = 0
     only_working_days: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         project = self.project
@@ -65,17 +78,16 @@ class AddTeamBooking:
         else:
             only_working_days = self.only_working_days
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "project": project,
-                "member": member,
-                "start_date": start_date,
-                "end_date": end_date,
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "project": project,
+            "member": member,
+            "start_date": start_date,
+            "end_date": end_date,
+            "name": name,
+        })
         if product is not UNSET:
             field_dict["product"] = product
         if hours_per_day is not UNSET:
@@ -84,6 +96,8 @@ class AddTeamBooking:
             field_dict["only_working_days"] = only_working_days
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -107,6 +121,7 @@ class AddTeamBooking:
 
         product = _parse_product(d.pop("product", UNSET))
 
+
         def _parse_hours_per_day(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -116,6 +131,7 @@ class AddTeamBooking:
 
         hours_per_day = _parse_hours_per_day(d.pop("hours_per_day", UNSET))
 
+
         def _parse_only_working_days(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -124,6 +140,7 @@ class AddTeamBooking:
             return cast(bool | None | Unset, data)
 
         only_working_days = _parse_only_working_days(d.pop("only_working_days", UNSET))
+
 
         add_team_booking = cls(
             project=project,
@@ -135,6 +152,7 @@ class AddTeamBooking:
             hours_per_day=hours_per_day,
             only_working_days=only_working_days,
         )
+
 
         add_team_booking.additional_properties = d
         return add_team_booking

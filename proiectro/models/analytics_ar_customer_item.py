@@ -1,26 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsARCustomerItem")
+
 
 
 @_attrs_define
 class AnalyticsARCustomerItem:
-    """AR aging by customer
+    """ AR aging by customer
 
-    Attributes:
-        name (str):
-        current (float | str):
-        days_30 (float | str):
-        days_60 (float | str):
-        days_90_plus (float | str):
-        total (float | str):
-    """
+        Attributes:
+            name (str):
+            current (float | str):
+            days_30 (float | str):
+            days_60 (float | str):
+            days_90_plus (float | str):
+            total (float | str):
+     """
 
     name: str
     current: float | str
@@ -29,6 +39,10 @@ class AnalyticsARCustomerItem:
     days_90_plus: float | str
     total: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -48,20 +62,21 @@ class AnalyticsARCustomerItem:
         total: float | str
         total = self.total
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "current": current,
-                "days_30": days_30,
-                "days_60": days_60,
-                "days_90_plus": days_90_plus,
-                "total": total,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "current": current,
+            "days_30": days_30,
+            "days_60": days_60,
+            "days_90_plus": days_90_plus,
+            "total": total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -73,25 +88,30 @@ class AnalyticsARCustomerItem:
 
         current = _parse_current(d.pop("current"))
 
+
         def _parse_days_30(data: object) -> float | str:
             return cast(float | str, data)
 
         days_30 = _parse_days_30(d.pop("days_30"))
+
 
         def _parse_days_60(data: object) -> float | str:
             return cast(float | str, data)
 
         days_60 = _parse_days_60(d.pop("days_60"))
 
+
         def _parse_days_90_plus(data: object) -> float | str:
             return cast(float | str, data)
 
         days_90_plus = _parse_days_90_plus(d.pop("days_90_plus"))
 
+
         def _parse_total(data: object) -> float | str:
             return cast(float | str, data)
 
         total = _parse_total(d.pop("total"))
+
 
         analytics_ar_customer_item = cls(
             name=name,
@@ -101,6 +121,7 @@ class AnalyticsARCustomerItem:
             days_90_plus=days_90_plus,
             total=total,
         )
+
 
         analytics_ar_customer_item.additional_properties = d
         return analytics_ar_customer_item

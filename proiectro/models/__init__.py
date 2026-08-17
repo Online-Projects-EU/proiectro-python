@@ -1,4 +1,4 @@
-"""Contains all the data models used in inputs/outputs"""
+""" Contains all the data models used in inputs/outputs """
 
 from .accept_bridge import AcceptBridge
 from .accept_partner_proposal import AcceptPartnerProposal
@@ -8,50 +8,61 @@ from .active_proposals_list import ActiveProposalsList
 from .add_api_key import AddApiKey
 from .add_asset_category import AddAssetCategory
 from .add_availability import AddAvailability
+from .add_billable_source_entry import AddBillableSourceEntry
 from .add_catalog_product import AddCatalogProduct
 from .add_catalog_product_pricing_type import AddCatalogProductPricingType
 from .add_catalog_product_product_type import AddCatalogProductProductType
 from .add_contact_to_org import AddContactToOrg
 from .add_cost_type import AddCostType
+from .add_custom_form import AddCustomForm
+from .add_custom_form_data_classification import AddCustomFormDataClassification
 from .add_custom_product import AddCustomProduct
 from .add_custom_product_pricing_type import AddCustomProductPricingType
 from .add_custom_product_product_type import AddCustomProductProductType
 from .add_custom_product_response import AddCustomProductResponse
 from .add_customer_asset import AddCustomerAsset
 from .add_customer_location import AddCustomerLocation
+from .add_document_series import AddDocumentSeries
+from .add_document_template import AddDocumentTemplate
+from .add_document_template_data_classification import AddDocumentTemplateDataClassification
 from .add_exchange import AddExchange
 from .add_external_support_request import AddExternalSupportRequest
 from .add_external_support_request_comment import AddExternalSupportRequestComment
-from .add_external_support_request_for_project import (
-    AddExternalSupportRequestForProject,
-)
+from .add_external_support_request_for_customer import AddExternalSupportRequestForCustomer
+from .add_external_support_request_for_project import AddExternalSupportRequestForProject
+from .add_external_support_requests_to_payment import AddExternalSupportRequestsToPayment
+from .add_form_field import AddFormField
+from .add_form_field_field_type import AddFormFieldFieldType
+from .add_form_step import AddFormStep
 from .add_funnel_configuration import AddFunnelConfiguration
 from .add_holiday import AddHoliday
 from .add_internal_support_request import AddInternalSupportRequest
 from .add_internal_support_request_comment import AddInternalSupportRequestComment
 from .add_internal_support_request_for_org import AddInternalSupportRequestForOrg
-from .add_internal_support_request_for_proposal import (
-    AddInternalSupportRequestForProposal,
-)
-from .add_internal_support_request_for_resource import (
-    AddInternalSupportRequestForResource,
-)
-from .add_internal_support_request_for_work_item import (
-    AddInternalSupportRequestForWorkItem,
-)
+from .add_internal_support_request_for_proposal import AddInternalSupportRequestForProposal
+from .add_internal_support_request_for_resource import AddInternalSupportRequestForResource
+from .add_internal_support_request_for_work_item import AddInternalSupportRequestForWorkItem
 from .add_label import AddLabel
 from .add_label_label_type import AddLabelLabelType
+from .add_label_to_document import AddLabelToDocument
 from .add_label_to_member import AddLabelToMember
+from .add_label_to_operational_work_item import AddLabelToOperationalWorkItem
 from .add_label_to_org import AddLabelToOrg
 from .add_label_to_proposal import AddLabelToProposal
 from .add_label_to_resource import AddLabelToResource
 from .add_label_to_role import AddLabelToRole
 from .add_label_to_work_item import AddLabelToWorkItem
 from .add_label_to_work_item_template import AddLabelToWorkItemTemplate
+from .add_lead import AddLead
+from .add_lead_list import AddLeadList
+from .add_lead_source import AddLeadSource
+from .add_lead_status import AddLeadStatus
 from .add_location import AddLocation
 from .add_member_to_role import AddMemberToRole
 from .add_operational_item import AddOperationalItem
 from .add_operational_item_priority import AddOperationalItemPriority
+from .add_operational_work_item_comment import AddOperationalWorkItemComment
+from .add_operational_work_items_to_payment import AddOperationalWorkItemsToPayment
 from .add_partner_support_request import AddPartnerSupportRequest
 from .add_partner_support_request_comment import AddPartnerSupportRequestComment
 from .add_payment import AddPayment
@@ -63,9 +74,7 @@ from .add_permission_to_role import AddPermissionToRole
 from .add_process import AddProcess
 from .add_process_link import AddProcessLink
 from .add_process_participation import AddProcessParticipation
-from .add_process_participation_participation_type import (
-    AddProcessParticipationParticipationType,
-)
+from .add_process_participation_participation_type import AddProcessParticipationParticipationType
 from .add_process_stage import AddProcessStage
 from .add_process_stage_stage_type import AddProcessStageStageType
 from .add_product_from_catalog import AddProductFromCatalog
@@ -77,30 +86,26 @@ from .add_proposal_response import AddProposalResponse
 from .add_queue_rule import AddQueueRule
 from .add_resource import AddResource
 from .add_resource_booking import AddResourceBooking
-from .add_resource_booking_response import AddResourceBookingResponse
 from .add_resource_cost import AddResourceCost
 from .add_rfp import AddRFP
 from .add_role import AddRole
 from .add_sales_activity import AddSalesActivity
-from .add_saved_filter import AddSavedFilter
 from .add_stage_to_funnel_configuration import AddStageToFunnelConfiguration
 from .add_stage_to_product_lifecycle import AddStageToProductLifecycle
 from .add_subtenant import AddSubtenant
-from .add_support_request_comment import AddSupportRequestComment
 from .add_support_request_queue import AddSupportRequestQueue
-from .add_support_request_queue_response import AddSupportRequestQueueResponse
 from .add_support_request_severity import AddSupportRequestSeverity
 from .add_support_request_status import AddSupportRequestStatus
 from .add_support_request_status_lifecycle import AddSupportRequestStatusLifecycle
-from .add_support_request_status_response import AddSupportRequestStatusResponse
 from .add_support_request_type import AddSupportRequestType
 from .add_tag import AddTag
 from .add_team_booking import AddTeamBooking
-from .add_team_booking_response import AddTeamBookingResponse
+from .add_timer import AddTimer
 from .add_wbs_configuration import AddWBSConfiguration
 from .add_wbs_rule_to_wbs_configuration import AddWBSRuleToWBSConfiguration
 from .add_webhook import AddWebhook
 from .add_work_item import AddWorkItem
+from .add_work_item_comment import AddWorkItemComment
 from .add_work_item_cost import AddWorkItemCost
 from .add_work_item_expense import AddWorkItemExpense
 from .add_work_item_predecessor import AddWorkItemPredecessor
@@ -120,7 +125,10 @@ from .all_partners_support_requests import AllPartnersSupportRequests
 from .allowed_child_type import AllowedChildType
 from .analytics_alert_item import AnalyticsAlertItem
 from .analytics_alerts import AnalyticsAlerts
+from .analytics_allocation_item import AnalyticsAllocationItem
 from .analytics_ar_customer_item import AnalyticsARCustomerItem
+from .analytics_capacity_forecast_item import AnalyticsCapacityForecastItem
+from .analytics_capacity_resource_item import AnalyticsCapacityResourceItem
 from .analytics_cashflow_breakdown import AnalyticsCashflowBreakdown
 from .analytics_cashflow_breakdown_period import AnalyticsCashflowBreakdownPeriod
 from .analytics_cashflow_bucket import AnalyticsCashflowBucket
@@ -151,6 +159,18 @@ from .analytics_financial_margins_period import AnalyticsFinancialMarginsPeriod
 from .analytics_financial_revenue import AnalyticsFinancialRevenue
 from .analytics_financial_revenue_compare import AnalyticsFinancialRevenueCompare
 from .analytics_financial_revenue_period import AnalyticsFinancialRevenuePeriod
+from .analytics_forms_breakdown import AnalyticsFormsBreakdown
+from .analytics_forms_breakdown_compare import AnalyticsFormsBreakdownCompare
+from .analytics_forms_breakdown_period import AnalyticsFormsBreakdownPeriod
+from .analytics_forms_count_item import AnalyticsFormsCountItem
+from .analytics_forms_kpis_period import AnalyticsFormsKpisPeriod
+from .analytics_forms_month_item import AnalyticsFormsMonthItem
+from .analytics_forms_top import AnalyticsFormsTop
+from .analytics_forms_top_compare import AnalyticsFormsTopCompare
+from .analytics_forms_top_period import AnalyticsFormsTopPeriod
+from .analytics_forms_volume import AnalyticsFormsVolume
+from .analytics_forms_volume_compare import AnalyticsFormsVolumeCompare
+from .analytics_forms_volume_period import AnalyticsFormsVolumePeriod
 from .analytics_issue_type_item import AnalyticsIssueTypeItem
 from .analytics_margin_item import AnalyticsMarginItem
 from .analytics_overview_alerts_period import AnalyticsOverviewAlertsPeriod
@@ -162,13 +182,20 @@ from .analytics_project_remaining_item import AnalyticsProjectRemainingItem
 from .analytics_queue_backlog_item import AnalyticsQueueBacklogItem
 from .analytics_resolution_by_severity_item import AnalyticsResolutionBySeverityItem
 from .analytics_resolution_outcome_item import AnalyticsResolutionOutcomeItem
+from .analytics_resources_allocation import AnalyticsResourcesAllocation
+from .analytics_resources_allocation_period import AnalyticsResourcesAllocationPeriod
+from .analytics_resources_capacity import AnalyticsResourcesCapacity
+from .analytics_resources_capacity_horizon import AnalyticsResourcesCapacityHorizon
+from .analytics_resources_capacity_period import AnalyticsResourcesCapacityPeriod
+from .analytics_resources_kpis_period import AnalyticsResourcesKpisPeriod
+from .analytics_resources_utilization import AnalyticsResourcesUtilization
+from .analytics_resources_utilization_compare import AnalyticsResourcesUtilizationCompare
+from .analytics_resources_utilization_period import AnalyticsResourcesUtilizationPeriod
 from .analytics_revenue_category_item import AnalyticsRevenueCategoryItem
 from .analytics_revenue_month_item import AnalyticsRevenueMonthItem
 from .analytics_sales_conversion import AnalyticsSalesConversion
 from .analytics_sales_conversion_compare import AnalyticsSalesConversionCompare
-from .analytics_sales_conversion_funnel_summary import (
-    AnalyticsSalesConversionFunnelSummary,
-)
+from .analytics_sales_conversion_funnel_summary import AnalyticsSalesConversionFunnelSummary
 from .analytics_sales_conversion_period import AnalyticsSalesConversionPeriod
 from .analytics_sales_conversion_stage import AnalyticsSalesConversionStage
 from .analytics_sales_forecast import AnalyticsSalesForecast
@@ -196,38 +223,39 @@ from .analytics_team_workload_item import AnalyticsTeamWorkloadItem
 from .analytics_ticket_category_item import AnalyticsTicketCategoryItem
 from .analytics_timeline_chart_item import AnalyticsTimelineChartItem
 from .analytics_timeline_item import AnalyticsTimelineItem
+from .analytics_top_form_item import AnalyticsTopFormItem
 from .analytics_trend_item import AnalyticsTrendItem
 from .analytics_trend_month_item import AnalyticsTrendMonthItem
 from .analytics_trends import AnalyticsTrends
+from .analytics_utilization_item import AnalyticsUtilizationItem
 from .analytics_workload_chart_item import AnalyticsWorkloadChartItem
 from .api_error import APIError
 from .api_response import APIResponse
 from .approve_operational_item import ApproveOperationalItem
-from .assigned_external_closed_support_request_filter_schema import (
-    AssignedExternalClosedSupportRequestFilterSchema,
-)
-from .assigned_external_support_request_filter_schema import (
-    AssignedExternalSupportRequestFilterSchema,
-)
-from .assigned_internal_closed_support_request_filter_schema import (
-    AssignedInternalClosedSupportRequestFilterSchema,
-)
-from .assigned_internal_support_request_filter_schema import (
-    AssignedInternalSupportRequestFilterSchema,
-)
+from .attach_form_to_asset import AttachFormToAsset
+from .attach_form_to_process_stage import AttachFormToProcessStage
+from .attach_partner_portal_form import AttachPartnerPortalForm
+from .attach_portal_form import AttachPortalForm
 from .automation_action import AutomationAction
+from .automation_action_condition_input import AutomationActionConditionInput
 from .automation_action_input import AutomationActionInput
 from .automation_action_input_action_config import AutomationActionInputActionConfig
 from .automation_action_log_entry import AutomationActionLogEntry
+from .automation_action_log_entry_output_type_0 import AutomationActionLogEntryOutputType0
 from .automation_actions_response import AutomationActionsResponse
+from .automation_condition_filters_response import AutomationConditionFiltersResponse
+from .automation_condition_filters_response_filters import AutomationConditionFiltersResponseFilters
+from .automation_condition_filters_response_operators import AutomationConditionFiltersResponseOperators
 from .automation_event_filters import AutomationEventFilters
 from .automation_events import AutomationEvents
 from .automation_execution_entry import AutomationExecutionEntry
+from .automation_execution_entry_execution_context_type_0 import AutomationExecutionEntryExecutionContextType0
 from .automation_executions import AutomationExecutions
 from .automation_filter import AutomationFilter
 from .automation_filters_response import AutomationFiltersResponse
 from .automation_filters_response_filters import AutomationFiltersResponseFilters
 from .automation_filters_response_operators import AutomationFiltersResponseOperators
+from .automation_pipeline_variables_response import AutomationPipelineVariablesResponse
 from .automation_rule_info import AutomationRuleInfo
 from .availability_hours import AvailabilityHours
 from .block_payments_summary import BlockPaymentsSummary
@@ -245,6 +273,8 @@ from .business_process_category import BusinessProcessCategory
 from .business_process_summary import BusinessProcessSummary
 from .business_process_task import BusinessProcessTask
 from .calendar_token import CalendarToken
+from .cancel_project import CancelProject
+from .cancel_project_response import CancelProjectResponse
 from .catalog_product import CatalogProduct
 from .catalog_products import CatalogProducts
 from .catalog_template_data_response import CatalogTemplateDataResponse
@@ -252,15 +282,13 @@ from .change_external_support_request_status import ChangeExternalSupportRequest
 from .change_internal_support_request_status import ChangeInternalSupportRequestStatus
 from .change_product_status import ChangeProductStatus
 from .change_proposal_stage import ChangeProposalStage
+from .claim_lead import ClaimLead
 from .close_external_support_request import CloseExternalSupportRequest
-from .close_external_support_request_resolution import (
-    CloseExternalSupportRequestResolution,
-)
+from .close_external_support_request_resolution import CloseExternalSupportRequestResolution
 from .close_internal_support_request import CloseInternalSupportRequest
-from .close_internal_support_request_resolution import (
-    CloseInternalSupportRequestResolution,
-)
+from .close_internal_support_request_resolution import CloseInternalSupportRequestResolution
 from .comment_output import CommentOutput
+from .company_enrichment_result_schema import CompanyEnrichmentResultSchema
 from .compare_option import CompareOption
 from .contact_invitation import ContactInvitation
 from .cost_item import CostItem
@@ -272,8 +300,10 @@ from .daily_availability import DailyAvailability
 from .dashboard_metric import DashboardMetric
 from .day_column_schema import DayColumnSchema
 from .day_load_data_schema import DayLoadDataSchema
+from .delete_lead_list import DeleteLeadList
 from .delivery_kp_is import DeliveryKPIs
 from .dependency_item import DependencyItem
+from .disqualify_lead import DisqualifyLead
 from .download_url_gcs import DownloadUrlGCS
 from .edit_api_key import EditApiKey
 from .edit_asset_category import EditAssetCategory
@@ -285,17 +315,31 @@ from .edit_catalog_product_product_type import EditCatalogProductProductType
 from .edit_comment import EditComment
 from .edit_contact import EditContact
 from .edit_cost_type import EditCostType
+from .edit_custom_form import EditCustomForm
+from .edit_custom_form_data_classification import EditCustomFormDataClassification
 from .edit_customer_asset import EditCustomerAsset
 from .edit_customer_location import EditCustomerLocation
+from .edit_document import EditDocument
+from .edit_document_data_classification_type_0 import EditDocumentDataClassificationType0
+from .edit_document_series import EditDocumentSeries
+from .edit_document_template import EditDocumentTemplate
+from .edit_document_template_data_classification_type_0 import EditDocumentTemplateDataClassificationType0
 from .edit_exchange import EditExchange
 from .edit_external_support_request import EditExternalSupportRequest
 from .edit_external_support_request_comment import EditExternalSupportRequestComment
+from .edit_form_field import EditFormField
+from .edit_form_field_field_type import EditFormFieldFieldType
+from .edit_form_step import EditFormStep
 from .edit_funnel_configuration import EditFunnelConfiguration
 from .edit_funnel_stage import EditFunnelStage
 from .edit_holiday import EditHoliday
 from .edit_internal_support_request import EditInternalSupportRequest
 from .edit_internal_support_request_comment import EditInternalSupportRequestComment
 from .edit_label import EditLabel
+from .edit_lead import EditLead
+from .edit_lead_list import EditLeadList
+from .edit_lead_source import EditLeadSource
+from .edit_lead_status import EditLeadStatus
 from .edit_location import EditLocation
 from .edit_member_misc_preferences import EditMemberMiscPreferences
 from .edit_member_preferences import EditMemberPreferences
@@ -306,10 +350,9 @@ from .edit_partner_support_request_comment import EditPartnerSupportRequestComme
 from .edit_payment import EditPayment
 from .edit_payment_response import EditPaymentResponse
 from .edit_payment_schedule_block import EditPaymentScheduleBlock
-from .edit_payment_schedule_block_payment_type_type_0 import (
-    EditPaymentScheduleBlockPaymentTypeType0,
-)
+from .edit_payment_schedule_block_payment_type_type_0 import EditPaymentScheduleBlockPaymentTypeType0
 from .edit_payment_schedule_block_response import EditPaymentScheduleBlockResponse
+from .edit_payment_source import EditPaymentSource
 from .edit_process import EditProcess
 from .edit_process_stage import EditProcessStage
 from .edit_product import EditProduct
@@ -318,30 +361,32 @@ from .edit_product_lifecycle_stage import EditProductLifecycleStage
 from .edit_product_pricing_type import EditProductPricingType
 from .edit_product_product_type import EditProductProductType
 from .edit_product_response import EditProductResponse
+from .edit_project import EditProject
+from .edit_project_response import EditProjectResponse
 from .edit_proposal import EditProposal
 from .edit_proposal_pricing_strategy_type_0 import EditProposalPricingStrategyType0
 from .edit_queue_rule import EditQueueRule
 from .edit_resource import EditResource
 from .edit_resource_booking import EditResourceBooking
-from .edit_resource_booking_response import EditResourceBookingResponse
 from .edit_rfp import EditRFP
 from .edit_role import EditRole
+from .edit_submission_status import EditSubmissionStatus
+from .edit_submission_status_status import EditSubmissionStatusStatus
 from .edit_subtenant import EditSubtenant
 from .edit_subtenant_legal_info import EditSubtenantLegalInfo
 from .edit_support_request_queue import EditSupportRequestQueue
-from .edit_support_request_queue_response import EditSupportRequestQueueResponse
 from .edit_support_request_severity import EditSupportRequestSeverity
 from .edit_support_request_status import EditSupportRequestStatus
 from .edit_support_request_status_lifecycle import EditSupportRequestStatusLifecycle
-from .edit_support_request_status_response import EditSupportRequestStatusResponse
 from .edit_support_request_type import EditSupportRequestType
 from .edit_tag import EditTag
 from .edit_team_booking import EditTeamBooking
-from .edit_team_booking_response import EditTeamBookingResponse
 from .edit_tenant import EditTenant
+from .edit_tenant_lead_visibility_type_0 import EditTenantLeadVisibilityType0
 from .edit_tenant_legal_info import EditTenantLegalInfo
 from .edit_tenant_portal_settings import EditTenantPortalSettings
 from .edit_tenant_project_defaults import EditTenantProjectDefaults
+from .edit_timer import EditTimer
 from .edit_wbs_configuration import EditWBSConfiguration
 from .edit_webhook import EditWebhook
 from .edit_work_item import EditWorkItem
@@ -353,12 +398,6 @@ from .edit_work_log import EditWorkLog
 from .edit_work_resource_usage import EditWorkResourceUsage
 from .evm_warning import EVMWarning
 from .expense_item import ExpenseItem
-from .external_closed_support_request_queue_filter_schema import (
-    ExternalClosedSupportRequestQueueFilterSchema,
-)
-from .external_support_request_queue_filter_schema import (
-    ExternalSupportRequestQueueFilterSchema,
-)
 from .feed import Feed
 from .feed_event import FeedEvent
 from .feed_event_content import FeedEventContent
@@ -369,38 +408,67 @@ from .files_entity_storage import FilesEntityStorage
 from .files_entity_storage_entity_breakdown import FilesEntityStorageEntityBreakdown
 from .files_entity_storage_entity_file_counts import FilesEntityStorageEntityFileCounts
 from .files_storage_metrics import FilesStorageMetrics
+from .finalize_document import FinalizeDocument
 from .financial_kp_is import FinancialKPIs
+from .form_submission_detail_schema import FormSubmissionDetailSchema
+from .form_submission_detail_schema_all_fields_item import FormSubmissionDetailSchemaAllFieldsItem
+from .form_submission_detail_schema_status_options_item import FormSubmissionDetailSchemaStatusOptionsItem
+from .form_submission_detail_schema_values import FormSubmissionDetailSchemaValues
+from .form_submissions_schema import FormSubmissionsSchema
+from .form_submissions_schema_columns_item import FormSubmissionsSchemaColumnsItem
+from .form_submissions_schema_dynamic_columns_item import FormSubmissionsSchemaDynamicColumnsItem
+from .form_submissions_schema_submissions_item import FormSubmissionsSchemaSubmissionsItem
+from .former_team_member import FormerTeamMember
+from .forms_kp_is import FormsKPIs
 from .funnel_lost_proposals import FunnelLostProposals
-from .funnel_lost_proposals_currency_breakdown_type_0 import (
-    FunnelLostProposalsCurrencyBreakdownType0,
-)
+from .funnel_lost_proposals_currency_breakdown_type_0 import FunnelLostProposalsCurrencyBreakdownType0
 from .funnel_stage_schema import FunnelStageSchema
 from .funnel_won_proposals import FunnelWonProposals
-from .funnel_won_proposals_currency_breakdown_type_0 import (
-    FunnelWonProposalsCurrencyBreakdownType0,
-)
+from .funnel_won_proposals_currency_breakdown_type_0 import FunnelWonProposalsCurrencyBreakdownType0
 from .gantt_task import GanttTask
-from .guide_campaign import GuideCampaign
-from .guide_step import GuideStep
+from .generate_document import GenerateDocument
+from .generate_document_data_classification_type_0 import GenerateDocumentDataClassificationType0
 from .horizon_option import HorizonOption
+from .import_leads_multi_part_body_params import ImportLeadsMultiPartBodyParams
+from .import_leads_multi_part_body_params_default_next_action import ImportLeadsMultiPartBodyParamsDefaultNextAction
+from .import_leads_preview_multi_part_body_params import ImportLeadsPreviewMultiPartBodyParams
+from .import_leads_preview_multi_part_body_params_default_next_action import ImportLeadsPreviewMultiPartBodyParamsDefaultNextAction
 from .initiated_partnership_item import InitiatedPartnershipItem
 from .instantiate_work_item_template import InstantiateWorkItemTemplate
-from .instantiate_work_item_template_milestone_dates_type_0 import (
-    InstantiateWorkItemTemplateMilestoneDatesType0,
-)
-from .internal_closed_support_request_queue_filter_schema import (
-    InternalClosedSupportRequestQueueFilterSchema,
-)
-from .internal_support_request_queue_filter_schema import (
-    InternalSupportRequestQueueFilterSchema,
-)
+from .instantiate_work_item_template_milestone_dates_type_0 import InstantiateWorkItemTemplateMilestoneDatesType0
 from .invitation_output import InvitationOutput
 from .invite_member_to_tenant import InviteMemberToTenant
 from .key_project_activity_item import KeyProjectActivityItem
+from .kpi_blocked_deliverables_summary import KPIBlockedDeliverablesSummary
+from .kpi_expiring_api_keys_summary import KPIExpiringApiKeysSummary
+from .kpi_expiring_proposals_summary import KPIExpiringProposalsSummary
+from .kpi_expiring_warranties_summary import KPIExpiringWarrantiesSummary
+from .kpi_inactive_partnerships_summary import KPIInactivePartnershipsSummary
+from .kpi_lead_pipeline_health_summary import KPILeadPipelineHealthSummary
+from .kpi_open_external_tickets_summary import KPIOpenExternalTicketsSummary
+from .kpi_open_tickets_summary import KPIOpenTicketsSummary
+from .kpi_overdue_operational_items_summary import KPIOverdueOperationalItemsSummary
+from .kpi_overdue_payments_summary import KPIOverduePaymentsSummary
+from .kpi_process_bottlenecks_summary import KPIProcessBottlenecksSummary
+from .kpi_projects_at_risk_summary import KPIProjectsAtRiskSummary
+from .kpi_proposals_without_activity_summary import KPIProposalsWithoutActivitySummary
+from .kpi_queue_health_summary import KPIQueueHealthSummary
+from .kpi_revenue_at_risk_summary import KPIRevenueAtRiskSummary
+from .kpi_stale_operational_items_summary import KPIStaleOperationalItemsSummary
+from .kpi_stale_proposals_summary import KPIStaleProposalsSummary
+from .kpi_team_workload_summary import KPITeamWorkloadSummary
+from .kpi_unassigned_items_summary import KPIUnassignedItemsSummary
+from .kpi_upcoming_payments_summary import KPIUpcomingPaymentsSummary
+from .kpi_won_without_project_start_summary import KPIWonWithoutProjectStartSummary
+from .kpi_work_items_due_summary import KPIWorkItemsDueSummary
+from .label_lead_input import LabelLeadInput
 from .label_value_stats import LabelValueStats
 from .labeled_entity_stats import LabeledEntityStats
 from .link_work_item_template_to_product import LinkWorkItemTemplateToProduct
 from .linked_product import LinkedProduct
+from .log_lead_activity import LogLeadActivity
+from .mark_lead_converted import MarkLeadConverted
+from .mark_lead_do_not_contact import MarkLeadDoNotContact
 from .mark_payment_paid import MarkPaymentPaid
 from .mark_payment_paid_response import MarkPaymentPaidResponse
 from .member_availability import MemberAvailability
@@ -409,20 +477,10 @@ from .member_load_detail_schema import MemberLoadDetailSchema
 from .monthly_projection import MonthlyProjection
 from .move_operational_item import MoveOperationalItem
 from .my_booking_item import MyBookingItem
-from .my_external_closed_support_request_filter_schema import (
-    MyExternalClosedSupportRequestFilterSchema,
-)
-from .my_external_support_request_filter_schema import (
-    MyExternalSupportRequestFilterSchema,
-)
-from .my_internal_closed_support_request_filter_schema import (
-    MyInternalClosedSupportRequestFilterSchema,
-)
-from .my_internal_support_request_filter_schema import (
-    MyInternalSupportRequestFilterSchema,
-)
 from .my_operational_item import MyOperationalItem
+from .my_pending_invitation import MyPendingInvitation
 from .my_support_request_list_item import MySupportRequestListItem
+from .my_tenant_item import MyTenantItem
 from .my_ticket_item import MyTicketItem
 from .my_work_item import MyWorkItem
 from .new_automation import NewAutomation
@@ -432,113 +490,152 @@ from .notification_item_sender_type_0 import NotificationItemSenderType0
 from .notification_item_tenant_type_0 import NotificationItemTenantType0
 from .org_contact import OrgContact
 from .org_contacts import OrgContacts
-from .org_filter_schema import OrgFilterSchema
 from .org_proposal_details import OrgProposalDetails
-from .output_active_campaigns import OutputActiveCampaigns
+from .output_action_output_fields import OutputActionOutputFields
+from .output_action_output_fields_fields import OutputActionOutputFieldsFields
 from .output_active_partners import OutputActivePartners
+from .output_all_leads import OutputAllLeads
 from .output_api_key import OutputApiKey
 from .output_api_key_list import OutputApiKeyList
 from .output_asset_categories import OutputAssetCategories
 from .output_asset_category import OutputAssetCategory
+from .output_asset_form import OutputAssetForm
+from .output_asset_forms import OutputAssetForms
+from .output_billable_source import OutputBillableSource
+from .output_billable_source_list import OutputBillableSourceList
 from .output_block_payments import OutputBlockPayments
 from .output_business_process import OutputBusinessProcess
 from .output_business_processes_list import OutputBusinessProcessesList
 from .output_calendar_tokens import OutputCalendarTokens
-from .output_campaign_progress import OutputCampaignProgress
 from .output_comments_feed import OutputCommentsFeed
+from .output_custom_form import OutputCustomForm
+from .output_custom_forms import OutputCustomForms
 from .output_customer_asset import OutputCustomerAsset
 from .output_customer_asset_tickets import OutputCustomerAssetTickets
 from .output_customer_assets import OutputCustomerAssets
 from .output_customer_location import OutputCustomerLocation
 from .output_customer_locations import OutputCustomerLocations
 from .output_customer_portal_asset_detail import OutputCustomerPortalAssetDetail
-from .output_customer_portal_asset_detail_asset import (
-    OutputCustomerPortalAssetDetailAsset,
-)
+from .output_customer_portal_asset_detail_asset import OutputCustomerPortalAssetDetailAsset
 from .output_customer_portal_asset_detail_org import OutputCustomerPortalAssetDetailOrg
 from .output_customer_portal_asset_tickets import OutputCustomerPortalAssetTickets
-from .output_customer_portal_asset_tickets_org import (
-    OutputCustomerPortalAssetTicketsOrg,
-)
-from .output_customer_portal_asset_tickets_tickets_item import (
-    OutputCustomerPortalAssetTicketsTicketsItem,
-)
+from .output_customer_portal_asset_tickets_org import OutputCustomerPortalAssetTicketsOrg
+from .output_customer_portal_asset_tickets_tickets_item import OutputCustomerPortalAssetTicketsTicketsItem
 from .output_customer_portal_assets import OutputCustomerPortalAssets
-from .output_customer_portal_assets_customer_locations_item import (
-    OutputCustomerPortalAssetsCustomerLocationsItem,
-)
+from .output_customer_portal_assets_customer_locations_item import OutputCustomerPortalAssetsCustomerLocationsItem
 from .output_customer_portal_assets_org import OutputCustomerPortalAssetsOrg
-from .output_customer_portal_assets_unlocated_assets_item import (
-    OutputCustomerPortalAssetsUnlocatedAssetsItem,
-)
+from .output_customer_portal_assets_unlocated_assets_item import OutputCustomerPortalAssetsUnlocatedAssetsItem
 from .output_customer_portal_payments import OutputCustomerPortalPayments
 from .output_customer_portal_payments_chart import OutputCustomerPortalPaymentsChart
-from .output_customer_portal_payments_chart_series_by_currency import (
-    OutputCustomerPortalPaymentsChartSeriesByCurrency,
-)
+from .output_customer_portal_payments_chart_series_by_currency import OutputCustomerPortalPaymentsChartSeriesByCurrency
 from .output_customer_portal_payments_org import OutputCustomerPortalPaymentsOrg
-from .output_customer_portal_payments_payments_item import (
-    OutputCustomerPortalPaymentsPaymentsItem,
-)
+from .output_customer_portal_payments_payments_item import OutputCustomerPortalPaymentsPaymentsItem
 from .output_customer_portal_project_products import OutputCustomerPortalProjectProducts
-from .output_customer_portal_project_products_escalation_item import (
-    OutputCustomerPortalProjectProductsEscalationItem,
-)
-from .output_customer_portal_project_products_org import (
-    OutputCustomerPortalProjectProductsOrg,
-)
-from .output_customer_portal_project_products_payments_item import (
-    OutputCustomerPortalProjectProductsPaymentsItem,
-)
-from .output_customer_portal_project_products_project import (
-    OutputCustomerPortalProjectProductsProject,
-)
+from .output_customer_portal_project_products_escalation_item import OutputCustomerPortalProjectProductsEscalationItem
+from .output_customer_portal_project_products_org import OutputCustomerPortalProjectProductsOrg
+from .output_customer_portal_project_products_payments_item import OutputCustomerPortalProjectProductsPaymentsItem
+from .output_customer_portal_project_products_project import OutputCustomerPortalProjectProductsProject
 from .output_customer_portal_projects import OutputCustomerPortalProjects
 from .output_customer_portal_projects_org import OutputCustomerPortalProjectsOrg
-from .output_customer_portal_projects_projects_item import (
-    OutputCustomerPortalProjectsProjectsItem,
-)
+from .output_customer_portal_projects_projects_item import OutputCustomerPortalProjectsProjectsItem
 from .output_customer_portal_proposals import OutputCustomerPortalProposals
 from .output_customer_portal_proposals_org import OutputCustomerPortalProposalsOrg
-from .output_customer_portal_proposals_proposals_item import (
-    OutputCustomerPortalProposalsProposalsItem,
-)
+from .output_customer_portal_proposals_proposals_item import OutputCustomerPortalProposalsProposalsItem
 from .output_customer_portal_support_requests import OutputCustomerPortalSupportRequests
-from .output_customer_portal_support_requests_org import (
-    OutputCustomerPortalSupportRequestsOrg,
-)
-from .output_customer_portal_support_requests_support_requests_item import (
-    OutputCustomerPortalSupportRequestsSupportRequestsItem,
-)
+from .output_customer_portal_support_requests_org import OutputCustomerPortalSupportRequestsOrg
+from .output_customer_portal_support_requests_support_requests_item import OutputCustomerPortalSupportRequestsSupportRequestsItem
+from .output_document import OutputDocument
+from .output_document_labels import OutputDocumentLabels
+from .output_document_series import OutputDocumentSeries
+from .output_document_series_list import OutputDocumentSeriesList
+from .output_document_tags import OutputDocumentTags
+from .output_document_template import OutputDocumentTemplate
+from .output_document_templates import OutputDocumentTemplates
+from .output_documents import OutputDocuments
 from .output_exchange_rate import OutputExchangeRate
 from .output_exchange_rates import OutputExchangeRates
 from .output_external_support_request import OutputExternalSupportRequest
-from .output_external_support_request_timeline import (
-    OutputExternalSupportRequestTimeline,
-)
-from .output_external_support_request_timeline_replies_map import (
-    OutputExternalSupportRequestTimelineRepliesMap,
-)
+from .output_external_support_request_timeline import OutputExternalSupportRequestTimeline
+from .output_external_support_request_timeline_replies_map import OutputExternalSupportRequestTimelineRepliesMap
 from .output_file_name import OutputFileName
 from .output_file_name_trash import OutputFileNameTrash
 from .output_file_names import OutputFileNames
 from .output_file_names_node_type import OutputFileNamesNodeType
+from .output_form_field import OutputFormField
+from .output_form_field_options_type_0 import OutputFormFieldOptionsType0
+from .output_form_fields import OutputFormFields
+from .output_form_fields_steps_item import OutputFormFieldsStepsItem
+from .output_form_version import OutputFormVersion
+from .output_form_versions import OutputFormVersions
 from .output_holiday import OutputHoliday
 from .output_holidays import OutputHolidays
 from .output_incoming_rf_ps import OutputIncomingRFPs
 from .output_incoming_rfp_item import OutputIncomingRFPItem
 from .output_initiated_partnerships import OutputInitiatedPartnerships
 from .output_internal_support_request import OutputInternalSupportRequest
-from .output_internal_support_request_timeline import (
-    OutputInternalSupportRequestTimeline,
-)
-from .output_internal_support_request_timeline_replies_map import (
-    OutputInternalSupportRequestTimelineRepliesMap,
-)
+from .output_internal_support_request_timeline import OutputInternalSupportRequestTimeline
+from .output_internal_support_request_timeline_replies_map import OutputInternalSupportRequestTimelineRepliesMap
 from .output_key_project_activities import OutputKeyProjectActivities
+from .output_kpi_blocked_deliverables import OutputKPIBlockedDeliverables
+from .output_kpi_blocked_deliverables_items_item import OutputKPIBlockedDeliverablesItemsItem
+from .output_kpi_expiring_api_keys import OutputKPIExpiringApiKeys
+from .output_kpi_expiring_api_keys_items_item import OutputKPIExpiringApiKeysItemsItem
+from .output_kpi_expiring_proposals import OutputKPIExpiringProposals
+from .output_kpi_expiring_proposals_items_item import OutputKPIExpiringProposalsItemsItem
+from .output_kpi_expiring_warranties import OutputKPIExpiringWarranties
+from .output_kpi_expiring_warranties_items_item import OutputKPIExpiringWarrantiesItemsItem
+from .output_kpi_inactive_partnerships import OutputKPIInactivePartnerships
+from .output_kpi_inactive_partnerships_items_item import OutputKPIInactivePartnershipsItemsItem
+from .output_kpi_lead_pipeline_health import OutputKPILeadPipelineHealth
+from .output_kpi_lead_pipeline_health_items_item import OutputKPILeadPipelineHealthItemsItem
+from .output_kpi_open_external_tickets import OutputKPIOpenExternalTickets
+from .output_kpi_open_external_tickets_items_item import OutputKPIOpenExternalTicketsItemsItem
+from .output_kpi_open_tickets import OutputKPIOpenTickets
+from .output_kpi_open_tickets_items_item import OutputKPIOpenTicketsItemsItem
+from .output_kpi_overdue_operational_items import OutputKPIOverdueOperationalItems
+from .output_kpi_overdue_operational_items_items_item import OutputKPIOverdueOperationalItemsItemsItem
+from .output_kpi_overdue_payments import OutputKPIOverduePayments
+from .output_kpi_overdue_payments_items_item import OutputKPIOverduePaymentsItemsItem
+from .output_kpi_process_bottlenecks import OutputKPIProcessBottlenecks
+from .output_kpi_process_bottlenecks_items_item import OutputKPIProcessBottlenecksItemsItem
+from .output_kpi_projects_at_risk import OutputKPIProjectsAtRisk
+from .output_kpi_projects_at_risk_items_item import OutputKPIProjectsAtRiskItemsItem
+from .output_kpi_proposals_without_activity import OutputKPIProposalsWithoutActivity
+from .output_kpi_proposals_without_activity_items_item import OutputKPIProposalsWithoutActivityItemsItem
+from .output_kpi_queue_health import OutputKPIQueueHealth
+from .output_kpi_queue_health_items_item import OutputKPIQueueHealthItemsItem
+from .output_kpi_revenue_at_risk import OutputKPIRevenueAtRisk
+from .output_kpi_revenue_at_risk_items_item import OutputKPIRevenueAtRiskItemsItem
+from .output_kpi_stale_operational_items import OutputKPIStaleOperationalItems
+from .output_kpi_stale_operational_items_items_item import OutputKPIStaleOperationalItemsItemsItem
+from .output_kpi_stale_proposals import OutputKPIStaleProposals
+from .output_kpi_stale_proposals_items_item import OutputKPIStaleProposalsItemsItem
+from .output_kpi_team_workload import OutputKPITeamWorkload
+from .output_kpi_team_workload_items_item import OutputKPITeamWorkloadItemsItem
+from .output_kpi_unassigned_items import OutputKPIUnassignedItems
+from .output_kpi_unassigned_items_items_item import OutputKPIUnassignedItemsItemsItem
+from .output_kpi_upcoming_payments import OutputKPIUpcomingPayments
+from .output_kpi_upcoming_payments_items_item import OutputKPIUpcomingPaymentsItemsItem
+from .output_kpi_won_without_project_start import OutputKPIWonWithoutProjectStart
+from .output_kpi_won_without_project_start_items_item import OutputKPIWonWithoutProjectStartItemsItem
+from .output_kpi_work_items_due import OutputKPIWorkItemsDue
+from .output_kpi_work_items_due_items_item import OutputKPIWorkItemsDueItemsItem
 from .output_label import OutputLabel
 from .output_label_cardinality import OutputLabelCardinality
 from .output_label_details import OutputLabelDetails
+from .output_lead import OutputLead
+from .output_lead_bucket import OutputLeadBucket
+from .output_lead_buckets import OutputLeadBuckets
+from .output_lead_import_error import OutputLeadImportError
+from .output_lead_import_preview import OutputLeadImportPreview
+from .output_lead_import_summary import OutputLeadImportSummary
+from .output_lead_labels import OutputLeadLabels
+from .output_lead_list_list import OutputLeadListList
+from .output_lead_list_summary import OutputLeadListSummary
+from .output_lead_summary import OutputLeadSummary
+from .output_lead_tags import OutputLeadTags
+from .output_lead_team_rollup import OutputLeadTeamRollup
+from .output_lead_team_rollup_row import OutputLeadTeamRollupRow
 from .output_me import OutputMe
 from .output_member_labels import OutputMemberLabels
 from .output_member_tags import OutputMemberTags
@@ -546,53 +643,49 @@ from .output_my_bookings import OutputMyBookings
 from .output_my_operational_items import OutputMyOperationalItems
 from .output_my_support_requests import OutputMySupportRequests
 from .output_my_tasks import OutputMyTasks
+from .output_my_tenants import OutputMyTenants
 from .output_my_tickets import OutputMyTickets
 from .output_my_work_items import OutputMyWorkItems
 from .output_operational_item import OutputOperationalItem
 from .output_operational_item_history import OutputOperationalItemHistory
 from .output_operational_item_transition import OutputOperationalItemTransition
 from .output_operational_items import OutputOperationalItems
+from .output_operational_work_item_labels import OutputOperationalWorkItemLabels
+from .output_operational_work_item_tags import OutputOperationalWorkItemTags
 from .output_org_labels import OutputOrgLabels
 from .output_org_tags import OutputOrgTags
 from .output_our_rf_ps import OutputOurRFPs
 from .output_our_rfp_item import OutputOurRFPItem
+from .output_partner_portal_form_link import OutputPartnerPortalFormLink
+from .output_partner_portal_form_links import OutputPartnerPortalFormLinks
 from .output_payment_schedule_blocks import OutputPaymentScheduleBlocks
+from .output_portal_form_link import OutputPortalFormLink
+from .output_portal_form_links import OutputPortalFormLinks
 from .output_process import OutputProcess
 from .output_process_participation import OutputProcessParticipation
 from .output_process_participations import OutputProcessParticipations
 from .output_process_stage import OutputProcessStage
+from .output_process_stage_form import OutputProcessStageForm
+from .output_process_stage_forms import OutputProcessStageForms
 from .output_process_stage_link import OutputProcessStageLink
 from .output_process_stages import OutputProcessStages
 from .output_process_stages_with_tasks import OutputProcessStagesWithTasks
 from .output_process_summaries import OutputProcessSummaries
 from .output_process_summary import OutputProcessSummary
 from .output_processes import OutputProcesses
-from .output_product_details import OutputProductDetails
 from .output_product_work_template import OutputProductWorkTemplate
 from .output_product_work_templates import OutputProductWorkTemplates
 from .output_project_evm_metrics import OutputProjectEVMMetrics
-from .output_project_evm_metrics_chart_series_item import (
-    OutputProjectEVMMetricsChartSeriesItem,
-)
+from .output_project_evm_metrics_chart_series_item import OutputProjectEVMMetricsChartSeriesItem
 from .output_project_gantt_data import OutputProjectGanttData
 from .output_project_schedule import OutputProjectSchedule
 from .output_project_templates import OutputProjectTemplates
-from .output_project_templates_general_templates_item import (
-    OutputProjectTemplatesGeneralTemplatesItem,
-)
-from .output_project_templates_wbs_templates_item import (
-    OutputProjectTemplatesWbsTemplatesItem,
-)
+from .output_project_templates_general_templates_item import OutputProjectTemplatesGeneralTemplatesItem
+from .output_project_templates_wbs_templates_item import OutputProjectTemplatesWbsTemplatesItem
 from .output_project_work_item_detail import OutputProjectWorkItemDetail
-from .output_project_work_item_detail_project_settings import (
-    OutputProjectWorkItemDetailProjectSettings,
-)
-from .output_project_work_item_detail_scheduling_behaviour import (
-    OutputProjectWorkItemDetailSchedulingBehaviour,
-)
-from .output_project_work_item_detail_timeline_source import (
-    OutputProjectWorkItemDetailTimelineSource,
-)
+from .output_project_work_item_detail_project_settings import OutputProjectWorkItemDetailProjectSettings
+from .output_project_work_item_detail_scheduling_behaviour import OutputProjectWorkItemDetailSchedulingBehaviour
+from .output_project_work_item_detail_timeline_source import OutputProjectWorkItemDetailTimelineSource
 from .output_project_work_items import OutputProjectWorkItems
 from .output_project_work_items_work_items import OutputProjectWorkItemsWorkItems
 from .output_projects_list import OutputProjectsList
@@ -602,25 +695,15 @@ from .output_proposal_preview import OutputProposalPreview
 from .output_proposal_preview_acceptance_info import OutputProposalPreviewAcceptanceInfo
 from .output_proposal_preview_company import OutputProposalPreviewCompany
 from .output_proposal_preview_customer import OutputProposalPreviewCustomer
-from .output_proposal_preview_executive_summary import (
-    OutputProposalPreviewExecutiveSummary,
-)
+from .output_proposal_preview_executive_summary import OutputProposalPreviewExecutiveSummary
 from .output_proposal_preview_header import OutputProposalPreviewHeader
-from .output_proposal_preview_investment_summary import (
-    OutputProposalPreviewInvestmentSummary,
-)
-from .output_proposal_preview_payment_schedule_item import (
-    OutputProposalPreviewPaymentScheduleItem,
-)
+from .output_proposal_preview_investment_summary import OutputProposalPreviewInvestmentSummary
+from .output_proposal_preview_payment_schedule_item import OutputProposalPreviewPaymentScheduleItem
 from .output_proposal_preview_products_item import OutputProposalPreviewProductsItem
-from .output_proposal_preview_terms_conditions import (
-    OutputProposalPreviewTermsConditions,
-)
+from .output_proposal_preview_terms_conditions import OutputProposalPreviewTermsConditions
 from .output_proposal_tags import OutputProposalTags
 from .output_queue_rule import OutputQueueRule
 from .output_queue_rules import OutputQueueRules
-from .output_quick_start_preview import OutputQuickStartPreview
-from .output_quick_start_templates import OutputQuickStartTemplates
 from .output_received_partnerships import OutputReceivedPartnerships
 from .output_resource_booking import OutputResourceBooking
 from .output_resource_bookings import OutputResourceBookings
@@ -631,8 +714,6 @@ from .output_rfp_item import OutputRFPItem
 from .output_rfp_publication_item import OutputRFPPublicationItem
 from .output_role_labels import OutputRoleLabels
 from .output_role_tags import OutputRoleTags
-from .output_saved_filter_item import OutputSavedFilterItem
-from .output_saved_filters_list import OutputSavedFiltersList
 from .output_solicitation_detail import OutputSolicitationDetail
 from .output_stage_history_entry import OutputStageHistoryEntry
 from .output_stage_with_tasks import OutputStageWithTasks
@@ -652,19 +733,11 @@ from .output_team_booking import OutputTeamBooking
 from .output_team_bookings import OutputTeamBookings
 from .output_team_member_booking_heatmap import OutputTeamMemberBookingHeatmap
 from .output_team_member_booking_heatmap_data import OutputTeamMemberBookingHeatmapData
-from .output_team_member_booking_heatmap_data_additional_property import (
-    OutputTeamMemberBookingHeatmapDataAdditionalProperty,
-)
-from .output_team_member_booking_heatmap_data_additional_property_additional_property import (
-    OutputTeamMemberBookingHeatmapDataAdditionalPropertyAdditionalProperty,
-)
-from .output_team_member_booking_heatmap_week_labels import (
-    OutputTeamMemberBookingHeatmapWeekLabels,
-)
+from .output_team_member_booking_heatmap_data_additional_property import OutputTeamMemberBookingHeatmapDataAdditionalProperty
+from .output_team_member_booking_heatmap_data_additional_property_additional_property import OutputTeamMemberBookingHeatmapDataAdditionalPropertyAdditionalProperty
+from .output_team_member_booking_heatmap_week_labels import OutputTeamMemberBookingHeatmapWeekLabels
 from .output_template_hierarchy import OutputTemplateHierarchy
-from .output_template_hierarchy_allowed_child_types_item import (
-    OutputTemplateHierarchyAllowedChildTypesItem,
-)
+from .output_template_hierarchy_allowed_child_types_item import OutputTemplateHierarchyAllowedChildTypesItem
 from .output_template_hierarchy_templates import OutputTemplateHierarchyTemplates
 from .output_tenant_cost_types import OutputTenantCostTypes
 from .output_tenant_cost_types_cost_types import OutputTenantCostTypesCostTypes
@@ -679,12 +752,12 @@ from .output_tenant_resource_types_resources import OutputTenantResourceTypesRes
 from .output_tenant_rf_ps import OutputTenantRFPs
 from .output_tenant_trash_files import OutputTenantTrashFiles
 from .output_test_webhook_result import OutputTestWebhookResult
+from .output_timer_item import OutputTimerItem
+from .output_timers import OutputTimers
 from .output_top_entities_by_storage import OutputTopEntitiesByStorage
 from .output_top_selling_products import OutputTopSellingProducts
 from .output_total_products_sold import OutputTotalProductsSold
-from .output_total_products_sold_breakdown_by_type_item import (
-    OutputTotalProductsSoldBreakdownByTypeItem,
-)
+from .output_total_products_sold_breakdown_by_type_item import OutputTotalProductsSoldBreakdownByTypeItem
 from .output_user_notifications import OutputUserNotifications
 from .output_wbs_configuration_rule import OutputWBSConfigurationRule
 from .output_wbs_configuration_rules import OutputWBSConfigurationRules
@@ -693,6 +766,12 @@ from .output_webhook_deliveries import OutputWebhookDeliveries
 from .output_webhook_delivery import OutputWebhookDelivery
 from .output_webhooks import OutputWebhooks
 from .output_work_item_labels import OutputWorkItemLabels
+from .output_work_item_stage_form import OutputWorkItemStageForm
+from .output_work_item_stage_forms import OutputWorkItemStageForms
+from .output_work_item_submission import OutputWorkItemSubmission
+from .output_work_item_submission_fields_item import OutputWorkItemSubmissionFieldsItem
+from .output_work_item_submission_values import OutputWorkItemSubmissionValues
+from .output_work_item_submissions import OutputWorkItemSubmissions
 from .output_work_item_tags import OutputWorkItemTags
 from .output_work_item_template_labels import OutputWorkItemTemplateLabels
 from .output_work_item_template_tags import OutputWorkItemTemplateTags
@@ -700,6 +779,10 @@ from .output_work_item_type import OutputWorkItemType
 from .output_work_item_types import OutputWorkItemTypes
 from .overview_kp_is import OverviewKPIs
 from .partner_approve_product import PartnerApproveProduct
+from .partner_form_submissions_schema import PartnerFormSubmissionsSchema
+from .partner_form_submissions_schema_columns_item import PartnerFormSubmissionsSchemaColumnsItem
+from .partner_form_submissions_schema_dynamic_columns_item import PartnerFormSubmissionsSchemaDynamicColumnsItem
+from .partner_form_submissions_schema_submissions_item import PartnerFormSubmissionsSchemaSubmissionsItem
 from .partner_portal_asset_item import PartnerPortalAssetItem
 from .partner_portal_assets import PartnerPortalAssets
 from .partner_portal_file_names import PartnerPortalFileNames
@@ -710,68 +793,58 @@ from .partner_portal_payments import PartnerPortalPayments
 from .partner_portal_project_item import PartnerPortalProjectItem
 from .partner_portal_project_product_item import PartnerPortalProjectProductItem
 from .partner_portal_project_products import PartnerPortalProjectProducts
-from .partner_portal_project_products_escalation_item import (
-    PartnerPortalProjectProductsEscalationItem,
-)
-from .partner_portal_project_products_payments_item import (
-    PartnerPortalProjectProductsPaymentsItem,
-)
+from .partner_portal_project_products_escalation_item import PartnerPortalProjectProductsEscalationItem
+from .partner_portal_project_products_payments_item import PartnerPortalProjectProductsPaymentsItem
 from .partner_portal_project_products_project import PartnerPortalProjectProductsProject
 from .partner_portal_projects import PartnerPortalProjects
 from .partner_portal_proposal_item import PartnerPortalProposalItem
+from .partner_portal_proposal_preview_response import PartnerPortalProposalPreviewResponse
 from .partner_portal_proposals import PartnerPortalProposals
 from .partner_portal_support_request_detail import PartnerPortalSupportRequestDetail
 from .partner_portal_support_request_item import PartnerPortalSupportRequestItem
+from .partner_portal_support_request_timeline_response import PartnerPortalSupportRequestTimelineResponse
 from .partner_portal_support_request_types import PartnerPortalSupportRequestTypes
 from .partner_portal_support_requests import PartnerPortalSupportRequests
 from .partner_reject_product import PartnerRejectProduct
+from .partner_submit_partner_form_response import PartnerSubmitPartnerFormResponse
 from .payment_cumulative_chart_data import PaymentCumulativeChartData
-from .payment_cumulative_chart_data_cumulative_expected_item import (
-    PaymentCumulativeChartDataCumulativeExpectedItem,
-)
-from .payment_cumulative_chart_data_cumulative_paid_item import (
-    PaymentCumulativeChartDataCumulativePaidItem,
-)
+from .payment_cumulative_chart_data_cumulative_expected_item import PaymentCumulativeChartDataCumulativeExpectedItem
+from .payment_cumulative_chart_data_cumulative_paid_item import PaymentCumulativeChartDataCumulativePaidItem
 from .payment_cumulative_chart_data_summary import PaymentCumulativeChartDataSummary
 from .payment_detail import PaymentDetail
+from .payment_detail_sources_item import PaymentDetailSourcesItem
 from .payment_flow_chart_data import PaymentFlowChartData
-from .payment_flow_chart_data_cumulative_expected_item import (
-    PaymentFlowChartDataCumulativeExpectedItem,
-)
-from .payment_flow_chart_data_cumulative_paid_item import (
-    PaymentFlowChartDataCumulativePaidItem,
-)
-from .payment_flow_chart_data_paid_payments_item import (
-    PaymentFlowChartDataPaidPaymentsItem,
-)
+from .payment_flow_chart_data_cumulative_expected_item import PaymentFlowChartDataCumulativeExpectedItem
+from .payment_flow_chart_data_cumulative_paid_item import PaymentFlowChartDataCumulativePaidItem
+from .payment_flow_chart_data_paid_payments_item import PaymentFlowChartDataPaidPaymentsItem
 from .payment_flow_chart_data_payments_item import PaymentFlowChartDataPaymentsItem
 from .payment_flow_chart_data_summary import PaymentFlowChartDataSummary
-from .payment_flow_chart_data_unpaid_payments_item import (
-    PaymentFlowChartDataUnpaidPaymentsItem,
-)
+from .payment_flow_chart_data_unpaid_payments_item import PaymentFlowChartDataUnpaidPaymentsItem
 from .payment_schedule_block_detail import PaymentScheduleBlockDetail
 from .payment_schedule_summary import PaymentScheduleSummary
 from .payment_status_chart_data import PaymentStatusChartData
-from .payment_status_chart_data_paid_payments_item import (
-    PaymentStatusChartDataPaidPaymentsItem,
-)
-from .payment_status_chart_data_unpaid_payments_item import (
-    PaymentStatusChartDataUnpaidPaymentsItem,
-)
+from .payment_status_chart_data_paid_payments_item import PaymentStatusChartDataPaidPaymentsItem
+from .payment_status_chart_data_unpaid_payments_item import PaymentStatusChartDataUnpaidPaymentsItem
 from .permission import Permission
 from .permission_group import PermissionGroup
 from .permissions import Permissions
+from .plan_info import PlanInfo
+from .plan_info_limits import PlanInfoLimits
 from .portal_accept_proposal import PortalAcceptProposal
 from .portal_action_status import PortalActionStatus
 from .portal_approve_product import PortalApproveProduct
 from .portal_edit_external_support_request import PortalEditExternalSupportRequest
+from .portal_form_submissions_schema import PortalFormSubmissionsSchema
+from .portal_form_submissions_schema_columns_item import PortalFormSubmissionsSchemaColumnsItem
+from .portal_form_submissions_schema_dynamic_columns_item import PortalFormSubmissionsSchemaDynamicColumnsItem
+from .portal_form_submissions_schema_submissions_item import PortalFormSubmissionsSchemaSubmissionsItem
 from .portal_reject_product import PortalRejectProduct
+from .preview_submit_custom_form_response import PreviewSubmitCustomFormResponse
 from .product_budget_breakdown_item import ProductBudgetBreakdownItem
 from .product_cost_type_breakdown import ProductCostTypeBreakdown
 from .product_menu_items import ProductMenuItems
 from .product_resource_usage_item import ProductResourceUsageItem
 from .product_resource_usages_output import ProductResourceUsagesOutput
-from .product_sales_time_series import ProductSalesTimeSeries
 from .product_status_badges import ProductStatusBadges
 from .product_status_detail import ProductStatusDetail
 from .product_status_history_entry import ProductStatusHistoryEntry
@@ -781,23 +854,16 @@ from .product_work_item import ProductWorkItem
 from .product_work_items import ProductWorkItems
 from .product_work_templates import ProductWorkTemplates
 from .project_cash_balance_chart_data import ProjectCashBalanceChartData
-from .project_cash_balance_chart_data_cash_balance_data_item import (
-    ProjectCashBalanceChartDataCashBalanceDataItem,
-)
+from .project_cash_balance_chart_data_cash_balance_data_item import ProjectCashBalanceChartDataCashBalanceDataItem
 from .project_cash_flow_metrics import ProjectCashFlowMetrics
-from .project_filter_schema import ProjectFilterSchema
 from .project_list_item import ProjectListItem
 from .project_product_budget_breakdown_schema import ProjectProductBudgetBreakdownSchema
-from .project_product_cost_comparison_product_schema import (
-    ProjectProductCostComparisonProductSchema,
-)
+from .project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
 from .project_product_cost_comparison_schema import ProjectProductCostComparisonSchema
 from .project_product_simple import ProjectProductSimple
 from .project_products import ProjectProducts
 from .project_resource import ProjectResource
-from .project_resource_activity_histogram_schema import (
-    ProjectResourceActivityHistogramSchema,
-)
+from .project_resource_activity_histogram_schema import ProjectResourceActivityHistogramSchema
 from .project_resource_activity_output import ProjectResourceActivityOutput
 from .project_resource_activity_weekly_schema import ProjectResourceActivityWeeklySchema
 from .project_resource_booking import ProjectResourceBooking
@@ -811,8 +877,8 @@ from .project_team_people import ProjectTeamPeople
 from .project_team_people_people_item import ProjectTeamPeoplePeopleItem
 from .project_wbs_config import ProjectWBSConfig
 from .proposal_detail import ProposalDetail
-from .proposal_filter_schema import ProposalFilterSchema
 from .proposal_history_entry import ProposalHistoryEntry
+from .proposal_history_entry_kind import ProposalHistoryEntryKind
 from .proposal_history_output import ProposalHistoryOutput
 from .proposal_list_item import ProposalListItem
 from .proposal_product import ProposalProduct
@@ -822,31 +888,27 @@ from .proposal_products import ProposalProducts
 from .proposal_products_proposal import ProposalProductsProposal
 from .proposal_work_schedule import ProposalWorkSchedule
 from .publish_rfp_to_partners import PublishRFPToPartners
-from .quick_start_category_info import QuickStartCategoryInfo
-from .quick_start_conflict import QuickStartConflict
-from .quick_start_preview_entity import QuickStartPreviewEntity
-from .quick_start_preview_entity_data_type_0 import QuickStartPreviewEntityDataType0
-from .quick_start_preview_entity_group import QuickStartPreviewEntityGroup
-from .quick_start_preview_template_info import QuickStartPreviewTemplateInfo
-from .quick_start_template import QuickStartTemplate
+from .pydantic_detail import PydanticDetail
+from .pydantic_detail_item import PydanticDetailItem
 from .reassign_external_support_request import ReassignExternalSupportRequest
 from .reassign_internal_support_request import ReassignInternalSupportRequest
+from .reassign_lead_list import ReassignLeadList
+from .reassign_leads_in_list import ReassignLeadsInList
 from .reassign_operational_item import ReassignOperationalItem
 from .received_partnership_item import ReceivedPartnershipItem
 from .reject_operational_item import RejectOperationalItem
+from .reopen_lead import ReopenLead
+from .reorder_actions import ReorderActions
+from .reorder_actions_item import ReorderActionsItem
+from .reorder_form_steps import ReorderFormSteps
 from .reorder_payment_schedule_blocks import ReorderPaymentScheduleBlocks
-from .reorder_payment_schedule_blocks_block_sequences_item import (
-    ReorderPaymentScheduleBlocksBlockSequencesItem,
-)
-from .reorder_payment_schedule_blocks_response import (
-    ReorderPaymentScheduleBlocksResponse,
-)
+from .reorder_payment_schedule_blocks_block_sequences_item import ReorderPaymentScheduleBlocksBlockSequencesItem
+from .reorder_payment_schedule_blocks_response import ReorderPaymentScheduleBlocksResponse
 from .request_delete_file_gcs import RequestDeleteFileGCS
 from .request_download_url_gcs import RequestDownloadUrlGCS
 from .request_upload_url_gcs import RequestUploadUrlGCS
-from .request_upload_url_gcs_attachmentnodetype import (
-    RequestUploadUrlGCSAttachmentnodetype,
-)
+from .request_upload_url_gcs_attachmentnodetype import RequestUploadUrlGCSAttachmentnodetype
+from .reschedule_lead import RescheduleLead
 from .resource_activity_item import ResourceActivityItem
 from .resource_availability import ResourceAvailability
 from .resource_availability_days import ResourceAvailabilityDays
@@ -856,11 +918,8 @@ from .resource_cost_output import ResourceCostOutput
 from .resource_cost_record import ResourceCostRecord
 from .resource_cost_type import ResourceCostType
 from .resource_cost_types import ResourceCostTypes
-from .resource_filter_schema import ResourceFilterSchema
 from .resource_load_detail_schema import ResourceLoadDetailSchema
-from .resource_load_detail_schema_resource_data_type_0 import (
-    ResourceLoadDetailSchemaResourceDataType0,
-)
+from .resource_load_detail_schema_resource_data_type_0 import ResourceLoadDetailSchemaResourceDataType0
 from .resource_load_schema import ResourceLoadSchema
 from .resource_load_schema_daily_totals import ResourceLoadSchemaDailyTotals
 from .resource_usage_datatable_schema import ResourceUsageDatatableSchema
@@ -870,7 +929,7 @@ from .resource_usage_record_schema import ResourceUsageRecordSchema
 from .resource_usage_weekly_schema import ResourceUsageWeeklySchema
 from .resource_work_item import ResourceWorkItem
 from .resource_work_items import ResourceWorkItems
-from .role_filter_schema import RoleFilterSchema
+from .resources_kp_is import ResourcesKPIs
 from .sales_activity_content import SalesActivityContent
 from .sales_activity_feed import SalesActivityFeed
 from .sales_feed_activity import SalesFeedActivity
@@ -878,6 +937,12 @@ from .sales_kp_is import SalesKPIs
 from .schedule_task_item import ScheduleTaskItem
 from .schedule_warning import ScheduleWarning
 from .stage_proposals import StageProposals
+from .submit_asset_form_response import SubmitAssetFormResponse
+from .submit_custom_form import SubmitCustomForm
+from .submit_custom_form_data import SubmitCustomFormData
+from .submit_custom_form_response import SubmitCustomFormResponse
+from .submit_portal_form_response import SubmitPortalFormResponse
+from .submit_work_item_form_response import SubmitWorkItemFormResponse
 from .subtenant_info import SubtenantInfo
 from .subtenant_legal_info import SubtenantLegalInfo
 from .support_kp_is import SupportKPIs
@@ -887,7 +952,6 @@ from .support_request_timeline_event import SupportRequestTimelineEvent
 from .support_request_type_item import SupportRequestTypeItem
 from .suspend_bridge import SuspendBridge
 from .tagged_entity_stats import TaggedEntityStats
-from .team_filter_schema import TeamFilterSchema
 from .team_load_schema import TeamLoadSchema
 from .team_load_schema_daily_totals import TeamLoadSchemaDailyTotals
 from .team_member import TeamMember
@@ -912,18 +976,10 @@ from .tenant_funnel_configuration_stages import TenantFunnelConfigurationStages
 from .tenant_funnel_configurations import TenantFunnelConfigurations
 from .tenant_funnel_currency_aggregates import TenantFunnelCurrencyAggregates
 from .tenant_funnel_overview import TenantFunnelOverview
-from .tenant_funnel_overview_avg_deal_size_by_currency_type_0 import (
-    TenantFunnelOverviewAvgDealSizeByCurrencyType0,
-)
-from .tenant_funnel_overview_currency_symbols_type_0 import (
-    TenantFunnelOverviewCurrencySymbolsType0,
-)
-from .tenant_funnel_overview_deal_count_by_currency_type_0 import (
-    TenantFunnelOverviewDealCountByCurrencyType0,
-)
-from .tenant_funnel_overview_pipeline_by_currency_type_0 import (
-    TenantFunnelOverviewPipelineByCurrencyType0,
-)
+from .tenant_funnel_overview_avg_deal_size_by_currency_type_0 import TenantFunnelOverviewAvgDealSizeByCurrencyType0
+from .tenant_funnel_overview_currency_symbols_type_0 import TenantFunnelOverviewCurrencySymbolsType0
+from .tenant_funnel_overview_deal_count_by_currency_type_0 import TenantFunnelOverviewDealCountByCurrencyType0
+from .tenant_funnel_overview_pipeline_by_currency_type_0 import TenantFunnelOverviewPipelineByCurrencyType0
 from .tenant_funnels import TenantFunnels
 from .tenant_label import TenantLabel
 from .tenant_labels import TenantLabels
@@ -948,9 +1004,14 @@ from .top_selling_product import TopSellingProduct
 from .transfer_support_request_queue import TransferSupportRequestQueue
 from .trash_file_info import TrashFileInfo
 from .unsuspend_bridge import UnsuspendBridge
+from .update_lead_status import UpdateLeadStatus
+from .update_lead_status_status import UpdateLeadStatusStatus
 from .update_project_wbs import UpdateProjectWBS
 from .update_work_item_status import UpdateWorkItemStatus
 from .upload_url_gcs import UploadUrlGCS
+from .validate_form_step import ValidateFormStep
+from .validate_form_step_data import ValidateFormStepData
+from .validate_form_step_response import ValidateFormStepResponse
 from .wbs_config_detail import WBSConfigDetail
 from .wbs_config_reference import WBSConfigReference
 from .wbs_configuration_templates import WBSConfigurationTemplates
@@ -976,6 +1037,7 @@ __all__ = (
     "AddApiKey",
     "AddAssetCategory",
     "AddAvailability",
+    "AddBillableSourceEntry",
     "AddCatalogProduct",
     "AddCatalogProductPricingType",
     "AddCatalogProductProductType",
@@ -983,14 +1045,24 @@ __all__ = (
     "AddCostType",
     "AddCustomerAsset",
     "AddCustomerLocation",
+    "AddCustomForm",
+    "AddCustomFormDataClassification",
     "AddCustomProduct",
     "AddCustomProductPricingType",
     "AddCustomProductProductType",
     "AddCustomProductResponse",
+    "AddDocumentSeries",
+    "AddDocumentTemplate",
+    "AddDocumentTemplateDataClassification",
     "AddExchange",
     "AddExternalSupportRequest",
     "AddExternalSupportRequestComment",
+    "AddExternalSupportRequestForCustomer",
     "AddExternalSupportRequestForProject",
+    "AddExternalSupportRequestsToPayment",
+    "AddFormField",
+    "AddFormFieldFieldType",
+    "AddFormStep",
     "AddFunnelConfiguration",
     "AddHoliday",
     "AddInternalSupportRequest",
@@ -1001,17 +1073,25 @@ __all__ = (
     "AddInternalSupportRequestForWorkItem",
     "AddLabel",
     "AddLabelLabelType",
+    "AddLabelToDocument",
     "AddLabelToMember",
+    "AddLabelToOperationalWorkItem",
     "AddLabelToOrg",
     "AddLabelToProposal",
     "AddLabelToResource",
     "AddLabelToRole",
     "AddLabelToWorkItem",
     "AddLabelToWorkItemTemplate",
+    "AddLead",
+    "AddLeadList",
+    "AddLeadSource",
+    "AddLeadStatus",
     "AddLocation",
     "AddMemberToRole",
     "AddOperationalItem",
     "AddOperationalItemPriority",
+    "AddOperationalWorkItemComment",
+    "AddOperationalWorkItemsToPayment",
     "AddPartnerSupportRequest",
     "AddPartnerSupportRequestComment",
     "AddPayment",
@@ -1035,30 +1115,26 @@ __all__ = (
     "AddQueueRule",
     "AddResource",
     "AddResourceBooking",
-    "AddResourceBookingResponse",
     "AddResourceCost",
     "AddRFP",
     "AddRole",
     "AddSalesActivity",
-    "AddSavedFilter",
     "AddStageToFunnelConfiguration",
     "AddStageToProductLifecycle",
     "AddSubtenant",
-    "AddSupportRequestComment",
     "AddSupportRequestQueue",
-    "AddSupportRequestQueueResponse",
     "AddSupportRequestSeverity",
     "AddSupportRequestStatus",
     "AddSupportRequestStatusLifecycle",
-    "AddSupportRequestStatusResponse",
     "AddSupportRequestType",
     "AddTag",
     "AddTeamBooking",
-    "AddTeamBookingResponse",
+    "AddTimer",
     "AddWBSConfiguration",
     "AddWBSRuleToWBSConfiguration",
     "AddWebhook",
     "AddWorkItem",
+    "AddWorkItemComment",
     "AddWorkItemCost",
     "AddWorkItemExpense",
     "AddWorkItemPredecessor",
@@ -1078,7 +1154,10 @@ __all__ = (
     "AllPartnersSupportRequests",
     "AnalyticsAlertItem",
     "AnalyticsAlerts",
+    "AnalyticsAllocationItem",
     "AnalyticsARCustomerItem",
+    "AnalyticsCapacityForecastItem",
+    "AnalyticsCapacityResourceItem",
     "AnalyticsCashflowBreakdown",
     "AnalyticsCashflowBreakdownPeriod",
     "AnalyticsCashflowBucket",
@@ -1109,6 +1188,18 @@ __all__ = (
     "AnalyticsFinancialRevenue",
     "AnalyticsFinancialRevenueCompare",
     "AnalyticsFinancialRevenuePeriod",
+    "AnalyticsFormsBreakdown",
+    "AnalyticsFormsBreakdownCompare",
+    "AnalyticsFormsBreakdownPeriod",
+    "AnalyticsFormsCountItem",
+    "AnalyticsFormsKpisPeriod",
+    "AnalyticsFormsMonthItem",
+    "AnalyticsFormsTop",
+    "AnalyticsFormsTopCompare",
+    "AnalyticsFormsTopPeriod",
+    "AnalyticsFormsVolume",
+    "AnalyticsFormsVolumeCompare",
+    "AnalyticsFormsVolumePeriod",
     "AnalyticsIssueTypeItem",
     "AnalyticsMarginItem",
     "AnalyticsOverviewAlertsPeriod",
@@ -1120,6 +1211,15 @@ __all__ = (
     "AnalyticsQueueBacklogItem",
     "AnalyticsResolutionBySeverityItem",
     "AnalyticsResolutionOutcomeItem",
+    "AnalyticsResourcesAllocation",
+    "AnalyticsResourcesAllocationPeriod",
+    "AnalyticsResourcesCapacity",
+    "AnalyticsResourcesCapacityHorizon",
+    "AnalyticsResourcesCapacityPeriod",
+    "AnalyticsResourcesKpisPeriod",
+    "AnalyticsResourcesUtilization",
+    "AnalyticsResourcesUtilizationCompare",
+    "AnalyticsResourcesUtilizationPeriod",
     "AnalyticsRevenueCategoryItem",
     "AnalyticsRevenueMonthItem",
     "AnalyticsSalesConversion",
@@ -1152,30 +1252,39 @@ __all__ = (
     "AnalyticsTicketCategoryItem",
     "AnalyticsTimelineChartItem",
     "AnalyticsTimelineItem",
+    "AnalyticsTopFormItem",
     "AnalyticsTrendItem",
     "AnalyticsTrendMonthItem",
     "AnalyticsTrends",
+    "AnalyticsUtilizationItem",
     "AnalyticsWorkloadChartItem",
     "APIError",
     "APIResponse",
     "ApproveOperationalItem",
-    "AssignedExternalClosedSupportRequestFilterSchema",
-    "AssignedExternalSupportRequestFilterSchema",
-    "AssignedInternalClosedSupportRequestFilterSchema",
-    "AssignedInternalSupportRequestFilterSchema",
+    "AttachFormToAsset",
+    "AttachFormToProcessStage",
+    "AttachPartnerPortalForm",
+    "AttachPortalForm",
     "AutomationAction",
+    "AutomationActionConditionInput",
     "AutomationActionInput",
     "AutomationActionInputActionConfig",
     "AutomationActionLogEntry",
+    "AutomationActionLogEntryOutputType0",
     "AutomationActionsResponse",
+    "AutomationConditionFiltersResponse",
+    "AutomationConditionFiltersResponseFilters",
+    "AutomationConditionFiltersResponseOperators",
     "AutomationEventFilters",
     "AutomationEvents",
     "AutomationExecutionEntry",
+    "AutomationExecutionEntryExecutionContextType0",
     "AutomationExecutions",
     "AutomationFilter",
     "AutomationFiltersResponse",
     "AutomationFiltersResponseFilters",
     "AutomationFiltersResponseOperators",
+    "AutomationPipelineVariablesResponse",
     "AutomationRuleInfo",
     "AvailabilityHours",
     "BlockPaymentsSummary",
@@ -1193,6 +1302,8 @@ __all__ = (
     "BusinessProcessSummary",
     "BusinessProcessTask",
     "CalendarToken",
+    "CancelProject",
+    "CancelProjectResponse",
     "CatalogProduct",
     "CatalogProducts",
     "CatalogTemplateDataResponse",
@@ -1200,11 +1311,13 @@ __all__ = (
     "ChangeInternalSupportRequestStatus",
     "ChangeProductStatus",
     "ChangeProposalStage",
+    "ClaimLead",
     "CloseExternalSupportRequest",
     "CloseExternalSupportRequestResolution",
     "CloseInternalSupportRequest",
     "CloseInternalSupportRequestResolution",
     "CommentOutput",
+    "CompanyEnrichmentResultSchema",
     "CompareOption",
     "ContactInvitation",
     "CostItem",
@@ -1216,8 +1329,10 @@ __all__ = (
     "DashboardMetric",
     "DayColumnSchema",
     "DayLoadDataSchema",
+    "DeleteLeadList",
     "DeliveryKPIs",
     "DependencyItem",
+    "DisqualifyLead",
     "DownloadUrlGCS",
     "EditApiKey",
     "EditAssetCategory",
@@ -1231,15 +1346,29 @@ __all__ = (
     "EditCostType",
     "EditCustomerAsset",
     "EditCustomerLocation",
+    "EditCustomForm",
+    "EditCustomFormDataClassification",
+    "EditDocument",
+    "EditDocumentDataClassificationType0",
+    "EditDocumentSeries",
+    "EditDocumentTemplate",
+    "EditDocumentTemplateDataClassificationType0",
     "EditExchange",
     "EditExternalSupportRequest",
     "EditExternalSupportRequestComment",
+    "EditFormField",
+    "EditFormFieldFieldType",
+    "EditFormStep",
     "EditFunnelConfiguration",
     "EditFunnelStage",
     "EditHoliday",
     "EditInternalSupportRequest",
     "EditInternalSupportRequestComment",
     "EditLabel",
+    "EditLead",
+    "EditLeadList",
+    "EditLeadSource",
+    "EditLeadStatus",
     "EditLocation",
     "EditMemberMiscPreferences",
     "EditMemberPreferences",
@@ -1252,6 +1381,7 @@ __all__ = (
     "EditPaymentScheduleBlock",
     "EditPaymentScheduleBlockPaymentTypeType0",
     "EditPaymentScheduleBlockResponse",
+    "EditPaymentSource",
     "EditProcess",
     "EditProcessStage",
     "EditProduct",
@@ -1260,30 +1390,32 @@ __all__ = (
     "EditProductPricingType",
     "EditProductProductType",
     "EditProductResponse",
+    "EditProject",
+    "EditProjectResponse",
     "EditProposal",
     "EditProposalPricingStrategyType0",
     "EditQueueRule",
     "EditResource",
     "EditResourceBooking",
-    "EditResourceBookingResponse",
     "EditRFP",
     "EditRole",
+    "EditSubmissionStatus",
+    "EditSubmissionStatusStatus",
     "EditSubtenant",
     "EditSubtenantLegalInfo",
     "EditSupportRequestQueue",
-    "EditSupportRequestQueueResponse",
     "EditSupportRequestSeverity",
     "EditSupportRequestStatus",
     "EditSupportRequestStatusLifecycle",
-    "EditSupportRequestStatusResponse",
     "EditSupportRequestType",
     "EditTag",
     "EditTeamBooking",
-    "EditTeamBookingResponse",
     "EditTenant",
+    "EditTenantLeadVisibilityType0",
     "EditTenantLegalInfo",
     "EditTenantPortalSettings",
     "EditTenantProjectDefaults",
+    "EditTimer",
     "EditWBSConfiguration",
     "EditWebhook",
     "EditWorkItem",
@@ -1295,8 +1427,6 @@ __all__ = (
     "EditWorkResourceUsage",
     "EVMWarning",
     "ExpenseItem",
-    "ExternalClosedSupportRequestQueueFilterSchema",
-    "ExternalSupportRequestQueueFilterSchema",
     "Feed",
     "FeedEvent",
     "FeedEventContent",
@@ -1307,28 +1437,67 @@ __all__ = (
     "FilesEntityStorageEntityBreakdown",
     "FilesEntityStorageEntityFileCounts",
     "FilesStorageMetrics",
+    "FinalizeDocument",
     "FinancialKPIs",
+    "FormerTeamMember",
+    "FormsKPIs",
+    "FormSubmissionDetailSchema",
+    "FormSubmissionDetailSchemaAllFieldsItem",
+    "FormSubmissionDetailSchemaStatusOptionsItem",
+    "FormSubmissionDetailSchemaValues",
+    "FormSubmissionsSchema",
+    "FormSubmissionsSchemaColumnsItem",
+    "FormSubmissionsSchemaDynamicColumnsItem",
+    "FormSubmissionsSchemaSubmissionsItem",
     "FunnelLostProposals",
     "FunnelLostProposalsCurrencyBreakdownType0",
     "FunnelStageSchema",
     "FunnelWonProposals",
     "FunnelWonProposalsCurrencyBreakdownType0",
     "GanttTask",
-    "GuideCampaign",
-    "GuideStep",
+    "GenerateDocument",
+    "GenerateDocumentDataClassificationType0",
     "HorizonOption",
+    "ImportLeadsMultiPartBodyParams",
+    "ImportLeadsMultiPartBodyParamsDefaultNextAction",
+    "ImportLeadsPreviewMultiPartBodyParams",
+    "ImportLeadsPreviewMultiPartBodyParamsDefaultNextAction",
     "InitiatedPartnershipItem",
     "InstantiateWorkItemTemplate",
     "InstantiateWorkItemTemplateMilestoneDatesType0",
-    "InternalClosedSupportRequestQueueFilterSchema",
-    "InternalSupportRequestQueueFilterSchema",
     "InvitationOutput",
     "InviteMemberToTenant",
     "KeyProjectActivityItem",
+    "KPIBlockedDeliverablesSummary",
+    "KPIExpiringApiKeysSummary",
+    "KPIExpiringProposalsSummary",
+    "KPIExpiringWarrantiesSummary",
+    "KPIInactivePartnershipsSummary",
+    "KPILeadPipelineHealthSummary",
+    "KPIOpenExternalTicketsSummary",
+    "KPIOpenTicketsSummary",
+    "KPIOverdueOperationalItemsSummary",
+    "KPIOverduePaymentsSummary",
+    "KPIProcessBottlenecksSummary",
+    "KPIProjectsAtRiskSummary",
+    "KPIProposalsWithoutActivitySummary",
+    "KPIQueueHealthSummary",
+    "KPIRevenueAtRiskSummary",
+    "KPIStaleOperationalItemsSummary",
+    "KPIStaleProposalsSummary",
+    "KPITeamWorkloadSummary",
+    "KPIUnassignedItemsSummary",
+    "KPIUpcomingPaymentsSummary",
+    "KPIWonWithoutProjectStartSummary",
+    "KPIWorkItemsDueSummary",
     "LabeledEntityStats",
+    "LabelLeadInput",
     "LabelValueStats",
     "LinkedProduct",
     "LinkWorkItemTemplateToProduct",
+    "LogLeadActivity",
+    "MarkLeadConverted",
+    "MarkLeadDoNotContact",
     "MarkPaymentPaid",
     "MarkPaymentPaidResponse",
     "MemberAvailability",
@@ -1337,12 +1506,10 @@ __all__ = (
     "MonthlyProjection",
     "MoveOperationalItem",
     "MyBookingItem",
-    "MyExternalClosedSupportRequestFilterSchema",
-    "MyExternalSupportRequestFilterSchema",
-    "MyInternalClosedSupportRequestFilterSchema",
-    "MyInternalSupportRequestFilterSchema",
     "MyOperationalItem",
+    "MyPendingInvitation",
     "MySupportRequestListItem",
+    "MyTenantItem",
     "MyTicketItem",
     "MyWorkItem",
     "NewAutomation",
@@ -1352,19 +1519,23 @@ __all__ = (
     "NotificationItemTenantType0",
     "OrgContact",
     "OrgContacts",
-    "OrgFilterSchema",
     "OrgProposalDetails",
-    "OutputActiveCampaigns",
+    "OutputActionOutputFields",
+    "OutputActionOutputFieldsFields",
     "OutputActivePartners",
+    "OutputAllLeads",
     "OutputApiKey",
     "OutputApiKeyList",
     "OutputAssetCategories",
     "OutputAssetCategory",
+    "OutputAssetForm",
+    "OutputAssetForms",
+    "OutputBillableSource",
+    "OutputBillableSourceList",
     "OutputBlockPayments",
     "OutputBusinessProcess",
     "OutputBusinessProcessesList",
     "OutputCalendarTokens",
-    "OutputCampaignProgress",
     "OutputCommentsFeed",
     "OutputCustomerAsset",
     "OutputCustomerAssets",
@@ -1400,6 +1571,16 @@ __all__ = (
     "OutputCustomerPortalSupportRequests",
     "OutputCustomerPortalSupportRequestsOrg",
     "OutputCustomerPortalSupportRequestsSupportRequestsItem",
+    "OutputCustomForm",
+    "OutputCustomForms",
+    "OutputDocument",
+    "OutputDocumentLabels",
+    "OutputDocuments",
+    "OutputDocumentSeries",
+    "OutputDocumentSeriesList",
+    "OutputDocumentTags",
+    "OutputDocumentTemplate",
+    "OutputDocumentTemplates",
     "OutputExchangeRate",
     "OutputExchangeRates",
     "OutputExternalSupportRequest",
@@ -1409,6 +1590,12 @@ __all__ = (
     "OutputFileNames",
     "OutputFileNamesNodeType",
     "OutputFileNameTrash",
+    "OutputFormField",
+    "OutputFormFieldOptionsType0",
+    "OutputFormFields",
+    "OutputFormFieldsStepsItem",
+    "OutputFormVersion",
+    "OutputFormVersions",
     "OutputHoliday",
     "OutputHolidays",
     "OutputIncomingRFPItem",
@@ -1418,9 +1605,66 @@ __all__ = (
     "OutputInternalSupportRequestTimeline",
     "OutputInternalSupportRequestTimelineRepliesMap",
     "OutputKeyProjectActivities",
+    "OutputKPIBlockedDeliverables",
+    "OutputKPIBlockedDeliverablesItemsItem",
+    "OutputKPIExpiringApiKeys",
+    "OutputKPIExpiringApiKeysItemsItem",
+    "OutputKPIExpiringProposals",
+    "OutputKPIExpiringProposalsItemsItem",
+    "OutputKPIExpiringWarranties",
+    "OutputKPIExpiringWarrantiesItemsItem",
+    "OutputKPIInactivePartnerships",
+    "OutputKPIInactivePartnershipsItemsItem",
+    "OutputKPILeadPipelineHealth",
+    "OutputKPILeadPipelineHealthItemsItem",
+    "OutputKPIOpenExternalTickets",
+    "OutputKPIOpenExternalTicketsItemsItem",
+    "OutputKPIOpenTickets",
+    "OutputKPIOpenTicketsItemsItem",
+    "OutputKPIOverdueOperationalItems",
+    "OutputKPIOverdueOperationalItemsItemsItem",
+    "OutputKPIOverduePayments",
+    "OutputKPIOverduePaymentsItemsItem",
+    "OutputKPIProcessBottlenecks",
+    "OutputKPIProcessBottlenecksItemsItem",
+    "OutputKPIProjectsAtRisk",
+    "OutputKPIProjectsAtRiskItemsItem",
+    "OutputKPIProposalsWithoutActivity",
+    "OutputKPIProposalsWithoutActivityItemsItem",
+    "OutputKPIQueueHealth",
+    "OutputKPIQueueHealthItemsItem",
+    "OutputKPIRevenueAtRisk",
+    "OutputKPIRevenueAtRiskItemsItem",
+    "OutputKPIStaleOperationalItems",
+    "OutputKPIStaleOperationalItemsItemsItem",
+    "OutputKPIStaleProposals",
+    "OutputKPIStaleProposalsItemsItem",
+    "OutputKPITeamWorkload",
+    "OutputKPITeamWorkloadItemsItem",
+    "OutputKPIUnassignedItems",
+    "OutputKPIUnassignedItemsItemsItem",
+    "OutputKPIUpcomingPayments",
+    "OutputKPIUpcomingPaymentsItemsItem",
+    "OutputKPIWonWithoutProjectStart",
+    "OutputKPIWonWithoutProjectStartItemsItem",
+    "OutputKPIWorkItemsDue",
+    "OutputKPIWorkItemsDueItemsItem",
     "OutputLabel",
     "OutputLabelCardinality",
     "OutputLabelDetails",
+    "OutputLead",
+    "OutputLeadBucket",
+    "OutputLeadBuckets",
+    "OutputLeadImportError",
+    "OutputLeadImportPreview",
+    "OutputLeadImportSummary",
+    "OutputLeadLabels",
+    "OutputLeadListList",
+    "OutputLeadListSummary",
+    "OutputLeadSummary",
+    "OutputLeadTags",
+    "OutputLeadTeamRollup",
+    "OutputLeadTeamRollupRow",
     "OutputMe",
     "OutputMemberLabels",
     "OutputMemberTags",
@@ -1428,28 +1672,36 @@ __all__ = (
     "OutputMyOperationalItems",
     "OutputMySupportRequests",
     "OutputMyTasks",
+    "OutputMyTenants",
     "OutputMyTickets",
     "OutputMyWorkItems",
     "OutputOperationalItem",
     "OutputOperationalItemHistory",
     "OutputOperationalItems",
     "OutputOperationalItemTransition",
+    "OutputOperationalWorkItemLabels",
+    "OutputOperationalWorkItemTags",
     "OutputOrgLabels",
     "OutputOrgTags",
     "OutputOurRFPItem",
     "OutputOurRFPs",
+    "OutputPartnerPortalFormLink",
+    "OutputPartnerPortalFormLinks",
     "OutputPaymentScheduleBlocks",
+    "OutputPortalFormLink",
+    "OutputPortalFormLinks",
     "OutputProcess",
     "OutputProcesses",
     "OutputProcessParticipation",
     "OutputProcessParticipations",
     "OutputProcessStage",
+    "OutputProcessStageForm",
+    "OutputProcessStageForms",
     "OutputProcessStageLink",
     "OutputProcessStages",
     "OutputProcessStagesWithTasks",
     "OutputProcessSummaries",
     "OutputProcessSummary",
-    "OutputProductDetails",
     "OutputProductWorkTemplate",
     "OutputProductWorkTemplates",
     "OutputProjectEVMMetrics",
@@ -1481,8 +1733,6 @@ __all__ = (
     "OutputProposalTags",
     "OutputQueueRule",
     "OutputQueueRules",
-    "OutputQuickStartPreview",
-    "OutputQuickStartTemplates",
     "OutputReceivedPartnerships",
     "OutputResourceBooking",
     "OutputResourceBookings",
@@ -1493,8 +1743,6 @@ __all__ = (
     "OutputRFPPublicationItem",
     "OutputRoleLabels",
     "OutputRoleTags",
-    "OutputSavedFilterItem",
-    "OutputSavedFiltersList",
     "OutputSolicitationDetail",
     "OutputStageHistoryEntry",
     "OutputStageWithTasks",
@@ -1533,6 +1781,8 @@ __all__ = (
     "OutputTenantRFPs",
     "OutputTenantTrashFiles",
     "OutputTestWebhookResult",
+    "OutputTimerItem",
+    "OutputTimers",
     "OutputTopEntitiesByStorage",
     "OutputTopSellingProducts",
     "OutputTotalProductsSold",
@@ -1545,6 +1795,12 @@ __all__ = (
     "OutputWebhookDelivery",
     "OutputWebhooks",
     "OutputWorkItemLabels",
+    "OutputWorkItemStageForm",
+    "OutputWorkItemStageForms",
+    "OutputWorkItemSubmission",
+    "OutputWorkItemSubmissionFieldsItem",
+    "OutputWorkItemSubmissions",
+    "OutputWorkItemSubmissionValues",
     "OutputWorkItemTags",
     "OutputWorkItemTemplateLabels",
     "OutputWorkItemTemplateTags",
@@ -1552,6 +1808,10 @@ __all__ = (
     "OutputWorkItemTypes",
     "OverviewKPIs",
     "PartnerApproveProduct",
+    "PartnerFormSubmissionsSchema",
+    "PartnerFormSubmissionsSchemaColumnsItem",
+    "PartnerFormSubmissionsSchemaDynamicColumnsItem",
+    "PartnerFormSubmissionsSchemaSubmissionsItem",
     "PartnerPortalAssetItem",
     "PartnerPortalAssets",
     "PartnerPortalFileNames",
@@ -1567,17 +1827,21 @@ __all__ = (
     "PartnerPortalProjectProductsProject",
     "PartnerPortalProjects",
     "PartnerPortalProposalItem",
+    "PartnerPortalProposalPreviewResponse",
     "PartnerPortalProposals",
     "PartnerPortalSupportRequestDetail",
     "PartnerPortalSupportRequestItem",
     "PartnerPortalSupportRequests",
+    "PartnerPortalSupportRequestTimelineResponse",
     "PartnerPortalSupportRequestTypes",
     "PartnerRejectProduct",
+    "PartnerSubmitPartnerFormResponse",
     "PaymentCumulativeChartData",
     "PaymentCumulativeChartDataCumulativeExpectedItem",
     "PaymentCumulativeChartDataCumulativePaidItem",
     "PaymentCumulativeChartDataSummary",
     "PaymentDetail",
+    "PaymentDetailSourcesItem",
     "PaymentFlowChartData",
     "PaymentFlowChartDataCumulativeExpectedItem",
     "PaymentFlowChartDataCumulativePaidItem",
@@ -1593,17 +1857,23 @@ __all__ = (
     "Permission",
     "PermissionGroup",
     "Permissions",
+    "PlanInfo",
+    "PlanInfoLimits",
     "PortalAcceptProposal",
     "PortalActionStatus",
     "PortalApproveProduct",
     "PortalEditExternalSupportRequest",
+    "PortalFormSubmissionsSchema",
+    "PortalFormSubmissionsSchemaColumnsItem",
+    "PortalFormSubmissionsSchemaDynamicColumnsItem",
+    "PortalFormSubmissionsSchemaSubmissionsItem",
     "PortalRejectProduct",
+    "PreviewSubmitCustomFormResponse",
     "ProductBudgetBreakdownItem",
     "ProductCostTypeBreakdown",
     "ProductMenuItems",
     "ProductResourceUsageItem",
     "ProductResourceUsagesOutput",
-    "ProductSalesTimeSeries",
     "ProductStatusBadges",
     "ProductStatusDetail",
     "ProductStatusHistoryEntry",
@@ -1615,7 +1885,6 @@ __all__ = (
     "ProjectCashBalanceChartData",
     "ProjectCashBalanceChartDataCashBalanceDataItem",
     "ProjectCashFlowMetrics",
-    "ProjectFilterSchema",
     "ProjectListItem",
     "ProjectProductBudgetBreakdownSchema",
     "ProjectProductCostComparisonProductSchema",
@@ -1637,8 +1906,8 @@ __all__ = (
     "ProjectTeamPeoplePeopleItem",
     "ProjectWBSConfig",
     "ProposalDetail",
-    "ProposalFilterSchema",
     "ProposalHistoryEntry",
+    "ProposalHistoryEntryKind",
     "ProposalHistoryOutput",
     "ProposalListItem",
     "ProposalProduct",
@@ -1648,18 +1917,19 @@ __all__ = (
     "ProposalProductSummary",
     "ProposalWorkSchedule",
     "PublishRFPToPartners",
-    "QuickStartCategoryInfo",
-    "QuickStartConflict",
-    "QuickStartPreviewEntity",
-    "QuickStartPreviewEntityDataType0",
-    "QuickStartPreviewEntityGroup",
-    "QuickStartPreviewTemplateInfo",
-    "QuickStartTemplate",
+    "PydanticDetail",
+    "PydanticDetailItem",
     "ReassignExternalSupportRequest",
     "ReassignInternalSupportRequest",
+    "ReassignLeadList",
+    "ReassignLeadsInList",
     "ReassignOperationalItem",
     "ReceivedPartnershipItem",
     "RejectOperationalItem",
+    "ReopenLead",
+    "ReorderActions",
+    "ReorderActionsItem",
+    "ReorderFormSteps",
     "ReorderPaymentScheduleBlocks",
     "ReorderPaymentScheduleBlocksBlockSequencesItem",
     "ReorderPaymentScheduleBlocksResponse",
@@ -1667,6 +1937,7 @@ __all__ = (
     "RequestDownloadUrlGCS",
     "RequestUploadUrlGCS",
     "RequestUploadUrlGCSAttachmentnodetype",
+    "RescheduleLead",
     "ResourceActivityItem",
     "ResourceAvailability",
     "ResourceAvailabilityDays",
@@ -1676,11 +1947,11 @@ __all__ = (
     "ResourceCostRecord",
     "ResourceCostType",
     "ResourceCostTypes",
-    "ResourceFilterSchema",
     "ResourceLoadDetailSchema",
     "ResourceLoadDetailSchemaResourceDataType0",
     "ResourceLoadSchema",
     "ResourceLoadSchemaDailyTotals",
+    "ResourcesKPIs",
     "ResourceUsageDatatableSchema",
     "ResourceUsageHistogramSchema",
     "ResourceUsageItem",
@@ -1688,7 +1959,6 @@ __all__ = (
     "ResourceUsageWeeklySchema",
     "ResourceWorkItem",
     "ResourceWorkItems",
-    "RoleFilterSchema",
     "SalesActivityContent",
     "SalesActivityFeed",
     "SalesFeedActivity",
@@ -1696,6 +1966,12 @@ __all__ = (
     "ScheduleTaskItem",
     "ScheduleWarning",
     "StageProposals",
+    "SubmitAssetFormResponse",
+    "SubmitCustomForm",
+    "SubmitCustomFormData",
+    "SubmitCustomFormResponse",
+    "SubmitPortalFormResponse",
+    "SubmitWorkItemFormResponse",
     "SubtenantInfo",
     "SubtenantLegalInfo",
     "SupportKPIs",
@@ -1705,7 +1981,6 @@ __all__ = (
     "SupportRequestTypeItem",
     "SuspendBridge",
     "TaggedEntityStats",
-    "TeamFilterSchema",
     "TeamLoadSchema",
     "TeamLoadSchemaDailyTotals",
     "TeamMember",
@@ -1758,9 +2033,14 @@ __all__ = (
     "TransferSupportRequestQueue",
     "TrashFileInfo",
     "UnsuspendBridge",
+    "UpdateLeadStatus",
+    "UpdateLeadStatusStatus",
     "UpdateProjectWBS",
     "UpdateWorkItemStatus",
     "UploadUrlGCS",
+    "ValidateFormStep",
+    "ValidateFormStepData",
+    "ValidateFormStepResponse",
     "WBSConfigDetail",
     "WBSConfigReference",
     "WBSConfigurationTemplates",

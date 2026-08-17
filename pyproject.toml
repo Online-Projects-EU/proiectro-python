@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68.0", "wheel"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "proiectro"
-version = "0.2.0"
+version = "0.3.0"
 description = "Official Python SDK for the Proiect.ro API"
 readme = "README.md"
 license = "MIT"
@@ -36,3 +36,6 @@ Documentation = "https://proiect.ro/api/v1/docs"
 
 [tool.setuptools.packages.find]
 include = ["proiectro*"]
+
+[tool.setuptools.package-data]
+proiectro = ["py.typed"]

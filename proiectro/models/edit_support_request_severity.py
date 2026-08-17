@@ -1,27 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditSupportRequestSeverity")
+
 
 
 @_attrs_define
 class EditSupportRequestSeverity:
-    """Input schema for editing a support request severity
+    """ Input schema for editing a support request severity
 
-    Attributes:
-        name (str):
-        internal (bool | None | Unset):  Default: False.
-        active (bool | None | Unset):  Default: False.
-        sequence_no (int | None | Unset):  Default: 1.
-        score (int | Unset):  Default: 1.
-    """
+        Attributes:
+            name (str):
+            internal (bool | None | Unset):  Default: False.
+            active (bool | None | Unset):  Default: False.
+            sequence_no (int | None | Unset):  Default: 1.
+            score (int | Unset):  Default: 1.
+     """
 
     name: str
     internal: bool | None | Unset = False
@@ -29,6 +38,10 @@ class EditSupportRequestSeverity:
     sequence_no: int | None | Unset = 1
     score: int | Unset = 1
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -53,13 +66,12 @@ class EditSupportRequestSeverity:
 
         score = self.score
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if internal is not UNSET:
             field_dict["internal"] = internal
         if active is not UNSET:
@@ -70,6 +82,8 @@ class EditSupportRequestSeverity:
             field_dict["score"] = score
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -85,6 +99,7 @@ class EditSupportRequestSeverity:
 
         internal = _parse_internal(d.pop("internal", UNSET))
 
+
         def _parse_active(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -93,6 +108,7 @@ class EditSupportRequestSeverity:
             return cast(bool | None | Unset, data)
 
         active = _parse_active(d.pop("active", UNSET))
+
 
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
@@ -103,6 +119,7 @@ class EditSupportRequestSeverity:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
+
         score = d.pop("score", UNSET)
 
         edit_support_request_severity = cls(
@@ -112,6 +129,7 @@ class EditSupportRequestSeverity:
             sequence_no=sequence_no,
             score=score,
         )
+
 
         edit_support_request_severity.additional_properties = d
         return edit_support_request_severity

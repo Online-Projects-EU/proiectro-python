@@ -1,29 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddApiKey")
+
 
 
 @_attrs_define
 class AddApiKey:
-    """Input schema for creating a new API key
+    """ Input schema for creating a new API key
 
-    Attributes:
-        name (str):
-        description (None | str | Unset):
-        is_create (bool | Unset):  Default: False.
-        is_read (bool | Unset):  Default: True.
-        is_update (bool | Unset):  Default: False.
-        is_delete (bool | Unset):  Default: False.
-        expires_at (None | str | Unset):
-    """
+        Attributes:
+            name (str):
+            description (None | str | Unset):
+            is_create (bool | Unset):  Default: False.
+            is_read (bool | Unset):  Default: True.
+            is_update (bool | Unset):  Default: False.
+            is_delete (bool | Unset):  Default: False.
+            expires_at (None | str | Unset):
+     """
 
     name: str
     description: None | str | Unset = UNSET
@@ -33,6 +42,10 @@ class AddApiKey:
     is_delete: bool | Unset = False
     expires_at: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -57,13 +70,12 @@ class AddApiKey:
         else:
             expires_at = self.expires_at
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if is_create is not UNSET:
@@ -79,6 +91,8 @@ class AddApiKey:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -92,6 +106,7 @@ class AddApiKey:
             return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
+
 
         is_create = d.pop("is_create", UNSET)
 
@@ -110,6 +125,7 @@ class AddApiKey:
 
         expires_at = _parse_expires_at(d.pop("expires_at", UNSET))
 
+
         add_api_key = cls(
             name=name,
             description=description,
@@ -119,6 +135,7 @@ class AddApiKey:
             is_delete=is_delete,
             expires_at=expires_at,
         )
+
 
         add_api_key.additional_properties = d
         return add_api_key

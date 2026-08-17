@@ -1,31 +1,43 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputRFPItem")
+
 
 
 @_attrs_define
 class OutputRFPItem:
-    """Single RFP in tenant's list
+    """ Single RFP in tenant's list
 
-    Attributes:
-        id (str):
-        name (str):
-        internal_code (None | str):
-        category (str):
-        category_display (str):
-        currency_code (str):
-        budget_min (float | None | str):
-        budget_max (float | None | str):
-        submission_deadline (str):
-        status (str):
-        status_display (str):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            internal_code (None | str):
+            category (str):
+            category_display (str):
+            currency_code (str):
+            budget_min (float | None | str):
+            budget_max (float | None | str):
+            submission_deadline (datetime.date):
+            status (str):
+            status_display (str):
+     """
 
     id: str
     name: str
@@ -35,10 +47,14 @@ class OutputRFPItem:
     currency_code: str
     budget_min: float | None | str
     budget_max: float | None | str
-    submission_deadline: str
+    submission_deadline: datetime.date
     status: str
     status_display: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -60,31 +76,32 @@ class OutputRFPItem:
         budget_max: float | None | str
         budget_max = self.budget_max
 
-        submission_deadline = self.submission_deadline
+        submission_deadline = self.submission_deadline.isoformat()
 
         status = self.status
 
         status_display = self.status_display
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "internal_code": internal_code,
-                "category": category,
-                "category_display": category_display,
-                "currency_code": currency_code,
-                "budget_min": budget_min,
-                "budget_max": budget_max,
-                "submission_deadline": submission_deadline,
-                "status": status,
-                "status_display": status_display,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "internal_code": internal_code,
+            "category": category,
+            "category_display": category_display,
+            "currency_code": currency_code,
+            "budget_min": budget_min,
+            "budget_max": budget_max,
+            "submission_deadline": submission_deadline,
+            "status": status,
+            "status_display": status_display,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -100,6 +117,7 @@ class OutputRFPItem:
 
         internal_code = _parse_internal_code(d.pop("internal_code"))
 
+
         category = d.pop("category")
 
         category_display = d.pop("category_display")
@@ -113,6 +131,7 @@ class OutputRFPItem:
 
         budget_min = _parse_budget_min(d.pop("budget_min"))
 
+
         def _parse_budget_max(data: object) -> float | None | str:
             if data is None:
                 return data
@@ -120,7 +139,11 @@ class OutputRFPItem:
 
         budget_max = _parse_budget_max(d.pop("budget_max"))
 
-        submission_deadline = d.pop("submission_deadline")
+
+        submission_deadline = isoparse(d.pop("submission_deadline")).date()
+
+
+
 
         status = d.pop("status")
 
@@ -139,6 +162,7 @@ class OutputRFPItem:
             status=status,
             status_display=status_display,
         )
+
 
         output_rfp_item.additional_properties = d
         return output_rfp_item

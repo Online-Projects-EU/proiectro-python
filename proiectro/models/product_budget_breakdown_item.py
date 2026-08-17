@@ -1,34 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.product_cost_type_breakdown import ProductCostTypeBreakdown
-    from ..models.product_status_detail import ProductStatusDetail
+  from ..models.product_cost_type_breakdown import ProductCostTypeBreakdown
+  from ..models.product_status_detail import ProductStatusDetail
+
+
+
 
 
 T = TypeVar("T", bound="ProductBudgetBreakdownItem")
 
 
+
 @_attrs_define
 class ProductBudgetBreakdownItem:
-    """Product budget breakdown by cost type
+    """ Product budget breakdown by cost type
 
-    Attributes:
-        product_id (str):
-        product_name (str):
-        product_url (str):
-        current_status (ProductStatusDetail): Product status for lifecycle display.
-            Used in status dropdowns to show current status and all available lifecycle stages.
-            Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
-        is_active (bool):
-        cost_types (list[ProductCostTypeBreakdown]):
-        total_cost (str):
-    """
+        Attributes:
+            product_id (str):
+            product_name (str):
+            product_url (str):
+            current_status (ProductStatusDetail): Product status for lifecycle display.
+                Used in status dropdowns to show current status and all available lifecycle stages.
+                Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
+            is_active (bool):
+            cost_types (list[ProductCostTypeBreakdown]):
+            total_cost (str):
+     """
 
     product_id: str
     product_name: str
@@ -39,7 +47,13 @@ class ProductBudgetBreakdownItem:
     total_cost: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.product_status_detail import ProductStatusDetail
+        from ..models.product_cost_type_breakdown import ProductCostTypeBreakdown
         product_id = self.product_id
 
         product_name = self.product_name
@@ -55,29 +69,31 @@ class ProductBudgetBreakdownItem:
             cost_types_item = cost_types_item_data.to_dict()
             cost_types.append(cost_types_item)
 
+
+
         total_cost = self.total_cost
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "product_id": product_id,
-                "product_name": product_name,
-                "product_url": product_url,
-                "current_status": current_status,
-                "is_active": is_active,
-                "cost_types": cost_types,
-                "total_cost": total_cost,
-            }
-        )
+        field_dict.update({
+            "product_id": product_id,
+            "product_name": product_name,
+            "product_url": product_url,
+            "current_status": current_status,
+            "is_active": is_active,
+            "cost_types": cost_types,
+            "total_cost": total_cost,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_cost_type_breakdown import ProductCostTypeBreakdown
         from ..models.product_status_detail import ProductStatusDetail
-
         d = dict(src_dict)
         product_id = d.pop("product_id")
 
@@ -87,14 +103,20 @@ class ProductBudgetBreakdownItem:
 
         current_status = ProductStatusDetail.from_dict(d.pop("current_status"))
 
+
+
+
         is_active = d.pop("is_active")
 
         cost_types = []
         _cost_types = d.pop("cost_types")
-        for cost_types_item_data in _cost_types:
+        for cost_types_item_data in (_cost_types):
             cost_types_item = ProductCostTypeBreakdown.from_dict(cost_types_item_data)
 
+
+
             cost_types.append(cost_types_item)
+
 
         total_cost = d.pop("total_cost")
 
@@ -107,6 +129,7 @@ class ProductBudgetBreakdownItem:
             cost_types=cost_types,
             total_cost=total_cost,
         )
+
 
         product_budget_breakdown_item.additional_properties = d
         return product_budget_breakdown_item

@@ -1,61 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.active_partner_item import ActivePartnerItem
+  from ..models.active_partner_item import ActivePartnerItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputActivePartners")
 
 
+
 @_attrs_define
 class OutputActivePartners:
-    """List of active partners
+    """ List of active partners
 
-    Attributes:
-        partners (list[ActivePartnerItem]):
-        total (int):
-    """
+        Attributes:
+            partners (list[ActivePartnerItem]):
+            total (int):
+     """
 
     partners: list[ActivePartnerItem]
     total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.active_partner_item import ActivePartnerItem
         partners = []
         for partners_item_data in self.partners:
             partners_item = partners_item_data.to_dict()
             partners.append(partners_item)
 
+
+
         total = self.total
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "partners": partners,
-                "total": total,
-            }
-        )
+        field_dict.update({
+            "partners": partners,
+            "total": total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.active_partner_item import ActivePartnerItem
-
         d = dict(src_dict)
         partners = []
         _partners = d.pop("partners")
-        for partners_item_data in _partners:
+        for partners_item_data in (_partners):
             partners_item = ActivePartnerItem.from_dict(partners_item_data)
 
+
+
             partners.append(partners_item)
+
 
         total = d.pop("total")
 
@@ -63,6 +81,7 @@ class OutputActivePartners:
             partners=partners,
             total=total,
         )
+
 
         output_active_partners.additional_properties = d
         return output_active_partners

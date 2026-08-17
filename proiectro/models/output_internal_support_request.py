@@ -1,54 +1,65 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputInternalSupportRequest")
+
 
 
 @_attrs_define
 class OutputInternalSupportRequest:
-    """Output schema for internal support request detail card
+    """ Output schema for internal support request detail card
 
-    Attributes:
-        external_id_str (str):
-        public_reference (str):
-        title (str):
-        description (str):
-        status_lifecycle (str):
-        status_name (str):
-        type_name (str):
-        severity_name (str):
-        has_assignee (bool):
-        requester_external_id (str):
-        request_type (str):
-        card_title (str):
-        author_info (str):
-        created_info (str):
-        updated_info (str):
-        assignee_name (None | str | Unset):
-        can_assign_to_self (bool | Unset):  Default: False.
-        queue_name (None | str | Unset):
-        queue_id (None | str | Unset):
-        resource_name (None | str | Unset):
-        project_name (None | str | Unset):
-        project_customer_name (None | str | Unset):
-        customer_name (None | str | Unset):
-        work_item_name (None | str | Unset):
-        work_item_hierarchy_id (None | str | Unset):
-        reported_asset_name (None | str | Unset):
-        root_cause_asset_name (None | str | Unset):
-        can_reopen (bool | Unset):  Default: False.
-        resolution (None | str | Unset):
-        resolution_display (None | str | Unset):
-        closure_reason (None | str | Unset):
-        solution_pending (bool | Unset):  Default: False.
-    """
+        Attributes:
+            external_id_str (str):
+            public_reference (str):
+            title (str):
+            description (str):
+            status_lifecycle (str):
+            status_name (str):
+            type_name (str):
+            severity_name (str):
+            has_assignee (bool):
+            requester_external_id (str):
+            request_type (str):
+            card_title (str):
+            author_info (str):
+            created_at (datetime.datetime):
+            updated_at (datetime.datetime):
+            assignee_name (None | str | Unset):
+            can_assign_to_self (bool | Unset):  Default: False.
+            queue_name (None | str | Unset):
+            queue_id (None | str | Unset):
+            resource_name (None | str | Unset):
+            project_name (None | str | Unset):
+            project_customer_name (None | str | Unset):
+            customer_name (None | str | Unset):
+            work_item_name (None | str | Unset):
+            work_item_hierarchy_id (None | str | Unset):
+            reported_asset_name (None | str | Unset):
+            root_cause_asset_name (None | str | Unset):
+            can_reopen (bool | Unset):  Default: False.
+            resolution (None | str | Unset):
+            resolution_display (None | str | Unset):
+            closure_reason (None | str | Unset):
+            solution_pending (bool | Unset):  Default: False.
+     """
 
     external_id_str: str
     public_reference: str
@@ -63,8 +74,8 @@ class OutputInternalSupportRequest:
     request_type: str
     card_title: str
     author_info: str
-    created_info: str
-    updated_info: str
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
     assignee_name: None | str | Unset = UNSET
     can_assign_to_self: bool | Unset = False
     queue_name: None | str | Unset = UNSET
@@ -83,6 +94,10 @@ class OutputInternalSupportRequest:
     closure_reason: None | str | Unset = UNSET
     solution_pending: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         external_id_str = self.external_id_str
@@ -111,9 +126,9 @@ class OutputInternalSupportRequest:
 
         author_info = self.author_info
 
-        created_info = self.created_info
+        created_at = self.created_at.isoformat()
 
-        updated_info = self.updated_info
+        updated_at = self.updated_at.isoformat()
 
         assignee_name: None | str | Unset
         if isinstance(self.assignee_name, Unset):
@@ -205,27 +220,26 @@ class OutputInternalSupportRequest:
 
         solution_pending = self.solution_pending
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id_str": external_id_str,
-                "public_reference": public_reference,
-                "title": title,
-                "description": description,
-                "status_lifecycle": status_lifecycle,
-                "status_name": status_name,
-                "type_name": type_name,
-                "severity_name": severity_name,
-                "has_assignee": has_assignee,
-                "requester_external_id": requester_external_id,
-                "request_type": request_type,
-                "card_title": card_title,
-                "author_info": author_info,
-                "created_info": created_info,
-                "updated_info": updated_info,
-            }
-        )
+        field_dict.update({
+            "external_id_str": external_id_str,
+            "public_reference": public_reference,
+            "title": title,
+            "description": description,
+            "status_lifecycle": status_lifecycle,
+            "status_name": status_name,
+            "type_name": type_name,
+            "severity_name": severity_name,
+            "has_assignee": has_assignee,
+            "requester_external_id": requester_external_id,
+            "request_type": request_type,
+            "card_title": card_title,
+            "author_info": author_info,
+            "created_at": created_at,
+            "updated_at": updated_at,
+        })
         if assignee_name is not UNSET:
             field_dict["assignee_name"] = assignee_name
         if can_assign_to_self is not UNSET:
@@ -263,6 +277,8 @@ class OutputInternalSupportRequest:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -292,9 +308,15 @@ class OutputInternalSupportRequest:
 
         author_info = d.pop("author_info")
 
-        created_info = d.pop("created_info")
+        created_at = isoparse(d.pop("created_at"))
 
-        updated_info = d.pop("updated_info")
+
+
+
+        updated_at = isoparse(d.pop("updated_at"))
+
+
+
 
         def _parse_assignee_name(data: object) -> None | str | Unset:
             if data is None:
@@ -304,6 +326,7 @@ class OutputInternalSupportRequest:
             return cast(None | str | Unset, data)
 
         assignee_name = _parse_assignee_name(d.pop("assignee_name", UNSET))
+
 
         can_assign_to_self = d.pop("can_assign_to_self", UNSET)
 
@@ -316,6 +339,7 @@ class OutputInternalSupportRequest:
 
         queue_name = _parse_queue_name(d.pop("queue_name", UNSET))
 
+
         def _parse_queue_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -324,6 +348,7 @@ class OutputInternalSupportRequest:
             return cast(None | str | Unset, data)
 
         queue_id = _parse_queue_id(d.pop("queue_id", UNSET))
+
 
         def _parse_resource_name(data: object) -> None | str | Unset:
             if data is None:
@@ -334,6 +359,7 @@ class OutputInternalSupportRequest:
 
         resource_name = _parse_resource_name(d.pop("resource_name", UNSET))
 
+
         def _parse_project_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -343,6 +369,7 @@ class OutputInternalSupportRequest:
 
         project_name = _parse_project_name(d.pop("project_name", UNSET))
 
+
         def _parse_project_customer_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -350,9 +377,8 @@ class OutputInternalSupportRequest:
                 return data
             return cast(None | str | Unset, data)
 
-        project_customer_name = _parse_project_customer_name(
-            d.pop("project_customer_name", UNSET)
-        )
+        project_customer_name = _parse_project_customer_name(d.pop("project_customer_name", UNSET))
+
 
         def _parse_customer_name(data: object) -> None | str | Unset:
             if data is None:
@@ -363,6 +389,7 @@ class OutputInternalSupportRequest:
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
 
+
         def _parse_work_item_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -372,6 +399,7 @@ class OutputInternalSupportRequest:
 
         work_item_name = _parse_work_item_name(d.pop("work_item_name", UNSET))
 
+
         def _parse_work_item_hierarchy_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -379,9 +407,8 @@ class OutputInternalSupportRequest:
                 return data
             return cast(None | str | Unset, data)
 
-        work_item_hierarchy_id = _parse_work_item_hierarchy_id(
-            d.pop("work_item_hierarchy_id", UNSET)
-        )
+        work_item_hierarchy_id = _parse_work_item_hierarchy_id(d.pop("work_item_hierarchy_id", UNSET))
+
 
         def _parse_reported_asset_name(data: object) -> None | str | Unset:
             if data is None:
@@ -390,9 +417,8 @@ class OutputInternalSupportRequest:
                 return data
             return cast(None | str | Unset, data)
 
-        reported_asset_name = _parse_reported_asset_name(
-            d.pop("reported_asset_name", UNSET)
-        )
+        reported_asset_name = _parse_reported_asset_name(d.pop("reported_asset_name", UNSET))
+
 
         def _parse_root_cause_asset_name(data: object) -> None | str | Unset:
             if data is None:
@@ -401,9 +427,8 @@ class OutputInternalSupportRequest:
                 return data
             return cast(None | str | Unset, data)
 
-        root_cause_asset_name = _parse_root_cause_asset_name(
-            d.pop("root_cause_asset_name", UNSET)
-        )
+        root_cause_asset_name = _parse_root_cause_asset_name(d.pop("root_cause_asset_name", UNSET))
+
 
         can_reopen = d.pop("can_reopen", UNSET)
 
@@ -416,6 +441,7 @@ class OutputInternalSupportRequest:
 
         resolution = _parse_resolution(d.pop("resolution", UNSET))
 
+
         def _parse_resolution_display(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -423,9 +449,8 @@ class OutputInternalSupportRequest:
                 return data
             return cast(None | str | Unset, data)
 
-        resolution_display = _parse_resolution_display(
-            d.pop("resolution_display", UNSET)
-        )
+        resolution_display = _parse_resolution_display(d.pop("resolution_display", UNSET))
+
 
         def _parse_closure_reason(data: object) -> None | str | Unset:
             if data is None:
@@ -435,6 +460,7 @@ class OutputInternalSupportRequest:
             return cast(None | str | Unset, data)
 
         closure_reason = _parse_closure_reason(d.pop("closure_reason", UNSET))
+
 
         solution_pending = d.pop("solution_pending", UNSET)
 
@@ -452,8 +478,8 @@ class OutputInternalSupportRequest:
             request_type=request_type,
             card_title=card_title,
             author_info=author_info,
-            created_info=created_info,
-            updated_info=updated_info,
+            created_at=created_at,
+            updated_at=updated_at,
             assignee_name=assignee_name,
             can_assign_to_self=can_assign_to_self,
             queue_name=queue_name,
@@ -472,6 +498,7 @@ class OutputInternalSupportRequest:
             closure_reason=closure_reason,
             solution_pending=solution_pending,
         )
+
 
         output_internal_support_request.additional_properties = d
         return output_internal_support_request

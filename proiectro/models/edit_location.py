@@ -1,27 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditLocation")
+
 
 
 @_attrs_define
 class EditLocation:
-    """
-    Attributes:
-        name (str):
-        description (None | str | Unset):
-        internal_code (None | str | Unset):
-        country (None | str | Unset):
-        parent (None | str | Unset):
-        is_active (bool | Unset):  Default: False.
-    """
+    """ 
+        Attributes:
+            name (str):
+            description (None | str | Unset):
+            internal_code (None | str | Unset):
+            country (None | str | Unset):
+            parent (None | str | Unset):
+            is_active (bool | Unset):  Default: False.
+            latitude (float | None | Unset):
+            longitude (float | None | Unset):
+     """
 
     name: str
     description: None | str | Unset = UNSET
@@ -29,7 +40,13 @@ class EditLocation:
     country: None | str | Unset = UNSET
     parent: None | str | Unset = UNSET
     is_active: bool | Unset = False
+    latitude: float | None | Unset = UNSET
+    longitude: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -60,13 +77,24 @@ class EditLocation:
 
         is_active = self.is_active
 
+        latitude: float | None | Unset
+        if isinstance(self.latitude, Unset):
+            latitude = UNSET
+        else:
+            latitude = self.latitude
+
+        longitude: float | None | Unset
+        if isinstance(self.longitude, Unset):
+            longitude = UNSET
+        else:
+            longitude = self.longitude
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if internal_code is not UNSET:
@@ -77,8 +105,14 @@ class EditLocation:
             field_dict["parent"] = parent
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
+        if latitude is not UNSET:
+            field_dict["latitude"] = latitude
+        if longitude is not UNSET:
+            field_dict["longitude"] = longitude
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -94,6 +128,7 @@ class EditLocation:
 
         description = _parse_description(d.pop("description", UNSET))
 
+
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -102,6 +137,7 @@ class EditLocation:
             return cast(None | str | Unset, data)
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
+
 
         def _parse_country(data: object) -> None | str | Unset:
             if data is None:
@@ -112,6 +148,7 @@ class EditLocation:
 
         country = _parse_country(d.pop("country", UNSET))
 
+
         def _parse_parent(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -121,7 +158,28 @@ class EditLocation:
 
         parent = _parse_parent(d.pop("parent", UNSET))
 
+
         is_active = d.pop("is_active", UNSET)
+
+        def _parse_latitude(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        latitude = _parse_latitude(d.pop("latitude", UNSET))
+
+
+        def _parse_longitude(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        longitude = _parse_longitude(d.pop("longitude", UNSET))
+
 
         edit_location = cls(
             name=name,
@@ -130,7 +188,10 @@ class EditLocation:
             country=country,
             parent=parent,
             is_active=is_active,
+            latitude=latitude,
+            longitude=longitude,
         )
+
 
         edit_location.additional_properties = d
         return edit_location

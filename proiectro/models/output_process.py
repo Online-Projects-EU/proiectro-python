@@ -1,29 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputProcess")
+
 
 
 @_attrs_define
 class OutputProcess:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        description (str):
-        is_active (bool):
-        allow_backward_move (bool):
-        allow_skip_move (bool):
-        stage_count (int | Unset):  Default: 0.
-        item_count (int | Unset):  Default: 0.
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            description (str):
+            is_active (bool):
+            allow_backward_move (bool):
+            allow_skip_move (bool):
+            stage_count (int | Unset):  Default: 0.
+            item_count (int | Unset):  Default: 0.
+     """
 
     id: str
     name: str
@@ -34,6 +42,10 @@ class OutputProcess:
     stage_count: int | Unset = 0
     item_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -52,24 +64,25 @@ class OutputProcess:
 
         item_count = self.item_count
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "description": description,
-                "is_active": is_active,
-                "allow_backward_move": allow_backward_move,
-                "allow_skip_move": allow_skip_move,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "description": description,
+            "is_active": is_active,
+            "allow_backward_move": allow_backward_move,
+            "allow_skip_move": allow_skip_move,
+        })
         if stage_count is not UNSET:
             field_dict["stage_count"] = stage_count
         if item_count is not UNSET:
             field_dict["item_count"] = item_count
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -100,6 +113,7 @@ class OutputProcess:
             stage_count=stage_count,
             item_count=item_count,
         )
+
 
         output_process.additional_properties = d
         return output_process

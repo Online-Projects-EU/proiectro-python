@@ -1,7 +1,7 @@
 from enum import Enum
 
-
 class AddPaymentScheduleBlockPaymentType(str, Enum):
+    CONSUMPTION = "consumption"
     MILESTONE_PAYMENT = "milestone_payment"
     PROGRESS_PAYMENT = "progress_payment"
     UPFRONT_PAYMENT = "upfront_payment"

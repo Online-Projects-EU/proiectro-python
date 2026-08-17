@@ -1,34 +1,43 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
 
 T = TypeVar("T", bound="FeedEventContent")
 
 
+
 @_attrs_define
 class FeedEventContent:
-    """
-    Attributes:
-        source (str):
-        author_id (str):
-        author_name (str):
-        timestamp (datetime.datetime):
-        title (str):
-        description (str):
-        author_avatar_url (None | str | Unset):
-        author_email (None | str | Unset):
-        author_phone (None | str | Unset):
-        is_system (bool | Unset):  Default: False.
-        tenant_logo_url (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            source (str):
+            author_id (str):
+            author_name (str):
+            timestamp (datetime.datetime):
+            title (str):
+            description (str):
+            author_avatar_url (None | str | Unset):
+            author_email (None | str | Unset):
+            author_phone (None | str | Unset):
+            is_system (bool | Unset):  Default: False.
+            tenant_logo_url (None | str | Unset):
+     """
 
     source: str
     author_id: str
@@ -42,6 +51,10 @@ class FeedEventContent:
     is_system: bool | Unset = False
     tenant_logo_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         source = self.source
@@ -82,18 +95,17 @@ class FeedEventContent:
         else:
             tenant_logo_url = self.tenant_logo_url
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "source": source,
-                "author_id": author_id,
-                "author_name": author_name,
-                "timestamp": timestamp,
-                "title": title,
-                "description": description,
-            }
-        )
+        field_dict.update({
+            "source": source,
+            "author_id": author_id,
+            "author_name": author_name,
+            "timestamp": timestamp,
+            "title": title,
+            "description": description,
+        })
         if author_avatar_url is not UNSET:
             field_dict["author_avatar_url"] = author_avatar_url
         if author_email is not UNSET:
@@ -107,6 +119,8 @@ class FeedEventContent:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -117,6 +131,9 @@ class FeedEventContent:
         author_name = d.pop("author_name")
 
         timestamp = isoparse(d.pop("timestamp"))
+
+
+
 
         title = d.pop("title")
 
@@ -131,6 +148,7 @@ class FeedEventContent:
 
         author_avatar_url = _parse_author_avatar_url(d.pop("author_avatar_url", UNSET))
 
+
         def _parse_author_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -140,6 +158,7 @@ class FeedEventContent:
 
         author_email = _parse_author_email(d.pop("author_email", UNSET))
 
+
         def _parse_author_phone(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -148,6 +167,7 @@ class FeedEventContent:
             return cast(None | str | Unset, data)
 
         author_phone = _parse_author_phone(d.pop("author_phone", UNSET))
+
 
         is_system = d.pop("is_system", UNSET)
 
@@ -159,6 +179,7 @@ class FeedEventContent:
             return cast(None | str | Unset, data)
 
         tenant_logo_url = _parse_tenant_logo_url(d.pop("tenant_logo_url", UNSET))
+
 
         feed_event_content = cls(
             source=source,
@@ -173,6 +194,7 @@ class FeedEventContent:
             is_system=is_system,
             tenant_logo_url=tenant_logo_url,
         )
+
 
         feed_event_content.additional_properties = d
         return feed_event_content

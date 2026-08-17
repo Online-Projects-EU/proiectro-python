@@ -8,6 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.add_work_item_type import AddWorkItemType
 from ...models.api_response import APIResponse
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -35,16 +36,21 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
         return response_200
 
-    if response.status_code == 400:
-        response_400 = APIResponse.from_dict(response.json())
+    if response.status_code == 422:
+        response_422 = PydanticDetail.from_dict(response.json())
 
-        return response_400
+        return response_422
+
+    if response.status_code == 500:
+        response_500 = APIResponse.from_dict(response.json())
+
+        return response_500
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -54,7 +60,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -68,7 +74,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWorkItemType,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Work Item Type
 
      Create a new work item type to categorize work in projects. Define whether it's a
@@ -84,7 +90,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -104,7 +110,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddWorkItemType,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Work Item Type
 
      Create a new work item type to categorize work in projects. Define whether it's a
@@ -120,7 +126,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -135,7 +141,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWorkItemType,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Work Item Type
 
      Create a new work item type to categorize work in projects. Define whether it's a
@@ -151,7 +157,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -169,7 +175,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddWorkItemType,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Work Item Type
 
      Create a new work item type to categorize work in projects. Define whether it's a
@@ -185,7 +191,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return (

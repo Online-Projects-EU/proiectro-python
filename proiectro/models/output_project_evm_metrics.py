@@ -1,62 +1,67 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.evm_warning import EVMWarning
-    from ..models.output_project_evm_metrics_chart_series_item import (
-        OutputProjectEVMMetricsChartSeriesItem,
-    )
+  from ..models.evm_warning import EVMWarning
+  from ..models.output_project_evm_metrics_chart_series_item import OutputProjectEVMMetricsChartSeriesItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputProjectEVMMetrics")
 
 
+
 @_attrs_define
 class OutputProjectEVMMetrics:
-    """Earned Value Management (EVM) metrics for a project
+    """ Earned Value Management (EVM) metrics for a project
 
-    Attributes:
-        pv (str):
-        ev (str):
-        ac (str):
-        spi (str):
-        cpi (str):
-        cv (str):
-        sv (str):
-        bac (str):
-        eac (str):
-        etc (str):
-        vac (str):
-        eac_method1 (str):
-        etc_method1 (str):
-        vac_method1 (str):
-        eac_method2 (str):
-        etc_method2 (str):
-        vac_method2 (str):
-        eac_method3 (str):
-        etc_method3 (str):
-        vac_method3 (str):
-        eac_method4 (str):
-        etc_method4 (str):
-        vac_method4 (str):
-        currency_symbol (str):
-        percent_complete (str):
-        spi_status (str):
-        cpi_status (str):
-        project_id (str):
-        project_name (str):
-        has_evm_data (bool):
-        warnings (list[EVMWarning] | Unset):
-        chart_categories (list[str] | Unset):
-        chart_series (list[OutputProjectEVMMetricsChartSeriesItem] | Unset):
-    """
+        Attributes:
+            pv (str):
+            ev (str):
+            ac (str):
+            spi (str):
+            cpi (str):
+            cv (str):
+            sv (str):
+            bac (str):
+            eac (str):
+            etc (str):
+            vac (str):
+            eac_method1 (str):
+            etc_method1 (str):
+            vac_method1 (str):
+            eac_method2 (str):
+            etc_method2 (str):
+            vac_method2 (str):
+            eac_method3 (str):
+            etc_method3 (str):
+            vac_method3 (str):
+            eac_method4 (str):
+            etc_method4 (str):
+            vac_method4 (str):
+            currency_symbol (str):
+            percent_complete (str):
+            spi_status (str):
+            cpi_status (str):
+            project_id (str):
+            project_name (str):
+            has_evm_data (bool):
+            warnings (list[EVMWarning] | Unset):
+            chart_categories (list[str] | Unset):
+            chart_series (list[OutputProjectEVMMetricsChartSeriesItem] | Unset):
+     """
 
     pv: str
     ev: str
@@ -93,7 +98,13 @@ class OutputProjectEVMMetrics:
     chart_series: list[OutputProjectEVMMetricsChartSeriesItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.evm_warning import EVMWarning
+        from ..models.output_project_evm_metrics_chart_series_item import OutputProjectEVMMetricsChartSeriesItem
         pv = self.pv
 
         ev = self.ev
@@ -161,9 +172,13 @@ class OutputProjectEVMMetrics:
                 warnings_item = warnings_item_data.to_dict()
                 warnings.append(warnings_item)
 
+
+
         chart_categories: list[str] | Unset = UNSET
         if not isinstance(self.chart_categories, Unset):
             chart_categories = self.chart_categories
+
+
 
         chart_series: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.chart_series, Unset):
@@ -172,42 +187,43 @@ class OutputProjectEVMMetrics:
                 chart_series_item = chart_series_item_data.to_dict()
                 chart_series.append(chart_series_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "pv": pv,
-                "ev": ev,
-                "ac": ac,
-                "spi": spi,
-                "cpi": cpi,
-                "cv": cv,
-                "sv": sv,
-                "bac": bac,
-                "eac": eac,
-                "etc": etc,
-                "vac": vac,
-                "eac_method1": eac_method1,
-                "etc_method1": etc_method1,
-                "vac_method1": vac_method1,
-                "eac_method2": eac_method2,
-                "etc_method2": etc_method2,
-                "vac_method2": vac_method2,
-                "eac_method3": eac_method3,
-                "etc_method3": etc_method3,
-                "vac_method3": vac_method3,
-                "eac_method4": eac_method4,
-                "etc_method4": etc_method4,
-                "vac_method4": vac_method4,
-                "currency_symbol": currency_symbol,
-                "percent_complete": percent_complete,
-                "spi_status": spi_status,
-                "cpi_status": cpi_status,
-                "project_id": project_id,
-                "project_name": project_name,
-                "has_evm_data": has_evm_data,
-            }
-        )
+        field_dict.update({
+            "pv": pv,
+            "ev": ev,
+            "ac": ac,
+            "spi": spi,
+            "cpi": cpi,
+            "cv": cv,
+            "sv": sv,
+            "bac": bac,
+            "eac": eac,
+            "etc": etc,
+            "vac": vac,
+            "eac_method1": eac_method1,
+            "etc_method1": etc_method1,
+            "vac_method1": vac_method1,
+            "eac_method2": eac_method2,
+            "etc_method2": etc_method2,
+            "vac_method2": vac_method2,
+            "eac_method3": eac_method3,
+            "etc_method3": etc_method3,
+            "vac_method3": vac_method3,
+            "eac_method4": eac_method4,
+            "etc_method4": etc_method4,
+            "vac_method4": vac_method4,
+            "currency_symbol": currency_symbol,
+            "percent_complete": percent_complete,
+            "spi_status": spi_status,
+            "cpi_status": cpi_status,
+            "project_id": project_id,
+            "project_name": project_name,
+            "has_evm_data": has_evm_data,
+        })
         if warnings is not UNSET:
             field_dict["warnings"] = warnings
         if chart_categories is not UNSET:
@@ -217,13 +233,12 @@ class OutputProjectEVMMetrics:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.evm_warning import EVMWarning
-        from ..models.output_project_evm_metrics_chart_series_item import (
-            OutputProjectEVMMetricsChartSeriesItem,
-        )
-
+        from ..models.output_project_evm_metrics_chart_series_item import OutputProjectEVMMetricsChartSeriesItem
         d = dict(src_dict)
         pv = d.pop("pv")
 
@@ -292,20 +307,25 @@ class OutputProjectEVMMetrics:
             for warnings_item_data in _warnings:
                 warnings_item = EVMWarning.from_dict(warnings_item_data)
 
+
+
                 warnings.append(warnings_item)
 
+
         chart_categories = cast(list[str], d.pop("chart_categories", UNSET))
+
 
         _chart_series = d.pop("chart_series", UNSET)
         chart_series: list[OutputProjectEVMMetricsChartSeriesItem] | Unset = UNSET
         if _chart_series is not UNSET:
             chart_series = []
             for chart_series_item_data in _chart_series:
-                chart_series_item = OutputProjectEVMMetricsChartSeriesItem.from_dict(
-                    chart_series_item_data
-                )
+                chart_series_item = OutputProjectEVMMetricsChartSeriesItem.from_dict(chart_series_item_data)
+
+
 
                 chart_series.append(chart_series_item)
+
 
         output_project_evm_metrics = cls(
             pv=pv,
@@ -342,6 +362,7 @@ class OutputProjectEVMMetrics:
             chart_categories=chart_categories,
             chart_series=chart_series,
         )
+
 
         output_project_evm_metrics.additional_properties = d
         return output_project_evm_metrics

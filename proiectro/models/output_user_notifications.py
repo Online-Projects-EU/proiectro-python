@@ -1,31 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.notification_item import NotificationItem
+  from ..models.notification_item import NotificationItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputUserNotifications")
 
 
+
 @_attrs_define
 class OutputUserNotifications:
-    """
-    Attributes:
-        notifications (list[NotificationItem]):
-        page (int):
-        per_page (int):
-        total_count (int):
-        has_next (bool):
-        next_page (int):
-        unread_count (int):
-        user_tenant_count (int):
-    """
+    """ 
+        Attributes:
+            notifications (list[NotificationItem]):
+            page (int):
+            per_page (int):
+            total_count (int):
+            has_next (bool):
+            next_page (int):
+            unread_count (int):
+            user_tenant_count (int):
+     """
 
     notifications: list[NotificationItem]
     page: int
@@ -37,11 +45,18 @@ class OutputUserNotifications:
     user_tenant_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.notification_item import NotificationItem
         notifications = []
         for notifications_item_data in self.notifications:
             notifications_item = notifications_item_data.to_dict()
             notifications.append(notifications_item)
+
+
 
         page = self.page
 
@@ -57,34 +72,37 @@ class OutputUserNotifications:
 
         user_tenant_count = self.user_tenant_count
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "notifications": notifications,
-                "page": page,
-                "per_page": per_page,
-                "total_count": total_count,
-                "has_next": has_next,
-                "next_page": next_page,
-                "unread_count": unread_count,
-                "user_tenant_count": user_tenant_count,
-            }
-        )
+        field_dict.update({
+            "notifications": notifications,
+            "page": page,
+            "per_page": per_page,
+            "total_count": total_count,
+            "has_next": has_next,
+            "next_page": next_page,
+            "unread_count": unread_count,
+            "user_tenant_count": user_tenant_count,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.notification_item import NotificationItem
-
         d = dict(src_dict)
         notifications = []
         _notifications = d.pop("notifications")
-        for notifications_item_data in _notifications:
+        for notifications_item_data in (_notifications):
             notifications_item = NotificationItem.from_dict(notifications_item_data)
 
+
+
             notifications.append(notifications_item)
+
 
         page = d.pop("page")
 
@@ -110,6 +128,7 @@ class OutputUserNotifications:
             unread_count=unread_count,
             user_tenant_count=user_tenant_count,
         )
+
 
         output_user_notifications.additional_properties = d
         return output_user_notifications

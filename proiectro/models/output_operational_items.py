@@ -1,63 +1,80 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_operational_item import OutputOperationalItem
+  from ..models.output_operational_item import OutputOperationalItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputOperationalItems")
 
 
+
 @_attrs_define
 class OutputOperationalItems:
-    """
-    Attributes:
-        items (list[OutputOperationalItem]):
-        total (int | Unset):  Default: 0.
-    """
+    """ 
+        Attributes:
+            items (list[OutputOperationalItem]):
+            total (int | Unset):  Default: 0.
+     """
 
     items: list[OutputOperationalItem]
     total: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_operational_item import OutputOperationalItem
         items = []
         for items_item_data in self.items:
             items_item = items_item_data.to_dict()
             items.append(items_item)
 
+
+
         total = self.total
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "items": items,
-            }
-        )
+        field_dict.update({
+            "items": items,
+        })
         if total is not UNSET:
             field_dict["total"] = total
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_operational_item import OutputOperationalItem
-
         d = dict(src_dict)
         items = []
         _items = d.pop("items")
-        for items_item_data in _items:
+        for items_item_data in (_items):
             items_item = OutputOperationalItem.from_dict(items_item_data)
 
+
+
             items.append(items_item)
+
 
         total = d.pop("total", UNSET)
 
@@ -65,6 +82,7 @@ class OutputOperationalItems:
             items=items,
             total=total,
         )
+
 
         output_operational_items.additional_properties = d
         return output_operational_items

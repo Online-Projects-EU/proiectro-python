@@ -1,41 +1,50 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.bridge_details_initiator_grants import BridgeDetailsInitiatorGrants
-    from ..models.bridge_details_responder_grants import BridgeDetailsResponderGrants
-    from ..models.bridge_tenant_info import BridgeTenantInfo
+  from ..models.bridge_details_initiator_grants import BridgeDetailsInitiatorGrants
+  from ..models.bridge_details_responder_grants import BridgeDetailsResponderGrants
+  from ..models.bridge_tenant_info import BridgeTenantInfo
+
+
+
 
 
 T = TypeVar("T", bound="BridgeDetails")
 
 
+
 @_attrs_define
 class BridgeDetails:
-    """Details of a single bridge for subtenant display
+    """ Details of a single bridge for subtenant display
 
-    Attributes:
-        bridge_id (str):
-        status (str):
-        role (str):
-        initiator_tenant (BridgeTenantInfo): Tenant information in a bridge context
-        initiator_grants (BridgeDetailsInitiatorGrants):
-        responder_grants (BridgeDetailsResponderGrants):
-        responder_tenant (BridgeTenantInfo | None | Unset):
-        invitation_message (None | str | Unset):
-        created_at (None | str | Unset):
-        last_timestamp_name (None | str | Unset):
-        last_timestamp (None | str | Unset):
-        suspended_by_tenant_id (None | str | Unset):
-        can_unsuspend (bool | Unset):  Default: False.
-    """
+        Attributes:
+            bridge_id (str):
+            status (str):
+            role (str):
+            initiator_tenant (BridgeTenantInfo): Tenant information in a bridge context
+            initiator_grants (BridgeDetailsInitiatorGrants):
+            responder_grants (BridgeDetailsResponderGrants):
+            responder_tenant (BridgeTenantInfo | None | Unset):
+            invitation_message (None | str | Unset):
+            created_at (datetime.datetime | None | Unset):
+            last_timestamp_name (None | str | Unset):
+            last_timestamp (datetime.datetime | None | Unset):
+            suspended_by_tenant_id (None | str | Unset):
+            can_unsuspend (bool | Unset):  Default: False.
+     """
 
     bridge_id: str
     status: str
@@ -45,16 +54,21 @@ class BridgeDetails:
     responder_grants: BridgeDetailsResponderGrants
     responder_tenant: BridgeTenantInfo | None | Unset = UNSET
     invitation_message: None | str | Unset = UNSET
-    created_at: None | str | Unset = UNSET
+    created_at: datetime.datetime | None | Unset = UNSET
     last_timestamp_name: None | str | Unset = UNSET
-    last_timestamp: None | str | Unset = UNSET
+    last_timestamp: datetime.datetime | None | Unset = UNSET
     suspended_by_tenant_id: None | str | Unset = UNSET
     can_unsuspend: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> dict[str, Any]:
-        from ..models.bridge_tenant_info import BridgeTenantInfo
 
+
+
+
+    def to_dict(self) -> dict[str, Any]:
+        from ..models.bridge_details_initiator_grants import BridgeDetailsInitiatorGrants
+        from ..models.bridge_details_responder_grants import BridgeDetailsResponderGrants
+        from ..models.bridge_tenant_info import BridgeTenantInfo
         bridge_id = self.bridge_id
 
         status = self.status
@@ -84,6 +98,8 @@ class BridgeDetails:
         created_at: None | str | Unset
         if isinstance(self.created_at, Unset):
             created_at = UNSET
+        elif isinstance(self.created_at, datetime.datetime):
+            created_at = self.created_at.isoformat()
         else:
             created_at = self.created_at
 
@@ -96,6 +112,8 @@ class BridgeDetails:
         last_timestamp: None | str | Unset
         if isinstance(self.last_timestamp, Unset):
             last_timestamp = UNSET
+        elif isinstance(self.last_timestamp, datetime.datetime):
+            last_timestamp = self.last_timestamp.isoformat()
         else:
             last_timestamp = self.last_timestamp
 
@@ -107,18 +125,17 @@ class BridgeDetails:
 
         can_unsuspend = self.can_unsuspend
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "status": status,
-                "role": role,
-                "initiator_tenant": initiator_tenant,
-                "initiator_grants": initiator_grants,
-                "responder_grants": responder_grants,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "status": status,
+            "role": role,
+            "initiator_tenant": initiator_tenant,
+            "initiator_grants": initiator_grants,
+            "responder_grants": responder_grants,
+        })
         if responder_tenant is not UNSET:
             field_dict["responder_tenant"] = responder_tenant
         if invitation_message is not UNSET:
@@ -136,16 +153,13 @@ class BridgeDetails:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.bridge_details_initiator_grants import (
-            BridgeDetailsInitiatorGrants,
-        )
-        from ..models.bridge_details_responder_grants import (
-            BridgeDetailsResponderGrants,
-        )
+        from ..models.bridge_details_initiator_grants import BridgeDetailsInitiatorGrants
+        from ..models.bridge_details_responder_grants import BridgeDetailsResponderGrants
         from ..models.bridge_tenant_info import BridgeTenantInfo
-
         d = dict(src_dict)
         bridge_id = d.pop("bridge_id")
 
@@ -155,13 +169,18 @@ class BridgeDetails:
 
         initiator_tenant = BridgeTenantInfo.from_dict(d.pop("initiator_tenant"))
 
-        initiator_grants = BridgeDetailsInitiatorGrants.from_dict(
-            d.pop("initiator_grants")
-        )
 
-        responder_grants = BridgeDetailsResponderGrants.from_dict(
-            d.pop("responder_grants")
-        )
+
+
+        initiator_grants = BridgeDetailsInitiatorGrants.from_dict(d.pop("initiator_grants"))
+
+
+
+
+        responder_grants = BridgeDetailsResponderGrants.from_dict(d.pop("responder_grants"))
+
+
+
 
         def _parse_responder_tenant(data: object) -> BridgeTenantInfo | None | Unset:
             if data is None:
@@ -173,12 +192,15 @@ class BridgeDetails:
                     raise TypeError()
                 responder_tenant_type_0 = BridgeTenantInfo.from_dict(data)
 
+
+
                 return responder_tenant_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(BridgeTenantInfo | None | Unset, data)
 
         responder_tenant = _parse_responder_tenant(d.pop("responder_tenant", UNSET))
+
 
         def _parse_invitation_message(data: object) -> None | str | Unset:
             if data is None:
@@ -187,18 +209,28 @@ class BridgeDetails:
                 return data
             return cast(None | str | Unset, data)
 
-        invitation_message = _parse_invitation_message(
-            d.pop("invitation_message", UNSET)
-        )
+        invitation_message = _parse_invitation_message(d.pop("invitation_message", UNSET))
 
-        def _parse_created_at(data: object) -> None | str | Unset:
+
+        def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                created_at_type_0 = isoparse(data)
+
+
+
+                return created_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
         created_at = _parse_created_at(d.pop("created_at", UNSET))
+
 
         def _parse_last_timestamp_name(data: object) -> None | str | Unset:
             if data is None:
@@ -207,18 +239,28 @@ class BridgeDetails:
                 return data
             return cast(None | str | Unset, data)
 
-        last_timestamp_name = _parse_last_timestamp_name(
-            d.pop("last_timestamp_name", UNSET)
-        )
+        last_timestamp_name = _parse_last_timestamp_name(d.pop("last_timestamp_name", UNSET))
 
-        def _parse_last_timestamp(data: object) -> None | str | Unset:
+
+        def _parse_last_timestamp(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                last_timestamp_type_0 = isoparse(data)
+
+
+
+                return last_timestamp_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
         last_timestamp = _parse_last_timestamp(d.pop("last_timestamp", UNSET))
+
 
         def _parse_suspended_by_tenant_id(data: object) -> None | str | Unset:
             if data is None:
@@ -227,9 +269,8 @@ class BridgeDetails:
                 return data
             return cast(None | str | Unset, data)
 
-        suspended_by_tenant_id = _parse_suspended_by_tenant_id(
-            d.pop("suspended_by_tenant_id", UNSET)
-        )
+        suspended_by_tenant_id = _parse_suspended_by_tenant_id(d.pop("suspended_by_tenant_id", UNSET))
+
 
         can_unsuspend = d.pop("can_unsuspend", UNSET)
 
@@ -248,6 +289,7 @@ class BridgeDetails:
             suspended_by_tenant_id=suspended_by_tenant_id,
             can_unsuspend=can_unsuspend,
         )
+
 
         bridge_details.additional_properties = d
         return bridge_details

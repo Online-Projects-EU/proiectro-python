@@ -1,38 +1,51 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 from ..models.edit_operational_item_priority import EditOperationalItemPriority
 from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
 
 T = TypeVar("T", bound="EditOperationalItem")
 
 
+
 @_attrs_define
 class EditOperationalItem:
-    """
-    Attributes:
-        name (str):
-        description (str | Unset):  Default: ''.
-        customer (None | str | Unset):
-        customer_asset (None | str | Unset):
-        priority (EditOperationalItemPriority | Unset):  Default: EditOperationalItemPriority.NORMAL.
-        due_date (None | str | Unset):
-        owner (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            description (str | Unset):  Default: ''.
+            customer (None | str | Unset):
+            customer_asset (None | str | Unset):
+            priority (EditOperationalItemPriority | Unset):  Default: EditOperationalItemPriority.NORMAL.
+            due_date (None | str | Unset):
+            owner (None | str | Unset):
+     """
 
     name: str
-    description: str | Unset = ""
+    description: str | Unset = ''
     customer: None | str | Unset = UNSET
     customer_asset: None | str | Unset = UNSET
     priority: EditOperationalItemPriority | Unset = EditOperationalItemPriority.NORMAL
     due_date: None | str | Unset = UNSET
     owner: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -55,6 +68,7 @@ class EditOperationalItem:
         if not isinstance(self.priority, Unset):
             priority = self.priority.value
 
+
         due_date: None | str | Unset
         if isinstance(self.due_date, Unset):
             due_date = UNSET
@@ -67,13 +81,12 @@ class EditOperationalItem:
         else:
             owner = self.owner
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if customer is not UNSET:
@@ -88,6 +101,8 @@ class EditOperationalItem:
             field_dict["owner"] = owner
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -105,6 +120,7 @@ class EditOperationalItem:
 
         customer = _parse_customer(d.pop("customer", UNSET))
 
+
         def _parse_customer_asset(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -114,12 +130,16 @@ class EditOperationalItem:
 
         customer_asset = _parse_customer_asset(d.pop("customer_asset", UNSET))
 
+
         _priority = d.pop("priority", UNSET)
         priority: EditOperationalItemPriority | Unset
-        if isinstance(_priority, Unset):
+        if isinstance(_priority,  Unset):
             priority = UNSET
         else:
             priority = EditOperationalItemPriority(_priority)
+
+
+
 
         def _parse_due_date(data: object) -> None | str | Unset:
             if data is None:
@@ -130,6 +150,7 @@ class EditOperationalItem:
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
 
+
         def _parse_owner(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -138,6 +159,7 @@ class EditOperationalItem:
             return cast(None | str | Unset, data)
 
         owner = _parse_owner(d.pop("owner", UNSET))
+
 
         edit_operational_item = cls(
             name=name,
@@ -148,6 +170,7 @@ class EditOperationalItem:
             due_date=due_date,
             owner=owner,
         )
+
 
         edit_operational_item.additional_properties = d
         return edit_operational_item

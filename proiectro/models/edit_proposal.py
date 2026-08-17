@@ -1,48 +1,55 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.edit_proposal_pricing_strategy_type_0 import (
-    EditProposalPricingStrategyType0,
-)
 from ..types import UNSET, Unset
+
+from ..models.edit_proposal_pricing_strategy_type_0 import EditProposalPricingStrategyType0
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
 
 T = TypeVar("T", bound="EditProposal")
 
 
+
 @_attrs_define
 class EditProposal:
-    """
-    Attributes:
-        name (str):
-        description (str):
-        customer (str):
-        owner (str):
-        proposal_currency (str):
-        internal_code (None | str | Unset):
-        rfp_publication (None | str | Unset):
-        pricing_strategy (EditProposalPricingStrategyType0 | None | Unset):  Default:
-            EditProposalPricingStrategyType0.PRODUCT_PRICES.
-        pricing_adjustment_percent (float | str | Unset):  Default: 0.0.
-        pricing_adjustment_amount (float | str | Unset):  Default: 0.0.
-        target_margin_percent (float | str | Unset):  Default: 30.0.
-        minimum_margin_percent (float | str | Unset):  Default: 20.0.
-        proposal_valid_since (None | str | Unset):
-        proposal_valid_until (None | str | Unset):
-        project_start_date (None | str | Unset):
-        project_end_date (None | str | Unset):
-        project_enable_booking_management (bool | None | Unset):
-        project_enable_resource_management (bool | None | Unset):
-        project_enable_effort_management (bool | None | Unset):
-        project_enable_financial_management (bool | None | Unset):
-        project_enable_schedule_management (bool | None | Unset):
-        project_enable_earned_value_management (bool | None | Unset):
-        wbsconfiguration (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            description (str):
+            customer (str):
+            owner (str):
+            proposal_currency (str):
+            internal_code (None | str | Unset):
+            rfp_publication (None | str | Unset):
+            pricing_strategy (EditProposalPricingStrategyType0 | None | Unset):  Default:
+                EditProposalPricingStrategyType0.PRODUCT_PRICES.
+            pricing_adjustment_percent (float | str | Unset):  Default: 0.0.
+            pricing_adjustment_amount (float | str | Unset):  Default: 0.0.
+            target_margin_percent (float | str | Unset):  Default: 30.0.
+            minimum_margin_percent (float | str | Unset):  Default: 20.0.
+            proposal_valid_since (None | str | Unset):
+            proposal_valid_until (None | str | Unset):
+            project_start_date (None | str | Unset):
+            project_end_date (None | str | Unset):
+            project_enable_booking_management (bool | None | Unset):
+            project_enable_resource_management (bool | None | Unset):
+            project_enable_effort_management (bool | None | Unset):
+            project_enable_financial_management (bool | None | Unset):
+            project_enable_schedule_management (bool | None | Unset):
+            project_enable_earned_value_management (bool | None | Unset):
+            wbsconfiguration (None | str | Unset):
+     """
 
     name: str
     description: str
@@ -51,9 +58,7 @@ class EditProposal:
     proposal_currency: str
     internal_code: None | str | Unset = UNSET
     rfp_publication: None | str | Unset = UNSET
-    pricing_strategy: EditProposalPricingStrategyType0 | None | Unset = (
-        EditProposalPricingStrategyType0.PRODUCT_PRICES
-    )
+    pricing_strategy: EditProposalPricingStrategyType0 | None | Unset = EditProposalPricingStrategyType0.PRODUCT_PRICES
     pricing_adjustment_percent: float | str | Unset = 0.0
     pricing_adjustment_amount: float | str | Unset = 0.0
     target_margin_percent: float | str | Unset = 30.0
@@ -70,6 +75,10 @@ class EditProposal:
     project_enable_earned_value_management: bool | None | Unset = UNSET
     wbsconfiguration: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -172,9 +181,7 @@ class EditProposal:
         if isinstance(self.project_enable_financial_management, Unset):
             project_enable_financial_management = UNSET
         else:
-            project_enable_financial_management = (
-                self.project_enable_financial_management
-            )
+            project_enable_financial_management = self.project_enable_financial_management
 
         project_enable_schedule_management: bool | None | Unset
         if isinstance(self.project_enable_schedule_management, Unset):
@@ -186,9 +193,7 @@ class EditProposal:
         if isinstance(self.project_enable_earned_value_management, Unset):
             project_enable_earned_value_management = UNSET
         else:
-            project_enable_earned_value_management = (
-                self.project_enable_earned_value_management
-            )
+            project_enable_earned_value_management = self.project_enable_earned_value_management
 
         wbsconfiguration: None | str | Unset
         if isinstance(self.wbsconfiguration, Unset):
@@ -196,17 +201,16 @@ class EditProposal:
         else:
             wbsconfiguration = self.wbsconfiguration
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "description": description,
-                "customer": customer,
-                "owner": owner,
-                "proposal_currency": proposal_currency,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "description": description,
+            "customer": customer,
+            "owner": owner,
+            "proposal_currency": proposal_currency,
+        })
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if rfp_publication is not UNSET:
@@ -230,33 +234,23 @@ class EditProposal:
         if project_end_date is not UNSET:
             field_dict["project_end_date"] = project_end_date
         if project_enable_booking_management is not UNSET:
-            field_dict["project_enable_booking_management"] = (
-                project_enable_booking_management
-            )
+            field_dict["project_enable_booking_management"] = project_enable_booking_management
         if project_enable_resource_management is not UNSET:
-            field_dict["project_enable_resource_management"] = (
-                project_enable_resource_management
-            )
+            field_dict["project_enable_resource_management"] = project_enable_resource_management
         if project_enable_effort_management is not UNSET:
-            field_dict["project_enable_effort_management"] = (
-                project_enable_effort_management
-            )
+            field_dict["project_enable_effort_management"] = project_enable_effort_management
         if project_enable_financial_management is not UNSET:
-            field_dict["project_enable_financial_management"] = (
-                project_enable_financial_management
-            )
+            field_dict["project_enable_financial_management"] = project_enable_financial_management
         if project_enable_schedule_management is not UNSET:
-            field_dict["project_enable_schedule_management"] = (
-                project_enable_schedule_management
-            )
+            field_dict["project_enable_schedule_management"] = project_enable_schedule_management
         if project_enable_earned_value_management is not UNSET:
-            field_dict["project_enable_earned_value_management"] = (
-                project_enable_earned_value_management
-            )
+            field_dict["project_enable_earned_value_management"] = project_enable_earned_value_management
         if wbsconfiguration is not UNSET:
             field_dict["wbsconfiguration"] = wbsconfiguration
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -280,6 +274,7 @@ class EditProposal:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
+
         def _parse_rfp_publication(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -289,9 +284,8 @@ class EditProposal:
 
         rfp_publication = _parse_rfp_publication(d.pop("rfp_publication", UNSET))
 
-        def _parse_pricing_strategy(
-            data: object,
-        ) -> EditProposalPricingStrategyType0 | None | Unset:
+
+        def _parse_pricing_strategy(data: object) -> EditProposalPricingStrategyType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -301,6 +295,8 @@ class EditProposal:
                     raise TypeError()
                 pricing_strategy_type_0 = EditProposalPricingStrategyType0(data)
 
+
+
                 return pricing_strategy_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -308,41 +304,38 @@ class EditProposal:
 
         pricing_strategy = _parse_pricing_strategy(d.pop("pricing_strategy", UNSET))
 
+
         def _parse_pricing_adjustment_percent(data: object) -> float | str | Unset:
             if isinstance(data, Unset):
                 return data
             return cast(float | str | Unset, data)
 
-        pricing_adjustment_percent = _parse_pricing_adjustment_percent(
-            d.pop("pricing_adjustment_percent", UNSET)
-        )
+        pricing_adjustment_percent = _parse_pricing_adjustment_percent(d.pop("pricing_adjustment_percent", UNSET))
+
 
         def _parse_pricing_adjustment_amount(data: object) -> float | str | Unset:
             if isinstance(data, Unset):
                 return data
             return cast(float | str | Unset, data)
 
-        pricing_adjustment_amount = _parse_pricing_adjustment_amount(
-            d.pop("pricing_adjustment_amount", UNSET)
-        )
+        pricing_adjustment_amount = _parse_pricing_adjustment_amount(d.pop("pricing_adjustment_amount", UNSET))
+
 
         def _parse_target_margin_percent(data: object) -> float | str | Unset:
             if isinstance(data, Unset):
                 return data
             return cast(float | str | Unset, data)
 
-        target_margin_percent = _parse_target_margin_percent(
-            d.pop("target_margin_percent", UNSET)
-        )
+        target_margin_percent = _parse_target_margin_percent(d.pop("target_margin_percent", UNSET))
+
 
         def _parse_minimum_margin_percent(data: object) -> float | str | Unset:
             if isinstance(data, Unset):
                 return data
             return cast(float | str | Unset, data)
 
-        minimum_margin_percent = _parse_minimum_margin_percent(
-            d.pop("minimum_margin_percent", UNSET)
-        )
+        minimum_margin_percent = _parse_minimum_margin_percent(d.pop("minimum_margin_percent", UNSET))
+
 
         def _parse_proposal_valid_since(data: object) -> None | str | Unset:
             if data is None:
@@ -351,9 +344,8 @@ class EditProposal:
                 return data
             return cast(None | str | Unset, data)
 
-        proposal_valid_since = _parse_proposal_valid_since(
-            d.pop("proposal_valid_since", UNSET)
-        )
+        proposal_valid_since = _parse_proposal_valid_since(d.pop("proposal_valid_since", UNSET))
+
 
         def _parse_proposal_valid_until(data: object) -> None | str | Unset:
             if data is None:
@@ -362,9 +354,8 @@ class EditProposal:
                 return data
             return cast(None | str | Unset, data)
 
-        proposal_valid_until = _parse_proposal_valid_until(
-            d.pop("proposal_valid_until", UNSET)
-        )
+        proposal_valid_until = _parse_proposal_valid_until(d.pop("proposal_valid_until", UNSET))
+
 
         def _parse_project_start_date(data: object) -> None | str | Unset:
             if data is None:
@@ -373,9 +364,8 @@ class EditProposal:
                 return data
             return cast(None | str | Unset, data)
 
-        project_start_date = _parse_project_start_date(
-            d.pop("project_start_date", UNSET)
-        )
+        project_start_date = _parse_project_start_date(d.pop("project_start_date", UNSET))
+
 
         def _parse_project_end_date(data: object) -> None | str | Unset:
             if data is None:
@@ -386,87 +376,66 @@ class EditProposal:
 
         project_end_date = _parse_project_end_date(d.pop("project_end_date", UNSET))
 
-        def _parse_project_enable_booking_management(
-            data: object,
-        ) -> bool | None | Unset:
+
+        def _parse_project_enable_booking_management(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(bool | None | Unset, data)
 
-        project_enable_booking_management = _parse_project_enable_booking_management(
-            d.pop("project_enable_booking_management", UNSET)
-        )
+        project_enable_booking_management = _parse_project_enable_booking_management(d.pop("project_enable_booking_management", UNSET))
 
-        def _parse_project_enable_resource_management(
-            data: object,
-        ) -> bool | None | Unset:
+
+        def _parse_project_enable_resource_management(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(bool | None | Unset, data)
 
-        project_enable_resource_management = _parse_project_enable_resource_management(
-            d.pop("project_enable_resource_management", UNSET)
-        )
+        project_enable_resource_management = _parse_project_enable_resource_management(d.pop("project_enable_resource_management", UNSET))
 
-        def _parse_project_enable_effort_management(
-            data: object,
-        ) -> bool | None | Unset:
+
+        def _parse_project_enable_effort_management(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(bool | None | Unset, data)
 
-        project_enable_effort_management = _parse_project_enable_effort_management(
-            d.pop("project_enable_effort_management", UNSET)
-        )
+        project_enable_effort_management = _parse_project_enable_effort_management(d.pop("project_enable_effort_management", UNSET))
 
-        def _parse_project_enable_financial_management(
-            data: object,
-        ) -> bool | None | Unset:
+
+        def _parse_project_enable_financial_management(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(bool | None | Unset, data)
 
-        project_enable_financial_management = (
-            _parse_project_enable_financial_management(
-                d.pop("project_enable_financial_management", UNSET)
-            )
-        )
+        project_enable_financial_management = _parse_project_enable_financial_management(d.pop("project_enable_financial_management", UNSET))
 
-        def _parse_project_enable_schedule_management(
-            data: object,
-        ) -> bool | None | Unset:
+
+        def _parse_project_enable_schedule_management(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(bool | None | Unset, data)
 
-        project_enable_schedule_management = _parse_project_enable_schedule_management(
-            d.pop("project_enable_schedule_management", UNSET)
-        )
+        project_enable_schedule_management = _parse_project_enable_schedule_management(d.pop("project_enable_schedule_management", UNSET))
 
-        def _parse_project_enable_earned_value_management(
-            data: object,
-        ) -> bool | None | Unset:
+
+        def _parse_project_enable_earned_value_management(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(bool | None | Unset, data)
 
-        project_enable_earned_value_management = (
-            _parse_project_enable_earned_value_management(
-                d.pop("project_enable_earned_value_management", UNSET)
-            )
-        )
+        project_enable_earned_value_management = _parse_project_enable_earned_value_management(d.pop("project_enable_earned_value_management", UNSET))
+
 
         def _parse_wbsconfiguration(data: object) -> None | str | Unset:
             if data is None:
@@ -476,6 +445,7 @@ class EditProposal:
             return cast(None | str | Unset, data)
 
         wbsconfiguration = _parse_wbsconfiguration(d.pop("wbsconfiguration", UNSET))
+
 
         edit_proposal = cls(
             name=name,
@@ -502,6 +472,7 @@ class EditProposal:
             project_enable_earned_value_management=project_enable_earned_value_management,
             wbsconfiguration=wbsconfiguration,
         )
+
 
         edit_proposal.additional_properties = d
         return edit_proposal

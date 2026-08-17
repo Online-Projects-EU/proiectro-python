@@ -1,29 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="LabeledEntityStats")
+
 
 
 @_attrs_define
 class LabeledEntityStats:
-    """
-    Attributes:
-        entity_name (str):
-        labeled_count (int):
-        total_count (int):
-        percentage (int):
-    """
+    """ 
+        Attributes:
+            entity_name (str):
+            labeled_count (int):
+            total_count (int):
+            percentage (int):
+     """
 
     entity_name: str
     labeled_count: int
     total_count: int
     percentage: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         entity_name = self.entity_name
@@ -34,18 +47,19 @@ class LabeledEntityStats:
 
         percentage = self.percentage
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "entity_name": entity_name,
-                "labeled_count": labeled_count,
-                "total_count": total_count,
-                "percentage": percentage,
-            }
-        )
+        field_dict.update({
+            "entity_name": entity_name,
+            "labeled_count": labeled_count,
+            "total_count": total_count,
+            "percentage": percentage,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -64,6 +78,7 @@ class LabeledEntityStats:
             total_count=total_count,
             percentage=percentage,
         )
+
 
         labeled_entity_stats.additional_properties = d
         return labeled_entity_stats

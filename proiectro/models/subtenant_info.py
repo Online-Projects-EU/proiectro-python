@@ -1,27 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="SubtenantInfo")
+
 
 
 @_attrs_define
 class SubtenantInfo:
-    """
-    Attributes:
-        name (str):
-        timezone (str):
-        default_currency (None | str | Unset):
-        country (None | str | Unset):
-        manager_name (None | str | Unset):
-        local_time (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            timezone (str):
+            default_currency (None | str | Unset):
+            country (None | str | Unset):
+            manager_name (None | str | Unset):
+            local_time (None | str | Unset):
+     """
 
     name: str
     timezone: str
@@ -30,6 +39,10 @@ class SubtenantInfo:
     manager_name: None | str | Unset = UNSET
     local_time: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -60,14 +73,13 @@ class SubtenantInfo:
         else:
             local_time = self.local_time
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "timezone": timezone,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "timezone": timezone,
+        })
         if default_currency is not UNSET:
             field_dict["default_currency"] = default_currency
         if country is not UNSET:
@@ -78,6 +90,8 @@ class SubtenantInfo:
             field_dict["local_time"] = local_time
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,6 +109,7 @@ class SubtenantInfo:
 
         default_currency = _parse_default_currency(d.pop("default_currency", UNSET))
 
+
         def _parse_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -103,6 +118,7 @@ class SubtenantInfo:
             return cast(None | str | Unset, data)
 
         country = _parse_country(d.pop("country", UNSET))
+
 
         def _parse_manager_name(data: object) -> None | str | Unset:
             if data is None:
@@ -113,6 +129,7 @@ class SubtenantInfo:
 
         manager_name = _parse_manager_name(d.pop("manager_name", UNSET))
 
+
         def _parse_local_time(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -122,6 +139,7 @@ class SubtenantInfo:
 
         local_time = _parse_local_time(d.pop("local_time", UNSET))
 
+
         subtenant_info = cls(
             name=name,
             timezone=timezone,
@@ -130,6 +148,7 @@ class SubtenantInfo:
             manager_name=manager_name,
             local_time=local_time,
         )
+
 
         subtenant_info.additional_properties = d
         return subtenant_info

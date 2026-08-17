@@ -1,27 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditContact")
+
 
 
 @_attrs_define
 class EditContact:
-    """
-    Attributes:
-        contact_info_phone (str):
-        contact_info_address (str):
-        contact_info_job_title (str):
-        contact_info_first_name (None | str | Unset):
-        contact_info_last_name (None | str | Unset):
-        contact_info_email (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            contact_info_phone (str):
+            contact_info_address (str):
+            contact_info_job_title (str):
+            contact_info_first_name (None | str | Unset):
+            contact_info_last_name (None | str | Unset):
+            contact_info_email (None | str | Unset):
+     """
 
     contact_info_phone: str
     contact_info_address: str
@@ -30,6 +39,10 @@ class EditContact:
     contact_info_last_name: None | str | Unset = UNSET
     contact_info_email: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         contact_info_phone = self.contact_info_phone
@@ -56,15 +69,14 @@ class EditContact:
         else:
             contact_info_email = self.contact_info_email
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "contact_info_phone": contact_info_phone,
-                "contact_info_address": contact_info_address,
-                "contact_info_job_title": contact_info_job_title,
-            }
-        )
+        field_dict.update({
+            "contact_info_phone": contact_info_phone,
+            "contact_info_address": contact_info_address,
+            "contact_info_job_title": contact_info_job_title,
+        })
         if contact_info_first_name is not UNSET:
             field_dict["contact_info_first_name"] = contact_info_first_name
         if contact_info_last_name is not UNSET:
@@ -73,6 +85,8 @@ class EditContact:
             field_dict["contact_info_email"] = contact_info_email
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -90,9 +104,8 @@ class EditContact:
                 return data
             return cast(None | str | Unset, data)
 
-        contact_info_first_name = _parse_contact_info_first_name(
-            d.pop("contact_info_first_name", UNSET)
-        )
+        contact_info_first_name = _parse_contact_info_first_name(d.pop("contact_info_first_name", UNSET))
+
 
         def _parse_contact_info_last_name(data: object) -> None | str | Unset:
             if data is None:
@@ -101,9 +114,8 @@ class EditContact:
                 return data
             return cast(None | str | Unset, data)
 
-        contact_info_last_name = _parse_contact_info_last_name(
-            d.pop("contact_info_last_name", UNSET)
-        )
+        contact_info_last_name = _parse_contact_info_last_name(d.pop("contact_info_last_name", UNSET))
+
 
         def _parse_contact_info_email(data: object) -> None | str | Unset:
             if data is None:
@@ -112,9 +124,8 @@ class EditContact:
                 return data
             return cast(None | str | Unset, data)
 
-        contact_info_email = _parse_contact_info_email(
-            d.pop("contact_info_email", UNSET)
-        )
+        contact_info_email = _parse_contact_info_email(d.pop("contact_info_email", UNSET))
+
 
         edit_contact = cls(
             contact_info_phone=contact_info_phone,
@@ -124,6 +135,7 @@ class EditContact:
             contact_info_last_name=contact_info_last_name,
             contact_info_email=contact_info_email,
         )
+
 
         edit_contact.additional_properties = d
         return edit_contact

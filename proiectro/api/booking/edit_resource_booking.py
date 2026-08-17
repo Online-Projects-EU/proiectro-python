@@ -8,7 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
 from ...models.edit_resource_booking import EditResourceBooking
-from ...models.edit_resource_booking_response import EditResourceBookingResponse
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -38,21 +38,21 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | EditResourceBookingResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
         return response_200
 
-    if response.status_code == 400:
-        response_400 = APIResponse.from_dict(response.json())
-
-        return response_400
-
     if response.status_code == 422:
-        response_422 = EditResourceBookingResponse.from_dict(response.json())
+        response_422 = PydanticDetail.from_dict(response.json())
 
         return response_422
+
+    if response.status_code == 500:
+        response_500 = APIResponse.from_dict(response.json())
+
+        return response_500
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -62,7 +62,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse | EditResourceBookingResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -77,7 +77,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: EditResourceBooking,
-) -> Response[APIResponse | EditResourceBookingResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Edit Resource Booking
 
      Modify resource reservations when project needs evolve. Extend rental periods,
@@ -95,7 +95,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | EditResourceBookingResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -117,7 +117,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: EditResourceBooking,
-) -> APIResponse | EditResourceBookingResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Edit Resource Booking
 
      Modify resource reservations when project needs evolve. Extend rental periods,
@@ -135,7 +135,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | EditResourceBookingResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -152,7 +152,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: EditResourceBooking,
-) -> Response[APIResponse | EditResourceBookingResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Edit Resource Booking
 
      Modify resource reservations when project needs evolve. Extend rental periods,
@@ -170,7 +170,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | EditResourceBookingResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -190,7 +190,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: EditResourceBooking,
-) -> APIResponse | EditResourceBookingResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Edit Resource Booking
 
      Modify resource reservations when project needs evolve. Extend rental periods,
@@ -208,7 +208,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | EditResourceBookingResponse
+        APIResponse | PydanticDetail
     """
 
     return (

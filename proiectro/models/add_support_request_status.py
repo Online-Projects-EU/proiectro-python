@@ -1,39 +1,48 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.add_support_request_status_lifecycle import (
-    AddSupportRequestStatusLifecycle,
-)
 from ..types import UNSET, Unset
+
+from ..models.add_support_request_status_lifecycle import AddSupportRequestStatusLifecycle
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
 
 T = TypeVar("T", bound="AddSupportRequestStatus")
 
 
+
 @_attrs_define
 class AddSupportRequestStatus:
-    """Input schema for adding a support request status
+    """ Input schema for adding a support request status
 
-    Attributes:
-        name (str):
-        lifecycle (AddSupportRequestStatusLifecycle | Unset):  Default: AddSupportRequestStatusLifecycle.NEW.
-        internal (bool | None | Unset):  Default: False.
-        active (bool | None | Unset):  Default: False.
-        sequence_no (int | None | Unset):  Default: 1.
-    """
+        Attributes:
+            name (str):
+            lifecycle (AddSupportRequestStatusLifecycle | Unset):  Default: AddSupportRequestStatusLifecycle.NEW.
+            internal (bool | None | Unset):  Default: False.
+            active (bool | None | Unset):  Default: False.
+            sequence_no (int | None | Unset):  Default: 1.
+     """
 
     name: str
-    lifecycle: AddSupportRequestStatusLifecycle | Unset = (
-        AddSupportRequestStatusLifecycle.NEW
-    )
+    lifecycle: AddSupportRequestStatusLifecycle | Unset = AddSupportRequestStatusLifecycle.NEW
     internal: bool | None | Unset = False
     active: bool | None | Unset = False
     sequence_no: int | None | Unset = 1
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -41,6 +50,7 @@ class AddSupportRequestStatus:
         lifecycle: str | Unset = UNSET
         if not isinstance(self.lifecycle, Unset):
             lifecycle = self.lifecycle.value
+
 
         internal: bool | None | Unset
         if isinstance(self.internal, Unset):
@@ -60,13 +70,12 @@ class AddSupportRequestStatus:
         else:
             sequence_no = self.sequence_no
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if lifecycle is not UNSET:
             field_dict["lifecycle"] = lifecycle
         if internal is not UNSET:
@@ -78,6 +87,8 @@ class AddSupportRequestStatus:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -85,10 +96,13 @@ class AddSupportRequestStatus:
 
         _lifecycle = d.pop("lifecycle", UNSET)
         lifecycle: AddSupportRequestStatusLifecycle | Unset
-        if isinstance(_lifecycle, Unset):
+        if isinstance(_lifecycle,  Unset):
             lifecycle = UNSET
         else:
             lifecycle = AddSupportRequestStatusLifecycle(_lifecycle)
+
+
+
 
         def _parse_internal(data: object) -> bool | None | Unset:
             if data is None:
@@ -99,6 +113,7 @@ class AddSupportRequestStatus:
 
         internal = _parse_internal(d.pop("internal", UNSET))
 
+
         def _parse_active(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -107,6 +122,7 @@ class AddSupportRequestStatus:
             return cast(bool | None | Unset, data)
 
         active = _parse_active(d.pop("active", UNSET))
+
 
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
@@ -117,6 +133,7 @@ class AddSupportRequestStatus:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
+
         add_support_request_status = cls(
             name=name,
             lifecycle=lifecycle,
@@ -124,6 +141,7 @@ class AddSupportRequestStatus:
             active=active,
             sequence_no=sequence_no,
         )
+
 
         add_support_request_status.additional_properties = d
         return add_support_request_status

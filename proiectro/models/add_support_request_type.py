@@ -1,32 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddSupportRequestType")
+
 
 
 @_attrs_define
 class AddSupportRequestType:
-    """Input schema for adding a support request type
+    """ Input schema for adding a support request type
 
-    Attributes:
-        name (str):
-        internal (bool | None | Unset):  Default: False.
-        active (bool | None | Unset):  Default: False.
-        sequence_no (int | None | Unset):  Default: 1.
-    """
+        Attributes:
+            name (str):
+            internal (bool | None | Unset):  Default: False.
+            active (bool | None | Unset):  Default: False.
+            sequence_no (int | None | Unset):  Default: 1.
+     """
 
     name: str
     internal: bool | None | Unset = False
     active: bool | None | Unset = False
     sequence_no: int | None | Unset = 1
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -49,13 +62,12 @@ class AddSupportRequestType:
         else:
             sequence_no = self.sequence_no
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if internal is not UNSET:
             field_dict["internal"] = internal
         if active is not UNSET:
@@ -64,6 +76,8 @@ class AddSupportRequestType:
             field_dict["sequence_no"] = sequence_no
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -79,6 +93,7 @@ class AddSupportRequestType:
 
         internal = _parse_internal(d.pop("internal", UNSET))
 
+
         def _parse_active(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -87,6 +102,7 @@ class AddSupportRequestType:
             return cast(bool | None | Unset, data)
 
         active = _parse_active(d.pop("active", UNSET))
+
 
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
@@ -97,12 +113,14 @@ class AddSupportRequestType:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
+
         add_support_request_type = cls(
             name=name,
             internal=internal,
             active=active,
             sequence_no=sequence_no,
         )
+
 
         add_support_request_type.additional_properties = d
         return add_support_request_type

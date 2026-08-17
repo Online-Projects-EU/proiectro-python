@@ -1,30 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
 T = TypeVar("T", bound="TemplateVariable")
+
 
 
 @_attrs_define
 class TemplateVariable:
-    """A variable available for {{ }} template expressions.
+    """ A variable available for {{ }} template expressions.
 
-    Attributes:
-        name (str):
-        label (str):
-        type_ (str | Unset):  Default: 'string'.
-    """
+        Attributes:
+            name (str):
+            label (str):
+            type_ (str | Unset):  Default: 'string'.
+     """
 
     name: str
     label: str
-    type_: str | Unset = "string"
+    type_: str | Unset = 'string'
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -33,18 +45,19 @@ class TemplateVariable:
 
         type_ = self.type_
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "label": label,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "label": label,
+        })
         if type_ is not UNSET:
             field_dict["type"] = type_
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -60,6 +73,7 @@ class TemplateVariable:
             label=label,
             type_=type_,
         )
+
 
         template_variable.additional_properties = d
         return template_variable

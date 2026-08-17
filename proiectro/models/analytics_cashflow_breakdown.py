@@ -1,52 +1,61 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.analytics_cashflow_source_item import AnalyticsCashflowSourceItem
-    from ..models.compare_option import CompareOption
-    from ..models.horizon_option import HorizonOption
+  from ..models.analytics_cashflow_source_item import AnalyticsCashflowSourceItem
+  from ..models.compare_option import CompareOption
+  from ..models.horizon_option import HorizonOption
+
+
+
 
 
 T = TypeVar("T", bound="AnalyticsCashflowBreakdown")
 
 
+
 @_attrs_define
 class AnalyticsCashflowBreakdown:
-    """Cash flow breakdown by source
+    """ Cash flow breakdown by source
 
-    Attributes:
-        currency (str):
-        period (str | Unset):  Default: 'YTD'.
-        temporal_type (str | Unset):  Default: 'snapshot'.
-        generated_at (str | Unset):  Default: ''.
-        period_label (None | str | Unset):
-        horizon (None | str | Unset):
-        horizon_label (None | str | Unset):
-        horizon_options (list[HorizonOption] | None | Unset):
-        compare (None | str | Unset):
-        compare_label (None | str | Unset):
-        compare_options (list[CompareOption] | None | Unset):
-        filter_severity (None | str | Unset):
-        filter_severity_label (None | str | Unset):
-        filter_category (None | str | Unset):
-        filter_category_label (None | str | Unset):
-        filter_type (None | str | Unset):
-        filter_type_label (None | str | Unset):
-        income_by_source (list[AnalyticsCashflowSourceItem] | Unset):
-        payments_by_source (list[AnalyticsCashflowSourceItem] | Unset):
-    """
+        Attributes:
+            currency (str):
+            period (str | Unset):  Default: 'YTD'.
+            temporal_type (str | Unset):  Default: 'snapshot'.
+            generated_at (datetime.datetime | None | Unset):
+            period_label (None | str | Unset):
+            horizon (None | str | Unset):
+            horizon_label (None | str | Unset):
+            horizon_options (list[HorizonOption] | None | Unset):
+            compare (None | str | Unset):
+            compare_label (None | str | Unset):
+            compare_options (list[CompareOption] | None | Unset):
+            filter_severity (None | str | Unset):
+            filter_severity_label (None | str | Unset):
+            filter_category (None | str | Unset):
+            filter_category_label (None | str | Unset):
+            filter_type (None | str | Unset):
+            filter_type_label (None | str | Unset):
+            income_by_source (list[AnalyticsCashflowSourceItem] | Unset):
+            payments_by_source (list[AnalyticsCashflowSourceItem] | Unset):
+     """
 
     currency: str
-    period: str | Unset = "YTD"
-    temporal_type: str | Unset = "snapshot"
-    generated_at: str | Unset = ""
+    period: str | Unset = 'YTD'
+    temporal_type: str | Unset = 'snapshot'
+    generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
     horizon_label: None | str | Unset = UNSET
@@ -64,14 +73,27 @@ class AnalyticsCashflowBreakdown:
     payments_by_source: list[AnalyticsCashflowSourceItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.compare_option import CompareOption
+        from ..models.horizon_option import HorizonOption
+        from ..models.analytics_cashflow_source_item import AnalyticsCashflowSourceItem
         currency = self.currency
 
         period = self.period
 
         temporal_type = self.temporal_type
 
-        generated_at = self.generated_at
+        generated_at: None | str | Unset
+        if isinstance(self.generated_at, Unset):
+            generated_at = UNSET
+        elif isinstance(self.generated_at, datetime.datetime):
+            generated_at = self.generated_at.isoformat()
+        else:
+            generated_at = self.generated_at
 
         period_label: None | str | Unset
         if isinstance(self.period_label, Unset):
@@ -100,6 +122,7 @@ class AnalyticsCashflowBreakdown:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
+
         else:
             horizon_options = self.horizon_options
 
@@ -123,6 +146,7 @@ class AnalyticsCashflowBreakdown:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
+
 
         else:
             compare_options = self.compare_options
@@ -170,6 +194,8 @@ class AnalyticsCashflowBreakdown:
                 income_by_source_item = income_by_source_item_data.to_dict()
                 income_by_source.append(income_by_source_item)
 
+
+
         payments_by_source: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.payments_by_source, Unset):
             payments_by_source = []
@@ -177,13 +203,14 @@ class AnalyticsCashflowBreakdown:
                 payments_by_source_item = payments_by_source_item_data.to_dict()
                 payments_by_source.append(payments_by_source_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "currency": currency,
-            }
-        )
+        field_dict.update({
+            "currency": currency,
+        })
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -223,12 +250,13 @@ class AnalyticsCashflowBreakdown:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_cashflow_source_item import AnalyticsCashflowSourceItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
-
         d = dict(src_dict)
         currency = d.pop("currency")
 
@@ -236,7 +264,25 @@ class AnalyticsCashflowBreakdown:
 
         temporal_type = d.pop("temporal_type", UNSET)
 
-        generated_at = d.pop("generated_at", UNSET)
+        def _parse_generated_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                generated_at_type_0 = isoparse(data)
+
+
+
+                return generated_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
+
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -247,6 +293,7 @@ class AnalyticsCashflowBreakdown:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
+
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -256,6 +303,7 @@ class AnalyticsCashflowBreakdown:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
+
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -264,6 +312,7 @@ class AnalyticsCashflowBreakdown:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
+
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -275,10 +324,10 @@ class AnalyticsCashflowBreakdown:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in _horizon_options_type_0:
-                    horizon_options_type_0_item = HorizonOption.from_dict(
-                        horizon_options_type_0_item_data
-                    )
+                for horizon_options_type_0_item_data in (_horizon_options_type_0):
+                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
+
+
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -289,6 +338,7 @@ class AnalyticsCashflowBreakdown:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
+
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -298,6 +348,7 @@ class AnalyticsCashflowBreakdown:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
+
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -306,6 +357,7 @@ class AnalyticsCashflowBreakdown:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
+
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -317,10 +369,10 @@ class AnalyticsCashflowBreakdown:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in _compare_options_type_0:
-                    compare_options_type_0_item = CompareOption.from_dict(
-                        compare_options_type_0_item_data
-                    )
+                for compare_options_type_0_item_data in (_compare_options_type_0):
+                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
+
+
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -331,6 +383,7 @@ class AnalyticsCashflowBreakdown:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
+
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -340,6 +393,7 @@ class AnalyticsCashflowBreakdown:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
+
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -347,9 +401,8 @@ class AnalyticsCashflowBreakdown:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(
-            d.pop("filter_severity_label", UNSET)
-        )
+        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
+
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -360,6 +413,7 @@ class AnalyticsCashflowBreakdown:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
+
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -367,9 +421,8 @@ class AnalyticsCashflowBreakdown:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(
-            d.pop("filter_category_label", UNSET)
-        )
+        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
+
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -380,6 +433,7 @@ class AnalyticsCashflowBreakdown:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
+
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -389,27 +443,30 @@ class AnalyticsCashflowBreakdown:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+
         _income_by_source = d.pop("income_by_source", UNSET)
         income_by_source: list[AnalyticsCashflowSourceItem] | Unset = UNSET
         if _income_by_source is not UNSET:
             income_by_source = []
             for income_by_source_item_data in _income_by_source:
-                income_by_source_item = AnalyticsCashflowSourceItem.from_dict(
-                    income_by_source_item_data
-                )
+                income_by_source_item = AnalyticsCashflowSourceItem.from_dict(income_by_source_item_data)
+
+
 
                 income_by_source.append(income_by_source_item)
+
 
         _payments_by_source = d.pop("payments_by_source", UNSET)
         payments_by_source: list[AnalyticsCashflowSourceItem] | Unset = UNSET
         if _payments_by_source is not UNSET:
             payments_by_source = []
             for payments_by_source_item_data in _payments_by_source:
-                payments_by_source_item = AnalyticsCashflowSourceItem.from_dict(
-                    payments_by_source_item_data
-                )
+                payments_by_source_item = AnalyticsCashflowSourceItem.from_dict(payments_by_source_item_data)
+
+
 
                 payments_by_source.append(payments_by_source_item)
+
 
         analytics_cashflow_breakdown = cls(
             currency=currency,
@@ -432,6 +489,7 @@ class AnalyticsCashflowBreakdown:
             income_by_source=income_by_source,
             payments_by_source=payments_by_source,
         )
+
 
         analytics_cashflow_breakdown.additional_properties = d
         return analytics_cashflow_breakdown

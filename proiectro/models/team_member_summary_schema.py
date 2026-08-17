@@ -1,33 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.team_member_summary_schema_daily_data import (
-        TeamMemberSummarySchemaDailyData,
-    )
+  from ..models.team_member_summary_schema_daily_data import TeamMemberSummarySchemaDailyData
+
+
+
 
 
 T = TypeVar("T", bound="TeamMemberSummarySchema")
 
 
+
 @_attrs_define
 class TeamMemberSummarySchema:
-    """Team member with their weekly load data
+    """ Team member with their weekly load data
 
-    Attributes:
-        id (str):
-        name (str):
-        daily_data (TeamMemberSummarySchemaDailyData):
-        total_booked (float):
-        total_available (float):
-        total_display (str):
-        load_percentage (float):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            daily_data (TeamMemberSummarySchemaDailyData):
+            total_booked (float):
+            total_available (float):
+            total_display (str):
+            load_percentage (float):
+     """
 
     id: str
     name: str
@@ -38,7 +44,12 @@ class TeamMemberSummarySchema:
     load_percentage: float
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.team_member_summary_schema_daily_data import TeamMemberSummarySchemaDailyData
         id = self.id
 
         name = self.name
@@ -53,34 +64,35 @@ class TeamMemberSummarySchema:
 
         load_percentage = self.load_percentage
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "daily_data": daily_data,
-                "total_booked": total_booked,
-                "total_available": total_available,
-                "total_display": total_display,
-                "load_percentage": load_percentage,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "daily_data": daily_data,
+            "total_booked": total_booked,
+            "total_available": total_available,
+            "total_display": total_display,
+            "load_percentage": load_percentage,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.team_member_summary_schema_daily_data import (
-            TeamMemberSummarySchemaDailyData,
-        )
-
+        from ..models.team_member_summary_schema_daily_data import TeamMemberSummarySchemaDailyData
         d = dict(src_dict)
         id = d.pop("id")
 
         name = d.pop("name")
 
         daily_data = TeamMemberSummarySchemaDailyData.from_dict(d.pop("daily_data"))
+
+
+
 
         total_booked = d.pop("total_booked")
 
@@ -99,6 +111,7 @@ class TeamMemberSummarySchema:
             total_display=total_display,
             load_percentage=load_percentage,
         )
+
 
         team_member_summary_schema.additional_properties = d
         return team_member_summary_schema

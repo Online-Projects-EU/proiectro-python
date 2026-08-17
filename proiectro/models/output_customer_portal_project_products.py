@@ -1,43 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.customer_portal_project_product_item import (
-        CustomerPortalProjectProductItem,
-    )
-    from ..models.output_customer_portal_project_products_escalation_item import (
-        OutputCustomerPortalProjectProductsEscalationItem,
-    )
-    from ..models.output_customer_portal_project_products_org import (
-        OutputCustomerPortalProjectProductsOrg,
-    )
-    from ..models.output_customer_portal_project_products_payments_item import (
-        OutputCustomerPortalProjectProductsPaymentsItem,
-    )
-    from ..models.output_customer_portal_project_products_project import (
-        OutputCustomerPortalProjectProductsProject,
-    )
+  from ..models.customer_portal_project_product_item import CustomerPortalProjectProductItem
+  from ..models.output_customer_portal_project_products_escalation_item import OutputCustomerPortalProjectProductsEscalationItem
+  from ..models.output_customer_portal_project_products_org import OutputCustomerPortalProjectProductsOrg
+  from ..models.output_customer_portal_project_products_payments_item import OutputCustomerPortalProjectProductsPaymentsItem
+  from ..models.output_customer_portal_project_products_project import OutputCustomerPortalProjectProductsProject
+
+
+
 
 
 T = TypeVar("T", bound="OutputCustomerPortalProjectProducts")
 
 
+
 @_attrs_define
 class OutputCustomerPortalProjectProducts:
-    """Customer portal project products view
+    """ Customer portal project products view
 
-    Attributes:
-        products (list[CustomerPortalProjectProductItem]):
-        payments (list[OutputCustomerPortalProjectProductsPaymentsItem]):
-        escalation (list[OutputCustomerPortalProjectProductsEscalationItem]):
-        project (OutputCustomerPortalProjectProductsProject):
-        org (OutputCustomerPortalProjectProductsOrg):
-    """
+        Attributes:
+            products (list[CustomerPortalProjectProductItem]):
+            payments (list[OutputCustomerPortalProjectProductsPaymentsItem]):
+            escalation (list[OutputCustomerPortalProjectProductsEscalationItem]):
+            project (OutputCustomerPortalProjectProductsProject):
+            org (OutputCustomerPortalProjectProductsOrg):
+     """
 
     products: list[CustomerPortalProjectProductItem]
     payments: list[OutputCustomerPortalProjectProductsPaymentsItem]
@@ -46,91 +44,103 @@ class OutputCustomerPortalProjectProducts:
     org: OutputCustomerPortalProjectProductsOrg
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_customer_portal_project_products_payments_item import OutputCustomerPortalProjectProductsPaymentsItem
+        from ..models.customer_portal_project_product_item import CustomerPortalProjectProductItem
+        from ..models.output_customer_portal_project_products_org import OutputCustomerPortalProjectProductsOrg
+        from ..models.output_customer_portal_project_products_project import OutputCustomerPortalProjectProductsProject
+        from ..models.output_customer_portal_project_products_escalation_item import OutputCustomerPortalProjectProductsEscalationItem
         products = []
         for products_item_data in self.products:
             products_item = products_item_data.to_dict()
             products.append(products_item)
+
+
 
         payments = []
         for payments_item_data in self.payments:
             payments_item = payments_item_data.to_dict()
             payments.append(payments_item)
 
+
+
         escalation = []
         for escalation_item_data in self.escalation:
             escalation_item = escalation_item_data.to_dict()
             escalation.append(escalation_item)
 
+
+
         project = self.project.to_dict()
 
         org = self.org.to_dict()
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "products": products,
-                "payments": payments,
-                "escalation": escalation,
-                "project": project,
-                "org": org,
-            }
-        )
+        field_dict.update({
+            "products": products,
+            "payments": payments,
+            "escalation": escalation,
+            "project": project,
+            "org": org,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.customer_portal_project_product_item import (
-            CustomerPortalProjectProductItem,
-        )
-        from ..models.output_customer_portal_project_products_escalation_item import (
-            OutputCustomerPortalProjectProductsEscalationItem,
-        )
-        from ..models.output_customer_portal_project_products_org import (
-            OutputCustomerPortalProjectProductsOrg,
-        )
-        from ..models.output_customer_portal_project_products_payments_item import (
-            OutputCustomerPortalProjectProductsPaymentsItem,
-        )
-        from ..models.output_customer_portal_project_products_project import (
-            OutputCustomerPortalProjectProductsProject,
-        )
-
+        from ..models.customer_portal_project_product_item import CustomerPortalProjectProductItem
+        from ..models.output_customer_portal_project_products_escalation_item import OutputCustomerPortalProjectProductsEscalationItem
+        from ..models.output_customer_portal_project_products_org import OutputCustomerPortalProjectProductsOrg
+        from ..models.output_customer_portal_project_products_payments_item import OutputCustomerPortalProjectProductsPaymentsItem
+        from ..models.output_customer_portal_project_products_project import OutputCustomerPortalProjectProductsProject
         d = dict(src_dict)
         products = []
         _products = d.pop("products")
-        for products_item_data in _products:
-            products_item = CustomerPortalProjectProductItem.from_dict(
-                products_item_data
-            )
+        for products_item_data in (_products):
+            products_item = CustomerPortalProjectProductItem.from_dict(products_item_data)
+
+
 
             products.append(products_item)
 
+
         payments = []
         _payments = d.pop("payments")
-        for payments_item_data in _payments:
-            payments_item = OutputCustomerPortalProjectProductsPaymentsItem.from_dict(
-                payments_item_data
-            )
+        for payments_item_data in (_payments):
+            payments_item = OutputCustomerPortalProjectProductsPaymentsItem.from_dict(payments_item_data)
+
+
 
             payments.append(payments_item)
 
+
         escalation = []
         _escalation = d.pop("escalation")
-        for escalation_item_data in _escalation:
-            escalation_item = (
-                OutputCustomerPortalProjectProductsEscalationItem.from_dict(
-                    escalation_item_data
-                )
-            )
+        for escalation_item_data in (_escalation):
+            escalation_item = OutputCustomerPortalProjectProductsEscalationItem.from_dict(escalation_item_data)
+
+
 
             escalation.append(escalation_item)
 
+
         project = OutputCustomerPortalProjectProductsProject.from_dict(d.pop("project"))
 
+
+
+
         org = OutputCustomerPortalProjectProductsOrg.from_dict(d.pop("org"))
+
+
+
 
         output_customer_portal_project_products = cls(
             products=products,
@@ -139,6 +149,7 @@ class OutputCustomerPortalProjectProducts:
             project=project,
             org=org,
         )
+
 
         output_customer_portal_project_products.additional_properties = d
         return output_customer_portal_project_products

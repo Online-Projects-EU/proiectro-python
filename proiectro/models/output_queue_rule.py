@@ -1,36 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputQueueRule")
+
 
 
 @_attrs_define
 class OutputQueueRule:
-    """Output schema for a single queue rule
+    """ Output schema for a single queue rule
 
-    Attributes:
-        id (str):
-        name (str):
-        description (str):
-        priority (int):
-        active (bool):
-        internal (bool):
-        target_queue_name (str):
-        target_queue_active (bool):
-        specificity_score (int):
-        target_queue_id (None | str | Unset):
-        request_type_id (None | str | Unset):
-        request_type_name (None | str | Unset):
-        request_severity_id (None | str | Unset):
-        request_severity_name (None | str | Unset):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            description (str):
+            priority (int):
+            active (bool):
+            internal (bool):
+            target_queue_name (str):
+            target_queue_active (bool):
+            specificity_score (int):
+            target_queue_id (None | str | Unset):
+            request_type_id (None | str | Unset):
+            request_type_name (None | str | Unset):
+            request_severity_id (None | str | Unset):
+            request_severity_name (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -47,6 +56,10 @@ class OutputQueueRule:
     request_severity_id: None | str | Unset = UNSET
     request_severity_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -97,21 +110,20 @@ class OutputQueueRule:
         else:
             request_severity_name = self.request_severity_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "description": description,
-                "priority": priority,
-                "active": active,
-                "internal": internal,
-                "target_queue_name": target_queue_name,
-                "target_queue_active": target_queue_active,
-                "specificity_score": specificity_score,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "description": description,
+            "priority": priority,
+            "active": active,
+            "internal": internal,
+            "target_queue_name": target_queue_name,
+            "target_queue_active": target_queue_active,
+            "specificity_score": specificity_score,
+        })
         if target_queue_id is not UNSET:
             field_dict["target_queue_id"] = target_queue_id
         if request_type_id is not UNSET:
@@ -124,6 +136,8 @@ class OutputQueueRule:
             field_dict["request_severity_name"] = request_severity_name
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -155,6 +169,7 @@ class OutputQueueRule:
 
         target_queue_id = _parse_target_queue_id(d.pop("target_queue_id", UNSET))
 
+
         def _parse_request_type_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -163,6 +178,7 @@ class OutputQueueRule:
             return cast(None | str | Unset, data)
 
         request_type_id = _parse_request_type_id(d.pop("request_type_id", UNSET))
+
 
         def _parse_request_type_name(data: object) -> None | str | Unset:
             if data is None:
@@ -173,6 +189,7 @@ class OutputQueueRule:
 
         request_type_name = _parse_request_type_name(d.pop("request_type_name", UNSET))
 
+
         def _parse_request_severity_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -180,9 +197,8 @@ class OutputQueueRule:
                 return data
             return cast(None | str | Unset, data)
 
-        request_severity_id = _parse_request_severity_id(
-            d.pop("request_severity_id", UNSET)
-        )
+        request_severity_id = _parse_request_severity_id(d.pop("request_severity_id", UNSET))
+
 
         def _parse_request_severity_name(data: object) -> None | str | Unset:
             if data is None:
@@ -191,9 +207,8 @@ class OutputQueueRule:
                 return data
             return cast(None | str | Unset, data)
 
-        request_severity_name = _parse_request_severity_name(
-            d.pop("request_severity_name", UNSET)
-        )
+        request_severity_name = _parse_request_severity_name(d.pop("request_severity_name", UNSET))
+
 
         output_queue_rule = cls(
             id=id,
@@ -211,6 +226,7 @@ class OutputQueueRule:
             request_severity_id=request_severity_id,
             request_severity_name=request_severity_name,
         )
+
 
         output_queue_rule.additional_properties = d
         return output_queue_rule

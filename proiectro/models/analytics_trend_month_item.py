@@ -1,28 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsTrendMonthItem")
+
 
 
 @_attrs_define
 class AnalyticsTrendMonthItem:
-    """Trend for a single month - created vs closed
+    """ Trend for a single month - created vs closed
 
-    Attributes:
-        month (str):
-        created (int):
-        closed (int):
-    """
+        Attributes:
+            month (str):
+            created (int):
+            closed (int):
+     """
 
     month: str
     created: int
     closed: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         month = self.month
@@ -31,17 +44,18 @@ class AnalyticsTrendMonthItem:
 
         closed = self.closed
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "month": month,
-                "created": created,
-                "closed": closed,
-            }
-        )
+        field_dict.update({
+            "month": month,
+            "created": created,
+            "closed": closed,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -57,6 +71,7 @@ class AnalyticsTrendMonthItem:
             created=created,
             closed=closed,
         )
+
 
         analytics_trend_month_item.additional_properties = d
         return analytics_trend_month_item

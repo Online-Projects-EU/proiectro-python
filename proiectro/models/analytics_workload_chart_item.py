@@ -1,62 +1,77 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsWorkloadChartItem")
+
 
 
 @_attrs_define
 class AnalyticsWorkloadChartItem:
-    """Chart data for workload visualization
+    """ Chart data for workload visualization
 
-    Attributes:
-        name (str):
-        remaining (float):
-        capacity (float):
-    """
+        Attributes:
+            name (str):
+            booked (float):
+            available (float):
+     """
 
     name: str
-    remaining: float
-    capacity: float
+    booked: float
+    available: float
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        remaining = self.remaining
+        booked = self.booked
 
-        capacity = self.capacity
+        available = self.available
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "remaining": remaining,
-                "capacity": capacity,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "booked": booked,
+            "available": available,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         name = d.pop("name")
 
-        remaining = d.pop("remaining")
+        booked = d.pop("booked")
 
-        capacity = d.pop("capacity")
+        available = d.pop("available")
 
         analytics_workload_chart_item = cls(
             name=name,
-            remaining=remaining,
-            capacity=capacity,
+            booked=booked,
+            available=available,
         )
+
 
         analytics_workload_chart_item.additional_properties = d
         return analytics_workload_chart_item

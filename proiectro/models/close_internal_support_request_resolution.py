@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class CloseInternalSupportRequestResolution(str, Enum):
     CANNOT_REPRODUCE = "CANNOT_REPRODUCE"
     DONE = "DONE"

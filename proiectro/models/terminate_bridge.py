@@ -1,30 +1,43 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="TerminateBridge")
+
 
 
 @_attrs_define
 class TerminateBridge:
-    """Input schema for permanently terminating an active or suspended partnership
+    """ Input schema for permanently terminating an active or suspended partnership
 
-    Attributes:
-        confirm_partner_path (str):
-        reason (None | str | Unset):
-        confirm_permanent (bool | Unset):  Default: False.
-    """
+        Attributes:
+            confirm_partner_path (str):
+            reason (None | str | Unset):
+            confirm_permanent (bool | Unset):  Default: False.
+     """
 
     confirm_partner_path: str
     reason: None | str | Unset = UNSET
     confirm_permanent: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         confirm_partner_path = self.confirm_partner_path
@@ -37,19 +50,20 @@ class TerminateBridge:
 
         confirm_permanent = self.confirm_permanent
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "confirm_partner_path": confirm_partner_path,
-            }
-        )
+        field_dict.update({
+            "confirm_partner_path": confirm_partner_path,
+        })
         if reason is not UNSET:
             field_dict["reason"] = reason
         if confirm_permanent is not UNSET:
             field_dict["confirm_permanent"] = confirm_permanent
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -65,6 +79,7 @@ class TerminateBridge:
 
         reason = _parse_reason(d.pop("reason", UNSET))
 
+
         confirm_permanent = d.pop("confirm_permanent", UNSET)
 
         terminate_bridge = cls(
@@ -72,6 +87,7 @@ class TerminateBridge:
             reason=reason,
             confirm_permanent=confirm_permanent,
         )
+
 
         terminate_bridge.additional_properties = d
         return terminate_bridge

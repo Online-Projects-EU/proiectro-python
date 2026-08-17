@@ -1,25 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="MonthlyProjection")
+
 
 
 @_attrs_define
 class MonthlyProjection:
-    """Monthly cash flow projection data
+    """ Monthly cash flow projection data
 
-    Attributes:
-        month_name (str):
-        inflow (float | str):
-        outflow (float | str):
-        net (float | str):
-        cumulative (float | str):
-    """
+        Attributes:
+            month_name (str):
+            inflow (float | str):
+            outflow (float | str):
+            net (float | str):
+            cumulative (float | str):
+     """
 
     month_name: str
     inflow: float | str
@@ -27,6 +37,10 @@ class MonthlyProjection:
     net: float | str
     cumulative: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         month_name = self.month_name
@@ -43,19 +57,20 @@ class MonthlyProjection:
         cumulative: float | str
         cumulative = self.cumulative
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "month_name": month_name,
-                "inflow": inflow,
-                "outflow": outflow,
-                "net": net,
-                "cumulative": cumulative,
-            }
-        )
+        field_dict.update({
+            "month_name": month_name,
+            "inflow": inflow,
+            "outflow": outflow,
+            "net": net,
+            "cumulative": cumulative,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -67,20 +82,24 @@ class MonthlyProjection:
 
         inflow = _parse_inflow(d.pop("inflow"))
 
+
         def _parse_outflow(data: object) -> float | str:
             return cast(float | str, data)
 
         outflow = _parse_outflow(d.pop("outflow"))
+
 
         def _parse_net(data: object) -> float | str:
             return cast(float | str, data)
 
         net = _parse_net(d.pop("net"))
 
+
         def _parse_cumulative(data: object) -> float | str:
             return cast(float | str, data)
 
         cumulative = _parse_cumulative(d.pop("cumulative"))
+
 
         monthly_projection = cls(
             month_name=month_name,
@@ -89,6 +108,7 @@ class MonthlyProjection:
             net=net,
             cumulative=cumulative,
         )
+
 
         monthly_projection.additional_properties = d
         return monthly_projection

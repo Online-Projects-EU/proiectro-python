@@ -1,35 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_tenant_locations_locations import (
-        OutputTenantLocationsLocations,
-    )
+  from ..models.output_tenant_locations_locations import OutputTenantLocationsLocations
+
+
+
 
 
 T = TypeVar("T", bound="OutputTenantLocations")
 
 
+
 @_attrs_define
 class OutputTenantLocations:
-    """
-    Attributes:
-        locations (OutputTenantLocationsLocations):
-        root_id (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            locations (OutputTenantLocationsLocations):
+            root_id (None | str | Unset):
+     """
 
     locations: OutputTenantLocationsLocations
     root_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_tenant_locations_locations import OutputTenantLocationsLocations
         locations = self.locations.to_dict()
 
         root_id: None | str | Unset
@@ -38,26 +48,27 @@ class OutputTenantLocations:
         else:
             root_id = self.root_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "locations": locations,
-            }
-        )
+        field_dict.update({
+            "locations": locations,
+        })
         if root_id is not UNSET:
             field_dict["root_id"] = root_id
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_tenant_locations_locations import (
-            OutputTenantLocationsLocations,
-        )
-
+        from ..models.output_tenant_locations_locations import OutputTenantLocationsLocations
         d = dict(src_dict)
         locations = OutputTenantLocationsLocations.from_dict(d.pop("locations"))
+
+
+
 
         def _parse_root_id(data: object) -> None | str | Unset:
             if data is None:
@@ -68,10 +79,12 @@ class OutputTenantLocations:
 
         root_id = _parse_root_id(d.pop("root_id", UNSET))
 
+
         output_tenant_locations = cls(
             locations=locations,
             root_id=root_id,
         )
+
 
         output_tenant_locations.additional_properties = d
         return output_tenant_locations

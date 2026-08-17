@@ -1,28 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsQueueBacklogItem")
+
 
 
 @_attrs_define
 class AnalyticsQueueBacklogItem:
-    """Queue backlog item
+    """ Queue backlog item
 
-    Attributes:
-        queue (str):
-        ticket_type (str):
-        open_count (int):
-    """
+        Attributes:
+            queue (str):
+            ticket_type (str):
+            open_count (int):
+     """
 
     queue: str
     ticket_type: str
     open_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         queue = self.queue
@@ -31,17 +44,18 @@ class AnalyticsQueueBacklogItem:
 
         open_count = self.open_count
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "queue": queue,
-                "ticket_type": ticket_type,
-                "open_count": open_count,
-            }
-        )
+        field_dict.update({
+            "queue": queue,
+            "ticket_type": ticket_type,
+            "open_count": open_count,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -57,6 +71,7 @@ class AnalyticsQueueBacklogItem:
             ticket_type=ticket_type,
             open_count=open_count,
         )
+
 
         analytics_queue_backlog_item.additional_properties = d
         return analytics_queue_backlog_item

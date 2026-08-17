@@ -1,30 +1,44 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsRevenueMonthItem")
+
 
 
 @_attrs_define
 class AnalyticsRevenueMonthItem:
-    """Revenue for a single month
+    """ Revenue for a single month
 
-    Attributes:
-        month (str):
-        recurring (float | str):
-        one_time (float | str):
-        total (float | str):
-    """
+        Attributes:
+            month (str):
+            recurring (float | str):
+            one_time (float | str):
+            total (float | str):
+     """
 
     month: str
     recurring: float | str
     one_time: float | str
     total: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         month = self.month
@@ -38,18 +52,19 @@ class AnalyticsRevenueMonthItem:
         total: float | str
         total = self.total
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "month": month,
-                "recurring": recurring,
-                "one_time": one_time,
-                "total": total,
-            }
-        )
+        field_dict.update({
+            "month": month,
+            "recurring": recurring,
+            "one_time": one_time,
+            "total": total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -61,15 +76,18 @@ class AnalyticsRevenueMonthItem:
 
         recurring = _parse_recurring(d.pop("recurring"))
 
+
         def _parse_one_time(data: object) -> float | str:
             return cast(float | str, data)
 
         one_time = _parse_one_time(d.pop("one_time"))
 
+
         def _parse_total(data: object) -> float | str:
             return cast(float | str, data)
 
         total = _parse_total(d.pop("total"))
+
 
         analytics_revenue_month_item = cls(
             month=month,
@@ -77,6 +95,7 @@ class AnalyticsRevenueMonthItem:
             one_time=one_time,
             total=total,
         )
+
 
         analytics_revenue_month_item.additional_properties = d
         return analytics_revenue_month_item

@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class AnalyticsSupportSlaCompare(str, Enum):
     MOM = "mom"
     NONE = "none"

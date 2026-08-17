@@ -1,68 +1,84 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.project_resource_booking import ProjectResourceBooking
+  from ..models.project_resource_booking import ProjectResourceBooking
+
+
+
 
 
 T = TypeVar("T", bound="ProjectResourceBookings")
 
 
+
 @_attrs_define
 class ProjectResourceBookings:
-    """List of resource bookings for a project
+    """ List of resource bookings for a project
 
-    Attributes:
-        resource_bookings (list[ProjectResourceBooking]):
-        project_id (str):
-        project_name (str):
-    """
+        Attributes:
+            resource_bookings (list[ProjectResourceBooking]):
+            project_id (str):
+            project_name (str):
+     """
 
     resource_bookings: list[ProjectResourceBooking]
     project_id: str
     project_name: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_resource_booking import ProjectResourceBooking
         resource_bookings = []
         for resource_bookings_item_data in self.resource_bookings:
             resource_bookings_item = resource_bookings_item_data.to_dict()
             resource_bookings.append(resource_bookings_item)
 
+
+
         project_id = self.project_id
 
         project_name = self.project_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "resource_bookings": resource_bookings,
-                "project_id": project_id,
-                "project_name": project_name,
-            }
-        )
+        field_dict.update({
+            "resource_bookings": resource_bookings,
+            "project_id": project_id,
+            "project_name": project_name,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.project_resource_booking import ProjectResourceBooking
-
         d = dict(src_dict)
         resource_bookings = []
         _resource_bookings = d.pop("resource_bookings")
-        for resource_bookings_item_data in _resource_bookings:
-            resource_bookings_item = ProjectResourceBooking.from_dict(
-                resource_bookings_item_data
-            )
+        for resource_bookings_item_data in (_resource_bookings):
+            resource_bookings_item = ProjectResourceBooking.from_dict(resource_bookings_item_data)
+
+
 
             resource_bookings.append(resource_bookings_item)
+
 
         project_id = d.pop("project_id")
 
@@ -73,6 +89,7 @@ class ProjectResourceBookings:
             project_id=project_id,
             project_name=project_name,
         )
+
 
         project_resource_bookings.additional_properties = d
         return project_resource_bookings

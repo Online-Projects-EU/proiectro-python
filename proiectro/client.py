@@ -30,7 +30,7 @@ class Client:
 
     Attributes:
         raise_on_unexpected_status: Whether or not to raise an errors.UnexpectedStatus if the API returns a
-            status code that was not documented in the source OpenAPI document. Can also be provided as a keyword
+            status code that is not among the documented responses for that operation. Can also be provided as a keyword
             argument to the constructor.
     """
 
@@ -161,7 +161,7 @@ class AuthenticatedClient:
 
     Attributes:
         raise_on_unexpected_status: Whether or not to raise an errors.UnexpectedStatus if the API returns a
-            status code that was not documented in the source OpenAPI document. Can also be provided as a keyword
+            status code that is not among the documented responses for that operation. Can also be provided as a keyword
             argument to the constructor.
         token: The token to use for authentication
         prefix: The prefix to use for the Authorization header

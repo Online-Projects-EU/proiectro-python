@@ -1,40 +1,53 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 from ..models.add_process_stage_stage_type import AddProcessStageStageType
 from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
 
 T = TypeVar("T", bound="AddProcessStage")
 
 
+
 @_attrs_define
 class AddProcessStage:
-    """
-    Attributes:
-        process (str):
-        name (str):
-        stage_type (AddProcessStageStageType):
-        sequence_no (int):
-        description (str | Unset):  Default: ''.
-        instructions (str | Unset):  Default: ''.
-        is_active (bool | None | Unset):  Default: False.
-        requires_approval (bool | None | Unset):  Default: False.
-    """
+    """ 
+        Attributes:
+            process (str):
+            name (str):
+            stage_type (AddProcessStageStageType):
+            sequence_no (int):
+            description (str | Unset):  Default: ''.
+            instructions (str | Unset):  Default: ''.
+            is_active (bool | None | Unset):  Default: False.
+            requires_approval (bool | None | Unset):  Default: False.
+     """
 
     process: str
     name: str
     stage_type: AddProcessStageStageType
     sequence_no: int
-    description: str | Unset = ""
-    instructions: str | Unset = ""
+    description: str | Unset = ''
+    instructions: str | Unset = ''
     is_active: bool | None | Unset = False
     requires_approval: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         process = self.process
@@ -61,16 +74,15 @@ class AddProcessStage:
         else:
             requires_approval = self.requires_approval
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "process": process,
-                "name": name,
-                "stage_type": stage_type,
-                "sequence_no": sequence_no,
-            }
-        )
+        field_dict.update({
+            "process": process,
+            "name": name,
+            "stage_type": stage_type,
+            "sequence_no": sequence_no,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if instructions is not UNSET:
@@ -82,6 +94,8 @@ class AddProcessStage:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -90,6 +104,9 @@ class AddProcessStage:
         name = d.pop("name")
 
         stage_type = AddProcessStageStageType(d.pop("stage_type"))
+
+
+
 
         sequence_no = d.pop("sequence_no")
 
@@ -106,6 +123,7 @@ class AddProcessStage:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
+
         def _parse_requires_approval(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -114,6 +132,7 @@ class AddProcessStage:
             return cast(bool | None | Unset, data)
 
         requires_approval = _parse_requires_approval(d.pop("requires_approval", UNSET))
+
 
         add_process_stage = cls(
             process=process,
@@ -125,6 +144,7 @@ class AddProcessStage:
             is_active=is_active,
             requires_approval=requires_approval,
         )
+
 
         add_process_stage.additional_properties = d
         return add_process_stage

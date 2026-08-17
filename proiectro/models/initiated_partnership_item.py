@@ -1,34 +1,49 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="InitiatedPartnershipItem")
+
 
 
 @_attrs_define
 class InitiatedPartnershipItem:
-    """Single initiated partnership item
+    """ Single initiated partnership item
 
-    Attributes:
-        bridge_id (str):
-        subtenant_id (str):
-        subtenant_name (str):
-        partner_tenant_name (str):
-        expires_at (None | str | Unset):
-    """
+        Attributes:
+            bridge_id (str):
+            subtenant_id (str):
+            subtenant_name (str):
+            partner_tenant_name (str):
+            expires_at (datetime.datetime | None | Unset):
+     """
 
     bridge_id: str
     subtenant_id: str
     subtenant_name: str
     partner_tenant_name: str
-    expires_at: None | str | Unset = UNSET
+    expires_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         bridge_id = self.bridge_id
@@ -42,23 +57,26 @@ class InitiatedPartnershipItem:
         expires_at: None | str | Unset
         if isinstance(self.expires_at, Unset):
             expires_at = UNSET
+        elif isinstance(self.expires_at, datetime.datetime):
+            expires_at = self.expires_at.isoformat()
         else:
             expires_at = self.expires_at
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "subtenant_id": subtenant_id,
-                "subtenant_name": subtenant_name,
-                "partner_tenant_name": partner_tenant_name,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "subtenant_id": subtenant_id,
+            "subtenant_name": subtenant_name,
+            "partner_tenant_name": partner_tenant_name,
+        })
         if expires_at is not UNSET:
             field_dict["expires_at"] = expires_at
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -71,14 +89,25 @@ class InitiatedPartnershipItem:
 
         partner_tenant_name = d.pop("partner_tenant_name")
 
-        def _parse_expires_at(data: object) -> None | str | Unset:
+        def _parse_expires_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(None | str | Unset, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                expires_at_type_0 = isoparse(data)
+
+
+
+                return expires_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
 
         expires_at = _parse_expires_at(d.pop("expires_at", UNSET))
+
 
         initiated_partnership_item = cls(
             bridge_id=bridge_id,
@@ -87,6 +116,7 @@ class InitiatedPartnershipItem:
             partner_tenant_name=partner_tenant_name,
             expires_at=expires_at,
         )
+
 
         initiated_partnership_item.additional_properties = d
         return initiated_partnership_item

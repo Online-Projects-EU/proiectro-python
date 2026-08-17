@@ -1,28 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="TenantFunnelConfigurationStage")
+
 
 
 @_attrs_define
 class TenantFunnelConfigurationStage:
-    """
-    Attributes:
-        id (str):
-        sequence (str):
-        name (str):
-        description (str):
-        is_active (bool):
-        stage_type (str):
-        transitions (list[str] | None | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            sequence (str):
+            name (str):
+            description (str):
+            is_active (bool):
+            stage_type (str):
+            transitions (list[str] | None | Unset):
+     """
 
     id: str
     sequence: str
@@ -32,6 +41,10 @@ class TenantFunnelConfigurationStage:
     stage_type: str
     transitions: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -52,25 +65,27 @@ class TenantFunnelConfigurationStage:
         elif isinstance(self.transitions, list):
             transitions = self.transitions
 
+
         else:
             transitions = self.transitions
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "sequence": sequence,
-                "name": name,
-                "description": description,
-                "is_active": is_active,
-                "stage_type": stage_type,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "sequence": sequence,
+            "name": name,
+            "description": description,
+            "is_active": is_active,
+            "stage_type": stage_type,
+        })
         if transitions is not UNSET:
             field_dict["transitions"] = transitions
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -104,6 +119,7 @@ class TenantFunnelConfigurationStage:
 
         transitions = _parse_transitions(d.pop("transitions", UNSET))
 
+
         tenant_funnel_configuration_stage = cls(
             id=id,
             sequence=sequence,
@@ -113,6 +129,7 @@ class TenantFunnelConfigurationStage:
             stage_type=stage_type,
             transitions=transitions,
         )
+
 
         tenant_funnel_configuration_stage.additional_properties = d
         return tenant_funnel_configuration_stage

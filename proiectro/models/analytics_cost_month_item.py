@@ -1,30 +1,44 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsCostMonthItem")
+
 
 
 @_attrs_define
 class AnalyticsCostMonthItem:
-    """Costs for a single month
+    """ Costs for a single month
 
-    Attributes:
-        month (str):
-        direct (float | str):
-        overhead (float | str):
-        total (float | str):
-    """
+        Attributes:
+            month (str):
+            direct (float | str):
+            overhead (float | str):
+            total (float | str):
+     """
 
     month: str
     direct: float | str
     overhead: float | str
     total: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         month = self.month
@@ -38,18 +52,19 @@ class AnalyticsCostMonthItem:
         total: float | str
         total = self.total
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "month": month,
-                "direct": direct,
-                "overhead": overhead,
-                "total": total,
-            }
-        )
+        field_dict.update({
+            "month": month,
+            "direct": direct,
+            "overhead": overhead,
+            "total": total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -61,15 +76,18 @@ class AnalyticsCostMonthItem:
 
         direct = _parse_direct(d.pop("direct"))
 
+
         def _parse_overhead(data: object) -> float | str:
             return cast(float | str, data)
 
         overhead = _parse_overhead(d.pop("overhead"))
 
+
         def _parse_total(data: object) -> float | str:
             return cast(float | str, data)
 
         total = _parse_total(d.pop("total"))
+
 
         analytics_cost_month_item = cls(
             month=month,
@@ -77,6 +95,7 @@ class AnalyticsCostMonthItem:
             overhead=overhead,
             total=total,
         )
+
 
         analytics_cost_month_item.additional_properties = d
         return analytics_cost_month_item

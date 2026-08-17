@@ -1,30 +1,43 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="PortalEditExternalSupportRequest")
+
 
 
 @_attrs_define
 class PortalEditExternalSupportRequest:
-    """Portal-safe schema — excludes root_cause_asset (internal-only field).
+    """ Portal-safe schema — excludes root_cause_asset (internal-only field).
 
-    Attributes:
-        title (str):
-        description (str):
-        request_type (str):
-        request_severity (str):
-    """
+        Attributes:
+            title (str):
+            description (str):
+            request_type (str):
+            request_severity (str):
+     """
 
     title: str
     description: str
     request_type: str
     request_severity: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         title = self.title
@@ -35,18 +48,19 @@ class PortalEditExternalSupportRequest:
 
         request_severity = self.request_severity
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "title": title,
-                "description": description,
-                "request_type": request_type,
-                "request_severity": request_severity,
-            }
-        )
+        field_dict.update({
+            "title": title,
+            "description": description,
+            "request_type": request_type,
+            "request_severity": request_severity,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -65,6 +79,7 @@ class PortalEditExternalSupportRequest:
             request_type=request_type,
             request_severity=request_severity,
         )
+
 
         portal_edit_external_support_request.additional_properties = d
         return portal_edit_external_support_request

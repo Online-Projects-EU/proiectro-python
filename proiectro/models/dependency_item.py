@@ -1,31 +1,40 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="DependencyItem")
+
 
 
 @_attrs_define
 class DependencyItem:
-    """A single work item dependency
+    """ A single work item dependency
 
-    Attributes:
-        external_id (str):
-        predecessor_id (str):
-        predecessor_name (str):
-        predecessor_hierarchy_id (str):
-        successor_id (str):
-        successor_name (str):
-        successor_hierarchy_id (str):
-        dependency_type (str):
-        dependency_type_label (str):
-        lag_duration (int):
-        description (str):
-    """
+        Attributes:
+            external_id (str):
+            predecessor_id (str):
+            predecessor_name (str):
+            predecessor_hierarchy_id (str):
+            successor_id (str):
+            successor_name (str):
+            successor_hierarchy_id (str):
+            dependency_type (str):
+            dependency_type_label (str):
+            lag_duration (int):
+            description (str):
+     """
 
     external_id: str
     predecessor_id: str
@@ -39,6 +48,10 @@ class DependencyItem:
     lag_duration: int
     description: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -63,25 +76,26 @@ class DependencyItem:
 
         description = self.description
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id": external_id,
-                "predecessor_id": predecessor_id,
-                "predecessor_name": predecessor_name,
-                "predecessor_hierarchy_id": predecessor_hierarchy_id,
-                "successor_id": successor_id,
-                "successor_name": successor_name,
-                "successor_hierarchy_id": successor_hierarchy_id,
-                "dependency_type": dependency_type,
-                "dependency_type_label": dependency_type_label,
-                "lag_duration": lag_duration,
-                "description": description,
-            }
-        )
+        field_dict.update({
+            "external_id": external_id,
+            "predecessor_id": predecessor_id,
+            "predecessor_name": predecessor_name,
+            "predecessor_hierarchy_id": predecessor_hierarchy_id,
+            "successor_id": successor_id,
+            "successor_name": successor_name,
+            "successor_hierarchy_id": successor_hierarchy_id,
+            "dependency_type": dependency_type,
+            "dependency_type_label": dependency_type_label,
+            "lag_duration": lag_duration,
+            "description": description,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -121,6 +135,7 @@ class DependencyItem:
             lag_duration=lag_duration,
             description=description,
         )
+
 
         dependency_item.additional_properties = d
         return dependency_item

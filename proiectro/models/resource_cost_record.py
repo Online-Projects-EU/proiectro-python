@@ -1,36 +1,45 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
 
 T = TypeVar("T", bound="ResourceCostRecord")
 
 
+
 @_attrs_define
 class ResourceCostRecord:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        status (str):
-        value (str):
-        currency (str):
-        cost_type (str):
-        effective_start_datetime (datetime.datetime):
-        created_at (datetime.datetime):
-        created_by (str):
-        description (None | str | Unset):
-        effective_end_datetime (datetime.datetime | None | Unset):
-        updated_at (datetime.datetime | None | Unset):
-        updated_by (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            status (str):
+            value (str):
+            currency (str):
+            cost_type (str):
+            effective_start_datetime (datetime.datetime):
+            created_at (datetime.datetime):
+            created_by (str):
+            description (None | str | Unset):
+            effective_end_datetime (datetime.datetime | None | Unset):
+            updated_at (datetime.datetime | None | Unset):
+            updated_by (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -46,6 +55,10 @@ class ResourceCostRecord:
     updated_at: datetime.datetime | None | Unset = UNSET
     updated_by: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -94,21 +107,20 @@ class ResourceCostRecord:
         else:
             updated_by = self.updated_by
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "status": status,
-                "value": value,
-                "currency": currency,
-                "cost_type": cost_type,
-                "effective_start_datetime": effective_start_datetime,
-                "created_at": created_at,
-                "created_by": created_by,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "status": status,
+            "value": value,
+            "currency": currency,
+            "cost_type": cost_type,
+            "effective_start_datetime": effective_start_datetime,
+            "created_at": created_at,
+            "created_by": created_by,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if effective_end_datetime is not UNSET:
@@ -119,6 +131,8 @@ class ResourceCostRecord:
             field_dict["updated_by"] = updated_by
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -137,7 +151,13 @@ class ResourceCostRecord:
 
         effective_start_datetime = isoparse(d.pop("effective_start_datetime"))
 
+
+
+
         created_at = isoparse(d.pop("created_at"))
+
+
+
 
         created_by = d.pop("created_by")
 
@@ -150,9 +170,8 @@ class ResourceCostRecord:
 
         description = _parse_description(d.pop("description", UNSET))
 
-        def _parse_effective_end_datetime(
-            data: object,
-        ) -> datetime.datetime | None | Unset:
+
+        def _parse_effective_end_datetime(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -162,14 +181,15 @@ class ResourceCostRecord:
                     raise TypeError()
                 effective_end_datetime_type_0 = isoparse(data)
 
+
+
                 return effective_end_datetime_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
-        effective_end_datetime = _parse_effective_end_datetime(
-            d.pop("effective_end_datetime", UNSET)
-        )
+        effective_end_datetime = _parse_effective_end_datetime(d.pop("effective_end_datetime", UNSET))
+
 
         def _parse_updated_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -181,12 +201,15 @@ class ResourceCostRecord:
                     raise TypeError()
                 updated_at_type_0 = isoparse(data)
 
+
+
                 return updated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         updated_at = _parse_updated_at(d.pop("updated_at", UNSET))
+
 
         def _parse_updated_by(data: object) -> None | str | Unset:
             if data is None:
@@ -196,6 +219,7 @@ class ResourceCostRecord:
             return cast(None | str | Unset, data)
 
         updated_by = _parse_updated_by(d.pop("updated_by", UNSET))
+
 
         resource_cost_record = cls(
             id=id,
@@ -212,6 +236,7 @@ class ResourceCostRecord:
             updated_at=updated_at,
             updated_by=updated_by,
         )
+
 
         resource_cost_record.additional_properties = d
         return resource_cost_record

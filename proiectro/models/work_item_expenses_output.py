@@ -1,30 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.expense_item import ExpenseItem
+  from ..models.expense_item import ExpenseItem
+
+
+
 
 
 T = TypeVar("T", bound="WorkItemExpensesOutput")
 
 
+
 @_attrs_define
 class WorkItemExpensesOutput:
-    """
-    Attributes:
-        expenses (list[ExpenseItem]):
-        total_actual (str):
-        expense_count (int):
-        work_item_id (str):
-        work_item_name (str):
-        project_id (str):
-        project_currency_symbol (str):
-    """
+    """ 
+        Attributes:
+            expenses (list[ExpenseItem]):
+            total_actual (str):
+            expense_count (int):
+            work_item_id (str):
+            work_item_name (str):
+            project_id (str):
+            project_currency_symbol (str):
+     """
 
     expenses: list[ExpenseItem]
     total_actual: str
@@ -35,11 +43,18 @@ class WorkItemExpensesOutput:
     project_currency_symbol: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.expense_item import ExpenseItem
         expenses = []
         for expenses_item_data in self.expenses:
             expenses_item = expenses_item_data.to_dict()
             expenses.append(expenses_item)
+
+
 
         total_actual = self.total_actual
 
@@ -53,33 +68,36 @@ class WorkItemExpensesOutput:
 
         project_currency_symbol = self.project_currency_symbol
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "expenses": expenses,
-                "total_actual": total_actual,
-                "expense_count": expense_count,
-                "work_item_id": work_item_id,
-                "work_item_name": work_item_name,
-                "project_id": project_id,
-                "project_currency_symbol": project_currency_symbol,
-            }
-        )
+        field_dict.update({
+            "expenses": expenses,
+            "total_actual": total_actual,
+            "expense_count": expense_count,
+            "work_item_id": work_item_id,
+            "work_item_name": work_item_name,
+            "project_id": project_id,
+            "project_currency_symbol": project_currency_symbol,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.expense_item import ExpenseItem
-
         d = dict(src_dict)
         expenses = []
         _expenses = d.pop("expenses")
-        for expenses_item_data in _expenses:
+        for expenses_item_data in (_expenses):
             expenses_item = ExpenseItem.from_dict(expenses_item_data)
 
+
+
             expenses.append(expenses_item)
+
 
         total_actual = d.pop("total_actual")
 
@@ -102,6 +120,7 @@ class WorkItemExpensesOutput:
             project_id=project_id,
             project_currency_symbol=project_currency_symbol,
         )
+
 
         work_item_expenses_output.additional_properties = d
         return work_item_expenses_output

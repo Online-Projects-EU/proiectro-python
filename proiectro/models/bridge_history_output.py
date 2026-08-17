@@ -1,32 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.bridge_history_entry import BridgeHistoryEntry
+  from ..models.bridge_history_entry import BridgeHistoryEntry
+
+
+
 
 
 T = TypeVar("T", bound="BridgeHistoryOutput")
 
 
+
 @_attrs_define
 class BridgeHistoryOutput:
-    """Complete audit history for a bridge
+    """ Complete audit history for a bridge
 
-    Attributes:
-        bridge_id (str):
-        history (list[BridgeHistoryEntry]):
-    """
+        Attributes:
+            bridge_id (str):
+            history (list[BridgeHistoryEntry]):
+     """
 
     bridge_id: str
     history: list[BridgeHistoryEntry]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.bridge_history_entry import BridgeHistoryEntry
         bridge_id = self.bridge_id
 
         history = []
@@ -34,35 +47,41 @@ class BridgeHistoryOutput:
             history_item = history_item_data.to_dict()
             history.append(history_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "history": history,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "history": history,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.bridge_history_entry import BridgeHistoryEntry
-
         d = dict(src_dict)
         bridge_id = d.pop("bridge_id")
 
         history = []
         _history = d.pop("history")
-        for history_item_data in _history:
+        for history_item_data in (_history):
             history_item = BridgeHistoryEntry.from_dict(history_item_data)
 
+
+
             history.append(history_item)
+
 
         bridge_history_output = cls(
             bridge_id=bridge_id,
             history=history,
         )
+
 
         bridge_history_output.additional_properties = d
         return bridge_history_output

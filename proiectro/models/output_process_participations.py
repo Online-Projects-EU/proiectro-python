@@ -1,33 +1,46 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_process_participation import OutputProcessParticipation
+  from ..models.output_process_participation import OutputProcessParticipation
+
+
+
 
 
 T = TypeVar("T", bound="OutputProcessParticipations")
 
 
+
 @_attrs_define
 class OutputProcessParticipations:
-    """
-    Attributes:
-        process_id (str):
-        process_name (str):
-        participations (list[OutputProcessParticipation]):
-    """
+    """ 
+        Attributes:
+            process_id (str):
+            process_name (str):
+            participations (list[OutputProcessParticipation]):
+     """
 
     process_id: str
     process_name: str
     participations: list[OutputProcessParticipation]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_process_participation import OutputProcessParticipation
         process_id = self.process_id
 
         process_name = self.process_name
@@ -37,22 +50,24 @@ class OutputProcessParticipations:
             participations_item = participations_item_data.to_dict()
             participations.append(participations_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "process_id": process_id,
-                "process_name": process_name,
-                "participations": participations,
-            }
-        )
+        field_dict.update({
+            "process_id": process_id,
+            "process_name": process_name,
+            "participations": participations,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_process_participation import OutputProcessParticipation
-
         d = dict(src_dict)
         process_id = d.pop("process_id")
 
@@ -60,18 +75,20 @@ class OutputProcessParticipations:
 
         participations = []
         _participations = d.pop("participations")
-        for participations_item_data in _participations:
-            participations_item = OutputProcessParticipation.from_dict(
-                participations_item_data
-            )
+        for participations_item_data in (_participations):
+            participations_item = OutputProcessParticipation.from_dict(participations_item_data)
+
+
 
             participations.append(participations_item)
+
 
         output_process_participations = cls(
             process_id=process_id,
             process_name=process_name,
             participations=participations,
         )
+
 
         output_process_participations.additional_properties = d
         return output_process_participations

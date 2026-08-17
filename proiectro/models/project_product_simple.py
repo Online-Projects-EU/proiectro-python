@@ -1,34 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.product_status_detail import ProductStatusDetail
+  from ..models.product_status_detail import ProductStatusDetail
+
+
+
 
 
 T = TypeVar("T", bound="ProjectProductSimple")
 
 
+
 @_attrs_define
 class ProjectProductSimple:
-    """
-    Attributes:
-        external_id (str):
-        product_count (int):
-        name (str):
-        is_active (bool):
-        current_status (ProductStatusDetail): Product status for lifecycle display.
-            Used in status dropdowns to show current status and all available lifecycle stages.
-            Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
-        lifecycle_statuses (list[ProductStatusDetail]):
-        is_linked (bool | Unset):  Default: False.
-    """
+    """ 
+        Attributes:
+            external_id (str):
+            product_count (int):
+            name (str):
+            is_active (bool):
+            current_status (ProductStatusDetail): Product status for lifecycle display.
+                Used in status dropdowns to show current status and all available lifecycle stages.
+                Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
+            lifecycle_statuses (list[ProductStatusDetail]):
+            is_linked (bool | Unset):  Default: False.
+     """
 
     external_id: str
     product_count: int
@@ -39,7 +46,12 @@ class ProjectProductSimple:
     is_linked: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.product_status_detail import ProductStatusDetail
         external_id = self.external_id
 
         product_count = self.product_count
@@ -55,29 +67,31 @@ class ProjectProductSimple:
             lifecycle_statuses_item = lifecycle_statuses_item_data.to_dict()
             lifecycle_statuses.append(lifecycle_statuses_item)
 
+
+
         is_linked = self.is_linked
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "external_id": external_id,
-                "product_count": product_count,
-                "name": name,
-                "is_active": is_active,
-                "current_status": current_status,
-                "lifecycle_statuses": lifecycle_statuses,
-            }
-        )
+        field_dict.update({
+            "external_id": external_id,
+            "product_count": product_count,
+            "name": name,
+            "is_active": is_active,
+            "current_status": current_status,
+            "lifecycle_statuses": lifecycle_statuses,
+        })
         if is_linked is not UNSET:
             field_dict["is_linked"] = is_linked
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_status_detail import ProductStatusDetail
-
         d = dict(src_dict)
         external_id = d.pop("external_id")
 
@@ -89,14 +103,18 @@ class ProjectProductSimple:
 
         current_status = ProductStatusDetail.from_dict(d.pop("current_status"))
 
+
+
+
         lifecycle_statuses = []
         _lifecycle_statuses = d.pop("lifecycle_statuses")
-        for lifecycle_statuses_item_data in _lifecycle_statuses:
-            lifecycle_statuses_item = ProductStatusDetail.from_dict(
-                lifecycle_statuses_item_data
-            )
+        for lifecycle_statuses_item_data in (_lifecycle_statuses):
+            lifecycle_statuses_item = ProductStatusDetail.from_dict(lifecycle_statuses_item_data)
+
+
 
             lifecycle_statuses.append(lifecycle_statuses_item)
+
 
         is_linked = d.pop("is_linked", UNSET)
 
@@ -109,6 +127,7 @@ class ProjectProductSimple:
             lifecycle_statuses=lifecycle_statuses,
             is_linked=is_linked,
         )
+
 
         project_product_simple.additional_properties = d
         return project_product_simple

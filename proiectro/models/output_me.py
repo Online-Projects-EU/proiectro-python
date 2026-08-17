@@ -1,26 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputMe")
+
 
 
 @_attrs_define
 class OutputMe:
-    """Current authenticated user info (for API key validation / Zapier auth test)
+    """ Current authenticated user info (for API key validation / Zapier auth test)
 
-    Attributes:
-        id (str):
-        email (str):
-        name (str):
-        tenant_id (str):
-        tenant_name (str):
-        tenant_path (str):
-    """
+        Attributes:
+            id (str):
+            email (str):
+            name (str):
+            tenant_id (str):
+            tenant_name (str):
+            tenant_path (str):
+     """
 
     id: str
     email: str
@@ -29,6 +38,10 @@ class OutputMe:
     tenant_name: str
     tenant_path: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -43,20 +56,21 @@ class OutputMe:
 
         tenant_path = self.tenant_path
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "email": email,
-                "name": name,
-                "tenant_id": tenant_id,
-                "tenant_name": tenant_name,
-                "tenant_path": tenant_path,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "email": email,
+            "name": name,
+            "tenant_id": tenant_id,
+            "tenant_name": tenant_name,
+            "tenant_path": tenant_path,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -81,6 +95,7 @@ class OutputMe:
             tenant_name=tenant_name,
             tenant_path=tenant_path,
         )
+
 
         output_me.additional_properties = d
         return output_me

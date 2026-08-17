@@ -1,60 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_rfp_item import OutputRFPItem
+  from ..models.output_rfp_item import OutputRFPItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputTenantRFPs")
 
 
+
 @_attrs_define
 class OutputTenantRFPs:
-    """List of RFPs created by the tenant
+    """ List of RFPs created by the tenant
 
-    Attributes:
-        rfps (list[OutputRFPItem]):
-    """
+        Attributes:
+            rfps (list[OutputRFPItem]):
+     """
 
     rfps: list[OutputRFPItem]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_rfp_item import OutputRFPItem
         rfps = []
         for rfps_item_data in self.rfps:
             rfps_item = rfps_item_data.to_dict()
             rfps.append(rfps_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "rfps": rfps,
-            }
-        )
+        field_dict.update({
+            "rfps": rfps,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_rfp_item import OutputRFPItem
-
         d = dict(src_dict)
         rfps = []
         _rfps = d.pop("rfps")
-        for rfps_item_data in _rfps:
+        for rfps_item_data in (_rfps):
             rfps_item = OutputRFPItem.from_dict(rfps_item_data)
 
+
+
             rfps.append(rfps_item)
+
 
         output_tenant_rf_ps = cls(
             rfps=rfps,
         )
+
 
         output_tenant_rf_ps.additional_properties = d
         return output_tenant_rf_ps

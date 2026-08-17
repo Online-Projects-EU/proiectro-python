@@ -1,31 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.product_status_detail import ProductStatusDetail
+  from ..models.product_status_detail import ProductStatusDetail
+
+
+
 
 
 T = TypeVar("T", bound="ProductStatusBadges")
 
 
+
 @_attrs_define
 class ProductStatusBadges:
-    """Product status badges for dynamic updates
+    """ Product status badges for dynamic updates
 
-    Attributes:
-        product_id (str):
-        product_name (str):
-        is_active (bool):
-        current_status (ProductStatusDetail): Product status for lifecycle display.
-            Used in status dropdowns to show current status and all available lifecycle stages.
-            Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
-        lifecycle_statuses (list[ProductStatusDetail]):
-    """
+        Attributes:
+            product_id (str):
+            product_name (str):
+            is_active (bool):
+            current_status (ProductStatusDetail): Product status for lifecycle display.
+                Used in status dropdowns to show current status and all available lifecycle stages.
+                Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
+            lifecycle_statuses (list[ProductStatusDetail]):
+     """
 
     product_id: str
     product_name: str
@@ -34,7 +42,12 @@ class ProductStatusBadges:
     lifecycle_statuses: list[ProductStatusDetail]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.product_status_detail import ProductStatusDetail
         product_id = self.product_id
 
         product_name = self.product_name
@@ -48,24 +61,26 @@ class ProductStatusBadges:
             lifecycle_statuses_item = lifecycle_statuses_item_data.to_dict()
             lifecycle_statuses.append(lifecycle_statuses_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "product_id": product_id,
-                "product_name": product_name,
-                "is_active": is_active,
-                "current_status": current_status,
-                "lifecycle_statuses": lifecycle_statuses,
-            }
-        )
+        field_dict.update({
+            "product_id": product_id,
+            "product_name": product_name,
+            "is_active": is_active,
+            "current_status": current_status,
+            "lifecycle_statuses": lifecycle_statuses,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_status_detail import ProductStatusDetail
-
         d = dict(src_dict)
         product_id = d.pop("product_id")
 
@@ -75,14 +90,18 @@ class ProductStatusBadges:
 
         current_status = ProductStatusDetail.from_dict(d.pop("current_status"))
 
+
+
+
         lifecycle_statuses = []
         _lifecycle_statuses = d.pop("lifecycle_statuses")
-        for lifecycle_statuses_item_data in _lifecycle_statuses:
-            lifecycle_statuses_item = ProductStatusDetail.from_dict(
-                lifecycle_statuses_item_data
-            )
+        for lifecycle_statuses_item_data in (_lifecycle_statuses):
+            lifecycle_statuses_item = ProductStatusDetail.from_dict(lifecycle_statuses_item_data)
+
+
 
             lifecycle_statuses.append(lifecycle_statuses_item)
+
 
         product_status_badges = cls(
             product_id=product_id,
@@ -91,6 +110,7 @@ class ProductStatusBadges:
             current_status=current_status,
             lifecycle_statuses=lifecycle_statuses,
         )
+
 
         product_status_badges.additional_properties = d
         return product_status_badges

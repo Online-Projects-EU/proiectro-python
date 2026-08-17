@@ -1,37 +1,43 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
 from dateutil.parser import isoparse
+from typing import cast
+import datetime
 
 if TYPE_CHECKING:
-    from ..models.project_resource_activity_weekly_schema import (
-        ProjectResourceActivityWeeklySchema,
-    )
+  from ..models.project_resource_activity_weekly_schema import ProjectResourceActivityWeeklySchema
+
+
+
 
 
 T = TypeVar("T", bound="ProjectResourceActivityHistogramSchema")
 
 
+
 @_attrs_define
 class ProjectResourceActivityHistogramSchema:
-    """Project resource activity histogram data for visualization
+    """ Project resource activity histogram data for visualization
 
-    Attributes:
-        resource_id (str):
-        resource_name (str):
-        project_id (str):
-        project_name (str):
-        weeks (list[ProjectResourceActivityWeeklySchema]):
-        start_date (datetime.date):
-        end_date (datetime.date):
-        max_usage (int):
-        total_usage (int):
-    """
+        Attributes:
+            resource_id (str):
+            resource_name (str):
+            project_id (str):
+            project_name (str):
+            weeks (list[ProjectResourceActivityWeeklySchema]):
+            start_date (datetime.date):
+            end_date (datetime.date):
+            max_usage (int):
+            total_usage (int):
+     """
 
     resource_id: str
     resource_name: str
@@ -44,7 +50,12 @@ class ProjectResourceActivityHistogramSchema:
     total_usage: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_resource_activity_weekly_schema import ProjectResourceActivityWeeklySchema
         resource_id = self.resource_id
 
         resource_name = self.resource_name
@@ -58,6 +69,8 @@ class ProjectResourceActivityHistogramSchema:
             weeks_item = weeks_item_data.to_dict()
             weeks.append(weeks_item)
 
+
+
         start_date = self.start_date.isoformat()
 
         end_date = self.end_date.isoformat()
@@ -66,30 +79,28 @@ class ProjectResourceActivityHistogramSchema:
 
         total_usage = self.total_usage
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "resource_id": resource_id,
-                "resource_name": resource_name,
-                "project_id": project_id,
-                "project_name": project_name,
-                "weeks": weeks,
-                "start_date": start_date,
-                "end_date": end_date,
-                "max_usage": max_usage,
-                "total_usage": total_usage,
-            }
-        )
+        field_dict.update({
+            "resource_id": resource_id,
+            "resource_name": resource_name,
+            "project_id": project_id,
+            "project_name": project_name,
+            "weeks": weeks,
+            "start_date": start_date,
+            "end_date": end_date,
+            "max_usage": max_usage,
+            "total_usage": total_usage,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_resource_activity_weekly_schema import (
-            ProjectResourceActivityWeeklySchema,
-        )
-
+        from ..models.project_resource_activity_weekly_schema import ProjectResourceActivityWeeklySchema
         d = dict(src_dict)
         resource_id = d.pop("resource_id")
 
@@ -101,14 +112,23 @@ class ProjectResourceActivityHistogramSchema:
 
         weeks = []
         _weeks = d.pop("weeks")
-        for weeks_item_data in _weeks:
+        for weeks_item_data in (_weeks):
             weeks_item = ProjectResourceActivityWeeklySchema.from_dict(weeks_item_data)
+
+
 
             weeks.append(weeks_item)
 
+
         start_date = isoparse(d.pop("start_date")).date()
 
+
+
+
         end_date = isoparse(d.pop("end_date")).date()
+
+
+
 
         max_usage = d.pop("max_usage")
 
@@ -125,6 +145,7 @@ class ProjectResourceActivityHistogramSchema:
             max_usage=max_usage,
             total_usage=total_usage,
         )
+
 
         project_resource_activity_histogram_schema.additional_properties = d
         return project_resource_activity_histogram_schema

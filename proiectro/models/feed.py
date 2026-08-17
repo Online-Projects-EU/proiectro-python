@@ -1,28 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.feed_event import FeedEvent
-    from ..models.feed_reactions import FeedReactions
+  from ..models.feed_event import FeedEvent
+  from ..models.feed_reactions import FeedReactions
+
+
+
 
 
 T = TypeVar("T", bound="Feed")
 
 
+
 @_attrs_define
 class Feed:
-    """
-    Attributes:
-        events (list[FeedEvent]):
-        reactions (FeedReactions):
-        per_page (int):
-        next_page (int):
-    """
+    """ 
+        Attributes:
+            events (list[FeedEvent]):
+            reactions (FeedReactions):
+            per_page (int):
+            next_page (int):
+     """
 
     events: list[FeedEvent]
     reactions: FeedReactions
@@ -30,11 +38,19 @@ class Feed:
     next_page: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.feed_event import FeedEvent
+        from ..models.feed_reactions import FeedReactions
         events = []
         for events_item_data in self.events:
             events_item = events_item_data.to_dict()
             events.append(events_item)
+
+
 
         reactions = self.reactions.to_dict()
 
@@ -42,33 +58,39 @@ class Feed:
 
         next_page = self.next_page
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "events": events,
-                "reactions": reactions,
-                "per_page": per_page,
-                "next_page": next_page,
-            }
-        )
+        field_dict.update({
+            "events": events,
+            "reactions": reactions,
+            "per_page": per_page,
+            "next_page": next_page,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.feed_event import FeedEvent
         from ..models.feed_reactions import FeedReactions
-
         d = dict(src_dict)
         events = []
         _events = d.pop("events")
-        for events_item_data in _events:
+        for events_item_data in (_events):
             events_item = FeedEvent.from_dict(events_item_data)
+
+
 
             events.append(events_item)
 
+
         reactions = FeedReactions.from_dict(d.pop("reactions"))
+
+
+
 
         per_page = d.pop("per_page")
 
@@ -80,6 +102,7 @@ class Feed:
             per_page=per_page,
             next_page=next_page,
         )
+
 
         feed.additional_properties = d
         return feed

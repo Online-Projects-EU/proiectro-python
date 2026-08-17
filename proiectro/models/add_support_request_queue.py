@@ -1,28 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddSupportRequestQueue")
+
 
 
 @_attrs_define
 class AddSupportRequestQueue:
-    """Input schema for adding a support request queue
+    """ Input schema for adding a support request queue
 
-    Attributes:
-        name (str):
-        internal (bool | None | Unset):  Default: False.
-        active (bool | None | Unset):  Default: False.
-        sequence_no (int | None | Unset):  Default: 1.
-        owner_role_id (None | str | Unset):
-        automatically_assign (bool | None | Unset):  Default: False.
-    """
+        Attributes:
+            name (str):
+            internal (bool | None | Unset):  Default: False.
+            active (bool | None | Unset):  Default: False.
+            sequence_no (int | None | Unset):  Default: 1.
+            owner_role_id (None | str | Unset):
+            automatically_assign (bool | None | Unset):  Default: False.
+     """
 
     name: str
     internal: bool | None | Unset = False
@@ -31,6 +40,10 @@ class AddSupportRequestQueue:
     owner_role_id: None | str | Unset = UNSET
     automatically_assign: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -65,13 +78,12 @@ class AddSupportRequestQueue:
         else:
             automatically_assign = self.automatically_assign
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if internal is not UNSET:
             field_dict["internal"] = internal
         if active is not UNSET:
@@ -84,6 +96,8 @@ class AddSupportRequestQueue:
             field_dict["automatically_assign"] = automatically_assign
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -99,6 +113,7 @@ class AddSupportRequestQueue:
 
         internal = _parse_internal(d.pop("internal", UNSET))
 
+
         def _parse_active(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -107,6 +122,7 @@ class AddSupportRequestQueue:
             return cast(bool | None | Unset, data)
 
         active = _parse_active(d.pop("active", UNSET))
+
 
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
@@ -117,6 +133,7 @@ class AddSupportRequestQueue:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
+
         def _parse_owner_role_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -126,6 +143,7 @@ class AddSupportRequestQueue:
 
         owner_role_id = _parse_owner_role_id(d.pop("owner_role_id", UNSET))
 
+
         def _parse_automatically_assign(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -133,9 +151,8 @@ class AddSupportRequestQueue:
                 return data
             return cast(bool | None | Unset, data)
 
-        automatically_assign = _parse_automatically_assign(
-            d.pop("automatically_assign", UNSET)
-        )
+        automatically_assign = _parse_automatically_assign(d.pop("automatically_assign", UNSET))
+
 
         add_support_request_queue = cls(
             name=name,
@@ -145,6 +162,7 @@ class AddSupportRequestQueue:
             owner_role_id=owner_role_id,
             automatically_assign=automatically_assign,
         )
+
 
         add_support_request_queue.additional_properties = d
         return add_support_request_queue

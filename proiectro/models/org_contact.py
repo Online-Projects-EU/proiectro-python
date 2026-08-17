@@ -1,30 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="OrgContact")
+
 
 
 @_attrs_define
 class OrgContact:
-    """
-    Attributes:
-        id (str):
-        first_name (str):
-        last_name (str):
-        email (str):
-        phone (str):
-        address (str):
-        job_title (str):
-        customer_portal_access (bool):
-        customer_portal_invitation (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            first_name (str):
+            last_name (str):
+            email (str):
+            phone (str):
+            address (str):
+            job_title (str):
+            customer_portal_access (bool):
+            customer_portal_invitation (None | str | Unset):
+     """
 
     id: str
     first_name: str
@@ -36,6 +45,10 @@ class OrgContact:
     customer_portal_access: bool
     customer_portal_invitation: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -60,24 +73,25 @@ class OrgContact:
         else:
             customer_portal_invitation = self.customer_portal_invitation
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "first_name": first_name,
-                "last_name": last_name,
-                "email": email,
-                "phone": phone,
-                "address": address,
-                "job_title": job_title,
-                "customer_portal_access": customer_portal_access,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "phone": phone,
+            "address": address,
+            "job_title": job_title,
+            "customer_portal_access": customer_portal_access,
+        })
         if customer_portal_invitation is not UNSET:
             field_dict["customer_portal_invitation"] = customer_portal_invitation
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -105,9 +119,8 @@ class OrgContact:
                 return data
             return cast(None | str | Unset, data)
 
-        customer_portal_invitation = _parse_customer_portal_invitation(
-            d.pop("customer_portal_invitation", UNSET)
-        )
+        customer_portal_invitation = _parse_customer_portal_invitation(d.pop("customer_portal_invitation", UNSET))
+
 
         org_contact = cls(
             id=id,
@@ -120,6 +133,7 @@ class OrgContact:
             customer_portal_access=customer_portal_access,
             customer_portal_invitation=customer_portal_invitation,
         )
+
 
         org_contact.additional_properties = d
         return org_contact

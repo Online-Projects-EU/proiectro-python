@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class PartnerPortalFileNamesNodeType(str, Enum):
     EXTERNAL_SUPPORT_REQUEST = "external_support_request"
     INTERNAL_SUPPORT_REQUEST = "internal_support_request"

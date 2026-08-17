@@ -1,30 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.cost_item import CostItem
+  from ..models.cost_item import CostItem
+
+
+
 
 
 T = TypeVar("T", bound="WorkItemCostsOutput")
 
 
+
 @_attrs_define
 class WorkItemCostsOutput:
-    """
-    Attributes:
-        costs (list[CostItem]):
-        total_expected (str):
-        cost_count (int):
-        work_item_id (str):
-        work_item_name (str):
-        project_id (str):
-        project_currency_symbol (str):
-    """
+    """ 
+        Attributes:
+            costs (list[CostItem]):
+            total_expected (str):
+            cost_count (int):
+            work_item_id (str):
+            work_item_name (str):
+            project_id (str):
+            project_currency_symbol (str):
+     """
 
     costs: list[CostItem]
     total_expected: str
@@ -35,11 +43,18 @@ class WorkItemCostsOutput:
     project_currency_symbol: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.cost_item import CostItem
         costs = []
         for costs_item_data in self.costs:
             costs_item = costs_item_data.to_dict()
             costs.append(costs_item)
+
+
 
         total_expected = self.total_expected
 
@@ -53,33 +68,36 @@ class WorkItemCostsOutput:
 
         project_currency_symbol = self.project_currency_symbol
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "costs": costs,
-                "total_expected": total_expected,
-                "cost_count": cost_count,
-                "work_item_id": work_item_id,
-                "work_item_name": work_item_name,
-                "project_id": project_id,
-                "project_currency_symbol": project_currency_symbol,
-            }
-        )
+        field_dict.update({
+            "costs": costs,
+            "total_expected": total_expected,
+            "cost_count": cost_count,
+            "work_item_id": work_item_id,
+            "work_item_name": work_item_name,
+            "project_id": project_id,
+            "project_currency_symbol": project_currency_symbol,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.cost_item import CostItem
-
         d = dict(src_dict)
         costs = []
         _costs = d.pop("costs")
-        for costs_item_data in _costs:
+        for costs_item_data in (_costs):
             costs_item = CostItem.from_dict(costs_item_data)
 
+
+
             costs.append(costs_item)
+
 
         total_expected = d.pop("total_expected")
 
@@ -102,6 +120,7 @@ class WorkItemCostsOutput:
             project_id=project_id,
             project_currency_symbol=project_currency_symbol,
         )
+
 
         work_item_costs_output.additional_properties = d
         return work_item_costs_output

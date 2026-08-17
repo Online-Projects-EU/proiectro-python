@@ -1,25 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="PartnerRejectProduct")
+
 
 
 @_attrs_define
 class PartnerRejectProduct:
-    """Input schema for partner rejecting a deliverable in partner portal
+    """ Input schema for partner rejecting a deliverable in partner portal
 
-    Attributes:
-        bridge_id (str):
-        project_id (str):
-        product_id (str):
-        status_id (str):
-        reason (str):
-    """
+        Attributes:
+            bridge_id (str):
+            project_id (str):
+            product_id (str):
+            status_id (str):
+            reason (str):
+     """
 
     bridge_id: str
     project_id: str
@@ -27,6 +36,10 @@ class PartnerRejectProduct:
     status_id: str
     reason: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         bridge_id = self.bridge_id
@@ -39,19 +52,20 @@ class PartnerRejectProduct:
 
         reason = self.reason
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "project_id": project_id,
-                "product_id": product_id,
-                "status_id": status_id,
-                "reason": reason,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "project_id": project_id,
+            "product_id": product_id,
+            "status_id": status_id,
+            "reason": reason,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -73,6 +87,7 @@ class PartnerRejectProduct:
             status_id=status_id,
             reason=reason,
         )
+
 
         partner_reject_product.additional_properties = d
         return partner_reject_product

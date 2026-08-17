@@ -1,26 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputAssetCategory")
+
 
 
 @_attrs_define
 class OutputAssetCategory:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        is_active (bool):
-        description (None | str | Unset):
-        internal_code (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            is_active (bool):
+            description (None | str | Unset):
+            internal_code (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -28,6 +37,10 @@ class OutputAssetCategory:
     description: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -48,21 +61,22 @@ class OutputAssetCategory:
         else:
             internal_code = self.internal_code
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "is_active": is_active,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "is_active": is_active,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -82,6 +96,7 @@ class OutputAssetCategory:
 
         description = _parse_description(d.pop("description", UNSET))
 
+
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -91,6 +106,7 @@ class OutputAssetCategory:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
+
         output_asset_category = cls(
             id=id,
             name=name,
@@ -98,6 +114,7 @@ class OutputAssetCategory:
             description=description,
             internal_code=internal_code,
         )
+
 
         output_asset_category.additional_properties = d
         return output_asset_category

@@ -57,7 +57,7 @@ def sync_detailed(
     """List Support Request Severities
 
      View all severity levels defining urgency and response time expectations.
-    Severities drive prioritization, escalation rules, and SLA compliance.
+    Severities drive prioritization and escalation rules.
     Essential for setting customer expectations and resource allocation.
     Higher severities typically trigger faster response requirements.
 
@@ -91,7 +91,7 @@ def sync(
     """List Support Request Severities
 
      View all severity levels defining urgency and response time expectations.
-    Severities drive prioritization, escalation rules, and SLA compliance.
+    Severities drive prioritization and escalation rules.
     Essential for setting customer expectations and resource allocation.
     Higher severities typically trigger faster response requirements.
 
@@ -120,7 +120,7 @@ async def asyncio_detailed(
     """List Support Request Severities
 
      View all severity levels defining urgency and response time expectations.
-    Severities drive prioritization, escalation rules, and SLA compliance.
+    Severities drive prioritization and escalation rules.
     Essential for setting customer expectations and resource allocation.
     Higher severities typically trigger faster response requirements.
 
@@ -152,7 +152,7 @@ async def asyncio(
     """List Support Request Severities
 
      View all severity levels defining urgency and response time expectations.
-    Severities drive prioritization, escalation rules, and SLA compliance.
+    Severities drive prioritization and escalation rules.
     Essential for setting customer expectations and resource allocation.
     Higher severities typically trigger faster response requirements.
 

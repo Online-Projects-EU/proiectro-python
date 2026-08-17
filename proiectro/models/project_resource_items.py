@@ -1,21 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.project_resource_items_items_item import ProjectResourceItemsItemsItem
+  from ..models.project_resource_items_items_item import ProjectResourceItemsItemsItem
+
+
+
 
 
 T = TypeVar("T", bound="ProjectResourceItems")
 
 
+
 @_attrs_define
 class ProjectResourceItems:
-    """List of unique resources working on a project
+    """ List of unique resources working on a project
 
     The item structure depends on the mode:
     - booking_mode=True: items contain ProjectResourceItemBooking fields
@@ -28,7 +36,7 @@ class ProjectResourceItems:
             total_resources (int):
             booking_mode (bool):
             usage_mode (bool):
-    """
+     """
 
     items: list[ProjectResourceItemsItemsItem]
     project_id: str
@@ -38,11 +46,18 @@ class ProjectResourceItems:
     usage_mode: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_resource_items_items_item import ProjectResourceItemsItemsItem
         items = []
         for items_item_data in self.items:
             items_item = items_item_data.to_dict()
             items.append(items_item)
+
+
 
         project_id = self.project_id
 
@@ -54,34 +69,35 @@ class ProjectResourceItems:
 
         usage_mode = self.usage_mode
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "items": items,
-                "project_id": project_id,
-                "project_name": project_name,
-                "total_resources": total_resources,
-                "booking_mode": booking_mode,
-                "usage_mode": usage_mode,
-            }
-        )
+        field_dict.update({
+            "items": items,
+            "project_id": project_id,
+            "project_name": project_name,
+            "total_resources": total_resources,
+            "booking_mode": booking_mode,
+            "usage_mode": usage_mode,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_resource_items_items_item import (
-            ProjectResourceItemsItemsItem,
-        )
-
+        from ..models.project_resource_items_items_item import ProjectResourceItemsItemsItem
         d = dict(src_dict)
         items = []
         _items = d.pop("items")
-        for items_item_data in _items:
+        for items_item_data in (_items):
             items_item = ProjectResourceItemsItemsItem.from_dict(items_item_data)
 
+
+
             items.append(items_item)
+
 
         project_id = d.pop("project_id")
 
@@ -101,6 +117,7 @@ class ProjectResourceItems:
             booking_mode=booking_mode,
             usage_mode=usage_mode,
         )
+
 
         project_resource_items.additional_properties = d
         return project_resource_items

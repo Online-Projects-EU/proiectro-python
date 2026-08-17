@@ -1,61 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.customer_asset_ticket_item import CustomerAssetTicketItem
+  from ..models.customer_asset_ticket_item import CustomerAssetTicketItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputCustomerAssetTickets")
 
 
+
 @_attrs_define
 class OutputCustomerAssetTickets:
-    """Tickets linked to a customer asset (both ISR and ESR)
+    """ Tickets linked to a customer asset (both ISR and ESR)
 
-    Attributes:
-        tickets (list[CustomerAssetTicketItem]):
-        ticket_count (int):
-    """
+        Attributes:
+            tickets (list[CustomerAssetTicketItem]):
+            ticket_count (int):
+     """
 
     tickets: list[CustomerAssetTicketItem]
     ticket_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.customer_asset_ticket_item import CustomerAssetTicketItem
         tickets = []
         for tickets_item_data in self.tickets:
             tickets_item = tickets_item_data.to_dict()
             tickets.append(tickets_item)
 
+
+
         ticket_count = self.ticket_count
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tickets": tickets,
-                "ticket_count": ticket_count,
-            }
-        )
+        field_dict.update({
+            "tickets": tickets,
+            "ticket_count": ticket_count,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.customer_asset_ticket_item import CustomerAssetTicketItem
-
         d = dict(src_dict)
         tickets = []
         _tickets = d.pop("tickets")
-        for tickets_item_data in _tickets:
+        for tickets_item_data in (_tickets):
             tickets_item = CustomerAssetTicketItem.from_dict(tickets_item_data)
 
+
+
             tickets.append(tickets_item)
+
 
         ticket_count = d.pop("ticket_count")
 
@@ -63,6 +81,7 @@ class OutputCustomerAssetTickets:
             tickets=tickets,
             ticket_count=ticket_count,
         )
+
 
         output_customer_asset_tickets.additional_properties = d
         return output_customer_asset_tickets

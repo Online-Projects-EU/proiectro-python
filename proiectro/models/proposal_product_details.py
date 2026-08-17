@@ -1,38 +1,47 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
 
 T = TypeVar("T", bound="ProposalProductDetails")
 
 
+
 @_attrs_define
 class ProposalProductDetails:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        description (str):
-        pricing_type (str):
-        pricing_value (float | str):
-        pricing_currency (str):
-        currency_symbol (str):
-        is_finished (bool):
-        is_accepted (bool):
-        created_at (datetime.datetime):
-        updated_at (datetime.datetime):
-        owner_id (str):
-        owner_name (str):
-        catalog_id (None | str | Unset):
-        catalog_name (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            description (str):
+            pricing_type (str):
+            pricing_value (float | str):
+            pricing_currency (str):
+            currency_symbol (str):
+            is_finished (bool):
+            is_accepted (bool):
+            created_at (datetime.datetime):
+            updated_at (datetime.datetime):
+            owner_id (str):
+            owner_name (str):
+            catalog_id (None | str | Unset):
+            catalog_name (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -50,6 +59,10 @@ class ProposalProductDetails:
     catalog_id: None | str | Unset = UNSET
     catalog_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -91,31 +104,32 @@ class ProposalProductDetails:
         else:
             catalog_name = self.catalog_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "description": description,
-                "pricing_type": pricing_type,
-                "pricing_value": pricing_value,
-                "pricing_currency": pricing_currency,
-                "currency_symbol": currency_symbol,
-                "is_finished": is_finished,
-                "is_accepted": is_accepted,
-                "created_at": created_at,
-                "updated_at": updated_at,
-                "owner_id": owner_id,
-                "owner_name": owner_name,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "description": description,
+            "pricing_type": pricing_type,
+            "pricing_value": pricing_value,
+            "pricing_currency": pricing_currency,
+            "currency_symbol": currency_symbol,
+            "is_finished": is_finished,
+            "is_accepted": is_accepted,
+            "created_at": created_at,
+            "updated_at": updated_at,
+            "owner_id": owner_id,
+            "owner_name": owner_name,
+        })
         if catalog_id is not UNSET:
             field_dict["catalog_id"] = catalog_id
         if catalog_name is not UNSET:
             field_dict["catalog_name"] = catalog_name
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -133,6 +147,7 @@ class ProposalProductDetails:
 
         pricing_value = _parse_pricing_value(d.pop("pricing_value"))
 
+
         pricing_currency = d.pop("pricing_currency")
 
         currency_symbol = d.pop("currency_symbol")
@@ -143,7 +158,13 @@ class ProposalProductDetails:
 
         created_at = isoparse(d.pop("created_at"))
 
+
+
+
         updated_at = isoparse(d.pop("updated_at"))
+
+
+
 
         owner_id = d.pop("owner_id")
 
@@ -158,6 +179,7 @@ class ProposalProductDetails:
 
         catalog_id = _parse_catalog_id(d.pop("catalog_id", UNSET))
 
+
         def _parse_catalog_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -166,6 +188,7 @@ class ProposalProductDetails:
             return cast(None | str | Unset, data)
 
         catalog_name = _parse_catalog_name(d.pop("catalog_name", UNSET))
+
 
         proposal_product_details = cls(
             id=id,
@@ -184,6 +207,7 @@ class ProposalProductDetails:
             catalog_id=catalog_id,
             catalog_name=catalog_name,
         )
+
 
         proposal_product_details.additional_properties = d
         return proposal_product_details

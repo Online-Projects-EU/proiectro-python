@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class AddProposalPricingStrategyType0(str, Enum):
     FIXED_AMOUNT = "fixed_amount"
     MARGIN_TARGET = "margin_target"

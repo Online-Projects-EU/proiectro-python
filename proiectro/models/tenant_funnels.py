@@ -1,59 +1,78 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.tenant_funnel import TenantFunnel
+  from ..models.tenant_funnel import TenantFunnel
+
+
+
 
 
 T = TypeVar("T", bound="TenantFunnels")
 
 
+
 @_attrs_define
 class TenantFunnels:
-    """
-    Attributes:
-        funnels (list[TenantFunnel]):
-    """
+    """ 
+        Attributes:
+            funnels (list[TenantFunnel]):
+     """
 
     funnels: list[TenantFunnel]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.tenant_funnel import TenantFunnel
         funnels = []
         for funnels_item_data in self.funnels:
             funnels_item = funnels_item_data.to_dict()
             funnels.append(funnels_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "funnels": funnels,
-            }
-        )
+        field_dict.update({
+            "funnels": funnels,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tenant_funnel import TenantFunnel
-
         d = dict(src_dict)
         funnels = []
         _funnels = d.pop("funnels")
-        for funnels_item_data in _funnels:
+        for funnels_item_data in (_funnels):
             funnels_item = TenantFunnel.from_dict(funnels_item_data)
 
+
+
             funnels.append(funnels_item)
+
 
         tenant_funnels = cls(
             funnels=funnels,
         )
+
 
         tenant_funnels.additional_properties = d
         return tenant_funnels

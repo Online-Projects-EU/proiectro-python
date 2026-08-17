@@ -1,28 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.sales_feed_activity import SalesFeedActivity
+  from ..models.sales_feed_activity import SalesFeedActivity
+
+
+
 
 
 T = TypeVar("T", bound="SalesActivityFeed")
 
 
+
 @_attrs_define
 class SalesActivityFeed:
-    """
-    Attributes:
-        activities (list[SalesFeedActivity]):
-        per_page (int):
-        next_page (int):
-        node_type (str):
-        node_id (str):
-    """
+    """ 
+        Attributes:
+            activities (list[SalesFeedActivity]):
+            per_page (int):
+            next_page (int):
+            node_type (str):
+            node_id (str):
+     """
 
     activities: list[SalesFeedActivity]
     per_page: int
@@ -31,11 +39,18 @@ class SalesActivityFeed:
     node_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.sales_feed_activity import SalesFeedActivity
         activities = []
         for activities_item_data in self.activities:
             activities_item = activities_item_data.to_dict()
             activities.append(activities_item)
+
+
 
         per_page = self.per_page
 
@@ -45,31 +60,34 @@ class SalesActivityFeed:
 
         node_id = self.node_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "activities": activities,
-                "per_page": per_page,
-                "next_page": next_page,
-                "node_type": node_type,
-                "node_id": node_id,
-            }
-        )
+        field_dict.update({
+            "activities": activities,
+            "per_page": per_page,
+            "next_page": next_page,
+            "node_type": node_type,
+            "node_id": node_id,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.sales_feed_activity import SalesFeedActivity
-
         d = dict(src_dict)
         activities = []
         _activities = d.pop("activities")
-        for activities_item_data in _activities:
+        for activities_item_data in (_activities):
             activities_item = SalesFeedActivity.from_dict(activities_item_data)
 
+
+
             activities.append(activities_item)
+
 
         per_page = d.pop("per_page")
 
@@ -86,6 +104,7 @@ class SalesActivityFeed:
             node_type=node_type,
             node_id=node_id,
         )
+
 
         sales_activity_feed.additional_properties = d
         return sales_activity_feed

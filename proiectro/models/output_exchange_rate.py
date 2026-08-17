@@ -1,37 +1,46 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
 
 T = TypeVar("T", bound="OutputExchangeRate")
 
 
+
 @_attrs_define
 class OutputExchangeRate:
-    """
-    Attributes:
-        id (str):
-        base_currency_code (str):
-        base_currency_name (str):
-        base_currency_symbol (str):
-        target_currency_code (str):
-        target_currency_name (str):
-        target_currency_symbol (str):
-        rate (float | str):
-        valid_from (datetime.datetime):
-        source (str):
-        created_at (datetime.datetime):
-        created_by_name (str):
-        is_active (bool):
-        valid_until (datetime.datetime | None | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            base_currency_code (str):
+            base_currency_name (str):
+            base_currency_symbol (str):
+            target_currency_code (str):
+            target_currency_name (str):
+            target_currency_symbol (str):
+            rate (float | str):
+            valid_from (datetime.datetime):
+            source (str):
+            created_at (datetime.datetime):
+            created_by_name (str):
+            is_active (bool):
+            valid_until (datetime.datetime | None | Unset):
+     """
 
     id: str
     base_currency_code: str
@@ -48,6 +57,10 @@ class OutputExchangeRate:
     is_active: bool
     valid_until: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -85,29 +98,30 @@ class OutputExchangeRate:
         else:
             valid_until = self.valid_until
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "base_currency_code": base_currency_code,
-                "base_currency_name": base_currency_name,
-                "base_currency_symbol": base_currency_symbol,
-                "target_currency_code": target_currency_code,
-                "target_currency_name": target_currency_name,
-                "target_currency_symbol": target_currency_symbol,
-                "rate": rate,
-                "valid_from": valid_from,
-                "source": source,
-                "created_at": created_at,
-                "created_by_name": created_by_name,
-                "is_active": is_active,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "base_currency_code": base_currency_code,
+            "base_currency_name": base_currency_name,
+            "base_currency_symbol": base_currency_symbol,
+            "target_currency_code": target_currency_code,
+            "target_currency_name": target_currency_name,
+            "target_currency_symbol": target_currency_symbol,
+            "rate": rate,
+            "valid_from": valid_from,
+            "source": source,
+            "created_at": created_at,
+            "created_by_name": created_by_name,
+            "is_active": is_active,
+        })
         if valid_until is not UNSET:
             field_dict["valid_until"] = valid_until
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -131,11 +145,18 @@ class OutputExchangeRate:
 
         rate = _parse_rate(d.pop("rate"))
 
+
         valid_from = isoparse(d.pop("valid_from"))
+
+
+
 
         source = d.pop("source")
 
         created_at = isoparse(d.pop("created_at"))
+
+
+
 
         created_by_name = d.pop("created_by_name")
 
@@ -151,12 +172,15 @@ class OutputExchangeRate:
                     raise TypeError()
                 valid_until_type_0 = isoparse(data)
 
+
+
                 return valid_until_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         valid_until = _parse_valid_until(d.pop("valid_until", UNSET))
+
 
         output_exchange_rate = cls(
             id=id,
@@ -174,6 +198,7 @@ class OutputExchangeRate:
             is_active=is_active,
             valid_until=valid_until,
         )
+
 
         output_exchange_rate.additional_properties = d
         return output_exchange_rate

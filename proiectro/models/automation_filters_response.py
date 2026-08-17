@@ -1,70 +1,83 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.automation_filters_response_filters import (
-        AutomationFiltersResponseFilters,
-    )
-    from ..models.automation_filters_response_operators import (
-        AutomationFiltersResponseOperators,
-    )
+  from ..models.automation_filters_response_filters import AutomationFiltersResponseFilters
+  from ..models.automation_filters_response_operators import AutomationFiltersResponseOperators
+
+
+
 
 
 T = TypeVar("T", bound="AutomationFiltersResponse")
 
 
+
 @_attrs_define
 class AutomationFiltersResponse:
-    """Output: available filters and operators for a trigger.
+    """ Output: available filters and operators for a trigger.
 
-    Attributes:
-        filters (AutomationFiltersResponseFilters):
-        operators (AutomationFiltersResponseOperators):
-    """
+        Attributes:
+            filters (AutomationFiltersResponseFilters):
+            operators (AutomationFiltersResponseOperators):
+     """
 
     filters: AutomationFiltersResponseFilters
     operators: AutomationFiltersResponseOperators
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.automation_filters_response_filters import AutomationFiltersResponseFilters
+        from ..models.automation_filters_response_operators import AutomationFiltersResponseOperators
         filters = self.filters.to_dict()
 
         operators = self.operators.to_dict()
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "filters": filters,
-                "operators": operators,
-            }
-        )
+        field_dict.update({
+            "filters": filters,
+            "operators": operators,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.automation_filters_response_filters import (
-            AutomationFiltersResponseFilters,
-        )
-        from ..models.automation_filters_response_operators import (
-            AutomationFiltersResponseOperators,
-        )
-
+        from ..models.automation_filters_response_filters import AutomationFiltersResponseFilters
+        from ..models.automation_filters_response_operators import AutomationFiltersResponseOperators
         d = dict(src_dict)
         filters = AutomationFiltersResponseFilters.from_dict(d.pop("filters"))
 
+
+
+
         operators = AutomationFiltersResponseOperators.from_dict(d.pop("operators"))
+
+
+
 
         automation_filters_response = cls(
             filters=filters,
             operators=operators,
         )
+
 
         automation_filters_response.additional_properties = d
         return automation_filters_response

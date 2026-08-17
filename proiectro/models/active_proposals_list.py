@@ -1,61 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.active_proposal_item import ActiveProposalItem
+  from ..models.active_proposal_item import ActiveProposalItem
+
+
+
 
 
 T = TypeVar("T", bound="ActiveProposalsList")
 
 
+
 @_attrs_define
 class ActiveProposalsList:
-    """List of active proposals for projects view
+    """ List of active proposals for projects view
 
-    Attributes:
-        proposals (list[ActiveProposalItem]):
-        total_count (int):
-    """
+        Attributes:
+            proposals (list[ActiveProposalItem]):
+            total_count (int):
+     """
 
     proposals: list[ActiveProposalItem]
     total_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.active_proposal_item import ActiveProposalItem
         proposals = []
         for proposals_item_data in self.proposals:
             proposals_item = proposals_item_data.to_dict()
             proposals.append(proposals_item)
 
+
+
         total_count = self.total_count
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "proposals": proposals,
-                "total_count": total_count,
-            }
-        )
+        field_dict.update({
+            "proposals": proposals,
+            "total_count": total_count,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.active_proposal_item import ActiveProposalItem
-
         d = dict(src_dict)
         proposals = []
         _proposals = d.pop("proposals")
-        for proposals_item_data in _proposals:
+        for proposals_item_data in (_proposals):
             proposals_item = ActiveProposalItem.from_dict(proposals_item_data)
 
+
+
             proposals.append(proposals_item)
+
 
         total_count = d.pop("total_count")
 
@@ -63,6 +81,7 @@ class ActiveProposalsList:
             proposals=proposals,
             total_count=total_count,
         )
+
 
         active_proposals_list.additional_properties = d
         return active_proposals_list

@@ -1,29 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_product_work_template import OutputProductWorkTemplate
+  from ..models.output_product_work_template import OutputProductWorkTemplate
+
+
+
 
 
 T = TypeVar("T", bound="OutputProductWorkTemplates")
 
 
+
 @_attrs_define
 class OutputProductWorkTemplates:
-    """Templates linked to product via catalog
+    """ Templates linked to product via catalog
 
-    Attributes:
-        project_id (str):
-        product_id (str):
-        catalog_id (str):
-        catalog_name (str):
-        templates (list[OutputProductWorkTemplate]):
-    """
+        Attributes:
+            project_id (str):
+            product_id (str):
+            catalog_id (str):
+            catalog_name (str):
+            templates (list[OutputProductWorkTemplate]):
+     """
 
     project_id: str
     product_id: str
@@ -32,7 +40,12 @@ class OutputProductWorkTemplates:
     templates: list[OutputProductWorkTemplate]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_product_work_template import OutputProductWorkTemplate
         project_id = self.project_id
 
         product_id = self.product_id
@@ -46,24 +59,26 @@ class OutputProductWorkTemplates:
             templates_item = templates_item_data.to_dict()
             templates.append(templates_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "project_id": project_id,
-                "product_id": product_id,
-                "catalog_id": catalog_id,
-                "catalog_name": catalog_name,
-                "templates": templates,
-            }
-        )
+        field_dict.update({
+            "project_id": project_id,
+            "product_id": product_id,
+            "catalog_id": catalog_id,
+            "catalog_name": catalog_name,
+            "templates": templates,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_product_work_template import OutputProductWorkTemplate
-
         d = dict(src_dict)
         project_id = d.pop("project_id")
 
@@ -75,10 +90,13 @@ class OutputProductWorkTemplates:
 
         templates = []
         _templates = d.pop("templates")
-        for templates_item_data in _templates:
+        for templates_item_data in (_templates):
             templates_item = OutputProductWorkTemplate.from_dict(templates_item_data)
 
+
+
             templates.append(templates_item)
+
 
         output_product_work_templates = cls(
             project_id=project_id,
@@ -87,6 +105,7 @@ class OutputProductWorkTemplates:
             catalog_name=catalog_name,
             templates=templates,
         )
+
 
         output_product_work_templates.additional_properties = d
         return output_product_work_templates

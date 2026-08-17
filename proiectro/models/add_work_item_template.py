@@ -1,29 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddWorkItemTemplate")
+
 
 
 @_attrs_define
 class AddWorkItemTemplate:
-    """
-    Attributes:
-        name (str):
-        work_item_type_id (str):
-        description (None | str | Unset):
-        wbsconfiguration_id (None | str | Unset):
-        estimated_work_hours (int | None | Unset):
-        estimated_duration_days (int | None | Unset):
-        is_active (bool | Unset):  Default: False.
-        parent_template_id (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            work_item_type_id (str):
+            description (None | str | Unset):
+            wbsconfiguration_id (None | str | Unset):
+            estimated_work_hours (int | None | Unset):
+            estimated_duration_days (int | None | Unset):
+            is_active (bool | Unset):  Default: False.
+            parent_template_id (None | str | Unset):
+     """
 
     name: str
     work_item_type_id: str
@@ -34,6 +43,10 @@ class AddWorkItemTemplate:
     is_active: bool | Unset = False
     parent_template_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -72,14 +85,13 @@ class AddWorkItemTemplate:
         else:
             parent_template_id = self.parent_template_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "work_item_type_id": work_item_type_id,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "work_item_type_id": work_item_type_id,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if wbsconfiguration_id is not UNSET:
@@ -94,6 +106,8 @@ class AddWorkItemTemplate:
             field_dict["parent_template_id"] = parent_template_id
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -111,6 +125,7 @@ class AddWorkItemTemplate:
 
         description = _parse_description(d.pop("description", UNSET))
 
+
         def _parse_wbsconfiguration_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -118,9 +133,8 @@ class AddWorkItemTemplate:
                 return data
             return cast(None | str | Unset, data)
 
-        wbsconfiguration_id = _parse_wbsconfiguration_id(
-            d.pop("wbsconfiguration_id", UNSET)
-        )
+        wbsconfiguration_id = _parse_wbsconfiguration_id(d.pop("wbsconfiguration_id", UNSET))
+
 
         def _parse_estimated_work_hours(data: object) -> int | None | Unset:
             if data is None:
@@ -129,9 +143,8 @@ class AddWorkItemTemplate:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(
-            d.pop("estimated_work_hours", UNSET)
-        )
+        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
+
 
         def _parse_estimated_duration_days(data: object) -> int | None | Unset:
             if data is None:
@@ -140,9 +153,8 @@ class AddWorkItemTemplate:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_duration_days = _parse_estimated_duration_days(
-            d.pop("estimated_duration_days", UNSET)
-        )
+        estimated_duration_days = _parse_estimated_duration_days(d.pop("estimated_duration_days", UNSET))
+
 
         is_active = d.pop("is_active", UNSET)
 
@@ -153,9 +165,8 @@ class AddWorkItemTemplate:
                 return data
             return cast(None | str | Unset, data)
 
-        parent_template_id = _parse_parent_template_id(
-            d.pop("parent_template_id", UNSET)
-        )
+        parent_template_id = _parse_parent_template_id(d.pop("parent_template_id", UNSET))
+
 
         add_work_item_template = cls(
             name=name,
@@ -167,6 +178,7 @@ class AddWorkItemTemplate:
             is_active=is_active,
             parent_template_id=parent_template_id,
         )
+
 
         add_work_item_template.additional_properties = d
         return add_work_item_template

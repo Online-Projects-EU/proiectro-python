@@ -1,25 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddSubtenant")
+
 
 
 @_attrs_define
 class AddSubtenant:
-    """
-    Attributes:
-        parent_id (str):
-        name (str):
-        timezone (str):
-        default_currency (str):
-        country (str):
-        manager (str):
-    """
+    """ 
+        Attributes:
+            parent_id (str):
+            name (str):
+            timezone (str):
+            default_currency (str):
+            country (str):
+            manager (str):
+            domains (None | str | Unset):
+     """
 
     parent_id: str
     name: str
@@ -27,7 +39,12 @@ class AddSubtenant:
     default_currency: str
     country: str
     manager: str
+    domains: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         parent_id = self.parent_id
@@ -42,20 +59,29 @@ class AddSubtenant:
 
         manager = self.manager
 
+        domains: None | str | Unset
+        if isinstance(self.domains, Unset):
+            domains = UNSET
+        else:
+            domains = self.domains
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "parent_id": parent_id,
-                "name": name,
-                "timezone": timezone,
-                "default_currency": default_currency,
-                "country": country,
-                "manager": manager,
-            }
-        )
+        field_dict.update({
+            "parent_id": parent_id,
+            "name": name,
+            "timezone": timezone,
+            "default_currency": default_currency,
+            "country": country,
+            "manager": manager,
+        })
+        if domains is not UNSET:
+            field_dict["domains"] = domains
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -72,6 +98,16 @@ class AddSubtenant:
 
         manager = d.pop("manager")
 
+        def _parse_domains(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        domains = _parse_domains(d.pop("domains", UNSET))
+
+
         add_subtenant = cls(
             parent_id=parent_id,
             name=name,
@@ -79,7 +115,9 @@ class AddSubtenant:
             default_currency=default_currency,
             country=country,
             manager=manager,
+            domains=domains,
         )
+
 
         add_subtenant.additional_properties = d
         return add_subtenant

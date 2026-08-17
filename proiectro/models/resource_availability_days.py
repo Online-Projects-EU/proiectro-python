@@ -1,44 +1,63 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.daily_availability import DailyAvailability
+  from ..models.daily_availability import DailyAvailability
+
+
+
 
 
 T = TypeVar("T", bound="ResourceAvailabilityDays")
 
 
+
 @_attrs_define
 class ResourceAvailabilityDays:
-    """ """
+    """ 
+     """
 
-    additional_properties: dict[str, DailyAvailability] = _attrs_field(
-        init=False, factory=dict
-    )
+    additional_properties: dict[str, DailyAvailability] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
-
+        from ..models.daily_availability import DailyAvailability
+        
         field_dict: dict[str, Any] = {}
         for prop_name, prop in self.additional_properties.items():
             field_dict[prop_name] = prop.to_dict()
 
+
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.daily_availability import DailyAvailability
-
         d = dict(src_dict)
-        resource_availability_days = cls()
+        resource_availability_days = cls(
+        )
 
+
+        from ..models.availability_hours import AvailabilityHours
         additional_properties = {}
         for prop_name, prop_dict in d.items():
             additional_property = DailyAvailability.from_dict(prop_dict)
+
+
 
             additional_properties[prop_name] = additional_property
 

@@ -6,7 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.add_label_to_work_item import AddLabelToWorkItem
+from ...models.add_label_to_operational_work_item import AddLabelToOperationalWorkItem
 from ...models.api_response import APIResponse
 from ...types import Response
 
@@ -14,7 +14,7 @@ from ...types import Response
 def _get_kwargs(
     tenant_path: str,
     *,
-    body: AddLabelToWorkItem,
+    body: AddLabelToOperationalWorkItem,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -46,6 +46,11 @@ def _parse_response(
 
         return response_400
 
+    if response.status_code == 500:
+        response_500 = APIResponse.from_dict(response.json())
+
+        return response_500
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -67,7 +72,7 @@ def sync_detailed(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: AddLabelToWorkItem,
+    body: AddLabelToOperationalWorkItem,
 ) -> Response[APIResponse]:
     r"""Label Operational Work Item
 
@@ -78,7 +83,7 @@ def sync_detailed(
 
     Args:
         tenant_path (str):
-        body (AddLabelToWorkItem):
+        body (AddLabelToOperationalWorkItem):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -104,7 +109,7 @@ def sync(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: AddLabelToWorkItem,
+    body: AddLabelToOperationalWorkItem,
 ) -> APIResponse | None:
     r"""Label Operational Work Item
 
@@ -115,7 +120,7 @@ def sync(
 
     Args:
         tenant_path (str):
-        body (AddLabelToWorkItem):
+        body (AddLabelToOperationalWorkItem):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -136,7 +141,7 @@ async def asyncio_detailed(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: AddLabelToWorkItem,
+    body: AddLabelToOperationalWorkItem,
 ) -> Response[APIResponse]:
     r"""Label Operational Work Item
 
@@ -147,7 +152,7 @@ async def asyncio_detailed(
 
     Args:
         tenant_path (str):
-        body (AddLabelToWorkItem):
+        body (AddLabelToOperationalWorkItem):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -171,7 +176,7 @@ async def asyncio(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: AddLabelToWorkItem,
+    body: AddLabelToOperationalWorkItem,
 ) -> APIResponse | None:
     r"""Label Operational Work Item
 
@@ -182,7 +187,7 @@ async def asyncio(
 
     Args:
         tenant_path (str):
-        body (AddLabelToWorkItem):
+        body (AddLabelToOperationalWorkItem):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

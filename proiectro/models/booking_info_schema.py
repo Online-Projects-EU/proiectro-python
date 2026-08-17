@@ -1,27 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="BookingInfoSchema")
+
 
 
 @_attrs_define
 class BookingInfoSchema:
-    """Individual booking information
+    """ Individual booking information
 
-    Attributes:
-        name (str):
-        project_name (str):
-        hours (float):
-        only_working_days (bool):
-        project_id (None | str | Unset):
-    """
+        Attributes:
+            name (str):
+            project_name (str):
+            hours (float):
+            only_working_days (bool):
+            project_id (None | str | Unset):
+     """
 
     name: str
     project_name: str
@@ -29,6 +38,10 @@ class BookingInfoSchema:
     only_working_days: bool
     project_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -45,20 +58,21 @@ class BookingInfoSchema:
         else:
             project_id = self.project_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "project_name": project_name,
-                "hours": hours,
-                "only_working_days": only_working_days,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "project_name": project_name,
+            "hours": hours,
+            "only_working_days": only_working_days,
+        })
         if project_id is not UNSET:
             field_dict["project_id"] = project_id
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -80,6 +94,7 @@ class BookingInfoSchema:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
+
         booking_info_schema = cls(
             name=name,
             project_name=project_name,
@@ -87,6 +102,7 @@ class BookingInfoSchema:
             only_working_days=only_working_days,
             project_id=project_id,
         )
+
 
         booking_info_schema.additional_properties = d
         return booking_info_schema

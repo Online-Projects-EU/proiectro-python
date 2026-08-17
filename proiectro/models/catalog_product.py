@@ -1,33 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="CatalogProduct")
+
 
 
 @_attrs_define
 class CatalogProduct:
-    """
-    Attributes:
-        id (str):
-        name (str):
-        product_type (str):
-        is_active (bool):
-        owner_id (str):
-        owner_name (str):
-        pricing_type (str):
-        pricing_currency (str):
-        pricing_value (float | str):
-        description (None | str | Unset):
-        internal_code (None | str | Unset):
-        payment_integration_id (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            name (str):
+            product_type (str):
+            is_active (bool):
+            owner_id (str):
+            owner_name (str):
+            pricing_type (str):
+            pricing_currency (str):
+            pricing_value (float | str):
+            description (None | str | Unset):
+            internal_code (None | str | Unset):
+            payment_integration_id (None | str | Unset):
+     """
 
     id: str
     name: str
@@ -42,6 +51,10 @@ class CatalogProduct:
     internal_code: None | str | Unset = UNSET
     payment_integration_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -81,21 +94,20 @@ class CatalogProduct:
         else:
             payment_integration_id = self.payment_integration_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "product_type": product_type,
-                "is_active": is_active,
-                "owner_id": owner_id,
-                "owner_name": owner_name,
-                "pricing_type": pricing_type,
-                "pricing_currency": pricing_currency,
-                "pricing_value": pricing_value,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "product_type": product_type,
+            "is_active": is_active,
+            "owner_id": owner_id,
+            "owner_name": owner_name,
+            "pricing_type": pricing_type,
+            "pricing_currency": pricing_currency,
+            "pricing_value": pricing_value,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if internal_code is not UNSET:
@@ -104,6 +116,8 @@ class CatalogProduct:
             field_dict["payment_integration_id"] = payment_integration_id
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -129,6 +143,7 @@ class CatalogProduct:
 
         pricing_value = _parse_pricing_value(d.pop("pricing_value"))
 
+
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -137,6 +152,7 @@ class CatalogProduct:
             return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
+
 
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
@@ -147,6 +163,7 @@ class CatalogProduct:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
+
         def _parse_payment_integration_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -154,9 +171,8 @@ class CatalogProduct:
                 return data
             return cast(None | str | Unset, data)
 
-        payment_integration_id = _parse_payment_integration_id(
-            d.pop("payment_integration_id", UNSET)
-        )
+        payment_integration_id = _parse_payment_integration_id(d.pop("payment_integration_id", UNSET))
+
 
         catalog_product = cls(
             id=id,
@@ -172,6 +188,7 @@ class CatalogProduct:
             internal_code=internal_code,
             payment_integration_id=payment_integration_id,
         )
+
 
         catalog_product.additional_properties = d
         return catalog_product

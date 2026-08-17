@@ -1,33 +1,46 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_wbs_configuration_rule import OutputWBSConfigurationRule
+  from ..models.output_wbs_configuration_rule import OutputWBSConfigurationRule
+
+
+
 
 
 T = TypeVar("T", bound="OutputWBSConfigurationRules")
 
 
+
 @_attrs_define
 class OutputWBSConfigurationRules:
-    """
-    Attributes:
-        wbs_configuration (str):
-        rules (list[OutputWBSConfigurationRule]):
-        has_root_rule (bool):
-    """
+    """ 
+        Attributes:
+            wbs_configuration (str):
+            rules (list[OutputWBSConfigurationRule]):
+            has_root_rule (bool):
+     """
 
     wbs_configuration: str
     rules: list[OutputWBSConfigurationRule]
     has_root_rule: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_wbs_configuration_rule import OutputWBSConfigurationRule
         wbs_configuration = self.wbs_configuration
 
         rules = []
@@ -35,33 +48,38 @@ class OutputWBSConfigurationRules:
             rules_item = rules_item_data.to_dict()
             rules.append(rules_item)
 
+
+
         has_root_rule = self.has_root_rule
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "wbs_configuration": wbs_configuration,
-                "rules": rules,
-                "has_root_rule": has_root_rule,
-            }
-        )
+        field_dict.update({
+            "wbs_configuration": wbs_configuration,
+            "rules": rules,
+            "has_root_rule": has_root_rule,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_wbs_configuration_rule import OutputWBSConfigurationRule
-
         d = dict(src_dict)
         wbs_configuration = d.pop("wbs_configuration")
 
         rules = []
         _rules = d.pop("rules")
-        for rules_item_data in _rules:
+        for rules_item_data in (_rules):
             rules_item = OutputWBSConfigurationRule.from_dict(rules_item_data)
 
+
+
             rules.append(rules_item)
+
 
         has_root_rule = d.pop("has_root_rule")
 
@@ -70,6 +88,7 @@ class OutputWBSConfigurationRules:
             rules=rules,
             has_root_rule=has_root_rule,
         )
+
 
         output_wbs_configuration_rules.additional_properties = d
         return output_wbs_configuration_rules

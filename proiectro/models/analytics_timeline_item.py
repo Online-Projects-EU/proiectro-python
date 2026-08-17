@@ -1,35 +1,44 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
 
 T = TypeVar("T", bound="AnalyticsTimelineItem")
 
 
+
 @_attrs_define
 class AnalyticsTimelineItem:
-    """Work item in timeline view
+    """ Work item in timeline view
 
-    Attributes:
-        id (str):
-        name (str):
-        remaining_hours (float):
-        percent_complete (int):
-        project_name (None | str | Unset):
-        project_id (None | str | Unset):
-        owner_name (None | str | Unset):
-        owner_id (None | str | Unset):
-        due_date (datetime.date | None | Unset):
-        type_name (None | str | Unset):
-        days_overdue (int | None | Unset):
-    """
+        Attributes:
+            id (str):
+            name (str):
+            remaining_hours (float):
+            percent_complete (int):
+            project_name (None | str | Unset):
+            project_id (None | str | Unset):
+            owner_name (None | str | Unset):
+            owner_id (None | str | Unset):
+            due_date (datetime.date | None | Unset):
+            type_name (None | str | Unset):
+            days_overdue (int | None | Unset):
+     """
 
     id: str
     name: str
@@ -43,6 +52,10 @@ class AnalyticsTimelineItem:
     type_name: None | str | Unset = UNSET
     days_overdue: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -97,16 +110,15 @@ class AnalyticsTimelineItem:
         else:
             days_overdue = self.days_overdue
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "name": name,
-                "remaining_hours": remaining_hours,
-                "percent_complete": percent_complete,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "name": name,
+            "remaining_hours": remaining_hours,
+            "percent_complete": percent_complete,
+        })
         if project_name is not UNSET:
             field_dict["project_name"] = project_name
         if project_id is not UNSET:
@@ -123,6 +135,8 @@ class AnalyticsTimelineItem:
             field_dict["days_overdue"] = days_overdue
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -144,6 +158,7 @@ class AnalyticsTimelineItem:
 
         project_name = _parse_project_name(d.pop("project_name", UNSET))
 
+
         def _parse_project_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -152,6 +167,7 @@ class AnalyticsTimelineItem:
             return cast(None | str | Unset, data)
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
+
 
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
@@ -162,6 +178,7 @@ class AnalyticsTimelineItem:
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
 
+
         def _parse_owner_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -170,6 +187,7 @@ class AnalyticsTimelineItem:
             return cast(None | str | Unset, data)
 
         owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
+
 
         def _parse_due_date(data: object) -> datetime.date | None | Unset:
             if data is None:
@@ -181,12 +199,15 @@ class AnalyticsTimelineItem:
                     raise TypeError()
                 due_date_type_0 = isoparse(data).date()
 
+
+
                 return due_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None | Unset, data)
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
+
 
         def _parse_type_name(data: object) -> None | str | Unset:
             if data is None:
@@ -197,6 +218,7 @@ class AnalyticsTimelineItem:
 
         type_name = _parse_type_name(d.pop("type_name", UNSET))
 
+
         def _parse_days_overdue(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -205,6 +227,7 @@ class AnalyticsTimelineItem:
             return cast(int | None | Unset, data)
 
         days_overdue = _parse_days_overdue(d.pop("days_overdue", UNSET))
+
 
         analytics_timeline_item = cls(
             id=id,
@@ -219,6 +242,7 @@ class AnalyticsTimelineItem:
             type_name=type_name,
             days_overdue=days_overdue,
         )
+
 
         analytics_timeline_item.additional_properties = d
         return analytics_timeline_item

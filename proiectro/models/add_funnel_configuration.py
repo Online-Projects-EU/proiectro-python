@@ -1,32 +1,47 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddFunnelConfiguration")
+
 
 
 @_attrs_define
 class AddFunnelConfiguration:
-    """
-    Attributes:
-        name (str):
-        is_active (bool | None | Unset):  Default: False.
-        description (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            description (str):
+            is_active (bool | None | Unset):  Default: False.
+     """
 
     name: str
+    description: str
     is_active: bool | None | Unset = False
-    description: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
+
+        description = self.description
 
         is_active: bool | None | Unset
         if isinstance(self.is_active, Unset):
@@ -34,30 +49,26 @@ class AddFunnelConfiguration:
         else:
             is_active = self.is_active
 
-        description: None | str | Unset
-        if isinstance(self.description, Unset):
-            description = UNSET
-        else:
-            description = self.description
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "description": description,
+        })
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
-        if description is not UNSET:
-            field_dict["description"] = description
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         name = d.pop("name")
+
+        description = d.pop("description")
 
         def _parse_is_active(data: object) -> bool | None | Unset:
             if data is None:
@@ -68,20 +79,13 @@ class AddFunnelConfiguration:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
-        def _parse_description(data: object) -> None | str | Unset:
-            if data is None:
-                return data
-            if isinstance(data, Unset):
-                return data
-            return cast(None | str | Unset, data)
-
-        description = _parse_description(d.pop("description", UNSET))
 
         add_funnel_configuration = cls(
             name=name,
-            is_active=is_active,
             description=description,
+            is_active=is_active,
         )
+
 
         add_funnel_configuration.additional_properties = d
         return add_funnel_configuration

@@ -1,38 +1,51 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 from ..models.add_operational_item_priority import AddOperationalItemPriority
 from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
 
 T = TypeVar("T", bound="AddOperationalItem")
 
 
+
 @_attrs_define
 class AddOperationalItem:
-    """
-    Attributes:
-        process (str):
-        name (str):
-        description (str | Unset):  Default: ''.
-        customer (None | str | Unset):
-        customer_asset (None | str | Unset):
-        priority (AddOperationalItemPriority | Unset):  Default: AddOperationalItemPriority.NORMAL.
-        due_date (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            process (str):
+            name (str):
+            description (str | Unset):  Default: ''.
+            customer (None | str | Unset):
+            customer_asset (None | str | Unset):
+            priority (AddOperationalItemPriority | Unset):  Default: AddOperationalItemPriority.NORMAL.
+            due_date (None | str | Unset):
+     """
 
     process: str
     name: str
-    description: str | Unset = ""
+    description: str | Unset = ''
     customer: None | str | Unset = UNSET
     customer_asset: None | str | Unset = UNSET
     priority: AddOperationalItemPriority | Unset = AddOperationalItemPriority.NORMAL
     due_date: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         process = self.process
@@ -57,20 +70,20 @@ class AddOperationalItem:
         if not isinstance(self.priority, Unset):
             priority = self.priority.value
 
+
         due_date: None | str | Unset
         if isinstance(self.due_date, Unset):
             due_date = UNSET
         else:
             due_date = self.due_date
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "process": process,
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "process": process,
+            "name": name,
+        })
         if description is not UNSET:
             field_dict["description"] = description
         if customer is not UNSET:
@@ -83,6 +96,8 @@ class AddOperationalItem:
             field_dict["due_date"] = due_date
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -102,6 +117,7 @@ class AddOperationalItem:
 
         customer = _parse_customer(d.pop("customer", UNSET))
 
+
         def _parse_customer_asset(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -111,12 +127,16 @@ class AddOperationalItem:
 
         customer_asset = _parse_customer_asset(d.pop("customer_asset", UNSET))
 
+
         _priority = d.pop("priority", UNSET)
         priority: AddOperationalItemPriority | Unset
-        if isinstance(_priority, Unset):
+        if isinstance(_priority,  Unset):
             priority = UNSET
         else:
             priority = AddOperationalItemPriority(_priority)
+
+
+
 
         def _parse_due_date(data: object) -> None | str | Unset:
             if data is None:
@@ -127,6 +147,7 @@ class AddOperationalItem:
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
 
+
         add_operational_item = cls(
             process=process,
             name=name,
@@ -136,6 +157,7 @@ class AddOperationalItem:
             priority=priority,
             due_date=due_date,
         )
+
 
         add_operational_item.additional_properties = d
         return add_operational_item

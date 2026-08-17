@@ -1,32 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AvailabilityHours")
+
 
 
 @_attrs_define
 class AvailabilityHours:
-    """
-    Attributes:
-        external_id (None | str | Unset):
-        start_time (None | str | Unset):
-        end_time (None | str | Unset):
-        member_tz_start_time (None | str | Unset):
-        member_tz_end_time (None | str | Unset):
-        viewer_tz_start_time (None | str | Unset):
-        viewer_tz_end_time (None | str | Unset):
-        hour_range (list[int] | Unset):
-        hour_range_member_tz (list[int] | Unset):
-        hour_range_viewer_tz (list[int] | Unset):
-        total (int | Unset):  Default: 0.
-    """
+    """ 
+        Attributes:
+            external_id (None | str | Unset):
+            start_time (None | str | Unset):
+            end_time (None | str | Unset):
+            member_tz_start_time (None | str | Unset):
+            member_tz_end_time (None | str | Unset):
+            viewer_tz_start_time (None | str | Unset):
+            viewer_tz_end_time (None | str | Unset):
+            hour_range (list[int] | Unset):
+            hour_range_member_tz (list[int] | Unset):
+            hour_range_viewer_tz (list[int] | Unset):
+            total (int | Unset):  Default: 0.
+     """
 
     external_id: None | str | Unset = UNSET
     start_time: None | str | Unset = UNSET
@@ -40,6 +49,10 @@ class AvailabilityHours:
     hour_range_viewer_tz: list[int] | Unset = UNSET
     total: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         external_id: None | str | Unset
@@ -88,19 +101,27 @@ class AvailabilityHours:
         if not isinstance(self.hour_range, Unset):
             hour_range = self.hour_range
 
+
+
         hour_range_member_tz: list[int] | Unset = UNSET
         if not isinstance(self.hour_range_member_tz, Unset):
             hour_range_member_tz = self.hour_range_member_tz
+
+
 
         hour_range_viewer_tz: list[int] | Unset = UNSET
         if not isinstance(self.hour_range_viewer_tz, Unset):
             hour_range_viewer_tz = self.hour_range_viewer_tz
 
+
+
         total = self.total
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update({
+        })
         if external_id is not UNSET:
             field_dict["external_id"] = external_id
         if start_time is not UNSET:
@@ -126,10 +147,11 @@ class AvailabilityHours:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-
         def _parse_external_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -138,6 +160,7 @@ class AvailabilityHours:
             return cast(None | str | Unset, data)
 
         external_id = _parse_external_id(d.pop("external_id", UNSET))
+
 
         def _parse_start_time(data: object) -> None | str | Unset:
             if data is None:
@@ -148,6 +171,7 @@ class AvailabilityHours:
 
         start_time = _parse_start_time(d.pop("start_time", UNSET))
 
+
         def _parse_end_time(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -157,6 +181,7 @@ class AvailabilityHours:
 
         end_time = _parse_end_time(d.pop("end_time", UNSET))
 
+
         def _parse_member_tz_start_time(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -164,9 +189,8 @@ class AvailabilityHours:
                 return data
             return cast(None | str | Unset, data)
 
-        member_tz_start_time = _parse_member_tz_start_time(
-            d.pop("member_tz_start_time", UNSET)
-        )
+        member_tz_start_time = _parse_member_tz_start_time(d.pop("member_tz_start_time", UNSET))
+
 
         def _parse_member_tz_end_time(data: object) -> None | str | Unset:
             if data is None:
@@ -175,9 +199,8 @@ class AvailabilityHours:
                 return data
             return cast(None | str | Unset, data)
 
-        member_tz_end_time = _parse_member_tz_end_time(
-            d.pop("member_tz_end_time", UNSET)
-        )
+        member_tz_end_time = _parse_member_tz_end_time(d.pop("member_tz_end_time", UNSET))
+
 
         def _parse_viewer_tz_start_time(data: object) -> None | str | Unset:
             if data is None:
@@ -186,9 +209,8 @@ class AvailabilityHours:
                 return data
             return cast(None | str | Unset, data)
 
-        viewer_tz_start_time = _parse_viewer_tz_start_time(
-            d.pop("viewer_tz_start_time", UNSET)
-        )
+        viewer_tz_start_time = _parse_viewer_tz_start_time(d.pop("viewer_tz_start_time", UNSET))
+
 
         def _parse_viewer_tz_end_time(data: object) -> None | str | Unset:
             if data is None:
@@ -197,15 +219,17 @@ class AvailabilityHours:
                 return data
             return cast(None | str | Unset, data)
 
-        viewer_tz_end_time = _parse_viewer_tz_end_time(
-            d.pop("viewer_tz_end_time", UNSET)
-        )
+        viewer_tz_end_time = _parse_viewer_tz_end_time(d.pop("viewer_tz_end_time", UNSET))
+
 
         hour_range = cast(list[int], d.pop("hour_range", UNSET))
 
+
         hour_range_member_tz = cast(list[int], d.pop("hour_range_member_tz", UNSET))
 
+
         hour_range_viewer_tz = cast(list[int], d.pop("hour_range_viewer_tz", UNSET))
+
 
         total = d.pop("total", UNSET)
 
@@ -222,6 +246,7 @@ class AvailabilityHours:
             hour_range_viewer_tz=hour_range_viewer_tz,
             total=total,
         )
+
 
         availability_hours.additional_properties = d
         return availability_hours

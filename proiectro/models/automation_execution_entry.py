@@ -1,35 +1,46 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.automation_action_log_entry import AutomationActionLogEntry
+  from ..models.automation_action_log_entry import AutomationActionLogEntry
+  from ..models.automation_execution_entry_execution_context_type_0 import AutomationExecutionEntryExecutionContextType0
+
+
+
 
 
 T = TypeVar("T", bound="AutomationExecutionEntry")
 
 
+
 @_attrs_define
 class AutomationExecutionEntry:
-    """A single execution log entry.
+    """ A single execution log entry.
 
-    Attributes:
-        id (str):
-        event_id (str):
-        event_type (str):
-        created_at (str):
-        action_count (int | Unset):  Default: 0.
-        success_count (int | Unset):  Default: 0.
-        failure_count (int | Unset):  Default: 0.
-        duration_ms (int | None | Unset):
-        action_logs (list[AutomationActionLogEntry] | Unset):
-    """
+        Attributes:
+            id (str):
+            event_id (str):
+            event_type (str):
+            created_at (str):
+            action_count (int | Unset):  Default: 0.
+            success_count (int | Unset):  Default: 0.
+            failure_count (int | Unset):  Default: 0.
+            skipped_count (int | Unset):  Default: 0.
+            duration_ms (int | None | Unset):
+            execution_context (AutomationExecutionEntryExecutionContextType0 | None | Unset):
+            fan_out_count (int | None | Unset):
+            action_logs (list[AutomationActionLogEntry] | Unset):
+     """
 
     id: str
     event_id: str
@@ -38,11 +49,20 @@ class AutomationExecutionEntry:
     action_count: int | Unset = 0
     success_count: int | Unset = 0
     failure_count: int | Unset = 0
+    skipped_count: int | Unset = 0
     duration_ms: int | None | Unset = UNSET
+    execution_context: AutomationExecutionEntryExecutionContextType0 | None | Unset = UNSET
+    fan_out_count: int | None | Unset = UNSET
     action_logs: list[AutomationActionLogEntry] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.automation_action_log_entry import AutomationActionLogEntry
+        from ..models.automation_execution_entry_execution_context_type_0 import AutomationExecutionEntryExecutionContextType0
         id = self.id
 
         event_id = self.event_id
@@ -57,11 +77,27 @@ class AutomationExecutionEntry:
 
         failure_count = self.failure_count
 
+        skipped_count = self.skipped_count
+
         duration_ms: int | None | Unset
         if isinstance(self.duration_ms, Unset):
             duration_ms = UNSET
         else:
             duration_ms = self.duration_ms
+
+        execution_context: dict[str, Any] | None | Unset
+        if isinstance(self.execution_context, Unset):
+            execution_context = UNSET
+        elif isinstance(self.execution_context, AutomationExecutionEntryExecutionContextType0):
+            execution_context = self.execution_context.to_dict()
+        else:
+            execution_context = self.execution_context
+
+        fan_out_count: int | None | Unset
+        if isinstance(self.fan_out_count, Unset):
+            fan_out_count = UNSET
+        else:
+            fan_out_count = self.fan_out_count
 
         action_logs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.action_logs, Unset):
@@ -70,33 +106,42 @@ class AutomationExecutionEntry:
                 action_logs_item = action_logs_item_data.to_dict()
                 action_logs.append(action_logs_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "event_id": event_id,
-                "event_type": event_type,
-                "created_at": created_at,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "event_id": event_id,
+            "event_type": event_type,
+            "created_at": created_at,
+        })
         if action_count is not UNSET:
             field_dict["action_count"] = action_count
         if success_count is not UNSET:
             field_dict["success_count"] = success_count
         if failure_count is not UNSET:
             field_dict["failure_count"] = failure_count
+        if skipped_count is not UNSET:
+            field_dict["skipped_count"] = skipped_count
         if duration_ms is not UNSET:
             field_dict["duration_ms"] = duration_ms
+        if execution_context is not UNSET:
+            field_dict["execution_context"] = execution_context
+        if fan_out_count is not UNSET:
+            field_dict["fan_out_count"] = fan_out_count
         if action_logs is not UNSET:
             field_dict["action_logs"] = action_logs
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.automation_action_log_entry import AutomationActionLogEntry
-
+        from ..models.automation_execution_entry_execution_context_type_0 import AutomationExecutionEntryExecutionContextType0
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -112,6 +157,8 @@ class AutomationExecutionEntry:
 
         failure_count = d.pop("failure_count", UNSET)
 
+        skipped_count = d.pop("skipped_count", UNSET)
+
         def _parse_duration_ms(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -121,16 +168,48 @@ class AutomationExecutionEntry:
 
         duration_ms = _parse_duration_ms(d.pop("duration_ms", UNSET))
 
+
+        def _parse_execution_context(data: object) -> AutomationExecutionEntryExecutionContextType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                execution_context_type_0 = AutomationExecutionEntryExecutionContextType0.from_dict(data)
+
+
+
+                return execution_context_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(AutomationExecutionEntryExecutionContextType0 | None | Unset, data)
+
+        execution_context = _parse_execution_context(d.pop("execution_context", UNSET))
+
+
+        def _parse_fan_out_count(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        fan_out_count = _parse_fan_out_count(d.pop("fan_out_count", UNSET))
+
+
         _action_logs = d.pop("action_logs", UNSET)
         action_logs: list[AutomationActionLogEntry] | Unset = UNSET
         if _action_logs is not UNSET:
             action_logs = []
             for action_logs_item_data in _action_logs:
-                action_logs_item = AutomationActionLogEntry.from_dict(
-                    action_logs_item_data
-                )
+                action_logs_item = AutomationActionLogEntry.from_dict(action_logs_item_data)
+
+
 
                 action_logs.append(action_logs_item)
+
 
         automation_execution_entry = cls(
             id=id,
@@ -140,9 +219,13 @@ class AutomationExecutionEntry:
             action_count=action_count,
             success_count=success_count,
             failure_count=failure_count,
+            skipped_count=skipped_count,
             duration_ms=duration_ms,
+            execution_context=execution_context,
+            fan_out_count=fan_out_count,
             action_logs=action_logs,
         )
+
 
         automation_execution_entry.additional_properties = d
         return automation_execution_entry

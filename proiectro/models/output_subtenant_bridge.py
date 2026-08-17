@@ -1,33 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.bridge_details import BridgeDetails
-    from ..models.output_subtenant_bridge_grant_labels import (
-        OutputSubtenantBridgeGrantLabels,
-    )
+  from ..models.bridge_details import BridgeDetails
+  from ..models.output_subtenant_bridge_grant_labels import OutputSubtenantBridgeGrantLabels
+
+
+
 
 
 T = TypeVar("T", bound="OutputSubtenantBridge")
 
 
+
 @_attrs_define
 class OutputSubtenantBridge:
-    """Bridge details for a subtenant
+    """ Bridge details for a subtenant
 
-    Attributes:
-        subtenant_id (str):
-        subtenant_name (str):
-        grant_labels (OutputSubtenantBridgeGrantLabels):
-        bridge (BridgeDetails | None | Unset):
-    """
+        Attributes:
+            subtenant_id (str):
+            subtenant_name (str):
+            grant_labels (OutputSubtenantBridgeGrantLabels):
+            bridge (BridgeDetails | None | Unset):
+     """
 
     subtenant_id: str
     subtenant_name: str
@@ -35,9 +40,13 @@ class OutputSubtenantBridge:
     bridge: BridgeDetails | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
         from ..models.bridge_details import BridgeDetails
-
+        from ..models.output_subtenant_bridge_grant_labels import OutputSubtenantBridgeGrantLabels
         subtenant_id = self.subtenant_id
 
         subtenant_name = self.subtenant_name
@@ -52,33 +61,34 @@ class OutputSubtenantBridge:
         else:
             bridge = self.bridge
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "subtenant_id": subtenant_id,
-                "subtenant_name": subtenant_name,
-                "grant_labels": grant_labels,
-            }
-        )
+        field_dict.update({
+            "subtenant_id": subtenant_id,
+            "subtenant_name": subtenant_name,
+            "grant_labels": grant_labels,
+        })
         if bridge is not UNSET:
             field_dict["bridge"] = bridge
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.bridge_details import BridgeDetails
-        from ..models.output_subtenant_bridge_grant_labels import (
-            OutputSubtenantBridgeGrantLabels,
-        )
-
+        from ..models.output_subtenant_bridge_grant_labels import OutputSubtenantBridgeGrantLabels
         d = dict(src_dict)
         subtenant_id = d.pop("subtenant_id")
 
         subtenant_name = d.pop("subtenant_name")
 
         grant_labels = OutputSubtenantBridgeGrantLabels.from_dict(d.pop("grant_labels"))
+
+
+
 
         def _parse_bridge(data: object) -> BridgeDetails | None | Unset:
             if data is None:
@@ -90,6 +100,8 @@ class OutputSubtenantBridge:
                     raise TypeError()
                 bridge_type_0 = BridgeDetails.from_dict(data)
 
+
+
                 return bridge_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -97,12 +109,14 @@ class OutputSubtenantBridge:
 
         bridge = _parse_bridge(d.pop("bridge", UNSET))
 
+
         output_subtenant_bridge = cls(
             subtenant_id=subtenant_id,
             subtenant_name=subtenant_name,
             grant_labels=grant_labels,
             bridge=bridge,
         )
+
 
         output_subtenant_bridge.additional_properties = d
         return output_subtenant_bridge

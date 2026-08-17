@@ -1,70 +1,92 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
 from dateutil.parser import isoparse
+from typing import cast
+import datetime
 
 if TYPE_CHECKING:
-    from ..models.output_api_key import OutputApiKey
+  from ..models.output_api_key import OutputApiKey
+
+
+
 
 
 T = TypeVar("T", bound="OutputApiKeyList")
 
 
+
 @_attrs_define
 class OutputApiKeyList:
-    """List of API keys with current time
+    """ List of API keys with current time
 
-    Attributes:
-        api_keys (list[OutputApiKey]):
-        now (datetime.datetime):
-    """
+        Attributes:
+            api_keys (list[OutputApiKey]):
+            now (datetime.datetime):
+     """
 
     api_keys: list[OutputApiKey]
     now: datetime.datetime
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_api_key import OutputApiKey
         api_keys = []
         for api_keys_item_data in self.api_keys:
             api_keys_item = api_keys_item_data.to_dict()
             api_keys.append(api_keys_item)
 
+
+
         now = self.now.isoformat()
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "api_keys": api_keys,
-                "now": now,
-            }
-        )
+        field_dict.update({
+            "api_keys": api_keys,
+            "now": now,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_api_key import OutputApiKey
-
         d = dict(src_dict)
         api_keys = []
         _api_keys = d.pop("api_keys")
-        for api_keys_item_data in _api_keys:
+        for api_keys_item_data in (_api_keys):
             api_keys_item = OutputApiKey.from_dict(api_keys_item_data)
+
+
 
             api_keys.append(api_keys_item)
 
+
         now = isoparse(d.pop("now"))
+
+
+
 
         output_api_key_list = cls(
             api_keys=api_keys,
             now=now,
         )
+
 
         output_api_key_list.additional_properties = d
         return output_api_key_list

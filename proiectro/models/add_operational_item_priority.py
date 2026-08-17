@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class AddOperationalItemPriority(str, Enum):
     CRITICAL = "critical"
     HIGH = "high"

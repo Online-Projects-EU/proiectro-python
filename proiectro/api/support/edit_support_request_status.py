@@ -8,9 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
 from ...models.edit_support_request_status import EditSupportRequestStatus
-from ...models.edit_support_request_status_response import (
-    EditSupportRequestStatusResponse,
-)
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -40,21 +38,26 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | EditSupportRequestStatusResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
         return response_200
 
-    if response.status_code == 400:
-        response_400 = APIResponse.from_dict(response.json())
+    if response.status_code == 409:
+        response_409 = APIResponse.from_dict(response.json())
 
-        return response_400
+        return response_409
 
     if response.status_code == 422:
-        response_422 = EditSupportRequestStatusResponse.from_dict(response.json())
+        response_422 = PydanticDetail.from_dict(response.json())
 
         return response_422
+
+    if response.status_code == 500:
+        response_500 = APIResponse.from_dict(response.json())
+
+        return response_500
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -64,7 +67,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse | EditSupportRequestStatusResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -79,7 +82,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestStatus,
-) -> Response[APIResponse | EditSupportRequestStatusResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Edit Support Request Status
 
      Refine status definitions when processes mature or requirements change.
@@ -97,7 +100,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | EditSupportRequestStatusResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -119,7 +122,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestStatus,
-) -> APIResponse | EditSupportRequestStatusResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Edit Support Request Status
 
      Refine status definitions when processes mature or requirements change.
@@ -137,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | EditSupportRequestStatusResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -154,7 +157,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestStatus,
-) -> Response[APIResponse | EditSupportRequestStatusResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Edit Support Request Status
 
      Refine status definitions when processes mature or requirements change.
@@ -172,7 +175,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | EditSupportRequestStatusResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -192,7 +195,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestStatus,
-) -> APIResponse | EditSupportRequestStatusResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Edit Support Request Status
 
      Refine status definitions when processes mature or requirements change.
@@ -210,7 +213,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | EditSupportRequestStatusResponse
+        APIResponse | PydanticDetail
     """
 
     return (

@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class EditCatalogProductPricingType(str, Enum):
     FIXED_PRICE = "fixed_price"
     HOURLY_RATE = "hourly_rate"

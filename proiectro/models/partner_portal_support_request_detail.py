@@ -1,42 +1,53 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="PartnerPortalSupportRequestDetail")
+
 
 
 @_attrs_define
 class PartnerPortalSupportRequestDetail:
-    """Detailed view of single support request - matches customer portal structure
+    """ Detailed view of single support request - matches customer portal structure
 
-    Attributes:
-        bridge_id (str):
-        id (str):
-        title (str):
-        description (str):
-        public_reference (str):
-        status_lifecycle (str):
-        request_status (str):
-        request_type (None | str):
-        request_severity (None | str):
-        assignee_name (None | str):
-        project_name (None | str):
-        product_name (None | str):
-        resolution_display (None | str):
-        closure_reason (None | str):
-        author_info (str):
-        created_info (str):
-        updated_info (str):
-        solution_pending (bool):
-        can_reopen (bool):
-        is_requester (bool | Unset):  Default: False.
-    """
+        Attributes:
+            bridge_id (str):
+            id (str):
+            title (str):
+            description (str):
+            public_reference (str):
+            status_lifecycle (str):
+            request_status (str):
+            request_type (None | str):
+            request_severity (None | str):
+            assignee_name (None | str):
+            project_name (None | str):
+            product_name (None | str):
+            resolution_display (None | str):
+            closure_reason (None | str):
+            author_info (str):
+            created_at (datetime.datetime):
+            updated_at (datetime.datetime):
+            solution_pending (bool):
+            can_reopen (bool):
+            is_requester (bool | Unset):  Default: False.
+     """
 
     bridge_id: str
     id: str
@@ -53,12 +64,16 @@ class PartnerPortalSupportRequestDetail:
     resolution_display: None | str
     closure_reason: None | str
     author_info: str
-    created_info: str
-    updated_info: str
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
     solution_pending: bool
     can_reopen: bool
     is_requester: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         bridge_id = self.bridge_id
@@ -98,9 +113,9 @@ class PartnerPortalSupportRequestDetail:
 
         author_info = self.author_info
 
-        created_info = self.created_info
+        created_at = self.created_at.isoformat()
 
-        updated_info = self.updated_info
+        updated_at = self.updated_at.isoformat()
 
         solution_pending = self.solution_pending
 
@@ -108,35 +123,36 @@ class PartnerPortalSupportRequestDetail:
 
         is_requester = self.is_requester
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "id": id,
-                "title": title,
-                "description": description,
-                "public_reference": public_reference,
-                "status_lifecycle": status_lifecycle,
-                "request_status": request_status,
-                "request_type": request_type,
-                "request_severity": request_severity,
-                "assignee_name": assignee_name,
-                "project_name": project_name,
-                "product_name": product_name,
-                "resolution_display": resolution_display,
-                "closure_reason": closure_reason,
-                "author_info": author_info,
-                "created_info": created_info,
-                "updated_info": updated_info,
-                "solution_pending": solution_pending,
-                "can_reopen": can_reopen,
-            }
-        )
+        field_dict.update({
+            "bridge_id": bridge_id,
+            "id": id,
+            "title": title,
+            "description": description,
+            "public_reference": public_reference,
+            "status_lifecycle": status_lifecycle,
+            "request_status": request_status,
+            "request_type": request_type,
+            "request_severity": request_severity,
+            "assignee_name": assignee_name,
+            "project_name": project_name,
+            "product_name": product_name,
+            "resolution_display": resolution_display,
+            "closure_reason": closure_reason,
+            "author_info": author_info,
+            "created_at": created_at,
+            "updated_at": updated_at,
+            "solution_pending": solution_pending,
+            "can_reopen": can_reopen,
+        })
         if is_requester is not UNSET:
             field_dict["is_requester"] = is_requester
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -162,12 +178,14 @@ class PartnerPortalSupportRequestDetail:
 
         request_type = _parse_request_type(d.pop("request_type"))
 
+
         def _parse_request_severity(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         request_severity = _parse_request_severity(d.pop("request_severity"))
+
 
         def _parse_assignee_name(data: object) -> None | str:
             if data is None:
@@ -176,12 +194,14 @@ class PartnerPortalSupportRequestDetail:
 
         assignee_name = _parse_assignee_name(d.pop("assignee_name"))
 
+
         def _parse_project_name(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         project_name = _parse_project_name(d.pop("project_name"))
+
 
         def _parse_product_name(data: object) -> None | str:
             if data is None:
@@ -190,12 +210,14 @@ class PartnerPortalSupportRequestDetail:
 
         product_name = _parse_product_name(d.pop("product_name"))
 
+
         def _parse_resolution_display(data: object) -> None | str:
             if data is None:
                 return data
             return cast(None | str, data)
 
         resolution_display = _parse_resolution_display(d.pop("resolution_display"))
+
 
         def _parse_closure_reason(data: object) -> None | str:
             if data is None:
@@ -204,11 +226,18 @@ class PartnerPortalSupportRequestDetail:
 
         closure_reason = _parse_closure_reason(d.pop("closure_reason"))
 
+
         author_info = d.pop("author_info")
 
-        created_info = d.pop("created_info")
+        created_at = isoparse(d.pop("created_at"))
 
-        updated_info = d.pop("updated_info")
+
+
+
+        updated_at = isoparse(d.pop("updated_at"))
+
+
+
 
         solution_pending = d.pop("solution_pending")
 
@@ -232,12 +261,13 @@ class PartnerPortalSupportRequestDetail:
             resolution_display=resolution_display,
             closure_reason=closure_reason,
             author_info=author_info,
-            created_info=created_info,
-            updated_info=updated_info,
+            created_at=created_at,
+            updated_at=updated_at,
             solution_pending=solution_pending,
             can_reopen=can_reopen,
             is_requester=is_requester,
         )
+
 
         partner_portal_support_request_detail.additional_properties = d
         return partner_portal_support_request_detail

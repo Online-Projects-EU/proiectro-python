@@ -1,28 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="BusinessProcessSummary")
+
 
 
 @_attrs_define
 class BusinessProcessSummary:
-    """Summary of a business process for listing
+    """ Summary of a business process for listing
 
-    Attributes:
-        process_key (str):
-        process_name (str):
-        description (str):
-    """
+        Attributes:
+            process_key (str):
+            process_name (str):
+            description (str):
+     """
 
     process_key: str
     process_name: str
     description: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         process_key = self.process_key
@@ -31,17 +44,18 @@ class BusinessProcessSummary:
 
         description = self.description
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "process_key": process_key,
-                "process_name": process_name,
-                "description": description,
-            }
-        )
+        field_dict.update({
+            "process_key": process_key,
+            "process_name": process_name,
+            "description": description,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -57,6 +71,7 @@ class BusinessProcessSummary:
             process_name=process_name,
             description=description,
         )
+
 
         business_process_summary.additional_properties = d
         return business_process_summary

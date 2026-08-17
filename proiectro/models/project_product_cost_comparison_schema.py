@@ -1,23 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.project_product_cost_comparison_product_schema import (
-        ProjectProductCostComparisonProductSchema,
-    )
+  from ..models.project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
+
+
+
 
 
 T = TypeVar("T", bound="ProjectProductCostComparisonSchema")
 
 
+
 @_attrs_define
 class ProjectProductCostComparisonSchema:
-    """Project product cost comparison data for grouped bar chart visualization
+    """ Project product cost comparison data for grouped bar chart visualization
 
     The chart mode depends on financial management setting:
     - financial_mode=True: Shows grouped bars (proposal vs project cost)
@@ -33,7 +39,7 @@ class ProjectProductCostComparisonSchema:
             total_project_cost (str):
             financial_mode (bool):
             simplified_mode (bool):
-    """
+     """
 
     project_id: str
     project_name: str
@@ -46,7 +52,12 @@ class ProjectProductCostComparisonSchema:
     simplified_mode: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
         project_id = self.project_id
 
         project_name = self.project_name
@@ -55,6 +66,8 @@ class ProjectProductCostComparisonSchema:
         for products_item_data in self.products:
             products_item = products_item_data.to_dict()
             products.append(products_item)
+
+
 
         currency_symbol = self.currency_symbol
 
@@ -68,30 +81,28 @@ class ProjectProductCostComparisonSchema:
 
         simplified_mode = self.simplified_mode
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "project_id": project_id,
-                "project_name": project_name,
-                "products": products,
-                "currency_symbol": currency_symbol,
-                "max_cost": max_cost,
-                "total_proposal_cost": total_proposal_cost,
-                "total_project_cost": total_project_cost,
-                "financial_mode": financial_mode,
-                "simplified_mode": simplified_mode,
-            }
-        )
+        field_dict.update({
+            "project_id": project_id,
+            "project_name": project_name,
+            "products": products,
+            "currency_symbol": currency_symbol,
+            "max_cost": max_cost,
+            "total_proposal_cost": total_proposal_cost,
+            "total_project_cost": total_project_cost,
+            "financial_mode": financial_mode,
+            "simplified_mode": simplified_mode,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_product_cost_comparison_product_schema import (
-            ProjectProductCostComparisonProductSchema,
-        )
-
+        from ..models.project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
         d = dict(src_dict)
         project_id = d.pop("project_id")
 
@@ -99,12 +110,13 @@ class ProjectProductCostComparisonSchema:
 
         products = []
         _products = d.pop("products")
-        for products_item_data in _products:
-            products_item = ProjectProductCostComparisonProductSchema.from_dict(
-                products_item_data
-            )
+        for products_item_data in (_products):
+            products_item = ProjectProductCostComparisonProductSchema.from_dict(products_item_data)
+
+
 
             products.append(products_item)
+
 
         currency_symbol = d.pop("currency_symbol")
 
@@ -129,6 +141,7 @@ class ProjectProductCostComparisonSchema:
             financial_mode=financial_mode,
             simplified_mode=simplified_mode,
         )
+
 
         project_product_cost_comparison_schema.additional_properties = d
         return project_product_cost_comparison_schema

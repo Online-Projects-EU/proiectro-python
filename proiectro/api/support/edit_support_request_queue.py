@@ -8,9 +8,6 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
 from ...models.edit_support_request_queue import EditSupportRequestQueue
-from ...models.edit_support_request_queue_response import (
-    EditSupportRequestQueueResponse,
-)
 from ...types import Response
 
 
@@ -40,21 +37,21 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | EditSupportRequestQueueResponse | None:
+) -> APIResponse | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
         return response_200
 
-    if response.status_code == 400:
-        response_400 = APIResponse.from_dict(response.json())
+    if response.status_code == 409:
+        response_409 = APIResponse.from_dict(response.json())
 
-        return response_400
+        return response_409
 
-    if response.status_code == 422:
-        response_422 = EditSupportRequestQueueResponse.from_dict(response.json())
+    if response.status_code == 500:
+        response_500 = APIResponse.from_dict(response.json())
 
-        return response_422
+        return response_500
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -64,7 +61,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse | EditSupportRequestQueueResponse]:
+) -> Response[APIResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -79,7 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestQueue,
-) -> Response[APIResponse | EditSupportRequestQueueResponse]:
+) -> Response[APIResponse]:
     """Edit Support Request Queue
 
      Update queue configuration when team structures or responsibilities change.
@@ -97,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | EditSupportRequestQueueResponse]
+        Response[APIResponse]
     """
 
     kwargs = _get_kwargs(
@@ -119,7 +116,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestQueue,
-) -> APIResponse | EditSupportRequestQueueResponse | None:
+) -> APIResponse | None:
     """Edit Support Request Queue
 
      Update queue configuration when team structures or responsibilities change.
@@ -137,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | EditSupportRequestQueueResponse
+        APIResponse
     """
 
     return sync_detailed(
@@ -154,7 +151,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestQueue,
-) -> Response[APIResponse | EditSupportRequestQueueResponse]:
+) -> Response[APIResponse]:
     """Edit Support Request Queue
 
      Update queue configuration when team structures or responsibilities change.
@@ -172,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | EditSupportRequestQueueResponse]
+        Response[APIResponse]
     """
 
     kwargs = _get_kwargs(
@@ -192,7 +189,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: EditSupportRequestQueue,
-) -> APIResponse | EditSupportRequestQueueResponse | None:
+) -> APIResponse | None:
     """Edit Support Request Queue
 
      Update queue configuration when team structures or responsibilities change.
@@ -210,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | EditSupportRequestQueueResponse
+        APIResponse
     """
 
     return (

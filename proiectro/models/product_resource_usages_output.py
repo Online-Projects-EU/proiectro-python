@@ -1,31 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.product_resource_usage_item import ProductResourceUsageItem
+  from ..models.product_resource_usage_item import ProductResourceUsageItem
+
+
+
 
 
 T = TypeVar("T", bound="ProductResourceUsagesOutput")
 
 
+
 @_attrs_define
 class ProductResourceUsagesOutput:
-    """Resource usages for work items linked to a product
+    """ Resource usages for work items linked to a product
 
-    Attributes:
-        resource_usage (list[ProductResourceUsageItem]):
-        total_usage (int):
-        usage_count (int):
-        project_id (str):
-        project_name (str):
-        product_id (str):
-        product_name (str):
-    """
+        Attributes:
+            resource_usage (list[ProductResourceUsageItem]):
+            total_usage (int):
+            usage_count (int):
+            project_id (str):
+            project_name (str):
+            product_id (str):
+            product_name (str):
+     """
 
     resource_usage: list[ProductResourceUsageItem]
     total_usage: int
@@ -36,11 +44,18 @@ class ProductResourceUsagesOutput:
     product_name: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.product_resource_usage_item import ProductResourceUsageItem
         resource_usage = []
         for resource_usage_item_data in self.resource_usage:
             resource_usage_item = resource_usage_item_data.to_dict()
             resource_usage.append(resource_usage_item)
+
+
 
         total_usage = self.total_usage
 
@@ -54,35 +69,36 @@ class ProductResourceUsagesOutput:
 
         product_name = self.product_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "resource_usage": resource_usage,
-                "total_usage": total_usage,
-                "usage_count": usage_count,
-                "project_id": project_id,
-                "project_name": project_name,
-                "product_id": product_id,
-                "product_name": product_name,
-            }
-        )
+        field_dict.update({
+            "resource_usage": resource_usage,
+            "total_usage": total_usage,
+            "usage_count": usage_count,
+            "project_id": project_id,
+            "project_name": project_name,
+            "product_id": product_id,
+            "product_name": product_name,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_resource_usage_item import ProductResourceUsageItem
-
         d = dict(src_dict)
         resource_usage = []
         _resource_usage = d.pop("resource_usage")
-        for resource_usage_item_data in _resource_usage:
-            resource_usage_item = ProductResourceUsageItem.from_dict(
-                resource_usage_item_data
-            )
+        for resource_usage_item_data in (_resource_usage):
+            resource_usage_item = ProductResourceUsageItem.from_dict(resource_usage_item_data)
+
+
 
             resource_usage.append(resource_usage_item)
+
 
         total_usage = d.pop("total_usage")
 
@@ -105,6 +121,7 @@ class ProductResourceUsagesOutput:
             product_id=product_id,
             product_name=product_name,
         )
+
 
         product_resource_usages_output.additional_properties = d
         return product_resource_usages_output

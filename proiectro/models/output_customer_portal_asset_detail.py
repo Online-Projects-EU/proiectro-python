@@ -1,70 +1,83 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.output_customer_portal_asset_detail_asset import (
-        OutputCustomerPortalAssetDetailAsset,
-    )
-    from ..models.output_customer_portal_asset_detail_org import (
-        OutputCustomerPortalAssetDetailOrg,
-    )
+  from ..models.output_customer_portal_asset_detail_asset import OutputCustomerPortalAssetDetailAsset
+  from ..models.output_customer_portal_asset_detail_org import OutputCustomerPortalAssetDetailOrg
+
+
+
 
 
 T = TypeVar("T", bound="OutputCustomerPortalAssetDetail")
 
 
+
 @_attrs_define
 class OutputCustomerPortalAssetDetail:
-    """Customer portal asset detail view
+    """ Customer portal asset detail view
 
-    Attributes:
-        asset (OutputCustomerPortalAssetDetailAsset):
-        org (OutputCustomerPortalAssetDetailOrg):
-    """
+        Attributes:
+            asset (OutputCustomerPortalAssetDetailAsset):
+            org (OutputCustomerPortalAssetDetailOrg):
+     """
 
     asset: OutputCustomerPortalAssetDetailAsset
     org: OutputCustomerPortalAssetDetailOrg
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_customer_portal_asset_detail_org import OutputCustomerPortalAssetDetailOrg
+        from ..models.output_customer_portal_asset_detail_asset import OutputCustomerPortalAssetDetailAsset
         asset = self.asset.to_dict()
 
         org = self.org.to_dict()
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "asset": asset,
-                "org": org,
-            }
-        )
+        field_dict.update({
+            "asset": asset,
+            "org": org,
+        })
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_customer_portal_asset_detail_asset import (
-            OutputCustomerPortalAssetDetailAsset,
-        )
-        from ..models.output_customer_portal_asset_detail_org import (
-            OutputCustomerPortalAssetDetailOrg,
-        )
-
+        from ..models.output_customer_portal_asset_detail_asset import OutputCustomerPortalAssetDetailAsset
+        from ..models.output_customer_portal_asset_detail_org import OutputCustomerPortalAssetDetailOrg
         d = dict(src_dict)
         asset = OutputCustomerPortalAssetDetailAsset.from_dict(d.pop("asset"))
 
+
+
+
         org = OutputCustomerPortalAssetDetailOrg.from_dict(d.pop("org"))
+
+
+
 
         output_customer_portal_asset_detail = cls(
             asset=asset,
             org=org,
         )
+
 
         output_customer_portal_asset_detail.additional_properties = d
         return output_customer_portal_asset_detail

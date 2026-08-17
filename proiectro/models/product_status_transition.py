@@ -1,28 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
+
 T = TypeVar("T", bound="ProductStatusTransition")
+
 
 
 @_attrs_define
 class ProductStatusTransition:
-    """A status transition option for the product menu
+    """ A status transition option for the product menu
 
-    Attributes:
-        status_id (int):
-        name (str):
-        lifecycle_type (str):
-    """
+        Attributes:
+            status_id (int):
+            name (str):
+            lifecycle_type (str):
+     """
 
     status_id: int
     name: str
     lifecycle_type: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         status_id = self.status_id
@@ -31,17 +44,18 @@ class ProductStatusTransition:
 
         lifecycle_type = self.lifecycle_type
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "status_id": status_id,
-                "name": name,
-                "lifecycle_type": lifecycle_type,
-            }
-        )
+        field_dict.update({
+            "status_id": status_id,
+            "name": name,
+            "lifecycle_type": lifecycle_type,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -57,6 +71,7 @@ class ProductStatusTransition:
             name=name,
             lifecycle_type=lifecycle_type,
         )
+
 
         product_status_transition.additional_properties = d
         return product_status_transition

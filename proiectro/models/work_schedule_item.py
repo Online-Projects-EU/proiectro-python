@@ -1,35 +1,42 @@
 from __future__ import annotations
 
-import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
 if TYPE_CHECKING:
-    from ..models.work_template import WorkTemplate
+  from ..models.work_template import WorkTemplate
+
+
+
 
 
 T = TypeVar("T", bound="WorkScheduleItem")
 
 
+
 @_attrs_define
 class WorkScheduleItem:
-    """
-    Attributes:
-        product_id (str):
-        name (str):
-        is_asap (bool):
-        planned_start (datetime.datetime | None | Unset):
-        planned_end (datetime.datetime | None | Unset):
-        duration_days (int | None | Unset):
-        work_templates (list[WorkTemplate] | None | Unset):
-        total_template_hours (int | None | Unset):
-    """
+    """ 
+        Attributes:
+            product_id (str):
+            name (str):
+            is_asap (bool):
+            planned_start (datetime.datetime | None | Unset):
+            planned_end (datetime.datetime | None | Unset):
+            duration_days (int | None | Unset):
+            work_templates (list[WorkTemplate] | None | Unset):
+            total_template_hours (int | None | Unset):
+     """
 
     product_id: str
     name: str
@@ -41,7 +48,12 @@ class WorkScheduleItem:
     total_template_hours: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.work_template import WorkTemplate
         product_id = self.product_id
 
         name = self.name
@@ -79,6 +91,7 @@ class WorkScheduleItem:
                 work_templates_type_0_item = work_templates_type_0_item_data.to_dict()
                 work_templates.append(work_templates_type_0_item)
 
+
         else:
             work_templates = self.work_templates
 
@@ -88,15 +101,14 @@ class WorkScheduleItem:
         else:
             total_template_hours = self.total_template_hours
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "product_id": product_id,
-                "name": name,
-                "is_asap": is_asap,
-            }
-        )
+        field_dict.update({
+            "product_id": product_id,
+            "name": name,
+            "is_asap": is_asap,
+        })
         if planned_start is not UNSET:
             field_dict["planned_start"] = planned_start
         if planned_end is not UNSET:
@@ -110,10 +122,11 @@ class WorkScheduleItem:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.work_template import WorkTemplate
-
         d = dict(src_dict)
         product_id = d.pop("product_id")
 
@@ -131,12 +144,15 @@ class WorkScheduleItem:
                     raise TypeError()
                 planned_start_type_0 = isoparse(data)
 
+
+
                 return planned_start_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         planned_start = _parse_planned_start(d.pop("planned_start", UNSET))
+
 
         def _parse_planned_end(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -148,12 +164,15 @@ class WorkScheduleItem:
                     raise TypeError()
                 planned_end_type_0 = isoparse(data)
 
+
+
                 return planned_end_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
+
 
         def _parse_duration_days(data: object) -> int | None | Unset:
             if data is None:
@@ -163,6 +182,7 @@ class WorkScheduleItem:
             return cast(int | None | Unset, data)
 
         duration_days = _parse_duration_days(d.pop("duration_days", UNSET))
+
 
         def _parse_work_templates(data: object) -> list[WorkTemplate] | None | Unset:
             if data is None:
@@ -174,10 +194,10 @@ class WorkScheduleItem:
                     raise TypeError()
                 work_templates_type_0 = []
                 _work_templates_type_0 = data
-                for work_templates_type_0_item_data in _work_templates_type_0:
-                    work_templates_type_0_item = WorkTemplate.from_dict(
-                        work_templates_type_0_item_data
-                    )
+                for work_templates_type_0_item_data in (_work_templates_type_0):
+                    work_templates_type_0_item = WorkTemplate.from_dict(work_templates_type_0_item_data)
+
+
 
                     work_templates_type_0.append(work_templates_type_0_item)
 
@@ -188,6 +208,7 @@ class WorkScheduleItem:
 
         work_templates = _parse_work_templates(d.pop("work_templates", UNSET))
 
+
         def _parse_total_template_hours(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -195,9 +216,8 @@ class WorkScheduleItem:
                 return data
             return cast(int | None | Unset, data)
 
-        total_template_hours = _parse_total_template_hours(
-            d.pop("total_template_hours", UNSET)
-        )
+        total_template_hours = _parse_total_template_hours(d.pop("total_template_hours", UNSET))
+
 
         work_schedule_item = cls(
             product_id=product_id,
@@ -209,6 +229,7 @@ class WorkScheduleItem:
             work_templates=work_templates,
             total_template_hours=total_template_hours,
         )
+
 
         work_schedule_item.additional_properties = d
         return work_schedule_item

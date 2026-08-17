@@ -1,61 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.project_list_item import ProjectListItem
+  from ..models.project_list_item import ProjectListItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputProjectsList")
 
 
+
 @_attrs_define
 class OutputProjectsList:
-    """List of active projects (closed_won stage)
+    """ List of active projects (closed_won stage)
 
-    Attributes:
-        projects (list[ProjectListItem]):
-        total_count (int):
-    """
+        Attributes:
+            projects (list[ProjectListItem]):
+            total_count (int):
+     """
 
     projects: list[ProjectListItem]
     total_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_list_item import ProjectListItem
         projects = []
         for projects_item_data in self.projects:
             projects_item = projects_item_data.to_dict()
             projects.append(projects_item)
 
+
+
         total_count = self.total_count
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "projects": projects,
-                "total_count": total_count,
-            }
-        )
+        field_dict.update({
+            "projects": projects,
+            "total_count": total_count,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.project_list_item import ProjectListItem
-
         d = dict(src_dict)
         projects = []
         _projects = d.pop("projects")
-        for projects_item_data in _projects:
+        for projects_item_data in (_projects):
             projects_item = ProjectListItem.from_dict(projects_item_data)
 
+
+
             projects.append(projects_item)
+
 
         total_count = d.pop("total_count")
 
@@ -63,6 +81,7 @@ class OutputProjectsList:
             projects=projects,
             total_count=total_count,
         )
+
 
         output_projects_list.additional_properties = d
         return output_projects_list

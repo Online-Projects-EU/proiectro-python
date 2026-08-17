@@ -1,29 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsSalesPipelineStage")
+
 
 
 @_attrs_define
 class AnalyticsSalesPipelineStage:
-    """Single pipeline stage with deal distribution and velocity metrics
+    """ Single pipeline stage with deal distribution and velocity metrics
 
-    Attributes:
-        stage_id (str):
-        stage_name (str):
-        stage_type (str):
-        stage_order (int):
-        probability_percent (int):
-        deal_count (int):
-        total_value (float | str):
-        weighted_value (float | str):
-        avg_days_in_stage (int):
-    """
+        Attributes:
+            stage_id (str):
+            stage_name (str):
+            stage_type (str):
+            stage_order (int):
+            probability_percent (int):
+            deal_count (int):
+            total_value (float | str):
+            weighted_value (float | str):
+            avg_days_in_stage (int):
+     """
 
     stage_id: str
     stage_name: str
@@ -35,6 +45,10 @@ class AnalyticsSalesPipelineStage:
     weighted_value: float | str
     avg_days_in_stage: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         stage_id = self.stage_id
@@ -57,23 +71,24 @@ class AnalyticsSalesPipelineStage:
 
         avg_days_in_stage = self.avg_days_in_stage
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "stage_id": stage_id,
-                "stage_name": stage_name,
-                "stage_type": stage_type,
-                "stage_order": stage_order,
-                "probability_percent": probability_percent,
-                "deal_count": deal_count,
-                "total_value": total_value,
-                "weighted_value": weighted_value,
-                "avg_days_in_stage": avg_days_in_stage,
-            }
-        )
+        field_dict.update({
+            "stage_id": stage_id,
+            "stage_name": stage_name,
+            "stage_type": stage_type,
+            "stage_order": stage_order,
+            "probability_percent": probability_percent,
+            "deal_count": deal_count,
+            "total_value": total_value,
+            "weighted_value": weighted_value,
+            "avg_days_in_stage": avg_days_in_stage,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,10 +110,12 @@ class AnalyticsSalesPipelineStage:
 
         total_value = _parse_total_value(d.pop("total_value"))
 
+
         def _parse_weighted_value(data: object) -> float | str:
             return cast(float | str, data)
 
         weighted_value = _parse_weighted_value(d.pop("weighted_value"))
+
 
         avg_days_in_stage = d.pop("avg_days_in_stage")
 
@@ -113,6 +130,7 @@ class AnalyticsSalesPipelineStage:
             weighted_value=weighted_value,
             avg_days_in_stage=avg_days_in_stage,
         )
+
 
         analytics_sales_pipeline_stage.additional_properties = d
         return analytics_sales_pipeline_stage

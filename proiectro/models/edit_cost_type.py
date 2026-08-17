@@ -1,31 +1,44 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="EditCostType")
+
 
 
 @_attrs_define
 class EditCostType:
-    """
-    Attributes:
-        name (str):
-        description (str):
-        internal_code (None | str | Unset):
-        parent (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            name (str):
+            description (str):
+            internal_code (None | str | Unset):
+            parent (None | str | Unset):
+     """
 
     name: str
     description: str
     internal_code: None | str | Unset = UNSET
     parent: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -44,20 +57,21 @@ class EditCostType:
         else:
             parent = self.parent
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "description": description,
-            }
-        )
+        field_dict.update({
+            "name": name,
+            "description": description,
+        })
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if parent is not UNSET:
             field_dict["parent"] = parent
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -75,6 +89,7 @@ class EditCostType:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
+
         def _parse_parent(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -84,12 +99,14 @@ class EditCostType:
 
         parent = _parse_parent(d.pop("parent", UNSET))
 
+
         edit_cost_type = cls(
             name=name,
             description=description,
             internal_code=internal_code,
             parent=parent,
         )
+
 
         edit_cost_type.additional_properties = d
         return edit_cost_type

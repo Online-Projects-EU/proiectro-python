@@ -1,30 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AddWorkItemCost")
+
 
 
 @_attrs_define
 class AddWorkItemCost:
-    """
-    Attributes:
-        work_item (str):
-        expected_amount (str):
-        expected_date (str):
-        uom (str):
-        cost_type (None | str | Unset):
-        resource_cost (None | str | Unset):
-        resource_booking (None | str | Unset):
-        units (int | None | Unset):  Default: 1.
-        note (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            work_item (str):
+            expected_amount (str):
+            expected_date (str):
+            uom (str):
+            cost_type (None | str | Unset):
+            resource_cost (None | str | Unset):
+            resource_booking (None | str | Unset):
+            units (int | None | Unset):  Default: 1.
+            note (None | str | Unset):
+     """
 
     work_item: str
     expected_amount: str
@@ -36,6 +45,10 @@ class AddWorkItemCost:
     units: int | None | Unset = 1
     note: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         work_item = self.work_item
@@ -76,16 +89,15 @@ class AddWorkItemCost:
         else:
             note = self.note
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "work_item": work_item,
-                "expected_amount": expected_amount,
-                "expected_date": expected_date,
-                "uom": uom,
-            }
-        )
+        field_dict.update({
+            "work_item": work_item,
+            "expected_amount": expected_amount,
+            "expected_date": expected_date,
+            "uom": uom,
+        })
         if cost_type is not UNSET:
             field_dict["cost_type"] = cost_type
         if resource_cost is not UNSET:
@@ -98,6 +110,8 @@ class AddWorkItemCost:
             field_dict["note"] = note
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -119,6 +133,7 @@ class AddWorkItemCost:
 
         cost_type = _parse_cost_type(d.pop("cost_type", UNSET))
 
+
         def _parse_resource_cost(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -127,6 +142,7 @@ class AddWorkItemCost:
             return cast(None | str | Unset, data)
 
         resource_cost = _parse_resource_cost(d.pop("resource_cost", UNSET))
+
 
         def _parse_resource_booking(data: object) -> None | str | Unset:
             if data is None:
@@ -137,6 +153,7 @@ class AddWorkItemCost:
 
         resource_booking = _parse_resource_booking(d.pop("resource_booking", UNSET))
 
+
         def _parse_units(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -146,6 +163,7 @@ class AddWorkItemCost:
 
         units = _parse_units(d.pop("units", UNSET))
 
+
         def _parse_note(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -154,6 +172,7 @@ class AddWorkItemCost:
             return cast(None | str | Unset, data)
 
         note = _parse_note(d.pop("note", UNSET))
+
 
         add_work_item_cost = cls(
             work_item=work_item,
@@ -166,6 +185,7 @@ class AddWorkItemCost:
             units=units,
             note=note,
         )
+
 
         add_work_item_cost.additional_properties = d
         return add_work_item_cost

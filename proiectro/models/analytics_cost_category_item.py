@@ -1,28 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsCostCategoryItem")
+
 
 
 @_attrs_define
 class AnalyticsCostCategoryItem:
-    """Costs by category
+    """ Costs by category
 
-    Attributes:
-        category (str):
-        amount (float | str):
-        percent_of_total (float | str):
-    """
+        Attributes:
+            category (str):
+            amount (float | str):
+            percent_of_total (float | str):
+     """
 
     category: str
     amount: float | str
     percent_of_total: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         category = self.category
@@ -33,17 +47,18 @@ class AnalyticsCostCategoryItem:
         percent_of_total: float | str
         percent_of_total = self.percent_of_total
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "category": category,
-                "amount": amount,
-                "percent_of_total": percent_of_total,
-            }
-        )
+        field_dict.update({
+            "category": category,
+            "amount": amount,
+            "percent_of_total": percent_of_total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -55,16 +70,19 @@ class AnalyticsCostCategoryItem:
 
         amount = _parse_amount(d.pop("amount"))
 
+
         def _parse_percent_of_total(data: object) -> float | str:
             return cast(float | str, data)
 
         percent_of_total = _parse_percent_of_total(d.pop("percent_of_total"))
+
 
         analytics_cost_category_item = cls(
             category=category,
             amount=amount,
             percent_of_total=percent_of_total,
         )
+
 
         analytics_cost_category_item.additional_properties = d
         return analytics_cost_category_item

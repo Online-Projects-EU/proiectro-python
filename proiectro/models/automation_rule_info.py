@@ -1,28 +1,41 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AutomationRuleInfo")
+
 
 
 @_attrs_define
 class AutomationRuleInfo:
-    """The name and active state of a rule.
+    """ The name and active state of a rule.
 
-    Attributes:
-        name (str):
-        is_active (bool | None | Unset):  Default: False.
-    """
+        Attributes:
+            name (str):
+            is_active (bool | None | Unset):  Default: False.
+     """
 
     name: str
     is_active: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -33,17 +46,18 @@ class AutomationRuleInfo:
         else:
             is_active = self.is_active
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-            }
-        )
+        field_dict.update({
+            "name": name,
+        })
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -59,10 +73,12 @@ class AutomationRuleInfo:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
+
         automation_rule_info = cls(
             name=name,
             is_active=is_active,
         )
+
 
         automation_rule_info.additional_properties = d
         return automation_rule_info

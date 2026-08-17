@@ -1,21 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.project_team_people_people_item import ProjectTeamPeoplePeopleItem
+  from ..models.project_team_people_people_item import ProjectTeamPeoplePeopleItem
+
+
+
 
 
 T = TypeVar("T", bound="ProjectTeamPeople")
 
 
+
 @_attrs_define
 class ProjectTeamPeople:
-    """List of unique people working on a project
+    """ List of unique people working on a project
 
     Each person object always contains ALL possible fields:
     - member_id, member_name (always present)
@@ -37,7 +45,7 @@ class ProjectTeamPeople:
             booking_mode (bool):
             effort_mode (bool):
             ownership_mode (bool):
-    """
+     """
 
     people: list[ProjectTeamPeoplePeopleItem]
     project_id: str
@@ -48,11 +56,18 @@ class ProjectTeamPeople:
     ownership_mode: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.project_team_people_people_item import ProjectTeamPeoplePeopleItem
         people = []
         for people_item_data in self.people:
             people_item = people_item_data.to_dict()
             people.append(people_item)
+
+
 
         project_id = self.project_id
 
@@ -66,33 +81,36 @@ class ProjectTeamPeople:
 
         ownership_mode = self.ownership_mode
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "people": people,
-                "project_id": project_id,
-                "project_name": project_name,
-                "total_people": total_people,
-                "booking_mode": booking_mode,
-                "effort_mode": effort_mode,
-                "ownership_mode": ownership_mode,
-            }
-        )
+        field_dict.update({
+            "people": people,
+            "project_id": project_id,
+            "project_name": project_name,
+            "total_people": total_people,
+            "booking_mode": booking_mode,
+            "effort_mode": effort_mode,
+            "ownership_mode": ownership_mode,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.project_team_people_people_item import ProjectTeamPeoplePeopleItem
-
         d = dict(src_dict)
         people = []
         _people = d.pop("people")
-        for people_item_data in _people:
+        for people_item_data in (_people):
             people_item = ProjectTeamPeoplePeopleItem.from_dict(people_item_data)
 
+
+
             people.append(people_item)
+
 
         project_id = d.pop("project_id")
 
@@ -115,6 +133,7 @@ class ProjectTeamPeople:
             effort_mode=effort_mode,
             ownership_mode=ownership_mode,
         )
+
 
         project_team_people.additional_properties = d
         return project_team_people

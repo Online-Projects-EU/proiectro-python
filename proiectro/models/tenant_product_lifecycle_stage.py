@@ -1,29 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="TenantProductLifecycleStage")
+
 
 
 @_attrs_define
 class TenantProductLifecycleStage:
-    """
-    Attributes:
-        id (str):
-        sequence_no (int):
-        name (str):
-        lifecycle_type (str):
-        lifecycle_type_display (str):
-        visible_to_customer (bool):
-        is_active (bool):
-        transitions (list[str] | None | Unset):
-    """
+    """ 
+        Attributes:
+            id (str):
+            sequence_no (int):
+            name (str):
+            lifecycle_type (str):
+            lifecycle_type_display (str):
+            visible_to_customer (bool):
+            is_active (bool):
+            transitions (list[str] | None | Unset):
+     """
 
     id: str
     sequence_no: int
@@ -34,6 +43,10 @@ class TenantProductLifecycleStage:
     is_active: bool
     transitions: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -56,26 +69,28 @@ class TenantProductLifecycleStage:
         elif isinstance(self.transitions, list):
             transitions = self.transitions
 
+
         else:
             transitions = self.transitions
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "sequence_no": sequence_no,
-                "name": name,
-                "lifecycle_type": lifecycle_type,
-                "lifecycle_type_display": lifecycle_type_display,
-                "visible_to_customer": visible_to_customer,
-                "is_active": is_active,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "sequence_no": sequence_no,
+            "name": name,
+            "lifecycle_type": lifecycle_type,
+            "lifecycle_type_display": lifecycle_type_display,
+            "visible_to_customer": visible_to_customer,
+            "is_active": is_active,
+        })
         if transitions is not UNSET:
             field_dict["transitions"] = transitions
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -111,6 +126,7 @@ class TenantProductLifecycleStage:
 
         transitions = _parse_transitions(d.pop("transitions", UNSET))
 
+
         tenant_product_lifecycle_stage = cls(
             id=id,
             sequence_no=sequence_no,
@@ -121,6 +137,7 @@ class TenantProductLifecycleStage:
             is_active=is_active,
             transitions=transitions,
         )
+
 
         tenant_product_lifecycle_stage.additional_properties = d
         return tenant_product_lifecycle_stage

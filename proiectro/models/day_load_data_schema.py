@@ -1,33 +1,40 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.booking_info_schema import BookingInfoSchema
+  from ..models.booking_info_schema import BookingInfoSchema
+
+
+
 
 
 T = TypeVar("T", bound="DayLoadDataSchema")
 
 
+
 @_attrs_define
 class DayLoadDataSchema:
-    """Load data for a single day
+    """ Load data for a single day
 
-    Attributes:
-        booked (float):
-        available (float):
-        display (str):
-        is_holiday (bool):
-        is_today (bool):
-        holiday_name (None | str | Unset):
-        bookings (list[BookingInfoSchema] | None | Unset):
-    """
+        Attributes:
+            booked (float):
+            available (float):
+            display (str):
+            is_holiday (bool):
+            is_today (bool):
+            holiday_name (None | str | Unset):
+            bookings (list[BookingInfoSchema] | None | Unset):
+     """
 
     booked: float
     available: float
@@ -38,7 +45,12 @@ class DayLoadDataSchema:
     bookings: list[BookingInfoSchema] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.booking_info_schema import BookingInfoSchema
         booked = self.booked
 
         available = self.available
@@ -64,20 +76,20 @@ class DayLoadDataSchema:
                 bookings_type_0_item = bookings_type_0_item_data.to_dict()
                 bookings.append(bookings_type_0_item)
 
+
         else:
             bookings = self.bookings
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "booked": booked,
-                "available": available,
-                "display": display,
-                "is_holiday": is_holiday,
-                "is_today": is_today,
-            }
-        )
+        field_dict.update({
+            "booked": booked,
+            "available": available,
+            "display": display,
+            "is_holiday": is_holiday,
+            "is_today": is_today,
+        })
         if holiday_name is not UNSET:
             field_dict["holiday_name"] = holiday_name
         if bookings is not UNSET:
@@ -85,10 +97,11 @@ class DayLoadDataSchema:
 
         return field_dict
 
+
+
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.booking_info_schema import BookingInfoSchema
-
         d = dict(src_dict)
         booked = d.pop("booked")
 
@@ -109,6 +122,7 @@ class DayLoadDataSchema:
 
         holiday_name = _parse_holiday_name(d.pop("holiday_name", UNSET))
 
+
         def _parse_bookings(data: object) -> list[BookingInfoSchema] | None | Unset:
             if data is None:
                 return data
@@ -119,10 +133,10 @@ class DayLoadDataSchema:
                     raise TypeError()
                 bookings_type_0 = []
                 _bookings_type_0 = data
-                for bookings_type_0_item_data in _bookings_type_0:
-                    bookings_type_0_item = BookingInfoSchema.from_dict(
-                        bookings_type_0_item_data
-                    )
+                for bookings_type_0_item_data in (_bookings_type_0):
+                    bookings_type_0_item = BookingInfoSchema.from_dict(bookings_type_0_item_data)
+
+
 
                     bookings_type_0.append(bookings_type_0_item)
 
@@ -133,6 +147,7 @@ class DayLoadDataSchema:
 
         bookings = _parse_bookings(d.pop("bookings", UNSET))
 
+
         day_load_data_schema = cls(
             booked=booked,
             available=available,
@@ -142,6 +157,7 @@ class DayLoadDataSchema:
             holiday_name=holiday_name,
             bookings=bookings,
         )
+
 
         day_load_data_schema.additional_properties = d
         return day_load_data_schema

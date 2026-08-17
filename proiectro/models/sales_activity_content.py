@@ -1,47 +1,62 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="SalesActivityContent")
+
 
 
 @_attrs_define
 class SalesActivityContent:
-    """
-    Attributes:
-        activity_type (str):
-        activity_icon (str):
-        author_id (str):
-        author_name (str):
-        author_avatar_url (str):
-        org_id (str):
-        org_name (str):
-        description (str):
-        author_email (None | str | Unset):
-        author_phone (None | str | Unset):
-        proposal_id (None | str | Unset):
-        proposal_name (None | str | Unset):
-    """
+    """ 
+        Attributes:
+            activity_type (str):
+            activity_icon (str):
+            author_id (str):
+            author_name (str):
+            author_avatar_url (str):
+            description (str):
+            author_email (None | str | Unset):
+            author_phone (None | str | Unset):
+            org_id (None | str | Unset):
+            org_name (None | str | Unset):
+            proposal_id (None | str | Unset):
+            proposal_name (None | str | Unset):
+            addable_contacts (list[str] | Unset):
+     """
 
     activity_type: str
     activity_icon: str
     author_id: str
     author_name: str
     author_avatar_url: str
-    org_id: str
-    org_name: str
     description: str
     author_email: None | str | Unset = UNSET
     author_phone: None | str | Unset = UNSET
+    org_id: None | str | Unset = UNSET
+    org_name: None | str | Unset = UNSET
     proposal_id: None | str | Unset = UNSET
     proposal_name: None | str | Unset = UNSET
+    addable_contacts: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         activity_type = self.activity_type
@@ -53,10 +68,6 @@ class SalesActivityContent:
         author_name = self.author_name
 
         author_avatar_url = self.author_avatar_url
-
-        org_id = self.org_id
-
-        org_name = self.org_name
 
         description = self.description
 
@@ -72,6 +83,18 @@ class SalesActivityContent:
         else:
             author_phone = self.author_phone
 
+        org_id: None | str | Unset
+        if isinstance(self.org_id, Unset):
+            org_id = UNSET
+        else:
+            org_id = self.org_id
+
+        org_name: None | str | Unset
+        if isinstance(self.org_name, Unset):
+            org_name = UNSET
+        else:
+            org_name = self.org_name
+
         proposal_id: None | str | Unset
         if isinstance(self.proposal_id, Unset):
             proposal_id = UNSET
@@ -84,30 +107,41 @@ class SalesActivityContent:
         else:
             proposal_name = self.proposal_name
 
+        addable_contacts: list[str] | Unset = UNSET
+        if not isinstance(self.addable_contacts, Unset):
+            addable_contacts = self.addable_contacts
+
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "activity_type": activity_type,
-                "activity_icon": activity_icon,
-                "author_id": author_id,
-                "author_name": author_name,
-                "author_avatar_url": author_avatar_url,
-                "org_id": org_id,
-                "org_name": org_name,
-                "description": description,
-            }
-        )
+        field_dict.update({
+            "activity_type": activity_type,
+            "activity_icon": activity_icon,
+            "author_id": author_id,
+            "author_name": author_name,
+            "author_avatar_url": author_avatar_url,
+            "description": description,
+        })
         if author_email is not UNSET:
             field_dict["author_email"] = author_email
         if author_phone is not UNSET:
             field_dict["author_phone"] = author_phone
+        if org_id is not UNSET:
+            field_dict["org_id"] = org_id
+        if org_name is not UNSET:
+            field_dict["org_name"] = org_name
         if proposal_id is not UNSET:
             field_dict["proposal_id"] = proposal_id
         if proposal_name is not UNSET:
             field_dict["proposal_name"] = proposal_name
+        if addable_contacts is not UNSET:
+            field_dict["addable_contacts"] = addable_contacts
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -122,10 +156,6 @@ class SalesActivityContent:
 
         author_avatar_url = d.pop("author_avatar_url")
 
-        org_id = d.pop("org_id")
-
-        org_name = d.pop("org_name")
-
         description = d.pop("description")
 
         def _parse_author_email(data: object) -> None | str | Unset:
@@ -137,6 +167,7 @@ class SalesActivityContent:
 
         author_email = _parse_author_email(d.pop("author_email", UNSET))
 
+
         def _parse_author_phone(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -145,6 +176,27 @@ class SalesActivityContent:
             return cast(None | str | Unset, data)
 
         author_phone = _parse_author_phone(d.pop("author_phone", UNSET))
+
+
+        def _parse_org_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        org_id = _parse_org_id(d.pop("org_id", UNSET))
+
+
+        def _parse_org_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        org_name = _parse_org_name(d.pop("org_name", UNSET))
+
 
         def _parse_proposal_id(data: object) -> None | str | Unset:
             if data is None:
@@ -155,6 +207,7 @@ class SalesActivityContent:
 
         proposal_id = _parse_proposal_id(d.pop("proposal_id", UNSET))
 
+
         def _parse_proposal_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -164,20 +217,26 @@ class SalesActivityContent:
 
         proposal_name = _parse_proposal_name(d.pop("proposal_name", UNSET))
 
+
+        addable_contacts = cast(list[str], d.pop("addable_contacts", UNSET))
+
+
         sales_activity_content = cls(
             activity_type=activity_type,
             activity_icon=activity_icon,
             author_id=author_id,
             author_name=author_name,
             author_avatar_url=author_avatar_url,
-            org_id=org_id,
-            org_name=org_name,
             description=description,
             author_email=author_email,
             author_phone=author_phone,
+            org_id=org_id,
+            org_name=org_name,
             proposal_id=proposal_id,
             proposal_name=proposal_name,
+            addable_contacts=addable_contacts,
         )
+
 
         sales_activity_content.additional_properties = d
         return sales_activity_content

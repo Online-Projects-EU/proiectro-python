@@ -1,39 +1,51 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from dateutil.parser import isoparse
+from typing import cast
+import datetime
+
+
+
+
+
+
 T = TypeVar("T", bound="AllPartnersPaymentItem")
+
 
 
 @_attrs_define
 class AllPartnersPaymentItem:
-    """Payment item with partner context for aggregated view
+    """ Payment item with partner context for aggregated view
 
-    Attributes:
-        id (str):
-        project_name (str):
-        amount (str):
-        due_date (None | str):
-        paid (bool):
-        paid_date (None | str):
-        currency_code (str):
-        is_project (bool):
-        is_due (bool):
-        project_id (str):
-        partner_tenant_name (str):
-        proxy_subtenant_id (str):
-    """
+        Attributes:
+            id (str):
+            project_name (str):
+            amount (str):
+            due_date (datetime.date | None):
+            paid (bool):
+            paid_date (datetime.date | None):
+            currency_code (str):
+            is_project (bool):
+            is_due (bool):
+            project_id (str):
+            partner_tenant_name (str):
+            proxy_subtenant_id (str):
+     """
 
     id: str
     project_name: str
     amount: str
-    due_date: None | str
+    due_date: datetime.date | None
     paid: bool
-    paid_date: None | str
+    paid_date: datetime.date | None
     currency_code: str
     is_project: bool
     is_due: bool
@@ -41,6 +53,10 @@ class AllPartnersPaymentItem:
     partner_tenant_name: str
     proxy_subtenant_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -50,12 +66,18 @@ class AllPartnersPaymentItem:
         amount = self.amount
 
         due_date: None | str
-        due_date = self.due_date
+        if isinstance(self.due_date, datetime.date):
+            due_date = self.due_date.isoformat()
+        else:
+            due_date = self.due_date
 
         paid = self.paid
 
         paid_date: None | str
-        paid_date = self.paid_date
+        if isinstance(self.paid_date, datetime.date):
+            paid_date = self.paid_date.isoformat()
+        else:
+            paid_date = self.paid_date
 
         currency_code = self.currency_code
 
@@ -69,26 +91,27 @@ class AllPartnersPaymentItem:
 
         proxy_subtenant_id = self.proxy_subtenant_id
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "project_name": project_name,
-                "amount": amount,
-                "due_date": due_date,
-                "paid": paid,
-                "paid_date": paid_date,
-                "currency_code": currency_code,
-                "is_project": is_project,
-                "is_due": is_due,
-                "project_id": project_id,
-                "partner_tenant_name": partner_tenant_name,
-                "proxy_subtenant_id": proxy_subtenant_id,
-            }
-        )
+        field_dict.update({
+            "id": id,
+            "project_name": project_name,
+            "amount": amount,
+            "due_date": due_date,
+            "paid": paid,
+            "paid_date": paid_date,
+            "currency_code": currency_code,
+            "is_project": is_project,
+            "is_due": is_due,
+            "project_id": project_id,
+            "partner_tenant_name": partner_tenant_name,
+            "proxy_subtenant_id": proxy_subtenant_id,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -99,21 +122,43 @@ class AllPartnersPaymentItem:
 
         amount = d.pop("amount")
 
-        def _parse_due_date(data: object) -> None | str:
+        def _parse_due_date(data: object) -> datetime.date | None:
             if data is None:
                 return data
-            return cast(None | str, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                due_date_type_0 = isoparse(data).date()
+
+
+
+                return due_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None, data)
 
         due_date = _parse_due_date(d.pop("due_date"))
 
+
         paid = d.pop("paid")
 
-        def _parse_paid_date(data: object) -> None | str:
+        def _parse_paid_date(data: object) -> datetime.date | None:
             if data is None:
                 return data
-            return cast(None | str, data)
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                paid_date_type_0 = isoparse(data).date()
+
+
+
+                return paid_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None, data)
 
         paid_date = _parse_paid_date(d.pop("paid_date"))
+
 
         currency_code = d.pop("currency_code")
 
@@ -141,6 +186,7 @@ class AllPartnersPaymentItem:
             partner_tenant_name=partner_tenant_name,
             proxy_subtenant_id=proxy_subtenant_id,
         )
+
 
         all_partners_payment_item.additional_properties = d
         return all_partners_payment_item

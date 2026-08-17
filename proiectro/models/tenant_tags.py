@@ -1,59 +1,78 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.tenant_tag import TenantTag
+  from ..models.tenant_tag import TenantTag
+
+
+
 
 
 T = TypeVar("T", bound="TenantTags")
 
 
+
 @_attrs_define
 class TenantTags:
-    """
-    Attributes:
-        tags (list[TenantTag]):
-    """
+    """ 
+        Attributes:
+            tags (list[TenantTag]):
+     """
 
     tags: list[TenantTag]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.tenant_tag import TenantTag
         tags = []
         for tags_item_data in self.tags:
             tags_item = tags_item_data.to_dict()
             tags.append(tags_item)
 
+
+
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tags": tags,
-            }
-        )
+        field_dict.update({
+            "tags": tags,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tenant_tag import TenantTag
-
         d = dict(src_dict)
         tags = []
         _tags = d.pop("tags")
-        for tags_item_data in _tags:
+        for tags_item_data in (_tags):
             tags_item = TenantTag.from_dict(tags_item_data)
 
+
+
             tags.append(tags_item)
+
 
         tenant_tags = cls(
             tags=tags,
         )
+
 
         tenant_tags.additional_properties = d
         return tenant_tags

@@ -12,9 +12,18 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - name: Verify release tag matches package version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VERSION="$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")"
+          if [ "$TAG" != "$VERSION" ]; then
+            echo "Release tag v$TAG does not match pyproject.toml version $VERSION"
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -23,6 +32,12 @@ jobs:
 
       - name: Build sdist and wheel
         run: python -m build
+
+      - name: Verify the built wheel
+        run: |
+          python -m venv /tmp/verify
+          /tmp/verify/bin/pip install --quiet dist/*.whl
+          /tmp/verify/bin/python -c "from proiectro.client import AuthenticatedClient; import proiectro, pathlib; assert (pathlib.Path(proiectro.__file__).parent / 'py.typed').exists(), 'py.typed missing from wheel'; print('wheel OK')"
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,29 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+from typing import cast
+
+
+
+
+
+
 T = TypeVar("T", bound="AnalyticsProjectRemainingItem")
+
 
 
 @_attrs_define
 class AnalyticsProjectRemainingItem:
-    """Remaining work for a single project
+    """ Remaining work for a single project
 
-    Attributes:
-        project_id (str):
-        project_name (str):
-        remaining_hours (float):
-        pending_items (int):
-        overdue_items (int):
-        progress_pct (float):
-        customer_name (None | str | Unset):
-    """
+        Attributes:
+            project_id (str):
+            project_name (str):
+            remaining_hours (float):
+            pending_items (int):
+            overdue_items (int):
+            progress_pct (float):
+            customer_name (None | str | Unset):
+     """
 
     project_id: str
     project_name: str
@@ -33,6 +42,10 @@ class AnalyticsProjectRemainingItem:
     progress_pct: float
     customer_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         project_id = self.project_id
@@ -53,22 +66,23 @@ class AnalyticsProjectRemainingItem:
         else:
             customer_name = self.customer_name
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "project_id": project_id,
-                "project_name": project_name,
-                "remaining_hours": remaining_hours,
-                "pending_items": pending_items,
-                "overdue_items": overdue_items,
-                "progress_pct": progress_pct,
-            }
-        )
+        field_dict.update({
+            "project_id": project_id,
+            "project_name": project_name,
+            "remaining_hours": remaining_hours,
+            "pending_items": pending_items,
+            "overdue_items": overdue_items,
+            "progress_pct": progress_pct,
+        })
         if customer_name is not UNSET:
             field_dict["customer_name"] = customer_name
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -94,6 +108,7 @@ class AnalyticsProjectRemainingItem:
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
 
+
         analytics_project_remaining_item = cls(
             project_id=project_id,
             project_name=project_name,
@@ -103,6 +118,7 @@ class AnalyticsProjectRemainingItem:
             progress_pct=progress_pct,
             customer_name=customer_name,
         )
+
 
         analytics_project_remaining_item.additional_properties = d
         return analytics_project_remaining_item

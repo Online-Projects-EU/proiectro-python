@@ -1,63 +1,79 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
+from typing import cast
+
 if TYPE_CHECKING:
-    from ..models.initiated_partnership_item import InitiatedPartnershipItem
+  from ..models.initiated_partnership_item import InitiatedPartnershipItem
+
+
+
 
 
 T = TypeVar("T", bound="OutputInitiatedPartnerships")
 
 
+
 @_attrs_define
 class OutputInitiatedPartnerships:
-    """List of initiated partnerships
+    """ List of initiated partnerships
 
-    Attributes:
-        partnerships (list[InitiatedPartnershipItem]):
-        total (int):
-    """
+        Attributes:
+            partnerships (list[InitiatedPartnershipItem]):
+            total (int):
+     """
 
     partnerships: list[InitiatedPartnershipItem]
     total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
+
+
+
+
     def to_dict(self) -> dict[str, Any]:
+        from ..models.initiated_partnership_item import InitiatedPartnershipItem
         partnerships = []
         for partnerships_item_data in self.partnerships:
             partnerships_item = partnerships_item_data.to_dict()
             partnerships.append(partnerships_item)
 
+
+
         total = self.total
+
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "partnerships": partnerships,
-                "total": total,
-            }
-        )
+        field_dict.update({
+            "partnerships": partnerships,
+            "total": total,
+        })
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.initiated_partnership_item import InitiatedPartnershipItem
-
         d = dict(src_dict)
         partnerships = []
         _partnerships = d.pop("partnerships")
-        for partnerships_item_data in _partnerships:
-            partnerships_item = InitiatedPartnershipItem.from_dict(
-                partnerships_item_data
-            )
+        for partnerships_item_data in (_partnerships):
+            partnerships_item = InitiatedPartnershipItem.from_dict(partnerships_item_data)
+
+
 
             partnerships.append(partnerships_item)
+
 
         total = d.pop("total")
 
@@ -65,6 +81,7 @@ class OutputInitiatedPartnerships:
             partnerships=partnerships,
             total=total,
         )
+
 
         output_initiated_partnerships.additional_properties = d
         return output_initiated_partnerships

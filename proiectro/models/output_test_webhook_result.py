@@ -1,35 +1,47 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
+from ..types import UNSET, Unset
+
+
+
+
+
+
 T = TypeVar("T", bound="OutputTestWebhookResult")
+
 
 
 @_attrs_define
 class OutputTestWebhookResult:
-    """
-    Attributes:
-        success (bool):
-        message (str):
-        status_code (int | Unset):  Default: 0.
-        duration_ms (int | Unset):  Default: 0.
-        response_body (str | Unset):  Default: ''.
-        error_type (str | Unset):  Default: ''.
-    """
+    """ 
+        Attributes:
+            success (bool):
+            message (str):
+            status_code (int | Unset):  Default: 0.
+            duration_ms (int | Unset):  Default: 0.
+            response_body (str | Unset):  Default: ''.
+            error_type (str | Unset):  Default: ''.
+     """
 
     success: bool
     message: str
     status_code: int | Unset = 0
     duration_ms: int | Unset = 0
-    response_body: str | Unset = ""
-    error_type: str | Unset = ""
+    response_body: str | Unset = ''
+    error_type: str | Unset = ''
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+
+
+
 
     def to_dict(self) -> dict[str, Any]:
         success = self.success
@@ -44,14 +56,13 @@ class OutputTestWebhookResult:
 
         error_type = self.error_type
 
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "success": success,
-                "message": message,
-            }
-        )
+        field_dict.update({
+            "success": success,
+            "message": message,
+        })
         if status_code is not UNSET:
             field_dict["status_code"] = status_code
         if duration_ms is not UNSET:
@@ -62,6 +73,8 @@ class OutputTestWebhookResult:
             field_dict["error_type"] = error_type
 
         return field_dict
+
+
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -86,6 +99,7 @@ class OutputTestWebhookResult:
             response_body=response_body,
             error_type=error_type,
         )
+
 
         output_test_webhook_result.additional_properties = d
         return output_test_webhook_result

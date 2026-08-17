@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class AnalyticsFinancialKpisPeriod(str, Enum):
     MTD = "MTD"
     Q1 = "Q1"
