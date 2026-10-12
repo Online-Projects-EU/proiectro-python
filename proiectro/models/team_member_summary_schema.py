@@ -1,39 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.team_member_summary_schema_daily_data import TeamMemberSummarySchemaDailyData
-
-
-
+    from ..models.team_member_summary_schema_daily_data import (
+        TeamMemberSummarySchemaDailyData,
+    )
 
 
 T = TypeVar("T", bound="TeamMemberSummarySchema")
 
 
-
 @_attrs_define
 class TeamMemberSummarySchema:
-    """ Team member with their weekly load data
+    """Team member with their weekly load data
 
-        Attributes:
-            id (str):
-            name (str):
-            daily_data (TeamMemberSummarySchemaDailyData):
-            total_booked (float):
-            total_available (float):
-            total_display (str):
-            load_percentage (float):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        daily_data (TeamMemberSummarySchemaDailyData):
+        total_booked (float):
+        total_available (float):
+        total_display (str):
+        load_percentage (float | str):
+    """
 
     id: str
     name: str
@@ -41,15 +35,10 @@ class TeamMemberSummarySchema:
     total_booked: float
     total_available: float
     total_display: str
-    load_percentage: float
+    load_percentage: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.team_member_summary_schema_daily_data import TeamMemberSummarySchemaDailyData
         id = self.id
 
         name = self.name
@@ -62,28 +51,31 @@ class TeamMemberSummarySchema:
 
         total_display = self.total_display
 
+        load_percentage: float | str
         load_percentage = self.load_percentage
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "daily_data": daily_data,
-            "total_booked": total_booked,
-            "total_available": total_available,
-            "total_display": total_display,
-            "load_percentage": load_percentage,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "daily_data": daily_data,
+                "total_booked": total_booked,
+                "total_available": total_available,
+                "total_display": total_display,
+                "load_percentage": load_percentage,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.team_member_summary_schema_daily_data import TeamMemberSummarySchemaDailyData
+        from ..models.team_member_summary_schema_daily_data import (
+            TeamMemberSummarySchemaDailyData,
+        )
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -91,16 +83,16 @@ class TeamMemberSummarySchema:
 
         daily_data = TeamMemberSummarySchemaDailyData.from_dict(d.pop("daily_data"))
 
-
-
-
         total_booked = d.pop("total_booked")
 
         total_available = d.pop("total_available")
 
         total_display = d.pop("total_display")
 
-        load_percentage = d.pop("load_percentage")
+        def _parse_load_percentage(data: object) -> float | str:
+            return cast(float | str, data)
+
+        load_percentage = _parse_load_percentage(d.pop("load_percentage"))
 
         team_member_summary_schema = cls(
             id=id,
@@ -111,7 +103,6 @@ class TeamMemberSummarySchema:
             total_display=total_display,
             load_percentage=load_percentage,
         )
-
 
         team_member_summary_schema.additional_properties = d
         return team_member_summary_schema

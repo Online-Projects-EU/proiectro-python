@@ -1,48 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
 from ..models.edit_form_field_field_type import EditFormFieldFieldType
 from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="EditFormField")
 
 
-
 @_attrs_define
 class EditFormField:
-    """ 
-        Attributes:
-            name (str):
-            label (str):
-            field_type (EditFormFieldFieldType):
-            step_id (None | str | Unset):
-            sequence (int | Unset):  Default: 0.
-            required (bool | Unset):  Default: False.
-            is_summary_field (bool | Unset):  Default: False.
-            is_personal_data (bool | Unset):  Default: False.
-            placeholder (None | str | Unset):  Default: ''.
-            help_text (None | str | Unset):  Default: ''.
-            choices (list[str] | None | Unset):
-            min_length (int | None | Unset):
-            max_length (int | None | Unset):
-            min_value (float | None | str | Unset):
-            max_value (float | None | str | Unset):
-            scale_min (int | None | Unset):
-            scale_max (int | None | Unset):
-     """
+    """
+    Attributes:
+        name (str):
+        label (str):
+        field_type (EditFormFieldFieldType):
+        step_id (None | str | Unset):
+        sequence (int | Unset):  Default: 0.
+        required (bool | Unset):  Default: False.
+        is_summary_field (bool | Unset):  Default: False.
+        is_personal_data (bool | Unset):  Default: False.
+        placeholder (None | str | Unset):  Default: ''.
+        help_text (None | str | Unset):  Default: ''.
+        choices (list[str] | None | Unset):
+        min_length (int | None | Unset):
+        max_length (int | None | Unset):
+        min_value (float | None | str | Unset):
+        max_value (float | None | str | Unset):
+        scale_min (int | None | Unset):
+        scale_max (int | None | Unset):
+    """
 
     name: str
     label: str
@@ -52,8 +43,8 @@ class EditFormField:
     required: bool | Unset = False
     is_summary_field: bool | Unset = False
     is_personal_data: bool | Unset = False
-    placeholder: None | str | Unset = ''
-    help_text: None | str | Unset = ''
+    placeholder: None | str | Unset = ""
+    help_text: None | str | Unset = ""
     choices: list[str] | None | Unset = UNSET
     min_length: int | None | Unset = UNSET
     max_length: int | None | Unset = UNSET
@@ -62,10 +53,6 @@ class EditFormField:
     scale_min: int | None | Unset = UNSET
     scale_max: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -106,7 +93,6 @@ class EditFormField:
         elif isinstance(self.choices, list):
             choices = self.choices
 
-
         else:
             choices = self.choices
 
@@ -146,14 +132,15 @@ class EditFormField:
         else:
             scale_max = self.scale_max
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "label": label,
-            "field_type": field_type,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "label": label,
+                "field_type": field_type,
+            }
+        )
         if step_id is not UNSET:
             field_dict["step_id"] = step_id
         if sequence is not UNSET:
@@ -185,8 +172,6 @@ class EditFormField:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -196,9 +181,6 @@ class EditFormField:
 
         field_type = EditFormFieldFieldType(d.pop("field_type"))
 
-
-
-
         def _parse_step_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -207,7 +189,6 @@ class EditFormField:
             return cast(None | str | Unset, data)
 
         step_id = _parse_step_id(d.pop("step_id", UNSET))
-
 
         sequence = d.pop("sequence", UNSET)
 
@@ -226,7 +207,6 @@ class EditFormField:
 
         placeholder = _parse_placeholder(d.pop("placeholder", UNSET))
 
-
         def _parse_help_text(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -235,7 +215,6 @@ class EditFormField:
             return cast(None | str | Unset, data)
 
         help_text = _parse_help_text(d.pop("help_text", UNSET))
-
 
         def _parse_choices(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -254,7 +233,6 @@ class EditFormField:
 
         choices = _parse_choices(d.pop("choices", UNSET))
 
-
         def _parse_min_length(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -263,7 +241,6 @@ class EditFormField:
             return cast(int | None | Unset, data)
 
         min_length = _parse_min_length(d.pop("min_length", UNSET))
-
 
         def _parse_max_length(data: object) -> int | None | Unset:
             if data is None:
@@ -274,7 +251,6 @@ class EditFormField:
 
         max_length = _parse_max_length(d.pop("max_length", UNSET))
 
-
         def _parse_min_value(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -283,7 +259,6 @@ class EditFormField:
             return cast(float | None | str | Unset, data)
 
         min_value = _parse_min_value(d.pop("min_value", UNSET))
-
 
         def _parse_max_value(data: object) -> float | None | str | Unset:
             if data is None:
@@ -294,7 +269,6 @@ class EditFormField:
 
         max_value = _parse_max_value(d.pop("max_value", UNSET))
 
-
         def _parse_scale_min(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -304,7 +278,6 @@ class EditFormField:
 
         scale_min = _parse_scale_min(d.pop("scale_min", UNSET))
 
-
         def _parse_scale_max(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -313,7 +286,6 @@ class EditFormField:
             return cast(int | None | Unset, data)
 
         scale_max = _parse_scale_max(d.pop("scale_max", UNSET))
-
 
         edit_form_field = cls(
             name=name,
@@ -334,7 +306,6 @@ class EditFormField:
             scale_min=scale_min,
             scale_max=scale_max,
         )
-
 
         edit_form_field.additional_properties = d
         return edit_form_field

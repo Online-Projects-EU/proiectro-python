@@ -1,67 +1,60 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_team_workload_item import AnalyticsTeamWorkloadItem
-  from ..models.analytics_workload_chart_item import AnalyticsWorkloadChartItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_team_workload_item import AnalyticsTeamWorkloadItem
+    from ..models.analytics_workload_chart_item import AnalyticsWorkloadChartItem
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsDeliveryMilestones")
 
 
-
 @_attrs_define
 class AnalyticsDeliveryMilestones:
-    """ Team workload distribution (renamed from milestones)
+    """Team workload distribution (renamed from milestones)
 
-        Attributes:
-            total_team_members (int):
-            total_remaining_hours (float):
-            avg_utilization (float):
-            horizon_days (int):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            team_members (list[AnalyticsTeamWorkloadItem] | Unset):
-            workload_chart_data (list[AnalyticsWorkloadChartItem] | Unset):
-     """
+    Attributes:
+        total_team_members (int):
+        total_remaining_hours (float):
+        avg_utilization (float | str):
+        horizon_days (int):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        team_members (list[AnalyticsTeamWorkloadItem] | Unset):
+        workload_chart_data (list[AnalyticsWorkloadChartItem] | Unset):
+    """
 
     total_team_members: int
     total_remaining_hours: float
-    avg_utilization: float
+    avg_utilization: float | str
     horizon_days: int
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -80,19 +73,12 @@ class AnalyticsDeliveryMilestones:
     workload_chart_data: list[AnalyticsWorkloadChartItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.analytics_team_workload_item import AnalyticsTeamWorkloadItem
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_workload_chart_item import AnalyticsWorkloadChartItem
         total_team_members = self.total_team_members
 
         total_remaining_hours = self.total_remaining_hours
 
+        avg_utilization: float | str
         avg_utilization = self.avg_utilization
 
         horizon_days = self.horizon_days
@@ -136,7 +122,6 @@ class AnalyticsDeliveryMilestones:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -160,7 +145,6 @@ class AnalyticsDeliveryMilestones:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -208,8 +192,6 @@ class AnalyticsDeliveryMilestones:
                 team_members_item = team_members_item_data.to_dict()
                 team_members.append(team_members_item)
 
-
-
         workload_chart_data: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.workload_chart_data, Unset):
             workload_chart_data = []
@@ -217,17 +199,16 @@ class AnalyticsDeliveryMilestones:
                 workload_chart_data_item = workload_chart_data_item_data.to_dict()
                 workload_chart_data.append(workload_chart_data_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_team_members": total_team_members,
-            "total_remaining_hours": total_remaining_hours,
-            "avg_utilization": avg_utilization,
-            "horizon_days": horizon_days,
-        })
+        field_dict.update(
+            {
+                "total_team_members": total_team_members,
+                "total_remaining_hours": total_remaining_hours,
+                "avg_utilization": avg_utilization,
+                "horizon_days": horizon_days,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -267,20 +248,22 @@ class AnalyticsDeliveryMilestones:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_team_workload_item import AnalyticsTeamWorkloadItem
         from ..models.analytics_workload_chart_item import AnalyticsWorkloadChartItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
         total_team_members = d.pop("total_team_members")
 
         total_remaining_hours = d.pop("total_remaining_hours")
 
-        avg_utilization = d.pop("avg_utilization")
+        def _parse_avg_utilization(data: object) -> float | str:
+            return cast(float | str, data)
+
+        avg_utilization = _parse_avg_utilization(d.pop("avg_utilization"))
 
         horizon_days = d.pop("horizon_days")
 
@@ -298,15 +281,12 @@ class AnalyticsDeliveryMilestones:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -317,7 +297,6 @@ class AnalyticsDeliveryMilestones:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -327,7 +306,6 @@ class AnalyticsDeliveryMilestones:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -336,7 +314,6 @@ class AnalyticsDeliveryMilestones:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -348,10 +325,10 @@ class AnalyticsDeliveryMilestones:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -362,7 +339,6 @@ class AnalyticsDeliveryMilestones:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -372,7 +348,6 @@ class AnalyticsDeliveryMilestones:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -381,7 +356,6 @@ class AnalyticsDeliveryMilestones:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -393,10 +367,10 @@ class AnalyticsDeliveryMilestones:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -407,7 +381,6 @@ class AnalyticsDeliveryMilestones:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -417,7 +390,6 @@ class AnalyticsDeliveryMilestones:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -425,8 +397,9 @@ class AnalyticsDeliveryMilestones:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -437,7 +410,6 @@ class AnalyticsDeliveryMilestones:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -445,8 +417,9 @@ class AnalyticsDeliveryMilestones:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -457,7 +430,6 @@ class AnalyticsDeliveryMilestones:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -467,30 +439,27 @@ class AnalyticsDeliveryMilestones:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
-
         _team_members = d.pop("team_members", UNSET)
         team_members: list[AnalyticsTeamWorkloadItem] | Unset = UNSET
         if _team_members is not UNSET:
             team_members = []
             for team_members_item_data in _team_members:
-                team_members_item = AnalyticsTeamWorkloadItem.from_dict(team_members_item_data)
-
-
+                team_members_item = AnalyticsTeamWorkloadItem.from_dict(
+                    team_members_item_data
+                )
 
                 team_members.append(team_members_item)
-
 
         _workload_chart_data = d.pop("workload_chart_data", UNSET)
         workload_chart_data: list[AnalyticsWorkloadChartItem] | Unset = UNSET
         if _workload_chart_data is not UNSET:
             workload_chart_data = []
             for workload_chart_data_item_data in _workload_chart_data:
-                workload_chart_data_item = AnalyticsWorkloadChartItem.from_dict(workload_chart_data_item_data)
-
-
+                workload_chart_data_item = AnalyticsWorkloadChartItem.from_dict(
+                    workload_chart_data_item_data
+                )
 
                 workload_chart_data.append(workload_chart_data_item)
-
 
         analytics_delivery_milestones = cls(
             total_team_members=total_team_members,
@@ -516,7 +485,6 @@ class AnalyticsDeliveryMilestones:
             team_members=team_members,
             workload_chart_data=workload_chart_data,
         )
-
 
         analytics_delivery_milestones.additional_properties = d
         return analytics_delivery_milestones

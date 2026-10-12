@@ -1,50 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditTimer")
-
 
 
 @_attrs_define
 class EditTimer:
-    """ 
-        Attributes:
-            name (None | str | Unset):
-            description (None | str | Unset):
-            is_enabled (bool | Unset):  Default: False.
-            schedule_type (None | str | Unset):
-            schedule_hour (int | None | Unset):
-            schedule_day_of_week (int | None | Unset):
-            schedule_day_of_month (int | None | Unset):
-     """
+    """
+    Attributes:
+        name (None | str | Unset):
+        description (None | str | Unset):
+        is_enabled (bool | None | Unset):
+        schedule_type (None | str | Unset):
+        schedule_hour (int | None | Unset):
+        schedule_day_of_week (int | None | Unset):
+        schedule_day_of_month (int | None | Unset):
+    """
 
     name: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
-    is_enabled: bool | Unset = False
+    is_enabled: bool | None | Unset = UNSET
     schedule_type: None | str | Unset = UNSET
     schedule_hour: int | None | Unset = UNSET
     schedule_day_of_week: int | None | Unset = UNSET
     schedule_day_of_month: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name: None | str | Unset
@@ -59,7 +46,11 @@ class EditTimer:
         else:
             description = self.description
 
-        is_enabled = self.is_enabled
+        is_enabled: bool | None | Unset
+        if isinstance(self.is_enabled, Unset):
+            is_enabled = UNSET
+        else:
+            is_enabled = self.is_enabled
 
         schedule_type: None | str | Unset
         if isinstance(self.schedule_type, Unset):
@@ -85,11 +76,9 @@ class EditTimer:
         else:
             schedule_day_of_month = self.schedule_day_of_month
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if name is not UNSET:
             field_dict["name"] = name
         if description is not UNSET:
@@ -107,11 +96,10 @@ class EditTimer:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -120,7 +108,6 @@ class EditTimer:
             return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -131,8 +118,14 @@ class EditTimer:
 
         description = _parse_description(d.pop("description", UNSET))
 
+        def _parse_is_enabled(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_enabled = d.pop("is_enabled", UNSET)
+        is_enabled = _parse_is_enabled(d.pop("is_enabled", UNSET))
 
         def _parse_schedule_type(data: object) -> None | str | Unset:
             if data is None:
@@ -143,7 +136,6 @@ class EditTimer:
 
         schedule_type = _parse_schedule_type(d.pop("schedule_type", UNSET))
 
-
         def _parse_schedule_hour(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -153,7 +145,6 @@ class EditTimer:
 
         schedule_hour = _parse_schedule_hour(d.pop("schedule_hour", UNSET))
 
-
         def _parse_schedule_day_of_week(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -161,8 +152,9 @@ class EditTimer:
                 return data
             return cast(int | None | Unset, data)
 
-        schedule_day_of_week = _parse_schedule_day_of_week(d.pop("schedule_day_of_week", UNSET))
-
+        schedule_day_of_week = _parse_schedule_day_of_week(
+            d.pop("schedule_day_of_week", UNSET)
+        )
 
         def _parse_schedule_day_of_month(data: object) -> int | None | Unset:
             if data is None:
@@ -171,8 +163,9 @@ class EditTimer:
                 return data
             return cast(int | None | Unset, data)
 
-        schedule_day_of_month = _parse_schedule_day_of_month(d.pop("schedule_day_of_month", UNSET))
-
+        schedule_day_of_month = _parse_schedule_day_of_month(
+            d.pop("schedule_day_of_month", UNSET)
+        )
 
         edit_timer = cls(
             name=name,
@@ -183,7 +176,6 @@ class EditTimer:
             schedule_day_of_week=schedule_day_of_week,
             schedule_day_of_month=schedule_day_of_month,
         )
-
 
         edit_timer.additional_properties = d
         return edit_timer

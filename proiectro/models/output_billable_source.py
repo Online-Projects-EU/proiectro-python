@@ -1,30 +1,21 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputBillableSource")
 
 
-
 @_attrs_define
 class OutputBillableSource:
-    """ One eligible source row in the picker (a closed ExternalSupportRequest or
+    """One eligible source row in the picker (a closed ExternalSupportRequest or
     a finished OperationalWorkItem in a final stage).
 
         Attributes:
@@ -32,17 +23,13 @@ class OutputBillableSource:
             label (str):
             reference_date (datetime.datetime | None | Unset):
             suggested_amount (float | None | str | Unset):
-     """
+    """
 
     external_id: str
     label: str
     reference_date: datetime.datetime | None | Unset = UNSET
     suggested_amount: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -63,21 +50,20 @@ class OutputBillableSource:
         else:
             suggested_amount = self.suggested_amount
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "label": label,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "label": label,
+            }
+        )
         if reference_date is not UNSET:
             field_dict["reference_date"] = reference_date
         if suggested_amount is not UNSET:
             field_dict["suggested_amount"] = suggested_amount
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -96,15 +82,12 @@ class OutputBillableSource:
                     raise TypeError()
                 reference_date_type_0 = isoparse(data)
 
-
-
                 return reference_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         reference_date = _parse_reference_date(d.pop("reference_date", UNSET))
-
 
         def _parse_suggested_amount(data: object) -> float | None | str | Unset:
             if data is None:
@@ -115,14 +98,12 @@ class OutputBillableSource:
 
         suggested_amount = _parse_suggested_amount(d.pop("suggested_amount", UNSET))
 
-
         output_billable_source = cls(
             external_id=external_id,
             label=label,
             reference_date=reference_date,
             suggested_amount=suggested_amount,
         )
-
 
         output_billable_source.additional_properties = d
         return output_billable_source

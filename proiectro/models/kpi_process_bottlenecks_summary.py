@@ -1,45 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="KPIProcessBottlenecksSummary")
-
 
 
 @_attrs_define
 class KPIProcessBottlenecksSummary:
-    """ 
-        Attributes:
-            description (str | Unset):  Default: ''.
-            bottleneck_count (str | Unset):  Default: '0'.
-            total_items_blocked (str | Unset):  Default: '0'.
-            worst_stage (str | Unset):  Default: ''.
-            worst_stage_count (str | Unset):  Default: '0'.
-     """
+    """
+    Attributes:
+        description (str | Unset):  Default: ''.
+        bottleneck_count (str | Unset):  Default: '0'.
+        total_items_blocked (str | Unset):  Default: '0'.
+        worst_stage (str | Unset):  Default: ''.
+        worst_stage_count (str | Unset):  Default: '0'.
+    """
 
-    description: str | Unset = ''
-    bottleneck_count: str | Unset = '0'
-    total_items_blocked: str | Unset = '0'
-    worst_stage: str | Unset = ''
-    worst_stage_count: str | Unset = '0'
+    description: str | Unset = ""
+    bottleneck_count: str | Unset = "0"
+    total_items_blocked: str | Unset = "0"
+    worst_stage: str | Unset = ""
+    worst_stage_count: str | Unset = "0"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         description = self.description
@@ -52,11 +40,9 @@ class KPIProcessBottlenecksSummary:
 
         worst_stage_count = self.worst_stage_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if description is not UNSET:
             field_dict["description"] = description
         if bottleneck_count is not UNSET:
@@ -69,8 +55,6 @@ class KPIProcessBottlenecksSummary:
             field_dict["worstStageCount"] = worst_stage_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -92,7 +76,6 @@ class KPIProcessBottlenecksSummary:
             worst_stage=worst_stage,
             worst_stage_count=worst_stage_count,
         )
-
 
         kpi_process_bottlenecks_summary.additional_properties = d
         return kpi_process_bottlenecks_summary

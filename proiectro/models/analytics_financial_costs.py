@@ -1,74 +1,69 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-from typing import Literal, cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_cost_category_item import AnalyticsCostCategoryItem
-  from ..models.analytics_cost_month_item import AnalyticsCostMonthItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_cost_category_item import AnalyticsCostCategoryItem
+    from ..models.analytics_cost_month_item import AnalyticsCostMonthItem
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsFinancialCosts")
 
 
-
 @_attrs_define
 class AnalyticsFinancialCosts:
-    """ Cost analysis
+    """Cost analysis
 
-        Attributes:
-            total_costs (float | str):
-            direct_costs (float | str):
-            overhead_costs (float | str):
-            currency (str):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            costs_by_category (list[AnalyticsCostCategoryItem] | Unset):
-            monthly_trend (list[AnalyticsCostMonthItem] | Unset):
-            prev_total_costs (float | None | str | Unset):
-            prev_direct_costs (float | None | str | Unset):
-            prev_overhead_costs (float | None | str | Unset):
-            total_change_pct (float | Literal['new'] | None | str | Unset):
-            direct_change_pct (float | Literal['new'] | None | str | Unset):
-            overhead_change_pct (float | Literal['new'] | None | str | Unset):
-     """
+    Attributes:
+        currency (str):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        uncovered_currencies (list[str] | Unset):
+        total_costs (float | None | str | Unset):
+        direct_costs (float | None | str | Unset):
+        overhead_costs (float | None | str | Unset):
+        direct_percent (float | None | str | Unset):
+        overhead_percent (float | None | str | Unset):
+        costs_by_category (list[AnalyticsCostCategoryItem] | Unset):
+        monthly_trend (list[AnalyticsCostMonthItem] | Unset):
+        prev_total_costs (float | None | str | Unset):
+        prev_direct_costs (float | None | str | Unset):
+        prev_overhead_costs (float | None | str | Unset):
+        total_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+        direct_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+        overhead_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+    """
 
-    total_costs: float | str
-    direct_costs: float | str
-    overhead_costs: float | str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -83,34 +78,23 @@ class AnalyticsFinancialCosts:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
+    total_costs: float | None | str | Unset = UNSET
+    direct_costs: float | None | str | Unset = UNSET
+    overhead_costs: float | None | str | Unset = UNSET
+    direct_percent: float | None | str | Unset = UNSET
+    overhead_percent: float | None | str | Unset = UNSET
     costs_by_category: list[AnalyticsCostCategoryItem] | Unset = UNSET
     monthly_trend: list[AnalyticsCostMonthItem] | Unset = UNSET
     prev_total_costs: float | None | str | Unset = UNSET
     prev_direct_costs: float | None | str | Unset = UNSET
     prev_overhead_costs: float | None | str | Unset = UNSET
-    total_change_pct: float | Literal['new'] | None | str | Unset = UNSET
-    direct_change_pct: float | Literal['new'] | None | str | Unset = UNSET
-    overhead_change_pct: float | Literal['new'] | None | str | Unset = UNSET
+    total_change_pct: float | None | str | Unset = UNSET
+    direct_change_pct: float | None | str | Unset = UNSET
+    overhead_change_pct: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.analytics_cost_month_item import AnalyticsCostMonthItem
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_cost_category_item import AnalyticsCostCategoryItem
-        total_costs: float | str
-        total_costs = self.total_costs
-
-        direct_costs: float | str
-        direct_costs = self.direct_costs
-
-        overhead_costs: float | str
-        overhead_costs = self.overhead_costs
-
         currency = self.currency
 
         period = self.period
@@ -152,7 +136,6 @@ class AnalyticsFinancialCosts:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -176,7 +159,6 @@ class AnalyticsFinancialCosts:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -217,6 +199,40 @@ class AnalyticsFinancialCosts:
         else:
             filter_type_label = self.filter_type_label
 
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
+        total_costs: float | None | str | Unset
+        if isinstance(self.total_costs, Unset):
+            total_costs = UNSET
+        else:
+            total_costs = self.total_costs
+
+        direct_costs: float | None | str | Unset
+        if isinstance(self.direct_costs, Unset):
+            direct_costs = UNSET
+        else:
+            direct_costs = self.direct_costs
+
+        overhead_costs: float | None | str | Unset
+        if isinstance(self.overhead_costs, Unset):
+            overhead_costs = UNSET
+        else:
+            overhead_costs = self.overhead_costs
+
+        direct_percent: float | None | str | Unset
+        if isinstance(self.direct_percent, Unset):
+            direct_percent = UNSET
+        else:
+            direct_percent = self.direct_percent
+
+        overhead_percent: float | None | str | Unset
+        if isinstance(self.overhead_percent, Unset):
+            overhead_percent = UNSET
+        else:
+            overhead_percent = self.overhead_percent
+
         costs_by_category: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.costs_by_category, Unset):
             costs_by_category = []
@@ -224,16 +240,12 @@ class AnalyticsFinancialCosts:
                 costs_by_category_item = costs_by_category_item_data.to_dict()
                 costs_by_category.append(costs_by_category_item)
 
-
-
         monthly_trend: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.monthly_trend, Unset):
             monthly_trend = []
             for monthly_trend_item_data in self.monthly_trend:
                 monthly_trend_item = monthly_trend_item_data.to_dict()
                 monthly_trend.append(monthly_trend_item)
-
-
 
         prev_total_costs: float | None | str | Unset
         if isinstance(self.prev_total_costs, Unset):
@@ -253,33 +265,31 @@ class AnalyticsFinancialCosts:
         else:
             prev_overhead_costs = self.prev_overhead_costs
 
-        total_change_pct: float | Literal['new'] | None | str | Unset
+        total_change_pct: float | None | str | Unset
         if isinstance(self.total_change_pct, Unset):
             total_change_pct = UNSET
         else:
             total_change_pct = self.total_change_pct
 
-        direct_change_pct: float | Literal['new'] | None | str | Unset
+        direct_change_pct: float | None | str | Unset
         if isinstance(self.direct_change_pct, Unset):
             direct_change_pct = UNSET
         else:
             direct_change_pct = self.direct_change_pct
 
-        overhead_change_pct: float | Literal['new'] | None | str | Unset
+        overhead_change_pct: float | None | str | Unset
         if isinstance(self.overhead_change_pct, Unset):
             overhead_change_pct = UNSET
         else:
             overhead_change_pct = self.overhead_change_pct
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_costs": total_costs,
-            "direct_costs": direct_costs,
-            "overhead_costs": overhead_costs,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -312,6 +322,18 @@ class AnalyticsFinancialCosts:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
+        if total_costs is not UNSET:
+            field_dict["total_costs"] = total_costs
+        if direct_costs is not UNSET:
+            field_dict["direct_costs"] = direct_costs
+        if overhead_costs is not UNSET:
+            field_dict["overhead_costs"] = overhead_costs
+        if direct_percent is not UNSET:
+            field_dict["direct_percent"] = direct_percent
+        if overhead_percent is not UNSET:
+            field_dict["overhead_percent"] = overhead_percent
         if costs_by_category is not UNSET:
             field_dict["costs_by_category"] = costs_by_category
         if monthly_trend is not UNSET:
@@ -331,33 +353,14 @@ class AnalyticsFinancialCosts:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_cost_category_item import AnalyticsCostCategoryItem
         from ..models.analytics_cost_month_item import AnalyticsCostMonthItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_total_costs(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_costs = _parse_total_costs(d.pop("total_costs"))
-
-
-        def _parse_direct_costs(data: object) -> float | str:
-            return cast(float | str, data)
-
-        direct_costs = _parse_direct_costs(d.pop("direct_costs"))
-
-
-        def _parse_overhead_costs(data: object) -> float | str:
-            return cast(float | str, data)
-
-        overhead_costs = _parse_overhead_costs(d.pop("overhead_costs"))
-
-
         currency = d.pop("currency")
 
         period = d.pop("period", UNSET)
@@ -374,15 +377,12 @@ class AnalyticsFinancialCosts:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -393,7 +393,6 @@ class AnalyticsFinancialCosts:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -403,7 +402,6 @@ class AnalyticsFinancialCosts:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -412,7 +410,6 @@ class AnalyticsFinancialCosts:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -424,10 +421,10 @@ class AnalyticsFinancialCosts:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -438,7 +435,6 @@ class AnalyticsFinancialCosts:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -448,7 +444,6 @@ class AnalyticsFinancialCosts:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -457,7 +452,6 @@ class AnalyticsFinancialCosts:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -469,10 +463,10 @@ class AnalyticsFinancialCosts:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -483,7 +477,6 @@ class AnalyticsFinancialCosts:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -493,7 +486,6 @@ class AnalyticsFinancialCosts:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -501,8 +493,9 @@ class AnalyticsFinancialCosts:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -513,7 +506,6 @@ class AnalyticsFinancialCosts:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -521,8 +513,9 @@ class AnalyticsFinancialCosts:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -533,7 +526,6 @@ class AnalyticsFinancialCosts:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -543,30 +535,74 @@ class AnalyticsFinancialCosts:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
+
+        def _parse_total_costs(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_costs = _parse_total_costs(d.pop("total_costs", UNSET))
+
+        def _parse_direct_costs(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        direct_costs = _parse_direct_costs(d.pop("direct_costs", UNSET))
+
+        def _parse_overhead_costs(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        overhead_costs = _parse_overhead_costs(d.pop("overhead_costs", UNSET))
+
+        def _parse_direct_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        direct_percent = _parse_direct_percent(d.pop("direct_percent", UNSET))
+
+        def _parse_overhead_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        overhead_percent = _parse_overhead_percent(d.pop("overhead_percent", UNSET))
 
         _costs_by_category = d.pop("costs_by_category", UNSET)
         costs_by_category: list[AnalyticsCostCategoryItem] | Unset = UNSET
         if _costs_by_category is not UNSET:
             costs_by_category = []
             for costs_by_category_item_data in _costs_by_category:
-                costs_by_category_item = AnalyticsCostCategoryItem.from_dict(costs_by_category_item_data)
-
-
+                costs_by_category_item = AnalyticsCostCategoryItem.from_dict(
+                    costs_by_category_item_data
+                )
 
                 costs_by_category.append(costs_by_category_item)
-
 
         _monthly_trend = d.pop("monthly_trend", UNSET)
         monthly_trend: list[AnalyticsCostMonthItem] | Unset = UNSET
         if _monthly_trend is not UNSET:
             monthly_trend = []
             for monthly_trend_item_data in _monthly_trend:
-                monthly_trend_item = AnalyticsCostMonthItem.from_dict(monthly_trend_item_data)
-
-
+                monthly_trend_item = AnalyticsCostMonthItem.from_dict(
+                    monthly_trend_item_data
+                )
 
                 monthly_trend.append(monthly_trend_item)
-
 
         def _parse_prev_total_costs(data: object) -> float | None | str | Unset:
             if data is None:
@@ -577,7 +613,6 @@ class AnalyticsFinancialCosts:
 
         prev_total_costs = _parse_prev_total_costs(d.pop("prev_total_costs", UNSET))
 
-
         def _parse_prev_direct_costs(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -587,7 +622,6 @@ class AnalyticsFinancialCosts:
 
         prev_direct_costs = _parse_prev_direct_costs(d.pop("prev_direct_costs", UNSET))
 
-
         def _parse_prev_overhead_costs(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -595,55 +629,40 @@ class AnalyticsFinancialCosts:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_overhead_costs = _parse_prev_overhead_costs(d.pop("prev_overhead_costs", UNSET))
+        prev_overhead_costs = _parse_prev_overhead_costs(
+            d.pop("prev_overhead_costs", UNSET)
+        )
 
-
-        def _parse_total_change_pct(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_total_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            total_change_pct_type_2 = cast(Literal['new'] , data)
-            if total_change_pct_type_2 != 'new':
-                raise ValueError(f"total_change_pct_type_2 must match const 'new', got '{total_change_pct_type_2}'")
-            return total_change_pct_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
         total_change_pct = _parse_total_change_pct(d.pop("total_change_pct", UNSET))
 
-
-        def _parse_direct_change_pct(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_direct_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            direct_change_pct_type_2 = cast(Literal['new'] , data)
-            if direct_change_pct_type_2 != 'new':
-                raise ValueError(f"direct_change_pct_type_2 must match const 'new', got '{direct_change_pct_type_2}'")
-            return direct_change_pct_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
         direct_change_pct = _parse_direct_change_pct(d.pop("direct_change_pct", UNSET))
 
-
-        def _parse_overhead_change_pct(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_overhead_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            overhead_change_pct_type_2 = cast(Literal['new'] , data)
-            if overhead_change_pct_type_2 != 'new':
-                raise ValueError(f"overhead_change_pct_type_2 must match const 'new', got '{overhead_change_pct_type_2}'")
-            return overhead_change_pct_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
-        overhead_change_pct = _parse_overhead_change_pct(d.pop("overhead_change_pct", UNSET))
-
+        overhead_change_pct = _parse_overhead_change_pct(
+            d.pop("overhead_change_pct", UNSET)
+        )
 
         analytics_financial_costs = cls(
-            total_costs=total_costs,
-            direct_costs=direct_costs,
-            overhead_costs=overhead_costs,
             currency=currency,
             period=period,
             temporal_type=temporal_type,
@@ -661,6 +680,12 @@ class AnalyticsFinancialCosts:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            uncovered_currencies=uncovered_currencies,
+            total_costs=total_costs,
+            direct_costs=direct_costs,
+            overhead_costs=overhead_costs,
+            direct_percent=direct_percent,
+            overhead_percent=overhead_percent,
             costs_by_category=costs_by_category,
             monthly_trend=monthly_trend,
             prev_total_costs=prev_total_costs,
@@ -670,7 +695,6 @@ class AnalyticsFinancialCosts:
             direct_change_pct=direct_change_pct,
             overhead_change_pct=overhead_change_pct,
         )
-
 
         analytics_financial_costs.additional_properties = d
         return analytics_financial_costs

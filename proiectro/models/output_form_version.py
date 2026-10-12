@@ -1,41 +1,32 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputFormVersion")
 
 
-
 @_attrs_define
 class OutputFormVersion:
-    """ 
-        Attributes:
-            id (str):
-            form_id (str):
-            version (int):
-            is_active (bool):
-            is_locked (bool):
-            created_at (datetime.datetime):
-            step_count (int | Unset):  Default: 0.
-            field_count (int | Unset):  Default: 0.
-            submission_count (int | Unset):  Default: 0.
-     """
+    """
+    Attributes:
+        id (str):
+        form_id (str):
+        version (int):
+        is_active (bool):
+        is_locked (bool):
+        created_at (datetime.datetime):
+        step_count (int | Unset):  Default: 0.
+        field_count (int | Unset):  Default: 0.
+        submission_count (int | Unset):  Default: 0.
+    """
 
     id: str
     form_id: str
@@ -47,10 +38,6 @@ class OutputFormVersion:
     field_count: int | Unset = 0
     submission_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -71,17 +58,18 @@ class OutputFormVersion:
 
         submission_count = self.submission_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "form_id": form_id,
-            "version": version,
-            "is_active": is_active,
-            "is_locked": is_locked,
-            "created_at": created_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "form_id": form_id,
+                "version": version,
+                "is_active": is_active,
+                "is_locked": is_locked,
+                "created_at": created_at,
+            }
+        )
         if step_count is not UNSET:
             field_dict["step_count"] = step_count
         if field_count is not UNSET:
@@ -90,8 +78,6 @@ class OutputFormVersion:
             field_dict["submission_count"] = submission_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -107,9 +93,6 @@ class OutputFormVersion:
         is_locked = d.pop("is_locked")
 
         created_at = isoparse(d.pop("created_at"))
-
-
-
 
         step_count = d.pop("step_count", UNSET)
 
@@ -128,7 +111,6 @@ class OutputFormVersion:
             field_count=field_count,
             submission_count=submission_count,
         )
-
 
         output_form_version.additional_properties = d
         return output_form_version

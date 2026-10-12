@@ -1,59 +1,46 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="ScheduleTaskItem")
-
 
 
 @_attrs_define
 class ScheduleTaskItem:
-    """ Single task in project schedule with critical path data
+    """Single task in project schedule with critical path data
 
-        Attributes:
-            id (str):
-            name (str):
-            hierarchy_id (str):
-            total_float_days (int):
-            free_float_days (int):
-            is_critical (bool):
-            duration_days (int):
-            early_start (None | str | Unset):
-            early_finish (None | str | Unset):
-            late_start (None | str | Unset):
-            late_finish (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        hierarchy_id (str):
+        is_critical (bool):
+        duration_days (int):
+        early_start (None | str | Unset):
+        early_finish (None | str | Unset):
+        late_start (None | str | Unset):
+        late_finish (None | str | Unset):
+        total_float_days (int | None | Unset):
+        free_float_days (int | None | Unset):
+    """
 
     id: str
     name: str
     hierarchy_id: str
-    total_float_days: int
-    free_float_days: int
     is_critical: bool
     duration_days: int
     early_start: None | str | Unset = UNSET
     early_finish: None | str | Unset = UNSET
     late_start: None | str | Unset = UNSET
     late_finish: None | str | Unset = UNSET
+    total_float_days: int | None | Unset = UNSET
+    free_float_days: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -61,10 +48,6 @@ class ScheduleTaskItem:
         name = self.name
 
         hierarchy_id = self.hierarchy_id
-
-        total_float_days = self.total_float_days
-
-        free_float_days = self.free_float_days
 
         is_critical = self.is_critical
 
@@ -94,18 +77,29 @@ class ScheduleTaskItem:
         else:
             late_finish = self.late_finish
 
+        total_float_days: int | None | Unset
+        if isinstance(self.total_float_days, Unset):
+            total_float_days = UNSET
+        else:
+            total_float_days = self.total_float_days
+
+        free_float_days: int | None | Unset
+        if isinstance(self.free_float_days, Unset):
+            free_float_days = UNSET
+        else:
+            free_float_days = self.free_float_days
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "hierarchy_id": hierarchy_id,
-            "total_float_days": total_float_days,
-            "free_float_days": free_float_days,
-            "is_critical": is_critical,
-            "duration_days": duration_days,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "hierarchy_id": hierarchy_id,
+                "is_critical": is_critical,
+                "duration_days": duration_days,
+            }
+        )
         if early_start is not UNSET:
             field_dict["early_start"] = early_start
         if early_finish is not UNSET:
@@ -114,10 +108,12 @@ class ScheduleTaskItem:
             field_dict["late_start"] = late_start
         if late_finish is not UNSET:
             field_dict["late_finish"] = late_finish
+        if total_float_days is not UNSET:
+            field_dict["total_float_days"] = total_float_days
+        if free_float_days is not UNSET:
+            field_dict["free_float_days"] = free_float_days
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -127,10 +123,6 @@ class ScheduleTaskItem:
         name = d.pop("name")
 
         hierarchy_id = d.pop("hierarchy_id")
-
-        total_float_days = d.pop("total_float_days")
-
-        free_float_days = d.pop("free_float_days")
 
         is_critical = d.pop("is_critical")
 
@@ -145,7 +137,6 @@ class ScheduleTaskItem:
 
         early_start = _parse_early_start(d.pop("early_start", UNSET))
 
-
         def _parse_early_finish(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -154,7 +145,6 @@ class ScheduleTaskItem:
             return cast(None | str | Unset, data)
 
         early_finish = _parse_early_finish(d.pop("early_finish", UNSET))
-
 
         def _parse_late_start(data: object) -> None | str | Unset:
             if data is None:
@@ -165,7 +155,6 @@ class ScheduleTaskItem:
 
         late_start = _parse_late_start(d.pop("late_start", UNSET))
 
-
         def _parse_late_finish(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -175,21 +164,37 @@ class ScheduleTaskItem:
 
         late_finish = _parse_late_finish(d.pop("late_finish", UNSET))
 
+        def _parse_total_float_days(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total_float_days = _parse_total_float_days(d.pop("total_float_days", UNSET))
+
+        def _parse_free_float_days(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        free_float_days = _parse_free_float_days(d.pop("free_float_days", UNSET))
 
         schedule_task_item = cls(
             id=id,
             name=name,
             hierarchy_id=hierarchy_id,
-            total_float_days=total_float_days,
-            free_float_days=free_float_days,
             is_critical=is_critical,
             duration_days=duration_days,
             early_start=early_start,
             early_finish=early_finish,
             late_start=late_start,
             late_finish=late_finish,
+            total_float_days=total_float_days,
+            free_float_days=free_float_days,
         )
-
 
         schedule_task_item.additional_properties = d
         return schedule_task_item

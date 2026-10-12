@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AddPaymentScheduleBlockPaymentType(str, Enum):
     CONSUMPTION = "consumption"
     MILESTONE_PAYMENT = "milestone_payment"

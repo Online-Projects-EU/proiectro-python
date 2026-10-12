@@ -1,37 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditResourceBooking")
-
 
 
 @_attrs_define
 class EditResourceBooking:
-    """ Input schema for editing a resource booking
+    """Input schema for editing a resource booking
 
-        Attributes:
-            resource (str):
-            start_date (str):
-            end_date (str):
-            name (str):
-            product (None | str | Unset):
-            hours_per_day (int | None | Unset):  Default: 0.
-     """
+    Attributes:
+        resource (str):
+        start_date (str):
+        end_date (str):
+        name (str):
+        product (None | str | Unset):
+        hours_per_day (int | None | Unset):  Default: 0.
+    """
 
     resource: str
     start_date: str
@@ -40,10 +31,6 @@ class EditResourceBooking:
     product: None | str | Unset = UNSET
     hours_per_day: int | None | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         resource = self.resource
@@ -66,23 +53,22 @@ class EditResourceBooking:
         else:
             hours_per_day = self.hours_per_day
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "resource": resource,
-            "start_date": start_date,
-            "end_date": end_date,
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "resource": resource,
+                "start_date": start_date,
+                "end_date": end_date,
+                "name": name,
+            }
+        )
         if product is not UNSET:
             field_dict["product"] = product
         if hours_per_day is not UNSET:
             field_dict["hours_per_day"] = hours_per_day
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -104,7 +90,6 @@ class EditResourceBooking:
 
         product = _parse_product(d.pop("product", UNSET))
 
-
         def _parse_hours_per_day(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -114,7 +99,6 @@ class EditResourceBooking:
 
         hours_per_day = _parse_hours_per_day(d.pop("hours_per_day", UNSET))
 
-
         edit_resource_booking = cls(
             resource=resource,
             start_date=start_date,
@@ -123,7 +107,6 @@ class EditResourceBooking:
             product=product,
             hours_per_day=hours_per_day,
         )
-
 
         edit_resource_booking.additional_properties = d
         return edit_resource_booking

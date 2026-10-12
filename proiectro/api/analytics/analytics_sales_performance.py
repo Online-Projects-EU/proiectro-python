@@ -88,8 +88,8 @@ def sync_detailed(
 
      Sales performance metrics across three dimensions: salespeople, customers, products.
 
-    Shows top 5 performers in each dimension with revenue, deals won/lost, and
-    win rate metrics. Supports period-based comparisons for trend analysis.
+    Lists every salesperson with revenue, deals won and lost, and win rate, alongside the top
+    customers and products. Supports period-based comparisons for trend analysis.
 
     Params:
         compare: Comparison mode (none, yoy, pop, mom)
@@ -135,8 +135,8 @@ def sync(
 
      Sales performance metrics across three dimensions: salespeople, customers, products.
 
-    Shows top 5 performers in each dimension with revenue, deals won/lost, and
-    win rate metrics. Supports period-based comparisons for trend analysis.
+    Lists every salesperson with revenue, deals won and lost, and win rate, alongside the top
+    customers and products. Supports period-based comparisons for trend analysis.
 
     Params:
         compare: Comparison mode (none, yoy, pop, mom)
@@ -177,8 +177,8 @@ async def asyncio_detailed(
 
      Sales performance metrics across three dimensions: salespeople, customers, products.
 
-    Shows top 5 performers in each dimension with revenue, deals won/lost, and
-    win rate metrics. Supports period-based comparisons for trend analysis.
+    Lists every salesperson with revenue, deals won and lost, and win rate, alongside the top
+    customers and products. Supports period-based comparisons for trend analysis.
 
     Params:
         compare: Comparison mode (none, yoy, pop, mom)
@@ -222,8 +222,8 @@ async def asyncio(
 
      Sales performance metrics across three dimensions: salespeople, customers, products.
 
-    Shows top 5 performers in each dimension with revenue, deals won/lost, and
-    win rate metrics. Supports period-based comparisons for trend analysis.
+    Lists every salesperson with revenue, deals won and lost, and win rate, alongside the top
+    customers and products. Supports period-based comparisons for trend analysis.
 
     Params:
         compare: Comparison mode (none, yoy, pop, mom)

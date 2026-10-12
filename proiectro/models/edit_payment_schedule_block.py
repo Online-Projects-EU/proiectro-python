@@ -1,36 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.edit_payment_schedule_block_payment_type_type_0 import (
+    EditPaymentScheduleBlockPaymentTypeType0,
+)
 from ..types import UNSET, Unset
-
-from ..models.edit_payment_schedule_block_payment_type_type_0 import EditPaymentScheduleBlockPaymentTypeType0
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="EditPaymentScheduleBlock")
 
 
-
 @_attrs_define
 class EditPaymentScheduleBlock:
-    """ 
-        Attributes:
-            name (None | str | Unset):
-            description (None | str | Unset):
-            payment_type (EditPaymentScheduleBlockPaymentTypeType0 | None | Unset):
-            internal_code (None | str | Unset):
-            sequence_no (int | None | Unset):
-     """
+    """
+    Attributes:
+        name (None | str | Unset):
+        description (None | str | Unset):
+        payment_type (EditPaymentScheduleBlockPaymentTypeType0 | None | Unset):
+        internal_code (None | str | Unset):
+        sequence_no (int | None | Unset):
+    """
 
     name: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
@@ -38,10 +31,6 @@ class EditPaymentScheduleBlock:
     internal_code: None | str | Unset = UNSET
     sequence_no: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name: None | str | Unset
@@ -76,11 +65,9 @@ class EditPaymentScheduleBlock:
         else:
             sequence_no = self.sequence_no
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if name is not UNSET:
             field_dict["name"] = name
         if description is not UNSET:
@@ -94,11 +81,10 @@ class EditPaymentScheduleBlock:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -107,7 +93,6 @@ class EditPaymentScheduleBlock:
             return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -118,8 +103,9 @@ class EditPaymentScheduleBlock:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
-        def _parse_payment_type(data: object) -> EditPaymentScheduleBlockPaymentTypeType0 | None | Unset:
+        def _parse_payment_type(
+            data: object,
+        ) -> EditPaymentScheduleBlockPaymentTypeType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -129,15 +115,12 @@ class EditPaymentScheduleBlock:
                     raise TypeError()
                 payment_type_type_0 = EditPaymentScheduleBlockPaymentTypeType0(data)
 
-
-
                 return payment_type_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(EditPaymentScheduleBlockPaymentTypeType0 | None | Unset, data)
 
         payment_type = _parse_payment_type(d.pop("payment_type", UNSET))
-
 
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
@@ -148,7 +131,6 @@ class EditPaymentScheduleBlock:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -158,7 +140,6 @@ class EditPaymentScheduleBlock:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
-
         edit_payment_schedule_block = cls(
             name=name,
             description=description,
@@ -166,7 +147,6 @@ class EditPaymentScheduleBlock:
             internal_code=internal_code,
             sequence_no=sequence_no,
         )
-
 
         edit_payment_schedule_block.additional_properties = d
         return edit_payment_schedule_block

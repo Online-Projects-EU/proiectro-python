@@ -7,6 +7,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.add_api_key import AddApiKey
+from ...models.api_key_created import ApiKeyCreated
 from ...models.api_response import APIResponse
 from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
@@ -36,9 +37,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | PydanticDetail | None:
+) -> APIResponse | ApiKeyCreated | PydanticDetail | None:
     if response.status_code == 200:
-        response_200 = APIResponse.from_dict(response.json())
+        response_200 = ApiKeyCreated.from_dict(response.json())
 
         return response_200
 
@@ -65,7 +66,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse | PydanticDetail]:
+) -> Response[APIResponse | ApiKeyCreated | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -79,7 +80,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddApiKey,
-) -> Response[APIResponse | PydanticDetail]:
+) -> Response[APIResponse | ApiKeyCreated | PydanticDetail]:
     """Add Api Key
 
      Generate a new API key for automating workflows or connecting external tools.
@@ -95,7 +96,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | PydanticDetail]
+        Response[APIResponse | ApiKeyCreated | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -115,7 +116,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddApiKey,
-) -> APIResponse | PydanticDetail | None:
+) -> APIResponse | ApiKeyCreated | PydanticDetail | None:
     """Add Api Key
 
      Generate a new API key for automating workflows or connecting external tools.
@@ -131,7 +132,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | PydanticDetail
+        APIResponse | ApiKeyCreated | PydanticDetail
     """
 
     return sync_detailed(
@@ -146,7 +147,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddApiKey,
-) -> Response[APIResponse | PydanticDetail]:
+) -> Response[APIResponse | ApiKeyCreated | PydanticDetail]:
     """Add Api Key
 
      Generate a new API key for automating workflows or connecting external tools.
@@ -162,7 +163,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | PydanticDetail]
+        Response[APIResponse | ApiKeyCreated | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -180,7 +181,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddApiKey,
-) -> APIResponse | PydanticDetail | None:
+) -> APIResponse | ApiKeyCreated | PydanticDetail | None:
     """Add Api Key
 
      Generate a new API key for automating workflows or connecting external tools.
@@ -196,7 +197,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | PydanticDetail
+        APIResponse | ApiKeyCreated | PydanticDetail
     """
 
     return (

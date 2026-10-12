@@ -1,44 +1,35 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputCustomForm")
 
 
-
 @_attrs_define
 class OutputCustomForm:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            slug (str):
-            is_active (bool):
-            data_classification (str):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
-            description (str | Unset):  Default: ''.
-            retention_days (int | None | Unset):
-            active_version (int | None | Unset):
-            version_count (int | Unset):  Default: 0.
-            submission_count (int | Unset):  Default: 0.
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        slug (str):
+        is_active (bool):
+        data_classification (str):
+        created_at (datetime.datetime):
+        updated_at (datetime.datetime):
+        description (str | Unset):  Default: ''.
+        retention_days (int | None | Unset):
+        active_version (int | None | Unset):
+        version_count (int | Unset):  Default: 0.
+        submission_count (int | Unset):  Default: 0.
+    """
 
     id: str
     name: str
@@ -47,16 +38,12 @@ class OutputCustomForm:
     data_classification: str
     created_at: datetime.datetime
     updated_at: datetime.datetime
-    description: str | Unset = ''
+    description: str | Unset = ""
     retention_days: int | None | Unset = UNSET
     active_version: int | None | Unset = UNSET
     version_count: int | Unset = 0
     submission_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -91,18 +78,19 @@ class OutputCustomForm:
 
         submission_count = self.submission_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "slug": slug,
-            "is_active": is_active,
-            "data_classification": data_classification,
-            "created_at": created_at,
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "slug": slug,
+                "is_active": is_active,
+                "data_classification": data_classification,
+                "created_at": created_at,
+                "updated_at": updated_at,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if retention_days is not UNSET:
@@ -115,8 +103,6 @@ class OutputCustomForm:
             field_dict["submission_count"] = submission_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -133,13 +119,7 @@ class OutputCustomForm:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         description = d.pop("description", UNSET)
 
@@ -152,7 +132,6 @@ class OutputCustomForm:
 
         retention_days = _parse_retention_days(d.pop("retention_days", UNSET))
 
-
         def _parse_active_version(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -161,7 +140,6 @@ class OutputCustomForm:
             return cast(int | None | Unset, data)
 
         active_version = _parse_active_version(d.pop("active_version", UNSET))
-
 
         version_count = d.pop("version_count", UNSET)
 
@@ -181,7 +159,6 @@ class OutputCustomForm:
             version_count=version_count,
             submission_count=submission_count,
         )
-
 
         output_custom_form.additional_properties = d
         return output_custom_form

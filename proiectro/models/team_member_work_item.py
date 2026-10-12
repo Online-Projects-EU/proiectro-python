@@ -1,42 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="TeamMemberWorkItem")
-
 
 
 @_attrs_define
 class TeamMemberWorkItem:
-    """ Individual work item owned by a team member
+    """Individual work item owned by a team member
 
-        Attributes:
-            external_id (str):
-            name (str):
-            hierarchy_id (str):
-            item_type_name (str):
-            scheduling_behaviour (str):
-            is_finished (bool):
-            is_accepted (bool):
-            project_id (str):
-            project_name (str):
-            estimated_work_hours (int | None | Unset):
-            total_logged_hours (int | None | Unset):
-     """
+    Attributes:
+        external_id (str):
+        name (str):
+        hierarchy_id (str):
+        item_type_name (str):
+        scheduling_behaviour (str):
+        is_finished (bool):
+        is_accepted (bool):
+        project_id (str):
+        project_name (str):
+        estimated_work_hours (int | None | Unset):
+        total_logged_minutes (int | None | Unset):
+        effort_state (str | Unset):  Default: 'none'.
+    """
 
     external_id: str
     name: str
@@ -48,12 +40,9 @@ class TeamMemberWorkItem:
     project_id: str
     project_name: str
     estimated_work_hours: int | None | Unset = UNSET
-    total_logged_hours: int | None | Unset = UNSET
+    total_logged_minutes: int | None | Unset = UNSET
+    effort_state: str | Unset = "none"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -80,34 +69,37 @@ class TeamMemberWorkItem:
         else:
             estimated_work_hours = self.estimated_work_hours
 
-        total_logged_hours: int | None | Unset
-        if isinstance(self.total_logged_hours, Unset):
-            total_logged_hours = UNSET
+        total_logged_minutes: int | None | Unset
+        if isinstance(self.total_logged_minutes, Unset):
+            total_logged_minutes = UNSET
         else:
-            total_logged_hours = self.total_logged_hours
+            total_logged_minutes = self.total_logged_minutes
 
+        effort_state = self.effort_state
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "name": name,
-            "hierarchy_id": hierarchy_id,
-            "item_type_name": item_type_name,
-            "scheduling_behaviour": scheduling_behaviour,
-            "is_finished": is_finished,
-            "is_accepted": is_accepted,
-            "project_id": project_id,
-            "project_name": project_name,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "name": name,
+                "hierarchy_id": hierarchy_id,
+                "item_type_name": item_type_name,
+                "scheduling_behaviour": scheduling_behaviour,
+                "is_finished": is_finished,
+                "is_accepted": is_accepted,
+                "project_id": project_id,
+                "project_name": project_name,
+            }
+        )
         if estimated_work_hours is not UNSET:
             field_dict["estimated_work_hours"] = estimated_work_hours
-        if total_logged_hours is not UNSET:
-            field_dict["total_logged_hours"] = total_logged_hours
+        if total_logged_minutes is not UNSET:
+            field_dict["total_logged_minutes"] = total_logged_minutes
+        if effort_state is not UNSET:
+            field_dict["effort_state"] = effort_state
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -137,18 +129,22 @@ class TeamMemberWorkItem:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
+        estimated_work_hours = _parse_estimated_work_hours(
+            d.pop("estimated_work_hours", UNSET)
+        )
 
-
-        def _parse_total_logged_hours(data: object) -> int | None | Unset:
+        def _parse_total_logged_minutes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(int | None | Unset, data)
 
-        total_logged_hours = _parse_total_logged_hours(d.pop("total_logged_hours", UNSET))
+        total_logged_minutes = _parse_total_logged_minutes(
+            d.pop("total_logged_minutes", UNSET)
+        )
 
+        effort_state = d.pop("effort_state", UNSET)
 
         team_member_work_item = cls(
             external_id=external_id,
@@ -161,9 +157,9 @@ class TeamMemberWorkItem:
             project_id=project_id,
             project_name=project_name,
             estimated_work_hours=estimated_work_hours,
-            total_logged_hours=total_logged_hours,
+            total_logged_minutes=total_logged_minutes,
+            effort_state=effort_state,
         )
-
 
         team_member_work_item.additional_properties = d
         return team_member_work_item

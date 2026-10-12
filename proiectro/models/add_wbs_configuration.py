@@ -1,44 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddWBSConfiguration")
-
 
 
 @_attrs_define
 class AddWBSConfiguration:
-    """ 
-        Attributes:
-            name (str):
-            active (bool | None | Unset):  Default: False.
-            description (str | Unset):  Default: ''.
-            terminology_deliverable (None | str | Unset):
-            terminology_activity (None | str | Unset):
-            terminology_work_package (None | str | Unset):
-            terminology_task (None | str | Unset):
-            terminology_milestone (None | str | Unset):
-            terminology_stage (None | str | Unset):
-            terminology_phase (None | str | Unset):
-     """
+    """
+    Attributes:
+        name (str):
+        active (bool | None | Unset):  Default: False.
+        description (str | Unset):  Default: ''.
+        terminology_deliverable (None | str | Unset):
+        terminology_activity (None | str | Unset):
+        terminology_work_package (None | str | Unset):
+        terminology_task (None | str | Unset):
+        terminology_milestone (None | str | Unset):
+        terminology_stage (None | str | Unset):
+        terminology_phase (None | str | Unset):
+    """
 
     name: str
     active: bool | None | Unset = False
-    description: str | Unset = ''
+    description: str | Unset = ""
     terminology_deliverable: None | str | Unset = UNSET
     terminology_activity: None | str | Unset = UNSET
     terminology_work_package: None | str | Unset = UNSET
@@ -47,10 +38,6 @@ class AddWBSConfiguration:
     terminology_stage: None | str | Unset = UNSET
     terminology_phase: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -105,12 +92,13 @@ class AddWBSConfiguration:
         else:
             terminology_phase = self.terminology_phase
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
         if active is not UNSET:
             field_dict["active"] = active
         if description is not UNSET:
@@ -132,8 +120,6 @@ class AddWBSConfiguration:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -148,7 +134,6 @@ class AddWBSConfiguration:
 
         active = _parse_active(d.pop("active", UNSET))
 
-
         description = d.pop("description", UNSET)
 
         def _parse_terminology_deliverable(data: object) -> None | str | Unset:
@@ -158,8 +143,9 @@ class AddWBSConfiguration:
                 return data
             return cast(None | str | Unset, data)
 
-        terminology_deliverable = _parse_terminology_deliverable(d.pop("terminology_deliverable", UNSET))
-
+        terminology_deliverable = _parse_terminology_deliverable(
+            d.pop("terminology_deliverable", UNSET)
+        )
 
         def _parse_terminology_activity(data: object) -> None | str | Unset:
             if data is None:
@@ -168,8 +154,9 @@ class AddWBSConfiguration:
                 return data
             return cast(None | str | Unset, data)
 
-        terminology_activity = _parse_terminology_activity(d.pop("terminology_activity", UNSET))
-
+        terminology_activity = _parse_terminology_activity(
+            d.pop("terminology_activity", UNSET)
+        )
 
         def _parse_terminology_work_package(data: object) -> None | str | Unset:
             if data is None:
@@ -178,8 +165,9 @@ class AddWBSConfiguration:
                 return data
             return cast(None | str | Unset, data)
 
-        terminology_work_package = _parse_terminology_work_package(d.pop("terminology_work_package", UNSET))
-
+        terminology_work_package = _parse_terminology_work_package(
+            d.pop("terminology_work_package", UNSET)
+        )
 
         def _parse_terminology_task(data: object) -> None | str | Unset:
             if data is None:
@@ -190,7 +178,6 @@ class AddWBSConfiguration:
 
         terminology_task = _parse_terminology_task(d.pop("terminology_task", UNSET))
 
-
         def _parse_terminology_milestone(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -198,8 +185,9 @@ class AddWBSConfiguration:
                 return data
             return cast(None | str | Unset, data)
 
-        terminology_milestone = _parse_terminology_milestone(d.pop("terminology_milestone", UNSET))
-
+        terminology_milestone = _parse_terminology_milestone(
+            d.pop("terminology_milestone", UNSET)
+        )
 
         def _parse_terminology_stage(data: object) -> None | str | Unset:
             if data is None:
@@ -210,7 +198,6 @@ class AddWBSConfiguration:
 
         terminology_stage = _parse_terminology_stage(d.pop("terminology_stage", UNSET))
 
-
         def _parse_terminology_phase(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -219,7 +206,6 @@ class AddWBSConfiguration:
             return cast(None | str | Unset, data)
 
         terminology_phase = _parse_terminology_phase(d.pop("terminology_phase", UNSET))
-
 
         add_wbs_configuration = cls(
             name=name,
@@ -233,7 +219,6 @@ class AddWBSConfiguration:
             terminology_stage=terminology_stage,
             terminology_phase=terminology_phase,
         )
-
 
         add_wbs_configuration.additional_properties = d
         return add_wbs_configuration

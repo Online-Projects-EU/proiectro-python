@@ -1,42 +1,32 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
-
-
-
-
-
 
 T = TypeVar("T", bound="PartnerPortalPaymentItem")
 
 
-
 @_attrs_define
 class PartnerPortalPaymentItem:
-    """ Single payment in partner portal
+    """Single payment in partner portal
 
-        Attributes:
-            id (str):
-            project_name (str):
-            amount (str):
-            due_date (datetime.date | None):
-            paid (bool):
-            paid_date (datetime.date | None):
-            currency_code (str):
-            is_project (bool):
-            is_due (bool):
-            project_id (str):
-     """
+    Attributes:
+        id (str):
+        project_name (str):
+        amount (str):
+        due_date (datetime.date | None):
+        paid (bool):
+        paid_date (datetime.date | None):
+        currency_code (str):
+        is_project (bool):
+        is_due (bool):
+        project_id (str):
+    """
 
     id: str
     project_name: str
@@ -49,10 +39,6 @@ class PartnerPortalPaymentItem:
     is_due: bool
     project_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -83,25 +69,24 @@ class PartnerPortalPaymentItem:
 
         project_id = self.project_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "project_name": project_name,
-            "amount": amount,
-            "due_date": due_date,
-            "paid": paid,
-            "paid_date": paid_date,
-            "currency_code": currency_code,
-            "is_project": is_project,
-            "is_due": is_due,
-            "project_id": project_id,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "project_name": project_name,
+                "amount": amount,
+                "due_date": due_date,
+                "paid": paid,
+                "paid_date": paid_date,
+                "currency_code": currency_code,
+                "is_project": is_project,
+                "is_due": is_due,
+                "project_id": project_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -120,15 +105,12 @@ class PartnerPortalPaymentItem:
                     raise TypeError()
                 due_date_type_0 = isoparse(data).date()
 
-
-
                 return due_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None, data)
 
         due_date = _parse_due_date(d.pop("due_date"))
-
 
         paid = d.pop("paid")
 
@@ -140,15 +122,12 @@ class PartnerPortalPaymentItem:
                     raise TypeError()
                 paid_date_type_0 = isoparse(data).date()
 
-
-
                 return paid_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None, data)
 
         paid_date = _parse_paid_date(d.pop("paid_date"))
-
 
         currency_code = d.pop("currency_code")
 
@@ -170,7 +149,6 @@ class PartnerPortalPaymentItem:
             is_due=is_due,
             project_id=project_id,
         )
-
 
         partner_portal_payment_item.additional_properties = d
         return partner_portal_payment_item

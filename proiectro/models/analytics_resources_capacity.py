@@ -1,65 +1,58 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_capacity_forecast_item import AnalyticsCapacityForecastItem
-  from ..models.analytics_capacity_resource_item import AnalyticsCapacityResourceItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_capacity_forecast_item import AnalyticsCapacityForecastItem
+    from ..models.analytics_capacity_resource_item import AnalyticsCapacityResourceItem
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsResourcesCapacity")
 
 
-
 @_attrs_define
 class AnalyticsResourcesCapacity:
-    """ Capacity planning metrics. The forecast runs FORWARD from the current month.
+    """Capacity planning metrics. The forecast runs FORWARD from the current month.
 
-        Attributes:
-            total_capacity_hours (float | str):
-            allocated_hours (float | str):
-            available_hours (float | str):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            capacity_by_resource (list[AnalyticsCapacityResourceItem] | Unset):
-            capacity_forecast (list[AnalyticsCapacityForecastItem] | Unset):
-     """
+    Attributes:
+        total_capacity_hours (float | str):
+        allocated_hours (float | str):
+        available_hours (float | str):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        capacity_by_resource (list[AnalyticsCapacityResourceItem] | Unset):
+        capacity_forecast (list[AnalyticsCapacityForecastItem] | Unset):
+    """
 
     total_capacity_hours: float | str
     allocated_hours: float | str
     available_hours: float | str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -78,15 +71,7 @@ class AnalyticsResourcesCapacity:
     capacity_forecast: list[AnalyticsCapacityForecastItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.analytics_capacity_resource_item import AnalyticsCapacityResourceItem
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_capacity_forecast_item import AnalyticsCapacityForecastItem
         total_capacity_hours: float | str
         total_capacity_hours = self.total_capacity_hours
 
@@ -135,7 +120,6 @@ class AnalyticsResourcesCapacity:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -159,7 +143,6 @@ class AnalyticsResourcesCapacity:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -207,8 +190,6 @@ class AnalyticsResourcesCapacity:
                 capacity_by_resource_item = capacity_by_resource_item_data.to_dict()
                 capacity_by_resource.append(capacity_by_resource_item)
 
-
-
         capacity_forecast: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.capacity_forecast, Unset):
             capacity_forecast = []
@@ -216,16 +197,15 @@ class AnalyticsResourcesCapacity:
                 capacity_forecast_item = capacity_forecast_item_data.to_dict()
                 capacity_forecast.append(capacity_forecast_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_capacity_hours": total_capacity_hours,
-            "allocated_hours": allocated_hours,
-            "available_hours": available_hours,
-        })
+        field_dict.update(
+            {
+                "total_capacity_hours": total_capacity_hours,
+                "allocated_hours": allocated_hours,
+                "available_hours": available_hours,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -265,32 +245,35 @@ class AnalyticsResourcesCapacity:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analytics_capacity_forecast_item import AnalyticsCapacityForecastItem
-        from ..models.analytics_capacity_resource_item import AnalyticsCapacityResourceItem
+        from ..models.analytics_capacity_forecast_item import (
+            AnalyticsCapacityForecastItem,
+        )
+        from ..models.analytics_capacity_resource_item import (
+            AnalyticsCapacityResourceItem,
+        )
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
+
         def _parse_total_capacity_hours(data: object) -> float | str:
             return cast(float | str, data)
 
-        total_capacity_hours = _parse_total_capacity_hours(d.pop("total_capacity_hours"))
-
+        total_capacity_hours = _parse_total_capacity_hours(
+            d.pop("total_capacity_hours")
+        )
 
         def _parse_allocated_hours(data: object) -> float | str:
             return cast(float | str, data)
 
         allocated_hours = _parse_allocated_hours(d.pop("allocated_hours"))
 
-
         def _parse_available_hours(data: object) -> float | str:
             return cast(float | str, data)
 
         available_hours = _parse_available_hours(d.pop("available_hours"))
-
 
         period = d.pop("period", UNSET)
 
@@ -306,15 +289,12 @@ class AnalyticsResourcesCapacity:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -325,7 +305,6 @@ class AnalyticsResourcesCapacity:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -335,7 +314,6 @@ class AnalyticsResourcesCapacity:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -344,7 +322,6 @@ class AnalyticsResourcesCapacity:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -356,10 +333,10 @@ class AnalyticsResourcesCapacity:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -370,7 +347,6 @@ class AnalyticsResourcesCapacity:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -380,7 +356,6 @@ class AnalyticsResourcesCapacity:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -389,7 +364,6 @@ class AnalyticsResourcesCapacity:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -401,10 +375,10 @@ class AnalyticsResourcesCapacity:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -415,7 +389,6 @@ class AnalyticsResourcesCapacity:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -425,7 +398,6 @@ class AnalyticsResourcesCapacity:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -433,8 +405,9 @@ class AnalyticsResourcesCapacity:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -445,7 +418,6 @@ class AnalyticsResourcesCapacity:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -453,8 +425,9 @@ class AnalyticsResourcesCapacity:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -465,7 +438,6 @@ class AnalyticsResourcesCapacity:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -475,30 +447,27 @@ class AnalyticsResourcesCapacity:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
-
         _capacity_by_resource = d.pop("capacity_by_resource", UNSET)
         capacity_by_resource: list[AnalyticsCapacityResourceItem] | Unset = UNSET
         if _capacity_by_resource is not UNSET:
             capacity_by_resource = []
             for capacity_by_resource_item_data in _capacity_by_resource:
-                capacity_by_resource_item = AnalyticsCapacityResourceItem.from_dict(capacity_by_resource_item_data)
-
-
+                capacity_by_resource_item = AnalyticsCapacityResourceItem.from_dict(
+                    capacity_by_resource_item_data
+                )
 
                 capacity_by_resource.append(capacity_by_resource_item)
-
 
         _capacity_forecast = d.pop("capacity_forecast", UNSET)
         capacity_forecast: list[AnalyticsCapacityForecastItem] | Unset = UNSET
         if _capacity_forecast is not UNSET:
             capacity_forecast = []
             for capacity_forecast_item_data in _capacity_forecast:
-                capacity_forecast_item = AnalyticsCapacityForecastItem.from_dict(capacity_forecast_item_data)
-
-
+                capacity_forecast_item = AnalyticsCapacityForecastItem.from_dict(
+                    capacity_forecast_item_data
+                )
 
                 capacity_forecast.append(capacity_forecast_item)
-
 
         analytics_resources_capacity = cls(
             total_capacity_hours=total_capacity_hours,
@@ -523,7 +492,6 @@ class AnalyticsResourcesCapacity:
             capacity_by_resource=capacity_by_resource,
             capacity_forecast=capacity_forecast,
         )
-
 
         analytics_resources_capacity.additional_properties = d
         return analytics_resources_capacity

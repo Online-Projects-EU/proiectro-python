@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EditSubmissionStatusStatus(str, Enum):
     ARCHIVED = "archived"
     NEW = "new"

@@ -9,6 +9,7 @@ from ...client import AuthenticatedClient, Client
 from ...models.add_webhook import AddWebhook
 from ...models.api_response import APIResponse
 from ...models.pydantic_detail import PydanticDetail
+from ...models.webhook_created import WebhookCreated
 from ...types import Response
 
 
@@ -36,9 +37,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | PydanticDetail | None:
+) -> APIResponse | PydanticDetail | WebhookCreated | None:
     if response.status_code == 200:
-        response_200 = APIResponse.from_dict(response.json())
+        response_200 = WebhookCreated.from_dict(response.json())
 
         return response_200
 
@@ -65,7 +66,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse | PydanticDetail]:
+) -> Response[APIResponse | PydanticDetail | WebhookCreated]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -79,7 +80,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWebhook,
-) -> Response[APIResponse | PydanticDetail]:
+) -> Response[APIResponse | PydanticDetail | WebhookCreated]:
     """Add Webhook
 
     Args:
@@ -91,7 +92,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | PydanticDetail]
+        Response[APIResponse | PydanticDetail | WebhookCreated]
     """
 
     kwargs = _get_kwargs(
@@ -111,7 +112,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddWebhook,
-) -> APIResponse | PydanticDetail | None:
+) -> APIResponse | PydanticDetail | WebhookCreated | None:
     """Add Webhook
 
     Args:
@@ -123,7 +124,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | PydanticDetail
+        APIResponse | PydanticDetail | WebhookCreated
     """
 
     return sync_detailed(
@@ -138,7 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWebhook,
-) -> Response[APIResponse | PydanticDetail]:
+) -> Response[APIResponse | PydanticDetail | WebhookCreated]:
     """Add Webhook
 
     Args:
@@ -150,7 +151,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | PydanticDetail]
+        Response[APIResponse | PydanticDetail | WebhookCreated]
     """
 
     kwargs = _get_kwargs(
@@ -168,7 +169,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddWebhook,
-) -> APIResponse | PydanticDetail | None:
+) -> APIResponse | PydanticDetail | WebhookCreated | None:
     """Add Webhook
 
     Args:
@@ -180,7 +181,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | PydanticDetail
+        APIResponse | PydanticDetail | WebhookCreated
     """
 
     return (

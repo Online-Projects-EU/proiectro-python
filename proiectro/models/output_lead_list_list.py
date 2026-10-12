@@ -1,58 +1,50 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_lead_list_summary import OutputLeadListSummary
-
-
-
+    from ..models.output_lead_list_summary import OutputLeadListSummary
 
 
 T = TypeVar("T", bound="OutputLeadListList")
 
 
-
 @_attrs_define
 class OutputLeadListList:
-    """ Lists tab payload — owned, peer-owned, and pool lists in one response.
+    """Lists tab payload — owned, peer-owned and pool lists, plus the unclaimed leads in no list.
 
-        Attributes:
-            mine (list[OutputLeadListSummary] | Unset):
-            others (list[OutputLeadListSummary] | Unset):
-            pools (list[OutputLeadListSummary] | Unset):
-            empty_message (str | Unset):  Default: ''.
-     """
+    Attributes:
+        mine (list[OutputLeadListSummary] | Unset):
+        others (list[OutputLeadListSummary] | Unset):
+        pools (list[OutputLeadListSummary] | Unset):
+        unclaimed (None | OutputLeadListSummary | Unset):
+        list_required (bool | Unset):  Default: False.
+        empty_message (str | Unset):  Default: ''.
+    """
 
     mine: list[OutputLeadListSummary] | Unset = UNSET
     others: list[OutputLeadListSummary] | Unset = UNSET
     pools: list[OutputLeadListSummary] | Unset = UNSET
-    empty_message: str | Unset = ''
+    unclaimed: None | OutputLeadListSummary | Unset = UNSET
+    list_required: bool | Unset = False
+    empty_message: str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         from ..models.output_lead_list_summary import OutputLeadListSummary
+
         mine: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.mine, Unset):
             mine = []
             for mine_item_data in self.mine:
                 mine_item = mine_item_data.to_dict()
                 mine.append(mine_item)
-
-
 
         others: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.others, Unset):
@@ -61,8 +53,6 @@ class OutputLeadListList:
                 others_item = others_item_data.to_dict()
                 others.append(others_item)
 
-
-
         pools: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.pools, Unset):
             pools = []
@@ -70,31 +60,40 @@ class OutputLeadListList:
                 pools_item = pools_item_data.to_dict()
                 pools.append(pools_item)
 
+        unclaimed: dict[str, Any] | None | Unset
+        if isinstance(self.unclaimed, Unset):
+            unclaimed = UNSET
+        elif isinstance(self.unclaimed, OutputLeadListSummary):
+            unclaimed = self.unclaimed.to_dict()
+        else:
+            unclaimed = self.unclaimed
 
+        list_required = self.list_required
 
         empty_message = self.empty_message
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if mine is not UNSET:
             field_dict["mine"] = mine
         if others is not UNSET:
             field_dict["others"] = others
         if pools is not UNSET:
             field_dict["pools"] = pools
+        if unclaimed is not UNSET:
+            field_dict["unclaimed"] = unclaimed
+        if list_required is not UNSET:
+            field_dict["list_required"] = list_required
         if empty_message is not UNSET:
             field_dict["empty_message"] = empty_message
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_lead_list_summary import OutputLeadListSummary
+
         d = dict(src_dict)
         _mine = d.pop("mine", UNSET)
         mine: list[OutputLeadListSummary] | Unset = UNSET
@@ -103,10 +102,7 @@ class OutputLeadListList:
             for mine_item_data in _mine:
                 mine_item = OutputLeadListSummary.from_dict(mine_item_data)
 
-
-
                 mine.append(mine_item)
-
 
         _others = d.pop("others", UNSET)
         others: list[OutputLeadListSummary] | Unset = UNSET
@@ -115,10 +111,7 @@ class OutputLeadListList:
             for others_item_data in _others:
                 others_item = OutputLeadListSummary.from_dict(others_item_data)
 
-
-
                 others.append(others_item)
-
 
         _pools = d.pop("pools", UNSET)
         pools: list[OutputLeadListSummary] | Unset = UNSET
@@ -127,10 +120,26 @@ class OutputLeadListList:
             for pools_item_data in _pools:
                 pools_item = OutputLeadListSummary.from_dict(pools_item_data)
 
-
-
                 pools.append(pools_item)
 
+        def _parse_unclaimed(data: object) -> None | OutputLeadListSummary | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                unclaimed_type_0 = OutputLeadListSummary.from_dict(data)
+
+                return unclaimed_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | OutputLeadListSummary | Unset, data)
+
+        unclaimed = _parse_unclaimed(d.pop("unclaimed", UNSET))
+
+        list_required = d.pop("list_required", UNSET)
 
         empty_message = d.pop("empty_message", UNSET)
 
@@ -138,9 +147,10 @@ class OutputLeadListList:
             mine=mine,
             others=others,
             pools=pools,
+            unclaimed=unclaimed,
+            list_required=list_required,
             empty_message=empty_message,
         )
-
 
         output_lead_list_list.additional_properties = d
         return output_lead_list_list

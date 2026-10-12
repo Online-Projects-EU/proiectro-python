@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class RequestUploadUrlGCSAttachmentnodetype(str, Enum):
     EXTERNAL_SUPPORT_REQUEST = "external_support_request"
     INTERNAL_SUPPORT_REQUEST = "internal_support_request"

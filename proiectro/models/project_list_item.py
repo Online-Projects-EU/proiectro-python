@@ -1,50 +1,43 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.output_tag import OutputTag
-
-
-
+    from ..models.output_tag import OutputTag
 
 
 T = TypeVar("T", bound="ProjectListItem")
 
 
-
 @_attrs_define
 class ProjectListItem:
-    """ Individual project item for lists
+    """Individual project item for lists
 
-        Attributes:
-            id (str):
-            name (str):
-            stage_name (str):
-            stage_id (str):
-            product_count (int):
-            owner_name (str):
-            owner_id (str):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
-            internal_code (None | str | Unset):
-            customer_name (None | str | Unset):
-            customer_id (None | str | Unset):
-            project_start_date (datetime.date | None | Unset):
-            project_end_date (datetime.date | None | Unset):
-            tags (list[OutputTag] | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        stage_name (str):
+        stage_id (str):
+        product_count (int):
+        owner_name (str):
+        owner_id (str):
+        created_at (datetime.datetime):
+        updated_at (datetime.datetime):
+        internal_code (None | str | Unset):
+        customer_name (None | str | Unset):
+        customer_id (None | str | Unset):
+        project_start_date (datetime.date | None | Unset):
+        project_end_date (datetime.date | None | Unset):
+        tags (list[OutputTag] | Unset):
+    """
 
     id: str
     name: str
@@ -63,12 +56,7 @@ class ProjectListItem:
     tags: list[OutputTag] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_tag import OutputTag
         id = self.id
 
         name = self.name
@@ -128,22 +116,21 @@ class ProjectListItem:
                 tags_item = tags_item_data.to_dict()
                 tags.append(tags_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "stage_name": stage_name,
-            "stage_id": stage_id,
-            "product_count": product_count,
-            "owner_name": owner_name,
-            "owner_id": owner_id,
-            "created_at": created_at,
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "stage_name": stage_name,
+                "stage_id": stage_id,
+                "product_count": product_count,
+                "owner_name": owner_name,
+                "owner_id": owner_id,
+                "created_at": created_at,
+                "updated_at": updated_at,
+            }
+        )
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if customer_name is not UNSET:
@@ -159,11 +146,10 @@ class ProjectListItem:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_tag import OutputTag
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -181,13 +167,7 @@ class ProjectListItem:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
@@ -198,7 +178,6 @@ class ProjectListItem:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_customer_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -208,7 +187,6 @@ class ProjectListItem:
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
 
-
         def _parse_customer_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -217,7 +195,6 @@ class ProjectListItem:
             return cast(None | str | Unset, data)
 
         customer_id = _parse_customer_id(d.pop("customer_id", UNSET))
-
 
         def _parse_project_start_date(data: object) -> datetime.date | None | Unset:
             if data is None:
@@ -229,15 +206,14 @@ class ProjectListItem:
                     raise TypeError()
                 project_start_date_type_0 = isoparse(data).date()
 
-
-
                 return project_start_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None | Unset, data)
 
-        project_start_date = _parse_project_start_date(d.pop("project_start_date", UNSET))
-
+        project_start_date = _parse_project_start_date(
+            d.pop("project_start_date", UNSET)
+        )
 
         def _parse_project_end_date(data: object) -> datetime.date | None | Unset:
             if data is None:
@@ -249,15 +225,12 @@ class ProjectListItem:
                     raise TypeError()
                 project_end_date_type_0 = isoparse(data).date()
 
-
-
                 return project_end_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None | Unset, data)
 
         project_end_date = _parse_project_end_date(d.pop("project_end_date", UNSET))
-
 
         _tags = d.pop("tags", UNSET)
         tags: list[OutputTag] | Unset = UNSET
@@ -266,10 +239,7 @@ class ProjectListItem:
             for tags_item_data in _tags:
                 tags_item = OutputTag.from_dict(tags_item_data)
 
-
-
                 tags.append(tags_item)
-
 
         project_list_item = cls(
             id=id,
@@ -288,7 +258,6 @@ class ProjectListItem:
             project_end_date=project_end_date,
             tags=tags,
         )
-
 
         project_list_item.additional_properties = d
         return project_list_item

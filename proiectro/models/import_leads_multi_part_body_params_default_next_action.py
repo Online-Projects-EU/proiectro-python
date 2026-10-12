@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ImportLeadsMultiPartBodyParamsDefaultNextAction(str, Enum):
     PLUS_30D = "plus_30d"
     PLUS_3D = "plus_3d"

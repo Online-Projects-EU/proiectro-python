@@ -1,42 +1,29 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DisqualifyLead")
 
 
-
 @_attrs_define
 class DisqualifyLead:
-    """ 
-        Attributes:
-            updated_at (datetime.datetime):
-            reason (None | str | Unset):  Default: ''.
-     """
+    """
+    Attributes:
+        updated_at (datetime.datetime):
+        reason (None | str | Unset):  Default: ''.
+    """
 
     updated_at: datetime.datetime
-    reason: None | str | Unset = ''
+    reason: None | str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         updated_at = self.updated_at.isoformat()
@@ -47,26 +34,22 @@ class DisqualifyLead:
         else:
             reason = self.reason
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "updated_at": updated_at,
+            }
+        )
         if reason is not UNSET:
             field_dict["reason"] = reason
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_reason(data: object) -> None | str | Unset:
             if data is None:
@@ -77,12 +60,10 @@ class DisqualifyLead:
 
         reason = _parse_reason(d.pop("reason", UNSET))
 
-
         disqualify_lead = cls(
             updated_at=updated_at,
             reason=reason,
         )
-
 
         disqualify_lead.additional_properties = d
         return disqualify_lead

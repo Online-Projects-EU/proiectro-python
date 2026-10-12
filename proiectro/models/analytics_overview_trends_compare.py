@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AnalyticsOverviewTrendsCompare(str, Enum):
     MOM = "mom"
     NONE = "none"

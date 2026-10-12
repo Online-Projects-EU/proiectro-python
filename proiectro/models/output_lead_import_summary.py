@@ -1,38 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_lead_import_error import OutputLeadImportError
-
-
-
+    from ..models.output_lead_import_error import OutputLeadImportError
 
 
 T = TypeVar("T", bound="OutputLeadImportSummary")
 
 
-
 @_attrs_define
 class OutputLeadImportSummary:
-    """ Result-state of CSV import.
+    """Result-state of CSV import.
 
-        Attributes:
-            imported_count (int):
-            skipped_count (int):
-            error_count (int):
-            lead_list_id (None | str | Unset):
-            errors (list[OutputLeadImportError] | Unset):
-     """
+    Attributes:
+        imported_count (int):
+        skipped_count (int):
+        error_count (int):
+        lead_list_id (None | str | Unset):
+        errors (list[OutputLeadImportError] | Unset):
+    """
 
     imported_count: int
     skipped_count: int
@@ -41,12 +34,7 @@ class OutputLeadImportSummary:
     errors: list[OutputLeadImportError] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_lead_import_error import OutputLeadImportError
         imported_count = self.imported_count
 
         skipped_count = self.skipped_count
@@ -66,16 +54,15 @@ class OutputLeadImportSummary:
                 errors_item = errors_item_data.to_dict()
                 errors.append(errors_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "imported_count": imported_count,
-            "skipped_count": skipped_count,
-            "error_count": error_count,
-        })
+        field_dict.update(
+            {
+                "imported_count": imported_count,
+                "skipped_count": skipped_count,
+                "error_count": error_count,
+            }
+        )
         if lead_list_id is not UNSET:
             field_dict["lead_list_id"] = lead_list_id
         if errors is not UNSET:
@@ -83,11 +70,10 @@ class OutputLeadImportSummary:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_lead_import_error import OutputLeadImportError
+
         d = dict(src_dict)
         imported_count = d.pop("imported_count")
 
@@ -104,7 +90,6 @@ class OutputLeadImportSummary:
 
         lead_list_id = _parse_lead_list_id(d.pop("lead_list_id", UNSET))
 
-
         _errors = d.pop("errors", UNSET)
         errors: list[OutputLeadImportError] | Unset = UNSET
         if _errors is not UNSET:
@@ -112,10 +97,7 @@ class OutputLeadImportSummary:
             for errors_item_data in _errors:
                 errors_item = OutputLeadImportError.from_dict(errors_item_data)
 
-
-
                 errors.append(errors_item)
-
 
         output_lead_import_summary = cls(
             imported_count=imported_count,
@@ -124,7 +106,6 @@ class OutputLeadImportSummary:
             lead_list_id=lead_list_id,
             errors=errors,
         )
-
 
         output_lead_import_summary.additional_properties = d
         return output_lead_import_summary

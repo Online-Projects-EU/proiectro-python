@@ -1,80 +1,68 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.funnel_lost_proposals_currency_breakdown_type_0 import FunnelLostProposalsCurrencyBreakdownType0
-  from ..models.proposal_detail import ProposalDetail
-
-
-
+    from ..models.funnel_lost_proposals_currency_breakdown_type_0 import (
+        FunnelLostProposalsCurrencyBreakdownType0,
+    )
+    from ..models.proposal_detail import ProposalDetail
 
 
 T = TypeVar("T", bound="FunnelLostProposals")
 
 
-
 @_attrs_define
 class FunnelLostProposals:
-    """ 
-        Attributes:
-            proposals (list[ProposalDetail]):
-            funnel_name (str):
-            funnel_id (str):
-            total_value (float | str):
-            total_count (int):
-            currency_symbol (str):
-            has_mixed_currencies (bool):
-            stage_type (str):
-            currency_breakdown (FunnelLostProposalsCurrencyBreakdownType0 | None | Unset):
-            node_type (None | str | Unset):
-            node_id (None | str | Unset):
-            node_name (None | str | Unset):
-     """
+    """
+    Attributes:
+        proposals (list[ProposalDetail]):
+        funnel_name (str):
+        funnel_id (str):
+        total_count (int):
+        currency_symbol (str):
+        has_mixed_currencies (bool):
+        stage_type (str):
+        total_value (float | None | str | Unset):
+        currency_breakdown (FunnelLostProposalsCurrencyBreakdownType0 | None | Unset):
+        node_type (None | str | Unset):
+        node_id (None | str | Unset):
+        node_name (None | str | Unset):
+    """
 
     proposals: list[ProposalDetail]
     funnel_name: str
     funnel_id: str
-    total_value: float | str
     total_count: int
     currency_symbol: str
     has_mixed_currencies: bool
     stage_type: str
+    total_value: float | None | str | Unset = UNSET
     currency_breakdown: FunnelLostProposalsCurrencyBreakdownType0 | None | Unset = UNSET
     node_type: None | str | Unset = UNSET
     node_id: None | str | Unset = UNSET
     node_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.proposal_detail import ProposalDetail
-        from ..models.funnel_lost_proposals_currency_breakdown_type_0 import FunnelLostProposalsCurrencyBreakdownType0
+        from ..models.funnel_lost_proposals_currency_breakdown_type_0 import (
+            FunnelLostProposalsCurrencyBreakdownType0,
+        )
+
         proposals = []
         for proposals_item_data in self.proposals:
             proposals_item = proposals_item_data.to_dict()
             proposals.append(proposals_item)
 
-
-
         funnel_name = self.funnel_name
 
         funnel_id = self.funnel_id
-
-        total_value: float | str
-        total_value = self.total_value
 
         total_count = self.total_count
 
@@ -84,10 +72,18 @@ class FunnelLostProposals:
 
         stage_type = self.stage_type
 
+        total_value: float | None | str | Unset
+        if isinstance(self.total_value, Unset):
+            total_value = UNSET
+        else:
+            total_value = self.total_value
+
         currency_breakdown: dict[str, Any] | None | Unset
         if isinstance(self.currency_breakdown, Unset):
             currency_breakdown = UNSET
-        elif isinstance(self.currency_breakdown, FunnelLostProposalsCurrencyBreakdownType0):
+        elif isinstance(
+            self.currency_breakdown, FunnelLostProposalsCurrencyBreakdownType0
+        ):
             currency_breakdown = self.currency_breakdown.to_dict()
         else:
             currency_breakdown = self.currency_breakdown
@@ -110,19 +106,21 @@ class FunnelLostProposals:
         else:
             node_name = self.node_name
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "proposals": proposals,
-            "funnel_name": funnel_name,
-            "funnel_id": funnel_id,
-            "total_value": total_value,
-            "total_count": total_count,
-            "currency_symbol": currency_symbol,
-            "has_mixed_currencies": has_mixed_currencies,
-            "stage_type": stage_type,
-        })
+        field_dict.update(
+            {
+                "proposals": proposals,
+                "funnel_name": funnel_name,
+                "funnel_id": funnel_id,
+                "total_count": total_count,
+                "currency_symbol": currency_symbol,
+                "has_mixed_currencies": has_mixed_currencies,
+                "stage_type": stage_type,
+            }
+        )
+        if total_value is not UNSET:
+            field_dict["total_value"] = total_value
         if currency_breakdown is not UNSET:
             field_dict["currency_breakdown"] = currency_breakdown
         if node_type is not UNSET:
@@ -134,32 +132,24 @@ class FunnelLostProposals:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.funnel_lost_proposals_currency_breakdown_type_0 import FunnelLostProposalsCurrencyBreakdownType0
+        from ..models.funnel_lost_proposals_currency_breakdown_type_0 import (
+            FunnelLostProposalsCurrencyBreakdownType0,
+        )
         from ..models.proposal_detail import ProposalDetail
+
         d = dict(src_dict)
         proposals = []
         _proposals = d.pop("proposals")
-        for proposals_item_data in (_proposals):
+        for proposals_item_data in _proposals:
             proposals_item = ProposalDetail.from_dict(proposals_item_data)
 
-
-
             proposals.append(proposals_item)
-
 
         funnel_name = d.pop("funnel_name")
 
         funnel_id = d.pop("funnel_id")
-
-        def _parse_total_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_value = _parse_total_value(d.pop("total_value"))
-
 
         total_count = d.pop("total_count")
 
@@ -169,7 +159,18 @@ class FunnelLostProposals:
 
         stage_type = d.pop("stage_type")
 
-        def _parse_currency_breakdown(data: object) -> FunnelLostProposalsCurrencyBreakdownType0 | None | Unset:
+        def _parse_total_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_value = _parse_total_value(d.pop("total_value", UNSET))
+
+        def _parse_currency_breakdown(
+            data: object,
+        ) -> FunnelLostProposalsCurrencyBreakdownType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -177,17 +178,18 @@ class FunnelLostProposals:
             try:
                 if not isinstance(data, dict):
                     raise TypeError()
-                currency_breakdown_type_0 = FunnelLostProposalsCurrencyBreakdownType0.from_dict(data)
-
-
+                currency_breakdown_type_0 = (
+                    FunnelLostProposalsCurrencyBreakdownType0.from_dict(data)
+                )
 
                 return currency_breakdown_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(FunnelLostProposalsCurrencyBreakdownType0 | None | Unset, data)
 
-        currency_breakdown = _parse_currency_breakdown(d.pop("currency_breakdown", UNSET))
-
+        currency_breakdown = _parse_currency_breakdown(
+            d.pop("currency_breakdown", UNSET)
+        )
 
         def _parse_node_type(data: object) -> None | str | Unset:
             if data is None:
@@ -198,7 +200,6 @@ class FunnelLostProposals:
 
         node_type = _parse_node_type(d.pop("node_type", UNSET))
 
-
         def _parse_node_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -207,7 +208,6 @@ class FunnelLostProposals:
             return cast(None | str | Unset, data)
 
         node_id = _parse_node_id(d.pop("node_id", UNSET))
-
 
         def _parse_node_name(data: object) -> None | str | Unset:
             if data is None:
@@ -218,22 +218,20 @@ class FunnelLostProposals:
 
         node_name = _parse_node_name(d.pop("node_name", UNSET))
 
-
         funnel_lost_proposals = cls(
             proposals=proposals,
             funnel_name=funnel_name,
             funnel_id=funnel_id,
-            total_value=total_value,
             total_count=total_count,
             currency_symbol=currency_symbol,
             has_mixed_currencies=has_mixed_currencies,
             stage_type=stage_type,
+            total_value=total_value,
             currency_breakdown=currency_breakdown,
             node_type=node_type,
             node_id=node_id,
             node_name=node_name,
         )
-
 
         funnel_lost_proposals.additional_properties = d
         return funnel_lost_proposals

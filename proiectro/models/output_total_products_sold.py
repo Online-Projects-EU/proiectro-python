@@ -1,47 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.dashboard_metric import DashboardMetric
-  from ..models.output_total_products_sold_breakdown_by_type_item import OutputTotalProductsSoldBreakdownByTypeItem
-
-
-
+    from ..models.dashboard_metric import DashboardMetric
+    from ..models.output_total_products_sold_breakdown_by_type_item import (
+        OutputTotalProductsSoldBreakdownByTypeItem,
+    )
 
 
 T = TypeVar("T", bound="OutputTotalProductsSold")
 
 
-
 @_attrs_define
 class OutputTotalProductsSold:
-    """ Total catalog products sold metric
+    """Total catalog products sold metric
 
-        Attributes:
-            metric (DashboardMetric): Individual metric for display with comparison data
-            breakdown_by_type (list[OutputTotalProductsSoldBreakdownByTypeItem]):
-     """
+    Attributes:
+        metric (DashboardMetric): Individual metric for display with comparison data
+        breakdown_by_type (list[OutputTotalProductsSoldBreakdownByTypeItem]):
+    """
 
     metric: DashboardMetric
     breakdown_by_type: list[OutputTotalProductsSoldBreakdownByTypeItem]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_total_products_sold_breakdown_by_type_item import OutputTotalProductsSoldBreakdownByTypeItem
-        from ..models.dashboard_metric import DashboardMetric
         metric = self.metric.to_dict()
 
         breakdown_by_type = []
@@ -49,45 +37,42 @@ class OutputTotalProductsSold:
             breakdown_by_type_item = breakdown_by_type_item_data.to_dict()
             breakdown_by_type.append(breakdown_by_type_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "metric": metric,
-            "breakdown_by_type": breakdown_by_type,
-        })
+        field_dict.update(
+            {
+                "metric": metric,
+                "breakdown_by_type": breakdown_by_type,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dashboard_metric import DashboardMetric
-        from ..models.output_total_products_sold_breakdown_by_type_item import OutputTotalProductsSoldBreakdownByTypeItem
+        from ..models.output_total_products_sold_breakdown_by_type_item import (
+            OutputTotalProductsSoldBreakdownByTypeItem,
+        )
+
         d = dict(src_dict)
         metric = DashboardMetric.from_dict(d.pop("metric"))
 
-
-
-
         breakdown_by_type = []
         _breakdown_by_type = d.pop("breakdown_by_type")
-        for breakdown_by_type_item_data in (_breakdown_by_type):
-            breakdown_by_type_item = OutputTotalProductsSoldBreakdownByTypeItem.from_dict(breakdown_by_type_item_data)
-
-
+        for breakdown_by_type_item_data in _breakdown_by_type:
+            breakdown_by_type_item = (
+                OutputTotalProductsSoldBreakdownByTypeItem.from_dict(
+                    breakdown_by_type_item_data
+                )
+            )
 
             breakdown_by_type.append(breakdown_by_type_item)
-
 
         output_total_products_sold = cls(
             metric=metric,
             breakdown_by_type=breakdown_by_type,
         )
-
 
         output_total_products_sold.additional_properties = d
         return output_total_products_sold

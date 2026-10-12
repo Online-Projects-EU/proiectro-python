@@ -1,42 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AnalyticsAllocationItem")
-
 
 
 @_attrs_define
 class AnalyticsAllocationItem:
-    """ Allocation for a single entity
+    """Allocation for a single entity
 
-        Attributes:
-            name (str):
-            allocated_hours (float | str):
-            percent_of_total (float | str):
-     """
+    Attributes:
+        name (str):
+        allocated_hours (float | str):
+        percent_of_total (float | str):
+    """
 
     name: str
     allocated_hours: float | str
     percent_of_total: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -47,18 +33,17 @@ class AnalyticsAllocationItem:
         percent_of_total: float | str
         percent_of_total = self.percent_of_total
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "allocated_hours": allocated_hours,
-            "percent_of_total": percent_of_total,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "allocated_hours": allocated_hours,
+                "percent_of_total": percent_of_total,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -70,19 +55,16 @@ class AnalyticsAllocationItem:
 
         allocated_hours = _parse_allocated_hours(d.pop("allocated_hours"))
 
-
         def _parse_percent_of_total(data: object) -> float | str:
             return cast(float | str, data)
 
         percent_of_total = _parse_percent_of_total(d.pop("percent_of_total"))
-
 
         analytics_allocation_item = cls(
             name=name,
             allocated_hours=allocated_hours,
             percent_of_total=percent_of_total,
         )
-
 
         analytics_allocation_item.additional_properties = d
         return analytics_allocation_item

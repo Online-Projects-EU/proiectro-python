@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class OutputProjectWorkItemDetailSchedulingBehaviour(str, Enum):
     EVENT = "event"
     EXECUTION = "execution"

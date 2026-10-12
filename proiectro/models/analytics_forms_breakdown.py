@@ -1,62 +1,55 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-from typing import Literal, cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_forms_count_item import AnalyticsFormsCountItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_forms_count_item import AnalyticsFormsCountItem
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsFormsBreakdown")
 
 
-
 @_attrs_define
 class AnalyticsFormsBreakdown:
-    """ Submission breakdown by review status and by source
+    """Submission breakdown by review status and by source
 
-        Attributes:
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            by_status (list[AnalyticsFormsCountItem] | Unset):
-            by_source (list[AnalyticsFormsCountItem] | Unset):
-            total_submissions (int | Unset):  Default: 0.
-            prev_total_submissions (int | None | Unset):
-            total_change_pct (float | Literal['new'] | None | Unset):
-     """
+    Attributes:
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        by_status (list[AnalyticsFormsCountItem] | Unset):
+        by_source (list[AnalyticsFormsCountItem] | Unset):
+        total_submissions (int | Unset):  Default: 0.
+        prev_total_submissions (int | None | Unset):
+        total_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+    """
 
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -75,17 +68,10 @@ class AnalyticsFormsBreakdown:
     by_source: list[AnalyticsFormsCountItem] | Unset = UNSET
     total_submissions: int | Unset = 0
     prev_total_submissions: int | None | Unset = UNSET
-    total_change_pct: float | Literal['new'] | None | Unset = UNSET
+    total_change_pct: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_forms_count_item import AnalyticsFormsCountItem
         period = self.period
 
         temporal_type = self.temporal_type
@@ -125,7 +111,6 @@ class AnalyticsFormsBreakdown:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -149,7 +134,6 @@ class AnalyticsFormsBreakdown:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -197,16 +181,12 @@ class AnalyticsFormsBreakdown:
                 by_status_item = by_status_item_data.to_dict()
                 by_status.append(by_status_item)
 
-
-
         by_source: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.by_source, Unset):
             by_source = []
             for by_source_item_data in self.by_source:
                 by_source_item = by_source_item_data.to_dict()
                 by_source.append(by_source_item)
-
-
 
         total_submissions = self.total_submissions
 
@@ -216,17 +196,15 @@ class AnalyticsFormsBreakdown:
         else:
             prev_total_submissions = self.prev_total_submissions
 
-        total_change_pct: float | Literal['new'] | None | Unset
+        total_change_pct: float | None | str | Unset
         if isinstance(self.total_change_pct, Unset):
             total_change_pct = UNSET
         else:
             total_change_pct = self.total_change_pct
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -272,13 +250,12 @@ class AnalyticsFormsBreakdown:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_forms_count_item import AnalyticsFormsCountItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
         period = d.pop("period", UNSET)
 
@@ -294,15 +271,12 @@ class AnalyticsFormsBreakdown:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -313,7 +287,6 @@ class AnalyticsFormsBreakdown:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -323,7 +296,6 @@ class AnalyticsFormsBreakdown:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -332,7 +304,6 @@ class AnalyticsFormsBreakdown:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -344,10 +315,10 @@ class AnalyticsFormsBreakdown:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -358,7 +329,6 @@ class AnalyticsFormsBreakdown:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -368,7 +338,6 @@ class AnalyticsFormsBreakdown:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -377,7 +346,6 @@ class AnalyticsFormsBreakdown:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -389,10 +357,10 @@ class AnalyticsFormsBreakdown:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -403,7 +371,6 @@ class AnalyticsFormsBreakdown:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -413,7 +380,6 @@ class AnalyticsFormsBreakdown:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -421,8 +387,9 @@ class AnalyticsFormsBreakdown:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -433,7 +400,6 @@ class AnalyticsFormsBreakdown:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -441,8 +407,9 @@ class AnalyticsFormsBreakdown:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -453,7 +420,6 @@ class AnalyticsFormsBreakdown:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -463,7 +429,6 @@ class AnalyticsFormsBreakdown:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
-
         _by_status = d.pop("by_status", UNSET)
         by_status: list[AnalyticsFormsCountItem] | Unset = UNSET
         if _by_status is not UNSET:
@@ -471,10 +436,7 @@ class AnalyticsFormsBreakdown:
             for by_status_item_data in _by_status:
                 by_status_item = AnalyticsFormsCountItem.from_dict(by_status_item_data)
 
-
-
                 by_status.append(by_status_item)
-
 
         _by_source = d.pop("by_source", UNSET)
         by_source: list[AnalyticsFormsCountItem] | Unset = UNSET
@@ -483,10 +445,7 @@ class AnalyticsFormsBreakdown:
             for by_source_item_data in _by_source:
                 by_source_item = AnalyticsFormsCountItem.from_dict(by_source_item_data)
 
-
-
                 by_source.append(by_source_item)
-
 
         total_submissions = d.pop("total_submissions", UNSET)
 
@@ -497,22 +456,18 @@ class AnalyticsFormsBreakdown:
                 return data
             return cast(int | None | Unset, data)
 
-        prev_total_submissions = _parse_prev_total_submissions(d.pop("prev_total_submissions", UNSET))
+        prev_total_submissions = _parse_prev_total_submissions(
+            d.pop("prev_total_submissions", UNSET)
+        )
 
-
-        def _parse_total_change_pct(data: object) -> float | Literal['new'] | None | Unset:
+        def _parse_total_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            total_change_pct_type_1 = cast(Literal['new'] , data)
-            if total_change_pct_type_1 != 'new':
-                raise ValueError(f"total_change_pct_type_1 must match const 'new', got '{total_change_pct_type_1}'")
-            return total_change_pct_type_1
-            return cast(float | Literal['new'] | None | Unset, data)
+            return cast(float | None | str | Unset, data)
 
         total_change_pct = _parse_total_change_pct(d.pop("total_change_pct", UNSET))
-
 
         analytics_forms_breakdown = cls(
             period=period,
@@ -537,7 +492,6 @@ class AnalyticsFormsBreakdown:
             prev_total_submissions=prev_total_submissions,
             total_change_pct=total_change_pct,
         )
-
 
         analytics_forms_breakdown.additional_properties = d
         return analytics_forms_breakdown

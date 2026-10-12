@@ -1,49 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="TenantAutomationAction")
-
 
 
 @_attrs_define
 class TenantAutomationAction:
-    """ An action within a rule, as displayed in the list.
+    """An action within a rule, as displayed in the list.
 
-        Attributes:
-            action_type (str):
-            action_name (str):
-            name (str | Unset):  Default: ''.
-            condition (list[Any] | Unset):
-            stop_on_error (bool | Unset):  Default: False.
-            fan_out (bool | Unset):  Default: False.
-     """
+    Attributes:
+        action_type (str):
+        action_name (str):
+        name (str | Unset):  Default: ''.
+        condition (list[Any] | Unset):
+        stop_on_error (bool | Unset):  Default: False.
+        fan_out (bool | Unset):  Default: False.
+    """
 
     action_type: str
     action_name: str
-    name: str | Unset = ''
+    name: str | Unset = ""
     condition: list[Any] | Unset = UNSET
     stop_on_error: bool | Unset = False
     fan_out: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         action_type = self.action_type
@@ -56,19 +43,18 @@ class TenantAutomationAction:
         if not isinstance(self.condition, Unset):
             condition = self.condition
 
-
-
         stop_on_error = self.stop_on_error
 
         fan_out = self.fan_out
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "action_type": action_type,
-            "action_name": action_name,
-        })
+        field_dict.update(
+            {
+                "action_type": action_type,
+                "action_name": action_name,
+            }
+        )
         if name is not UNSET:
             field_dict["name"] = name
         if condition is not UNSET:
@@ -80,8 +66,6 @@ class TenantAutomationAction:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -92,7 +76,6 @@ class TenantAutomationAction:
         name = d.pop("name", UNSET)
 
         condition = cast(list[Any], d.pop("condition", UNSET))
-
 
         stop_on_error = d.pop("stop_on_error", UNSET)
 
@@ -106,7 +89,6 @@ class TenantAutomationAction:
             stop_on_error=stop_on_error,
             fan_out=fan_out,
         )
-
 
         tenant_automation_action.additional_properties = d
         return tenant_automation_action

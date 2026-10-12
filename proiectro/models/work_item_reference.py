@@ -1,41 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="WorkItemReference")
-
 
 
 @_attrs_define
 class WorkItemReference:
-    """ Reference to a work item in warnings
+    """Reference to a work item in warnings
 
-        Attributes:
-            id (str):
-            name (str):
-            hierarchy_id (str):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        hierarchy_id (str):
+    """
 
     id: str
     name: str
     hierarchy_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -44,18 +31,17 @@ class WorkItemReference:
 
         hierarchy_id = self.hierarchy_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "hierarchy_id": hierarchy_id,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "hierarchy_id": hierarchy_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -71,7 +57,6 @@ class WorkItemReference:
             name=name,
             hierarchy_id=hierarchy_id,
         )
-
 
         work_item_reference.additional_properties = d
         return work_item_reference

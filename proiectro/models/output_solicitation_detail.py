@@ -1,54 +1,45 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputSolicitationDetail")
 
 
-
 @_attrs_define
 class OutputSolicitationDetail:
-    """ Full details of an RFP received from a partner (solicitation)
+    """Full details of an RFP received from a partner (solicitation)
 
-        Attributes:
-            id (str):
-            rfp_id (str):
-            name (str):
-            description (str):
-            category_display (str):
-            currency_code (str):
-            budget_min (float | None | str):
-            budget_max (float | None | str):
-            submission_deadline (datetime.date):
-            status (str):
-            status_display (str):
-            issuer_name (str):
-            bridge_id (str):
-            publication_state (str):
-            publication_state_display (str):
-            published_at (datetime.datetime):
-            intent_to_respond (bool | None):
-            intent_note (str):
-            viewed_at (datetime.datetime | None | Unset):
-            intent_declared_at (datetime.datetime | None | Unset):
-            is_winner (bool | Unset):  Default: False.
-     """
+    Attributes:
+        id (str):
+        rfp_id (str):
+        name (str):
+        description (str):
+        category_display (str):
+        currency_code (str):
+        budget_min (float | None | str):
+        budget_max (float | None | str):
+        submission_deadline (datetime.date):
+        status (str):
+        status_display (str):
+        issuer_name (str):
+        bridge_id (str):
+        publication_state (str):
+        publication_state_display (str):
+        published_at (datetime.datetime):
+        intent_to_respond (bool | None):
+        intent_note (str):
+        viewed_at (datetime.datetime | None | Unset):
+        intent_declared_at (datetime.datetime | None | Unset):
+        is_winner (bool | Unset):  Default: False.
+    """
 
     id: str
     rfp_id: str
@@ -72,10 +63,6 @@ class OutputSolicitationDetail:
     intent_declared_at: datetime.datetime | None | Unset = UNSET
     is_winner: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -135,29 +122,30 @@ class OutputSolicitationDetail:
 
         is_winner = self.is_winner
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "rfp_id": rfp_id,
-            "name": name,
-            "description": description,
-            "category_display": category_display,
-            "currency_code": currency_code,
-            "budget_min": budget_min,
-            "budget_max": budget_max,
-            "submission_deadline": submission_deadline,
-            "status": status,
-            "status_display": status_display,
-            "issuer_name": issuer_name,
-            "bridge_id": bridge_id,
-            "publication_state": publication_state,
-            "publication_state_display": publication_state_display,
-            "published_at": published_at,
-            "intent_to_respond": intent_to_respond,
-            "intent_note": intent_note,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "rfp_id": rfp_id,
+                "name": name,
+                "description": description,
+                "category_display": category_display,
+                "currency_code": currency_code,
+                "budget_min": budget_min,
+                "budget_max": budget_max,
+                "submission_deadline": submission_deadline,
+                "status": status,
+                "status_display": status_display,
+                "issuer_name": issuer_name,
+                "bridge_id": bridge_id,
+                "publication_state": publication_state,
+                "publication_state_display": publication_state_display,
+                "published_at": published_at,
+                "intent_to_respond": intent_to_respond,
+                "intent_note": intent_note,
+            }
+        )
         if viewed_at is not UNSET:
             field_dict["viewed_at"] = viewed_at
         if intent_declared_at is not UNSET:
@@ -166,8 +154,6 @@ class OutputSolicitationDetail:
             field_dict["is_winner"] = is_winner
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -191,7 +177,6 @@ class OutputSolicitationDetail:
 
         budget_min = _parse_budget_min(d.pop("budget_min"))
 
-
         def _parse_budget_max(data: object) -> float | None | str:
             if data is None:
                 return data
@@ -199,11 +184,7 @@ class OutputSolicitationDetail:
 
         budget_max = _parse_budget_max(d.pop("budget_max"))
 
-
         submission_deadline = isoparse(d.pop("submission_deadline")).date()
-
-
-
 
         status = d.pop("status")
 
@@ -219,16 +200,12 @@ class OutputSolicitationDetail:
 
         published_at = isoparse(d.pop("published_at"))
 
-
-
-
         def _parse_intent_to_respond(data: object) -> bool | None:
             if data is None:
                 return data
             return cast(bool | None, data)
 
         intent_to_respond = _parse_intent_to_respond(d.pop("intent_to_respond"))
-
 
         intent_note = d.pop("intent_note")
 
@@ -242,15 +219,12 @@ class OutputSolicitationDetail:
                     raise TypeError()
                 viewed_at_type_0 = isoparse(data)
 
-
-
                 return viewed_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         viewed_at = _parse_viewed_at(d.pop("viewed_at", UNSET))
-
 
         def _parse_intent_declared_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -262,15 +236,14 @@ class OutputSolicitationDetail:
                     raise TypeError()
                 intent_declared_at_type_0 = isoparse(data)
 
-
-
                 return intent_declared_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
-        intent_declared_at = _parse_intent_declared_at(d.pop("intent_declared_at", UNSET))
-
+        intent_declared_at = _parse_intent_declared_at(
+            d.pop("intent_declared_at", UNSET)
+        )
 
         is_winner = d.pop("is_winner", UNSET)
 
@@ -297,7 +270,6 @@ class OutputSolicitationDetail:
             intent_declared_at=intent_declared_at,
             is_winner=is_winner,
         )
-
 
         output_solicitation_detail.additional_properties = d
         return output_solicitation_detail

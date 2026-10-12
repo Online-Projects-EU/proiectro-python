@@ -1,36 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.add_payment_schedule_block_payment_type import (
+    AddPaymentScheduleBlockPaymentType,
+)
 from ..types import UNSET, Unset
-
-from ..models.add_payment_schedule_block_payment_type import AddPaymentScheduleBlockPaymentType
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="AddPaymentScheduleBlock")
 
 
-
 @_attrs_define
 class AddPaymentScheduleBlock:
-    """ 
-        Attributes:
-            name (str):
-            description (str):
-            payment_type (AddPaymentScheduleBlockPaymentType):
-            internal_code (None | str | Unset):
-            sequence_no (int | None | Unset):
-     """
+    """
+    Attributes:
+        name (str):
+        description (str):
+        payment_type (AddPaymentScheduleBlockPaymentType):
+        internal_code (None | str | Unset):
+        sequence_no (int | None | Unset):
+    """
 
     name: str
     description: str
@@ -38,10 +31,6 @@ class AddPaymentScheduleBlock:
     internal_code: None | str | Unset = UNSET
     sequence_no: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -62,22 +51,21 @@ class AddPaymentScheduleBlock:
         else:
             sequence_no = self.sequence_no
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "description": description,
-            "payment_type": payment_type,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "description": description,
+                "payment_type": payment_type,
+            }
+        )
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if sequence_no is not UNSET:
             field_dict["sequence_no"] = sequence_no
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -88,9 +76,6 @@ class AddPaymentScheduleBlock:
 
         payment_type = AddPaymentScheduleBlockPaymentType(d.pop("payment_type"))
 
-
-
-
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -99,7 +84,6 @@ class AddPaymentScheduleBlock:
             return cast(None | str | Unset, data)
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
-
 
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
@@ -110,7 +94,6 @@ class AddPaymentScheduleBlock:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
-
         add_payment_schedule_block = cls(
             name=name,
             description=description,
@@ -118,7 +101,6 @@ class AddPaymentScheduleBlock:
             internal_code=internal_code,
             sequence_no=sequence_no,
         )
-
 
         add_payment_schedule_block.additional_properties = d
         return add_payment_schedule_block

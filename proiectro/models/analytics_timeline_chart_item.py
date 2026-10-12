@@ -1,41 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="AnalyticsTimelineChartItem")
-
 
 
 @_attrs_define
 class AnalyticsTimelineChartItem:
-    """ Chart data for timeline visualization
+    """Chart data for timeline visualization
 
-        Attributes:
-            label (str):
-            count (int):
-            hours (float):
-     """
+    Attributes:
+        label (str):
+        count (int):
+        hours (float):
+    """
 
     label: str
     count: int
     hours: float
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         label = self.label
@@ -44,18 +31,17 @@ class AnalyticsTimelineChartItem:
 
         hours = self.hours
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "label": label,
-            "count": count,
-            "hours": hours,
-        })
+        field_dict.update(
+            {
+                "label": label,
+                "count": count,
+                "hours": hours,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -71,7 +57,6 @@ class AnalyticsTimelineChartItem:
             count=count,
             hours=hours,
         )
-
 
         analytics_timeline_chart_item.additional_properties = d
         return analytics_timeline_chart_item

@@ -1,73 +1,65 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_performance_entry import AnalyticsPerformanceEntry
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_performance_entry import AnalyticsPerformanceEntry
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsSalesPerformance")
 
 
-
 @_attrs_define
 class AnalyticsSalesPerformance:
-    """ Sales performance across three dimensions: salespeople, customers, products
+    """Sales performance across three dimensions: salespeople, customers, products
 
-        Attributes:
-            total_revenue (float | str):
-            deals_won (int):
-            deals_lost (int):
-            win_rate (float | str):
-            avg_deal_size (float | str):
-            currency (str):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            prev_total_revenue (float | None | str | Unset):
-            revenue_change_pct (float | None | str | Unset):
-            salespeople (list[AnalyticsPerformanceEntry] | Unset):
-            customers (list[AnalyticsPerformanceEntry] | Unset):
-            products (list[AnalyticsPerformanceEntry] | Unset):
-     """
+    Attributes:
+        deals_won (int):
+        deals_lost (int):
+        currency (str):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        total_revenue (float | None | str | Unset):
+        win_rate (float | None | str | Unset):
+        avg_deal_size (float | None | str | Unset):
+        prev_total_revenue (float | None | str | Unset):
+        revenue_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+        uncovered_currencies (list[str] | Unset):
+        salespeople (list[AnalyticsPerformanceEntry] | Unset):
+        customers (list[AnalyticsPerformanceEntry] | Unset):
+        products (list[AnalyticsPerformanceEntry] | Unset):
+    """
 
-    total_revenue: float | str
     deals_won: int
     deals_lost: int
-    win_rate: float | str
-    avg_deal_size: float | str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -82,33 +74,21 @@ class AnalyticsSalesPerformance:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    total_revenue: float | None | str | Unset = UNSET
+    win_rate: float | None | str | Unset = UNSET
+    avg_deal_size: float | None | str | Unset = UNSET
     prev_total_revenue: float | None | str | Unset = UNSET
     revenue_change_pct: float | None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
     salespeople: list[AnalyticsPerformanceEntry] | Unset = UNSET
     customers: list[AnalyticsPerformanceEntry] | Unset = UNSET
     products: list[AnalyticsPerformanceEntry] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.analytics_performance_entry import AnalyticsPerformanceEntry
-        from ..models.horizon_option import HorizonOption
-        total_revenue: float | str
-        total_revenue = self.total_revenue
-
         deals_won = self.deals_won
 
         deals_lost = self.deals_lost
-
-        win_rate: float | str
-        win_rate = self.win_rate
-
-        avg_deal_size: float | str
-        avg_deal_size = self.avg_deal_size
 
         currency = self.currency
 
@@ -151,7 +131,6 @@ class AnalyticsSalesPerformance:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -175,7 +154,6 @@ class AnalyticsSalesPerformance:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -216,6 +194,24 @@ class AnalyticsSalesPerformance:
         else:
             filter_type_label = self.filter_type_label
 
+        total_revenue: float | None | str | Unset
+        if isinstance(self.total_revenue, Unset):
+            total_revenue = UNSET
+        else:
+            total_revenue = self.total_revenue
+
+        win_rate: float | None | str | Unset
+        if isinstance(self.win_rate, Unset):
+            win_rate = UNSET
+        else:
+            win_rate = self.win_rate
+
+        avg_deal_size: float | None | str | Unset
+        if isinstance(self.avg_deal_size, Unset):
+            avg_deal_size = UNSET
+        else:
+            avg_deal_size = self.avg_deal_size
+
         prev_total_revenue: float | None | str | Unset
         if isinstance(self.prev_total_revenue, Unset):
             prev_total_revenue = UNSET
@@ -228,14 +224,16 @@ class AnalyticsSalesPerformance:
         else:
             revenue_change_pct = self.revenue_change_pct
 
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
         salespeople: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.salespeople, Unset):
             salespeople = []
             for salespeople_item_data in self.salespeople:
                 salespeople_item = salespeople_item_data.to_dict()
                 salespeople.append(salespeople_item)
-
-
 
         customers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.customers, Unset):
@@ -244,8 +242,6 @@ class AnalyticsSalesPerformance:
                 customers_item = customers_item_data.to_dict()
                 customers.append(customers_item)
 
-
-
         products: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.products, Unset):
             products = []
@@ -253,19 +249,15 @@ class AnalyticsSalesPerformance:
                 products_item = products_item_data.to_dict()
                 products.append(products_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_revenue": total_revenue,
-            "deals_won": deals_won,
-            "deals_lost": deals_lost,
-            "win_rate": win_rate,
-            "avg_deal_size": avg_deal_size,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "deals_won": deals_won,
+                "deals_lost": deals_lost,
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -298,10 +290,18 @@ class AnalyticsSalesPerformance:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if total_revenue is not UNSET:
+            field_dict["total_revenue"] = total_revenue
+        if win_rate is not UNSET:
+            field_dict["win_rate"] = win_rate
+        if avg_deal_size is not UNSET:
+            field_dict["avg_deal_size"] = avg_deal_size
         if prev_total_revenue is not UNSET:
             field_dict["prev_total_revenue"] = prev_total_revenue
         if revenue_change_pct is not UNSET:
             field_dict["revenue_change_pct"] = revenue_change_pct
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
         if salespeople is not UNSET:
             field_dict["salespeople"] = salespeople
         if customers is not UNSET:
@@ -311,35 +311,16 @@ class AnalyticsSalesPerformance:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_performance_entry import AnalyticsPerformanceEntry
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_total_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_revenue = _parse_total_revenue(d.pop("total_revenue"))
-
-
         deals_won = d.pop("deals_won")
 
         deals_lost = d.pop("deals_lost")
-
-        def _parse_win_rate(data: object) -> float | str:
-            return cast(float | str, data)
-
-        win_rate = _parse_win_rate(d.pop("win_rate"))
-
-
-        def _parse_avg_deal_size(data: object) -> float | str:
-            return cast(float | str, data)
-
-        avg_deal_size = _parse_avg_deal_size(d.pop("avg_deal_size"))
-
 
         currency = d.pop("currency")
 
@@ -357,15 +338,12 @@ class AnalyticsSalesPerformance:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -376,7 +354,6 @@ class AnalyticsSalesPerformance:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -386,7 +363,6 @@ class AnalyticsSalesPerformance:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -395,7 +371,6 @@ class AnalyticsSalesPerformance:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -407,10 +382,10 @@ class AnalyticsSalesPerformance:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -421,7 +396,6 @@ class AnalyticsSalesPerformance:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -431,7 +405,6 @@ class AnalyticsSalesPerformance:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -440,7 +413,6 @@ class AnalyticsSalesPerformance:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -452,10 +424,10 @@ class AnalyticsSalesPerformance:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -466,7 +438,6 @@ class AnalyticsSalesPerformance:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -476,7 +447,6 @@ class AnalyticsSalesPerformance:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -484,8 +454,9 @@ class AnalyticsSalesPerformance:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -496,7 +467,6 @@ class AnalyticsSalesPerformance:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -504,8 +474,9 @@ class AnalyticsSalesPerformance:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -516,7 +487,6 @@ class AnalyticsSalesPerformance:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -526,6 +496,32 @@ class AnalyticsSalesPerformance:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        def _parse_total_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_revenue = _parse_total_revenue(d.pop("total_revenue", UNSET))
+
+        def _parse_win_rate(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        win_rate = _parse_win_rate(d.pop("win_rate", UNSET))
+
+        def _parse_avg_deal_size(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        avg_deal_size = _parse_avg_deal_size(d.pop("avg_deal_size", UNSET))
 
         def _parse_prev_total_revenue(data: object) -> float | None | str | Unset:
             if data is None:
@@ -534,8 +530,9 @@ class AnalyticsSalesPerformance:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_total_revenue = _parse_prev_total_revenue(d.pop("prev_total_revenue", UNSET))
-
+        prev_total_revenue = _parse_prev_total_revenue(
+            d.pop("prev_total_revenue", UNSET)
+        )
 
         def _parse_revenue_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
@@ -544,32 +541,33 @@ class AnalyticsSalesPerformance:
                 return data
             return cast(float | None | str | Unset, data)
 
-        revenue_change_pct = _parse_revenue_change_pct(d.pop("revenue_change_pct", UNSET))
+        revenue_change_pct = _parse_revenue_change_pct(
+            d.pop("revenue_change_pct", UNSET)
+        )
 
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
 
         _salespeople = d.pop("salespeople", UNSET)
         salespeople: list[AnalyticsPerformanceEntry] | Unset = UNSET
         if _salespeople is not UNSET:
             salespeople = []
             for salespeople_item_data in _salespeople:
-                salespeople_item = AnalyticsPerformanceEntry.from_dict(salespeople_item_data)
-
-
+                salespeople_item = AnalyticsPerformanceEntry.from_dict(
+                    salespeople_item_data
+                )
 
                 salespeople.append(salespeople_item)
-
 
         _customers = d.pop("customers", UNSET)
         customers: list[AnalyticsPerformanceEntry] | Unset = UNSET
         if _customers is not UNSET:
             customers = []
             for customers_item_data in _customers:
-                customers_item = AnalyticsPerformanceEntry.from_dict(customers_item_data)
-
-
+                customers_item = AnalyticsPerformanceEntry.from_dict(
+                    customers_item_data
+                )
 
                 customers.append(customers_item)
-
 
         _products = d.pop("products", UNSET)
         products: list[AnalyticsPerformanceEntry] | Unset = UNSET
@@ -578,17 +576,11 @@ class AnalyticsSalesPerformance:
             for products_item_data in _products:
                 products_item = AnalyticsPerformanceEntry.from_dict(products_item_data)
 
-
-
                 products.append(products_item)
 
-
         analytics_sales_performance = cls(
-            total_revenue=total_revenue,
             deals_won=deals_won,
             deals_lost=deals_lost,
-            win_rate=win_rate,
-            avg_deal_size=avg_deal_size,
             currency=currency,
             period=period,
             temporal_type=temporal_type,
@@ -606,13 +598,16 @@ class AnalyticsSalesPerformance:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            total_revenue=total_revenue,
+            win_rate=win_rate,
+            avg_deal_size=avg_deal_size,
             prev_total_revenue=prev_total_revenue,
             revenue_change_pct=revenue_change_pct,
+            uncovered_currencies=uncovered_currencies,
             salespeople=salespeople,
             customers=customers,
             products=products,
         )
-
 
         analytics_sales_performance.additional_properties = d
         return analytics_sales_performance

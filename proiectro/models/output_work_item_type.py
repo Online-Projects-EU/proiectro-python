@@ -1,41 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.wbs_config_reference import WBSConfigReference
-
-
-
+    from ..models.wbs_config_reference import WBSConfigReference
 
 
 T = TypeVar("T", bound="OutputWorkItemType")
 
 
-
 @_attrs_define
 class OutputWorkItemType:
-    """ Individual work item type details
+    """Individual work item type details
 
-        Attributes:
-            id (str):
-            name (str):
-            description (str):
-            active (bool):
-            scheduling_behaviour (str):
-            scheduling_behaviour_display (str):
-            scheduling_behaviour_description (str):
-            wbs_configurations (list[WBSConfigReference] | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        description (str):
+        active (bool):
+        scheduling_behaviour (str):
+        scheduling_behaviour_display (str):
+        scheduling_behaviour_description (str):
+        wbs_configurations (list[WBSConfigReference] | Unset):
+    """
 
     id: str
     name: str
@@ -47,12 +40,7 @@ class OutputWorkItemType:
     wbs_configurations: list[WBSConfigReference] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.wbs_config_reference import WBSConfigReference
         id = self.id
 
         name = self.name
@@ -74,30 +62,28 @@ class OutputWorkItemType:
                 wbs_configurations_item = wbs_configurations_item_data.to_dict()
                 wbs_configurations.append(wbs_configurations_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "description": description,
-            "active": active,
-            "scheduling_behaviour": scheduling_behaviour,
-            "scheduling_behaviour_display": scheduling_behaviour_display,
-            "scheduling_behaviour_description": scheduling_behaviour_description,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "description": description,
+                "active": active,
+                "scheduling_behaviour": scheduling_behaviour,
+                "scheduling_behaviour_display": scheduling_behaviour_display,
+                "scheduling_behaviour_description": scheduling_behaviour_description,
+            }
+        )
         if wbs_configurations is not UNSET:
             field_dict["wbs_configurations"] = wbs_configurations
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wbs_config_reference import WBSConfigReference
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -118,12 +104,11 @@ class OutputWorkItemType:
         if _wbs_configurations is not UNSET:
             wbs_configurations = []
             for wbs_configurations_item_data in _wbs_configurations:
-                wbs_configurations_item = WBSConfigReference.from_dict(wbs_configurations_item_data)
-
-
+                wbs_configurations_item = WBSConfigReference.from_dict(
+                    wbs_configurations_item_data
+                )
 
                 wbs_configurations.append(wbs_configurations_item)
-
 
         output_work_item_type = cls(
             id=id,
@@ -135,7 +120,6 @@ class OutputWorkItemType:
             scheduling_behaviour_description=scheduling_behaviour_description,
             wbs_configurations=wbs_configurations,
         )
-
 
         output_work_item_type.additional_properties = d
         return output_work_item_type

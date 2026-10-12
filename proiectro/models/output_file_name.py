@@ -1,40 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputFileName")
-
 
 
 @_attrs_define
 class OutputFileName:
-    """ 
-        Attributes:
-            file_name (str):
-            file_path (str):
-            file_size (int):
-     """
+    """
+    Attributes:
+        file_name (str):
+        file_path (str):
+        file_size (int):
+    """
 
     file_name: str
     file_path: str
     file_size: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         file_name = self.file_name
@@ -43,18 +30,17 @@ class OutputFileName:
 
         file_size = self.file_size
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "file_name": file_name,
-            "file_path": file_path,
-            "file_size": file_size,
-        })
+        field_dict.update(
+            {
+                "file_name": file_name,
+                "file_path": file_path,
+                "file_size": file_size,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -70,7 +56,6 @@ class OutputFileName:
             file_path=file_path,
             file_size=file_size,
         )
-
 
         output_file_name.additional_properties = d
         return output_file_name

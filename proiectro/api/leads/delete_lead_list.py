@@ -7,7 +7,6 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
-from ...models.delete_lead_list import DeleteLeadList
 from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
@@ -15,10 +14,7 @@ from ...types import Response
 def _get_kwargs(
     tenant_path: str,
     lead_list_id: str,
-    *,
-    body: DeleteLeadList,
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "delete",
@@ -28,11 +24,6 @@ def _get_kwargs(
         ),
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -86,14 +77,14 @@ def sync_detailed(
     lead_list_id: str,
     *,
     client: AuthenticatedClient,
-    body: DeleteLeadList,
 ) -> Response[APIResponse | PydanticDetail]:
     """Delete Lead List
+
+     Delete a lead list. The leads in it stay in the workspace, in no list.
 
     Args:
         tenant_path (str):
         lead_list_id (str):
-        body (DeleteLeadList):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -106,7 +97,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
         lead_list_id=lead_list_id,
-        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -121,14 +111,14 @@ def sync(
     lead_list_id: str,
     *,
     client: AuthenticatedClient,
-    body: DeleteLeadList,
 ) -> APIResponse | PydanticDetail | None:
     """Delete Lead List
+
+     Delete a lead list. The leads in it stay in the workspace, in no list.
 
     Args:
         tenant_path (str):
         lead_list_id (str):
-        body (DeleteLeadList):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -142,7 +132,6 @@ def sync(
         tenant_path=tenant_path,
         lead_list_id=lead_list_id,
         client=client,
-        body=body,
     ).parsed
 
 
@@ -151,14 +140,14 @@ async def asyncio_detailed(
     lead_list_id: str,
     *,
     client: AuthenticatedClient,
-    body: DeleteLeadList,
 ) -> Response[APIResponse | PydanticDetail]:
     """Delete Lead List
+
+     Delete a lead list. The leads in it stay in the workspace, in no list.
 
     Args:
         tenant_path (str):
         lead_list_id (str):
-        body (DeleteLeadList):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -171,7 +160,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
         lead_list_id=lead_list_id,
-        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -184,14 +172,14 @@ async def asyncio(
     lead_list_id: str,
     *,
     client: AuthenticatedClient,
-    body: DeleteLeadList,
 ) -> APIResponse | PydanticDetail | None:
     """Delete Lead List
+
+     Delete a lead list. The leads in it stay in the workspace, in no list.
 
     Args:
         tenant_path (str):
         lead_list_id (str):
-        body (DeleteLeadList):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -206,6 +194,5 @@ async def asyncio(
             tenant_path=tenant_path,
             lead_list_id=lead_list_id,
             client=client,
-            body=body,
         )
     ).parsed

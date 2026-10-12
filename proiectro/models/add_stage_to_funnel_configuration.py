@@ -1,36 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddStageToFunnelConfiguration")
-
 
 
 @_attrs_define
 class AddStageToFunnelConfiguration:
-    """ 
-        Attributes:
-            sequence_no (int):
-            name (str):
-            description (str):
-            instructions (str):
-            stage_type (str):
-            is_active (bool | None | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        sequence_no (int):
+        name (str):
+        description (str):
+        instructions (str):
+        stage_type (str):
+        is_active (bool | None | Unset):  Default: False.
+    """
 
     sequence_no: int
     name: str
@@ -39,10 +30,6 @@ class AddStageToFunnelConfiguration:
     stage_type: str
     is_active: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         sequence_no = self.sequence_no
@@ -61,22 +48,21 @@ class AddStageToFunnelConfiguration:
         else:
             is_active = self.is_active
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "sequence_no": sequence_no,
-            "name": name,
-            "description": description,
-            "instructions": instructions,
-            "stage_type": stage_type,
-        })
+        field_dict.update(
+            {
+                "sequence_no": sequence_no,
+                "name": name,
+                "description": description,
+                "instructions": instructions,
+                "stage_type": stage_type,
+            }
+        )
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -100,7 +86,6 @@ class AddStageToFunnelConfiguration:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
-
         add_stage_to_funnel_configuration = cls(
             sequence_no=sequence_no,
             name=name,
@@ -109,7 +94,6 @@ class AddStageToFunnelConfiguration:
             stage_type=stage_type,
             is_active=is_active,
         )
-
 
         add_stage_to_funnel_configuration.additional_properties = d
         return add_stage_to_funnel_configuration

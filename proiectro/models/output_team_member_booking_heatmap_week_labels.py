@@ -1,49 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputTeamMemberBookingHeatmapWeekLabels")
-
 
 
 @_attrs_define
 class OutputTeamMemberBookingHeatmapWeekLabels:
-    """ 
-     """
+    """ """
 
     additional_properties: dict[str, str] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        output_team_member_booking_heatmap_week_labels = cls(
-        )
-
+        output_team_member_booking_heatmap_week_labels = cls()
 
         output_team_member_booking_heatmap_week_labels.additional_properties = d
         return output_team_member_booking_heatmap_week_labels

@@ -1,42 +1,38 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="CatalogProduct")
-
 
 
 @_attrs_define
 class CatalogProduct:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            product_type (str):
-            is_active (bool):
-            owner_id (str):
-            owner_name (str):
-            pricing_type (str):
-            pricing_currency (str):
-            pricing_value (float | str):
-            description (None | str | Unset):
-            internal_code (None | str | Unset):
-            payment_integration_id (None | str | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        product_type (str):
+        is_active (bool):
+        owner_id (str):
+        owner_name (str):
+        pricing_type (str):
+        pricing_currency (str):
+        pricing_value (float | str):
+        description (None | str | Unset):
+        internal_code (None | str | Unset):
+        payment_integration_id (None | str | Unset):
+        unit_of_measure (str | Unset):  Default: ''.
+        track_stock (bool | Unset):  Default: False.
+        stock_quantity (int | Unset):  Default: 0.
+        available_in_customer_portal (bool | Unset):  Default: False.
+        available_in_partner_portals (bool | Unset):  Default: False.
+    """
 
     id: str
     name: str
@@ -50,11 +46,12 @@ class CatalogProduct:
     description: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
     payment_integration_id: None | str | Unset = UNSET
+    unit_of_measure: str | Unset = ""
+    track_stock: bool | Unset = False
+    stock_quantity: int | Unset = 0
+    available_in_customer_portal: bool | Unset = False
+    available_in_partner_portals: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -94,30 +91,49 @@ class CatalogProduct:
         else:
             payment_integration_id = self.payment_integration_id
 
+        unit_of_measure = self.unit_of_measure
+
+        track_stock = self.track_stock
+
+        stock_quantity = self.stock_quantity
+
+        available_in_customer_portal = self.available_in_customer_portal
+
+        available_in_partner_portals = self.available_in_partner_portals
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "product_type": product_type,
-            "is_active": is_active,
-            "owner_id": owner_id,
-            "owner_name": owner_name,
-            "pricing_type": pricing_type,
-            "pricing_currency": pricing_currency,
-            "pricing_value": pricing_value,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "product_type": product_type,
+                "is_active": is_active,
+                "owner_id": owner_id,
+                "owner_name": owner_name,
+                "pricing_type": pricing_type,
+                "pricing_currency": pricing_currency,
+                "pricing_value": pricing_value,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if payment_integration_id is not UNSET:
             field_dict["payment_integration_id"] = payment_integration_id
+        if unit_of_measure is not UNSET:
+            field_dict["unit_of_measure"] = unit_of_measure
+        if track_stock is not UNSET:
+            field_dict["track_stock"] = track_stock
+        if stock_quantity is not UNSET:
+            field_dict["stock_quantity"] = stock_quantity
+        if available_in_customer_portal is not UNSET:
+            field_dict["available_in_customer_portal"] = available_in_customer_portal
+        if available_in_partner_portals is not UNSET:
+            field_dict["available_in_partner_portals"] = available_in_partner_portals
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -143,7 +159,6 @@ class CatalogProduct:
 
         pricing_value = _parse_pricing_value(d.pop("pricing_value"))
 
-
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -152,7 +167,6 @@ class CatalogProduct:
             return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
-
 
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
@@ -163,7 +177,6 @@ class CatalogProduct:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_payment_integration_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -171,8 +184,19 @@ class CatalogProduct:
                 return data
             return cast(None | str | Unset, data)
 
-        payment_integration_id = _parse_payment_integration_id(d.pop("payment_integration_id", UNSET))
+        payment_integration_id = _parse_payment_integration_id(
+            d.pop("payment_integration_id", UNSET)
+        )
 
+        unit_of_measure = d.pop("unit_of_measure", UNSET)
+
+        track_stock = d.pop("track_stock", UNSET)
+
+        stock_quantity = d.pop("stock_quantity", UNSET)
+
+        available_in_customer_portal = d.pop("available_in_customer_portal", UNSET)
+
+        available_in_partner_portals = d.pop("available_in_partner_portals", UNSET)
 
         catalog_product = cls(
             id=id,
@@ -187,8 +211,12 @@ class CatalogProduct:
             description=description,
             internal_code=internal_code,
             payment_integration_id=payment_integration_id,
+            unit_of_measure=unit_of_measure,
+            track_stock=track_stock,
+            stock_quantity=stock_quantity,
+            available_in_customer_portal=available_in_customer_portal,
+            available_in_partner_portals=available_in_partner_portals,
         )
-
 
         catalog_product.additional_properties = d
         return catalog_product

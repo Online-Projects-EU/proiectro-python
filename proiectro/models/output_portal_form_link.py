@@ -1,39 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputPortalFormLink")
-
 
 
 @_attrs_define
 class OutputPortalFormLink:
-    """ One form published to a customer subtenant's portal (management view).
+    """One form published to a customer subtenant's portal (management view).
 
-        Attributes:
-            id (str):
-            form_id (str):
-            form_name (str):
-            display_order (int | Unset):  Default: 0.
-            show_description (bool | Unset):  Default: True.
-            has_active_version (bool | Unset):  Default: False.
-            active_version (int | None | Unset):
-            submission_count (int | Unset):  Default: 0.
-     """
+    Attributes:
+        id (str):
+        form_id (str):
+        form_name (str):
+        display_order (int | Unset):  Default: 0.
+        show_description (bool | Unset):  Default: True.
+        has_active_version (bool | Unset):  Default: False.
+        active_version (int | None | Unset):
+        submission_count (int | Unset):  Default: 0.
+    """
 
     id: str
     form_id: str
@@ -44,10 +35,6 @@ class OutputPortalFormLink:
     active_version: int | None | Unset = UNSET
     submission_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -70,14 +57,15 @@ class OutputPortalFormLink:
 
         submission_count = self.submission_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "form_id": form_id,
-            "form_name": form_name,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "form_id": form_id,
+                "form_name": form_name,
+            }
+        )
         if display_order is not UNSET:
             field_dict["display_order"] = display_order
         if show_description is not UNSET:
@@ -90,8 +78,6 @@ class OutputPortalFormLink:
             field_dict["submission_count"] = submission_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -117,7 +103,6 @@ class OutputPortalFormLink:
 
         active_version = _parse_active_version(d.pop("active_version", UNSET))
 
-
         submission_count = d.pop("submission_count", UNSET)
 
         output_portal_form_link = cls(
@@ -130,7 +115,6 @@ class OutputPortalFormLink:
             active_version=active_version,
             submission_count=submission_count,
         )
-
 
         output_portal_form_link.additional_properties = d
         return output_portal_form_link

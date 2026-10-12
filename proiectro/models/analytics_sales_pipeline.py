@@ -1,35 +1,28 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_sales_funnel import AnalyticsSalesFunnel
-  from ..models.analytics_sales_pipeline_stage import AnalyticsSalesPipelineStage
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_sales_funnel import AnalyticsSalesFunnel
+    from ..models.analytics_sales_pipeline_stage import AnalyticsSalesPipelineStage
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsSalesPipeline")
 
 
-
 @_attrs_define
 class AnalyticsSalesPipeline:
-    """ Sales pipeline analysis for a specific funnel.
+    """Sales pipeline analysis for a specific funnel.
 
     Weighted Value Explanation:
     Weighted pipeline value adjusts the raw deal values by the probability
@@ -41,8 +34,6 @@ class AnalyticsSalesPipeline:
         Attributes:
             funnel_id (str):
             funnel_name (str):
-            total_pipeline_value (float | str):
-            weighted_pipeline_value (float | str):
             total_deals (int):
             currency (str):
             period (str | Unset):  Default: 'YTD'.
@@ -62,18 +53,20 @@ class AnalyticsSalesPipeline:
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
             available_funnels (list[AnalyticsSalesFunnel] | Unset):
+            total_pipeline_value (float | None | str | Unset):
+            weighted_pipeline_value (float | None | str | Unset):
+            uncovered_currencies (list[str] | Unset):
+            coverage_percent (float | None | str | Unset):
             stages (list[AnalyticsSalesPipelineStage] | Unset):
             weighted_value_explanation (str | Unset):  Default: ''.
-     """
+    """
 
     funnel_id: str
     funnel_name: str
-    total_pipeline_value: float | str
-    weighted_pipeline_value: float | str
     total_deals: int
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -89,28 +82,18 @@ class AnalyticsSalesPipeline:
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
     available_funnels: list[AnalyticsSalesFunnel] | Unset = UNSET
+    total_pipeline_value: float | None | str | Unset = UNSET
+    weighted_pipeline_value: float | None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
+    coverage_percent: float | None | str | Unset = UNSET
     stages: list[AnalyticsSalesPipelineStage] | Unset = UNSET
-    weighted_value_explanation: str | Unset = ''
+    weighted_value_explanation: str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.analytics_sales_pipeline_stage import AnalyticsSalesPipelineStage
-        from ..models.analytics_sales_funnel import AnalyticsSalesFunnel
-        from ..models.horizon_option import HorizonOption
         funnel_id = self.funnel_id
 
         funnel_name = self.funnel_name
-
-        total_pipeline_value: float | str
-        total_pipeline_value = self.total_pipeline_value
-
-        weighted_pipeline_value: float | str
-        weighted_pipeline_value = self.weighted_pipeline_value
 
         total_deals = self.total_deals
 
@@ -155,7 +138,6 @@ class AnalyticsSalesPipeline:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -179,7 +161,6 @@ class AnalyticsSalesPipeline:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -227,7 +208,27 @@ class AnalyticsSalesPipeline:
                 available_funnels_item = available_funnels_item_data.to_dict()
                 available_funnels.append(available_funnels_item)
 
+        total_pipeline_value: float | None | str | Unset
+        if isinstance(self.total_pipeline_value, Unset):
+            total_pipeline_value = UNSET
+        else:
+            total_pipeline_value = self.total_pipeline_value
 
+        weighted_pipeline_value: float | None | str | Unset
+        if isinstance(self.weighted_pipeline_value, Unset):
+            weighted_pipeline_value = UNSET
+        else:
+            weighted_pipeline_value = self.weighted_pipeline_value
+
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
+        coverage_percent: float | None | str | Unset
+        if isinstance(self.coverage_percent, Unset):
+            coverage_percent = UNSET
+        else:
+            coverage_percent = self.coverage_percent
 
         stages: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.stages, Unset):
@@ -236,21 +237,18 @@ class AnalyticsSalesPipeline:
                 stages_item = stages_item_data.to_dict()
                 stages.append(stages_item)
 
-
-
         weighted_value_explanation = self.weighted_value_explanation
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "funnel_id": funnel_id,
-            "funnel_name": funnel_name,
-            "total_pipeline_value": total_pipeline_value,
-            "weighted_pipeline_value": weighted_pipeline_value,
-            "total_deals": total_deals,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "funnel_id": funnel_id,
+                "funnel_name": funnel_name,
+                "total_deals": total_deals,
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -285,6 +283,14 @@ class AnalyticsSalesPipeline:
             field_dict["filter_type_label"] = filter_type_label
         if available_funnels is not UNSET:
             field_dict["available_funnels"] = available_funnels
+        if total_pipeline_value is not UNSET:
+            field_dict["total_pipeline_value"] = total_pipeline_value
+        if weighted_pipeline_value is not UNSET:
+            field_dict["weighted_pipeline_value"] = weighted_pipeline_value
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
+        if coverage_percent is not UNSET:
+            field_dict["coverage_percent"] = coverage_percent
         if stages is not UNSET:
             field_dict["stages"] = stages
         if weighted_value_explanation is not UNSET:
@@ -292,30 +298,17 @@ class AnalyticsSalesPipeline:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_sales_funnel import AnalyticsSalesFunnel
         from ..models.analytics_sales_pipeline_stage import AnalyticsSalesPipelineStage
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
         funnel_id = d.pop("funnel_id")
 
         funnel_name = d.pop("funnel_name")
-
-        def _parse_total_pipeline_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_pipeline_value = _parse_total_pipeline_value(d.pop("total_pipeline_value"))
-
-
-        def _parse_weighted_pipeline_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        weighted_pipeline_value = _parse_weighted_pipeline_value(d.pop("weighted_pipeline_value"))
-
 
         total_deals = d.pop("total_deals")
 
@@ -335,15 +328,12 @@ class AnalyticsSalesPipeline:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -354,7 +344,6 @@ class AnalyticsSalesPipeline:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -364,7 +353,6 @@ class AnalyticsSalesPipeline:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -373,7 +361,6 @@ class AnalyticsSalesPipeline:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -385,10 +372,10 @@ class AnalyticsSalesPipeline:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -399,7 +386,6 @@ class AnalyticsSalesPipeline:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -409,7 +395,6 @@ class AnalyticsSalesPipeline:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -418,7 +403,6 @@ class AnalyticsSalesPipeline:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -430,10 +414,10 @@ class AnalyticsSalesPipeline:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -444,7 +428,6 @@ class AnalyticsSalesPipeline:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -454,7 +437,6 @@ class AnalyticsSalesPipeline:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -462,8 +444,9 @@ class AnalyticsSalesPipeline:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -474,7 +457,6 @@ class AnalyticsSalesPipeline:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -482,8 +464,9 @@ class AnalyticsSalesPipeline:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -494,7 +477,6 @@ class AnalyticsSalesPipeline:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -504,18 +486,49 @@ class AnalyticsSalesPipeline:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
-
         _available_funnels = d.pop("available_funnels", UNSET)
         available_funnels: list[AnalyticsSalesFunnel] | Unset = UNSET
         if _available_funnels is not UNSET:
             available_funnels = []
             for available_funnels_item_data in _available_funnels:
-                available_funnels_item = AnalyticsSalesFunnel.from_dict(available_funnels_item_data)
-
-
+                available_funnels_item = AnalyticsSalesFunnel.from_dict(
+                    available_funnels_item_data
+                )
 
                 available_funnels.append(available_funnels_item)
 
+        def _parse_total_pipeline_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_pipeline_value = _parse_total_pipeline_value(
+            d.pop("total_pipeline_value", UNSET)
+        )
+
+        def _parse_weighted_pipeline_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        weighted_pipeline_value = _parse_weighted_pipeline_value(
+            d.pop("weighted_pipeline_value", UNSET)
+        )
+
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
+
+        def _parse_coverage_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        coverage_percent = _parse_coverage_percent(d.pop("coverage_percent", UNSET))
 
         _stages = d.pop("stages", UNSET)
         stages: list[AnalyticsSalesPipelineStage] | Unset = UNSET
@@ -524,18 +537,13 @@ class AnalyticsSalesPipeline:
             for stages_item_data in _stages:
                 stages_item = AnalyticsSalesPipelineStage.from_dict(stages_item_data)
 
-
-
                 stages.append(stages_item)
-
 
         weighted_value_explanation = d.pop("weighted_value_explanation", UNSET)
 
         analytics_sales_pipeline = cls(
             funnel_id=funnel_id,
             funnel_name=funnel_name,
-            total_pipeline_value=total_pipeline_value,
-            weighted_pipeline_value=weighted_pipeline_value,
             total_deals=total_deals,
             currency=currency,
             period=period,
@@ -555,10 +563,13 @@ class AnalyticsSalesPipeline:
             filter_type=filter_type,
             filter_type_label=filter_type_label,
             available_funnels=available_funnels,
+            total_pipeline_value=total_pipeline_value,
+            weighted_pipeline_value=weighted_pipeline_value,
+            uncovered_currencies=uncovered_currencies,
+            coverage_percent=coverage_percent,
             stages=stages,
             weighted_value_explanation=weighted_value_explanation,
         )
-
 
         analytics_sales_pipeline.additional_properties = d
         return analytics_sales_pipeline

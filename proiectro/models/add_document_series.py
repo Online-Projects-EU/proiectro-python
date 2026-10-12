@@ -1,35 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="AddDocumentSeries")
-
 
 
 @_attrs_define
 class AddDocumentSeries:
-    """ 
-        Attributes:
-            code (str):
-            name (str):
-            next_number (int | Unset):  Default: 1.
-            padding (int | Unset):  Default: 0.
-            lock_on_finalize (bool | Unset):  Default: False.
-            is_active (bool | Unset):  Default: True.
-     """
+    """
+    Attributes:
+        code (str):
+        name (str):
+        next_number (int | Unset):  Default: 1.
+        padding (int | Unset):  Default: 0.
+        lock_on_finalize (bool | Unset):  Default: False.
+        is_active (bool | Unset):  Default: True.
+    """
 
     code: str
     name: str
@@ -38,10 +30,6 @@ class AddDocumentSeries:
     lock_on_finalize: bool | Unset = False
     is_active: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         code = self.code
@@ -56,13 +44,14 @@ class AddDocumentSeries:
 
         is_active = self.is_active
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "code": code,
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "code": code,
+                "name": name,
+            }
+        )
         if next_number is not UNSET:
             field_dict["next_number"] = next_number
         if padding is not UNSET:
@@ -73,8 +62,6 @@ class AddDocumentSeries:
             field_dict["is_active"] = is_active
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -99,7 +86,6 @@ class AddDocumentSeries:
             lock_on_finalize=lock_on_finalize,
             is_active=is_active,
         )
-
 
         add_document_series.additional_properties = d
         return add_document_series

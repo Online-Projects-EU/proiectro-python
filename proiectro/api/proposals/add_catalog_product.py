@@ -8,6 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.add_catalog_product import AddCatalogProduct
 from ...models.api_response import APIResponse
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -35,7 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
@@ -51,6 +52,11 @@ def _parse_response(
 
         return response_409
 
+    if response.status_code == 422:
+        response_422 = PydanticDetail.from_dict(response.json())
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -59,7 +65,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,7 +79,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddCatalogProduct,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Catalog Product
 
      Build your product catalog with standardized offerings for consistent pricing and
@@ -90,7 +96,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -110,7 +116,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddCatalogProduct,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Catalog Product
 
      Build your product catalog with standardized offerings for consistent pricing and
@@ -127,7 +133,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -142,7 +148,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddCatalogProduct,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Catalog Product
 
      Build your product catalog with standardized offerings for consistent pricing and
@@ -159,7 +165,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -177,7 +183,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddCatalogProduct,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Catalog Product
 
      Build your product catalog with standardized offerings for consistent pricing and
@@ -194,7 +200,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return (

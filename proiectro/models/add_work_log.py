@@ -1,50 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddWorkLog")
-
 
 
 @_attrs_define
 class AddWorkLog:
-    """ 
-        Attributes:
-            work_item (str):
-            project (str):
-            member (str):
-            hours (int):
-            date (str):
-            booking (None | str | Unset):
-            note (None | str | Unset):
-     """
+    """
+    Attributes:
+        work_item (str):
+        project (str):
+        member (str):
+        duration (str): How long the work took: 2, 1h30m, 45m or 3:45. A bare number is hours.
+        date (str):
+        booking (None | str | Unset):
+        note (None | str | Unset):
+    """
 
     work_item: str
     project: str
     member: str
-    hours: int
+    duration: str
     date: str
     booking: None | str | Unset = UNSET
     note: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         work_item = self.work_item
@@ -53,7 +40,7 @@ class AddWorkLog:
 
         member = self.member
 
-        hours = self.hours
+        duration = self.duration
 
         date = self.date
 
@@ -69,24 +56,23 @@ class AddWorkLog:
         else:
             note = self.note
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "work_item": work_item,
-            "project": project,
-            "member": member,
-            "hours": hours,
-            "date": date,
-        })
+        field_dict.update(
+            {
+                "work_item": work_item,
+                "project": project,
+                "member": member,
+                "duration": duration,
+                "date": date,
+            }
+        )
         if booking is not UNSET:
             field_dict["booking"] = booking
         if note is not UNSET:
             field_dict["note"] = note
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -97,7 +83,7 @@ class AddWorkLog:
 
         member = d.pop("member")
 
-        hours = d.pop("hours")
+        duration = d.pop("duration")
 
         date = d.pop("date")
 
@@ -110,7 +96,6 @@ class AddWorkLog:
 
         booking = _parse_booking(d.pop("booking", UNSET))
 
-
         def _parse_note(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -120,17 +105,15 @@ class AddWorkLog:
 
         note = _parse_note(d.pop("note", UNSET))
 
-
         add_work_log = cls(
             work_item=work_item,
             project=project,
             member=member,
-            hours=hours,
+            duration=duration,
             date=date,
             booking=booking,
             note=note,
         )
-
 
         add_work_log.additional_properties = d
         return add_work_log

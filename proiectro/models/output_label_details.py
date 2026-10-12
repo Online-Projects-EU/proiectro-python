@@ -1,36 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.labeled_entity_stats import LabeledEntityStats
-
-
-
+    from ..models.labeled_entity_stats import LabeledEntityStats
 
 
 T = TypeVar("T", bound="OutputLabelDetails")
 
 
-
 @_attrs_define
 class OutputLabelDetails:
-    """ 
-        Attributes:
-            label_id (str):
-            label_name (str):
-            security (bool):
-            entity_stats (list[LabeledEntityStats]):
-            total_usage_count (int):
-     """
+    """
+    Attributes:
+        label_id (str):
+        label_name (str):
+        security (bool):
+        entity_stats (list[LabeledEntityStats]):
+        total_usage_count (int):
+    """
 
     label_id: str
     label_name: str
@@ -39,12 +31,7 @@ class OutputLabelDetails:
     total_usage_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.labeled_entity_stats import LabeledEntityStats
         label_id = self.label_id
 
         label_name = self.label_name
@@ -56,28 +43,26 @@ class OutputLabelDetails:
             entity_stats_item = entity_stats_item_data.to_dict()
             entity_stats.append(entity_stats_item)
 
-
-
         total_usage_count = self.total_usage_count
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "label_id": label_id,
-            "label_name": label_name,
-            "security": security,
-            "entity_stats": entity_stats,
-            "total_usage_count": total_usage_count,
-        })
+        field_dict.update(
+            {
+                "label_id": label_id,
+                "label_name": label_name,
+                "security": security,
+                "entity_stats": entity_stats,
+                "total_usage_count": total_usage_count,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.labeled_entity_stats import LabeledEntityStats
+
         d = dict(src_dict)
         label_id = d.pop("label_id")
 
@@ -87,13 +72,10 @@ class OutputLabelDetails:
 
         entity_stats = []
         _entity_stats = d.pop("entity_stats")
-        for entity_stats_item_data in (_entity_stats):
+        for entity_stats_item_data in _entity_stats:
             entity_stats_item = LabeledEntityStats.from_dict(entity_stats_item_data)
 
-
-
             entity_stats.append(entity_stats_item)
-
 
         total_usage_count = d.pop("total_usage_count")
 
@@ -104,7 +86,6 @@ class OutputLabelDetails:
             entity_stats=entity_stats,
             total_usage_count=total_usage_count,
         )
-
 
         output_label_details.additional_properties = d
         return output_label_details

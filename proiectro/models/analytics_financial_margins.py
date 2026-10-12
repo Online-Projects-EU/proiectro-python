@@ -1,69 +1,63 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-from typing import Literal, cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_margin_item import AnalyticsMarginItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_margin_item import AnalyticsMarginItem
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsFinancialMargins")
 
 
-
 @_attrs_define
 class AnalyticsFinancialMargins:
-    """ Margin analytics
+    """Margin analytics
 
-        Attributes:
-            gross_margin_percent (float | str):
-            contribution_margin_percent (float | str):
-            currency (str):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            margins_by_product (list[AnalyticsMarginItem] | Unset):
-            margins_by_customer (list[AnalyticsMarginItem] | Unset):
-            prev_gross_margin_pct (float | None | str | Unset):
-            prev_contribution_margin_pct (float | None | str | Unset):
-            gross_margin_change_pp (float | Literal['new'] | None | str | Unset):
-            contribution_margin_change_pp (float | Literal['new'] | None | str | Unset):
-     """
+    Attributes:
+        currency (str):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        uncovered_currencies (list[str] | Unset):
+        gross_margin_percent (float | None | str | Unset):
+        contribution_margin_percent (float | None | str | Unset):
+        no_costs_recorded (bool | Unset):  Default: False.
+        margins_by_product (list[AnalyticsMarginItem] | Unset):
+        margins_by_customer (list[AnalyticsMarginItem] | Unset):
+        prev_gross_margin_pct (float | None | str | Unset):
+        prev_contribution_margin_pct (float | None | str | Unset):
+        gross_margin_change_pp (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+        contribution_margin_change_pp (float | None | str | Unset): A percentage, or "new" when the prior period had
+            nothing to compare against.
+    """
 
-    gross_margin_percent: float | str
-    contribution_margin_percent: float | str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -78,28 +72,19 @@ class AnalyticsFinancialMargins:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
+    gross_margin_percent: float | None | str | Unset = UNSET
+    contribution_margin_percent: float | None | str | Unset = UNSET
+    no_costs_recorded: bool | Unset = False
     margins_by_product: list[AnalyticsMarginItem] | Unset = UNSET
     margins_by_customer: list[AnalyticsMarginItem] | Unset = UNSET
     prev_gross_margin_pct: float | None | str | Unset = UNSET
     prev_contribution_margin_pct: float | None | str | Unset = UNSET
-    gross_margin_change_pp: float | Literal['new'] | None | str | Unset = UNSET
-    contribution_margin_change_pp: float | Literal['new'] | None | str | Unset = UNSET
+    gross_margin_change_pp: float | None | str | Unset = UNSET
+    contribution_margin_change_pp: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_margin_item import AnalyticsMarginItem
-        gross_margin_percent: float | str
-        gross_margin_percent = self.gross_margin_percent
-
-        contribution_margin_percent: float | str
-        contribution_margin_percent = self.contribution_margin_percent
-
         currency = self.currency
 
         period = self.period
@@ -141,7 +126,6 @@ class AnalyticsFinancialMargins:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -165,7 +149,6 @@ class AnalyticsFinancialMargins:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -206,6 +189,24 @@ class AnalyticsFinancialMargins:
         else:
             filter_type_label = self.filter_type_label
 
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
+        gross_margin_percent: float | None | str | Unset
+        if isinstance(self.gross_margin_percent, Unset):
+            gross_margin_percent = UNSET
+        else:
+            gross_margin_percent = self.gross_margin_percent
+
+        contribution_margin_percent: float | None | str | Unset
+        if isinstance(self.contribution_margin_percent, Unset):
+            contribution_margin_percent = UNSET
+        else:
+            contribution_margin_percent = self.contribution_margin_percent
+
+        no_costs_recorded = self.no_costs_recorded
+
         margins_by_product: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.margins_by_product, Unset):
             margins_by_product = []
@@ -213,16 +214,12 @@ class AnalyticsFinancialMargins:
                 margins_by_product_item = margins_by_product_item_data.to_dict()
                 margins_by_product.append(margins_by_product_item)
 
-
-
         margins_by_customer: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.margins_by_customer, Unset):
             margins_by_customer = []
             for margins_by_customer_item_data in self.margins_by_customer:
                 margins_by_customer_item = margins_by_customer_item_data.to_dict()
                 margins_by_customer.append(margins_by_customer_item)
-
-
 
         prev_gross_margin_pct: float | None | str | Unset
         if isinstance(self.prev_gross_margin_pct, Unset):
@@ -236,26 +233,25 @@ class AnalyticsFinancialMargins:
         else:
             prev_contribution_margin_pct = self.prev_contribution_margin_pct
 
-        gross_margin_change_pp: float | Literal['new'] | None | str | Unset
+        gross_margin_change_pp: float | None | str | Unset
         if isinstance(self.gross_margin_change_pp, Unset):
             gross_margin_change_pp = UNSET
         else:
             gross_margin_change_pp = self.gross_margin_change_pp
 
-        contribution_margin_change_pp: float | Literal['new'] | None | str | Unset
+        contribution_margin_change_pp: float | None | str | Unset
         if isinstance(self.contribution_margin_change_pp, Unset):
             contribution_margin_change_pp = UNSET
         else:
             contribution_margin_change_pp = self.contribution_margin_change_pp
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "gross_margin_percent": gross_margin_percent,
-            "contribution_margin_percent": contribution_margin_percent,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -288,6 +284,14 @@ class AnalyticsFinancialMargins:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
+        if gross_margin_percent is not UNSET:
+            field_dict["gross_margin_percent"] = gross_margin_percent
+        if contribution_margin_percent is not UNSET:
+            field_dict["contribution_margin_percent"] = contribution_margin_percent
+        if no_costs_recorded is not UNSET:
+            field_dict["no_costs_recorded"] = no_costs_recorded
         if margins_by_product is not UNSET:
             field_dict["margins_by_product"] = margins_by_product
         if margins_by_customer is not UNSET:
@@ -303,26 +307,13 @@ class AnalyticsFinancialMargins:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_margin_item import AnalyticsMarginItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_gross_margin_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        gross_margin_percent = _parse_gross_margin_percent(d.pop("gross_margin_percent"))
-
-
-        def _parse_contribution_margin_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        contribution_margin_percent = _parse_contribution_margin_percent(d.pop("contribution_margin_percent"))
-
-
         currency = d.pop("currency")
 
         period = d.pop("period", UNSET)
@@ -339,15 +330,12 @@ class AnalyticsFinancialMargins:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -358,7 +346,6 @@ class AnalyticsFinancialMargins:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -368,7 +355,6 @@ class AnalyticsFinancialMargins:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -377,7 +363,6 @@ class AnalyticsFinancialMargins:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -389,10 +374,10 @@ class AnalyticsFinancialMargins:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -403,7 +388,6 @@ class AnalyticsFinancialMargins:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -413,7 +397,6 @@ class AnalyticsFinancialMargins:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -422,7 +405,6 @@ class AnalyticsFinancialMargins:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -434,10 +416,10 @@ class AnalyticsFinancialMargins:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -448,7 +430,6 @@ class AnalyticsFinancialMargins:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -458,7 +439,6 @@ class AnalyticsFinancialMargins:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -466,8 +446,9 @@ class AnalyticsFinancialMargins:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -478,7 +459,6 @@ class AnalyticsFinancialMargins:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -486,8 +466,9 @@ class AnalyticsFinancialMargins:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -498,7 +479,6 @@ class AnalyticsFinancialMargins:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -508,30 +488,55 @@ class AnalyticsFinancialMargins:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
+
+        def _parse_gross_margin_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        gross_margin_percent = _parse_gross_margin_percent(
+            d.pop("gross_margin_percent", UNSET)
+        )
+
+        def _parse_contribution_margin_percent(
+            data: object,
+        ) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        contribution_margin_percent = _parse_contribution_margin_percent(
+            d.pop("contribution_margin_percent", UNSET)
+        )
+
+        no_costs_recorded = d.pop("no_costs_recorded", UNSET)
 
         _margins_by_product = d.pop("margins_by_product", UNSET)
         margins_by_product: list[AnalyticsMarginItem] | Unset = UNSET
         if _margins_by_product is not UNSET:
             margins_by_product = []
             for margins_by_product_item_data in _margins_by_product:
-                margins_by_product_item = AnalyticsMarginItem.from_dict(margins_by_product_item_data)
-
-
+                margins_by_product_item = AnalyticsMarginItem.from_dict(
+                    margins_by_product_item_data
+                )
 
                 margins_by_product.append(margins_by_product_item)
-
 
         _margins_by_customer = d.pop("margins_by_customer", UNSET)
         margins_by_customer: list[AnalyticsMarginItem] | Unset = UNSET
         if _margins_by_customer is not UNSET:
             margins_by_customer = []
             for margins_by_customer_item_data in _margins_by_customer:
-                margins_by_customer_item = AnalyticsMarginItem.from_dict(margins_by_customer_item_data)
-
-
+                margins_by_customer_item = AnalyticsMarginItem.from_dict(
+                    margins_by_customer_item_data
+                )
 
                 margins_by_customer.append(margins_by_customer_item)
-
 
         def _parse_prev_gross_margin_pct(data: object) -> float | None | str | Unset:
             if data is None:
@@ -540,50 +545,48 @@ class AnalyticsFinancialMargins:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_gross_margin_pct = _parse_prev_gross_margin_pct(d.pop("prev_gross_margin_pct", UNSET))
+        prev_gross_margin_pct = _parse_prev_gross_margin_pct(
+            d.pop("prev_gross_margin_pct", UNSET)
+        )
 
-
-        def _parse_prev_contribution_margin_pct(data: object) -> float | None | str | Unset:
+        def _parse_prev_contribution_margin_pct(
+            data: object,
+        ) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_contribution_margin_pct = _parse_prev_contribution_margin_pct(d.pop("prev_contribution_margin_pct", UNSET))
+        prev_contribution_margin_pct = _parse_prev_contribution_margin_pct(
+            d.pop("prev_contribution_margin_pct", UNSET)
+        )
 
-
-        def _parse_gross_margin_change_pp(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_gross_margin_change_pp(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            gross_margin_change_pp_type_2 = cast(Literal['new'] , data)
-            if gross_margin_change_pp_type_2 != 'new':
-                raise ValueError(f"gross_margin_change_pp_type_2 must match const 'new', got '{gross_margin_change_pp_type_2}'")
-            return gross_margin_change_pp_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
-        gross_margin_change_pp = _parse_gross_margin_change_pp(d.pop("gross_margin_change_pp", UNSET))
+        gross_margin_change_pp = _parse_gross_margin_change_pp(
+            d.pop("gross_margin_change_pp", UNSET)
+        )
 
-
-        def _parse_contribution_margin_change_pp(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_contribution_margin_change_pp(
+            data: object,
+        ) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            contribution_margin_change_pp_type_2 = cast(Literal['new'] , data)
-            if contribution_margin_change_pp_type_2 != 'new':
-                raise ValueError(f"contribution_margin_change_pp_type_2 must match const 'new', got '{contribution_margin_change_pp_type_2}'")
-            return contribution_margin_change_pp_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
-        contribution_margin_change_pp = _parse_contribution_margin_change_pp(d.pop("contribution_margin_change_pp", UNSET))
-
+        contribution_margin_change_pp = _parse_contribution_margin_change_pp(
+            d.pop("contribution_margin_change_pp", UNSET)
+        )
 
         analytics_financial_margins = cls(
-            gross_margin_percent=gross_margin_percent,
-            contribution_margin_percent=contribution_margin_percent,
             currency=currency,
             period=period,
             temporal_type=temporal_type,
@@ -601,6 +604,10 @@ class AnalyticsFinancialMargins:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            uncovered_currencies=uncovered_currencies,
+            gross_margin_percent=gross_margin_percent,
+            contribution_margin_percent=contribution_margin_percent,
+            no_costs_recorded=no_costs_recorded,
             margins_by_product=margins_by_product,
             margins_by_customer=margins_by_customer,
             prev_gross_margin_pct=prev_gross_margin_pct,
@@ -608,7 +615,6 @@ class AnalyticsFinancialMargins:
             gross_margin_change_pp=gross_margin_change_pp,
             contribution_margin_change_pp=contribution_margin_change_pp,
         )
-
 
         analytics_financial_margins.additional_properties = d
         return analytics_financial_margins

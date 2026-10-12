@@ -1,51 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputLeadListSummary")
-
 
 
 @_attrs_define
 class OutputLeadListSummary:
-    """ Compact representation used in the Lists tab.
+    """Compact representation used in the Lists tab.
 
-        Attributes:
-            id (str):
-            name (str):
-            is_pool (bool):
-            is_active (bool):
-            description (str | Unset):  Default: ''.
-            owner_id (None | str | Unset):
-            owner_name (None | str | Unset):
-            owner_avatar_url (None | str | Unset):
-            overdue_count (int | Unset):  Default: 0.
-            today_count (int | Unset):  Default: 0.
-            untriaged_count (int | Unset):  Default: 0.
-            scheduled_count (int | Unset):  Default: 0.
-            closed_count (int | Unset):  Default: 0.
-            total_count (int | Unset):  Default: 0.
-     """
+    Attributes:
+        id (str):
+        name (str):
+        is_pool (bool):
+        is_active (bool):
+        description (str | Unset):  Default: ''.
+        owner_id (None | str | Unset):
+        owner_name (None | str | Unset):
+        owner_avatar_url (None | str | Unset):
+        overdue_count (int | Unset):  Default: 0.
+        today_count (int | Unset):  Default: 0.
+        untriaged_count (int | Unset):  Default: 0.
+        scheduled_count (int | Unset):  Default: 0.
+        closed_count (int | Unset):  Default: 0.
+        total_count (int | Unset):  Default: 0.
+    """
 
     id: str
     name: str
     is_pool: bool
     is_active: bool
-    description: str | Unset = ''
+    description: str | Unset = ""
     owner_id: None | str | Unset = UNSET
     owner_name: None | str | Unset = UNSET
     owner_avatar_url: None | str | Unset = UNSET
@@ -56,10 +47,6 @@ class OutputLeadListSummary:
     closed_count: int | Unset = 0
     total_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -102,15 +89,16 @@ class OutputLeadListSummary:
 
         total_count = self.total_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "is_pool": is_pool,
-            "is_active": is_active,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "is_pool": is_pool,
+                "is_active": is_active,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if owner_id is not UNSET:
@@ -134,8 +122,6 @@ class OutputLeadListSummary:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -158,7 +144,6 @@ class OutputLeadListSummary:
 
         owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
 
-
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -168,7 +153,6 @@ class OutputLeadListSummary:
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
 
-
         def _parse_owner_avatar_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -177,7 +161,6 @@ class OutputLeadListSummary:
             return cast(None | str | Unset, data)
 
         owner_avatar_url = _parse_owner_avatar_url(d.pop("owner_avatar_url", UNSET))
-
 
         overdue_count = d.pop("overdue_count", UNSET)
 
@@ -207,7 +190,6 @@ class OutputLeadListSummary:
             closed_count=closed_count,
             total_count=total_count,
         )
-
 
         output_lead_list_summary.additional_properties = d
         return output_lead_list_summary

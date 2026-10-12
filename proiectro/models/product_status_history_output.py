@@ -1,36 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.product_status_history_entry import ProductStatusHistoryEntry
-
-
-
+    from ..models.product_status_history_entry import ProductStatusHistoryEntry
 
 
 T = TypeVar("T", bound="ProductStatusHistoryOutput")
 
 
-
 @_attrs_define
 class ProductStatusHistoryOutput:
-    """ Complete status history for a product
+    """Complete status history for a product
 
-        Attributes:
-            product_id (str):
-            product_name (str):
-            history (list[ProductStatusHistoryEntry]):
-            total_duration_days (int):
-     """
+    Attributes:
+        product_id (str):
+        product_name (str):
+        history (list[ProductStatusHistoryEntry]):
+        total_duration_days (int):
+    """
 
     product_id: str
     product_name: str
@@ -38,12 +30,7 @@ class ProductStatusHistoryOutput:
     total_duration_days: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.product_status_history_entry import ProductStatusHistoryEntry
         product_id = self.product_id
 
         product_name = self.product_name
@@ -53,27 +40,25 @@ class ProductStatusHistoryOutput:
             history_item = history_item_data.to_dict()
             history.append(history_item)
 
-
-
         total_duration_days = self.total_duration_days
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "product_id": product_id,
-            "product_name": product_name,
-            "history": history,
-            "total_duration_days": total_duration_days,
-        })
+        field_dict.update(
+            {
+                "product_id": product_id,
+                "product_name": product_name,
+                "history": history,
+                "total_duration_days": total_duration_days,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_status_history_entry import ProductStatusHistoryEntry
+
         d = dict(src_dict)
         product_id = d.pop("product_id")
 
@@ -81,13 +66,10 @@ class ProductStatusHistoryOutput:
 
         history = []
         _history = d.pop("history")
-        for history_item_data in (_history):
+        for history_item_data in _history:
             history_item = ProductStatusHistoryEntry.from_dict(history_item_data)
 
-
-
             history.append(history_item)
-
 
         total_duration_days = d.pop("total_duration_days")
 
@@ -97,7 +79,6 @@ class ProductStatusHistoryOutput:
             history=history,
             total_duration_days=total_duration_days,
         )
-
 
         product_status_history_output.additional_properties = d
         return product_status_history_output

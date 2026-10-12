@@ -1,56 +1,49 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.output_rfp_publication_item import OutputRFPPublicationItem
-
-
-
+    from ..models.output_rfp_publication_item import OutputRFPPublicationItem
 
 
 T = TypeVar("T", bound="OutputRFPDetail")
 
 
-
 @_attrs_define
 class OutputRFPDetail:
-    """ Full details of an RFP created by this tenant
+    """Full details of an RFP created by this tenant
 
-        Attributes:
-            id (str):
-            name (str):
-            internal_code (None | str):
-            description (str):
-            category (str):
-            category_display (str):
-            currency_code (str):
-            budget_min (float | None | str):
-            budget_max (float | None | str):
-            submission_deadline (datetime.date):
-            status (str):
-            status_display (str):
-            is_active (bool):
-            created_by_name (str):
-            created_at (datetime.datetime):
-            publications (list[OutputRFPPublicationItem]):
-            has_shortlisted (bool):
-            published_at (datetime.datetime | None | Unset):
-            closed_at (datetime.datetime | None | Unset):
-            cancelled_at (datetime.datetime | None | Unset):
-            awarded_at (datetime.datetime | None | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        internal_code (None | str):
+        description (str):
+        category (str):
+        category_display (str):
+        currency_code (str):
+        budget_min (float | None | str):
+        budget_max (float | None | str):
+        submission_deadline (datetime.date):
+        status (str):
+        status_display (str):
+        is_active (bool):
+        created_by_name (str):
+        created_at (datetime.datetime):
+        publications (list[OutputRFPPublicationItem]):
+        has_shortlisted (bool):
+        published_at (datetime.datetime | None | Unset):
+        closed_at (datetime.datetime | None | Unset):
+        cancelled_at (datetime.datetime | None | Unset):
+        awarded_at (datetime.datetime | None | Unset):
+    """
 
     id: str
     name: str
@@ -75,12 +68,7 @@ class OutputRFPDetail:
     awarded_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_rfp_publication_item import OutputRFPPublicationItem
         id = self.id
 
         name = self.name
@@ -119,8 +107,6 @@ class OutputRFPDetail:
             publications_item = publications_item_data.to_dict()
             publications.append(publications_item)
 
-
-
         has_shortlisted = self.has_shortlisted
 
         published_at: None | str | Unset
@@ -155,28 +141,29 @@ class OutputRFPDetail:
         else:
             awarded_at = self.awarded_at
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "internal_code": internal_code,
-            "description": description,
-            "category": category,
-            "category_display": category_display,
-            "currency_code": currency_code,
-            "budget_min": budget_min,
-            "budget_max": budget_max,
-            "submission_deadline": submission_deadline,
-            "status": status,
-            "status_display": status_display,
-            "is_active": is_active,
-            "created_by_name": created_by_name,
-            "created_at": created_at,
-            "publications": publications,
-            "has_shortlisted": has_shortlisted,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "internal_code": internal_code,
+                "description": description,
+                "category": category,
+                "category_display": category_display,
+                "currency_code": currency_code,
+                "budget_min": budget_min,
+                "budget_max": budget_max,
+                "submission_deadline": submission_deadline,
+                "status": status,
+                "status_display": status_display,
+                "is_active": is_active,
+                "created_by_name": created_by_name,
+                "created_at": created_at,
+                "publications": publications,
+                "has_shortlisted": has_shortlisted,
+            }
+        )
         if published_at is not UNSET:
             field_dict["published_at"] = published_at
         if closed_at is not UNSET:
@@ -188,11 +175,10 @@ class OutputRFPDetail:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_rfp_publication_item import OutputRFPPublicationItem
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -204,7 +190,6 @@ class OutputRFPDetail:
             return cast(None | str, data)
 
         internal_code = _parse_internal_code(d.pop("internal_code"))
-
 
         description = d.pop("description")
 
@@ -221,7 +206,6 @@ class OutputRFPDetail:
 
         budget_min = _parse_budget_min(d.pop("budget_min"))
 
-
         def _parse_budget_max(data: object) -> float | None | str:
             if data is None:
                 return data
@@ -229,11 +213,7 @@ class OutputRFPDetail:
 
         budget_max = _parse_budget_max(d.pop("budget_max"))
 
-
         submission_deadline = isoparse(d.pop("submission_deadline")).date()
-
-
-
 
         status = d.pop("status")
 
@@ -245,18 +225,14 @@ class OutputRFPDetail:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         publications = []
         _publications = d.pop("publications")
-        for publications_item_data in (_publications):
-            publications_item = OutputRFPPublicationItem.from_dict(publications_item_data)
-
-
+        for publications_item_data in _publications:
+            publications_item = OutputRFPPublicationItem.from_dict(
+                publications_item_data
+            )
 
             publications.append(publications_item)
-
 
         has_shortlisted = d.pop("has_shortlisted")
 
@@ -270,15 +246,12 @@ class OutputRFPDetail:
                     raise TypeError()
                 published_at_type_0 = isoparse(data)
 
-
-
                 return published_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         published_at = _parse_published_at(d.pop("published_at", UNSET))
-
 
         def _parse_closed_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -290,15 +263,12 @@ class OutputRFPDetail:
                     raise TypeError()
                 closed_at_type_0 = isoparse(data)
 
-
-
                 return closed_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         closed_at = _parse_closed_at(d.pop("closed_at", UNSET))
-
 
         def _parse_cancelled_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -310,15 +280,12 @@ class OutputRFPDetail:
                     raise TypeError()
                 cancelled_at_type_0 = isoparse(data)
 
-
-
                 return cancelled_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         cancelled_at = _parse_cancelled_at(d.pop("cancelled_at", UNSET))
-
 
         def _parse_awarded_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -330,15 +297,12 @@ class OutputRFPDetail:
                     raise TypeError()
                 awarded_at_type_0 = isoparse(data)
 
-
-
                 return awarded_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         awarded_at = _parse_awarded_at(d.pop("awarded_at", UNSET))
-
 
         output_rfp_detail = cls(
             id=id,
@@ -363,7 +327,6 @@ class OutputRFPDetail:
             cancelled_at=cancelled_at,
             awarded_at=awarded_at,
         )
-
 
         output_rfp_detail.additional_properties = d
         return output_rfp_detail

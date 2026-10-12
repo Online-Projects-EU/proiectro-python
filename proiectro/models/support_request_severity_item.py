@@ -1,44 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="SupportRequestSeverityItem")
-
 
 
 @_attrs_define
 class SupportRequestSeverityItem:
-    """ Single support request severity
+    """Single support request severity
 
-        Attributes:
-            id (str):
-            name (str):
-            description (None | str):
-            severity_score (int):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        description (None | str):
+        severity_score (int):
+    """
 
     id: str
     name: str
     description: None | str
     severity_score: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -50,19 +36,18 @@ class SupportRequestSeverityItem:
 
         severity_score = self.severity_score
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "description": description,
-            "severity_score": severity_score,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "description": description,
+                "severity_score": severity_score,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -78,7 +63,6 @@ class SupportRequestSeverityItem:
 
         description = _parse_description(d.pop("description"))
 
-
         severity_score = d.pop("severity_score")
 
         support_request_severity_item = cls(
@@ -87,7 +71,6 @@ class SupportRequestSeverityItem:
             description=description,
             severity_score=severity_score,
         )
-
 
         support_request_severity_item.additional_properties = d
         return support_request_severity_item

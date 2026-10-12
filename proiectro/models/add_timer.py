@@ -1,50 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddTimer")
-
 
 
 @_attrs_define
 class AddTimer:
-    """ 
-        Attributes:
-            name (str):
-            description (str | Unset):  Default: ''.
-            is_enabled (bool | Unset):  Default: False.
-            schedule_type (str | Unset):  Default: 'daily'.
-            schedule_hour (int | None | Unset):  Default: 9.
-            schedule_day_of_week (int | None | Unset):
-            schedule_day_of_month (int | None | Unset):
-     """
+    """
+    Attributes:
+        name (str):
+        description (str | Unset):  Default: ''.
+        is_enabled (bool | Unset):  Default: False.
+        schedule_type (str | Unset):  Default: 'daily'.
+        schedule_hour (int | None | Unset):  Default: 9.
+        schedule_day_of_week (int | None | Unset):
+        schedule_day_of_month (int | None | Unset):
+    """
 
     name: str
-    description: str | Unset = ''
+    description: str | Unset = ""
     is_enabled: bool | Unset = False
-    schedule_type: str | Unset = 'daily'
+    schedule_type: str | Unset = "daily"
     schedule_hour: int | None | Unset = 9
     schedule_day_of_week: int | None | Unset = UNSET
     schedule_day_of_month: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -73,12 +60,13 @@ class AddTimer:
         else:
             schedule_day_of_month = self.schedule_day_of_month
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if is_enabled is not UNSET:
@@ -93,8 +81,6 @@ class AddTimer:
             field_dict["schedule_day_of_month"] = schedule_day_of_month
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -116,7 +102,6 @@ class AddTimer:
 
         schedule_hour = _parse_schedule_hour(d.pop("schedule_hour", UNSET))
 
-
         def _parse_schedule_day_of_week(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -124,8 +109,9 @@ class AddTimer:
                 return data
             return cast(int | None | Unset, data)
 
-        schedule_day_of_week = _parse_schedule_day_of_week(d.pop("schedule_day_of_week", UNSET))
-
+        schedule_day_of_week = _parse_schedule_day_of_week(
+            d.pop("schedule_day_of_week", UNSET)
+        )
 
         def _parse_schedule_day_of_month(data: object) -> int | None | Unset:
             if data is None:
@@ -134,8 +120,9 @@ class AddTimer:
                 return data
             return cast(int | None | Unset, data)
 
-        schedule_day_of_month = _parse_schedule_day_of_month(d.pop("schedule_day_of_month", UNSET))
-
+        schedule_day_of_month = _parse_schedule_day_of_month(
+            d.pop("schedule_day_of_month", UNSET)
+        )
 
         add_timer = cls(
             name=name,
@@ -146,7 +133,6 @@ class AddTimer:
             schedule_day_of_week=schedule_day_of_week,
             schedule_day_of_month=schedule_day_of_month,
         )
-
 
         add_timer.additional_properties = d
         return add_timer

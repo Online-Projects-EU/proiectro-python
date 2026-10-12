@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AddCustomProductPricingType(str, Enum):
     FIXED_PRICE = "fixed_price"
     HOURLY_RATE = "hourly_rate"

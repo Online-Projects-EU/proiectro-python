@@ -1,40 +1,34 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="AnalyticsAlertItem")
 
 
-
 @_attrs_define
 class AnalyticsAlertItem:
-    """ Single alert item
+    """Single alert item
 
-        Attributes:
-            id (str):
-            severity (str):
-            category (str):
-            title (str):
-            description (str):
-            created_at (datetime.datetime):
-            action_url (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        severity (str):
+        category (str):
+        title (str):
+        description (str):
+        created_at (datetime.datetime):
+        action_url (None | str | Unset):
+        amount (float | None | str | Unset):
+        currency (None | str | Unset):
+        days_info (None | str | Unset):
+    """
 
     id: str
     severity: str
@@ -43,11 +37,10 @@ class AnalyticsAlertItem:
     description: str
     created_at: datetime.datetime
     action_url: None | str | Unset = UNSET
+    amount: float | None | str | Unset = UNSET
+    currency: None | str | Unset = UNSET
+    days_info: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -68,23 +61,46 @@ class AnalyticsAlertItem:
         else:
             action_url = self.action_url
 
+        amount: float | None | str | Unset
+        if isinstance(self.amount, Unset):
+            amount = UNSET
+        else:
+            amount = self.amount
+
+        currency: None | str | Unset
+        if isinstance(self.currency, Unset):
+            currency = UNSET
+        else:
+            currency = self.currency
+
+        days_info: None | str | Unset
+        if isinstance(self.days_info, Unset):
+            days_info = UNSET
+        else:
+            days_info = self.days_info
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "severity": severity,
-            "category": category,
-            "title": title,
-            "description": description,
-            "created_at": created_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "severity": severity,
+                "category": category,
+                "title": title,
+                "description": description,
+                "created_at": created_at,
+            }
+        )
         if action_url is not UNSET:
             field_dict["action_url"] = action_url
+        if amount is not UNSET:
+            field_dict["amount"] = amount
+        if currency is not UNSET:
+            field_dict["currency"] = currency
+        if days_info is not UNSET:
+            field_dict["days_info"] = days_info
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -101,9 +117,6 @@ class AnalyticsAlertItem:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         def _parse_action_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -113,6 +126,32 @@ class AnalyticsAlertItem:
 
         action_url = _parse_action_url(d.pop("action_url", UNSET))
 
+        def _parse_amount(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        amount = _parse_amount(d.pop("amount", UNSET))
+
+        def _parse_currency(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        currency = _parse_currency(d.pop("currency", UNSET))
+
+        def _parse_days_info(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        days_info = _parse_days_info(d.pop("days_info", UNSET))
 
         analytics_alert_item = cls(
             id=id,
@@ -122,8 +161,10 @@ class AnalyticsAlertItem:
             description=description,
             created_at=created_at,
             action_url=action_url,
+            amount=amount,
+            currency=currency,
+            days_info=days_info,
         )
-
 
         analytics_alert_item.additional_properties = d
         return analytics_alert_item

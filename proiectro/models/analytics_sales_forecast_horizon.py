@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AnalyticsSalesForecastHorizon(str, Enum):
     VALUE_0 = "3m"
     VALUE_1 = "6m"

@@ -1,36 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddExternalSupportRequest")
-
 
 
 @_attrs_define
 class AddExternalSupportRequest:
-    """ Input schema for creating external support request from customer portal
+    """Input schema for creating external support request from customer portal
 
-        Attributes:
-            request_type (str):
-            request_severity (str):
-            title (str):
-            description (str):
-            reported_asset (None | str | Unset):
-     """
+    Attributes:
+        request_type (str):
+        request_severity (str):
+        title (str):
+        description (str):
+        reported_asset (None | str | Unset):
+    """
 
     request_type: str
     request_severity: str
@@ -38,10 +29,6 @@ class AddExternalSupportRequest:
     description: str
     reported_asset: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         request_type = self.request_type
@@ -58,21 +45,20 @@ class AddExternalSupportRequest:
         else:
             reported_asset = self.reported_asset
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "request_type": request_type,
-            "request_severity": request_severity,
-            "title": title,
-            "description": description,
-        })
+        field_dict.update(
+            {
+                "request_type": request_type,
+                "request_severity": request_severity,
+                "title": title,
+                "description": description,
+            }
+        )
         if reported_asset is not UNSET:
             field_dict["reported_asset"] = reported_asset
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -94,7 +80,6 @@ class AddExternalSupportRequest:
 
         reported_asset = _parse_reported_asset(d.pop("reported_asset", UNSET))
 
-
         add_external_support_request = cls(
             request_type=request_type,
             request_severity=request_severity,
@@ -102,7 +87,6 @@ class AddExternalSupportRequest:
             description=description,
             reported_asset=reported_asset,
         )
-
 
         add_external_support_request.additional_properties = d
         return add_external_support_request

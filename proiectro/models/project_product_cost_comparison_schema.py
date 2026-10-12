@@ -1,29 +1,23 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
-
-
-
+    from ..models.project_product_cost_comparison_product_schema import (
+        ProjectProductCostComparisonProductSchema,
+    )
 
 
 T = TypeVar("T", bound="ProjectProductCostComparisonSchema")
 
 
-
 @_attrs_define
 class ProjectProductCostComparisonSchema:
-    """ Project product cost comparison data for grouped bar chart visualization
+    """Project product cost comparison data for grouped bar chart visualization
 
     The chart mode depends on financial management setting:
     - financial_mode=True: Shows grouped bars (proposal vs project cost)
@@ -34,30 +28,25 @@ class ProjectProductCostComparisonSchema:
             project_name (str):
             products (list[ProjectProductCostComparisonProductSchema]):
             currency_symbol (str):
-            max_cost (str):
-            total_proposal_cost (str):
-            total_project_cost (str):
+            max_cost (float | str):
+            total_proposal_cost (float | str):
+            total_project_cost (float | str):
             financial_mode (bool):
             simplified_mode (bool):
-     """
+    """
 
     project_id: str
     project_name: str
     products: list[ProjectProductCostComparisonProductSchema]
     currency_symbol: str
-    max_cost: str
-    total_proposal_cost: str
-    total_project_cost: str
+    max_cost: float | str
+    total_proposal_cost: float | str
+    total_project_cost: float | str
     financial_mode: bool
     simplified_mode: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
         project_id = self.project_id
 
         project_name = self.project_name
@@ -67,42 +56,45 @@ class ProjectProductCostComparisonSchema:
             products_item = products_item_data.to_dict()
             products.append(products_item)
 
-
-
         currency_symbol = self.currency_symbol
 
+        max_cost: float | str
         max_cost = self.max_cost
 
+        total_proposal_cost: float | str
         total_proposal_cost = self.total_proposal_cost
 
+        total_project_cost: float | str
         total_project_cost = self.total_project_cost
 
         financial_mode = self.financial_mode
 
         simplified_mode = self.simplified_mode
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "project_id": project_id,
-            "project_name": project_name,
-            "products": products,
-            "currency_symbol": currency_symbol,
-            "max_cost": max_cost,
-            "total_proposal_cost": total_proposal_cost,
-            "total_project_cost": total_project_cost,
-            "financial_mode": financial_mode,
-            "simplified_mode": simplified_mode,
-        })
+        field_dict.update(
+            {
+                "project_id": project_id,
+                "project_name": project_name,
+                "products": products,
+                "currency_symbol": currency_symbol,
+                "max_cost": max_cost,
+                "total_proposal_cost": total_proposal_cost,
+                "total_project_cost": total_project_cost,
+                "financial_mode": financial_mode,
+                "simplified_mode": simplified_mode,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_product_cost_comparison_product_schema import ProjectProductCostComparisonProductSchema
+        from ..models.project_product_cost_comparison_product_schema import (
+            ProjectProductCostComparisonProductSchema,
+        )
+
         d = dict(src_dict)
         project_id = d.pop("project_id")
 
@@ -110,21 +102,29 @@ class ProjectProductCostComparisonSchema:
 
         products = []
         _products = d.pop("products")
-        for products_item_data in (_products):
-            products_item = ProjectProductCostComparisonProductSchema.from_dict(products_item_data)
-
-
+        for products_item_data in _products:
+            products_item = ProjectProductCostComparisonProductSchema.from_dict(
+                products_item_data
+            )
 
             products.append(products_item)
 
-
         currency_symbol = d.pop("currency_symbol")
 
-        max_cost = d.pop("max_cost")
+        def _parse_max_cost(data: object) -> float | str:
+            return cast(float | str, data)
 
-        total_proposal_cost = d.pop("total_proposal_cost")
+        max_cost = _parse_max_cost(d.pop("max_cost"))
 
-        total_project_cost = d.pop("total_project_cost")
+        def _parse_total_proposal_cost(data: object) -> float | str:
+            return cast(float | str, data)
+
+        total_proposal_cost = _parse_total_proposal_cost(d.pop("total_proposal_cost"))
+
+        def _parse_total_project_cost(data: object) -> float | str:
+            return cast(float | str, data)
+
+        total_project_cost = _parse_total_project_cost(d.pop("total_project_cost"))
 
         financial_mode = d.pop("financial_mode")
 
@@ -141,7 +141,6 @@ class ProjectProductCostComparisonSchema:
             financial_mode=financial_mode,
             simplified_mode=simplified_mode,
         )
-
 
         project_product_cost_comparison_schema.additional_properties = d
         return project_product_cost_comparison_schema

@@ -1,78 +1,60 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.project_product_simple import ProjectProductSimple
-
-
-
+    from ..models.project_product_simple import ProjectProductSimple
 
 
 T = TypeVar("T", bound="ProjectProducts")
 
 
-
 @_attrs_define
 class ProjectProducts:
-    """ 
-        Attributes:
-            products (list[ProjectProductSimple]):
-            project_id (str):
-     """
+    """
+    Attributes:
+        products (list[ProjectProductSimple]):
+        project_id (str):
+    """
 
     products: list[ProjectProductSimple]
     project_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.project_product_simple import ProjectProductSimple
         products = []
         for products_item_data in self.products:
             products_item = products_item_data.to_dict()
             products.append(products_item)
 
-
-
         project_id = self.project_id
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "products": products,
-            "project_id": project_id,
-        })
+        field_dict.update(
+            {
+                "products": products,
+                "project_id": project_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.project_product_simple import ProjectProductSimple
+
         d = dict(src_dict)
         products = []
         _products = d.pop("products")
-        for products_item_data in (_products):
+        for products_item_data in _products:
             products_item = ProjectProductSimple.from_dict(products_item_data)
 
-
-
             products.append(products_item)
-
 
         project_id = d.pop("project_id")
 
@@ -80,7 +62,6 @@ class ProjectProducts:
             products=products,
             project_id=project_id,
         )
-
 
         project_products.additional_properties = d
         return project_products

@@ -1,47 +1,38 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="WorkLogItem")
 
 
-
 @_attrs_define
 class WorkLogItem:
-    """ 
-        Attributes:
-            external_id (str):
-            member_full_name (str):
-            member_id (str):
-            hours (int):
-            date (datetime.date):
-            note (str):
-            is_deletable (bool):
-            is_editable (bool):
-            booking_name (None | str | Unset):
-            booking_id (None | str | Unset):
-     """
+    """
+    Attributes:
+        external_id (str):
+        member_full_name (str):
+        member_id (str):
+        minutes (int):
+        date (datetime.date):
+        note (str):
+        is_deletable (bool):
+        is_editable (bool):
+        booking_name (None | str | Unset):
+        booking_id (None | str | Unset):
+    """
 
     external_id: str
     member_full_name: str
     member_id: str
-    hours: int
+    minutes: int
     date: datetime.date
     note: str
     is_deletable: bool
@@ -50,10 +41,6 @@ class WorkLogItem:
     booking_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
 
@@ -61,7 +48,7 @@ class WorkLogItem:
 
         member_id = self.member_id
 
-        hours = self.hours
+        minutes = self.minutes
 
         date = self.date.isoformat()
 
@@ -83,27 +70,26 @@ class WorkLogItem:
         else:
             booking_id = self.booking_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "member_full_name": member_full_name,
-            "member_id": member_id,
-            "hours": hours,
-            "date": date,
-            "note": note,
-            "is_deletable": is_deletable,
-            "is_editable": is_editable,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "member_full_name": member_full_name,
+                "member_id": member_id,
+                "minutes": minutes,
+                "date": date,
+                "note": note,
+                "is_deletable": is_deletable,
+                "is_editable": is_editable,
+            }
+        )
         if booking_name is not UNSET:
             field_dict["booking_name"] = booking_name
         if booking_id is not UNSET:
             field_dict["booking_id"] = booking_id
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -114,12 +100,9 @@ class WorkLogItem:
 
         member_id = d.pop("member_id")
 
-        hours = d.pop("hours")
+        minutes = d.pop("minutes")
 
         date = isoparse(d.pop("date")).date()
-
-
-
 
         note = d.pop("note")
 
@@ -136,7 +119,6 @@ class WorkLogItem:
 
         booking_name = _parse_booking_name(d.pop("booking_name", UNSET))
 
-
         def _parse_booking_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -146,12 +128,11 @@ class WorkLogItem:
 
         booking_id = _parse_booking_id(d.pop("booking_id", UNSET))
 
-
         work_log_item = cls(
             external_id=external_id,
             member_full_name=member_full_name,
             member_id=member_id,
-            hours=hours,
+            minutes=minutes,
             date=date,
             note=note,
             is_deletable=is_deletable,
@@ -159,7 +140,6 @@ class WorkLogItem:
             booking_name=booking_name,
             booking_id=booking_id,
         )
-
 
         work_log_item.additional_properties = d
         return work_log_item

@@ -1,51 +1,44 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.portal_action_status import PortalActionStatus
-  from ..models.product_status_detail import ProductStatusDetail
-
-
-
+    from ..models.portal_action_status import PortalActionStatus
+    from ..models.product_status_detail import ProductStatusDetail
 
 
 T = TypeVar("T", bound="CustomerPortalProjectProductItem")
 
 
-
 @_attrs_define
 class CustomerPortalProjectProductItem:
-    """ Individual project product item for customer portal
+    """Individual project product item for customer portal
 
-        Attributes:
-            external_id (str):
-            name (str):
-            product_count (int):
-            is_active (bool):
-            is_asap (bool):
-            current_status (ProductStatusDetail): Product status for lifecycle display.
-                Used in status dropdowns to show current status and all available lifecycle stages.
-                Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
-            lifecycle_statuses (list[ProductStatusDetail]):
-            planned_start (datetime.datetime | None | Unset):
-            planned_end (datetime.datetime | None | Unset):
-            duration_days (int | None | Unset):
-            is_customer_actionable (bool | Unset):  Default: False.
-            accept_status (None | PortalActionStatus | Unset):
-            reject_statuses (list[PortalActionStatus] | Unset):
-     """
+    Attributes:
+        external_id (str):
+        name (str):
+        product_count (int):
+        is_active (bool):
+        is_asap (bool):
+        current_status (ProductStatusDetail): Product status for lifecycle display.
+            Used in status dropdowns to show current status and all available lifecycle stages.
+            Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
+        lifecycle_statuses (list[ProductStatusDetail]):
+        planned_start (datetime.datetime | None | Unset):
+        planned_end (datetime.datetime | None | Unset):
+        duration_days (int | None | Unset):
+        is_customer_actionable (bool | Unset):  Default: False.
+        accept_status (None | PortalActionStatus | Unset):
+        reject_statuses (list[PortalActionStatus] | Unset):
+    """
 
     external_id: str
     name: str
@@ -62,13 +55,9 @@ class CustomerPortalProjectProductItem:
     reject_statuses: list[PortalActionStatus] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.product_status_detail import ProductStatusDetail
         from ..models.portal_action_status import PortalActionStatus
+
         external_id = self.external_id
 
         name = self.name
@@ -85,8 +74,6 @@ class CustomerPortalProjectProductItem:
         for lifecycle_statuses_item_data in self.lifecycle_statuses:
             lifecycle_statuses_item = lifecycle_statuses_item_data.to_dict()
             lifecycle_statuses.append(lifecycle_statuses_item)
-
-
 
         planned_start: None | str | Unset
         if isinstance(self.planned_start, Unset):
@@ -127,20 +114,19 @@ class CustomerPortalProjectProductItem:
                 reject_statuses_item = reject_statuses_item_data.to_dict()
                 reject_statuses.append(reject_statuses_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "name": name,
-            "product_count": product_count,
-            "is_active": is_active,
-            "is_asap": is_asap,
-            "current_status": current_status,
-            "lifecycle_statuses": lifecycle_statuses,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "name": name,
+                "product_count": product_count,
+                "is_active": is_active,
+                "is_asap": is_asap,
+                "current_status": current_status,
+                "lifecycle_statuses": lifecycle_statuses,
+            }
+        )
         if planned_start is not UNSET:
             field_dict["planned_start"] = planned_start
         if planned_end is not UNSET:
@@ -156,12 +142,11 @@ class CustomerPortalProjectProductItem:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.portal_action_status import PortalActionStatus
         from ..models.product_status_detail import ProductStatusDetail
+
         d = dict(src_dict)
         external_id = d.pop("external_id")
 
@@ -175,18 +160,14 @@ class CustomerPortalProjectProductItem:
 
         current_status = ProductStatusDetail.from_dict(d.pop("current_status"))
 
-
-
-
         lifecycle_statuses = []
         _lifecycle_statuses = d.pop("lifecycle_statuses")
-        for lifecycle_statuses_item_data in (_lifecycle_statuses):
-            lifecycle_statuses_item = ProductStatusDetail.from_dict(lifecycle_statuses_item_data)
-
-
+        for lifecycle_statuses_item_data in _lifecycle_statuses:
+            lifecycle_statuses_item = ProductStatusDetail.from_dict(
+                lifecycle_statuses_item_data
+            )
 
             lifecycle_statuses.append(lifecycle_statuses_item)
-
 
         def _parse_planned_start(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -198,15 +179,12 @@ class CustomerPortalProjectProductItem:
                     raise TypeError()
                 planned_start_type_0 = isoparse(data)
 
-
-
                 return planned_start_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         planned_start = _parse_planned_start(d.pop("planned_start", UNSET))
-
 
         def _parse_planned_end(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -218,15 +196,12 @@ class CustomerPortalProjectProductItem:
                     raise TypeError()
                 planned_end_type_0 = isoparse(data)
 
-
-
                 return planned_end_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
-
 
         def _parse_duration_days(data: object) -> int | None | Unset:
             if data is None:
@@ -236,7 +211,6 @@ class CustomerPortalProjectProductItem:
             return cast(int | None | Unset, data)
 
         duration_days = _parse_duration_days(d.pop("duration_days", UNSET))
-
 
         is_customer_actionable = d.pop("is_customer_actionable", UNSET)
 
@@ -250,8 +224,6 @@ class CustomerPortalProjectProductItem:
                     raise TypeError()
                 accept_status_type_0 = PortalActionStatus.from_dict(data)
 
-
-
                 return accept_status_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -259,18 +231,16 @@ class CustomerPortalProjectProductItem:
 
         accept_status = _parse_accept_status(d.pop("accept_status", UNSET))
 
-
         _reject_statuses = d.pop("reject_statuses", UNSET)
         reject_statuses: list[PortalActionStatus] | Unset = UNSET
         if _reject_statuses is not UNSET:
             reject_statuses = []
             for reject_statuses_item_data in _reject_statuses:
-                reject_statuses_item = PortalActionStatus.from_dict(reject_statuses_item_data)
-
-
+                reject_statuses_item = PortalActionStatus.from_dict(
+                    reject_statuses_item_data
+                )
 
                 reject_statuses.append(reject_statuses_item)
-
 
         customer_portal_project_product_item = cls(
             external_id=external_id,
@@ -287,7 +257,6 @@ class CustomerPortalProjectProductItem:
             accept_status=accept_status,
             reject_statuses=reject_statuses,
         )
-
 
         customer_portal_project_product_item.additional_properties = d
         return customer_portal_project_product_item

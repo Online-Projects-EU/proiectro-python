@@ -1,33 +1,30 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.output_work_item_submission_fields_item import OutputWorkItemSubmissionFieldsItem
-  from ..models.output_work_item_submission_values import OutputWorkItemSubmissionValues
-
-
-
+    from ..models.output_work_item_submission_fields_item import (
+        OutputWorkItemSubmissionFieldsItem,
+    )
+    from ..models.output_work_item_submission_values import (
+        OutputWorkItemSubmissionValues,
+    )
 
 
 T = TypeVar("T", bound="OutputWorkItemSubmission")
 
 
-
 @_attrs_define
 class OutputWorkItemSubmission:
-    """ One submission captured for a work item, rendered against its OWN version's fields
+    """One submission captured for a work item, rendered against its OWN version's fields
     (historical accuracy) for the persistent 'Form data' section on the work item card.
 
         Attributes:
@@ -41,7 +38,7 @@ class OutputWorkItemSubmission:
             submitter_name (str | Unset):  Default: ''.
             status_color (str | Unset):  Default: 'primary'.
             status_label (str | Unset):  Default: ''.
-     """
+    """
 
     id: str
     form_name: str
@@ -50,18 +47,12 @@ class OutputWorkItemSubmission:
     status: str
     fields: list[OutputWorkItemSubmissionFieldsItem]
     values: OutputWorkItemSubmissionValues
-    submitter_name: str | Unset = ''
-    status_color: str | Unset = 'primary'
-    status_label: str | Unset = ''
+    submitter_name: str | Unset = ""
+    status_color: str | Unset = "primary"
+    status_label: str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_work_item_submission_fields_item import OutputWorkItemSubmissionFieldsItem
-        from ..models.output_work_item_submission_values import OutputWorkItemSubmissionValues
         id = self.id
 
         form_name = self.form_name
@@ -77,8 +68,6 @@ class OutputWorkItemSubmission:
             fields_item = fields_item_data.to_dict()
             fields.append(fields_item)
 
-
-
         values = self.values.to_dict()
 
         submitter_name = self.submitter_name
@@ -87,18 +76,19 @@ class OutputWorkItemSubmission:
 
         status_label = self.status_label
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "form_name": form_name,
-            "form_version": form_version,
-            "submitted_at": submitted_at,
-            "status": status,
-            "fields": fields,
-            "values": values,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "form_name": form_name,
+                "form_version": form_version,
+                "submitted_at": submitted_at,
+                "status": status,
+                "fields": fields,
+                "values": values,
+            }
+        )
         if submitter_name is not UNSET:
             field_dict["submitter_name"] = submitter_name
         if status_color is not UNSET:
@@ -108,12 +98,15 @@ class OutputWorkItemSubmission:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_work_item_submission_fields_item import OutputWorkItemSubmissionFieldsItem
-        from ..models.output_work_item_submission_values import OutputWorkItemSubmissionValues
+        from ..models.output_work_item_submission_fields_item import (
+            OutputWorkItemSubmissionFieldsItem,
+        )
+        from ..models.output_work_item_submission_values import (
+            OutputWorkItemSubmissionValues,
+        )
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -123,25 +116,16 @@ class OutputWorkItemSubmission:
 
         submitted_at = isoparse(d.pop("submitted_at"))
 
-
-
-
         status = d.pop("status")
 
         fields = []
         _fields = d.pop("fields")
-        for fields_item_data in (_fields):
+        for fields_item_data in _fields:
             fields_item = OutputWorkItemSubmissionFieldsItem.from_dict(fields_item_data)
-
-
 
             fields.append(fields_item)
 
-
         values = OutputWorkItemSubmissionValues.from_dict(d.pop("values"))
-
-
-
 
         submitter_name = d.pop("submitter_name", UNSET)
 
@@ -161,7 +145,6 @@ class OutputWorkItemSubmission:
             status_color=status_color,
             status_label=status_label,
         )
-
 
         output_work_item_submission.additional_properties = d
         return output_work_item_submission

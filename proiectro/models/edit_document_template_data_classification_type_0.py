@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EditDocumentTemplateDataClassificationType0(str, Enum):
     CONFIDENTIAL = "confidential"
     INTERNAL = "internal"

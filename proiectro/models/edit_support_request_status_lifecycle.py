@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EditSupportRequestStatusLifecycle(str, Enum):
     CLOSED = "CLOSED"
     IN_PROGRESS = "IN_PROGRESS"

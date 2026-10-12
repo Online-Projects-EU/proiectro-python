@@ -1,43 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="FilesStorageMetrics")
-
 
 
 @_attrs_define
 class FilesStorageMetrics:
-    """ Files storage metrics for dashboard
+    """Files storage metrics for dashboard
 
-        Attributes:
-            total_size (str):
-            total_files (int):
-            uploads_today (int):
-            active_users (int):
-     """
+    Attributes:
+        total_size (str):
+        total_files (int):
+        uploads_today (int):
+        active_users (int):
+    """
 
     total_size: str
     total_files: int
     uploads_today: int
     active_users: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         total_size = self.total_size
@@ -48,19 +35,18 @@ class FilesStorageMetrics:
 
         active_users = self.active_users
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_size": total_size,
-            "total_files": total_files,
-            "uploads_today": uploads_today,
-            "active_users": active_users,
-        })
+        field_dict.update(
+            {
+                "total_size": total_size,
+                "total_files": total_files,
+                "uploads_today": uploads_today,
+                "active_users": active_users,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -79,7 +65,6 @@ class FilesStorageMetrics:
             uploads_today=uploads_today,
             active_users=active_users,
         )
-
 
         files_storage_metrics.additional_properties = d
         return files_storage_metrics

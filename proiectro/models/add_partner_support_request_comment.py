@@ -1,45 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddPartnerSupportRequestComment")
-
 
 
 @_attrs_define
 class AddPartnerSupportRequestComment:
-    """ Input schema for partner adding comment to existing support request
+    """Input schema for partner adding comment to existing support request
 
-        Attributes:
-            support_request_id (str):
-            bridge_id (str):
-            content (str):
-            parent_id (None | str | Unset):
-     """
+    Attributes:
+        support_request_id (str):
+        bridge_id (str):
+        content (str):
+        parent_id (None | str | Unset):
+    """
 
     support_request_id: str
     bridge_id: str
     content: str
     parent_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         support_request_id = self.support_request_id
@@ -54,20 +41,19 @@ class AddPartnerSupportRequestComment:
         else:
             parent_id = self.parent_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "support_request_id": support_request_id,
-            "bridge_id": bridge_id,
-            "content": content,
-        })
+        field_dict.update(
+            {
+                "support_request_id": support_request_id,
+                "bridge_id": bridge_id,
+                "content": content,
+            }
+        )
         if parent_id is not UNSET:
             field_dict["parent_id"] = parent_id
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -87,14 +73,12 @@ class AddPartnerSupportRequestComment:
 
         parent_id = _parse_parent_id(d.pop("parent_id", UNSET))
 
-
         add_partner_support_request_comment = cls(
             support_request_id=support_request_id,
             bridge_id=bridge_id,
             content=content,
             parent_id=parent_id,
         )
-
 
         add_partner_support_request_comment.additional_properties = d
         return add_partner_support_request_comment

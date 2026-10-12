@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AddLabelLabelType(str, Enum):
     DATE = "date"
     DECIMAL = "decimal"

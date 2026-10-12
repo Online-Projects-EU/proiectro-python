@@ -1,69 +1,52 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.new_automation_data import NewAutomationData
-
-
-
+    from ..models.new_automation_data import NewAutomationData
 
 
 T = TypeVar("T", bound="NewAutomation")
 
 
-
 @_attrs_define
 class NewAutomation:
-    """ Input: create a new automation rule.
+    """Input: create a new automation rule.
 
-        Attributes:
-            automation (NewAutomationData): The full payload for creating a new automation rule.
-     """
+    Attributes:
+        automation (NewAutomationData): The full payload for creating a new automation rule.
+    """
 
     automation: NewAutomationData
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.new_automation_data import NewAutomationData
         automation = self.automation.to_dict()
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "automation": automation,
-        })
+        field_dict.update(
+            {
+                "automation": automation,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.new_automation_data import NewAutomationData
+
         d = dict(src_dict)
         automation = NewAutomationData.from_dict(d.pop("automation"))
-
-
-
 
         new_automation = cls(
             automation=automation,
         )
-
 
         new_automation.additional_properties = d
         return new_automation

@@ -7,6 +7,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.add_work_log import AddWorkLog
+from ...models.add_work_log_response import AddWorkLogResponse
 from ...models.api_response import APIResponse
 from ...types import Response
 
@@ -35,7 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | AddWorkLogResponse | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
@@ -51,6 +52,11 @@ def _parse_response(
 
         return response_409
 
+    if response.status_code == 422:
+        response_422 = AddWorkLogResponse.from_dict(response.json())
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -59,7 +65,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | AddWorkLogResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,7 +79,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | AddWorkLogResponse]:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -88,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | AddWorkLogResponse]
     """
 
     kwargs = _get_kwargs(
@@ -108,7 +114,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> APIResponse | None:
+) -> APIResponse | AddWorkLogResponse | None:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -123,7 +129,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | AddWorkLogResponse
     """
 
     return sync_detailed(
@@ -138,7 +144,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | AddWorkLogResponse]:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -153,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | AddWorkLogResponse]
     """
 
     kwargs = _get_kwargs(
@@ -171,7 +177,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> APIResponse | None:
+) -> APIResponse | AddWorkLogResponse | None:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -186,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | AddWorkLogResponse
     """
 
     return (

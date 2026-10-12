@@ -1,125 +1,124 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.payment_cumulative_chart_data_cumulative_expected_item import PaymentCumulativeChartDataCumulativeExpectedItem
-  from ..models.payment_cumulative_chart_data_cumulative_paid_item import PaymentCumulativeChartDataCumulativePaidItem
-  from ..models.payment_cumulative_chart_data_summary import PaymentCumulativeChartDataSummary
-
-
-
+    from ..models.payment_cumulative_chart_data_cumulative_expected_item import (
+        PaymentCumulativeChartDataCumulativeExpectedItem,
+    )
+    from ..models.payment_cumulative_chart_data_cumulative_paid_item import (
+        PaymentCumulativeChartDataCumulativePaidItem,
+    )
+    from ..models.payment_cumulative_chart_data_summary import (
+        PaymentCumulativeChartDataSummary,
+    )
 
 
 T = TypeVar("T", bound="PaymentCumulativeChartData")
 
 
-
 @_attrs_define
 class PaymentCumulativeChartData:
-    """ Data for cumulative payment flow chart
+    """Data for cumulative payment flow chart
 
-        Attributes:
-            cumulative_expected (list[PaymentCumulativeChartDataCumulativeExpectedItem]):
-            cumulative_paid (list[PaymentCumulativeChartDataCumulativePaidItem]):
-            summary (PaymentCumulativeChartDataSummary):
-            currency_symbol (str):
-     """
+    Attributes:
+        cumulative_expected (list[PaymentCumulativeChartDataCumulativeExpectedItem]):
+        cumulative_paid (list[PaymentCumulativeChartDataCumulativePaidItem]):
+        summary (PaymentCumulativeChartDataSummary):
+        currency_symbol (str):
+        currency_code (str):
+    """
 
     cumulative_expected: list[PaymentCumulativeChartDataCumulativeExpectedItem]
     cumulative_paid: list[PaymentCumulativeChartDataCumulativePaidItem]
     summary: PaymentCumulativeChartDataSummary
     currency_symbol: str
+    currency_code: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.payment_cumulative_chart_data_cumulative_expected_item import PaymentCumulativeChartDataCumulativeExpectedItem
-        from ..models.payment_cumulative_chart_data_summary import PaymentCumulativeChartDataSummary
-        from ..models.payment_cumulative_chart_data_cumulative_paid_item import PaymentCumulativeChartDataCumulativePaidItem
         cumulative_expected = []
         for cumulative_expected_item_data in self.cumulative_expected:
             cumulative_expected_item = cumulative_expected_item_data.to_dict()
             cumulative_expected.append(cumulative_expected_item)
-
-
 
         cumulative_paid = []
         for cumulative_paid_item_data in self.cumulative_paid:
             cumulative_paid_item = cumulative_paid_item_data.to_dict()
             cumulative_paid.append(cumulative_paid_item)
 
-
-
         summary = self.summary.to_dict()
 
         currency_symbol = self.currency_symbol
 
+        currency_code = self.currency_code
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "cumulative_expected": cumulative_expected,
-            "cumulative_paid": cumulative_paid,
-            "summary": summary,
-            "currency_symbol": currency_symbol,
-        })
+        field_dict.update(
+            {
+                "cumulative_expected": cumulative_expected,
+                "cumulative_paid": cumulative_paid,
+                "summary": summary,
+                "currency_symbol": currency_symbol,
+                "currency_code": currency_code,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.payment_cumulative_chart_data_cumulative_expected_item import PaymentCumulativeChartDataCumulativeExpectedItem
-        from ..models.payment_cumulative_chart_data_cumulative_paid_item import PaymentCumulativeChartDataCumulativePaidItem
-        from ..models.payment_cumulative_chart_data_summary import PaymentCumulativeChartDataSummary
+        from ..models.payment_cumulative_chart_data_cumulative_expected_item import (
+            PaymentCumulativeChartDataCumulativeExpectedItem,
+        )
+        from ..models.payment_cumulative_chart_data_cumulative_paid_item import (
+            PaymentCumulativeChartDataCumulativePaidItem,
+        )
+        from ..models.payment_cumulative_chart_data_summary import (
+            PaymentCumulativeChartDataSummary,
+        )
+
         d = dict(src_dict)
         cumulative_expected = []
         _cumulative_expected = d.pop("cumulative_expected")
-        for cumulative_expected_item_data in (_cumulative_expected):
-            cumulative_expected_item = PaymentCumulativeChartDataCumulativeExpectedItem.from_dict(cumulative_expected_item_data)
-
-
+        for cumulative_expected_item_data in _cumulative_expected:
+            cumulative_expected_item = (
+                PaymentCumulativeChartDataCumulativeExpectedItem.from_dict(
+                    cumulative_expected_item_data
+                )
+            )
 
             cumulative_expected.append(cumulative_expected_item)
 
-
         cumulative_paid = []
         _cumulative_paid = d.pop("cumulative_paid")
-        for cumulative_paid_item_data in (_cumulative_paid):
-            cumulative_paid_item = PaymentCumulativeChartDataCumulativePaidItem.from_dict(cumulative_paid_item_data)
-
-
+        for cumulative_paid_item_data in _cumulative_paid:
+            cumulative_paid_item = (
+                PaymentCumulativeChartDataCumulativePaidItem.from_dict(
+                    cumulative_paid_item_data
+                )
+            )
 
             cumulative_paid.append(cumulative_paid_item)
 
-
         summary = PaymentCumulativeChartDataSummary.from_dict(d.pop("summary"))
 
-
-
-
         currency_symbol = d.pop("currency_symbol")
+
+        currency_code = d.pop("currency_code")
 
         payment_cumulative_chart_data = cls(
             cumulative_expected=cumulative_expected,
             cumulative_paid=cumulative_paid,
             summary=summary,
             currency_symbol=currency_symbol,
+            currency_code=currency_code,
         )
-
 
         payment_cumulative_chart_data.additional_properties = d
         return payment_cumulative_chart_data

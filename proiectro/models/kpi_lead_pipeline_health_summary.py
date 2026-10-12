@@ -1,51 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="KPILeadPipelineHealthSummary")
-
 
 
 @_attrs_define
 class KPILeadPipelineHealthSummary:
-    """ 
-        Attributes:
-            description (str | Unset):  Default: ''.
-            overdue_count (str | Unset):  Default: '0'.
-            stale_count (str | Unset):  Default: '0'.
-            unclaimed_count (str | Unset):  Default: '0'.
-            untriaged_count (str | Unset):  Default: '0'.
-            conversion_rate_30_d (str | Unset):  Default: '0'.
-            max_rep_load (str | Unset):  Default: '0'.
-            active_reps (str | Unset):  Default: '0'.
-     """
+    """
+    Attributes:
+        description (str | Unset):  Default: ''.
+        overdue_count (str | Unset):  Default: '0'.
+        stale_count (str | Unset):  Default: '0'.
+        unclaimed_count (str | Unset):  Default: '0'.
+        untriaged_count (str | Unset):  Default: '0'.
+        conversion_rate_30_d (str | Unset):  Default: '0'.
+        max_rep_load (str | Unset):  Default: '0'.
+        active_reps (str | Unset):  Default: '0'.
+    """
 
-    description: str | Unset = ''
-    overdue_count: str | Unset = '0'
-    stale_count: str | Unset = '0'
-    unclaimed_count: str | Unset = '0'
-    untriaged_count: str | Unset = '0'
-    conversion_rate_30_d: str | Unset = '0'
-    max_rep_load: str | Unset = '0'
-    active_reps: str | Unset = '0'
+    description: str | Unset = ""
+    overdue_count: str | Unset = "0"
+    stale_count: str | Unset = "0"
+    unclaimed_count: str | Unset = "0"
+    untriaged_count: str | Unset = "0"
+    conversion_rate_30_d: str | Unset = "0"
+    max_rep_load: str | Unset = "0"
+    active_reps: str | Unset = "0"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         description = self.description
@@ -64,11 +52,9 @@ class KPILeadPipelineHealthSummary:
 
         active_reps = self.active_reps
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if description is not UNSET:
             field_dict["description"] = description
         if overdue_count is not UNSET:
@@ -87,8 +73,6 @@ class KPILeadPipelineHealthSummary:
             field_dict["activeReps"] = active_reps
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -119,7 +103,6 @@ class KPILeadPipelineHealthSummary:
             max_rep_load=max_rep_load,
             active_reps=active_reps,
         )
-
 
         kpi_lead_pipeline_health_summary.additional_properties = d
         return kpi_lead_pipeline_health_summary

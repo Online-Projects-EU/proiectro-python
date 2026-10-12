@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditCustomerLocation")
-
 
 
 @_attrs_define
 class EditCustomerLocation:
-    """ 
-        Attributes:
-            location (str):
-            name (str):
-            description (None | str | Unset):
-            internal_code (None | str | Unset):
-            is_active (bool | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        location (str):
+        name (str):
+        description (None | str | Unset):
+        internal_code (None | str | Unset):
+        is_active (bool | None | Unset):
+    """
 
     location: str
     name: str
     description: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
-    is_active: bool | Unset = False
+    is_active: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         location = self.location
@@ -59,15 +46,20 @@ class EditCustomerLocation:
         else:
             internal_code = self.internal_code
 
-        is_active = self.is_active
-
+        is_active: bool | None | Unset
+        if isinstance(self.is_active, Unset):
+            is_active = UNSET
+        else:
+            is_active = self.is_active
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "location": location,
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "location": location,
+                "name": name,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if internal_code is not UNSET:
@@ -76,8 +68,6 @@ class EditCustomerLocation:
             field_dict["is_active"] = is_active
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,7 +85,6 @@ class EditCustomerLocation:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -105,8 +94,14 @@ class EditCustomerLocation:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
+        def _parse_is_active(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_active = d.pop("is_active", UNSET)
+        is_active = _parse_is_active(d.pop("is_active", UNSET))
 
         edit_customer_location = cls(
             location=location,
@@ -115,7 +110,6 @@ class EditCustomerLocation:
             internal_code=internal_code,
             is_active=is_active,
         )
-
 
         edit_customer_location.additional_properties = d
         return edit_customer_location

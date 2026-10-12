@@ -1,45 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_tenant_resource_types_resources import OutputTenantResourceTypesResources
-
-
-
+    from ..models.output_tenant_resource_types_resources import (
+        OutputTenantResourceTypesResources,
+    )
 
 
 T = TypeVar("T", bound="OutputTenantResourceTypes")
 
 
-
 @_attrs_define
 class OutputTenantResourceTypes:
-    """ 
-        Attributes:
-            resources (OutputTenantResourceTypesResources):
-            root_id (None | str | Unset):
-     """
+    """
+    Attributes:
+        resources (OutputTenantResourceTypesResources):
+        root_id (None | str | Unset):
+    """
 
     resources: OutputTenantResourceTypesResources
     root_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_tenant_resource_types_resources import OutputTenantResourceTypesResources
         resources = self.resources.to_dict()
 
         root_id: None | str | Unset
@@ -48,27 +38,26 @@ class OutputTenantResourceTypes:
         else:
             root_id = self.root_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "resources": resources,
-        })
+        field_dict.update(
+            {
+                "resources": resources,
+            }
+        )
         if root_id is not UNSET:
             field_dict["root_id"] = root_id
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_tenant_resource_types_resources import OutputTenantResourceTypesResources
+        from ..models.output_tenant_resource_types_resources import (
+            OutputTenantResourceTypesResources,
+        )
+
         d = dict(src_dict)
         resources = OutputTenantResourceTypesResources.from_dict(d.pop("resources"))
-
-
-
 
         def _parse_root_id(data: object) -> None | str | Unset:
             if data is None:
@@ -79,12 +68,10 @@ class OutputTenantResourceTypes:
 
         root_id = _parse_root_id(d.pop("root_id", UNSET))
 
-
         output_tenant_resource_types = cls(
             resources=resources,
             root_id=root_id,
         )
-
 
         output_tenant_resource_types.additional_properties = d
         return output_tenant_resource_types

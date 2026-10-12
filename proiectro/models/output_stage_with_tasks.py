@@ -1,44 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_operational_item import OutputOperationalItem
-
-
-
+    from ..models.output_operational_item import OutputOperationalItem
 
 
 T = TypeVar("T", bound="OutputStageWithTasks")
 
 
-
 @_attrs_define
 class OutputStageWithTasks:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            stage_type (str):
-            sequence_no (int):
-            requires_approval (bool):
-            items (list[OutputOperationalItem]):
-            is_active (bool | Unset):  Default: True.
-            item_count (int | Unset):  Default: 0.
-            link_process_name (str | Unset):  Default: ''.
-            link_stage_name (str | Unset):  Default: ''.
-            link_process_active (bool | Unset):  Default: False.
-            link_stage_active (bool | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        stage_type (str):
+        sequence_no (int):
+        requires_approval (bool):
+        items (list[OutputOperationalItem]):
+        is_active (bool | Unset):  Default: True.
+        item_count (int | Unset):  Default: 0.
+        link_process_name (str | Unset):  Default: ''.
+        link_stage_name (str | Unset):  Default: ''.
+        link_process_active (bool | Unset):  Default: False.
+        link_stage_active (bool | Unset):  Default: False.
+    """
 
     id: str
     name: str
@@ -48,18 +41,13 @@ class OutputStageWithTasks:
     items: list[OutputOperationalItem]
     is_active: bool | Unset = True
     item_count: int | Unset = 0
-    link_process_name: str | Unset = ''
-    link_stage_name: str | Unset = ''
+    link_process_name: str | Unset = ""
+    link_stage_name: str | Unset = ""
     link_process_active: bool | Unset = False
     link_stage_active: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_operational_item import OutputOperationalItem
         id = self.id
 
         name = self.name
@@ -75,8 +63,6 @@ class OutputStageWithTasks:
             items_item = items_item_data.to_dict()
             items.append(items_item)
 
-
-
         is_active = self.is_active
 
         item_count = self.item_count
@@ -89,17 +75,18 @@ class OutputStageWithTasks:
 
         link_stage_active = self.link_stage_active
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "stage_type": stage_type,
-            "sequence_no": sequence_no,
-            "requires_approval": requires_approval,
-            "items": items,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "stage_type": stage_type,
+                "sequence_no": sequence_no,
+                "requires_approval": requires_approval,
+                "items": items,
+            }
+        )
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
         if item_count is not UNSET:
@@ -115,11 +102,10 @@ class OutputStageWithTasks:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_operational_item import OutputOperationalItem
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -133,13 +119,10 @@ class OutputStageWithTasks:
 
         items = []
         _items = d.pop("items")
-        for items_item_data in (_items):
+        for items_item_data in _items:
             items_item = OutputOperationalItem.from_dict(items_item_data)
 
-
-
             items.append(items_item)
-
 
         is_active = d.pop("is_active", UNSET)
 
@@ -167,7 +150,6 @@ class OutputStageWithTasks:
             link_process_active=link_process_active,
             link_stage_active=link_stage_active,
         )
-
 
         output_stage_with_tasks.additional_properties = d
         return output_stage_with_tasks

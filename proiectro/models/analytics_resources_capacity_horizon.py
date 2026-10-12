@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AnalyticsResourcesCapacityHorizon(str, Enum):
     VALUE_0 = "3m"
     VALUE_1 = "6m"

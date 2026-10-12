@@ -1,74 +1,69 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-from typing import Literal, cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_revenue_category_item import AnalyticsRevenueCategoryItem
-  from ..models.analytics_revenue_month_item import AnalyticsRevenueMonthItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_revenue_category_item import AnalyticsRevenueCategoryItem
+    from ..models.analytics_revenue_month_item import AnalyticsRevenueMonthItem
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsFinancialRevenue")
 
 
-
 @_attrs_define
 class AnalyticsFinancialRevenue:
-    """ Revenue analysis
+    """Revenue analysis
 
-        Attributes:
-            total_revenue (float | str):
-            recurring_revenue (float | str):
-            one_time_revenue (float | str):
-            currency (str):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            revenue_by_category (list[AnalyticsRevenueCategoryItem] | Unset):
-            monthly_trend (list[AnalyticsRevenueMonthItem] | Unset):
-            prev_total_revenue (float | None | str | Unset):
-            prev_recurring_revenue (float | None | str | Unset):
-            prev_one_time_revenue (float | None | str | Unset):
-            total_change_pct (float | Literal['new'] | None | str | Unset):
-            recurring_change_pct (float | Literal['new'] | None | str | Unset):
-            one_time_change_pct (float | Literal['new'] | None | str | Unset):
-     """
+    Attributes:
+        currency (str):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        total_revenue (float | None | str | Unset):
+        recurring_revenue (float | None | str | Unset):
+        one_time_revenue (float | None | str | Unset):
+        recurring_percent (float | None | str | Unset):
+        one_time_percent (float | None | str | Unset):
+        uncovered_currencies (list[str] | Unset):
+        revenue_by_category (list[AnalyticsRevenueCategoryItem] | Unset):
+        monthly_trend (list[AnalyticsRevenueMonthItem] | Unset):
+        prev_total_revenue (float | None | str | Unset):
+        prev_recurring_revenue (float | None | str | Unset):
+        prev_one_time_revenue (float | None | str | Unset):
+        total_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+        recurring_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+        one_time_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+    """
 
-    total_revenue: float | str
-    recurring_revenue: float | str
-    one_time_revenue: float | str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -83,34 +78,23 @@ class AnalyticsFinancialRevenue:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    total_revenue: float | None | str | Unset = UNSET
+    recurring_revenue: float | None | str | Unset = UNSET
+    one_time_revenue: float | None | str | Unset = UNSET
+    recurring_percent: float | None | str | Unset = UNSET
+    one_time_percent: float | None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
     revenue_by_category: list[AnalyticsRevenueCategoryItem] | Unset = UNSET
     monthly_trend: list[AnalyticsRevenueMonthItem] | Unset = UNSET
     prev_total_revenue: float | None | str | Unset = UNSET
     prev_recurring_revenue: float | None | str | Unset = UNSET
     prev_one_time_revenue: float | None | str | Unset = UNSET
-    total_change_pct: float | Literal['new'] | None | str | Unset = UNSET
-    recurring_change_pct: float | Literal['new'] | None | str | Unset = UNSET
-    one_time_change_pct: float | Literal['new'] | None | str | Unset = UNSET
+    total_change_pct: float | None | str | Unset = UNSET
+    recurring_change_pct: float | None | str | Unset = UNSET
+    one_time_change_pct: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.analytics_revenue_category_item import AnalyticsRevenueCategoryItem
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_revenue_month_item import AnalyticsRevenueMonthItem
-        total_revenue: float | str
-        total_revenue = self.total_revenue
-
-        recurring_revenue: float | str
-        recurring_revenue = self.recurring_revenue
-
-        one_time_revenue: float | str
-        one_time_revenue = self.one_time_revenue
-
         currency = self.currency
 
         period = self.period
@@ -152,7 +136,6 @@ class AnalyticsFinancialRevenue:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -176,7 +159,6 @@ class AnalyticsFinancialRevenue:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -217,6 +199,40 @@ class AnalyticsFinancialRevenue:
         else:
             filter_type_label = self.filter_type_label
 
+        total_revenue: float | None | str | Unset
+        if isinstance(self.total_revenue, Unset):
+            total_revenue = UNSET
+        else:
+            total_revenue = self.total_revenue
+
+        recurring_revenue: float | None | str | Unset
+        if isinstance(self.recurring_revenue, Unset):
+            recurring_revenue = UNSET
+        else:
+            recurring_revenue = self.recurring_revenue
+
+        one_time_revenue: float | None | str | Unset
+        if isinstance(self.one_time_revenue, Unset):
+            one_time_revenue = UNSET
+        else:
+            one_time_revenue = self.one_time_revenue
+
+        recurring_percent: float | None | str | Unset
+        if isinstance(self.recurring_percent, Unset):
+            recurring_percent = UNSET
+        else:
+            recurring_percent = self.recurring_percent
+
+        one_time_percent: float | None | str | Unset
+        if isinstance(self.one_time_percent, Unset):
+            one_time_percent = UNSET
+        else:
+            one_time_percent = self.one_time_percent
+
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
         revenue_by_category: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.revenue_by_category, Unset):
             revenue_by_category = []
@@ -224,16 +240,12 @@ class AnalyticsFinancialRevenue:
                 revenue_by_category_item = revenue_by_category_item_data.to_dict()
                 revenue_by_category.append(revenue_by_category_item)
 
-
-
         monthly_trend: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.monthly_trend, Unset):
             monthly_trend = []
             for monthly_trend_item_data in self.monthly_trend:
                 monthly_trend_item = monthly_trend_item_data.to_dict()
                 monthly_trend.append(monthly_trend_item)
-
-
 
         prev_total_revenue: float | None | str | Unset
         if isinstance(self.prev_total_revenue, Unset):
@@ -253,33 +265,31 @@ class AnalyticsFinancialRevenue:
         else:
             prev_one_time_revenue = self.prev_one_time_revenue
 
-        total_change_pct: float | Literal['new'] | None | str | Unset
+        total_change_pct: float | None | str | Unset
         if isinstance(self.total_change_pct, Unset):
             total_change_pct = UNSET
         else:
             total_change_pct = self.total_change_pct
 
-        recurring_change_pct: float | Literal['new'] | None | str | Unset
+        recurring_change_pct: float | None | str | Unset
         if isinstance(self.recurring_change_pct, Unset):
             recurring_change_pct = UNSET
         else:
             recurring_change_pct = self.recurring_change_pct
 
-        one_time_change_pct: float | Literal['new'] | None | str | Unset
+        one_time_change_pct: float | None | str | Unset
         if isinstance(self.one_time_change_pct, Unset):
             one_time_change_pct = UNSET
         else:
             one_time_change_pct = self.one_time_change_pct
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_revenue": total_revenue,
-            "recurring_revenue": recurring_revenue,
-            "one_time_revenue": one_time_revenue,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -312,6 +322,18 @@ class AnalyticsFinancialRevenue:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if total_revenue is not UNSET:
+            field_dict["total_revenue"] = total_revenue
+        if recurring_revenue is not UNSET:
+            field_dict["recurring_revenue"] = recurring_revenue
+        if one_time_revenue is not UNSET:
+            field_dict["one_time_revenue"] = one_time_revenue
+        if recurring_percent is not UNSET:
+            field_dict["recurring_percent"] = recurring_percent
+        if one_time_percent is not UNSET:
+            field_dict["one_time_percent"] = one_time_percent
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
         if revenue_by_category is not UNSET:
             field_dict["revenue_by_category"] = revenue_by_category
         if monthly_trend is not UNSET:
@@ -331,33 +353,16 @@ class AnalyticsFinancialRevenue:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analytics_revenue_category_item import AnalyticsRevenueCategoryItem
+        from ..models.analytics_revenue_category_item import (
+            AnalyticsRevenueCategoryItem,
+        )
         from ..models.analytics_revenue_month_item import AnalyticsRevenueMonthItem
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_total_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_revenue = _parse_total_revenue(d.pop("total_revenue"))
-
-
-        def _parse_recurring_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        recurring_revenue = _parse_recurring_revenue(d.pop("recurring_revenue"))
-
-
-        def _parse_one_time_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        one_time_revenue = _parse_one_time_revenue(d.pop("one_time_revenue"))
-
-
         currency = d.pop("currency")
 
         period = d.pop("period", UNSET)
@@ -374,15 +379,12 @@ class AnalyticsFinancialRevenue:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -393,7 +395,6 @@ class AnalyticsFinancialRevenue:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -403,7 +404,6 @@ class AnalyticsFinancialRevenue:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -412,7 +412,6 @@ class AnalyticsFinancialRevenue:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -424,10 +423,10 @@ class AnalyticsFinancialRevenue:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -438,7 +437,6 @@ class AnalyticsFinancialRevenue:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -448,7 +446,6 @@ class AnalyticsFinancialRevenue:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -457,7 +454,6 @@ class AnalyticsFinancialRevenue:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -469,10 +465,10 @@ class AnalyticsFinancialRevenue:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -483,7 +479,6 @@ class AnalyticsFinancialRevenue:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -493,7 +488,6 @@ class AnalyticsFinancialRevenue:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -501,8 +495,9 @@ class AnalyticsFinancialRevenue:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -513,7 +508,6 @@ class AnalyticsFinancialRevenue:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -521,8 +515,9 @@ class AnalyticsFinancialRevenue:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -533,7 +528,6 @@ class AnalyticsFinancialRevenue:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -543,30 +537,74 @@ class AnalyticsFinancialRevenue:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        def _parse_total_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_revenue = _parse_total_revenue(d.pop("total_revenue", UNSET))
+
+        def _parse_recurring_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        recurring_revenue = _parse_recurring_revenue(d.pop("recurring_revenue", UNSET))
+
+        def _parse_one_time_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        one_time_revenue = _parse_one_time_revenue(d.pop("one_time_revenue", UNSET))
+
+        def _parse_recurring_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        recurring_percent = _parse_recurring_percent(d.pop("recurring_percent", UNSET))
+
+        def _parse_one_time_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        one_time_percent = _parse_one_time_percent(d.pop("one_time_percent", UNSET))
+
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
 
         _revenue_by_category = d.pop("revenue_by_category", UNSET)
         revenue_by_category: list[AnalyticsRevenueCategoryItem] | Unset = UNSET
         if _revenue_by_category is not UNSET:
             revenue_by_category = []
             for revenue_by_category_item_data in _revenue_by_category:
-                revenue_by_category_item = AnalyticsRevenueCategoryItem.from_dict(revenue_by_category_item_data)
-
-
+                revenue_by_category_item = AnalyticsRevenueCategoryItem.from_dict(
+                    revenue_by_category_item_data
+                )
 
                 revenue_by_category.append(revenue_by_category_item)
-
 
         _monthly_trend = d.pop("monthly_trend", UNSET)
         monthly_trend: list[AnalyticsRevenueMonthItem] | Unset = UNSET
         if _monthly_trend is not UNSET:
             monthly_trend = []
             for monthly_trend_item_data in _monthly_trend:
-                monthly_trend_item = AnalyticsRevenueMonthItem.from_dict(monthly_trend_item_data)
-
-
+                monthly_trend_item = AnalyticsRevenueMonthItem.from_dict(
+                    monthly_trend_item_data
+                )
 
                 monthly_trend.append(monthly_trend_item)
-
 
         def _parse_prev_total_revenue(data: object) -> float | None | str | Unset:
             if data is None:
@@ -575,8 +613,9 @@ class AnalyticsFinancialRevenue:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_total_revenue = _parse_prev_total_revenue(d.pop("prev_total_revenue", UNSET))
-
+        prev_total_revenue = _parse_prev_total_revenue(
+            d.pop("prev_total_revenue", UNSET)
+        )
 
         def _parse_prev_recurring_revenue(data: object) -> float | None | str | Unset:
             if data is None:
@@ -585,8 +624,9 @@ class AnalyticsFinancialRevenue:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_recurring_revenue = _parse_prev_recurring_revenue(d.pop("prev_recurring_revenue", UNSET))
-
+        prev_recurring_revenue = _parse_prev_recurring_revenue(
+            d.pop("prev_recurring_revenue", UNSET)
+        )
 
         def _parse_prev_one_time_revenue(data: object) -> float | None | str | Unset:
             if data is None:
@@ -595,55 +635,42 @@ class AnalyticsFinancialRevenue:
                 return data
             return cast(float | None | str | Unset, data)
 
-        prev_one_time_revenue = _parse_prev_one_time_revenue(d.pop("prev_one_time_revenue", UNSET))
+        prev_one_time_revenue = _parse_prev_one_time_revenue(
+            d.pop("prev_one_time_revenue", UNSET)
+        )
 
-
-        def _parse_total_change_pct(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_total_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            total_change_pct_type_2 = cast(Literal['new'] , data)
-            if total_change_pct_type_2 != 'new':
-                raise ValueError(f"total_change_pct_type_2 must match const 'new', got '{total_change_pct_type_2}'")
-            return total_change_pct_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
         total_change_pct = _parse_total_change_pct(d.pop("total_change_pct", UNSET))
 
-
-        def _parse_recurring_change_pct(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_recurring_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            recurring_change_pct_type_2 = cast(Literal['new'] , data)
-            if recurring_change_pct_type_2 != 'new':
-                raise ValueError(f"recurring_change_pct_type_2 must match const 'new', got '{recurring_change_pct_type_2}'")
-            return recurring_change_pct_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
-        recurring_change_pct = _parse_recurring_change_pct(d.pop("recurring_change_pct", UNSET))
+        recurring_change_pct = _parse_recurring_change_pct(
+            d.pop("recurring_change_pct", UNSET)
+        )
 
-
-        def _parse_one_time_change_pct(data: object) -> float | Literal['new'] | None | str | Unset:
+        def _parse_one_time_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            one_time_change_pct_type_2 = cast(Literal['new'] , data)
-            if one_time_change_pct_type_2 != 'new':
-                raise ValueError(f"one_time_change_pct_type_2 must match const 'new', got '{one_time_change_pct_type_2}'")
-            return one_time_change_pct_type_2
-            return cast(float | Literal['new'] | None | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
-        one_time_change_pct = _parse_one_time_change_pct(d.pop("one_time_change_pct", UNSET))
-
+        one_time_change_pct = _parse_one_time_change_pct(
+            d.pop("one_time_change_pct", UNSET)
+        )
 
         analytics_financial_revenue = cls(
-            total_revenue=total_revenue,
-            recurring_revenue=recurring_revenue,
-            one_time_revenue=one_time_revenue,
             currency=currency,
             period=period,
             temporal_type=temporal_type,
@@ -661,6 +688,12 @@ class AnalyticsFinancialRevenue:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            total_revenue=total_revenue,
+            recurring_revenue=recurring_revenue,
+            one_time_revenue=one_time_revenue,
+            recurring_percent=recurring_percent,
+            one_time_percent=one_time_percent,
+            uncovered_currencies=uncovered_currencies,
             revenue_by_category=revenue_by_category,
             monthly_trend=monthly_trend,
             prev_total_revenue=prev_total_revenue,
@@ -670,7 +703,6 @@ class AnalyticsFinancialRevenue:
             recurring_change_pct=recurring_change_pct,
             one_time_change_pct=one_time_change_pct,
         )
-
 
         analytics_financial_revenue.additional_properties = d
         return analytics_financial_revenue

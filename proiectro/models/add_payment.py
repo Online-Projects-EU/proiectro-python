@@ -1,38 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddPayment")
-
 
 
 @_attrs_define
 class AddPayment:
-    """ 
-        Attributes:
-            payment_schedule_block_id (str):
-            name (str):
-            due_date (str):
-            product_id (None | str | Unset):
-            internal_code (None | str | Unset):
-            amount (float | str | Unset):  Default: 0.0.
-            payment_integration_id (None | str | Unset):
-            show_sources (bool | None | Unset):
-     """
+    """
+    Attributes:
+        payment_schedule_block_id (str):
+        name (str):
+        due_date (str):
+        product_id (None | str | Unset):
+        internal_code (None | str | Unset):
+        amount (float | str | Unset):  Default: 0.0.
+        payment_integration_id (None | str | Unset):
+        show_sources (bool | None | Unset):
+    """
 
     payment_schedule_block_id: str
     name: str
@@ -43,10 +34,6 @@ class AddPayment:
     payment_integration_id: None | str | Unset = UNSET
     show_sources: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         payment_schedule_block_id = self.payment_schedule_block_id
@@ -85,14 +72,15 @@ class AddPayment:
         else:
             show_sources = self.show_sources
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "payment_schedule_block_id": payment_schedule_block_id,
-            "name": name,
-            "due_date": due_date,
-        })
+        field_dict.update(
+            {
+                "payment_schedule_block_id": payment_schedule_block_id,
+                "name": name,
+                "due_date": due_date,
+            }
+        )
         if product_id is not UNSET:
             field_dict["product_id"] = product_id
         if internal_code is not UNSET:
@@ -105,8 +93,6 @@ class AddPayment:
             field_dict["show_sources"] = show_sources
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -126,7 +112,6 @@ class AddPayment:
 
         product_id = _parse_product_id(d.pop("product_id", UNSET))
 
-
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -136,14 +121,12 @@ class AddPayment:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_amount(data: object) -> float | str | Unset:
             if isinstance(data, Unset):
                 return data
             return cast(float | str | Unset, data)
 
         amount = _parse_amount(d.pop("amount", UNSET))
-
 
         def _parse_payment_integration_id(data: object) -> None | str | Unset:
             if data is None:
@@ -152,8 +135,9 @@ class AddPayment:
                 return data
             return cast(None | str | Unset, data)
 
-        payment_integration_id = _parse_payment_integration_id(d.pop("payment_integration_id", UNSET))
-
+        payment_integration_id = _parse_payment_integration_id(
+            d.pop("payment_integration_id", UNSET)
+        )
 
         def _parse_show_sources(data: object) -> bool | None | Unset:
             if data is None:
@@ -163,7 +147,6 @@ class AddPayment:
             return cast(bool | None | Unset, data)
 
         show_sources = _parse_show_sources(d.pop("show_sources", UNSET))
-
 
         add_payment = cls(
             payment_schedule_block_id=payment_schedule_block_id,
@@ -175,7 +158,6 @@ class AddPayment:
             payment_integration_id=payment_integration_id,
             show_sources=show_sources,
         )
-
 
         add_payment.additional_properties = d
         return add_payment

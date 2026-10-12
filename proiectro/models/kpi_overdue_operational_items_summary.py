@@ -1,45 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="KPIOverdueOperationalItemsSummary")
-
 
 
 @_attrs_define
 class KPIOverdueOperationalItemsSummary:
-    """ 
-        Attributes:
-            description (str | Unset):  Default: ''.
-            count (str | Unset):  Default: '0'.
-            critical_count (str | Unset):  Default: '0'.
-            high_count (str | Unset):  Default: '0'.
-            oldest_days_overdue (str | Unset):  Default: '0'.
-     """
+    """
+    Attributes:
+        description (str | Unset):  Default: ''.
+        count (str | Unset):  Default: '0'.
+        critical_count (str | Unset):  Default: '0'.
+        high_count (str | Unset):  Default: '0'.
+        oldest_days_overdue (str | Unset):  Default: '0'.
+    """
 
-    description: str | Unset = ''
-    count: str | Unset = '0'
-    critical_count: str | Unset = '0'
-    high_count: str | Unset = '0'
-    oldest_days_overdue: str | Unset = '0'
+    description: str | Unset = ""
+    count: str | Unset = "0"
+    critical_count: str | Unset = "0"
+    high_count: str | Unset = "0"
+    oldest_days_overdue: str | Unset = "0"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         description = self.description
@@ -52,11 +40,9 @@ class KPIOverdueOperationalItemsSummary:
 
         oldest_days_overdue = self.oldest_days_overdue
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if description is not UNSET:
             field_dict["description"] = description
         if count is not UNSET:
@@ -69,8 +55,6 @@ class KPIOverdueOperationalItemsSummary:
             field_dict["oldestDaysOverdue"] = oldest_days_overdue
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -92,7 +76,6 @@ class KPIOverdueOperationalItemsSummary:
             high_count=high_count,
             oldest_days_overdue=oldest_days_overdue,
         )
-
 
         kpi_overdue_operational_items_summary.additional_properties = d
         return kpi_overdue_operational_items_summary

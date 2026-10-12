@@ -1,35 +1,26 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputProcessStageLink")
-
 
 
 @_attrs_define
 class OutputProcessStageLink:
-    """ A cross-process link attached to this stage
+    """A cross-process link attached to this stage
 
-        Attributes:
-            link_id (str):
-            direction (str):
-            remote_stage_id (str):
-            remote_stage_name (str):
-            remote_process_id (str):
-            remote_process_name (str):
-     """
+    Attributes:
+        link_id (str):
+        direction (str):
+        remote_stage_id (str):
+        remote_stage_name (str):
+        remote_process_id (str):
+        remote_process_name (str):
+    """
 
     link_id: str
     direction: str
@@ -38,10 +29,6 @@ class OutputProcessStageLink:
     remote_process_id: str
     remote_process_name: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         link_id = self.link_id
@@ -56,21 +43,20 @@ class OutputProcessStageLink:
 
         remote_process_name = self.remote_process_name
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "link_id": link_id,
-            "direction": direction,
-            "remote_stage_id": remote_stage_id,
-            "remote_stage_name": remote_stage_name,
-            "remote_process_id": remote_process_id,
-            "remote_process_name": remote_process_name,
-        })
+        field_dict.update(
+            {
+                "link_id": link_id,
+                "direction": direction,
+                "remote_stage_id": remote_stage_id,
+                "remote_stage_name": remote_stage_name,
+                "remote_process_id": remote_process_id,
+                "remote_process_name": remote_process_name,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,7 +81,6 @@ class OutputProcessStageLink:
             remote_process_id=remote_process_id,
             remote_process_name=remote_process_name,
         )
-
 
         output_process_stage_link.additional_properties = d
         return output_process_stage_link

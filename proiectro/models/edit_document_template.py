@@ -1,39 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.edit_document_template_data_classification_type_0 import (
+    EditDocumentTemplateDataClassificationType0,
+)
 from ..types import UNSET, Unset
-
-from ..models.edit_document_template_data_classification_type_0 import EditDocumentTemplateDataClassificationType0
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="EditDocumentTemplate")
 
 
-
 @_attrs_define
 class EditDocumentTemplate:
-    """ 
-        Attributes:
-            name (None | str | Unset):
-            description (None | str | Unset):
-            entity_type (None | str | Unset):
-            body (None | str | Unset):
-            default_series_id (None | str | Unset):
-            retention_days (int | None | Unset):
-            data_classification (EditDocumentTemplateDataClassificationType0 | None | Unset):
-            is_active (bool | None | Unset):
-     """
+    """
+    Attributes:
+        name (None | str | Unset):
+        description (None | str | Unset):
+        entity_type (None | str | Unset):
+        body (None | str | Unset):
+        default_series_id (None | str | Unset):
+        retention_days (int | None | Unset):
+        data_classification (EditDocumentTemplateDataClassificationType0 | None | Unset):
+        is_active (bool | None | Unset):
+    """
 
     name: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
@@ -41,13 +34,11 @@ class EditDocumentTemplate:
     body: None | str | Unset = UNSET
     default_series_id: None | str | Unset = UNSET
     retention_days: int | None | Unset = UNSET
-    data_classification: EditDocumentTemplateDataClassificationType0 | None | Unset = UNSET
+    data_classification: EditDocumentTemplateDataClassificationType0 | None | Unset = (
+        UNSET
+    )
     is_active: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name: None | str | Unset
@@ -89,7 +80,9 @@ class EditDocumentTemplate:
         data_classification: None | str | Unset
         if isinstance(self.data_classification, Unset):
             data_classification = UNSET
-        elif isinstance(self.data_classification, EditDocumentTemplateDataClassificationType0):
+        elif isinstance(
+            self.data_classification, EditDocumentTemplateDataClassificationType0
+        ):
             data_classification = self.data_classification.value
         else:
             data_classification = self.data_classification
@@ -100,11 +93,9 @@ class EditDocumentTemplate:
         else:
             is_active = self.is_active
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if name is not UNSET:
             field_dict["name"] = name
         if description is not UNSET:
@@ -124,11 +115,10 @@ class EditDocumentTemplate:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -137,7 +127,6 @@ class EditDocumentTemplate:
             return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -148,7 +137,6 @@ class EditDocumentTemplate:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_entity_type(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -157,7 +145,6 @@ class EditDocumentTemplate:
             return cast(None | str | Unset, data)
 
         entity_type = _parse_entity_type(d.pop("entity_type", UNSET))
-
 
         def _parse_body(data: object) -> None | str | Unset:
             if data is None:
@@ -168,7 +155,6 @@ class EditDocumentTemplate:
 
         body = _parse_body(d.pop("body", UNSET))
 
-
         def _parse_default_series_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -177,7 +163,6 @@ class EditDocumentTemplate:
             return cast(None | str | Unset, data)
 
         default_series_id = _parse_default_series_id(d.pop("default_series_id", UNSET))
-
 
         def _parse_retention_days(data: object) -> int | None | Unset:
             if data is None:
@@ -188,8 +173,9 @@ class EditDocumentTemplate:
 
         retention_days = _parse_retention_days(d.pop("retention_days", UNSET))
 
-
-        def _parse_data_classification(data: object) -> EditDocumentTemplateDataClassificationType0 | None | Unset:
+        def _parse_data_classification(
+            data: object,
+        ) -> EditDocumentTemplateDataClassificationType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -197,17 +183,20 @@ class EditDocumentTemplate:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                data_classification_type_0 = EditDocumentTemplateDataClassificationType0(data)
-
-
+                data_classification_type_0 = (
+                    EditDocumentTemplateDataClassificationType0(data)
+                )
 
                 return data_classification_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(EditDocumentTemplateDataClassificationType0 | None | Unset, data)
+            return cast(
+                EditDocumentTemplateDataClassificationType0 | None | Unset, data
+            )
 
-        data_classification = _parse_data_classification(d.pop("data_classification", UNSET))
-
+        data_classification = _parse_data_classification(
+            d.pop("data_classification", UNSET)
+        )
 
         def _parse_is_active(data: object) -> bool | None | Unset:
             if data is None:
@@ -217,7 +206,6 @@ class EditDocumentTemplate:
             return cast(bool | None | Unset, data)
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
-
 
         edit_document_template = cls(
             name=name,
@@ -229,7 +217,6 @@ class EditDocumentTemplate:
             data_classification=data_classification,
             is_active=is_active,
         )
-
 
         edit_document_template.additional_properties = d
         return edit_document_template

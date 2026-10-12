@@ -1,36 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditInternalSupportRequest")
-
 
 
 @_attrs_define
 class EditInternalSupportRequest:
-    """ Input schema for editing internal support request
+    """Input schema for editing internal support request
 
-        Attributes:
-            title (str): Brief summary of the request
-            description (str): Detailed description of the support request
-            request_type (str):
-            request_severity (str):
-            root_cause_asset (None | str | Unset):
-     """
+    Attributes:
+        title (str): Brief summary of the request
+        description (str): Detailed description of the support request
+        request_type (str):
+        request_severity (str):
+        root_cause_asset (None | str | Unset):
+    """
 
     title: str
     description: str
@@ -38,10 +29,6 @@ class EditInternalSupportRequest:
     request_severity: str
     root_cause_asset: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         title = self.title
@@ -58,21 +45,20 @@ class EditInternalSupportRequest:
         else:
             root_cause_asset = self.root_cause_asset
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "title": title,
-            "description": description,
-            "request_type": request_type,
-            "request_severity": request_severity,
-        })
+        field_dict.update(
+            {
+                "title": title,
+                "description": description,
+                "request_type": request_type,
+                "request_severity": request_severity,
+            }
+        )
         if root_cause_asset is not UNSET:
             field_dict["root_cause_asset"] = root_cause_asset
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -94,7 +80,6 @@ class EditInternalSupportRequest:
 
         root_cause_asset = _parse_root_cause_asset(d.pop("root_cause_asset", UNSET))
 
-
         edit_internal_support_request = cls(
             title=title,
             description=description,
@@ -102,7 +87,6 @@ class EditInternalSupportRequest:
             request_severity=request_severity,
             root_cause_asset=root_cause_asset,
         )
-
 
         edit_internal_support_request.additional_properties = d
         return edit_internal_support_request

@@ -1,48 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditProcessStage")
-
 
 
 @_attrs_define
 class EditProcessStage:
-    """ 
-        Attributes:
-            name (str):
-            sequence_no (int):
-            description (str | Unset):  Default: ''.
-            instructions (str | Unset):  Default: ''.
-            is_active (bool | None | Unset):  Default: False.
-            requires_approval (bool | None | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        name (str):
+        sequence_no (int):
+        description (str | Unset):  Default: ''.
+        instructions (str | Unset):  Default: ''.
+        is_active (bool | None | Unset):
+        requires_approval (bool | None | Unset):
+    """
 
     name: str
     sequence_no: int
-    description: str | Unset = ''
-    instructions: str | Unset = ''
-    is_active: bool | None | Unset = False
-    requires_approval: bool | None | Unset = False
+    description: str | Unset = ""
+    instructions: str | Unset = ""
+    is_active: bool | None | Unset = UNSET
+    requires_approval: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -65,13 +52,14 @@ class EditProcessStage:
         else:
             requires_approval = self.requires_approval
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "sequence_no": sequence_no,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "sequence_no": sequence_no,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if instructions is not UNSET:
@@ -82,8 +70,6 @@ class EditProcessStage:
             field_dict["requires_approval"] = requires_approval
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -105,7 +91,6 @@ class EditProcessStage:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
-
         def _parse_requires_approval(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -115,7 +100,6 @@ class EditProcessStage:
 
         requires_approval = _parse_requires_approval(d.pop("requires_approval", UNSET))
 
-
         edit_process_stage = cls(
             name=name,
             sequence_no=sequence_no,
@@ -124,7 +108,6 @@ class EditProcessStage:
             is_active=is_active,
             requires_approval=requires_approval,
         )
-
 
         edit_process_stage.additional_properties = d
         return edit_process_stage

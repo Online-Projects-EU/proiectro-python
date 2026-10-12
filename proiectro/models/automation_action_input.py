@@ -1,39 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.automation_action_input_action_config import AutomationActionInputActionConfig
-
-
-
+    from ..models.automation_action_input_action_config import (
+        AutomationActionInputActionConfig,
+    )
 
 
 T = TypeVar("T", bound="AutomationActionInput")
 
 
-
 @_attrs_define
 class AutomationActionInput:
-    """ An action definition within a rule.
+    """An action definition within a rule.
 
-        Attributes:
-            action_type (str):
-            action_config (AutomationActionInputActionConfig):
-            name (None | str | Unset):
-            condition (list[Any] | Unset):
-            stop_on_error (bool | Unset):  Default: False.
-            fan_out (bool | Unset):  Default: False.
-     """
+    Attributes:
+        action_type (str):
+        action_config (AutomationActionInputActionConfig):
+        name (None | str | Unset):
+        condition (list[Any] | Unset):
+        stop_on_error (bool | Unset):  Default: False.
+        fan_out (bool | Unset):  Default: False.
+    """
 
     action_type: str
     action_config: AutomationActionInputActionConfig
@@ -43,12 +38,7 @@ class AutomationActionInput:
     fan_out: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.automation_action_input_action_config import AutomationActionInputActionConfig
         action_type = self.action_type
 
         action_config = self.action_config.to_dict()
@@ -63,19 +53,18 @@ class AutomationActionInput:
         if not isinstance(self.condition, Unset):
             condition = self.condition
 
-
-
         stop_on_error = self.stop_on_error
 
         fan_out = self.fan_out
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "action_type": action_type,
-            "action_config": action_config,
-        })
+        field_dict.update(
+            {
+                "action_type": action_type,
+                "action_config": action_config,
+            }
+        )
         if name is not UNSET:
             field_dict["name"] = name
         if condition is not UNSET:
@@ -87,18 +76,18 @@ class AutomationActionInput:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.automation_action_input_action_config import AutomationActionInputActionConfig
+        from ..models.automation_action_input_action_config import (
+            AutomationActionInputActionConfig,
+        )
+
         d = dict(src_dict)
         action_type = d.pop("action_type")
 
-        action_config = AutomationActionInputActionConfig.from_dict(d.pop("action_config"))
-
-
-
+        action_config = AutomationActionInputActionConfig.from_dict(
+            d.pop("action_config")
+        )
 
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
@@ -109,9 +98,7 @@ class AutomationActionInput:
 
         name = _parse_name(d.pop("name", UNSET))
 
-
         condition = cast(list[Any], d.pop("condition", UNSET))
-
 
         stop_on_error = d.pop("stop_on_error", UNSET)
 
@@ -125,7 +112,6 @@ class AutomationActionInput:
             stop_on_error=stop_on_error,
             fan_out=fan_out,
         )
-
 
         automation_action_input.additional_properties = d
         return automation_action_input

@@ -1,39 +1,30 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="LabelLeadInput")
 
 
-
 @_attrs_define
 class LabelLeadInput:
-    """ Add/replace a label value on a Lead.
+    """Add/replace a label value on a Lead.
 
-        Attributes:
-            lead (str):
-            label (str):
-            value_text (None | str | Unset):
-            value_integer (int | None | Unset):
-            value_decimal (float | None | str | Unset):
-            value_date (datetime.date | None | Unset):
-     """
+    Attributes:
+        lead (str):
+        label (str):
+        value_text (None | str | Unset):
+        value_integer (int | None | Unset):
+        value_decimal (float | None | str | Unset):
+        value_date (datetime.date | None | Unset):
+    """
 
     lead: str
     label: str
@@ -42,10 +33,6 @@ class LabelLeadInput:
     value_decimal: float | None | str | Unset = UNSET
     value_date: datetime.date | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         lead = self.lead
@@ -78,13 +65,14 @@ class LabelLeadInput:
         else:
             value_date = self.value_date
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "lead": lead,
-            "label": label,
-        })
+        field_dict.update(
+            {
+                "lead": lead,
+                "label": label,
+            }
+        )
         if value_text is not UNSET:
             field_dict["value_text"] = value_text
         if value_integer is not UNSET:
@@ -95,8 +83,6 @@ class LabelLeadInput:
             field_dict["value_date"] = value_date
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -114,7 +100,6 @@ class LabelLeadInput:
 
         value_text = _parse_value_text(d.pop("value_text", UNSET))
 
-
         def _parse_value_integer(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -124,7 +109,6 @@ class LabelLeadInput:
 
         value_integer = _parse_value_integer(d.pop("value_integer", UNSET))
 
-
         def _parse_value_decimal(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -133,7 +117,6 @@ class LabelLeadInput:
             return cast(float | None | str | Unset, data)
 
         value_decimal = _parse_value_decimal(d.pop("value_decimal", UNSET))
-
 
         def _parse_value_date(data: object) -> datetime.date | None | Unset:
             if data is None:
@@ -145,15 +128,12 @@ class LabelLeadInput:
                     raise TypeError()
                 value_date_type_0 = isoparse(data).date()
 
-
-
                 return value_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None | Unset, data)
 
         value_date = _parse_value_date(d.pop("value_date", UNSET))
-
 
         label_lead_input = cls(
             lead=lead,
@@ -163,7 +143,6 @@ class LabelLeadInput:
             value_decimal=value_decimal,
             value_date=value_date,
         )
-
 
         label_lead_input.additional_properties = d
         return label_lead_input

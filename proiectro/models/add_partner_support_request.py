@@ -1,39 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddPartnerSupportRequest")
-
 
 
 @_attrs_define
 class AddPartnerSupportRequest:
-    """ Input schema for partner creating support request in supplier tenant
+    """Input schema for partner creating support request in supplier tenant
 
-        Attributes:
-            bridge_id (str):
-            request_type (str):
-            request_severity (str):
-            title (str):
-            description (str):
-            project_id (None | str | Unset):
-            product_id (None | str | Unset):
-            reported_asset (None | str | Unset):
-     """
+    Attributes:
+        bridge_id (str):
+        request_type (str):
+        request_severity (str):
+        title (str):
+        description (str):
+        project_id (None | str | Unset):
+        product_id (None | str | Unset):
+        reported_asset (None | str | Unset):
+    """
 
     bridge_id: str
     request_type: str
@@ -44,10 +35,6 @@ class AddPartnerSupportRequest:
     product_id: None | str | Unset = UNSET
     reported_asset: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         bridge_id = self.bridge_id
@@ -78,16 +65,17 @@ class AddPartnerSupportRequest:
         else:
             reported_asset = self.reported_asset
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "bridge_id": bridge_id,
-            "request_type": request_type,
-            "request_severity": request_severity,
-            "title": title,
-            "description": description,
-        })
+        field_dict.update(
+            {
+                "bridge_id": bridge_id,
+                "request_type": request_type,
+                "request_severity": request_severity,
+                "title": title,
+                "description": description,
+            }
+        )
         if project_id is not UNSET:
             field_dict["project_id"] = project_id
         if product_id is not UNSET:
@@ -96,8 +84,6 @@ class AddPartnerSupportRequest:
             field_dict["reported_asset"] = reported_asset
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -121,7 +107,6 @@ class AddPartnerSupportRequest:
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
 
-
         def _parse_product_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -131,7 +116,6 @@ class AddPartnerSupportRequest:
 
         product_id = _parse_product_id(d.pop("product_id", UNSET))
 
-
         def _parse_reported_asset(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -140,7 +124,6 @@ class AddPartnerSupportRequest:
             return cast(None | str | Unset, data)
 
         reported_asset = _parse_reported_asset(d.pop("reported_asset", UNSET))
-
 
         add_partner_support_request = cls(
             bridge_id=bridge_id,
@@ -152,7 +135,6 @@ class AddPartnerSupportRequest:
             product_id=product_id,
             reported_asset=reported_asset,
         )
-
 
         add_partner_support_request.additional_properties = d
         return add_partner_support_request

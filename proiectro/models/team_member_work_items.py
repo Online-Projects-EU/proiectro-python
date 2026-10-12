@@ -1,38 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.team_member_work_item import TeamMemberWorkItem
-
-
-
+    from ..models.team_member_work_item import TeamMemberWorkItem
 
 
 T = TypeVar("T", bound="TeamMemberWorkItems")
 
 
-
 @_attrs_define
 class TeamMemberWorkItems:
-    """ List of work items owned by a team member in a project
+    """List of work items owned by a team member in a project
 
-        Attributes:
-            team_member_id (str):
-            team_member_name (str):
-            project_id (str):
-            project_name (str):
-            work_items (list[TeamMemberWorkItem]):
-            total (int):
-     """
+    Attributes:
+        team_member_id (str):
+        team_member_name (str):
+        project_id (str):
+        project_name (str):
+        work_items (list[TeamMemberWorkItem]):
+        total (int):
+    """
 
     team_member_id: str
     team_member_name: str
@@ -42,12 +34,7 @@ class TeamMemberWorkItems:
     total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.team_member_work_item import TeamMemberWorkItem
         team_member_id = self.team_member_id
 
         team_member_name = self.team_member_name
@@ -61,29 +48,27 @@ class TeamMemberWorkItems:
             work_items_item = work_items_item_data.to_dict()
             work_items.append(work_items_item)
 
-
-
         total = self.total
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "team_member_id": team_member_id,
-            "team_member_name": team_member_name,
-            "project_id": project_id,
-            "project_name": project_name,
-            "work_items": work_items,
-            "total": total,
-        })
+        field_dict.update(
+            {
+                "team_member_id": team_member_id,
+                "team_member_name": team_member_name,
+                "project_id": project_id,
+                "project_name": project_name,
+                "work_items": work_items,
+                "total": total,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.team_member_work_item import TeamMemberWorkItem
+
         d = dict(src_dict)
         team_member_id = d.pop("team_member_id")
 
@@ -95,13 +80,10 @@ class TeamMemberWorkItems:
 
         work_items = []
         _work_items = d.pop("work_items")
-        for work_items_item_data in (_work_items):
+        for work_items_item_data in _work_items:
             work_items_item = TeamMemberWorkItem.from_dict(work_items_item_data)
 
-
-
             work_items.append(work_items_item)
-
 
         total = d.pop("total")
 
@@ -113,7 +95,6 @@ class TeamMemberWorkItems:
             work_items=work_items,
             total=total,
         )
-
 
         team_member_work_items.additional_properties = d
         return team_member_work_items

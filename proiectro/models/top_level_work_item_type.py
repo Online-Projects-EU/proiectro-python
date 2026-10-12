@@ -1,45 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="TopLevelWorkItemType")
-
 
 
 @_attrs_define
 class TopLevelWorkItemType:
-    """ Info about work item types that can be added at the top level
+    """Info about work item types that can be added at the top level
 
-        Attributes:
-            external_id (str):
-            name (str):
-            scheduling_behaviour (str):
-            description (None | str | Unset):
-     """
+    Attributes:
+        external_id (str):
+        name (str):
+        scheduling_behaviour (str):
+        description (None | str | Unset):
+    """
 
     external_id: str
     name: str
     scheduling_behaviour: str
     description: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -54,20 +41,19 @@ class TopLevelWorkItemType:
         else:
             description = self.description
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "name": name,
-            "scheduling_behaviour": scheduling_behaviour,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "name": name,
+                "scheduling_behaviour": scheduling_behaviour,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -87,14 +73,12 @@ class TopLevelWorkItemType:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         top_level_work_item_type = cls(
             external_id=external_id,
             name=name,
             scheduling_behaviour=scheduling_behaviour,
             description=description,
         )
-
 
         top_level_work_item_type.additional_properties = d
         return top_level_work_item_type

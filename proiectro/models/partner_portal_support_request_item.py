@@ -1,41 +1,31 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
-
-
-
-
-
 
 T = TypeVar("T", bound="PartnerPortalSupportRequestItem")
 
 
-
 @_attrs_define
 class PartnerPortalSupportRequestItem:
-    """ Single support request in partner portal
+    """Single support request in partner portal
 
-        Attributes:
-            id (str):
-            public_reference (str):
-            title (str):
-            description (None | str):
-            status (str):
-            priority (str):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
-            requester_name (None | str):
-     """
+    Attributes:
+        id (str):
+        public_reference (str):
+        title (str):
+        description (None | str):
+        status (str):
+        priority (str):
+        created_at (datetime.datetime):
+        updated_at (datetime.datetime):
+        requester_name (None | str):
+    """
 
     id: str
     public_reference: str
@@ -47,10 +37,6 @@ class PartnerPortalSupportRequestItem:
     updated_at: datetime.datetime
     requester_name: None | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -73,24 +59,23 @@ class PartnerPortalSupportRequestItem:
         requester_name: None | str
         requester_name = self.requester_name
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "public_reference": public_reference,
-            "title": title,
-            "description": description,
-            "status": status,
-            "priority": priority,
-            "created_at": created_at,
-            "updated_at": updated_at,
-            "requester_name": requester_name,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "public_reference": public_reference,
+                "title": title,
+                "description": description,
+                "status": status,
+                "priority": priority,
+                "created_at": created_at,
+                "updated_at": updated_at,
+                "requester_name": requester_name,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -108,20 +93,13 @@ class PartnerPortalSupportRequestItem:
 
         description = _parse_description(d.pop("description"))
 
-
         status = d.pop("status")
 
         priority = d.pop("priority")
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_requester_name(data: object) -> None | str:
             if data is None:
@@ -129,7 +107,6 @@ class PartnerPortalSupportRequestItem:
             return cast(None | str, data)
 
         requester_name = _parse_requester_name(d.pop("requester_name"))
-
 
         partner_portal_support_request_item = cls(
             id=id,
@@ -142,7 +119,6 @@ class PartnerPortalSupportRequestItem:
             updated_at=updated_at,
             requester_name=requester_name,
         )
-
 
         partner_portal_support_request_item.additional_properties = d
         return partner_portal_support_request_item

@@ -1,68 +1,51 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.submit_custom_form_data import SubmitCustomFormData
-
-
-
+    from ..models.submit_custom_form_data import SubmitCustomFormData
 
 
 T = TypeVar("T", bound="SubmitCustomForm")
 
 
-
 @_attrs_define
 class SubmitCustomForm:
-    """ 
-        Attributes:
-            data (SubmitCustomFormData):
-     """
+    """
+    Attributes:
+        data (SubmitCustomFormData):
+    """
 
     data: SubmitCustomFormData
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.submit_custom_form_data import SubmitCustomFormData
         data = self.data.to_dict()
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "data": data,
-        })
+        field_dict.update(
+            {
+                "data": data,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.submit_custom_form_data import SubmitCustomFormData
+
         d = dict(src_dict)
         data = SubmitCustomFormData.from_dict(d.pop("data"))
-
-
-
 
         submit_custom_form = cls(
             data=data,
         )
-
 
         submit_custom_form.additional_properties = d
         return submit_custom_form

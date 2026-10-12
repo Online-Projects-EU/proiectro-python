@@ -1,35 +1,26 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditWorkResourceUsage")
-
 
 
 @_attrs_define
 class EditWorkResourceUsage:
-    """ 
-        Attributes:
-            member (str):
-            usage (int):
-            date (str):
-            booking (None | str | Unset):
-            note (None | str | Unset):
-     """
+    """
+    Attributes:
+        member (str):
+        usage (int):
+        date (str):
+        booking (None | str | Unset):
+        note (None | str | Unset):
+    """
 
     member: str
     usage: int
@@ -37,10 +28,6 @@ class EditWorkResourceUsage:
     booking: None | str | Unset = UNSET
     note: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         member = self.member
@@ -61,22 +48,21 @@ class EditWorkResourceUsage:
         else:
             note = self.note
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "member": member,
-            "usage": usage,
-            "date": date,
-        })
+        field_dict.update(
+            {
+                "member": member,
+                "usage": usage,
+                "date": date,
+            }
+        )
         if booking is not UNSET:
             field_dict["booking"] = booking
         if note is not UNSET:
             field_dict["note"] = note
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -96,7 +82,6 @@ class EditWorkResourceUsage:
 
         booking = _parse_booking(d.pop("booking", UNSET))
 
-
         def _parse_note(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -106,7 +91,6 @@ class EditWorkResourceUsage:
 
         note = _parse_note(d.pop("note", UNSET))
 
-
         edit_work_resource_usage = cls(
             member=member,
             usage=usage,
@@ -114,7 +98,6 @@ class EditWorkResourceUsage:
             booking=booking,
             note=note,
         )
-
 
         edit_work_resource_usage.additional_properties = d
         return edit_work_resource_usage

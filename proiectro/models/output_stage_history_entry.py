@@ -1,44 +1,35 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputStageHistoryEntry")
 
 
-
 @_attrs_define
 class OutputStageHistoryEntry:
-    """ 
-        Attributes:
-            process_name (str):
-            stage_name (str):
-            stage_type (str):
-            entered_at (datetime.datetime):
-            exited_at (datetime.datetime | None | Unset):
-            duration_days (int | None | Unset):
-            duration_hours (int | None | Unset):
-            moved_by_name (None | str | Unset):
-            notes (None | str | Unset):
-            approval_action (None | str | Unset):
-            approval_reason (None | str | Unset):
-            is_current (bool | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        process_name (str):
+        stage_name (str):
+        stage_type (str):
+        entered_at (datetime.datetime):
+        exited_at (datetime.datetime | None | Unset):
+        duration_days (int | None | Unset):
+        duration_hours (int | None | Unset):
+        moved_by_name (None | str | Unset):
+        notes (None | str | Unset):
+        approval_action (None | str | Unset):
+        approval_reason (None | str | Unset):
+        is_current (bool | Unset):  Default: False.
+    """
 
     process_name: str
     stage_name: str
@@ -53,10 +44,6 @@ class OutputStageHistoryEntry:
     approval_reason: None | str | Unset = UNSET
     is_current: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         process_name = self.process_name
@@ -113,15 +100,16 @@ class OutputStageHistoryEntry:
 
         is_current = self.is_current
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "process_name": process_name,
-            "stage_name": stage_name,
-            "stage_type": stage_type,
-            "entered_at": entered_at,
-        })
+        field_dict.update(
+            {
+                "process_name": process_name,
+                "stage_name": stage_name,
+                "stage_type": stage_type,
+                "entered_at": entered_at,
+            }
+        )
         if exited_at is not UNSET:
             field_dict["exited_at"] = exited_at
         if duration_days is not UNSET:
@@ -141,8 +129,6 @@ class OutputStageHistoryEntry:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -154,9 +140,6 @@ class OutputStageHistoryEntry:
 
         entered_at = isoparse(d.pop("entered_at"))
 
-
-
-
         def _parse_exited_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
@@ -167,15 +150,12 @@ class OutputStageHistoryEntry:
                     raise TypeError()
                 exited_at_type_0 = isoparse(data)
 
-
-
                 return exited_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         exited_at = _parse_exited_at(d.pop("exited_at", UNSET))
-
 
         def _parse_duration_days(data: object) -> int | None | Unset:
             if data is None:
@@ -186,7 +166,6 @@ class OutputStageHistoryEntry:
 
         duration_days = _parse_duration_days(d.pop("duration_days", UNSET))
 
-
         def _parse_duration_hours(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -195,7 +174,6 @@ class OutputStageHistoryEntry:
             return cast(int | None | Unset, data)
 
         duration_hours = _parse_duration_hours(d.pop("duration_hours", UNSET))
-
 
         def _parse_moved_by_name(data: object) -> None | str | Unset:
             if data is None:
@@ -206,7 +184,6 @@ class OutputStageHistoryEntry:
 
         moved_by_name = _parse_moved_by_name(d.pop("moved_by_name", UNSET))
 
-
         def _parse_notes(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -215,7 +192,6 @@ class OutputStageHistoryEntry:
             return cast(None | str | Unset, data)
 
         notes = _parse_notes(d.pop("notes", UNSET))
-
 
         def _parse_approval_action(data: object) -> None | str | Unset:
             if data is None:
@@ -226,7 +202,6 @@ class OutputStageHistoryEntry:
 
         approval_action = _parse_approval_action(d.pop("approval_action", UNSET))
 
-
         def _parse_approval_reason(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -235,7 +210,6 @@ class OutputStageHistoryEntry:
             return cast(None | str | Unset, data)
 
         approval_reason = _parse_approval_reason(d.pop("approval_reason", UNSET))
-
 
         is_current = d.pop("is_current", UNSET)
 
@@ -253,7 +227,6 @@ class OutputStageHistoryEntry:
             approval_reason=approval_reason,
             is_current=is_current,
         )
-
 
         output_stage_history_entry.additional_properties = d
         return output_stage_history_entry

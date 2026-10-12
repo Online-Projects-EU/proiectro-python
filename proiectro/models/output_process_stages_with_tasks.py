@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_stage_with_tasks import OutputStageWithTasks
-
-
-
+    from ..models.output_stage_with_tasks import OutputStageWithTasks
 
 
 T = TypeVar("T", bound="OutputProcessStagesWithTasks")
 
 
-
 @_attrs_define
 class OutputProcessStagesWithTasks:
-    """ 
-        Attributes:
-            process_id (str):
-            process_name (str):
-            stages (list[OutputStageWithTasks]):
-     """
+    """
+    Attributes:
+        process_id (str):
+        process_name (str):
+        stages (list[OutputStageWithTasks]):
+    """
 
     process_id: str
     process_name: str
     stages: list[OutputStageWithTasks]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_stage_with_tasks import OutputStageWithTasks
         process_id = self.process_id
 
         process_name = self.process_name
@@ -50,24 +37,22 @@ class OutputProcessStagesWithTasks:
             stages_item = stages_item_data.to_dict()
             stages.append(stages_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "process_id": process_id,
-            "process_name": process_name,
-            "stages": stages,
-        })
+        field_dict.update(
+            {
+                "process_id": process_id,
+                "process_name": process_name,
+                "stages": stages,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_stage_with_tasks import OutputStageWithTasks
+
         d = dict(src_dict)
         process_id = d.pop("process_id")
 
@@ -75,20 +60,16 @@ class OutputProcessStagesWithTasks:
 
         stages = []
         _stages = d.pop("stages")
-        for stages_item_data in (_stages):
+        for stages_item_data in _stages:
             stages_item = OutputStageWithTasks.from_dict(stages_item_data)
 
-
-
             stages.append(stages_item)
-
 
         output_process_stages_with_tasks = cls(
             process_id=process_id,
             process_name=process_name,
             stages=stages,
         )
-
 
         output_process_stages_with_tasks.additional_properties = d
         return output_process_stages_with_tasks

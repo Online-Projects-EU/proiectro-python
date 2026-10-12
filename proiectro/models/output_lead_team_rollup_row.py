@@ -1,38 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputLeadTeamRollupRow")
-
 
 
 @_attrs_define
 class OutputLeadTeamRollupRow:
-    """ One row of the per-rep manager dashboard.
+    """One row of the per-rep manager dashboard.
 
-        Attributes:
-            member_id (str):
-            member_name (str):
-            member_avatar_url (str):
-            overdue_count (int | Unset):  Default: 0.
-            today_count (int | Unset):  Default: 0.
-            untriaged_count (int | Unset):  Default: 0.
-            scheduled_count (int | Unset):  Default: 0.
-            converted_30d_count (int | Unset):  Default: 0.
-     """
+    Attributes:
+        member_id (str):
+        member_name (str):
+        member_avatar_url (str):
+        overdue_count (int | Unset):  Default: 0.
+        today_count (int | Unset):  Default: 0.
+        untriaged_count (int | Unset):  Default: 0.
+        scheduled_count (int | Unset):  Default: 0.
+        converted_30d_count (int | Unset):  Default: 0.
+    """
 
     member_id: str
     member_name: str
@@ -43,10 +35,6 @@ class OutputLeadTeamRollupRow:
     scheduled_count: int | Unset = 0
     converted_30d_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         member_id = self.member_id
@@ -65,14 +53,15 @@ class OutputLeadTeamRollupRow:
 
         converted_30d_count = self.converted_30d_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "member_id": member_id,
-            "member_name": member_name,
-            "member_avatar_url": member_avatar_url,
-        })
+        field_dict.update(
+            {
+                "member_id": member_id,
+                "member_name": member_name,
+                "member_avatar_url": member_avatar_url,
+            }
+        )
         if overdue_count is not UNSET:
             field_dict["overdue_count"] = overdue_count
         if today_count is not UNSET:
@@ -85,8 +74,6 @@ class OutputLeadTeamRollupRow:
             field_dict["converted_30d_count"] = converted_30d_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -117,7 +104,6 @@ class OutputLeadTeamRollupRow:
             scheduled_count=scheduled_count,
             converted_30d_count=converted_30d_count,
         )
-
 
         output_lead_team_rollup_row.additional_properties = d
         return output_lead_team_rollup_row

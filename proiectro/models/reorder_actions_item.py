@@ -1,56 +1,42 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="ReorderActionsItem")
-
 
 
 @_attrs_define
 class ReorderActionsItem:
-    """ A single action reorder instruction.
+    """A single action reorder instruction.
 
-        Attributes:
-            action_id (str):
-            order (int):
-     """
+    Attributes:
+        action_id (str):
+        order (int):
+    """
 
     action_id: str
     order: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         action_id = self.action_id
 
         order = self.order
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "action_id": action_id,
-            "order": order,
-        })
+        field_dict.update(
+            {
+                "action_id": action_id,
+                "order": order,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -63,7 +49,6 @@ class ReorderActionsItem:
             action_id=action_id,
             order=order,
         )
-
 
         reorder_actions_item.additional_properties = d
         return reorder_actions_item

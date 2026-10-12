@@ -1,52 +1,43 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.automation_condition_filters_response_filters import AutomationConditionFiltersResponseFilters
-  from ..models.automation_condition_filters_response_operators import AutomationConditionFiltersResponseOperators
-
-
-
+    from ..models.automation_condition_filters_response_filters import (
+        AutomationConditionFiltersResponseFilters,
+    )
+    from ..models.automation_condition_filters_response_operators import (
+        AutomationConditionFiltersResponseOperators,
+    )
 
 
 T = TypeVar("T", bound="AutomationConditionFiltersResponse")
 
 
-
 @_attrs_define
 class AutomationConditionFiltersResponse:
-    """ Output: available condition fields and operators for an action.
+    """Output: available condition fields and operators for an action.
 
-        Attributes:
-            filters (AutomationConditionFiltersResponseFilters):
-            operators (AutomationConditionFiltersResponseOperators):
-            prefix (str | Unset):  Default: ''.
-            action_idx (int | Unset):  Default: 0.
-     """
+    Attributes:
+        filters (AutomationConditionFiltersResponseFilters):
+        operators (AutomationConditionFiltersResponseOperators):
+        prefix (str | Unset):  Default: ''.
+        action_idx (int | Unset):  Default: 0.
+    """
 
     filters: AutomationConditionFiltersResponseFilters
     operators: AutomationConditionFiltersResponseOperators
-    prefix: str | Unset = ''
+    prefix: str | Unset = ""
     action_idx: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.automation_condition_filters_response_operators import AutomationConditionFiltersResponseOperators
-        from ..models.automation_condition_filters_response_filters import AutomationConditionFiltersResponseFilters
         filters = self.filters.to_dict()
 
         operators = self.operators.to_dict()
@@ -55,13 +46,14 @@ class AutomationConditionFiltersResponse:
 
         action_idx = self.action_idx
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "filters": filters,
-            "operators": operators,
-        })
+        field_dict.update(
+            {
+                "filters": filters,
+                "operators": operators,
+            }
+        )
         if prefix is not UNSET:
             field_dict["prefix"] = prefix
         if action_idx is not UNSET:
@@ -69,22 +61,21 @@ class AutomationConditionFiltersResponse:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.automation_condition_filters_response_filters import AutomationConditionFiltersResponseFilters
-        from ..models.automation_condition_filters_response_operators import AutomationConditionFiltersResponseOperators
+        from ..models.automation_condition_filters_response_filters import (
+            AutomationConditionFiltersResponseFilters,
+        )
+        from ..models.automation_condition_filters_response_operators import (
+            AutomationConditionFiltersResponseOperators,
+        )
+
         d = dict(src_dict)
         filters = AutomationConditionFiltersResponseFilters.from_dict(d.pop("filters"))
 
-
-
-
-        operators = AutomationConditionFiltersResponseOperators.from_dict(d.pop("operators"))
-
-
-
+        operators = AutomationConditionFiltersResponseOperators.from_dict(
+            d.pop("operators")
+        )
 
         prefix = d.pop("prefix", UNSET)
 
@@ -96,7 +87,6 @@ class AutomationConditionFiltersResponse:
             prefix=prefix,
             action_idx=action_idx,
         )
-
 
         automation_condition_filters_response.additional_properties = d
         return automation_condition_filters_response

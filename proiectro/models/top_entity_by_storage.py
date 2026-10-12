@@ -1,35 +1,26 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="TopEntityByStorage")
-
 
 
 @_attrs_define
 class TopEntityByStorage:
-    """ Individual entity in top storage list
+    """Individual entity in top storage list
 
-        Attributes:
-            rank (int):
-            entity_id (str):
-            entity_name (str):
-            entity_type (str):
-            storage_size (str):
-            file_count (int):
-     """
+    Attributes:
+        rank (int):
+        entity_id (str):
+        entity_name (str):
+        entity_type (str):
+        storage_size (str):
+        file_count (int):
+    """
 
     rank: int
     entity_id: str
@@ -38,10 +29,6 @@ class TopEntityByStorage:
     storage_size: str
     file_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         rank = self.rank
@@ -56,21 +43,20 @@ class TopEntityByStorage:
 
         file_count = self.file_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "rank": rank,
-            "entity_id": entity_id,
-            "entity_name": entity_name,
-            "entity_type": entity_type,
-            "storage_size": storage_size,
-            "file_count": file_count,
-        })
+        field_dict.update(
+            {
+                "rank": rank,
+                "entity_id": entity_id,
+                "entity_name": entity_name,
+                "entity_type": entity_type,
+                "storage_size": storage_size,
+                "file_count": file_count,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,7 +81,6 @@ class TopEntityByStorage:
             storage_size=storage_size,
             file_count=file_count,
         )
-
 
         top_entity_by_storage.additional_properties = d
         return top_entity_by_storage

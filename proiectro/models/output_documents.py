@@ -1,36 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_document import OutputDocument
-
-
-
+    from ..models.output_document import OutputDocument
 
 
 T = TypeVar("T", bound="OutputDocuments")
 
 
-
 @_attrs_define
 class OutputDocuments:
-    """ 
-        Attributes:
-            documents (list[OutputDocument]):
-            total_count (int | Unset):  Default: 0.
-            is_filtered (bool | Unset):  Default: False.
-            entity_id (None | str | Unset):
-     """
+    """
+    Attributes:
+        documents (list[OutputDocument]):
+        total_count (int | Unset):  Default: 0.
+        is_filtered (bool | Unset):  Default: False.
+        entity_id (None | str | Unset):
+    """
 
     documents: list[OutputDocument]
     total_count: int | Unset = 0
@@ -38,18 +31,11 @@ class OutputDocuments:
     entity_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_document import OutputDocument
         documents = []
         for documents_item_data in self.documents:
             documents_item = documents_item_data.to_dict()
             documents.append(documents_item)
-
-
 
         total_count = self.total_count
 
@@ -61,12 +47,13 @@ class OutputDocuments:
         else:
             entity_id = self.entity_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "documents": documents,
-        })
+        field_dict.update(
+            {
+                "documents": documents,
+            }
+        )
         if total_count is not UNSET:
             field_dict["total_count"] = total_count
         if is_filtered is not UNSET:
@@ -76,21 +63,17 @@ class OutputDocuments:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_document import OutputDocument
+
         d = dict(src_dict)
         documents = []
         _documents = d.pop("documents")
-        for documents_item_data in (_documents):
+        for documents_item_data in _documents:
             documents_item = OutputDocument.from_dict(documents_item_data)
 
-
-
             documents.append(documents_item)
-
 
         total_count = d.pop("total_count", UNSET)
 
@@ -105,14 +88,12 @@ class OutputDocuments:
 
         entity_id = _parse_entity_id(d.pop("entity_id", UNSET))
 
-
         output_documents = cls(
             documents=documents,
             total_count=total_count,
             is_filtered=is_filtered,
             entity_id=entity_id,
         )
-
 
         output_documents.additional_properties = d
         return output_documents

@@ -1,41 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
 from ..models.partner_portal_file_names_node_type import PartnerPortalFileNamesNodeType
-from typing import cast
 
 if TYPE_CHECKING:
-  from ..models.output_file_name import OutputFileName
-  from ..models.output_file_name_trash import OutputFileNameTrash
-
-
-
+    from ..models.output_file_name import OutputFileName
+    from ..models.output_file_name_trash import OutputFileNameTrash
 
 
 T = TypeVar("T", bound="PartnerPortalFileNames")
 
 
-
 @_attrs_define
 class PartnerPortalFileNames:
-    """ Partner portal files with bridge_id for file operations
+    """Partner portal files with bridge_id for file operations
 
-        Attributes:
-            node_type (PartnerPortalFileNamesNodeType):
-            node_id (str):
-            successfully_retrieved_files (bool):
-            successfully_retrieved_trash (bool):
-            files (list[OutputFileName]):
-            trash_can (list[OutputFileNameTrash]):
-            bridge_id (str):
-     """
+    Attributes:
+        node_type (PartnerPortalFileNamesNodeType):
+        node_id (str):
+        successfully_retrieved_files (bool):
+        successfully_retrieved_trash (bool):
+        files (list[OutputFileName]):
+        trash_can (list[OutputFileNameTrash]):
+        bridge_id (str):
+    """
 
     node_type: PartnerPortalFileNamesNodeType
     node_id: str
@@ -46,13 +39,7 @@ class PartnerPortalFileNames:
     bridge_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_file_name import OutputFileName
-        from ..models.output_file_name_trash import OutputFileNameTrash
         node_type = self.node_type.value
 
         node_id = self.node_id
@@ -66,43 +53,36 @@ class PartnerPortalFileNames:
             files_item = files_item_data.to_dict()
             files.append(files_item)
 
-
-
         trash_can = []
         for trash_can_item_data in self.trash_can:
             trash_can_item = trash_can_item_data.to_dict()
             trash_can.append(trash_can_item)
 
-
-
         bridge_id = self.bridge_id
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "node_type": node_type,
-            "node_id": node_id,
-            "successfully_retrieved_files": successfully_retrieved_files,
-            "successfully_retrieved_trash": successfully_retrieved_trash,
-            "files": files,
-            "trash_can": trash_can,
-            "bridge_id": bridge_id,
-        })
+        field_dict.update(
+            {
+                "node_type": node_type,
+                "node_id": node_id,
+                "successfully_retrieved_files": successfully_retrieved_files,
+                "successfully_retrieved_trash": successfully_retrieved_trash,
+                "files": files,
+                "trash_can": trash_can,
+                "bridge_id": bridge_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_file_name import OutputFileName
         from ..models.output_file_name_trash import OutputFileNameTrash
+
         d = dict(src_dict)
         node_type = PartnerPortalFileNamesNodeType(d.pop("node_type"))
-
-
-
 
         node_id = d.pop("node_id")
 
@@ -112,23 +92,17 @@ class PartnerPortalFileNames:
 
         files = []
         _files = d.pop("files")
-        for files_item_data in (_files):
+        for files_item_data in _files:
             files_item = OutputFileName.from_dict(files_item_data)
-
-
 
             files.append(files_item)
 
-
         trash_can = []
         _trash_can = d.pop("trash_can")
-        for trash_can_item_data in (_trash_can):
+        for trash_can_item_data in _trash_can:
             trash_can_item = OutputFileNameTrash.from_dict(trash_can_item_data)
 
-
-
             trash_can.append(trash_can_item)
-
 
         bridge_id = d.pop("bridge_id")
 
@@ -141,7 +115,6 @@ class PartnerPortalFileNames:
             trash_can=trash_can,
             bridge_id=bridge_id,
         )
-
 
         partner_portal_file_names.additional_properties = d
         return partner_portal_file_names

@@ -1,33 +1,26 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="SalesKPIs")
 
 
-
 @_attrs_define
 class SalesKPIs:
-    """ Sales KPIs - Pipeline health and deal flow status.
+    """Sales KPIs - Pipeline health and deal flow status.
 
     Shows 4 key metrics:
     1. Win Rate - effectiveness of converting deals
@@ -38,23 +31,14 @@ class SalesKPIs:
     Plus supporting pipeline and deal breakdown data.
 
         Attributes:
-            win_rate_percent (float | str):
             win_rate_benchmark (float | str):
             win_rate_status (str):
             deals_won_period (int):
             deals_lost_period (int):
-            avg_deal_size (float | str):
             avg_deal_size_status (str):
-            largest_deal_value (float | str):
-            smallest_deal_value (float | str):
-            sales_velocity (float | str):
             sales_velocity_status (str):
             avg_sales_cycle_days (int):
-            revenue_won_period (float | str):
-            revenue_won_previous (float | str):
             revenue_won_trend (str):
-            pipeline_total_value (float | str):
-            pipeline_weighted_value (float | str):
             pipeline_status (str):
             deals_in_discovery (int):
             deals_in_proposal (int):
@@ -81,25 +65,26 @@ class SalesKPIs:
             filter_category_label (None | str | Unset):
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
-     """
+            win_rate_percent (float | None | str | Unset):
+            avg_deal_size (float | None | str | Unset):
+            largest_deal_value (float | None | str | Unset):
+            smallest_deal_value (float | None | str | Unset):
+            sales_velocity (float | None | str | Unset):
+            revenue_won_period (float | None | str | Unset):
+            revenue_won_previous (float | None | str | Unset):
+            uncovered_currencies (list[str] | Unset):
+            pipeline_total_value (float | None | str | Unset):
+            pipeline_weighted_value (float | None | str | Unset):
+    """
 
-    win_rate_percent: float | str
     win_rate_benchmark: float | str
     win_rate_status: str
     deals_won_period: int
     deals_lost_period: int
-    avg_deal_size: float | str
     avg_deal_size_status: str
-    largest_deal_value: float | str
-    smallest_deal_value: float | str
-    sales_velocity: float | str
     sales_velocity_status: str
     avg_sales_cycle_days: int
-    revenue_won_period: float | str
-    revenue_won_previous: float | str
     revenue_won_trend: str
-    pipeline_total_value: float | str
-    pipeline_weighted_value: float | str
     pipeline_status: str
     deals_in_discovery: int
     deals_in_proposal: int
@@ -110,8 +95,8 @@ class SalesKPIs:
     stalled_deals: int
     deals_status: str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -126,18 +111,19 @@ class SalesKPIs:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    win_rate_percent: float | None | str | Unset = UNSET
+    avg_deal_size: float | None | str | Unset = UNSET
+    largest_deal_value: float | None | str | Unset = UNSET
+    smallest_deal_value: float | None | str | Unset = UNSET
+    sales_velocity: float | None | str | Unset = UNSET
+    revenue_won_period: float | None | str | Unset = UNSET
+    revenue_won_previous: float | None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
+    pipeline_total_value: float | None | str | Unset = UNSET
+    pipeline_weighted_value: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        win_rate_percent: float | str
-        win_rate_percent = self.win_rate_percent
-
         win_rate_benchmark: float | str
         win_rate_benchmark = self.win_rate_benchmark
 
@@ -147,37 +133,13 @@ class SalesKPIs:
 
         deals_lost_period = self.deals_lost_period
 
-        avg_deal_size: float | str
-        avg_deal_size = self.avg_deal_size
-
         avg_deal_size_status = self.avg_deal_size_status
-
-        largest_deal_value: float | str
-        largest_deal_value = self.largest_deal_value
-
-        smallest_deal_value: float | str
-        smallest_deal_value = self.smallest_deal_value
-
-        sales_velocity: float | str
-        sales_velocity = self.sales_velocity
 
         sales_velocity_status = self.sales_velocity_status
 
         avg_sales_cycle_days = self.avg_sales_cycle_days
 
-        revenue_won_period: float | str
-        revenue_won_period = self.revenue_won_period
-
-        revenue_won_previous: float | str
-        revenue_won_previous = self.revenue_won_previous
-
         revenue_won_trend = self.revenue_won_trend
-
-        pipeline_total_value: float | str
-        pipeline_total_value = self.pipeline_total_value
-
-        pipeline_weighted_value: float | str
-        pipeline_weighted_value = self.pipeline_weighted_value
 
         pipeline_status = self.pipeline_status
 
@@ -238,7 +200,6 @@ class SalesKPIs:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -262,7 +223,6 @@ class SalesKPIs:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -303,38 +263,88 @@ class SalesKPIs:
         else:
             filter_type_label = self.filter_type_label
 
+        win_rate_percent: float | None | str | Unset
+        if isinstance(self.win_rate_percent, Unset):
+            win_rate_percent = UNSET
+        else:
+            win_rate_percent = self.win_rate_percent
+
+        avg_deal_size: float | None | str | Unset
+        if isinstance(self.avg_deal_size, Unset):
+            avg_deal_size = UNSET
+        else:
+            avg_deal_size = self.avg_deal_size
+
+        largest_deal_value: float | None | str | Unset
+        if isinstance(self.largest_deal_value, Unset):
+            largest_deal_value = UNSET
+        else:
+            largest_deal_value = self.largest_deal_value
+
+        smallest_deal_value: float | None | str | Unset
+        if isinstance(self.smallest_deal_value, Unset):
+            smallest_deal_value = UNSET
+        else:
+            smallest_deal_value = self.smallest_deal_value
+
+        sales_velocity: float | None | str | Unset
+        if isinstance(self.sales_velocity, Unset):
+            sales_velocity = UNSET
+        else:
+            sales_velocity = self.sales_velocity
+
+        revenue_won_period: float | None | str | Unset
+        if isinstance(self.revenue_won_period, Unset):
+            revenue_won_period = UNSET
+        else:
+            revenue_won_period = self.revenue_won_period
+
+        revenue_won_previous: float | None | str | Unset
+        if isinstance(self.revenue_won_previous, Unset):
+            revenue_won_previous = UNSET
+        else:
+            revenue_won_previous = self.revenue_won_previous
+
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
+        pipeline_total_value: float | None | str | Unset
+        if isinstance(self.pipeline_total_value, Unset):
+            pipeline_total_value = UNSET
+        else:
+            pipeline_total_value = self.pipeline_total_value
+
+        pipeline_weighted_value: float | None | str | Unset
+        if isinstance(self.pipeline_weighted_value, Unset):
+            pipeline_weighted_value = UNSET
+        else:
+            pipeline_weighted_value = self.pipeline_weighted_value
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "win_rate_percent": win_rate_percent,
-            "win_rate_benchmark": win_rate_benchmark,
-            "win_rate_status": win_rate_status,
-            "deals_won_period": deals_won_period,
-            "deals_lost_period": deals_lost_period,
-            "avg_deal_size": avg_deal_size,
-            "avg_deal_size_status": avg_deal_size_status,
-            "largest_deal_value": largest_deal_value,
-            "smallest_deal_value": smallest_deal_value,
-            "sales_velocity": sales_velocity,
-            "sales_velocity_status": sales_velocity_status,
-            "avg_sales_cycle_days": avg_sales_cycle_days,
-            "revenue_won_period": revenue_won_period,
-            "revenue_won_previous": revenue_won_previous,
-            "revenue_won_trend": revenue_won_trend,
-            "pipeline_total_value": pipeline_total_value,
-            "pipeline_weighted_value": pipeline_weighted_value,
-            "pipeline_status": pipeline_status,
-            "deals_in_discovery": deals_in_discovery,
-            "deals_in_proposal": deals_in_proposal,
-            "deals_in_negotiation": deals_in_negotiation,
-            "deals_closing_soon": deals_closing_soon,
-            "total_active_deals": total_active_deals,
-            "new_deals_this_period": new_deals_this_period,
-            "stalled_deals": stalled_deals,
-            "deals_status": deals_status,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "win_rate_benchmark": win_rate_benchmark,
+                "win_rate_status": win_rate_status,
+                "deals_won_period": deals_won_period,
+                "deals_lost_period": deals_lost_period,
+                "avg_deal_size_status": avg_deal_size_status,
+                "sales_velocity_status": sales_velocity_status,
+                "avg_sales_cycle_days": avg_sales_cycle_days,
+                "revenue_won_trend": revenue_won_trend,
+                "pipeline_status": pipeline_status,
+                "deals_in_discovery": deals_in_discovery,
+                "deals_in_proposal": deals_in_proposal,
+                "deals_in_negotiation": deals_in_negotiation,
+                "deals_closing_soon": deals_closing_soon,
+                "total_active_deals": total_active_deals,
+                "new_deals_this_period": new_deals_this_period,
+                "stalled_deals": stalled_deals,
+                "deals_status": deals_status,
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -367,27 +377,40 @@ class SalesKPIs:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if win_rate_percent is not UNSET:
+            field_dict["win_rate_percent"] = win_rate_percent
+        if avg_deal_size is not UNSET:
+            field_dict["avg_deal_size"] = avg_deal_size
+        if largest_deal_value is not UNSET:
+            field_dict["largest_deal_value"] = largest_deal_value
+        if smallest_deal_value is not UNSET:
+            field_dict["smallest_deal_value"] = smallest_deal_value
+        if sales_velocity is not UNSET:
+            field_dict["sales_velocity"] = sales_velocity
+        if revenue_won_period is not UNSET:
+            field_dict["revenue_won_period"] = revenue_won_period
+        if revenue_won_previous is not UNSET:
+            field_dict["revenue_won_previous"] = revenue_won_previous
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
+        if pipeline_total_value is not UNSET:
+            field_dict["pipeline_total_value"] = pipeline_total_value
+        if pipeline_weighted_value is not UNSET:
+            field_dict["pipeline_weighted_value"] = pipeline_weighted_value
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_win_rate_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        win_rate_percent = _parse_win_rate_percent(d.pop("win_rate_percent"))
-
 
         def _parse_win_rate_benchmark(data: object) -> float | str:
             return cast(float | str, data)
 
         win_rate_benchmark = _parse_win_rate_benchmark(d.pop("win_rate_benchmark"))
-
 
         win_rate_status = d.pop("win_rate_status")
 
@@ -395,61 +418,13 @@ class SalesKPIs:
 
         deals_lost_period = d.pop("deals_lost_period")
 
-        def _parse_avg_deal_size(data: object) -> float | str:
-            return cast(float | str, data)
-
-        avg_deal_size = _parse_avg_deal_size(d.pop("avg_deal_size"))
-
-
         avg_deal_size_status = d.pop("avg_deal_size_status")
-
-        def _parse_largest_deal_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        largest_deal_value = _parse_largest_deal_value(d.pop("largest_deal_value"))
-
-
-        def _parse_smallest_deal_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        smallest_deal_value = _parse_smallest_deal_value(d.pop("smallest_deal_value"))
-
-
-        def _parse_sales_velocity(data: object) -> float | str:
-            return cast(float | str, data)
-
-        sales_velocity = _parse_sales_velocity(d.pop("sales_velocity"))
-
 
         sales_velocity_status = d.pop("sales_velocity_status")
 
         avg_sales_cycle_days = d.pop("avg_sales_cycle_days")
 
-        def _parse_revenue_won_period(data: object) -> float | str:
-            return cast(float | str, data)
-
-        revenue_won_period = _parse_revenue_won_period(d.pop("revenue_won_period"))
-
-
-        def _parse_revenue_won_previous(data: object) -> float | str:
-            return cast(float | str, data)
-
-        revenue_won_previous = _parse_revenue_won_previous(d.pop("revenue_won_previous"))
-
-
         revenue_won_trend = d.pop("revenue_won_trend")
-
-        def _parse_pipeline_total_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        pipeline_total_value = _parse_pipeline_total_value(d.pop("pipeline_total_value"))
-
-
-        def _parse_pipeline_weighted_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        pipeline_weighted_value = _parse_pipeline_weighted_value(d.pop("pipeline_weighted_value"))
-
 
         pipeline_status = d.pop("pipeline_status")
 
@@ -485,15 +460,12 @@ class SalesKPIs:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -504,7 +476,6 @@ class SalesKPIs:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -514,7 +485,6 @@ class SalesKPIs:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -523,7 +493,6 @@ class SalesKPIs:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -535,10 +504,10 @@ class SalesKPIs:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -549,7 +518,6 @@ class SalesKPIs:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -559,7 +527,6 @@ class SalesKPIs:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -568,7 +535,6 @@ class SalesKPIs:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -580,10 +546,10 @@ class SalesKPIs:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -594,7 +560,6 @@ class SalesKPIs:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -604,7 +569,6 @@ class SalesKPIs:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -612,8 +576,9 @@ class SalesKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -624,7 +589,6 @@ class SalesKPIs:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -632,8 +596,9 @@ class SalesKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -644,7 +609,6 @@ class SalesKPIs:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -654,25 +618,110 @@ class SalesKPIs:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        def _parse_win_rate_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        win_rate_percent = _parse_win_rate_percent(d.pop("win_rate_percent", UNSET))
+
+        def _parse_avg_deal_size(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        avg_deal_size = _parse_avg_deal_size(d.pop("avg_deal_size", UNSET))
+
+        def _parse_largest_deal_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        largest_deal_value = _parse_largest_deal_value(
+            d.pop("largest_deal_value", UNSET)
+        )
+
+        def _parse_smallest_deal_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        smallest_deal_value = _parse_smallest_deal_value(
+            d.pop("smallest_deal_value", UNSET)
+        )
+
+        def _parse_sales_velocity(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        sales_velocity = _parse_sales_velocity(d.pop("sales_velocity", UNSET))
+
+        def _parse_revenue_won_period(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        revenue_won_period = _parse_revenue_won_period(
+            d.pop("revenue_won_period", UNSET)
+        )
+
+        def _parse_revenue_won_previous(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        revenue_won_previous = _parse_revenue_won_previous(
+            d.pop("revenue_won_previous", UNSET)
+        )
+
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
+
+        def _parse_pipeline_total_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        pipeline_total_value = _parse_pipeline_total_value(
+            d.pop("pipeline_total_value", UNSET)
+        )
+
+        def _parse_pipeline_weighted_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        pipeline_weighted_value = _parse_pipeline_weighted_value(
+            d.pop("pipeline_weighted_value", UNSET)
+        )
 
         sales_kp_is = cls(
-            win_rate_percent=win_rate_percent,
             win_rate_benchmark=win_rate_benchmark,
             win_rate_status=win_rate_status,
             deals_won_period=deals_won_period,
             deals_lost_period=deals_lost_period,
-            avg_deal_size=avg_deal_size,
             avg_deal_size_status=avg_deal_size_status,
-            largest_deal_value=largest_deal_value,
-            smallest_deal_value=smallest_deal_value,
-            sales_velocity=sales_velocity,
             sales_velocity_status=sales_velocity_status,
             avg_sales_cycle_days=avg_sales_cycle_days,
-            revenue_won_period=revenue_won_period,
-            revenue_won_previous=revenue_won_previous,
             revenue_won_trend=revenue_won_trend,
-            pipeline_total_value=pipeline_total_value,
-            pipeline_weighted_value=pipeline_weighted_value,
             pipeline_status=pipeline_status,
             deals_in_discovery=deals_in_discovery,
             deals_in_proposal=deals_in_proposal,
@@ -699,8 +748,17 @@ class SalesKPIs:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            win_rate_percent=win_rate_percent,
+            avg_deal_size=avg_deal_size,
+            largest_deal_value=largest_deal_value,
+            smallest_deal_value=smallest_deal_value,
+            sales_velocity=sales_velocity,
+            revenue_won_period=revenue_won_period,
+            revenue_won_previous=revenue_won_previous,
+            uncovered_currencies=uncovered_currencies,
+            pipeline_total_value=pipeline_total_value,
+            pipeline_weighted_value=pipeline_weighted_value,
         )
-
 
         sales_kp_is.additional_properties = d
         return sales_kp_is

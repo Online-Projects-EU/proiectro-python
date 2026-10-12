@@ -1,46 +1,39 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.output_tag import OutputTag
-
-
-
+    from ..models.output_tag import OutputTag
 
 
 T = TypeVar("T", bound="ProposalListItem")
 
 
-
 @_attrs_define
 class ProposalListItem:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            funnel (str):
-            stage (str):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
-            internal_costs (float | str):
-            external_value (float | str):
-            currency (str):
-            currency_symbol (str):
-            tenant_path (str):
-            tags (list[OutputTag] | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        funnel (str):
+        stage (str):
+        created_at (datetime.datetime):
+        updated_at (datetime.datetime):
+        internal_costs (float | str):
+        external_value (float | str):
+        currency (str):
+        currency_symbol (str):
+        tenant_path (str):
+        tags (list[OutputTag] | Unset):
+    """
 
     id: str
     name: str
@@ -56,12 +49,7 @@ class ProposalListItem:
     tags: list[OutputTag] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_tag import OutputTag
         id = self.id
 
         name = self.name
@@ -93,34 +81,32 @@ class ProposalListItem:
                 tags_item = tags_item_data.to_dict()
                 tags.append(tags_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "funnel": funnel,
-            "stage": stage,
-            "created_at": created_at,
-            "updated_at": updated_at,
-            "internal_costs": internal_costs,
-            "external_value": external_value,
-            "currency": currency,
-            "currency_symbol": currency_symbol,
-            "tenant_path": tenant_path,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "funnel": funnel,
+                "stage": stage,
+                "created_at": created_at,
+                "updated_at": updated_at,
+                "internal_costs": internal_costs,
+                "external_value": external_value,
+                "currency": currency,
+                "currency_symbol": currency_symbol,
+                "tenant_path": tenant_path,
+            }
+        )
         if tags is not UNSET:
             field_dict["tags"] = tags
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_tag import OutputTag
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -132,25 +118,17 @@ class ProposalListItem:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_internal_costs(data: object) -> float | str:
             return cast(float | str, data)
 
         internal_costs = _parse_internal_costs(d.pop("internal_costs"))
 
-
         def _parse_external_value(data: object) -> float | str:
             return cast(float | str, data)
 
         external_value = _parse_external_value(d.pop("external_value"))
-
 
         currency = d.pop("currency")
 
@@ -165,10 +143,7 @@ class ProposalListItem:
             for tags_item_data in _tags:
                 tags_item = OutputTag.from_dict(tags_item_data)
 
-
-
                 tags.append(tags_item)
-
 
         proposal_list_item = cls(
             id=id,
@@ -184,7 +159,6 @@ class ProposalListItem:
             tenant_path=tenant_path,
             tags=tags,
         )
-
 
         proposal_list_item.additional_properties = d
         return proposal_list_item

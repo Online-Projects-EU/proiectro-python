@@ -1,46 +1,39 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.template_node_add_children_item import TemplateNodeAddChildrenItem
-  from ..models.template_node_children import TemplateNodeChildren
-
-
-
+    from ..models.template_node_add_children_item import TemplateNodeAddChildrenItem
+    from ..models.template_node_children import TemplateNodeChildren
 
 
 T = TypeVar("T", bound="TemplateNode")
 
 
-
 @_attrs_define
 class TemplateNode:
-    """ Single template in the hierarchy
+    """Single template in the hierarchy
 
-        Attributes:
-            external_id (str):
-            name (str):
-            description (str):
-            hierarchy_id (str):
-            item_type_id (str):
-            item_type_name (str):
-            scheduling_behaviour (str):
-            is_active (bool):
-            estimated_work_hours (float | None | str | Unset):
-            estimated_duration_days (int | None | Unset):
-            children (TemplateNodeChildren | Unset):
-            add_children (list[TemplateNodeAddChildrenItem] | Unset):
-     """
+    Attributes:
+        external_id (str):
+        name (str):
+        description (str):
+        hierarchy_id (str):
+        item_type_id (str):
+        item_type_name (str):
+        scheduling_behaviour (str):
+        is_active (bool):
+        estimated_work_hours (float | None | str | Unset):
+        estimated_duration_days (int | None | Unset):
+        children (TemplateNodeChildren | Unset):
+        add_children (list[TemplateNodeAddChildrenItem] | Unset):
+    """
 
     external_id: str
     name: str
@@ -56,13 +49,7 @@ class TemplateNode:
     add_children: list[TemplateNodeAddChildrenItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.template_node_children import TemplateNodeChildren
-        from ..models.template_node_add_children_item import TemplateNodeAddChildrenItem
         external_id = self.external_id
 
         name = self.name
@@ -102,21 +89,20 @@ class TemplateNode:
                 add_children_item = add_children_item_data.to_dict()
                 add_children.append(add_children_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "name": name,
-            "description": description,
-            "hierarchy_id": hierarchy_id,
-            "item_type_id": item_type_id,
-            "item_type_name": item_type_name,
-            "scheduling_behaviour": scheduling_behaviour,
-            "is_active": is_active,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "name": name,
+                "description": description,
+                "hierarchy_id": hierarchy_id,
+                "item_type_id": item_type_id,
+                "item_type_name": item_type_name,
+                "scheduling_behaviour": scheduling_behaviour,
+                "is_active": is_active,
+            }
+        )
         if estimated_work_hours is not UNSET:
             field_dict["estimated_work_hours"] = estimated_work_hours
         if estimated_duration_days is not UNSET:
@@ -128,12 +114,11 @@ class TemplateNode:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.template_node_add_children_item import TemplateNodeAddChildrenItem
         from ..models.template_node_children import TemplateNodeChildren
+
         d = dict(src_dict)
         external_id = d.pop("external_id")
 
@@ -158,8 +143,9 @@ class TemplateNode:
                 return data
             return cast(float | None | str | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
-
+        estimated_work_hours = _parse_estimated_work_hours(
+            d.pop("estimated_work_hours", UNSET)
+        )
 
         def _parse_estimated_duration_days(data: object) -> int | None | Unset:
             if data is None:
@@ -168,30 +154,27 @@ class TemplateNode:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_duration_days = _parse_estimated_duration_days(d.pop("estimated_duration_days", UNSET))
-
+        estimated_duration_days = _parse_estimated_duration_days(
+            d.pop("estimated_duration_days", UNSET)
+        )
 
         _children = d.pop("children", UNSET)
         children: TemplateNodeChildren | Unset
-        if isinstance(_children,  Unset):
+        if isinstance(_children, Unset):
             children = UNSET
         else:
             children = TemplateNodeChildren.from_dict(_children)
-
-
-
 
         _add_children = d.pop("add_children", UNSET)
         add_children: list[TemplateNodeAddChildrenItem] | Unset = UNSET
         if _add_children is not UNSET:
             add_children = []
             for add_children_item_data in _add_children:
-                add_children_item = TemplateNodeAddChildrenItem.from_dict(add_children_item_data)
-
-
+                add_children_item = TemplateNodeAddChildrenItem.from_dict(
+                    add_children_item_data
+                )
 
                 add_children.append(add_children_item)
-
 
         template_node = cls(
             external_id=external_id,
@@ -207,7 +190,6 @@ class TemplateNode:
             children=children,
             add_children=add_children,
         )
-
 
         template_node.additional_properties = d
         return template_node

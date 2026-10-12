@@ -1,50 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="RequestDeleteFileGCS")
-
 
 
 @_attrs_define
 class RequestDeleteFileGCS:
-    """ 
-        Attributes:
-            file_path (str):
-     """
+    """
+    Attributes:
+        file_path (str):
+    """
 
     file_path: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         file_path = self.file_path
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "filePath": file_path,
-        })
+        field_dict.update(
+            {
+                "filePath": file_path,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -54,7 +40,6 @@ class RequestDeleteFileGCS:
         request_delete_file_gcs = cls(
             file_path=file_path,
         )
-
 
         request_delete_file_gcs.additional_properties = d
         return request_delete_file_gcs

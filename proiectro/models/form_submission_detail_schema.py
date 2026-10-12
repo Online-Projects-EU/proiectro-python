@@ -1,46 +1,45 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.form_submission_detail_schema_all_fields_item import FormSubmissionDetailSchemaAllFieldsItem
-  from ..models.form_submission_detail_schema_status_options_item import FormSubmissionDetailSchemaStatusOptionsItem
-  from ..models.form_submission_detail_schema_values import FormSubmissionDetailSchemaValues
-
-
-
+    from ..models.form_submission_detail_schema_all_fields_item import (
+        FormSubmissionDetailSchemaAllFieldsItem,
+    )
+    from ..models.form_submission_detail_schema_status_options_item import (
+        FormSubmissionDetailSchemaStatusOptionsItem,
+    )
+    from ..models.form_submission_detail_schema_values import (
+        FormSubmissionDetailSchemaValues,
+    )
 
 
 T = TypeVar("T", bound="FormSubmissionDetailSchema")
 
 
-
 @_attrs_define
 class FormSubmissionDetailSchema:
-    """ One submission rendered against its OWN version's fields (historical accuracy).
+    """One submission rendered against its OWN version's fields (historical accuracy).
 
-        Attributes:
-            submission_id (str):
-            form_name (str):
-            submitted_at (datetime.datetime):
-            status (str):
-            all_fields (list[FormSubmissionDetailSchemaAllFieldsItem]):
-            values (FormSubmissionDetailSchemaValues):
-            submitter_name (None | str | Unset):
-            submitter_email (None | str | Unset):
-            status_options (list[FormSubmissionDetailSchemaStatusOptionsItem] | Unset):
-     """
+    Attributes:
+        submission_id (str):
+        form_name (str):
+        submitted_at (datetime.datetime):
+        status (str):
+        all_fields (list[FormSubmissionDetailSchemaAllFieldsItem]):
+        values (FormSubmissionDetailSchemaValues):
+        submitter_name (None | str | Unset):
+        submitter_email (None | str | Unset):
+        status_options (list[FormSubmissionDetailSchemaStatusOptionsItem] | Unset):
+    """
 
     submission_id: str
     form_name: str
@@ -53,14 +52,7 @@ class FormSubmissionDetailSchema:
     status_options: list[FormSubmissionDetailSchemaStatusOptionsItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.form_submission_detail_schema_values import FormSubmissionDetailSchemaValues
-        from ..models.form_submission_detail_schema_status_options_item import FormSubmissionDetailSchemaStatusOptionsItem
-        from ..models.form_submission_detail_schema_all_fields_item import FormSubmissionDetailSchemaAllFieldsItem
         submission_id = self.submission_id
 
         form_name = self.form_name
@@ -73,8 +65,6 @@ class FormSubmissionDetailSchema:
         for all_fields_item_data in self.all_fields:
             all_fields_item = all_fields_item_data.to_dict()
             all_fields.append(all_fields_item)
-
-
 
         values = self.values.to_dict()
 
@@ -97,19 +87,18 @@ class FormSubmissionDetailSchema:
                 status_options_item = status_options_item_data.to_dict()
                 status_options.append(status_options_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "submission_id": submission_id,
-            "form_name": form_name,
-            "submitted_at": submitted_at,
-            "status": status,
-            "all_fields": all_fields,
-            "values": values,
-        })
+        field_dict.update(
+            {
+                "submission_id": submission_id,
+                "form_name": form_name,
+                "submitted_at": submitted_at,
+                "status": status,
+                "all_fields": all_fields,
+                "values": values,
+            }
+        )
         if submitter_name is not UNSET:
             field_dict["submitter_name"] = submitter_name
         if submitter_email is not UNSET:
@@ -119,13 +108,18 @@ class FormSubmissionDetailSchema:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.form_submission_detail_schema_all_fields_item import FormSubmissionDetailSchemaAllFieldsItem
-        from ..models.form_submission_detail_schema_status_options_item import FormSubmissionDetailSchemaStatusOptionsItem
-        from ..models.form_submission_detail_schema_values import FormSubmissionDetailSchemaValues
+        from ..models.form_submission_detail_schema_all_fields_item import (
+            FormSubmissionDetailSchemaAllFieldsItem,
+        )
+        from ..models.form_submission_detail_schema_status_options_item import (
+            FormSubmissionDetailSchemaStatusOptionsItem,
+        )
+        from ..models.form_submission_detail_schema_values import (
+            FormSubmissionDetailSchemaValues,
+        )
+
         d = dict(src_dict)
         submission_id = d.pop("submission_id")
 
@@ -133,25 +127,18 @@ class FormSubmissionDetailSchema:
 
         submitted_at = isoparse(d.pop("submitted_at"))
 
-
-
-
         status = d.pop("status")
 
         all_fields = []
         _all_fields = d.pop("all_fields")
-        for all_fields_item_data in (_all_fields):
-            all_fields_item = FormSubmissionDetailSchemaAllFieldsItem.from_dict(all_fields_item_data)
-
-
+        for all_fields_item_data in _all_fields:
+            all_fields_item = FormSubmissionDetailSchemaAllFieldsItem.from_dict(
+                all_fields_item_data
+            )
 
             all_fields.append(all_fields_item)
 
-
         values = FormSubmissionDetailSchemaValues.from_dict(d.pop("values"))
-
-
-
 
         def _parse_submitter_name(data: object) -> None | str | Unset:
             if data is None:
@@ -162,7 +149,6 @@ class FormSubmissionDetailSchema:
 
         submitter_name = _parse_submitter_name(d.pop("submitter_name", UNSET))
 
-
         def _parse_submitter_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -172,18 +158,20 @@ class FormSubmissionDetailSchema:
 
         submitter_email = _parse_submitter_email(d.pop("submitter_email", UNSET))
 
-
         _status_options = d.pop("status_options", UNSET)
-        status_options: list[FormSubmissionDetailSchemaStatusOptionsItem] | Unset = UNSET
+        status_options: list[FormSubmissionDetailSchemaStatusOptionsItem] | Unset = (
+            UNSET
+        )
         if _status_options is not UNSET:
             status_options = []
             for status_options_item_data in _status_options:
-                status_options_item = FormSubmissionDetailSchemaStatusOptionsItem.from_dict(status_options_item_data)
-
-
+                status_options_item = (
+                    FormSubmissionDetailSchemaStatusOptionsItem.from_dict(
+                        status_options_item_data
+                    )
+                )
 
                 status_options.append(status_options_item)
-
 
         form_submission_detail_schema = cls(
             submission_id=submission_id,
@@ -196,7 +184,6 @@ class FormSubmissionDetailSchema:
             submitter_email=submitter_email,
             status_options=status_options,
         )
-
 
         form_submission_detail_schema.additional_properties = d
         return form_submission_detail_schema

@@ -1,59 +1,48 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="ProjectProductCostComparisonProductSchema")
-
 
 
 @_attrs_define
 class ProjectProductCostComparisonProductSchema:
-    """ Individual product cost comparison data for grouped bar chart
+    """Individual product cost comparison data for grouped bar chart
 
-        Attributes:
-            product_id (str):
-            product_name (str):
-            proposal_cost (str):
-            project_cost (str):
-            currency_symbol (str):
-            has_work_items (bool):
-            product_code (None | str | Unset):
-     """
+    Attributes:
+        product_id (str):
+        product_name (str):
+        proposal_cost (float | str):
+        project_cost (float | str):
+        currency_symbol (str):
+        has_work_items (bool):
+        product_code (None | str | Unset):
+    """
 
     product_id: str
     product_name: str
-    proposal_cost: str
-    project_cost: str
+    proposal_cost: float | str
+    project_cost: float | str
     currency_symbol: str
     has_work_items: bool
     product_code: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         product_id = self.product_id
 
         product_name = self.product_name
 
+        proposal_cost: float | str
         proposal_cost = self.proposal_cost
 
+        project_cost: float | str
         project_cost = self.project_cost
 
         currency_symbol = self.currency_symbol
@@ -66,23 +55,22 @@ class ProjectProductCostComparisonProductSchema:
         else:
             product_code = self.product_code
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "product_id": product_id,
-            "product_name": product_name,
-            "proposal_cost": proposal_cost,
-            "project_cost": project_cost,
-            "currency_symbol": currency_symbol,
-            "has_work_items": has_work_items,
-        })
+        field_dict.update(
+            {
+                "product_id": product_id,
+                "product_name": product_name,
+                "proposal_cost": proposal_cost,
+                "project_cost": project_cost,
+                "currency_symbol": currency_symbol,
+                "has_work_items": has_work_items,
+            }
+        )
         if product_code is not UNSET:
             field_dict["product_code"] = product_code
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -91,9 +79,15 @@ class ProjectProductCostComparisonProductSchema:
 
         product_name = d.pop("product_name")
 
-        proposal_cost = d.pop("proposal_cost")
+        def _parse_proposal_cost(data: object) -> float | str:
+            return cast(float | str, data)
 
-        project_cost = d.pop("project_cost")
+        proposal_cost = _parse_proposal_cost(d.pop("proposal_cost"))
+
+        def _parse_project_cost(data: object) -> float | str:
+            return cast(float | str, data)
+
+        project_cost = _parse_project_cost(d.pop("project_cost"))
 
         currency_symbol = d.pop("currency_symbol")
 
@@ -108,7 +102,6 @@ class ProjectProductCostComparisonProductSchema:
 
         product_code = _parse_product_code(d.pop("product_code", UNSET))
 
-
         project_product_cost_comparison_product_schema = cls(
             product_id=product_id,
             product_name=product_name,
@@ -118,7 +111,6 @@ class ProjectProductCostComparisonProductSchema:
             has_work_items=has_work_items,
             product_code=product_code,
         )
-
 
         project_product_cost_comparison_product_schema.additional_properties = d
         return project_product_cost_comparison_product_schema

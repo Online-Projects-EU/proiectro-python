@@ -1,40 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.block_payments_summary import BlockPaymentsSummary
-  from ..models.payment_detail import PaymentDetail
-
-
-
+    from ..models.block_payments_summary import BlockPaymentsSummary
+    from ..models.payment_detail import PaymentDetail
 
 
 T = TypeVar("T", bound="OutputBlockPayments")
 
 
-
 @_attrs_define
 class OutputBlockPayments:
-    """ 
-        Attributes:
-            payments (list[PaymentDetail]):
-            summary (BlockPaymentsSummary):
-            block_id (str):
-            block_name (str):
-            block_type (str):
-            proposal_currency (str):
-            can_edit (bool):
-            is_closed_won (bool):
-     """
+    """
+    Attributes:
+        payments (list[PaymentDetail]):
+        summary (BlockPaymentsSummary):
+        block_id (str):
+        block_name (str):
+        block_type (str):
+        proposal_currency (str):
+        can_edit (bool):
+        is_closed_won (bool):
+    """
 
     payments: list[PaymentDetail]
     summary: BlockPaymentsSummary
@@ -46,19 +38,11 @@ class OutputBlockPayments:
     is_closed_won: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.block_payments_summary import BlockPaymentsSummary
-        from ..models.payment_detail import PaymentDetail
         payments = []
         for payments_item_data in self.payments:
             payments_item = payments_item_data.to_dict()
             payments.append(payments_item)
-
-
 
         summary = self.summary.to_dict()
 
@@ -74,43 +58,37 @@ class OutputBlockPayments:
 
         is_closed_won = self.is_closed_won
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "payments": payments,
-            "summary": summary,
-            "block_id": block_id,
-            "block_name": block_name,
-            "block_type": block_type,
-            "proposal_currency": proposal_currency,
-            "can_edit": can_edit,
-            "is_closed_won": is_closed_won,
-        })
+        field_dict.update(
+            {
+                "payments": payments,
+                "summary": summary,
+                "block_id": block_id,
+                "block_name": block_name,
+                "block_type": block_type,
+                "proposal_currency": proposal_currency,
+                "can_edit": can_edit,
+                "is_closed_won": is_closed_won,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.block_payments_summary import BlockPaymentsSummary
         from ..models.payment_detail import PaymentDetail
+
         d = dict(src_dict)
         payments = []
         _payments = d.pop("payments")
-        for payments_item_data in (_payments):
+        for payments_item_data in _payments:
             payments_item = PaymentDetail.from_dict(payments_item_data)
-
-
 
             payments.append(payments_item)
 
-
         summary = BlockPaymentsSummary.from_dict(d.pop("summary"))
-
-
-
 
         block_id = d.pop("block_id")
 
@@ -134,7 +112,6 @@ class OutputBlockPayments:
             can_edit=can_edit,
             is_closed_won=is_closed_won,
         )
-
 
         output_block_payments.additional_properties = d
         return output_block_payments

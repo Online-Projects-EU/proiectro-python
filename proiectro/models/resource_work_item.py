@@ -1,42 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="ResourceWorkItem")
-
 
 
 @_attrs_define
 class ResourceWorkItem:
-    """ Individual work item where a resource was used
+    """Individual work item where a resource was used
 
-        Attributes:
-            external_id (str):
-            name (str):
-            hierarchy_id (str):
-            item_type_name (str):
-            scheduling_behaviour (str):
-            is_finished (bool):
-            is_accepted (bool):
-            project_id (str):
-            project_name (str):
-            estimated_work_hours (int | None | Unset):
-            total_usage (int | None | Unset):
-     """
+    Attributes:
+        external_id (str):
+        name (str):
+        hierarchy_id (str):
+        item_type_name (str):
+        scheduling_behaviour (str):
+        is_finished (bool):
+        is_accepted (bool):
+        project_id (str):
+        project_name (str):
+        estimated_work_hours (int | None | Unset):
+        total_usage (int | None | Unset):
+    """
 
     external_id: str
     name: str
@@ -50,10 +41,6 @@ class ResourceWorkItem:
     estimated_work_hours: int | None | Unset = UNSET
     total_usage: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -86,28 +73,27 @@ class ResourceWorkItem:
         else:
             total_usage = self.total_usage
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "name": name,
-            "hierarchy_id": hierarchy_id,
-            "item_type_name": item_type_name,
-            "scheduling_behaviour": scheduling_behaviour,
-            "is_finished": is_finished,
-            "is_accepted": is_accepted,
-            "project_id": project_id,
-            "project_name": project_name,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "name": name,
+                "hierarchy_id": hierarchy_id,
+                "item_type_name": item_type_name,
+                "scheduling_behaviour": scheduling_behaviour,
+                "is_finished": is_finished,
+                "is_accepted": is_accepted,
+                "project_id": project_id,
+                "project_name": project_name,
+            }
+        )
         if estimated_work_hours is not UNSET:
             field_dict["estimated_work_hours"] = estimated_work_hours
         if total_usage is not UNSET:
             field_dict["total_usage"] = total_usage
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -137,8 +123,9 @@ class ResourceWorkItem:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
-
+        estimated_work_hours = _parse_estimated_work_hours(
+            d.pop("estimated_work_hours", UNSET)
+        )
 
         def _parse_total_usage(data: object) -> int | None | Unset:
             if data is None:
@@ -148,7 +135,6 @@ class ResourceWorkItem:
             return cast(int | None | Unset, data)
 
         total_usage = _parse_total_usage(d.pop("total_usage", UNSET))
-
 
         resource_work_item = cls(
             external_id=external_id,
@@ -163,7 +149,6 @@ class ResourceWorkItem:
             estimated_work_hours=estimated_work_hours,
             total_usage=total_usage,
         )
-
 
         resource_work_item.additional_properties = d
         return resource_work_item

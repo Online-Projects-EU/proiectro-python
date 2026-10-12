@@ -1,64 +1,56 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputLead")
 
 
-
 @_attrs_define
 class OutputLead:
-    """ Lead detail page payload.
+    """Lead detail page payload.
 
-        Attributes:
-            id (str):
-            name (str):
-            source (str):
-            source_label (str):
-            status (str):
-            status_label (str):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
-            company_name (str | Unset):  Default: ''.
-            email (None | str | Unset):
-            phone (str | Unset):  Default: ''.
-            job_title (str | Unset):  Default: ''.
-            source_note (str | Unset):  Default: ''.
-            owner_id (None | str | Unset):
-            owner_name (None | str | Unset):
-            owner_avatar_url (None | str | Unset):
-            lead_list_id (None | str | Unset):
-            lead_list_name (None | str | Unset):
-            next_action_at (datetime.datetime | None | Unset):
-            next_action_channel (str | Unset):  Default: ''.
-            next_action_note (str | Unset):  Default: ''.
-            last_action_at (datetime.datetime | None | Unset):
-            notes (str | Unset):  Default: ''.
-            profile_url (str | Unset):  Default: ''.
-            company_url (str | Unset):  Default: ''.
-            country (None | str | Unset):
-            score (int | None | Unset):
-            converted_to_org_id (None | str | Unset):
-            converted_to_org_name (None | str | Unset):
-            converted_at (datetime.datetime | None | Unset):
-            created_by_name (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        source (str):
+        source_label (str):
+        status (str):
+        status_label (str):
+        created_at (datetime.datetime):
+        updated_at (datetime.datetime):
+        company_name (str | Unset):  Default: ''.
+        email (None | str | Unset):
+        phone (str | Unset):  Default: ''.
+        job_title (str | Unset):  Default: ''.
+        source_note (str | Unset):  Default: ''.
+        owner_id (None | str | Unset):
+        owner_name (None | str | Unset):
+        owner_avatar_url (None | str | Unset):
+        lead_list_id (None | str | Unset):
+        lead_list_name (None | str | Unset):
+        next_action_at (datetime.datetime | None | Unset):
+        next_action_channel (str | Unset):  Default: ''.
+        next_action_channel_label (str | Unset):  Default: ''.
+        next_action_note (str | Unset):  Default: ''.
+        last_action_at (datetime.datetime | None | Unset):
+        notes (str | Unset):  Default: ''.
+        profile_url (str | Unset):  Default: ''.
+        company_url (str | Unset):  Default: ''.
+        country (None | str | Unset):
+        score (int | None | Unset):
+        converted_to_org_id (None | str | Unset):
+        converted_to_org_name (None | str | Unset):
+        converted_at (datetime.datetime | None | Unset):
+        created_by_name (None | str | Unset):
+    """
 
     id: str
     name: str
@@ -68,23 +60,24 @@ class OutputLead:
     status_label: str
     created_at: datetime.datetime
     updated_at: datetime.datetime
-    company_name: str | Unset = ''
+    company_name: str | Unset = ""
     email: None | str | Unset = UNSET
-    phone: str | Unset = ''
-    job_title: str | Unset = ''
-    source_note: str | Unset = ''
+    phone: str | Unset = ""
+    job_title: str | Unset = ""
+    source_note: str | Unset = ""
     owner_id: None | str | Unset = UNSET
     owner_name: None | str | Unset = UNSET
     owner_avatar_url: None | str | Unset = UNSET
     lead_list_id: None | str | Unset = UNSET
     lead_list_name: None | str | Unset = UNSET
     next_action_at: datetime.datetime | None | Unset = UNSET
-    next_action_channel: str | Unset = ''
-    next_action_note: str | Unset = ''
+    next_action_channel: str | Unset = ""
+    next_action_channel_label: str | Unset = ""
+    next_action_note: str | Unset = ""
     last_action_at: datetime.datetime | None | Unset = UNSET
-    notes: str | Unset = ''
-    profile_url: str | Unset = ''
-    company_url: str | Unset = ''
+    notes: str | Unset = ""
+    profile_url: str | Unset = ""
+    company_url: str | Unset = ""
     country: None | str | Unset = UNSET
     score: int | None | Unset = UNSET
     converted_to_org_id: None | str | Unset = UNSET
@@ -92,10 +85,6 @@ class OutputLead:
     converted_at: datetime.datetime | None | Unset = UNSET
     created_by_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -168,6 +157,8 @@ class OutputLead:
 
         next_action_channel = self.next_action_channel
 
+        next_action_channel_label = self.next_action_channel_label
+
         next_action_note = self.next_action_note
 
         last_action_at: None | str | Unset
@@ -222,19 +213,20 @@ class OutputLead:
         else:
             created_by_name = self.created_by_name
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "source": source,
-            "source_label": source_label,
-            "status": status,
-            "status_label": status_label,
-            "created_at": created_at,
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "source": source,
+                "source_label": source_label,
+                "status": status,
+                "status_label": status_label,
+                "created_at": created_at,
+                "updated_at": updated_at,
+            }
+        )
         if company_name is not UNSET:
             field_dict["company_name"] = company_name
         if email is not UNSET:
@@ -259,6 +251,8 @@ class OutputLead:
             field_dict["next_action_at"] = next_action_at
         if next_action_channel is not UNSET:
             field_dict["next_action_channel"] = next_action_channel
+        if next_action_channel_label is not UNSET:
+            field_dict["next_action_channel_label"] = next_action_channel_label
         if next_action_note is not UNSET:
             field_dict["next_action_note"] = next_action_note
         if last_action_at is not UNSET:
@@ -284,8 +278,6 @@ class OutputLead:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -303,13 +295,7 @@ class OutputLead:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         company_name = d.pop("company_name", UNSET)
 
@@ -321,7 +307,6 @@ class OutputLead:
             return cast(None | str | Unset, data)
 
         email = _parse_email(d.pop("email", UNSET))
-
 
         phone = d.pop("phone", UNSET)
 
@@ -338,7 +323,6 @@ class OutputLead:
 
         owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
 
-
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -347,7 +331,6 @@ class OutputLead:
             return cast(None | str | Unset, data)
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
-
 
         def _parse_owner_avatar_url(data: object) -> None | str | Unset:
             if data is None:
@@ -358,7 +341,6 @@ class OutputLead:
 
         owner_avatar_url = _parse_owner_avatar_url(d.pop("owner_avatar_url", UNSET))
 
-
         def _parse_lead_list_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -368,7 +350,6 @@ class OutputLead:
 
         lead_list_id = _parse_lead_list_id(d.pop("lead_list_id", UNSET))
 
-
         def _parse_lead_list_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -377,7 +358,6 @@ class OutputLead:
             return cast(None | str | Unset, data)
 
         lead_list_name = _parse_lead_list_name(d.pop("lead_list_name", UNSET))
-
 
         def _parse_next_action_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -389,8 +369,6 @@ class OutputLead:
                     raise TypeError()
                 next_action_at_type_0 = isoparse(data)
 
-
-
                 return next_action_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -398,8 +376,9 @@ class OutputLead:
 
         next_action_at = _parse_next_action_at(d.pop("next_action_at", UNSET))
 
-
         next_action_channel = d.pop("next_action_channel", UNSET)
+
+        next_action_channel_label = d.pop("next_action_channel_label", UNSET)
 
         next_action_note = d.pop("next_action_note", UNSET)
 
@@ -413,15 +392,12 @@ class OutputLead:
                     raise TypeError()
                 last_action_at_type_0 = isoparse(data)
 
-
-
                 return last_action_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         last_action_at = _parse_last_action_at(d.pop("last_action_at", UNSET))
-
 
         notes = d.pop("notes", UNSET)
 
@@ -438,7 +414,6 @@ class OutputLead:
 
         country = _parse_country(d.pop("country", UNSET))
 
-
         def _parse_score(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -448,7 +423,6 @@ class OutputLead:
 
         score = _parse_score(d.pop("score", UNSET))
 
-
         def _parse_converted_to_org_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -456,8 +430,9 @@ class OutputLead:
                 return data
             return cast(None | str | Unset, data)
 
-        converted_to_org_id = _parse_converted_to_org_id(d.pop("converted_to_org_id", UNSET))
-
+        converted_to_org_id = _parse_converted_to_org_id(
+            d.pop("converted_to_org_id", UNSET)
+        )
 
         def _parse_converted_to_org_name(data: object) -> None | str | Unset:
             if data is None:
@@ -466,8 +441,9 @@ class OutputLead:
                 return data
             return cast(None | str | Unset, data)
 
-        converted_to_org_name = _parse_converted_to_org_name(d.pop("converted_to_org_name", UNSET))
-
+        converted_to_org_name = _parse_converted_to_org_name(
+            d.pop("converted_to_org_name", UNSET)
+        )
 
         def _parse_converted_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -479,15 +455,12 @@ class OutputLead:
                     raise TypeError()
                 converted_at_type_0 = isoparse(data)
 
-
-
                 return converted_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         converted_at = _parse_converted_at(d.pop("converted_at", UNSET))
-
 
         def _parse_created_by_name(data: object) -> None | str | Unset:
             if data is None:
@@ -497,7 +470,6 @@ class OutputLead:
             return cast(None | str | Unset, data)
 
         created_by_name = _parse_created_by_name(d.pop("created_by_name", UNSET))
-
 
         output_lead = cls(
             id=id,
@@ -520,6 +492,7 @@ class OutputLead:
             lead_list_name=lead_list_name,
             next_action_at=next_action_at,
             next_action_channel=next_action_channel,
+            next_action_channel_label=next_action_channel_label,
             next_action_note=next_action_note,
             last_action_at=last_action_at,
             notes=notes,
@@ -532,7 +505,6 @@ class OutputLead:
             converted_at=converted_at,
             created_by_name=created_by_name,
         )
-
 
         output_lead.additional_properties = d
         return output_lead

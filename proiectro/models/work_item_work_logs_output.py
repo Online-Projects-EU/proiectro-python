@@ -1,60 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.work_log_item import WorkLogItem
-
-
-
+    from ..models.work_log_item import WorkLogItem
 
 
 T = TypeVar("T", bound="WorkItemWorkLogsOutput")
 
 
-
 @_attrs_define
 class WorkItemWorkLogsOutput:
-    """ 
-        Attributes:
-            work_logs (list[WorkLogItem]):
-            total_hours (int):
-            log_count (int):
-            work_item_id (str):
-            work_item_name (str):
-            project_id (str):
-     """
+    """
+    Attributes:
+        work_logs (list[WorkLogItem]):
+        total_minutes (int):
+        log_count (int):
+        work_item_id (str):
+        work_item_name (str):
+        project_id (str):
+    """
 
     work_logs: list[WorkLogItem]
-    total_hours: int
+    total_minutes: int
     log_count: int
     work_item_id: str
     work_item_name: str
     project_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.work_log_item import WorkLogItem
         work_logs = []
         for work_logs_item_data in self.work_logs:
             work_logs_item = work_logs_item_data.to_dict()
             work_logs.append(work_logs_item)
 
-
-
-        total_hours = self.total_hours
+        total_minutes = self.total_minutes
 
         log_count = self.log_count
 
@@ -64,37 +49,34 @@ class WorkItemWorkLogsOutput:
 
         project_id = self.project_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "work_logs": work_logs,
-            "total_hours": total_hours,
-            "log_count": log_count,
-            "work_item_id": work_item_id,
-            "work_item_name": work_item_name,
-            "project_id": project_id,
-        })
+        field_dict.update(
+            {
+                "work_logs": work_logs,
+                "total_minutes": total_minutes,
+                "log_count": log_count,
+                "work_item_id": work_item_id,
+                "work_item_name": work_item_name,
+                "project_id": project_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.work_log_item import WorkLogItem
+
         d = dict(src_dict)
         work_logs = []
         _work_logs = d.pop("work_logs")
-        for work_logs_item_data in (_work_logs):
+        for work_logs_item_data in _work_logs:
             work_logs_item = WorkLogItem.from_dict(work_logs_item_data)
-
-
 
             work_logs.append(work_logs_item)
 
-
-        total_hours = d.pop("total_hours")
+        total_minutes = d.pop("total_minutes")
 
         log_count = d.pop("log_count")
 
@@ -106,13 +88,12 @@ class WorkItemWorkLogsOutput:
 
         work_item_work_logs_output = cls(
             work_logs=work_logs,
-            total_hours=total_hours,
+            total_minutes=total_minutes,
             log_count=log_count,
             work_item_id=work_item_id,
             work_item_name=work_item_name,
             project_id=project_id,
         )
-
 
         work_item_work_logs_output.additional_properties = d
         return work_item_work_logs_output

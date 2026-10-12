@@ -1,41 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="ProductWorkItem")
-
 
 
 @_attrs_define
 class ProductWorkItem:
-    """ Individual work item linked to a product
+    """Individual work item linked to a product
 
-        Attributes:
-            external_id (str):
-            name (str):
-            hierarchy_id (str):
-            item_type_name (str):
-            scheduling_behaviour (str):
-            is_finished (bool):
-            is_accepted (bool):
-            project_id (str):
-            project_name (str):
-            estimated_work_hours (int | None | Unset):
-     """
+    Attributes:
+        external_id (str):
+        name (str):
+        hierarchy_id (str):
+        item_type_name (str):
+        scheduling_behaviour (str):
+        is_finished (bool):
+        is_accepted (bool):
+        project_id (str):
+        project_name (str):
+        estimated_work_hours (int | None | Unset):
+    """
 
     external_id: str
     name: str
@@ -48,10 +39,6 @@ class ProductWorkItem:
     project_name: str
     estimated_work_hours: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         external_id = self.external_id
@@ -78,26 +65,25 @@ class ProductWorkItem:
         else:
             estimated_work_hours = self.estimated_work_hours
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_id": external_id,
-            "name": name,
-            "hierarchy_id": hierarchy_id,
-            "item_type_name": item_type_name,
-            "scheduling_behaviour": scheduling_behaviour,
-            "is_finished": is_finished,
-            "is_accepted": is_accepted,
-            "project_id": project_id,
-            "project_name": project_name,
-        })
+        field_dict.update(
+            {
+                "external_id": external_id,
+                "name": name,
+                "hierarchy_id": hierarchy_id,
+                "item_type_name": item_type_name,
+                "scheduling_behaviour": scheduling_behaviour,
+                "is_finished": is_finished,
+                "is_accepted": is_accepted,
+                "project_id": project_id,
+                "project_name": project_name,
+            }
+        )
         if estimated_work_hours is not UNSET:
             field_dict["estimated_work_hours"] = estimated_work_hours
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -127,8 +113,9 @@ class ProductWorkItem:
                 return data
             return cast(int | None | Unset, data)
 
-        estimated_work_hours = _parse_estimated_work_hours(d.pop("estimated_work_hours", UNSET))
-
+        estimated_work_hours = _parse_estimated_work_hours(
+            d.pop("estimated_work_hours", UNSET)
+        )
 
         product_work_item = cls(
             external_id=external_id,
@@ -142,7 +129,6 @@ class ProductWorkItem:
             project_name=project_name,
             estimated_work_hours=estimated_work_hours,
         )
-
 
         product_work_item.additional_properties = d
         return product_work_item

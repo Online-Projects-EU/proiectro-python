@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddProductLifecycle")
-
 
 
 @_attrs_define
 class AddProductLifecycle:
-    """ 
-        Attributes:
-            name (str):
-            is_active (bool | None | Unset):  Default: True.
-            description (str | Unset):  Default: ''.
-            is_default (bool | None | Unset):  Default: False.
-            sequence_no (int | None | Unset):  Default: 1.
-     """
+    """
+    Attributes:
+        name (str):
+        is_active (bool | None | Unset):  Default: True.
+        description (str | Unset):  Default: ''.
+        is_default (bool | None | Unset):  Default: False.
+        sequence_no (int | None | Unset):  Default: 1.
+    """
 
     name: str
     is_active: bool | None | Unset = True
-    description: str | Unset = ''
+    description: str | Unset = ""
     is_default: bool | None | Unset = False
     sequence_no: int | None | Unset = 1
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -65,12 +52,13 @@ class AddProductLifecycle:
         else:
             sequence_no = self.sequence_no
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
         if is_active is not UNSET:
             field_dict["is_active"] = is_active
         if description is not UNSET:
@@ -81,8 +69,6 @@ class AddProductLifecycle:
             field_dict["sequence_no"] = sequence_no
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -98,7 +84,6 @@ class AddProductLifecycle:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
-
         description = d.pop("description", UNSET)
 
         def _parse_is_default(data: object) -> bool | None | Unset:
@@ -110,7 +95,6 @@ class AddProductLifecycle:
 
         is_default = _parse_is_default(d.pop("is_default", UNSET))
 
-
         def _parse_sequence_no(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -120,7 +104,6 @@ class AddProductLifecycle:
 
         sequence_no = _parse_sequence_no(d.pop("sequence_no", UNSET))
 
-
         add_product_lifecycle = cls(
             name=name,
             is_active=is_active,
@@ -128,7 +111,6 @@ class AddProductLifecycle:
             is_default=is_default,
             sequence_no=sequence_no,
         )
-
 
         add_product_lifecycle.additional_properties = d
         return add_product_lifecycle

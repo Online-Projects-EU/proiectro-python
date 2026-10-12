@@ -1,28 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AnalyticsUtilizationItem")
-
 
 
 @_attrs_define
 class AnalyticsUtilizationItem:
-    """ Booked against available hours, for one resource or one category.
+    """Booked against available hours, for one resource or one category.
 
     `utilization_rate` is None when the entity has no weekly schedule on file — capacity is
     unknown, not zero, and a rate of 0% would read as "idle".
@@ -32,17 +23,13 @@ class AnalyticsUtilizationItem:
             booked_hours (float | str):
             available_hours (float | str):
             utilization_rate (float | None | str | Unset):
-     """
+    """
 
     name: str
     booked_hours: float | str
     available_hours: float | str
     utilization_rate: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -59,20 +46,19 @@ class AnalyticsUtilizationItem:
         else:
             utilization_rate = self.utilization_rate
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "booked_hours": booked_hours,
-            "available_hours": available_hours,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "booked_hours": booked_hours,
+                "available_hours": available_hours,
+            }
+        )
         if utilization_rate is not UNSET:
             field_dict["utilization_rate"] = utilization_rate
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -84,12 +70,10 @@ class AnalyticsUtilizationItem:
 
         booked_hours = _parse_booked_hours(d.pop("booked_hours"))
 
-
         def _parse_available_hours(data: object) -> float | str:
             return cast(float | str, data)
 
         available_hours = _parse_available_hours(d.pop("available_hours"))
-
 
         def _parse_utilization_rate(data: object) -> float | None | str | Unset:
             if data is None:
@@ -100,14 +84,12 @@ class AnalyticsUtilizationItem:
 
         utilization_rate = _parse_utilization_rate(d.pop("utilization_rate", UNSET))
 
-
         analytics_utilization_item = cls(
             name=name,
             booked_hours=booked_hours,
             available_hours=available_hours,
             utilization_rate=utilization_rate,
         )
-
 
         analytics_utilization_item.additional_properties = d
         return analytics_utilization_item

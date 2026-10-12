@@ -1,60 +1,47 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="LabelValueStats")
-
 
 
 @_attrs_define
 class LabelValueStats:
-    """ 
-        Attributes:
-            value (str):
-            count (int):
-            percentage (float):
-     """
+    """
+    Attributes:
+        value (str):
+        count (int):
+        percentage (float | str):
+    """
 
     value: str
     count: int
-    percentage: float
+    percentage: float | str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         value = self.value
 
         count = self.count
 
+        percentage: float | str
         percentage = self.percentage
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "value": value,
-            "count": count,
-            "percentage": percentage,
-        })
+        field_dict.update(
+            {
+                "value": value,
+                "count": count,
+                "percentage": percentage,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -63,14 +50,16 @@ class LabelValueStats:
 
         count = d.pop("count")
 
-        percentage = d.pop("percentage")
+        def _parse_percentage(data: object) -> float | str:
+            return cast(float | str, data)
+
+        percentage = _parse_percentage(d.pop("percentage"))
 
         label_value_stats = cls(
             value=value,
             count=count,
             percentage=percentage,
         )
-
 
         label_value_stats.additional_properties = d
         return label_value_stats

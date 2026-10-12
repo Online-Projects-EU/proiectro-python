@@ -1,34 +1,25 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="KeyProjectActivityItem")
-
 
 
 @_attrs_define
 class KeyProjectActivityItem:
-    """ Single activity item in key project activities list
+    """Single activity item in key project activities list
 
-        Attributes:
-            id (str):
-            name (str):
-            hierarchy_id (str):
-            is_finished (bool):
-            percent_complete (int):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        hierarchy_id (str):
+        is_finished (bool):
+        percent_complete (int):
+    """
 
     id: str
     name: str
@@ -36,10 +27,6 @@ class KeyProjectActivityItem:
     is_finished: bool
     percent_complete: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -52,20 +39,19 @@ class KeyProjectActivityItem:
 
         percent_complete = self.percent_complete
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "hierarchy_id": hierarchy_id,
-            "is_finished": is_finished,
-            "percent_complete": percent_complete,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "hierarchy_id": hierarchy_id,
+                "is_finished": is_finished,
+                "percent_complete": percent_complete,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -87,7 +73,6 @@ class KeyProjectActivityItem:
             is_finished=is_finished,
             percent_complete=percent_complete,
         )
-
 
         key_project_activity_item.additional_properties = d
         return key_project_activity_item

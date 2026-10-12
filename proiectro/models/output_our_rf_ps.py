@@ -1,79 +1,60 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_our_rfp_item import OutputOurRFPItem
-
-
-
+    from ..models.output_our_rfp_item import OutputOurRFPItem
 
 
 T = TypeVar("T", bound="OutputOurRFPs")
 
 
-
 @_attrs_define
 class OutputOurRFPs:
-    """ All RFPs created by the tenant (all statuses)
+    """All RFPs created by the tenant (all statuses)
 
-        Attributes:
-            rfps (list[OutputOurRFPItem]):
-     """
+    Attributes:
+        rfps (list[OutputOurRFPItem]):
+    """
 
     rfps: list[OutputOurRFPItem]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_our_rfp_item import OutputOurRFPItem
         rfps = []
         for rfps_item_data in self.rfps:
             rfps_item = rfps_item_data.to_dict()
             rfps.append(rfps_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "rfps": rfps,
-        })
+        field_dict.update(
+            {
+                "rfps": rfps,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_our_rfp_item import OutputOurRFPItem
+
         d = dict(src_dict)
         rfps = []
         _rfps = d.pop("rfps")
-        for rfps_item_data in (_rfps):
+        for rfps_item_data in _rfps:
             rfps_item = OutputOurRFPItem.from_dict(rfps_item_data)
 
-
-
             rfps.append(rfps_item)
-
 
         output_our_rf_ps = cls(
             rfps=rfps,
         )
-
 
         output_our_rf_ps.additional_properties = d
         return output_our_rf_ps

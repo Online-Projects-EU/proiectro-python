@@ -1,43 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputCustomerLocation")
-
 
 
 @_attrs_define
 class OutputCustomerLocation:
-    """ 
-        Attributes:
-            id (str):
-            customer_id (str):
-            customer_name (str):
-            customer_first_letter (str):
-            location_id (str):
-            location_path (str):
-            name (str):
-            is_active (bool):
-            description (None | str | Unset):
-            internal_code (None | str | Unset):
-            asset_count (int | Unset):  Default: 0.
-            latitude (float | None | Unset):
-            longitude (float | None | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        customer_id (str):
+        customer_name (str):
+        customer_first_letter (str):
+        location_id (str):
+        location_path (str):
+        name (str):
+        is_active (bool):
+        description (None | str | Unset):
+        internal_code (None | str | Unset):
+        asset_count (int | Unset):  Default: 0.
+        latitude (float | None | Unset):
+        longitude (float | None | Unset):
+    """
 
     id: str
     customer_id: str
@@ -53,10 +44,6 @@ class OutputCustomerLocation:
     latitude: float | None | Unset = UNSET
     longitude: float | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -101,19 +88,20 @@ class OutputCustomerLocation:
         else:
             longitude = self.longitude
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "customer_id": customer_id,
-            "customer_name": customer_name,
-            "customer_first_letter": customer_first_letter,
-            "location_id": location_id,
-            "location_path": location_path,
-            "name": name,
-            "is_active": is_active,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "customer_id": customer_id,
+                "customer_name": customer_name,
+                "customer_first_letter": customer_first_letter,
+                "location_id": location_id,
+                "location_path": location_path,
+                "name": name,
+                "is_active": is_active,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if internal_code is not UNSET:
@@ -126,8 +114,6 @@ class OutputCustomerLocation:
             field_dict["longitude"] = longitude
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -157,7 +143,6 @@ class OutputCustomerLocation:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -166,7 +151,6 @@ class OutputCustomerLocation:
             return cast(None | str | Unset, data)
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
-
 
         asset_count = d.pop("asset_count", UNSET)
 
@@ -179,7 +163,6 @@ class OutputCustomerLocation:
 
         latitude = _parse_latitude(d.pop("latitude", UNSET))
 
-
         def _parse_longitude(data: object) -> float | None | Unset:
             if data is None:
                 return data
@@ -188,7 +171,6 @@ class OutputCustomerLocation:
             return cast(float | None | Unset, data)
 
         longitude = _parse_longitude(d.pop("longitude", UNSET))
-
 
         output_customer_location = cls(
             id=id,
@@ -205,7 +187,6 @@ class OutputCustomerLocation:
             latitude=latitude,
             longitude=longitude,
         )
-
 
         output_customer_location.additional_properties = d
         return output_customer_location

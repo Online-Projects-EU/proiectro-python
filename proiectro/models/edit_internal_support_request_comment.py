@@ -1,51 +1,37 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="EditInternalSupportRequestComment")
-
 
 
 @_attrs_define
 class EditInternalSupportRequestComment:
-    """ Input schema for editing an internal support request comment
+    """Input schema for editing an internal support request comment
 
-        Attributes:
-            content (str): Comment content
-     """
+    Attributes:
+        content (str): Comment content
+    """
 
     content: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         content = self.content
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "content": content,
-        })
+        field_dict.update(
+            {
+                "content": content,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -55,7 +41,6 @@ class EditInternalSupportRequestComment:
         edit_internal_support_request_comment = cls(
             content=content,
         )
-
 
         edit_internal_support_request_comment.additional_properties = d
         return edit_internal_support_request_comment

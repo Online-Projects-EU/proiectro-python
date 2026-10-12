@@ -1,42 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="CompanyEnrichmentResultSchema")
-
 
 
 @_attrs_define
 class CompanyEnrichmentResultSchema:
-    """ 
-        Attributes:
-            cui (str):
-            name (str):
-            is_active (bool):
-            is_vat_registered (bool):
-            address (None | str | Unset):
-            registration_number (None | str | Unset):
-            caen_code (None | str | Unset):
-            region (None | str | Unset):
-            city (None | str | Unset):
-            postal_code (None | str | Unset):
-            address_detail (None | str | Unset):
-            error_message (None | str | Unset):
-     """
+    """
+    Attributes:
+        cui (str):
+        name (str):
+        is_active (bool):
+        is_vat_registered (bool):
+        address (None | str | Unset):
+        registration_number (None | str | Unset):
+        caen_code (None | str | Unset):
+        region (None | str | Unset):
+        city (None | str | Unset):
+        postal_code (None | str | Unset):
+        address_detail (None | str | Unset):
+        error_message (None | str | Unset):
+    """
 
     cui: str
     name: str
@@ -51,10 +42,6 @@ class CompanyEnrichmentResultSchema:
     address_detail: None | str | Unset = UNSET
     error_message: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         cui = self.cui
@@ -113,15 +100,16 @@ class CompanyEnrichmentResultSchema:
         else:
             error_message = self.error_message
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "cui": cui,
-            "name": name,
-            "is_active": is_active,
-            "is_vat_registered": is_vat_registered,
-        })
+        field_dict.update(
+            {
+                "cui": cui,
+                "name": name,
+                "is_active": is_active,
+                "is_vat_registered": is_vat_registered,
+            }
+        )
         if address is not UNSET:
             field_dict["address"] = address
         if registration_number is not UNSET:
@@ -140,8 +128,6 @@ class CompanyEnrichmentResultSchema:
             field_dict["error_message"] = error_message
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -163,7 +149,6 @@ class CompanyEnrichmentResultSchema:
 
         address = _parse_address(d.pop("address", UNSET))
 
-
         def _parse_registration_number(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -171,8 +156,9 @@ class CompanyEnrichmentResultSchema:
                 return data
             return cast(None | str | Unset, data)
 
-        registration_number = _parse_registration_number(d.pop("registration_number", UNSET))
-
+        registration_number = _parse_registration_number(
+            d.pop("registration_number", UNSET)
+        )
 
         def _parse_caen_code(data: object) -> None | str | Unset:
             if data is None:
@@ -183,7 +169,6 @@ class CompanyEnrichmentResultSchema:
 
         caen_code = _parse_caen_code(d.pop("caen_code", UNSET))
 
-
         def _parse_region(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -192,7 +177,6 @@ class CompanyEnrichmentResultSchema:
             return cast(None | str | Unset, data)
 
         region = _parse_region(d.pop("region", UNSET))
-
 
         def _parse_city(data: object) -> None | str | Unset:
             if data is None:
@@ -203,7 +187,6 @@ class CompanyEnrichmentResultSchema:
 
         city = _parse_city(d.pop("city", UNSET))
 
-
         def _parse_postal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -212,7 +195,6 @@ class CompanyEnrichmentResultSchema:
             return cast(None | str | Unset, data)
 
         postal_code = _parse_postal_code(d.pop("postal_code", UNSET))
-
 
         def _parse_address_detail(data: object) -> None | str | Unset:
             if data is None:
@@ -223,7 +205,6 @@ class CompanyEnrichmentResultSchema:
 
         address_detail = _parse_address_detail(d.pop("address_detail", UNSET))
 
-
         def _parse_error_message(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -232,7 +213,6 @@ class CompanyEnrichmentResultSchema:
             return cast(None | str | Unset, data)
 
         error_message = _parse_error_message(d.pop("error_message", UNSET))
-
 
         company_enrichment_result_schema = cls(
             cui=cui,
@@ -248,7 +228,6 @@ class CompanyEnrichmentResultSchema:
             address_detail=address_detail,
             error_message=error_message,
         )
-
 
         company_enrichment_result_schema.additional_properties = d
         return company_enrichment_result_schema

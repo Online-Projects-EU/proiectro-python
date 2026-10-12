@@ -1,78 +1,59 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.tenant_org import TenantOrg
-
-
-
+    from ..models.tenant_org import TenantOrg
 
 
 T = TypeVar("T", bound="TenantOrgs")
 
 
-
 @_attrs_define
 class TenantOrgs:
-    """ 
-        Attributes:
-            orgs (list[TenantOrg]):
-     """
+    """
+    Attributes:
+        orgs (list[TenantOrg]):
+    """
 
     orgs: list[TenantOrg]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.tenant_org import TenantOrg
         orgs = []
         for orgs_item_data in self.orgs:
             orgs_item = orgs_item_data.to_dict()
             orgs.append(orgs_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "orgs": orgs,
-        })
+        field_dict.update(
+            {
+                "orgs": orgs,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tenant_org import TenantOrg
+
         d = dict(src_dict)
         orgs = []
         _orgs = d.pop("orgs")
-        for orgs_item_data in (_orgs):
+        for orgs_item_data in _orgs:
             orgs_item = TenantOrg.from_dict(orgs_item_data)
 
-
-
             orgs.append(orgs_item)
-
 
         tenant_orgs = cls(
             orgs=orgs,
         )
-
 
         tenant_orgs.additional_properties = d
         return tenant_orgs

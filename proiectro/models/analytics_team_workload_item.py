@@ -1,28 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AnalyticsTeamWorkloadItem")
-
 
 
 @_attrs_define
 class AnalyticsTeamWorkloadItem:
-    """ Workload for a single team member.
+    """Workload for a single team member.
 
     ``remaining_hours`` is the open work-item backlog and has no time horizon. ``booked_hours`` and
     ``available_hours`` are both summed over the utilization horizon, and utilization is the ratio
@@ -38,8 +29,8 @@ class AnalyticsTeamWorkloadItem:
             member_name (None | str | Unset):
             booked_hours (float | Unset):  Default: 0.0.
             available_hours (float | None | Unset):
-            utilization_pct (float | None | Unset):
-     """
+            utilization_pct (float | None | str | Unset):
+    """
 
     remaining_hours: float
     pending_items: int
@@ -49,12 +40,8 @@ class AnalyticsTeamWorkloadItem:
     member_name: None | str | Unset = UNSET
     booked_hours: float | Unset = 0.0
     available_hours: float | None | Unset = UNSET
-    utilization_pct: float | None | Unset = UNSET
+    utilization_pct: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         remaining_hours = self.remaining_hours
@@ -85,21 +72,22 @@ class AnalyticsTeamWorkloadItem:
         else:
             available_hours = self.available_hours
 
-        utilization_pct: float | None | Unset
+        utilization_pct: float | None | str | Unset
         if isinstance(self.utilization_pct, Unset):
             utilization_pct = UNSET
         else:
             utilization_pct = self.utilization_pct
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "remaining_hours": remaining_hours,
-            "pending_items": pending_items,
-            "overdue_items": overdue_items,
-            "status": status,
-        })
+        field_dict.update(
+            {
+                "remaining_hours": remaining_hours,
+                "pending_items": pending_items,
+                "overdue_items": overdue_items,
+                "status": status,
+            }
+        )
         if member_id is not UNSET:
             field_dict["member_id"] = member_id
         if member_name is not UNSET:
@@ -112,8 +100,6 @@ class AnalyticsTeamWorkloadItem:
             field_dict["utilization_pct"] = utilization_pct
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -135,7 +121,6 @@ class AnalyticsTeamWorkloadItem:
 
         member_id = _parse_member_id(d.pop("member_id", UNSET))
 
-
         def _parse_member_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -144,7 +129,6 @@ class AnalyticsTeamWorkloadItem:
             return cast(None | str | Unset, data)
 
         member_name = _parse_member_name(d.pop("member_name", UNSET))
-
 
         booked_hours = d.pop("booked_hours", UNSET)
 
@@ -157,16 +141,14 @@ class AnalyticsTeamWorkloadItem:
 
         available_hours = _parse_available_hours(d.pop("available_hours", UNSET))
 
-
-        def _parse_utilization_pct(data: object) -> float | None | Unset:
+        def _parse_utilization_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(float | None | Unset, data)
+            return cast(float | None | str | Unset, data)
 
         utilization_pct = _parse_utilization_pct(d.pop("utilization_pct", UNSET))
-
 
         analytics_team_workload_item = cls(
             remaining_hours=remaining_hours,
@@ -179,7 +161,6 @@ class AnalyticsTeamWorkloadItem:
             available_hours=available_hours,
             utilization_pct=utilization_pct,
         )
-
 
         analytics_team_workload_item.additional_properties = d
         return analytics_team_workload_item

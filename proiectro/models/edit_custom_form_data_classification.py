@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EditCustomFormDataClassification(str, Enum):
     CONFIDENTIAL = "confidential"
     INTERNAL = "internal"

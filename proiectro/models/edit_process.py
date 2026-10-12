@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditProcess")
-
 
 
 @_attrs_define
 class EditProcess:
-    """ 
-        Attributes:
-            name (str):
-            description (str | Unset):  Default: ''.
-            is_active (bool | None | Unset):  Default: False.
-            allow_backward_move (bool | None | Unset):  Default: False.
-            allow_skip_move (bool | None | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        name (str):
+        description (str | Unset):  Default: ''.
+        is_active (bool | None | Unset):
+        allow_backward_move (bool | None | Unset):
+        allow_skip_move (bool | None | Unset):
+    """
 
     name: str
-    description: str | Unset = ''
-    is_active: bool | None | Unset = False
-    allow_backward_move: bool | None | Unset = False
-    allow_skip_move: bool | None | Unset = False
+    description: str | Unset = ""
+    is_active: bool | None | Unset = UNSET
+    allow_backward_move: bool | None | Unset = UNSET
+    allow_skip_move: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -65,12 +52,13 @@ class EditProcess:
         else:
             allow_skip_move = self.allow_skip_move
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if is_active is not UNSET:
@@ -81,8 +69,6 @@ class EditProcess:
             field_dict["allow_skip_move"] = allow_skip_move
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -100,7 +86,6 @@ class EditProcess:
 
         is_active = _parse_is_active(d.pop("is_active", UNSET))
 
-
         def _parse_allow_backward_move(data: object) -> bool | None | Unset:
             if data is None:
                 return data
@@ -108,8 +93,9 @@ class EditProcess:
                 return data
             return cast(bool | None | Unset, data)
 
-        allow_backward_move = _parse_allow_backward_move(d.pop("allow_backward_move", UNSET))
-
+        allow_backward_move = _parse_allow_backward_move(
+            d.pop("allow_backward_move", UNSET)
+        )
 
         def _parse_allow_skip_move(data: object) -> bool | None | Unset:
             if data is None:
@@ -120,7 +106,6 @@ class EditProcess:
 
         allow_skip_move = _parse_allow_skip_move(d.pop("allow_skip_move", UNSET))
 
-
         edit_process = cls(
             name=name,
             description=description,
@@ -128,7 +113,6 @@ class EditProcess:
             allow_backward_move=allow_backward_move,
             allow_skip_move=allow_skip_move,
         )
-
 
         edit_process.additional_properties = d
         return edit_process

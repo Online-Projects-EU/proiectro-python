@@ -1,39 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddRFP")
-
 
 
 @_attrs_define
 class AddRFP:
-    """ Input schema for creating a new RFP
+    """Input schema for creating a new RFP
 
-        Attributes:
-            name (str):
-            category (str):
-            currency (str):
-            submission_deadline (str):
-            internal_code (None | str | Unset):
-            description (None | str | Unset):
-            budget_min (float | None | str | Unset):
-            budget_max (float | None | str | Unset):
-     """
+    Attributes:
+        name (str):
+        category (str):
+        currency (str):
+        submission_deadline (str):
+        internal_code (None | str | Unset):
+        description (None | str | Unset):
+        budget_min (float | None | str | Unset):
+        budget_max (float | None | str | Unset):
+    """
 
     name: str
     category: str
@@ -44,10 +35,6 @@ class AddRFP:
     budget_min: float | None | str | Unset = UNSET
     budget_max: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -82,15 +69,16 @@ class AddRFP:
         else:
             budget_max = self.budget_max
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "category": category,
-            "currency": currency,
-            "submission_deadline": submission_deadline,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "category": category,
+                "currency": currency,
+                "submission_deadline": submission_deadline,
+            }
+        )
         if internal_code is not UNSET:
             field_dict["internal_code"] = internal_code
         if description is not UNSET:
@@ -101,8 +89,6 @@ class AddRFP:
             field_dict["budget_max"] = budget_max
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -124,7 +110,6 @@ class AddRFP:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -133,7 +118,6 @@ class AddRFP:
             return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
-
 
         def _parse_budget_min(data: object) -> float | None | str | Unset:
             if data is None:
@@ -144,7 +128,6 @@ class AddRFP:
 
         budget_min = _parse_budget_min(d.pop("budget_min", UNSET))
 
-
         def _parse_budget_max(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -153,7 +136,6 @@ class AddRFP:
             return cast(float | None | str | Unset, data)
 
         budget_max = _parse_budget_max(d.pop("budget_max", UNSET))
-
 
         add_rfp = cls(
             name=name,
@@ -165,7 +147,6 @@ class AddRFP:
             budget_min=budget_min,
             budget_max=budget_max,
         )
-
 
         add_rfp.additional_properties = d
         return add_rfp

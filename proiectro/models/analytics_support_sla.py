@@ -1,66 +1,63 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-from typing import Literal, cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_queue_backlog_item import AnalyticsQueueBacklogItem
-  from ..models.analytics_resolution_by_severity_item import AnalyticsResolutionBySeverityItem
-  from ..models.analytics_resolution_outcome_item import AnalyticsResolutionOutcomeItem
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_queue_backlog_item import AnalyticsQueueBacklogItem
+    from ..models.analytics_resolution_by_severity_item import (
+        AnalyticsResolutionBySeverityItem,
+    )
+    from ..models.analytics_resolution_outcome_item import (
+        AnalyticsResolutionOutcomeItem,
+    )
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsSupportSLA")
 
 
-
 @_attrs_define
 class AnalyticsSupportSLA:
-    """ Support performance metrics (actual data, no SLA targets)
+    """Support performance metrics (actual data, no SLA targets)
 
-        Attributes:
-            total_closed_period (int):
-            period (str | Unset):  Default: 'YTD'.
-            temporal_type (str | Unset):  Default: 'snapshot'.
-            generated_at (datetime.datetime | None | Unset):
-            period_label (None | str | Unset):
-            horizon (None | str | Unset):
-            horizon_label (None | str | Unset):
-            horizon_options (list[HorizonOption] | None | Unset):
-            compare (None | str | Unset):
-            compare_label (None | str | Unset):
-            compare_options (list[CompareOption] | None | Unset):
-            filter_severity (None | str | Unset):
-            filter_severity_label (None | str | Unset):
-            filter_category (None | str | Unset):
-            filter_category_label (None | str | Unset):
-            filter_type (None | str | Unset):
-            filter_type_label (None | str | Unset):
-            resolution_by_severity (list[AnalyticsResolutionBySeverityItem] | Unset):
-            resolution_outcomes (list[AnalyticsResolutionOutcomeItem] | Unset):
-            queue_backlog (list[AnalyticsQueueBacklogItem] | Unset):
-            prev_total_closed (int | None | Unset):
-            closed_change_pct (float | Literal['new'] | None | Unset):
-     """
+    Attributes:
+        total_closed_period (int):
+        period (str | Unset):  Default: 'YTD'.
+        temporal_type (str | Unset):  Default: 'snapshot'.
+        generated_at (datetime.datetime | None | Unset):
+        period_label (None | str | Unset):
+        horizon (None | str | Unset):
+        horizon_label (None | str | Unset):
+        horizon_options (list[HorizonOption] | None | Unset):
+        compare (None | str | Unset):
+        compare_label (None | str | Unset):
+        compare_options (list[CompareOption] | None | Unset):
+        filter_severity (None | str | Unset):
+        filter_severity_label (None | str | Unset):
+        filter_category (None | str | Unset):
+        filter_category_label (None | str | Unset):
+        filter_type (None | str | Unset):
+        filter_type_label (None | str | Unset):
+        resolution_by_severity (list[AnalyticsResolutionBySeverityItem] | Unset):
+        resolution_outcomes (list[AnalyticsResolutionOutcomeItem] | Unset):
+        queue_backlog (list[AnalyticsQueueBacklogItem] | Unset):
+        prev_total_closed (int | None | Unset):
+        closed_change_pct (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+            compare against.
+    """
 
     total_closed_period: int
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -79,19 +76,10 @@ class AnalyticsSupportSLA:
     resolution_outcomes: list[AnalyticsResolutionOutcomeItem] | Unset = UNSET
     queue_backlog: list[AnalyticsQueueBacklogItem] | Unset = UNSET
     prev_total_closed: int | None | Unset = UNSET
-    closed_change_pct: float | Literal['new'] | None | Unset = UNSET
+    closed_change_pct: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.analytics_resolution_by_severity_item import AnalyticsResolutionBySeverityItem
-        from ..models.analytics_queue_backlog_item import AnalyticsQueueBacklogItem
-        from ..models.horizon_option import HorizonOption
-        from ..models.compare_option import CompareOption
-        from ..models.analytics_resolution_outcome_item import AnalyticsResolutionOutcomeItem
         total_closed_period = self.total_closed_period
 
         period = self.period
@@ -133,7 +121,6 @@ class AnalyticsSupportSLA:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -157,7 +144,6 @@ class AnalyticsSupportSLA:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -205,16 +191,12 @@ class AnalyticsSupportSLA:
                 resolution_by_severity_item = resolution_by_severity_item_data.to_dict()
                 resolution_by_severity.append(resolution_by_severity_item)
 
-
-
         resolution_outcomes: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.resolution_outcomes, Unset):
             resolution_outcomes = []
             for resolution_outcomes_item_data in self.resolution_outcomes:
                 resolution_outcomes_item = resolution_outcomes_item_data.to_dict()
                 resolution_outcomes.append(resolution_outcomes_item)
-
-
 
         queue_backlog: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.queue_backlog, Unset):
@@ -223,26 +205,25 @@ class AnalyticsSupportSLA:
                 queue_backlog_item = queue_backlog_item_data.to_dict()
                 queue_backlog.append(queue_backlog_item)
 
-
-
         prev_total_closed: int | None | Unset
         if isinstance(self.prev_total_closed, Unset):
             prev_total_closed = UNSET
         else:
             prev_total_closed = self.prev_total_closed
 
-        closed_change_pct: float | Literal['new'] | None | Unset
+        closed_change_pct: float | None | str | Unset
         if isinstance(self.closed_change_pct, Unset):
             closed_change_pct = UNSET
         else:
             closed_change_pct = self.closed_change_pct
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_closed_period": total_closed_period,
-        })
+        field_dict.update(
+            {
+                "total_closed_period": total_closed_period,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -288,15 +269,18 @@ class AnalyticsSupportSLA:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.analytics_queue_backlog_item import AnalyticsQueueBacklogItem
-        from ..models.analytics_resolution_by_severity_item import AnalyticsResolutionBySeverityItem
-        from ..models.analytics_resolution_outcome_item import AnalyticsResolutionOutcomeItem
+        from ..models.analytics_resolution_by_severity_item import (
+            AnalyticsResolutionBySeverityItem,
+        )
+        from ..models.analytics_resolution_outcome_item import (
+            AnalyticsResolutionOutcomeItem,
+        )
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
         total_closed_period = d.pop("total_closed_period")
 
@@ -314,15 +298,12 @@ class AnalyticsSupportSLA:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -333,7 +314,6 @@ class AnalyticsSupportSLA:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -343,7 +323,6 @@ class AnalyticsSupportSLA:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -352,7 +331,6 @@ class AnalyticsSupportSLA:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -364,10 +342,10 @@ class AnalyticsSupportSLA:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -378,7 +356,6 @@ class AnalyticsSupportSLA:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -388,7 +365,6 @@ class AnalyticsSupportSLA:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -397,7 +373,6 @@ class AnalyticsSupportSLA:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -409,10 +384,10 @@ class AnalyticsSupportSLA:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -423,7 +398,6 @@ class AnalyticsSupportSLA:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -433,7 +407,6 @@ class AnalyticsSupportSLA:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -441,8 +414,9 @@ class AnalyticsSupportSLA:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -453,7 +427,6 @@ class AnalyticsSupportSLA:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -461,8 +434,9 @@ class AnalyticsSupportSLA:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -473,7 +447,6 @@ class AnalyticsSupportSLA:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -483,42 +456,40 @@ class AnalyticsSupportSLA:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
-
         _resolution_by_severity = d.pop("resolution_by_severity", UNSET)
         resolution_by_severity: list[AnalyticsResolutionBySeverityItem] | Unset = UNSET
         if _resolution_by_severity is not UNSET:
             resolution_by_severity = []
             for resolution_by_severity_item_data in _resolution_by_severity:
-                resolution_by_severity_item = AnalyticsResolutionBySeverityItem.from_dict(resolution_by_severity_item_data)
-
-
+                resolution_by_severity_item = (
+                    AnalyticsResolutionBySeverityItem.from_dict(
+                        resolution_by_severity_item_data
+                    )
+                )
 
                 resolution_by_severity.append(resolution_by_severity_item)
-
 
         _resolution_outcomes = d.pop("resolution_outcomes", UNSET)
         resolution_outcomes: list[AnalyticsResolutionOutcomeItem] | Unset = UNSET
         if _resolution_outcomes is not UNSET:
             resolution_outcomes = []
             for resolution_outcomes_item_data in _resolution_outcomes:
-                resolution_outcomes_item = AnalyticsResolutionOutcomeItem.from_dict(resolution_outcomes_item_data)
-
-
+                resolution_outcomes_item = AnalyticsResolutionOutcomeItem.from_dict(
+                    resolution_outcomes_item_data
+                )
 
                 resolution_outcomes.append(resolution_outcomes_item)
-
 
         _queue_backlog = d.pop("queue_backlog", UNSET)
         queue_backlog: list[AnalyticsQueueBacklogItem] | Unset = UNSET
         if _queue_backlog is not UNSET:
             queue_backlog = []
             for queue_backlog_item_data in _queue_backlog:
-                queue_backlog_item = AnalyticsQueueBacklogItem.from_dict(queue_backlog_item_data)
-
-
+                queue_backlog_item = AnalyticsQueueBacklogItem.from_dict(
+                    queue_backlog_item_data
+                )
 
                 queue_backlog.append(queue_backlog_item)
-
 
         def _parse_prev_total_closed(data: object) -> int | None | Unset:
             if data is None:
@@ -529,20 +500,14 @@ class AnalyticsSupportSLA:
 
         prev_total_closed = _parse_prev_total_closed(d.pop("prev_total_closed", UNSET))
 
-
-        def _parse_closed_change_pct(data: object) -> float | Literal['new'] | None | Unset:
+        def _parse_closed_change_pct(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            closed_change_pct_type_1 = cast(Literal['new'] , data)
-            if closed_change_pct_type_1 != 'new':
-                raise ValueError(f"closed_change_pct_type_1 must match const 'new', got '{closed_change_pct_type_1}'")
-            return closed_change_pct_type_1
-            return cast(float | Literal['new'] | None | Unset, data)
+            return cast(float | None | str | Unset, data)
 
         closed_change_pct = _parse_closed_change_pct(d.pop("closed_change_pct", UNSET))
-
 
         analytics_support_sla = cls(
             total_closed_period=total_closed_period,
@@ -568,7 +533,6 @@ class AnalyticsSupportSLA:
             prev_total_closed=prev_total_closed,
             closed_change_pct=closed_change_pct,
         )
-
 
         analytics_support_sla.additional_properties = d
         return analytics_support_sla

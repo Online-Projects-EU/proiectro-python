@@ -1,0 +1,142 @@
+from __future__ import annotations
+
+import datetime
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+from dateutil.parser import isoparse
+
+from ..models.output_portal_share_proposal_state import OutputPortalShareProposalState
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="OutputPortalShareProposal")
+
+
+@_attrs_define
+class OutputPortalShareProposal:
+    """
+    Attributes:
+        id (str):
+        name (str):
+        state (OutputPortalShareProposalState):
+        sent_at (datetime.datetime | None | Unset):
+        accepted_at (datetime.datetime | None | Unset):
+    """
+
+    id: str
+    name: str
+    state: OutputPortalShareProposalState
+    sent_at: datetime.datetime | None | Unset = UNSET
+    accepted_at: datetime.datetime | None | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        id = self.id
+
+        name = self.name
+
+        state = self.state.value
+
+        sent_at: None | str | Unset
+        if isinstance(self.sent_at, Unset):
+            sent_at = UNSET
+        elif isinstance(self.sent_at, datetime.datetime):
+            sent_at = self.sent_at.isoformat()
+        else:
+            sent_at = self.sent_at
+
+        accepted_at: None | str | Unset
+        if isinstance(self.accepted_at, Unset):
+            accepted_at = UNSET
+        elif isinstance(self.accepted_at, datetime.datetime):
+            accepted_at = self.accepted_at.isoformat()
+        else:
+            accepted_at = self.accepted_at
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "state": state,
+            }
+        )
+        if sent_at is not UNSET:
+            field_dict["sent_at"] = sent_at
+        if accepted_at is not UNSET:
+            field_dict["accepted_at"] = accepted_at
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        id = d.pop("id")
+
+        name = d.pop("name")
+
+        state = OutputPortalShareProposalState(d.pop("state"))
+
+        def _parse_sent_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                sent_at_type_0 = isoparse(data)
+
+                return sent_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        sent_at = _parse_sent_at(d.pop("sent_at", UNSET))
+
+        def _parse_accepted_at(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                accepted_at_type_0 = isoparse(data)
+
+                return accepted_at_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        accepted_at = _parse_accepted_at(d.pop("accepted_at", UNSET))
+
+        output_portal_share_proposal = cls(
+            id=id,
+            name=name,
+            state=state,
+            sent_at=sent_at,
+            accepted_at=accepted_at,
+        )
+
+        output_portal_share_proposal.additional_properties = d
+        return output_portal_share_proposal
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

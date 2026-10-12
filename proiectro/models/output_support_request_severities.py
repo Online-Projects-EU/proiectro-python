@@ -1,37 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_support_request_severity import OutputSupportRequestSeverity
-
-
-
+    from ..models.output_support_request_severity import OutputSupportRequestSeverity
 
 
 T = TypeVar("T", bound="OutputSupportRequestSeverities")
 
 
-
 @_attrs_define
 class OutputSupportRequestSeverities:
-    """ Output schema for listing support request severities
+    """Output schema for listing support request severities
 
-        Attributes:
-            external_severities (list[OutputSupportRequestSeverity]):
-            internal_severities (list[OutputSupportRequestSeverity]):
-            external_count (int):
-            internal_count (int):
-            total (int):
-     """
+    Attributes:
+        external_severities (list[OutputSupportRequestSeverity]):
+        internal_severities (list[OutputSupportRequestSeverity]):
+        external_count (int):
+        internal_count (int):
+        total (int):
+    """
 
     external_severities: list[OutputSupportRequestSeverity]
     internal_severities: list[OutputSupportRequestSeverity]
@@ -40,25 +32,16 @@ class OutputSupportRequestSeverities:
     total: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_support_request_severity import OutputSupportRequestSeverity
         external_severities = []
         for external_severities_item_data in self.external_severities:
             external_severities_item = external_severities_item_data.to_dict()
             external_severities.append(external_severities_item)
 
-
-
         internal_severities = []
         for internal_severities_item_data in self.internal_severities:
             internal_severities_item = internal_severities_item_data.to_dict()
             internal_severities.append(internal_severities_item)
-
-
 
         external_count = self.external_count
 
@@ -66,44 +49,44 @@ class OutputSupportRequestSeverities:
 
         total = self.total
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "external_severities": external_severities,
-            "internal_severities": internal_severities,
-            "external_count": external_count,
-            "internal_count": internal_count,
-            "total": total,
-        })
+        field_dict.update(
+            {
+                "external_severities": external_severities,
+                "internal_severities": internal_severities,
+                "external_count": external_count,
+                "internal_count": internal_count,
+                "total": total,
+            }
+        )
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.output_support_request_severity import OutputSupportRequestSeverity
+        from ..models.output_support_request_severity import (
+            OutputSupportRequestSeverity,
+        )
+
         d = dict(src_dict)
         external_severities = []
         _external_severities = d.pop("external_severities")
-        for external_severities_item_data in (_external_severities):
-            external_severities_item = OutputSupportRequestSeverity.from_dict(external_severities_item_data)
-
-
+        for external_severities_item_data in _external_severities:
+            external_severities_item = OutputSupportRequestSeverity.from_dict(
+                external_severities_item_data
+            )
 
             external_severities.append(external_severities_item)
 
-
         internal_severities = []
         _internal_severities = d.pop("internal_severities")
-        for internal_severities_item_data in (_internal_severities):
-            internal_severities_item = OutputSupportRequestSeverity.from_dict(internal_severities_item_data)
-
-
+        for internal_severities_item_data in _internal_severities:
+            internal_severities_item = OutputSupportRequestSeverity.from_dict(
+                internal_severities_item_data
+            )
 
             internal_severities.append(internal_severities_item)
-
 
         external_count = d.pop("external_count")
 
@@ -118,7 +101,6 @@ class OutputSupportRequestSeverities:
             internal_count=internal_count,
             total=total,
         )
-
 
         output_support_request_severities.additional_properties = d
         return output_support_request_severities

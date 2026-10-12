@@ -1,35 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.permission import Permission
-
-
-
+    from ..models.permission import Permission
 
 
 T = TypeVar("T", bound="PermissionGroup")
 
 
-
 @_attrs_define
 class PermissionGroup:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            description (str):
-            permissions (list[Permission]):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        description (str):
+        permissions (list[Permission]):
+    """
 
     id: str
     name: str
@@ -37,12 +29,7 @@ class PermissionGroup:
     permissions: list[Permission]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.permission import Permission
         id = self.id
 
         name = self.name
@@ -54,25 +41,23 @@ class PermissionGroup:
             permissions_item = permissions_item_data.to_dict()
             permissions.append(permissions_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "description": description,
-            "permissions": permissions,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "description": description,
+                "permissions": permissions,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.permission import Permission
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -82,13 +67,10 @@ class PermissionGroup:
 
         permissions = []
         _permissions = d.pop("permissions")
-        for permissions_item_data in (_permissions):
+        for permissions_item_data in _permissions:
             permissions_item = Permission.from_dict(permissions_item_data)
 
-
-
             permissions.append(permissions_item)
-
 
         permission_group = cls(
             id=id,
@@ -96,7 +78,6 @@ class PermissionGroup:
             description=description,
             permissions=permissions,
         )
-
 
         permission_group.additional_properties = d
         return permission_group

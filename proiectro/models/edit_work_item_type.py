@@ -1,44 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditWorkItemType")
-
 
 
 @_attrs_define
 class EditWorkItemType:
-    """ 
-        Attributes:
-            name (str):
-            scheduling_behaviour (str):
-            description (None | str | Unset):
-            active (bool | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        name (str):
+        scheduling_behaviour (str):
+        description (None | str | Unset):
+        active (bool | None | Unset):
+    """
 
     name: str
     scheduling_behaviour: str
     description: None | str | Unset = UNSET
-    active: bool | Unset = False
+    active: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -51,23 +38,26 @@ class EditWorkItemType:
         else:
             description = self.description
 
-        active = self.active
-
+        active: bool | None | Unset
+        if isinstance(self.active, Unset):
+            active = UNSET
+        else:
+            active = self.active
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "scheduling_behaviour": scheduling_behaviour,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "scheduling_behaviour": scheduling_behaviour,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if active is not UNSET:
             field_dict["active"] = active
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -85,8 +75,14 @@ class EditWorkItemType:
 
         description = _parse_description(d.pop("description", UNSET))
 
+        def _parse_active(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        active = d.pop("active", UNSET)
+        active = _parse_active(d.pop("active", UNSET))
 
         edit_work_item_type = cls(
             name=name,
@@ -94,7 +90,6 @@ class EditWorkItemType:
             description=description,
             active=active,
         )
-
 
         edit_work_item_type.additional_properties = d
         return edit_work_item_type

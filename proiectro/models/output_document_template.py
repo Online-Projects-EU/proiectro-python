@@ -1,39 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputDocumentTemplate")
-
 
 
 @_attrs_define
 class OutputDocumentTemplate:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            entity_type (str):
-            entity_type_display (str):
-            data_classification (str):
-            is_active (bool):
-            default_series (None | str | Unset):
-            default_series_code (None | str | Unset):
-            retention_days (int | None | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        entity_type (str):
+        entity_type_display (str):
+        data_classification (str):
+        is_active (bool):
+        default_series (None | str | Unset):
+        default_series_code (None | str | Unset):
+        retention_days (int | None | Unset):
+    """
 
     id: str
     name: str
@@ -45,10 +36,6 @@ class OutputDocumentTemplate:
     default_series_code: None | str | Unset = UNSET
     retention_days: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -81,17 +68,18 @@ class OutputDocumentTemplate:
         else:
             retention_days = self.retention_days
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "entity_type": entity_type,
-            "entity_type_display": entity_type_display,
-            "data_classification": data_classification,
-            "is_active": is_active,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "entity_type": entity_type,
+                "entity_type_display": entity_type_display,
+                "data_classification": data_classification,
+                "is_active": is_active,
+            }
+        )
         if default_series is not UNSET:
             field_dict["default_series"] = default_series
         if default_series_code is not UNSET:
@@ -100,8 +88,6 @@ class OutputDocumentTemplate:
             field_dict["retention_days"] = retention_days
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -127,7 +113,6 @@ class OutputDocumentTemplate:
 
         default_series = _parse_default_series(d.pop("default_series", UNSET))
 
-
         def _parse_default_series_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -135,8 +120,9 @@ class OutputDocumentTemplate:
                 return data
             return cast(None | str | Unset, data)
 
-        default_series_code = _parse_default_series_code(d.pop("default_series_code", UNSET))
-
+        default_series_code = _parse_default_series_code(
+            d.pop("default_series_code", UNSET)
+        )
 
         def _parse_retention_days(data: object) -> int | None | Unset:
             if data is None:
@@ -146,7 +132,6 @@ class OutputDocumentTemplate:
             return cast(int | None | Unset, data)
 
         retention_days = _parse_retention_days(d.pop("retention_days", UNSET))
-
 
         output_document_template = cls(
             id=id,
@@ -159,7 +144,6 @@ class OutputDocumentTemplate:
             default_series_code=default_series_code,
             retention_days=retention_days,
         )
-
 
         output_document_template.additional_properties = d
         return output_document_template

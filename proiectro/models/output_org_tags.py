@@ -1,46 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_tag import OutputTag
-
-
-
+    from ..models.output_tag import OutputTag
 
 
 T = TypeVar("T", bound="OutputOrgTags")
 
 
-
 @_attrs_define
 class OutputOrgTags:
-    """ 
-        Attributes:
-            org (str):
-            tags (list[OutputTag]):
-            unassigned_tags (list[OutputTag]):
-     """
+    """
+    Attributes:
+        org (str):
+        tags (list[OutputTag]):
+        unassigned_tags (list[OutputTag]):
+    """
 
     org: str
     tags: list[OutputTag]
     unassigned_tags: list[OutputTag]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_tag import OutputTag
         org = self.org
 
         tags = []
@@ -48,60 +35,49 @@ class OutputOrgTags:
             tags_item = tags_item_data.to_dict()
             tags.append(tags_item)
 
-
-
         unassigned_tags = []
         for unassigned_tags_item_data in self.unassigned_tags:
             unassigned_tags_item = unassigned_tags_item_data.to_dict()
             unassigned_tags.append(unassigned_tags_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "org": org,
-            "tags": tags,
-            "unassigned_tags": unassigned_tags,
-        })
+        field_dict.update(
+            {
+                "org": org,
+                "tags": tags,
+                "unassigned_tags": unassigned_tags,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_tag import OutputTag
+
         d = dict(src_dict)
         org = d.pop("org")
 
         tags = []
         _tags = d.pop("tags")
-        for tags_item_data in (_tags):
+        for tags_item_data in _tags:
             tags_item = OutputTag.from_dict(tags_item_data)
-
-
 
             tags.append(tags_item)
 
-
         unassigned_tags = []
         _unassigned_tags = d.pop("unassigned_tags")
-        for unassigned_tags_item_data in (_unassigned_tags):
+        for unassigned_tags_item_data in _unassigned_tags:
             unassigned_tags_item = OutputTag.from_dict(unassigned_tags_item_data)
 
-
-
             unassigned_tags.append(unassigned_tags_item)
-
 
         output_org_tags = cls(
             org=org,
             tags=tags,
             unassigned_tags=unassigned_tags,
         )
-
 
         output_org_tags.additional_properties = d
         return output_org_tags

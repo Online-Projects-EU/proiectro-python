@@ -1,43 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="AddInternalSupportRequest")
-
 
 
 @_attrs_define
 class AddInternalSupportRequest:
-    """ Input schema for creating internal support request
+    """Input schema for creating internal support request
 
-        Attributes:
-            request_type (str):
-            request_severity (str):
-            title (str):
-            description (str):
-     """
+    Attributes:
+        request_type (str):
+        request_severity (str):
+        title (str):
+        description (str):
+    """
 
     request_type: str
     request_severity: str
     title: str
     description: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         request_type = self.request_type
@@ -48,19 +35,18 @@ class AddInternalSupportRequest:
 
         description = self.description
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "request_type": request_type,
-            "request_severity": request_severity,
-            "title": title,
-            "description": description,
-        })
+        field_dict.update(
+            {
+                "request_type": request_type,
+                "request_severity": request_severity,
+                "title": title,
+                "description": description,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -79,7 +65,6 @@ class AddInternalSupportRequest:
             title=title,
             description=description,
         )
-
 
         add_internal_support_request.additional_properties = d
         return add_internal_support_request

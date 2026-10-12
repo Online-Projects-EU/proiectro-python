@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AddCatalogProductProductType(str, Enum):
     BUNDLE = "bundle"
     GOOD = "good"

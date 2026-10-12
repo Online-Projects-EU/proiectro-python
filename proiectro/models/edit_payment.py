@@ -1,37 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditPayment")
-
 
 
 @_attrs_define
 class EditPayment:
-    """ 
-        Attributes:
-            name (None | str | Unset):
-            internal_code (None | str | Unset):
-            due_date (None | str | Unset):
-            amount (float | None | str | Unset):
-            product_id (None | str | Unset):
-            payment_integration_id (None | str | Unset):
-            show_sources (bool | None | Unset):
-     """
+    """
+    Attributes:
+        name (None | str | Unset):
+        internal_code (None | str | Unset):
+        due_date (None | str | Unset):
+        amount (float | None | str | Unset):
+        product_id (None | str | Unset):
+        payment_integration_id (None | str | Unset):
+        show_sources (bool | None | Unset):
+    """
 
     name: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
@@ -41,10 +32,6 @@ class EditPayment:
     payment_integration_id: None | str | Unset = UNSET
     show_sources: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name: None | str | Unset
@@ -89,11 +76,9 @@ class EditPayment:
         else:
             show_sources = self.show_sources
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if name is not UNSET:
             field_dict["name"] = name
         if internal_code is not UNSET:
@@ -111,11 +96,10 @@ class EditPayment:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -124,7 +108,6 @@ class EditPayment:
             return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
-
 
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
@@ -135,7 +118,6 @@ class EditPayment:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_due_date(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -144,7 +126,6 @@ class EditPayment:
             return cast(None | str | Unset, data)
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
-
 
         def _parse_amount(data: object) -> float | None | str | Unset:
             if data is None:
@@ -155,7 +136,6 @@ class EditPayment:
 
         amount = _parse_amount(d.pop("amount", UNSET))
 
-
         def _parse_product_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -165,7 +145,6 @@ class EditPayment:
 
         product_id = _parse_product_id(d.pop("product_id", UNSET))
 
-
         def _parse_payment_integration_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -173,8 +152,9 @@ class EditPayment:
                 return data
             return cast(None | str | Unset, data)
 
-        payment_integration_id = _parse_payment_integration_id(d.pop("payment_integration_id", UNSET))
-
+        payment_integration_id = _parse_payment_integration_id(
+            d.pop("payment_integration_id", UNSET)
+        )
 
         def _parse_show_sources(data: object) -> bool | None | Unset:
             if data is None:
@@ -185,7 +165,6 @@ class EditPayment:
 
         show_sources = _parse_show_sources(d.pop("show_sources", UNSET))
 
-
         edit_payment = cls(
             name=name,
             internal_code=internal_code,
@@ -195,7 +174,6 @@ class EditPayment:
             payment_integration_id=payment_integration_id,
             show_sources=show_sources,
         )
-
 
         edit_payment.additional_properties = d
         return edit_payment

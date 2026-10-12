@@ -1,56 +1,47 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.edit_custom_form_data_classification import (
+    EditCustomFormDataClassification,
+)
 from ..types import UNSET, Unset
-
-from ..models.edit_custom_form_data_classification import EditCustomFormDataClassification
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="EditCustomForm")
 
 
-
 @_attrs_define
 class EditCustomForm:
-    """ 
-        Attributes:
-            name (str):
-            description (None | str | Unset):  Default: ''.
-            slug (None | str | Unset):
-            submit_button_text (None | str | Unset):  Default: 'Submit'.
-            success_message (None | str | Unset):  Default: ''.
-            is_active (bool | Unset):  Default: True.
-            data_classification (EditCustomFormDataClassification | Unset):  Default:
-                EditCustomFormDataClassification.INTERNAL.
-            retention_days (int | None | Unset):
-            notify_on_submit (list[str] | None | Unset):
-     """
+    """
+    Attributes:
+        name (str):
+        description (None | str | Unset):  Default: ''.
+        slug (None | str | Unset):
+        submit_button_text (None | str | Unset):  Default: 'Submit'.
+        success_message (None | str | Unset):  Default: ''.
+        is_active (bool | Unset):  Default: True.
+        data_classification (EditCustomFormDataClassification | Unset):  Default:
+            EditCustomFormDataClassification.INTERNAL.
+        retention_days (int | None | Unset):
+        notify_on_submit (list[str] | None | Unset):
+    """
 
     name: str
-    description: None | str | Unset = ''
+    description: None | str | Unset = ""
     slug: None | str | Unset = UNSET
-    submit_button_text: None | str | Unset = 'Submit'
-    success_message: None | str | Unset = ''
+    submit_button_text: None | str | Unset = "Submit"
+    success_message: None | str | Unset = ""
     is_active: bool | Unset = True
-    data_classification: EditCustomFormDataClassification | Unset = EditCustomFormDataClassification.INTERNAL
+    data_classification: EditCustomFormDataClassification | Unset = (
+        EditCustomFormDataClassification.INTERNAL
+    )
     retention_days: int | None | Unset = UNSET
     notify_on_submit: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -85,7 +76,6 @@ class EditCustomForm:
         if not isinstance(self.data_classification, Unset):
             data_classification = self.data_classification.value
 
-
         retention_days: int | None | Unset
         if isinstance(self.retention_days, Unset):
             retention_days = UNSET
@@ -98,16 +88,16 @@ class EditCustomForm:
         elif isinstance(self.notify_on_submit, list):
             notify_on_submit = self.notify_on_submit
 
-
         else:
             notify_on_submit = self.notify_on_submit
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if slug is not UNSET:
@@ -127,8 +117,6 @@ class EditCustomForm:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -143,7 +131,6 @@ class EditCustomForm:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_slug(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -153,7 +140,6 @@ class EditCustomForm:
 
         slug = _parse_slug(d.pop("slug", UNSET))
 
-
         def _parse_submit_button_text(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -161,8 +147,9 @@ class EditCustomForm:
                 return data
             return cast(None | str | Unset, data)
 
-        submit_button_text = _parse_submit_button_text(d.pop("submit_button_text", UNSET))
-
+        submit_button_text = _parse_submit_button_text(
+            d.pop("submit_button_text", UNSET)
+        )
 
         def _parse_success_message(data: object) -> None | str | Unset:
             if data is None:
@@ -173,18 +160,14 @@ class EditCustomForm:
 
         success_message = _parse_success_message(d.pop("success_message", UNSET))
 
-
         is_active = d.pop("is_active", UNSET)
 
         _data_classification = d.pop("data_classification", UNSET)
         data_classification: EditCustomFormDataClassification | Unset
-        if isinstance(_data_classification,  Unset):
+        if isinstance(_data_classification, Unset):
             data_classification = UNSET
         else:
             data_classification = EditCustomFormDataClassification(_data_classification)
-
-
-
 
         def _parse_retention_days(data: object) -> int | None | Unset:
             if data is None:
@@ -194,7 +177,6 @@ class EditCustomForm:
             return cast(int | None | Unset, data)
 
         retention_days = _parse_retention_days(d.pop("retention_days", UNSET))
-
 
         def _parse_notify_on_submit(data: object) -> list[str] | None | Unset:
             if data is None:
@@ -213,7 +195,6 @@ class EditCustomForm:
 
         notify_on_submit = _parse_notify_on_submit(d.pop("notify_on_submit", UNSET))
 
-
         edit_custom_form = cls(
             name=name,
             description=description,
@@ -225,7 +206,6 @@ class EditCustomForm:
             retention_days=retention_days,
             notify_on_submit=notify_on_submit,
         )
-
 
         edit_custom_form.additional_properties = d
         return edit_custom_form

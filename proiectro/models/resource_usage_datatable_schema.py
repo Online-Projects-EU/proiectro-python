@@ -1,37 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.resource_usage_record_schema import ResourceUsageRecordSchema
-
-
-
+    from ..models.resource_usage_record_schema import ResourceUsageRecordSchema
 
 
 T = TypeVar("T", bound="ResourceUsageDatatableSchema")
 
 
-
 @_attrs_define
 class ResourceUsageDatatableSchema:
-    """ Resource usage datatable with all records
+    """Resource usage datatable with all records
 
-        Attributes:
-            resource_id (str):
-            resource_name (str):
-            usage_records (list[ResourceUsageRecordSchema]):
-            total_count (int):
-            total_usage (int):
-     """
+    Attributes:
+        resource_id (str):
+        resource_name (str):
+        usage_records (list[ResourceUsageRecordSchema]):
+        total_count (int):
+        total_usage (int):
+    """
 
     resource_id: str
     resource_name: str
@@ -40,12 +32,7 @@ class ResourceUsageDatatableSchema:
     total_usage: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.resource_usage_record_schema import ResourceUsageRecordSchema
         resource_id = self.resource_id
 
         resource_name = self.resource_name
@@ -55,30 +42,28 @@ class ResourceUsageDatatableSchema:
             usage_records_item = usage_records_item_data.to_dict()
             usage_records.append(usage_records_item)
 
-
-
         total_count = self.total_count
 
         total_usage = self.total_usage
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "resource_id": resource_id,
-            "resource_name": resource_name,
-            "usage_records": usage_records,
-            "total_count": total_count,
-            "total_usage": total_usage,
-        })
+        field_dict.update(
+            {
+                "resource_id": resource_id,
+                "resource_name": resource_name,
+                "usage_records": usage_records,
+                "total_count": total_count,
+                "total_usage": total_usage,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.resource_usage_record_schema import ResourceUsageRecordSchema
+
         d = dict(src_dict)
         resource_id = d.pop("resource_id")
 
@@ -86,13 +71,12 @@ class ResourceUsageDatatableSchema:
 
         usage_records = []
         _usage_records = d.pop("usage_records")
-        for usage_records_item_data in (_usage_records):
-            usage_records_item = ResourceUsageRecordSchema.from_dict(usage_records_item_data)
-
-
+        for usage_records_item_data in _usage_records:
+            usage_records_item = ResourceUsageRecordSchema.from_dict(
+                usage_records_item_data
+            )
 
             usage_records.append(usage_records_item)
-
 
         total_count = d.pop("total_count")
 
@@ -105,7 +89,6 @@ class ResourceUsageDatatableSchema:
             total_count=total_count,
             total_usage=total_usage,
         )
-
 
         resource_usage_datatable_schema.additional_properties = d
         return resource_usage_datatable_schema

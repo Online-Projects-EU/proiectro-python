@@ -1,41 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputWorkItemStageForm")
-
 
 
 @_attrs_define
 class OutputWorkItemStageForm:
-    """ A stage-attached form as seen from a work item: adds this item's completion state.
+    """A stage-attached form as seen from a work item: adds this item's completion state.
 
-        Attributes:
-            id (str):
-            form_id (str):
-            form_name (str):
-            is_required (bool | Unset):  Default: False.
-            block_advancement (bool | Unset):  Default: True.
-            completion_deadline_hours (int | None | Unset):
-            sequence (int | Unset):  Default: 0.
-            has_active_version (bool | Unset):  Default: False.
-            submitted (bool | Unset):  Default: False.
-            blocking (bool | Unset):  Default: False.
-     """
+    Attributes:
+        id (str):
+        form_id (str):
+        form_name (str):
+        is_required (bool | Unset):  Default: False.
+        block_advancement (bool | Unset):  Default: True.
+        completion_deadline_hours (int | None | Unset):
+        sequence (int | Unset):  Default: 0.
+        has_active_version (bool | Unset):  Default: False.
+        submitted (bool | Unset):  Default: False.
+        blocking (bool | Unset):  Default: False.
+    """
 
     id: str
     form_id: str
@@ -48,10 +39,6 @@ class OutputWorkItemStageForm:
     submitted: bool | Unset = False
     blocking: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -78,14 +65,15 @@ class OutputWorkItemStageForm:
 
         blocking = self.blocking
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "form_id": form_id,
-            "form_name": form_name,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "form_id": form_id,
+                "form_name": form_name,
+            }
+        )
         if is_required is not UNSET:
             field_dict["is_required"] = is_required
         if block_advancement is not UNSET:
@@ -102,8 +90,6 @@ class OutputWorkItemStageForm:
             field_dict["blocking"] = blocking
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -125,8 +111,9 @@ class OutputWorkItemStageForm:
                 return data
             return cast(int | None | Unset, data)
 
-        completion_deadline_hours = _parse_completion_deadline_hours(d.pop("completion_deadline_hours", UNSET))
-
+        completion_deadline_hours = _parse_completion_deadline_hours(
+            d.pop("completion_deadline_hours", UNSET)
+        )
 
         sequence = d.pop("sequence", UNSET)
 
@@ -148,7 +135,6 @@ class OutputWorkItemStageForm:
             submitted=submitted,
             blocking=blocking,
         )
-
 
         output_work_item_stage_form.additional_properties = d
         return output_work_item_stage_form

@@ -1,81 +1,64 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.automation_execution_entry import AutomationExecutionEntry
-
-
-
+    from ..models.automation_execution_entry import AutomationExecutionEntry
 
 
 T = TypeVar("T", bound="AutomationExecutions")
 
 
-
 @_attrs_define
 class AutomationExecutions:
-    """ Output: execution log list for one automation rule.
+    """Output: execution log list for one automation rule.
 
-        Attributes:
-            executions (list[AutomationExecutionEntry]):
-            total (int | Unset):  Default: 0.
-     """
+    Attributes:
+        executions (list[AutomationExecutionEntry]):
+        total (int | Unset):  Default: 0.
+    """
 
     executions: list[AutomationExecutionEntry]
     total: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.automation_execution_entry import AutomationExecutionEntry
         executions = []
         for executions_item_data in self.executions:
             executions_item = executions_item_data.to_dict()
             executions.append(executions_item)
 
-
-
         total = self.total
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "executions": executions,
-        })
+        field_dict.update(
+            {
+                "executions": executions,
+            }
+        )
         if total is not UNSET:
             field_dict["total"] = total
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.automation_execution_entry import AutomationExecutionEntry
+
         d = dict(src_dict)
         executions = []
         _executions = d.pop("executions")
-        for executions_item_data in (_executions):
+        for executions_item_data in _executions:
             executions_item = AutomationExecutionEntry.from_dict(executions_item_data)
 
-
-
             executions.append(executions_item)
-
 
         total = d.pop("total", UNSET)
 
@@ -83,7 +66,6 @@ class AutomationExecutions:
             executions=executions,
             total=total,
         )
-
 
         automation_executions.additional_properties = d
         return automation_executions

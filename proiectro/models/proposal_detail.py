@@ -1,53 +1,44 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ProposalDetail")
 
 
-
 @_attrs_define
 class ProposalDetail:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            customer (str):
-            customer_id (str):
-            created_at (datetime.datetime):
-            internal_costs (float | str):
-            external_value (float | str):
-            margin (float | str):
-            margin_percent (float | str):
-            currency (str):
-            currency_symbol (str):
-            owner_name (str):
-            days_in_stage (int):
-            product_count (int):
-            days_since_last_activity (int):
-            last_activity (datetime.datetime | None | Unset):
-            transitions (list[list[Any]] | None | Unset):
-            funnel_name (None | str | Unset):
-            funnel_id (None | str | Unset):
-            rejection_reason (None | str | Unset):
-            rejected_at (datetime.datetime | None | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        customer (str):
+        customer_id (str):
+        created_at (datetime.datetime):
+        internal_costs (float | str):
+        external_value (float | str):
+        margin (float | str):
+        margin_percent (float | str):
+        currency (str):
+        currency_symbol (str):
+        owner_name (str):
+        days_in_stage (int):
+        product_count (int):
+        days_since_last_activity (int):
+        last_activity (datetime.datetime | None | Unset):
+        transitions (list[list[Any]] | None | Unset):
+        funnel_name (None | str | Unset):
+        funnel_id (None | str | Unset):
+        rejection_reason (None | str | Unset):
+        rejected_at (datetime.datetime | None | Unset):
+    """
 
     id: str
     name: str
@@ -71,10 +62,6 @@ class ProposalDetail:
     rejection_reason: None | str | Unset = UNSET
     rejected_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -127,9 +114,7 @@ class ProposalDetail:
             for transitions_type_0_item_data in self.transitions:
                 transitions_type_0_item = transitions_type_0_item_data
 
-
                 transitions.append(transitions_type_0_item)
-
 
         else:
             transitions = self.transitions
@@ -160,26 +145,27 @@ class ProposalDetail:
         else:
             rejected_at = self.rejected_at
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "customer": customer,
-            "customer_id": customer_id,
-            "created_at": created_at,
-            "internal_costs": internal_costs,
-            "external_value": external_value,
-            "margin": margin,
-            "margin_percent": margin_percent,
-            "currency": currency,
-            "currency_symbol": currency_symbol,
-            "owner_name": owner_name,
-            "days_in_stage": days_in_stage,
-            "product_count": product_count,
-            "days_since_last_activity": days_since_last_activity,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "customer": customer,
+                "customer_id": customer_id,
+                "created_at": created_at,
+                "internal_costs": internal_costs,
+                "external_value": external_value,
+                "margin": margin,
+                "margin_percent": margin_percent,
+                "currency": currency,
+                "currency_symbol": currency_symbol,
+                "owner_name": owner_name,
+                "days_in_stage": days_in_stage,
+                "product_count": product_count,
+                "days_since_last_activity": days_since_last_activity,
+            }
+        )
         if last_activity is not UNSET:
             field_dict["last_activity"] = last_activity
         if transitions is not UNSET:
@@ -195,8 +181,6 @@ class ProposalDetail:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -210,32 +194,25 @@ class ProposalDetail:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         def _parse_internal_costs(data: object) -> float | str:
             return cast(float | str, data)
 
         internal_costs = _parse_internal_costs(d.pop("internal_costs"))
-
 
         def _parse_external_value(data: object) -> float | str:
             return cast(float | str, data)
 
         external_value = _parse_external_value(d.pop("external_value"))
 
-
         def _parse_margin(data: object) -> float | str:
             return cast(float | str, data)
 
         margin = _parse_margin(d.pop("margin"))
 
-
         def _parse_margin_percent(data: object) -> float | str:
             return cast(float | str, data)
 
         margin_percent = _parse_margin_percent(d.pop("margin_percent"))
-
 
         currency = d.pop("currency")
 
@@ -259,15 +236,12 @@ class ProposalDetail:
                     raise TypeError()
                 last_activity_type_0 = isoparse(data)
 
-
-
                 return last_activity_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         last_activity = _parse_last_activity(d.pop("last_activity", UNSET))
-
 
         def _parse_transitions(data: object) -> list[list[Any]] | None | Unset:
             if data is None:
@@ -279,8 +253,10 @@ class ProposalDetail:
                     raise TypeError()
                 transitions_type_0 = []
                 _transitions_type_0 = data
-                for transitions_type_0_item_data in (_transitions_type_0):
-                    transitions_type_0_item = cast(list[Any], transitions_type_0_item_data)
+                for transitions_type_0_item_data in _transitions_type_0:
+                    transitions_type_0_item = cast(
+                        list[Any], transitions_type_0_item_data
+                    )
 
                     transitions_type_0.append(transitions_type_0_item)
 
@@ -291,7 +267,6 @@ class ProposalDetail:
 
         transitions = _parse_transitions(d.pop("transitions", UNSET))
 
-
         def _parse_funnel_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -300,7 +275,6 @@ class ProposalDetail:
             return cast(None | str | Unset, data)
 
         funnel_name = _parse_funnel_name(d.pop("funnel_name", UNSET))
-
 
         def _parse_funnel_id(data: object) -> None | str | Unset:
             if data is None:
@@ -311,7 +285,6 @@ class ProposalDetail:
 
         funnel_id = _parse_funnel_id(d.pop("funnel_id", UNSET))
 
-
         def _parse_rejection_reason(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -320,7 +293,6 @@ class ProposalDetail:
             return cast(None | str | Unset, data)
 
         rejection_reason = _parse_rejection_reason(d.pop("rejection_reason", UNSET))
-
 
         def _parse_rejected_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -332,15 +304,12 @@ class ProposalDetail:
                     raise TypeError()
                 rejected_at_type_0 = isoparse(data)
 
-
-
                 return rejected_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         rejected_at = _parse_rejected_at(d.pop("rejected_at", UNSET))
-
 
         proposal_detail = cls(
             id=id,
@@ -365,7 +334,6 @@ class ProposalDetail:
             rejection_reason=rejection_reason,
             rejected_at=rejected_at,
         )
-
 
         proposal_detail.additional_properties = d
         return proposal_detail

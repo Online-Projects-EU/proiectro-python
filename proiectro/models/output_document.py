@@ -1,52 +1,43 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputDocument")
 
 
-
 @_attrs_define
 class OutputDocument:
-    """ 
-        Attributes:
-            id (str):
-            title (str):
-            status (str):
-            locked (bool | Unset):  Default: False.
-            full_number (None | str | Unset):
-            series (None | str | Unset):
-            series_code (None | str | Unset):
-            template (None | str | Unset):
-            template_name (None | str | Unset):
-            context_type (None | str | Unset):
-            context_id (None | str | Unset):
-            context_label (str | Unset):  Default: ''.
-            render_route (None | str | Unset):
-            page_route (None | str | Unset):
-            org_id (None | str | Unset):
-            org_label (str | Unset):  Default: ''.
-            data_classification (None | str | Unset):
-            finalized_at (datetime.datetime | None | Unset):
-            retain_until (datetime.date | None | Unset):
-            created_at (datetime.datetime | None | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        title (str):
+        status (str):
+        locked (bool | Unset):  Default: False.
+        full_number (None | str | Unset):
+        series (None | str | Unset):
+        series_code (None | str | Unset):
+        template (None | str | Unset):
+        template_name (None | str | Unset):
+        context_type (None | str | Unset):
+        context_id (None | str | Unset):
+        context_label (str | Unset):  Default: ''.
+        render_route (None | str | Unset):
+        page_route (None | str | Unset):
+        org_id (None | str | Unset):
+        org_label (str | Unset):  Default: ''.
+        data_classification (None | str | Unset):
+        finalized_at (datetime.datetime | None | Unset):
+        retain_until (datetime.date | None | Unset):
+        created_at (datetime.datetime | None | Unset):
+    """
 
     id: str
     title: str
@@ -59,20 +50,16 @@ class OutputDocument:
     template_name: None | str | Unset = UNSET
     context_type: None | str | Unset = UNSET
     context_id: None | str | Unset = UNSET
-    context_label: str | Unset = ''
+    context_label: str | Unset = ""
     render_route: None | str | Unset = UNSET
     page_route: None | str | Unset = UNSET
     org_id: None | str | Unset = UNSET
-    org_label: str | Unset = ''
+    org_label: str | Unset = ""
     data_classification: None | str | Unset = UNSET
     finalized_at: datetime.datetime | None | Unset = UNSET
     retain_until: datetime.date | None | Unset = UNSET
     created_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -177,14 +164,15 @@ class OutputDocument:
         else:
             created_at = self.created_at
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "title": title,
-            "status": status,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "title": title,
+                "status": status,
+            }
+        )
         if locked is not UNSET:
             field_dict["locked"] = locked
         if full_number is not UNSET:
@@ -222,8 +210,6 @@ class OutputDocument:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -244,7 +230,6 @@ class OutputDocument:
 
         full_number = _parse_full_number(d.pop("full_number", UNSET))
 
-
         def _parse_series(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -253,7 +238,6 @@ class OutputDocument:
             return cast(None | str | Unset, data)
 
         series = _parse_series(d.pop("series", UNSET))
-
 
         def _parse_series_code(data: object) -> None | str | Unset:
             if data is None:
@@ -264,7 +248,6 @@ class OutputDocument:
 
         series_code = _parse_series_code(d.pop("series_code", UNSET))
 
-
         def _parse_template(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -273,7 +256,6 @@ class OutputDocument:
             return cast(None | str | Unset, data)
 
         template = _parse_template(d.pop("template", UNSET))
-
 
         def _parse_template_name(data: object) -> None | str | Unset:
             if data is None:
@@ -284,7 +266,6 @@ class OutputDocument:
 
         template_name = _parse_template_name(d.pop("template_name", UNSET))
 
-
         def _parse_context_type(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -294,7 +275,6 @@ class OutputDocument:
 
         context_type = _parse_context_type(d.pop("context_type", UNSET))
 
-
         def _parse_context_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -303,7 +283,6 @@ class OutputDocument:
             return cast(None | str | Unset, data)
 
         context_id = _parse_context_id(d.pop("context_id", UNSET))
-
 
         context_label = d.pop("context_label", UNSET)
 
@@ -316,7 +295,6 @@ class OutputDocument:
 
         render_route = _parse_render_route(d.pop("render_route", UNSET))
 
-
         def _parse_page_route(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -325,7 +303,6 @@ class OutputDocument:
             return cast(None | str | Unset, data)
 
         page_route = _parse_page_route(d.pop("page_route", UNSET))
-
 
         def _parse_org_id(data: object) -> None | str | Unset:
             if data is None:
@@ -336,7 +313,6 @@ class OutputDocument:
 
         org_id = _parse_org_id(d.pop("org_id", UNSET))
 
-
         org_label = d.pop("org_label", UNSET)
 
         def _parse_data_classification(data: object) -> None | str | Unset:
@@ -346,8 +322,9 @@ class OutputDocument:
                 return data
             return cast(None | str | Unset, data)
 
-        data_classification = _parse_data_classification(d.pop("data_classification", UNSET))
-
+        data_classification = _parse_data_classification(
+            d.pop("data_classification", UNSET)
+        )
 
         def _parse_finalized_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -359,15 +336,12 @@ class OutputDocument:
                     raise TypeError()
                 finalized_at_type_0 = isoparse(data)
 
-
-
                 return finalized_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         finalized_at = _parse_finalized_at(d.pop("finalized_at", UNSET))
-
 
         def _parse_retain_until(data: object) -> datetime.date | None | Unset:
             if data is None:
@@ -379,15 +353,12 @@ class OutputDocument:
                     raise TypeError()
                 retain_until_type_0 = isoparse(data).date()
 
-
-
                 return retain_until_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.date | None | Unset, data)
 
         retain_until = _parse_retain_until(d.pop("retain_until", UNSET))
-
 
         def _parse_created_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -399,15 +370,12 @@ class OutputDocument:
                     raise TypeError()
                 created_at_type_0 = isoparse(data)
 
-
-
                 return created_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         created_at = _parse_created_at(d.pop("created_at", UNSET))
-
 
         output_document = cls(
             id=id,
@@ -431,7 +399,6 @@ class OutputDocument:
             retain_until=retain_until,
             created_at=created_at,
         )
-
 
         output_document.additional_properties = d
         return output_document

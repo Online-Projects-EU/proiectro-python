@@ -1,54 +1,45 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.add_document_template_data_classification import (
+    AddDocumentTemplateDataClassification,
+)
 from ..types import UNSET, Unset
-
-from ..models.add_document_template_data_classification import AddDocumentTemplateDataClassification
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="AddDocumentTemplate")
 
 
-
 @_attrs_define
 class AddDocumentTemplate:
-    """ 
-        Attributes:
-            name (str):
-            description (None | str | Unset):  Default: ''.
-            entity_type (str | Unset):  Default: 'general'.
-            body (None | str | Unset):  Default: ''.
-            default_series_id (None | str | Unset):
-            retention_days (int | None | Unset):
-            data_classification (AddDocumentTemplateDataClassification | Unset):  Default:
-                AddDocumentTemplateDataClassification.INTERNAL.
-            is_active (bool | Unset):  Default: True.
-     """
+    """
+    Attributes:
+        name (str):
+        description (None | str | Unset):  Default: ''.
+        entity_type (str | Unset):  Default: 'general'.
+        body (None | str | Unset):  Default: ''.
+        default_series_id (None | str | Unset):
+        retention_days (int | None | Unset):
+        data_classification (AddDocumentTemplateDataClassification | Unset):  Default:
+            AddDocumentTemplateDataClassification.INTERNAL.
+        is_active (bool | Unset):  Default: True.
+    """
 
     name: str
-    description: None | str | Unset = ''
-    entity_type: str | Unset = 'general'
-    body: None | str | Unset = ''
+    description: None | str | Unset = ""
+    entity_type: str | Unset = "general"
+    body: None | str | Unset = ""
     default_series_id: None | str | Unset = UNSET
     retention_days: int | None | Unset = UNSET
-    data_classification: AddDocumentTemplateDataClassification | Unset = AddDocumentTemplateDataClassification.INTERNAL
+    data_classification: AddDocumentTemplateDataClassification | Unset = (
+        AddDocumentTemplateDataClassification.INTERNAL
+    )
     is_active: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -83,15 +74,15 @@ class AddDocumentTemplate:
         if not isinstance(self.data_classification, Unset):
             data_classification = self.data_classification.value
 
-
         is_active = self.is_active
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if entity_type is not UNSET:
@@ -109,8 +100,6 @@ class AddDocumentTemplate:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -125,7 +114,6 @@ class AddDocumentTemplate:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         entity_type = d.pop("entity_type", UNSET)
 
         def _parse_body(data: object) -> None | str | Unset:
@@ -137,7 +125,6 @@ class AddDocumentTemplate:
 
         body = _parse_body(d.pop("body", UNSET))
 
-
         def _parse_default_series_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -146,7 +133,6 @@ class AddDocumentTemplate:
             return cast(None | str | Unset, data)
 
         default_series_id = _parse_default_series_id(d.pop("default_series_id", UNSET))
-
 
         def _parse_retention_days(data: object) -> int | None | Unset:
             if data is None:
@@ -157,16 +143,14 @@ class AddDocumentTemplate:
 
         retention_days = _parse_retention_days(d.pop("retention_days", UNSET))
 
-
         _data_classification = d.pop("data_classification", UNSET)
         data_classification: AddDocumentTemplateDataClassification | Unset
-        if isinstance(_data_classification,  Unset):
+        if isinstance(_data_classification, Unset):
             data_classification = UNSET
         else:
-            data_classification = AddDocumentTemplateDataClassification(_data_classification)
-
-
-
+            data_classification = AddDocumentTemplateDataClassification(
+                _data_classification
+            )
 
         is_active = d.pop("is_active", UNSET)
 
@@ -180,7 +164,6 @@ class AddDocumentTemplate:
             data_classification=data_classification,
             is_active=is_active,
         )
-
 
         add_document_template.additional_properties = d
         return add_document_template

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class OutputProjectWorkItemDetailTimelineSource(str, Enum):
     CPM = "cpm"
     MANUAL = "manual"

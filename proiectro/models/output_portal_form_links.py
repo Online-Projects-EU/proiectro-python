@@ -1,44 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_portal_form_link import OutputPortalFormLink
-
-
-
+    from ..models.output_portal_form_link import OutputPortalFormLink
 
 
 T = TypeVar("T", bound="OutputPortalFormLinks")
 
 
-
 @_attrs_define
 class OutputPortalFormLinks:
-    """ 
-        Attributes:
-            subtenant_id (str):
-            forms (list[OutputPortalFormLink]):
-     """
+    """
+    Attributes:
+        subtenant_id (str):
+        forms (list[OutputPortalFormLink]):
+    """
 
     subtenant_id: str
     forms: list[OutputPortalFormLink]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_portal_form_link import OutputPortalFormLink
         subtenant_id = self.subtenant_id
 
         forms = []
@@ -46,41 +33,35 @@ class OutputPortalFormLinks:
             forms_item = forms_item_data.to_dict()
             forms.append(forms_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "subtenant_id": subtenant_id,
-            "forms": forms,
-        })
+        field_dict.update(
+            {
+                "subtenant_id": subtenant_id,
+                "forms": forms,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_portal_form_link import OutputPortalFormLink
+
         d = dict(src_dict)
         subtenant_id = d.pop("subtenant_id")
 
         forms = []
         _forms = d.pop("forms")
-        for forms_item_data in (_forms):
+        for forms_item_data in _forms:
             forms_item = OutputPortalFormLink.from_dict(forms_item_data)
 
-
-
             forms.append(forms_item)
-
 
         output_portal_form_links = cls(
             subtenant_id=subtenant_id,
             forms=forms,
         )
-
 
         output_portal_form_links.additional_properties = d
         return output_portal_form_links

@@ -1,45 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="KPIUnassignedItemsSummary")
-
 
 
 @_attrs_define
 class KPIUnassignedItemsSummary:
-    """ 
-        Attributes:
-            description (str | Unset):  Default: ''.
-            total_count (str | Unset):  Default: '0'.
-            support_count (str | Unset):  Default: '0'.
-            operations_count (str | Unset):  Default: '0'.
-            work_count (str | Unset):  Default: '0'.
-     """
+    """
+    Attributes:
+        description (str | Unset):  Default: ''.
+        total_count (str | Unset):  Default: '0'.
+        support_count (str | Unset):  Default: '0'.
+        operations_count (str | Unset):  Default: '0'.
+        work_count (str | Unset):  Default: '0'.
+    """
 
-    description: str | Unset = ''
-    total_count: str | Unset = '0'
-    support_count: str | Unset = '0'
-    operations_count: str | Unset = '0'
-    work_count: str | Unset = '0'
+    description: str | Unset = ""
+    total_count: str | Unset = "0"
+    support_count: str | Unset = "0"
+    operations_count: str | Unset = "0"
+    work_count: str | Unset = "0"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         description = self.description
@@ -52,11 +40,9 @@ class KPIUnassignedItemsSummary:
 
         work_count = self.work_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if description is not UNSET:
             field_dict["description"] = description
         if total_count is not UNSET:
@@ -69,8 +55,6 @@ class KPIUnassignedItemsSummary:
             field_dict["workCount"] = work_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -92,7 +76,6 @@ class KPIUnassignedItemsSummary:
             operations_count=operations_count,
             work_count=work_count,
         )
-
 
         kpi_unassigned_items_summary.additional_properties = d
         return kpi_unassigned_items_summary

@@ -1,45 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.generate_document_data_classification_type_0 import (
+    GenerateDocumentDataClassificationType0,
+)
 from ..types import UNSET, Unset
-
-from ..models.generate_document_data_classification_type_0 import GenerateDocumentDataClassificationType0
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
 
 T = TypeVar("T", bound="GenerateDocument")
 
 
-
 @_attrs_define
 class GenerateDocument:
-    """ 
-        Attributes:
-            template_id (str):
-            title (None | str | Unset):
-            body (None | str | Unset):
-            data_classification (GenerateDocumentDataClassificationType0 | None | Unset):
-     """
+    """
+    Attributes:
+        template_id (str):
+        title (None | str | Unset):
+        body (None | str | Unset):
+        data_classification (GenerateDocumentDataClassificationType0 | None | Unset):
+    """
 
     template_id: str
     title: None | str | Unset = UNSET
     body: None | str | Unset = UNSET
     data_classification: GenerateDocumentDataClassificationType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         template_id = self.template_id
@@ -59,17 +48,20 @@ class GenerateDocument:
         data_classification: None | str | Unset
         if isinstance(self.data_classification, Unset):
             data_classification = UNSET
-        elif isinstance(self.data_classification, GenerateDocumentDataClassificationType0):
+        elif isinstance(
+            self.data_classification, GenerateDocumentDataClassificationType0
+        ):
             data_classification = self.data_classification.value
         else:
             data_classification = self.data_classification
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "template_id": template_id,
-        })
+        field_dict.update(
+            {
+                "template_id": template_id,
+            }
+        )
         if title is not UNSET:
             field_dict["title"] = title
         if body is not UNSET:
@@ -78,8 +70,6 @@ class GenerateDocument:
             field_dict["data_classification"] = data_classification
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,7 +85,6 @@ class GenerateDocument:
 
         title = _parse_title(d.pop("title", UNSET))
 
-
         def _parse_body(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -105,8 +94,9 @@ class GenerateDocument:
 
         body = _parse_body(d.pop("body", UNSET))
 
-
-        def _parse_data_classification(data: object) -> GenerateDocumentDataClassificationType0 | None | Unset:
+        def _parse_data_classification(
+            data: object,
+        ) -> GenerateDocumentDataClassificationType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -114,17 +104,18 @@ class GenerateDocument:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                data_classification_type_0 = GenerateDocumentDataClassificationType0(data)
-
-
+                data_classification_type_0 = GenerateDocumentDataClassificationType0(
+                    data
+                )
 
                 return data_classification_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(GenerateDocumentDataClassificationType0 | None | Unset, data)
 
-        data_classification = _parse_data_classification(d.pop("data_classification", UNSET))
-
+        data_classification = _parse_data_classification(
+            d.pop("data_classification", UNSET)
+        )
 
         generate_document = cls(
             template_id=template_id,
@@ -132,7 +123,6 @@ class GenerateDocument:
             body=body,
             data_classification=data_classification,
         )
-
 
         generate_document.additional_properties = d
         return generate_document

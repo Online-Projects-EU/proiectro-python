@@ -1,50 +1,37 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="EditLeadList")
 
 
-
 @_attrs_define
 class EditLeadList:
-    """ 
-        Attributes:
-            name (str):
-            updated_at (datetime.datetime):
-            description (None | str | Unset):  Default: ''.
-            instructions (None | str | Unset):  Default: ''.
-            owner (None | str | Unset):
-            is_active (bool | Unset):  Default: True.
-     """
+    """
+    Attributes:
+        name (str):
+        updated_at (datetime.datetime):
+        description (None | str | Unset):  Default: ''.
+        instructions (None | str | Unset):  Default: ''.
+        owner (None | str | Unset):
+        is_active (bool | None | Unset):
+    """
 
     name: str
     updated_at: datetime.datetime
-    description: None | str | Unset = ''
-    instructions: None | str | Unset = ''
+    description: None | str | Unset = ""
+    instructions: None | str | Unset = ""
     owner: None | str | Unset = UNSET
-    is_active: bool | Unset = True
+    is_active: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -69,15 +56,20 @@ class EditLeadList:
         else:
             owner = self.owner
 
-        is_active = self.is_active
-
+        is_active: bool | None | Unset
+        if isinstance(self.is_active, Unset):
+            is_active = UNSET
+        else:
+            is_active = self.is_active
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "updated_at": updated_at,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if instructions is not UNSET:
@@ -89,17 +81,12 @@ class EditLeadList:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         name = d.pop("name")
 
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -110,7 +97,6 @@ class EditLeadList:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_instructions(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -119,7 +105,6 @@ class EditLeadList:
             return cast(None | str | Unset, data)
 
         instructions = _parse_instructions(d.pop("instructions", UNSET))
-
 
         def _parse_owner(data: object) -> None | str | Unset:
             if data is None:
@@ -130,8 +115,14 @@ class EditLeadList:
 
         owner = _parse_owner(d.pop("owner", UNSET))
 
+        def _parse_is_active(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
 
-        is_active = d.pop("is_active", UNSET)
+        is_active = _parse_is_active(d.pop("is_active", UNSET))
 
         edit_lead_list = cls(
             name=name,
@@ -141,7 +132,6 @@ class EditLeadList:
             owner=owner,
             is_active=is_active,
         )
-
 
         edit_lead_list.additional_properties = d
         return edit_lead_list

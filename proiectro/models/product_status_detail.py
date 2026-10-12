@@ -1,26 +1,17 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="ProductStatusDetail")
-
 
 
 @_attrs_define
 class ProductStatusDetail:
-    """ Product status for lifecycle display.
+    """Product status for lifecycle display.
     Used in status dropdowns to show current status and all available lifecycle stages.
     Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
 
@@ -32,7 +23,7 @@ class ProductStatusDetail:
             visible_to_customer (bool):
             sequence_no (int):
             is_current (bool):
-     """
+    """
 
     id: str
     name: str
@@ -42,10 +33,6 @@ class ProductStatusDetail:
     sequence_no: int
     is_current: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -62,22 +49,21 @@ class ProductStatusDetail:
 
         is_current = self.is_current
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "lifecycle_type": lifecycle_type,
-            "lifecycle_type_display": lifecycle_type_display,
-            "visible_to_customer": visible_to_customer,
-            "sequence_no": sequence_no,
-            "is_current": is_current,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "lifecycle_type": lifecycle_type,
+                "lifecycle_type_display": lifecycle_type_display,
+                "visible_to_customer": visible_to_customer,
+                "sequence_no": sequence_no,
+                "is_current": is_current,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -105,7 +91,6 @@ class ProductStatusDetail:
             sequence_no=sequence_no,
             is_current=is_current,
         )
-
 
         product_status_detail.additional_properties = d
         return product_status_detail

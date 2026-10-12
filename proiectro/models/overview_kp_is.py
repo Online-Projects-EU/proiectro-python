@@ -1,33 +1,26 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="OverviewKPIs")
 
 
-
 @_attrs_define
 class OverviewKPIs:
-    """ Executive KPIs for Overview - one metric per business domain.
+    """Executive KPIs for Overview - one metric per business domain.
 
     Covers all 4 business domains with real database-backed metrics:
     - Customers: Acquisition and growth
@@ -43,8 +36,6 @@ class OverviewKPIs:
             new_customers_previous (int):
             new_customers_trend (str):
             total_active_customers (int):
-            won_revenue (float | str):
-            won_revenue_previous (float | str):
             won_revenue_trend (str):
             won_deals_count (int):
             active_projects (int):
@@ -75,17 +66,17 @@ class OverviewKPIs:
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
             new_customers_change_percent (float | None | str | Unset):
+            won_revenue (float | None | str | Unset):
+            won_revenue_previous (float | None | str | Unset):
             won_revenue_change_percent (float | None | str | Unset):
             projects_started_change_percent (float | None | str | Unset):
-     """
+    """
 
     currency: str
     new_customers: int
     new_customers_previous: int
     new_customers_trend: str
     total_active_customers: int
-    won_revenue: float | str
-    won_revenue_previous: float | str
     won_revenue_trend: str
     won_deals_count: int
     active_projects: int
@@ -99,8 +90,8 @@ class OverviewKPIs:
     tickets_previous_net: int
     tickets_trend: str
     tickets_status: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -116,17 +107,13 @@ class OverviewKPIs:
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
     new_customers_change_percent: float | None | str | Unset = UNSET
+    won_revenue: float | None | str | Unset = UNSET
+    won_revenue_previous: float | None | str | Unset = UNSET
     won_revenue_change_percent: float | None | str | Unset = UNSET
     projects_started_change_percent: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
         currency = self.currency
 
         new_customers = self.new_customers
@@ -136,12 +123,6 @@ class OverviewKPIs:
         new_customers_trend = self.new_customers_trend
 
         total_active_customers = self.total_active_customers
-
-        won_revenue: float | str
-        won_revenue = self.won_revenue
-
-        won_revenue_previous: float | str
-        won_revenue_previous = self.won_revenue_previous
 
         won_revenue_trend = self.won_revenue_trend
 
@@ -208,7 +189,6 @@ class OverviewKPIs:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -232,7 +212,6 @@ class OverviewKPIs:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -279,6 +258,18 @@ class OverviewKPIs:
         else:
             new_customers_change_percent = self.new_customers_change_percent
 
+        won_revenue: float | None | str | Unset
+        if isinstance(self.won_revenue, Unset):
+            won_revenue = UNSET
+        else:
+            won_revenue = self.won_revenue
+
+        won_revenue_previous: float | None | str | Unset
+        if isinstance(self.won_revenue_previous, Unset):
+            won_revenue_previous = UNSET
+        else:
+            won_revenue_previous = self.won_revenue_previous
+
         won_revenue_change_percent: float | None | str | Unset
         if isinstance(self.won_revenue_change_percent, Unset):
             won_revenue_change_percent = UNSET
@@ -291,31 +282,30 @@ class OverviewKPIs:
         else:
             projects_started_change_percent = self.projects_started_change_percent
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "currency": currency,
-            "new_customers": new_customers,
-            "new_customers_previous": new_customers_previous,
-            "new_customers_trend": new_customers_trend,
-            "total_active_customers": total_active_customers,
-            "won_revenue": won_revenue,
-            "won_revenue_previous": won_revenue_previous,
-            "won_revenue_trend": won_revenue_trend,
-            "won_deals_count": won_deals_count,
-            "active_projects": active_projects,
-            "projects_started": projects_started,
-            "projects_started_previous": projects_started_previous,
-            "projects_trend": projects_trend,
-            "open_tickets": open_tickets,
-            "tickets_opened": tickets_opened,
-            "tickets_closed": tickets_closed,
-            "tickets_net_change": tickets_net_change,
-            "tickets_previous_net": tickets_previous_net,
-            "tickets_trend": tickets_trend,
-            "tickets_status": tickets_status,
-        })
+        field_dict.update(
+            {
+                "currency": currency,
+                "new_customers": new_customers,
+                "new_customers_previous": new_customers_previous,
+                "new_customers_trend": new_customers_trend,
+                "total_active_customers": total_active_customers,
+                "won_revenue_trend": won_revenue_trend,
+                "won_deals_count": won_deals_count,
+                "active_projects": active_projects,
+                "projects_started": projects_started,
+                "projects_started_previous": projects_started_previous,
+                "projects_trend": projects_trend,
+                "open_tickets": open_tickets,
+                "tickets_opened": tickets_opened,
+                "tickets_closed": tickets_closed,
+                "tickets_net_change": tickets_net_change,
+                "tickets_previous_net": tickets_previous_net,
+                "tickets_trend": tickets_trend,
+                "tickets_status": tickets_status,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -350,19 +340,24 @@ class OverviewKPIs:
             field_dict["filter_type_label"] = filter_type_label
         if new_customers_change_percent is not UNSET:
             field_dict["new_customers_change_percent"] = new_customers_change_percent
+        if won_revenue is not UNSET:
+            field_dict["won_revenue"] = won_revenue
+        if won_revenue_previous is not UNSET:
+            field_dict["won_revenue_previous"] = won_revenue_previous
         if won_revenue_change_percent is not UNSET:
             field_dict["won_revenue_change_percent"] = won_revenue_change_percent
         if projects_started_change_percent is not UNSET:
-            field_dict["projects_started_change_percent"] = projects_started_change_percent
+            field_dict["projects_started_change_percent"] = (
+                projects_started_change_percent
+            )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
         currency = d.pop("currency")
 
@@ -373,18 +368,6 @@ class OverviewKPIs:
         new_customers_trend = d.pop("new_customers_trend")
 
         total_active_customers = d.pop("total_active_customers")
-
-        def _parse_won_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        won_revenue = _parse_won_revenue(d.pop("won_revenue"))
-
-
-        def _parse_won_revenue_previous(data: object) -> float | str:
-            return cast(float | str, data)
-
-        won_revenue_previous = _parse_won_revenue_previous(d.pop("won_revenue_previous"))
-
 
         won_revenue_trend = d.pop("won_revenue_trend")
 
@@ -426,15 +409,12 @@ class OverviewKPIs:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -445,7 +425,6 @@ class OverviewKPIs:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -455,7 +434,6 @@ class OverviewKPIs:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -464,7 +442,6 @@ class OverviewKPIs:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -476,10 +453,10 @@ class OverviewKPIs:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -490,7 +467,6 @@ class OverviewKPIs:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -500,7 +476,6 @@ class OverviewKPIs:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -509,7 +484,6 @@ class OverviewKPIs:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -521,10 +495,10 @@ class OverviewKPIs:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -535,7 +509,6 @@ class OverviewKPIs:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -545,7 +518,6 @@ class OverviewKPIs:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -553,8 +525,9 @@ class OverviewKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -565,7 +538,6 @@ class OverviewKPIs:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -573,8 +545,9 @@ class OverviewKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -585,7 +558,6 @@ class OverviewKPIs:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -595,36 +567,64 @@ class OverviewKPIs:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
-
-        def _parse_new_customers_change_percent(data: object) -> float | None | str | Unset:
+        def _parse_new_customers_change_percent(
+            data: object,
+        ) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(float | None | str | Unset, data)
 
-        new_customers_change_percent = _parse_new_customers_change_percent(d.pop("new_customers_change_percent", UNSET))
+        new_customers_change_percent = _parse_new_customers_change_percent(
+            d.pop("new_customers_change_percent", UNSET)
+        )
 
-
-        def _parse_won_revenue_change_percent(data: object) -> float | None | str | Unset:
+        def _parse_won_revenue(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(float | None | str | Unset, data)
 
-        won_revenue_change_percent = _parse_won_revenue_change_percent(d.pop("won_revenue_change_percent", UNSET))
+        won_revenue = _parse_won_revenue(d.pop("won_revenue", UNSET))
 
-
-        def _parse_projects_started_change_percent(data: object) -> float | None | str | Unset:
+        def _parse_won_revenue_previous(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
             return cast(float | None | str | Unset, data)
 
-        projects_started_change_percent = _parse_projects_started_change_percent(d.pop("projects_started_change_percent", UNSET))
+        won_revenue_previous = _parse_won_revenue_previous(
+            d.pop("won_revenue_previous", UNSET)
+        )
 
+        def _parse_won_revenue_change_percent(
+            data: object,
+        ) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        won_revenue_change_percent = _parse_won_revenue_change_percent(
+            d.pop("won_revenue_change_percent", UNSET)
+        )
+
+        def _parse_projects_started_change_percent(
+            data: object,
+        ) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        projects_started_change_percent = _parse_projects_started_change_percent(
+            d.pop("projects_started_change_percent", UNSET)
+        )
 
         overview_kp_is = cls(
             currency=currency,
@@ -632,8 +632,6 @@ class OverviewKPIs:
             new_customers_previous=new_customers_previous,
             new_customers_trend=new_customers_trend,
             total_active_customers=total_active_customers,
-            won_revenue=won_revenue,
-            won_revenue_previous=won_revenue_previous,
             won_revenue_trend=won_revenue_trend,
             won_deals_count=won_deals_count,
             active_projects=active_projects,
@@ -664,10 +662,11 @@ class OverviewKPIs:
             filter_type=filter_type,
             filter_type_label=filter_type_label,
             new_customers_change_percent=new_customers_change_percent,
+            won_revenue=won_revenue,
+            won_revenue_previous=won_revenue_previous,
             won_revenue_change_percent=won_revenue_change_percent,
             projects_started_change_percent=projects_started_change_percent,
         )
-
 
         overview_kp_is.additional_properties = d
         return overview_kp_is

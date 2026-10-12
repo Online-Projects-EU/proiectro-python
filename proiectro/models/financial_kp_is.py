@@ -1,53 +1,35 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="FinancialKPIs")
 
 
-
 @_attrs_define
 class FinancialKPIs:
-    """ Financial KPIs - Revenue, margins, and receivables health.
+    """Financial KPIs - Revenue, margins, and receivables health.
 
     Shows: Revenue with growth rate, Margin health, AR aging summary, DSO status.
 
         Attributes:
-            total_revenue (float | str):
-            revenue_growth_percent (float | str):
             revenue_status (str):
-            recurring_revenue (float | str):
-            one_time_revenue (float | str):
-            gross_margin_percent (float | str):
             gross_margin_target (float | str):
             gross_margin_status (str):
             margin_trend_direction (str):
-            outstanding_ar (float | str):
-            ar_current (float | str):
-            ar_overdue (float | str):
-            ar_overdue_30_plus (float | str):
             ar_status (str):
-            ar_at_risk_percent (float | str):
-            dso_days (int):
             dso_target (int):
             dso_status (str):
             currency (str):
@@ -67,30 +49,33 @@ class FinancialKPIs:
             filter_category_label (None | str | Unset):
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
+            uncovered_currencies (list[str] | Unset):
+            total_revenue (float | None | str | Unset):
+            revenue_growth_percent (float | None | str | Unset): A percentage, or "new" when the prior period had nothing to
+                compare against.
+            recurring_revenue (float | None | str | Unset):
+            one_time_revenue (float | None | str | Unset):
+            gross_margin_percent (float | None | str | Unset):
+            outstanding_ar (float | None | str | Unset):
+            ar_current (float | None | str | Unset):
+            ar_overdue (float | None | str | Unset):
+            ar_overdue_30_plus (float | None | str | Unset):
+            ar_nothing_outstanding (bool | Unset):  Default: False.
+            ar_at_risk_percent (float | None | str | Unset):
+            dso_days (int | None | Unset):
             dso_industry_benchmark (int | None | Unset):
-     """
+    """
 
-    total_revenue: float | str
-    revenue_growth_percent: float | str
     revenue_status: str
-    recurring_revenue: float | str
-    one_time_revenue: float | str
-    gross_margin_percent: float | str
     gross_margin_target: float | str
     gross_margin_status: str
     margin_trend_direction: str
-    outstanding_ar: float | str
-    ar_current: float | str
-    ar_overdue: float | str
-    ar_overdue_30_plus: float | str
     ar_status: str
-    ar_at_risk_percent: float | str
-    dso_days: int
     dso_target: int
     dso_status: str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -105,32 +90,24 @@ class FinancialKPIs:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
+    total_revenue: float | None | str | Unset = UNSET
+    revenue_growth_percent: float | None | str | Unset = UNSET
+    recurring_revenue: float | None | str | Unset = UNSET
+    one_time_revenue: float | None | str | Unset = UNSET
+    gross_margin_percent: float | None | str | Unset = UNSET
+    outstanding_ar: float | None | str | Unset = UNSET
+    ar_current: float | None | str | Unset = UNSET
+    ar_overdue: float | None | str | Unset = UNSET
+    ar_overdue_30_plus: float | None | str | Unset = UNSET
+    ar_nothing_outstanding: bool | Unset = False
+    ar_at_risk_percent: float | None | str | Unset = UNSET
+    dso_days: int | None | Unset = UNSET
     dso_industry_benchmark: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        total_revenue: float | str
-        total_revenue = self.total_revenue
-
-        revenue_growth_percent: float | str
-        revenue_growth_percent = self.revenue_growth_percent
-
         revenue_status = self.revenue_status
-
-        recurring_revenue: float | str
-        recurring_revenue = self.recurring_revenue
-
-        one_time_revenue: float | str
-        one_time_revenue = self.one_time_revenue
-
-        gross_margin_percent: float | str
-        gross_margin_percent = self.gross_margin_percent
 
         gross_margin_target: float | str
         gross_margin_target = self.gross_margin_target
@@ -139,24 +116,7 @@ class FinancialKPIs:
 
         margin_trend_direction = self.margin_trend_direction
 
-        outstanding_ar: float | str
-        outstanding_ar = self.outstanding_ar
-
-        ar_current: float | str
-        ar_current = self.ar_current
-
-        ar_overdue: float | str
-        ar_overdue = self.ar_overdue
-
-        ar_overdue_30_plus: float | str
-        ar_overdue_30_plus = self.ar_overdue_30_plus
-
         ar_status = self.ar_status
-
-        ar_at_risk_percent: float | str
-        ar_at_risk_percent = self.ar_at_risk_percent
-
-        dso_days = self.dso_days
 
         dso_target = self.dso_target
 
@@ -203,7 +163,6 @@ class FinancialKPIs:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -227,7 +186,6 @@ class FinancialKPIs:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -268,36 +226,98 @@ class FinancialKPIs:
         else:
             filter_type_label = self.filter_type_label
 
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
+        total_revenue: float | None | str | Unset
+        if isinstance(self.total_revenue, Unset):
+            total_revenue = UNSET
+        else:
+            total_revenue = self.total_revenue
+
+        revenue_growth_percent: float | None | str | Unset
+        if isinstance(self.revenue_growth_percent, Unset):
+            revenue_growth_percent = UNSET
+        else:
+            revenue_growth_percent = self.revenue_growth_percent
+
+        recurring_revenue: float | None | str | Unset
+        if isinstance(self.recurring_revenue, Unset):
+            recurring_revenue = UNSET
+        else:
+            recurring_revenue = self.recurring_revenue
+
+        one_time_revenue: float | None | str | Unset
+        if isinstance(self.one_time_revenue, Unset):
+            one_time_revenue = UNSET
+        else:
+            one_time_revenue = self.one_time_revenue
+
+        gross_margin_percent: float | None | str | Unset
+        if isinstance(self.gross_margin_percent, Unset):
+            gross_margin_percent = UNSET
+        else:
+            gross_margin_percent = self.gross_margin_percent
+
+        outstanding_ar: float | None | str | Unset
+        if isinstance(self.outstanding_ar, Unset):
+            outstanding_ar = UNSET
+        else:
+            outstanding_ar = self.outstanding_ar
+
+        ar_current: float | None | str | Unset
+        if isinstance(self.ar_current, Unset):
+            ar_current = UNSET
+        else:
+            ar_current = self.ar_current
+
+        ar_overdue: float | None | str | Unset
+        if isinstance(self.ar_overdue, Unset):
+            ar_overdue = UNSET
+        else:
+            ar_overdue = self.ar_overdue
+
+        ar_overdue_30_plus: float | None | str | Unset
+        if isinstance(self.ar_overdue_30_plus, Unset):
+            ar_overdue_30_plus = UNSET
+        else:
+            ar_overdue_30_plus = self.ar_overdue_30_plus
+
+        ar_nothing_outstanding = self.ar_nothing_outstanding
+
+        ar_at_risk_percent: float | None | str | Unset
+        if isinstance(self.ar_at_risk_percent, Unset):
+            ar_at_risk_percent = UNSET
+        else:
+            ar_at_risk_percent = self.ar_at_risk_percent
+
+        dso_days: int | None | Unset
+        if isinstance(self.dso_days, Unset):
+            dso_days = UNSET
+        else:
+            dso_days = self.dso_days
+
         dso_industry_benchmark: int | None | Unset
         if isinstance(self.dso_industry_benchmark, Unset):
             dso_industry_benchmark = UNSET
         else:
             dso_industry_benchmark = self.dso_industry_benchmark
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_revenue": total_revenue,
-            "revenue_growth_percent": revenue_growth_percent,
-            "revenue_status": revenue_status,
-            "recurring_revenue": recurring_revenue,
-            "one_time_revenue": one_time_revenue,
-            "gross_margin_percent": gross_margin_percent,
-            "gross_margin_target": gross_margin_target,
-            "gross_margin_status": gross_margin_status,
-            "margin_trend_direction": margin_trend_direction,
-            "outstanding_ar": outstanding_ar,
-            "ar_current": ar_current,
-            "ar_overdue": ar_overdue,
-            "ar_overdue_30_plus": ar_overdue_30_plus,
-            "ar_status": ar_status,
-            "ar_at_risk_percent": ar_at_risk_percent,
-            "dso_days": dso_days,
-            "dso_target": dso_target,
-            "dso_status": dso_status,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "revenue_status": revenue_status,
+                "gross_margin_target": gross_margin_target,
+                "gross_margin_status": gross_margin_status,
+                "margin_trend_direction": margin_trend_direction,
+                "ar_status": ar_status,
+                "dso_target": dso_target,
+                "dso_status": dso_status,
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -330,93 +350,55 @@ class FinancialKPIs:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
+        if total_revenue is not UNSET:
+            field_dict["total_revenue"] = total_revenue
+        if revenue_growth_percent is not UNSET:
+            field_dict["revenue_growth_percent"] = revenue_growth_percent
+        if recurring_revenue is not UNSET:
+            field_dict["recurring_revenue"] = recurring_revenue
+        if one_time_revenue is not UNSET:
+            field_dict["one_time_revenue"] = one_time_revenue
+        if gross_margin_percent is not UNSET:
+            field_dict["gross_margin_percent"] = gross_margin_percent
+        if outstanding_ar is not UNSET:
+            field_dict["outstanding_ar"] = outstanding_ar
+        if ar_current is not UNSET:
+            field_dict["ar_current"] = ar_current
+        if ar_overdue is not UNSET:
+            field_dict["ar_overdue"] = ar_overdue
+        if ar_overdue_30_plus is not UNSET:
+            field_dict["ar_overdue_30_plus"] = ar_overdue_30_plus
+        if ar_nothing_outstanding is not UNSET:
+            field_dict["ar_nothing_outstanding"] = ar_nothing_outstanding
+        if ar_at_risk_percent is not UNSET:
+            field_dict["ar_at_risk_percent"] = ar_at_risk_percent
+        if dso_days is not UNSET:
+            field_dict["dso_days"] = dso_days
         if dso_industry_benchmark is not UNSET:
             field_dict["dso_industry_benchmark"] = dso_industry_benchmark
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_total_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_revenue = _parse_total_revenue(d.pop("total_revenue"))
-
-
-        def _parse_revenue_growth_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        revenue_growth_percent = _parse_revenue_growth_percent(d.pop("revenue_growth_percent"))
-
-
         revenue_status = d.pop("revenue_status")
-
-        def _parse_recurring_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        recurring_revenue = _parse_recurring_revenue(d.pop("recurring_revenue"))
-
-
-        def _parse_one_time_revenue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        one_time_revenue = _parse_one_time_revenue(d.pop("one_time_revenue"))
-
-
-        def _parse_gross_margin_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        gross_margin_percent = _parse_gross_margin_percent(d.pop("gross_margin_percent"))
-
 
         def _parse_gross_margin_target(data: object) -> float | str:
             return cast(float | str, data)
 
         gross_margin_target = _parse_gross_margin_target(d.pop("gross_margin_target"))
 
-
         gross_margin_status = d.pop("gross_margin_status")
 
         margin_trend_direction = d.pop("margin_trend_direction")
 
-        def _parse_outstanding_ar(data: object) -> float | str:
-            return cast(float | str, data)
-
-        outstanding_ar = _parse_outstanding_ar(d.pop("outstanding_ar"))
-
-
-        def _parse_ar_current(data: object) -> float | str:
-            return cast(float | str, data)
-
-        ar_current = _parse_ar_current(d.pop("ar_current"))
-
-
-        def _parse_ar_overdue(data: object) -> float | str:
-            return cast(float | str, data)
-
-        ar_overdue = _parse_ar_overdue(d.pop("ar_overdue"))
-
-
-        def _parse_ar_overdue_30_plus(data: object) -> float | str:
-            return cast(float | str, data)
-
-        ar_overdue_30_plus = _parse_ar_overdue_30_plus(d.pop("ar_overdue_30_plus"))
-
-
         ar_status = d.pop("ar_status")
-
-        def _parse_ar_at_risk_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        ar_at_risk_percent = _parse_ar_at_risk_percent(d.pop("ar_at_risk_percent"))
-
-
-        dso_days = d.pop("dso_days")
 
         dso_target = d.pop("dso_target")
 
@@ -438,15 +420,12 @@ class FinancialKPIs:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -457,7 +436,6 @@ class FinancialKPIs:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -467,7 +445,6 @@ class FinancialKPIs:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -476,7 +453,6 @@ class FinancialKPIs:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -488,10 +464,10 @@ class FinancialKPIs:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -502,7 +478,6 @@ class FinancialKPIs:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -512,7 +487,6 @@ class FinancialKPIs:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -521,7 +495,6 @@ class FinancialKPIs:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -533,10 +506,10 @@ class FinancialKPIs:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -547,7 +520,6 @@ class FinancialKPIs:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -557,7 +529,6 @@ class FinancialKPIs:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -565,8 +536,9 @@ class FinancialKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -577,7 +549,6 @@ class FinancialKPIs:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -585,8 +556,9 @@ class FinancialKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -597,7 +569,6 @@ class FinancialKPIs:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -607,6 +578,116 @@ class FinancialKPIs:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
+
+        def _parse_total_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_revenue = _parse_total_revenue(d.pop("total_revenue", UNSET))
+
+        def _parse_revenue_growth_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        revenue_growth_percent = _parse_revenue_growth_percent(
+            d.pop("revenue_growth_percent", UNSET)
+        )
+
+        def _parse_recurring_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        recurring_revenue = _parse_recurring_revenue(d.pop("recurring_revenue", UNSET))
+
+        def _parse_one_time_revenue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        one_time_revenue = _parse_one_time_revenue(d.pop("one_time_revenue", UNSET))
+
+        def _parse_gross_margin_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        gross_margin_percent = _parse_gross_margin_percent(
+            d.pop("gross_margin_percent", UNSET)
+        )
+
+        def _parse_outstanding_ar(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        outstanding_ar = _parse_outstanding_ar(d.pop("outstanding_ar", UNSET))
+
+        def _parse_ar_current(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        ar_current = _parse_ar_current(d.pop("ar_current", UNSET))
+
+        def _parse_ar_overdue(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        ar_overdue = _parse_ar_overdue(d.pop("ar_overdue", UNSET))
+
+        def _parse_ar_overdue_30_plus(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        ar_overdue_30_plus = _parse_ar_overdue_30_plus(
+            d.pop("ar_overdue_30_plus", UNSET)
+        )
+
+        ar_nothing_outstanding = d.pop("ar_nothing_outstanding", UNSET)
+
+        def _parse_ar_at_risk_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        ar_at_risk_percent = _parse_ar_at_risk_percent(
+            d.pop("ar_at_risk_percent", UNSET)
+        )
+
+        def _parse_dso_days(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        dso_days = _parse_dso_days(d.pop("dso_days", UNSET))
 
         def _parse_dso_industry_benchmark(data: object) -> int | None | Unset:
             if data is None:
@@ -615,26 +696,16 @@ class FinancialKPIs:
                 return data
             return cast(int | None | Unset, data)
 
-        dso_industry_benchmark = _parse_dso_industry_benchmark(d.pop("dso_industry_benchmark", UNSET))
-
+        dso_industry_benchmark = _parse_dso_industry_benchmark(
+            d.pop("dso_industry_benchmark", UNSET)
+        )
 
         financial_kp_is = cls(
-            total_revenue=total_revenue,
-            revenue_growth_percent=revenue_growth_percent,
             revenue_status=revenue_status,
-            recurring_revenue=recurring_revenue,
-            one_time_revenue=one_time_revenue,
-            gross_margin_percent=gross_margin_percent,
             gross_margin_target=gross_margin_target,
             gross_margin_status=gross_margin_status,
             margin_trend_direction=margin_trend_direction,
-            outstanding_ar=outstanding_ar,
-            ar_current=ar_current,
-            ar_overdue=ar_overdue,
-            ar_overdue_30_plus=ar_overdue_30_plus,
             ar_status=ar_status,
-            ar_at_risk_percent=ar_at_risk_percent,
-            dso_days=dso_days,
             dso_target=dso_target,
             dso_status=dso_status,
             currency=currency,
@@ -654,9 +725,21 @@ class FinancialKPIs:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            uncovered_currencies=uncovered_currencies,
+            total_revenue=total_revenue,
+            revenue_growth_percent=revenue_growth_percent,
+            recurring_revenue=recurring_revenue,
+            one_time_revenue=one_time_revenue,
+            gross_margin_percent=gross_margin_percent,
+            outstanding_ar=outstanding_ar,
+            ar_current=ar_current,
+            ar_overdue=ar_overdue,
+            ar_overdue_30_plus=ar_overdue_30_plus,
+            ar_nothing_outstanding=ar_nothing_outstanding,
+            ar_at_risk_percent=ar_at_risk_percent,
+            dso_days=dso_days,
             dso_industry_benchmark=dso_industry_benchmark,
         )
-
 
         financial_kp_is.additional_properties = d
         return financial_kp_is

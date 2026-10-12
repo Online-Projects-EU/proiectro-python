@@ -1,41 +1,31 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
-
-
-
-
-
 
 T = TypeVar("T", bound="MySupportRequestListItem")
 
 
-
 @_attrs_define
 class MySupportRequestListItem:
-    """ Output schema for a support request in My Support Requests list
+    """Output schema for a support request in My Support Requests list
 
-        Attributes:
-            id (str):
-            title (str):
-            public_reference (str):
-            type_name (str):
-            severity_name (str):
-            status_name (str):
-            status_lifecycle (str):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
-     """
+    Attributes:
+        id (str):
+        title (str):
+        public_reference (str):
+        type_name (str):
+        severity_name (str):
+        status_name (str):
+        status_lifecycle (str):
+        created_at (datetime.datetime):
+        updated_at (datetime.datetime):
+    """
 
     id: str
     title: str
@@ -47,10 +37,6 @@ class MySupportRequestListItem:
     created_at: datetime.datetime
     updated_at: datetime.datetime
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -71,24 +57,23 @@ class MySupportRequestListItem:
 
         updated_at = self.updated_at.isoformat()
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "title": title,
-            "public_reference": public_reference,
-            "type_name": type_name,
-            "severity_name": severity_name,
-            "status_name": status_name,
-            "status_lifecycle": status_lifecycle,
-            "created_at": created_at,
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "title": title,
+                "public_reference": public_reference,
+                "type_name": type_name,
+                "severity_name": severity_name,
+                "status_name": status_name,
+                "status_lifecycle": status_lifecycle,
+                "created_at": created_at,
+                "updated_at": updated_at,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -109,13 +94,7 @@ class MySupportRequestListItem:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         my_support_request_list_item = cls(
             id=id,
@@ -128,7 +107,6 @@ class MySupportRequestListItem:
             created_at=created_at,
             updated_at=updated_at,
         )
-
 
         my_support_request_list_item.additional_properties = d
         return my_support_request_list_item

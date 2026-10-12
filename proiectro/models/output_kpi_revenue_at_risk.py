@@ -1,47 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.kpi_revenue_at_risk_summary import KPIRevenueAtRiskSummary
-  from ..models.output_kpi_revenue_at_risk_items_item import OutputKPIRevenueAtRiskItemsItem
-
-
-
+    from ..models.kpi_revenue_at_risk_summary import KPIRevenueAtRiskSummary
+    from ..models.output_kpi_revenue_at_risk_items_item import (
+        OutputKPIRevenueAtRiskItemsItem,
+    )
 
 
 T = TypeVar("T", bound="OutputKPIRevenueAtRisk")
 
 
-
 @_attrs_define
 class OutputKPIRevenueAtRisk:
-    """ 
-        Attributes:
-            summary (KPIRevenueAtRiskSummary):
-            items (list[OutputKPIRevenueAtRiskItemsItem] | Unset):
-     """
+    """
+    Attributes:
+        summary (KPIRevenueAtRiskSummary):
+        items (list[OutputKPIRevenueAtRiskItemsItem] | Unset):
+    """
 
     summary: KPIRevenueAtRiskSummary
     items: list[OutputKPIRevenueAtRiskItemsItem] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_kpi_revenue_at_risk_items_item import OutputKPIRevenueAtRiskItemsItem
-        from ..models.kpi_revenue_at_risk_summary import KPIRevenueAtRiskSummary
         summary = self.summary.to_dict()
 
         items: list[dict[str, Any]] | Unset = UNSET
@@ -51,30 +40,27 @@ class OutputKPIRevenueAtRisk:
                 items_item = items_item_data.to_dict()
                 items.append(items_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "summary": summary,
-        })
+        field_dict.update(
+            {
+                "summary": summary,
+            }
+        )
         if items is not UNSET:
             field_dict["items"] = items
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.kpi_revenue_at_risk_summary import KPIRevenueAtRiskSummary
-        from ..models.output_kpi_revenue_at_risk_items_item import OutputKPIRevenueAtRiskItemsItem
+        from ..models.output_kpi_revenue_at_risk_items_item import (
+            OutputKPIRevenueAtRiskItemsItem,
+        )
+
         d = dict(src_dict)
         summary = KPIRevenueAtRiskSummary.from_dict(d.pop("summary"))
-
-
-
 
         _items = d.pop("items", UNSET)
         items: list[OutputKPIRevenueAtRiskItemsItem] | Unset = UNSET
@@ -83,16 +69,12 @@ class OutputKPIRevenueAtRisk:
             for items_item_data in _items:
                 items_item = OutputKPIRevenueAtRiskItemsItem.from_dict(items_item_data)
 
-
-
                 items.append(items_item)
-
 
         output_kpi_revenue_at_risk = cls(
             summary=summary,
             items=items,
         )
-
 
         output_kpi_revenue_at_risk.additional_properties = d
         return output_kpi_revenue_at_risk

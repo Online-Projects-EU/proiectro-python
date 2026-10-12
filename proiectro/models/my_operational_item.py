@@ -1,49 +1,41 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="MyOperationalItem")
 
 
-
 @_attrs_define
 class MyOperationalItem:
-    """ Individual operational item for cross-tenant welcome page
+    """Individual operational item for cross-tenant welcome page
 
-        Attributes:
-            id (str):
-            name (str):
-            process_name (str):
-            current_stage_name (str):
-            current_stage_type (str):
-            priority (str):
-            is_finished (bool):
-            tenant_name (str):
-            tenant_path (str):
-            created_at (datetime.datetime):
-            url (str):
-            due_date (datetime.date | None | Unset):
-            owner_name (None | str | Unset):
-            customer_name (None | str | Unset):
-            requires_approval (bool | Unset):  Default: False.
-            stage_age_hours (int | Unset):  Default: 0.
-     """
+    Attributes:
+        id (str):
+        name (str):
+        process_name (str):
+        current_stage_name (str):
+        current_stage_type (str):
+        priority (str):
+        is_finished (bool):
+        tenant_name (str):
+        tenant_path (str):
+        created_at (datetime.datetime):
+        url (str):
+        priority_display (None | str | Unset):
+        due_date (datetime.datetime | None | Unset):
+        owner_name (None | str | Unset):
+        customer_name (None | str | Unset):
+        requires_approval (bool | Unset):  Default: False.
+        stage_age_hours (int | Unset):  Default: 0.
+    """
 
     id: str
     name: str
@@ -56,16 +48,13 @@ class MyOperationalItem:
     tenant_path: str
     created_at: datetime.datetime
     url: str
-    due_date: datetime.date | None | Unset = UNSET
+    priority_display: None | str | Unset = UNSET
+    due_date: datetime.datetime | None | Unset = UNSET
     owner_name: None | str | Unset = UNSET
     customer_name: None | str | Unset = UNSET
     requires_approval: bool | Unset = False
     stage_age_hours: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -90,10 +79,16 @@ class MyOperationalItem:
 
         url = self.url
 
+        priority_display: None | str | Unset
+        if isinstance(self.priority_display, Unset):
+            priority_display = UNSET
+        else:
+            priority_display = self.priority_display
+
         due_date: None | str | Unset
         if isinstance(self.due_date, Unset):
             due_date = UNSET
-        elif isinstance(self.due_date, datetime.date):
+        elif isinstance(self.due_date, datetime.datetime):
             due_date = self.due_date.isoformat()
         else:
             due_date = self.due_date
@@ -114,22 +109,25 @@ class MyOperationalItem:
 
         stage_age_hours = self.stage_age_hours
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "process_name": process_name,
-            "current_stage_name": current_stage_name,
-            "current_stage_type": current_stage_type,
-            "priority": priority,
-            "is_finished": is_finished,
-            "tenant_name": tenant_name,
-            "tenant_path": tenant_path,
-            "created_at": created_at,
-            "url": url,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "process_name": process_name,
+                "current_stage_name": current_stage_name,
+                "current_stage_type": current_stage_type,
+                "priority": priority,
+                "is_finished": is_finished,
+                "tenant_name": tenant_name,
+                "tenant_path": tenant_path,
+                "created_at": created_at,
+                "url": url,
+            }
+        )
+        if priority_display is not UNSET:
+            field_dict["priority_display"] = priority_display
         if due_date is not UNSET:
             field_dict["due_date"] = due_date
         if owner_name is not UNSET:
@@ -142,8 +140,6 @@ class MyOperationalItem:
             field_dict["stage_age_hours"] = stage_age_hours
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -168,12 +164,18 @@ class MyOperationalItem:
 
         created_at = isoparse(d.pop("created_at"))
 
-
-
-
         url = d.pop("url")
 
-        def _parse_due_date(data: object) -> datetime.date | None | Unset:
+        def _parse_priority_display(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        priority_display = _parse_priority_display(d.pop("priority_display", UNSET))
+
+        def _parse_due_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -181,17 +183,14 @@ class MyOperationalItem:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                due_date_type_0 = isoparse(data).date()
-
-
+                due_date_type_0 = isoparse(data)
 
                 return due_date_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(datetime.date | None | Unset, data)
+            return cast(datetime.datetime | None | Unset, data)
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
-
 
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
@@ -202,7 +201,6 @@ class MyOperationalItem:
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
 
-
         def _parse_customer_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -211,7 +209,6 @@ class MyOperationalItem:
             return cast(None | str | Unset, data)
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
-
 
         requires_approval = d.pop("requires_approval", UNSET)
 
@@ -229,13 +226,13 @@ class MyOperationalItem:
             tenant_path=tenant_path,
             created_at=created_at,
             url=url,
+            priority_display=priority_display,
             due_date=due_date,
             owner_name=owner_name,
             customer_name=customer_name,
             requires_approval=requires_approval,
             stage_age_hours=stage_age_hours,
         )
-
 
         my_operational_item.additional_properties = d
         return my_operational_item

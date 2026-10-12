@@ -1,78 +1,59 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.tenant_label import TenantLabel
-
-
-
+    from ..models.tenant_label import TenantLabel
 
 
 T = TypeVar("T", bound="TenantLabels")
 
 
-
 @_attrs_define
 class TenantLabels:
-    """ 
-        Attributes:
-            labels (list[TenantLabel]):
-     """
+    """
+    Attributes:
+        labels (list[TenantLabel]):
+    """
 
     labels: list[TenantLabel]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.tenant_label import TenantLabel
         labels = []
         for labels_item_data in self.labels:
             labels_item = labels_item_data.to_dict()
             labels.append(labels_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "labels": labels,
-        })
+        field_dict.update(
+            {
+                "labels": labels,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tenant_label import TenantLabel
+
         d = dict(src_dict)
         labels = []
         _labels = d.pop("labels")
-        for labels_item_data in (_labels):
+        for labels_item_data in _labels:
             labels_item = TenantLabel.from_dict(labels_item_data)
 
-
-
             labels.append(labels_item)
-
 
         tenant_labels = cls(
             labels=labels,
         )
-
 
         tenant_labels.additional_properties = d
         return tenant_labels

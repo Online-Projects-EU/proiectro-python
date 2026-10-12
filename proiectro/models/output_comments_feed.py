@@ -1,37 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.comment_output import CommentOutput
-
-
-
+    from ..models.comment_output import CommentOutput
 
 
 T = TypeVar("T", bound="OutputCommentsFeed")
 
 
-
 @_attrs_define
 class OutputCommentsFeed:
-    """ Output schema for paginated comment feed
+    """Output schema for paginated comment feed
 
-        Attributes:
-            comments (list[CommentOutput]):
-            per_page (int):
-            next_page (int):
-            entity_type (str):
-            entity_id (str):
-     """
+    Attributes:
+        comments (list[CommentOutput]):
+        per_page (int):
+        next_page (int):
+        entity_type (str):
+        entity_id (str):
+    """
 
     comments: list[CommentOutput]
     per_page: int
@@ -40,18 +32,11 @@ class OutputCommentsFeed:
     entity_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.comment_output import CommentOutput
         comments = []
         for comments_item_data in self.comments:
             comments_item = comments_item_data.to_dict()
             comments.append(comments_item)
-
-
 
         per_page = self.per_page
 
@@ -61,34 +46,31 @@ class OutputCommentsFeed:
 
         entity_id = self.entity_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "comments": comments,
-            "per_page": per_page,
-            "next_page": next_page,
-            "entity_type": entity_type,
-            "entity_id": entity_id,
-        })
+        field_dict.update(
+            {
+                "comments": comments,
+                "per_page": per_page,
+                "next_page": next_page,
+                "entity_type": entity_type,
+                "entity_id": entity_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.comment_output import CommentOutput
+
         d = dict(src_dict)
         comments = []
         _comments = d.pop("comments")
-        for comments_item_data in (_comments):
+        for comments_item_data in _comments:
             comments_item = CommentOutput.from_dict(comments_item_data)
 
-
-
             comments.append(comments_item)
-
 
         per_page = d.pop("per_page")
 
@@ -105,7 +87,6 @@ class OutputCommentsFeed:
             entity_type=entity_type,
             entity_id=entity_id,
         )
-
 
         output_comments_feed.additional_properties = d
         return output_comments_feed

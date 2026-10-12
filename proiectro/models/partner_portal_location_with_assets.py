@@ -1,37 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.partner_portal_asset_item import PartnerPortalAssetItem
-
-
-
+    from ..models.partner_portal_asset_item import PartnerPortalAssetItem
 
 
 T = TypeVar("T", bound="PartnerPortalLocationWithAssets")
 
 
-
 @_attrs_define
 class PartnerPortalLocationWithAssets:
-    """ Location with its assets for partner portal
+    """Location with its assets for partner portal
 
-        Attributes:
-            id (str):
-            name (str):
-            assets (list[PartnerPortalAssetItem]):
-            description (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        assets (list[PartnerPortalAssetItem]):
+        description (None | str | Unset):
+    """
 
     id: str
     name: str
@@ -39,12 +32,7 @@ class PartnerPortalLocationWithAssets:
     description: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.partner_portal_asset_item import PartnerPortalAssetItem
         id = self.id
 
         name = self.name
@@ -54,32 +42,30 @@ class PartnerPortalLocationWithAssets:
             assets_item = assets_item_data.to_dict()
             assets.append(assets_item)
 
-
-
         description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
             description = self.description
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "assets": assets,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "assets": assets,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.partner_portal_asset_item import PartnerPortalAssetItem
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -87,13 +73,10 @@ class PartnerPortalLocationWithAssets:
 
         assets = []
         _assets = d.pop("assets")
-        for assets_item_data in (_assets):
+        for assets_item_data in _assets:
             assets_item = PartnerPortalAssetItem.from_dict(assets_item_data)
 
-
-
             assets.append(assets_item)
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -104,14 +87,12 @@ class PartnerPortalLocationWithAssets:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         partner_portal_location_with_assets = cls(
             id=id,
             name=name,
             assets=assets,
             description=description,
         )
-
 
         partner_portal_location_with_assets.additional_properties = d
         return partner_portal_location_with_assets

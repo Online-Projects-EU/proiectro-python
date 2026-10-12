@@ -1,34 +1,27 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.analytics_sales_forecast_bucket import AnalyticsSalesForecastBucket
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.analytics_sales_forecast_bucket import AnalyticsSalesForecastBucket
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="AnalyticsSalesForecast")
 
 
-
 @_attrs_define
 class AnalyticsSalesForecast:
-    """ Sales forecast - aggregated across all funnels.
+    """Sales forecast - aggregated across all funnels.
 
     Projects future revenue based on current pipeline deals weighted by
     stage probability. Deals are grouped by expected close date into
@@ -38,12 +31,7 @@ class AnalyticsSalesForecast:
     forecasts are projections, not historical data.
 
         Attributes:
-            total_pipeline_value (float | str):
-            total_weighted_value (float | str):
-            total_best_case (float | str):
-            total_worst_case (float | str):
             total_deals (int):
-            avg_deal_size (float | str):
             avg_sales_cycle_days (int):
             granularity (str):
             currency (str):
@@ -63,23 +51,24 @@ class AnalyticsSalesForecast:
             filter_category_label (None | str | Unset):
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
+            uncovered_currencies (list[str] | Unset):
+            total_pipeline_value (float | None | str | Unset):
+            total_weighted_value (float | None | str | Unset):
+            total_best_case (float | None | str | Unset):
+            total_worst_case (float | None | str | Unset):
+            avg_deal_size (float | None | str | Unset):
             buckets (list[AnalyticsSalesForecastBucket] | Unset):
             deals_without_close_date (int | Unset):  Default: 0.
-            value_without_close_date (float | str | Unset):  Default: 0.0.
+            value_without_close_date (float | None | str | Unset):  Default: 0.0.
             weighted_value_explanation (str | Unset):  Default: ''.
-     """
+    """
 
-    total_pipeline_value: float | str
-    total_weighted_value: float | str
-    total_best_case: float | str
-    total_worst_case: float | str
     total_deals: int
-    avg_deal_size: float | str
     avg_sales_cycle_days: int
     granularity: str
     currency: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -94,36 +83,20 @@ class AnalyticsSalesForecast:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    uncovered_currencies: list[str] | Unset = UNSET
+    total_pipeline_value: float | None | str | Unset = UNSET
+    total_weighted_value: float | None | str | Unset = UNSET
+    total_best_case: float | None | str | Unset = UNSET
+    total_worst_case: float | None | str | Unset = UNSET
+    avg_deal_size: float | None | str | Unset = UNSET
     buckets: list[AnalyticsSalesForecastBucket] | Unset = UNSET
     deals_without_close_date: int | Unset = 0
-    value_without_close_date: float | str | Unset = 0.0
-    weighted_value_explanation: str | Unset = ''
+    value_without_close_date: float | None | str | Unset = 0.0
+    weighted_value_explanation: str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
-        from ..models.analytics_sales_forecast_bucket import AnalyticsSalesForecastBucket
-        total_pipeline_value: float | str
-        total_pipeline_value = self.total_pipeline_value
-
-        total_weighted_value: float | str
-        total_weighted_value = self.total_weighted_value
-
-        total_best_case: float | str
-        total_best_case = self.total_best_case
-
-        total_worst_case: float | str
-        total_worst_case = self.total_worst_case
-
         total_deals = self.total_deals
-
-        avg_deal_size: float | str
-        avg_deal_size = self.avg_deal_size
 
         avg_sales_cycle_days = self.avg_sales_cycle_days
 
@@ -170,7 +143,6 @@ class AnalyticsSalesForecast:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -194,7 +166,6 @@ class AnalyticsSalesForecast:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -235,6 +206,40 @@ class AnalyticsSalesForecast:
         else:
             filter_type_label = self.filter_type_label
 
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
+
+        total_pipeline_value: float | None | str | Unset
+        if isinstance(self.total_pipeline_value, Unset):
+            total_pipeline_value = UNSET
+        else:
+            total_pipeline_value = self.total_pipeline_value
+
+        total_weighted_value: float | None | str | Unset
+        if isinstance(self.total_weighted_value, Unset):
+            total_weighted_value = UNSET
+        else:
+            total_weighted_value = self.total_weighted_value
+
+        total_best_case: float | None | str | Unset
+        if isinstance(self.total_best_case, Unset):
+            total_best_case = UNSET
+        else:
+            total_best_case = self.total_best_case
+
+        total_worst_case: float | None | str | Unset
+        if isinstance(self.total_worst_case, Unset):
+            total_worst_case = UNSET
+        else:
+            total_worst_case = self.total_worst_case
+
+        avg_deal_size: float | None | str | Unset
+        if isinstance(self.avg_deal_size, Unset):
+            avg_deal_size = UNSET
+        else:
+            avg_deal_size = self.avg_deal_size
+
         buckets: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.buckets, Unset):
             buckets = []
@@ -242,11 +247,9 @@ class AnalyticsSalesForecast:
                 buckets_item = buckets_item_data.to_dict()
                 buckets.append(buckets_item)
 
-
-
         deals_without_close_date = self.deals_without_close_date
 
-        value_without_close_date: float | str | Unset
+        value_without_close_date: float | None | str | Unset
         if isinstance(self.value_without_close_date, Unset):
             value_without_close_date = UNSET
         else:
@@ -254,20 +257,16 @@ class AnalyticsSalesForecast:
 
         weighted_value_explanation = self.weighted_value_explanation
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_pipeline_value": total_pipeline_value,
-            "total_weighted_value": total_weighted_value,
-            "total_best_case": total_best_case,
-            "total_worst_case": total_worst_case,
-            "total_deals": total_deals,
-            "avg_deal_size": avg_deal_size,
-            "avg_sales_cycle_days": avg_sales_cycle_days,
-            "granularity": granularity,
-            "currency": currency,
-        })
+        field_dict.update(
+            {
+                "total_deals": total_deals,
+                "avg_sales_cycle_days": avg_sales_cycle_days,
+                "granularity": granularity,
+                "currency": currency,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -300,6 +299,18 @@ class AnalyticsSalesForecast:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
+        if total_pipeline_value is not UNSET:
+            field_dict["total_pipeline_value"] = total_pipeline_value
+        if total_weighted_value is not UNSET:
+            field_dict["total_weighted_value"] = total_weighted_value
+        if total_best_case is not UNSET:
+            field_dict["total_best_case"] = total_best_case
+        if total_worst_case is not UNSET:
+            field_dict["total_worst_case"] = total_worst_case
+        if avg_deal_size is not UNSET:
+            field_dict["avg_deal_size"] = avg_deal_size
         if buckets is not UNSET:
             field_dict["buckets"] = buckets
         if deals_without_close_date is not UNSET:
@@ -311,45 +322,16 @@ class AnalyticsSalesForecast:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.analytics_sales_forecast_bucket import AnalyticsSalesForecastBucket
+        from ..models.analytics_sales_forecast_bucket import (
+            AnalyticsSalesForecastBucket,
+        )
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
-        def _parse_total_pipeline_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_pipeline_value = _parse_total_pipeline_value(d.pop("total_pipeline_value"))
-
-
-        def _parse_total_weighted_value(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_weighted_value = _parse_total_weighted_value(d.pop("total_weighted_value"))
-
-
-        def _parse_total_best_case(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_best_case = _parse_total_best_case(d.pop("total_best_case"))
-
-
-        def _parse_total_worst_case(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total_worst_case = _parse_total_worst_case(d.pop("total_worst_case"))
-
-
         total_deals = d.pop("total_deals")
-
-        def _parse_avg_deal_size(data: object) -> float | str:
-            return cast(float | str, data)
-
-        avg_deal_size = _parse_avg_deal_size(d.pop("avg_deal_size"))
-
 
         avg_sales_cycle_days = d.pop("avg_sales_cycle_days")
 
@@ -371,15 +353,12 @@ class AnalyticsSalesForecast:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -390,7 +369,6 @@ class AnalyticsSalesForecast:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -400,7 +378,6 @@ class AnalyticsSalesForecast:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -409,7 +386,6 @@ class AnalyticsSalesForecast:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -421,10 +397,10 @@ class AnalyticsSalesForecast:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -435,7 +411,6 @@ class AnalyticsSalesForecast:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -445,7 +420,6 @@ class AnalyticsSalesForecast:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -454,7 +428,6 @@ class AnalyticsSalesForecast:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -466,10 +439,10 @@ class AnalyticsSalesForecast:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -480,7 +453,6 @@ class AnalyticsSalesForecast:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -490,7 +462,6 @@ class AnalyticsSalesForecast:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -498,8 +469,9 @@ class AnalyticsSalesForecast:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -510,7 +482,6 @@ class AnalyticsSalesForecast:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -518,8 +489,9 @@ class AnalyticsSalesForecast:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -530,7 +502,6 @@ class AnalyticsSalesForecast:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -540,6 +511,56 @@ class AnalyticsSalesForecast:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
+
+        def _parse_total_pipeline_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_pipeline_value = _parse_total_pipeline_value(
+            d.pop("total_pipeline_value", UNSET)
+        )
+
+        def _parse_total_weighted_value(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_weighted_value = _parse_total_weighted_value(
+            d.pop("total_weighted_value", UNSET)
+        )
+
+        def _parse_total_best_case(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_best_case = _parse_total_best_case(d.pop("total_best_case", UNSET))
+
+        def _parse_total_worst_case(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        total_worst_case = _parse_total_worst_case(d.pop("total_worst_case", UNSET))
+
+        def _parse_avg_deal_size(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        avg_deal_size = _parse_avg_deal_size(d.pop("avg_deal_size", UNSET))
 
         _buckets = d.pop("buckets", UNSET)
         buckets: list[AnalyticsSalesForecastBucket] | Unset = UNSET
@@ -548,30 +569,25 @@ class AnalyticsSalesForecast:
             for buckets_item_data in _buckets:
                 buckets_item = AnalyticsSalesForecastBucket.from_dict(buckets_item_data)
 
-
-
                 buckets.append(buckets_item)
-
 
         deals_without_close_date = d.pop("deals_without_close_date", UNSET)
 
-        def _parse_value_without_close_date(data: object) -> float | str | Unset:
+        def _parse_value_without_close_date(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
             if isinstance(data, Unset):
                 return data
-            return cast(float | str | Unset, data)
+            return cast(float | None | str | Unset, data)
 
-        value_without_close_date = _parse_value_without_close_date(d.pop("value_without_close_date", UNSET))
-
+        value_without_close_date = _parse_value_without_close_date(
+            d.pop("value_without_close_date", UNSET)
+        )
 
         weighted_value_explanation = d.pop("weighted_value_explanation", UNSET)
 
         analytics_sales_forecast = cls(
-            total_pipeline_value=total_pipeline_value,
-            total_weighted_value=total_weighted_value,
-            total_best_case=total_best_case,
-            total_worst_case=total_worst_case,
             total_deals=total_deals,
-            avg_deal_size=avg_deal_size,
             avg_sales_cycle_days=avg_sales_cycle_days,
             granularity=granularity,
             currency=currency,
@@ -591,12 +607,17 @@ class AnalyticsSalesForecast:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            uncovered_currencies=uncovered_currencies,
+            total_pipeline_value=total_pipeline_value,
+            total_weighted_value=total_weighted_value,
+            total_best_case=total_best_case,
+            total_worst_case=total_worst_case,
+            avg_deal_size=avg_deal_size,
             buckets=buckets,
             deals_without_close_date=deals_without_close_date,
             value_without_close_date=value_without_close_date,
             weighted_value_explanation=weighted_value_explanation,
         )
-
 
         analytics_sales_forecast.additional_properties = d
         return analytics_sales_forecast

@@ -1,36 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.wbs_config_detail import WBSConfigDetail
-
-
-
+    from ..models.wbs_config_detail import WBSConfigDetail
 
 
 T = TypeVar("T", bound="ProjectWBSConfig")
 
 
-
 @_attrs_define
 class ProjectWBSConfig:
-    """ 
-        Attributes:
-            project_id (str):
-            project_name (str):
-            wbs_config (None | Unset | WBSConfigDetail):
-            has_work_items (bool | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        project_id (str):
+        project_name (str):
+        wbs_config (None | Unset | WBSConfigDetail):
+        has_work_items (bool | Unset):  Default: False.
+    """
 
     project_id: str
     project_name: str
@@ -38,12 +31,9 @@ class ProjectWBSConfig:
     has_work_items: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         from ..models.wbs_config_detail import WBSConfigDetail
+
         project_id = self.project_id
 
         project_name = self.project_name
@@ -58,13 +48,14 @@ class ProjectWBSConfig:
 
         has_work_items = self.has_work_items
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "project_id": project_id,
-            "project_name": project_name,
-        })
+        field_dict.update(
+            {
+                "project_id": project_id,
+                "project_name": project_name,
+            }
+        )
         if wbs_config is not UNSET:
             field_dict["wbs_config"] = wbs_config
         if has_work_items is not UNSET:
@@ -72,11 +63,10 @@ class ProjectWBSConfig:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wbs_config_detail import WBSConfigDetail
+
         d = dict(src_dict)
         project_id = d.pop("project_id")
 
@@ -92,15 +82,12 @@ class ProjectWBSConfig:
                     raise TypeError()
                 wbs_config_type_0 = WBSConfigDetail.from_dict(data)
 
-
-
                 return wbs_config_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | Unset | WBSConfigDetail, data)
 
         wbs_config = _parse_wbs_config(d.pop("wbs_config", UNSET))
-
 
         has_work_items = d.pop("has_work_items", UNSET)
 
@@ -110,7 +97,6 @@ class ProjectWBSConfig:
             wbs_config=wbs_config,
             has_work_items=has_work_items,
         )
-
 
         project_wbs_config.additional_properties = d
         return project_wbs_config

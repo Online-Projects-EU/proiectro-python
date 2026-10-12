@@ -1,40 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.plan_info import PlanInfo
-
-
-
+    from ..models.plan_info import PlanInfo
 
 
 T = TypeVar("T", bound="OutputTenantInfo")
 
 
-
 @_attrs_define
 class OutputTenantInfo:
-    """ Output schema for tenant preferences/info (GET endpoint).
+    """Output schema for tenant preferences/info (GET endpoint).
 
-        Attributes:
-            name (str):
-            timezone (str):
-            default_currency (None | str | Unset):
-            country (None | str | Unset):
-            minimum_acceptable_margin (None | str | Unset):
-            bridge_requests_allowed (bool | Unset):  Default: False.
-            plan (None | PlanInfo | Unset):
-     """
+    Attributes:
+        name (str):
+        timezone (str):
+        default_currency (None | str | Unset):
+        country (None | str | Unset):
+        minimum_acceptable_margin (None | str | Unset):
+        bridge_requests_allowed (bool | Unset):  Default: False.
+        plan (None | PlanInfo | Unset):
+    """
 
     name: str
     timezone: str
@@ -45,12 +38,9 @@ class OutputTenantInfo:
     plan: None | PlanInfo | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         from ..models.plan_info import PlanInfo
+
         name = self.name
 
         timezone = self.timezone
@@ -83,13 +73,14 @@ class OutputTenantInfo:
         else:
             plan = self.plan
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "timezone": timezone,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "timezone": timezone,
+            }
+        )
         if default_currency is not UNSET:
             field_dict["default_currency"] = default_currency
         if country is not UNSET:
@@ -103,11 +94,10 @@ class OutputTenantInfo:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.plan_info import PlanInfo
+
         d = dict(src_dict)
         name = d.pop("name")
 
@@ -122,7 +112,6 @@ class OutputTenantInfo:
 
         default_currency = _parse_default_currency(d.pop("default_currency", UNSET))
 
-
         def _parse_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -132,7 +121,6 @@ class OutputTenantInfo:
 
         country = _parse_country(d.pop("country", UNSET))
 
-
         def _parse_minimum_acceptable_margin(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -140,8 +128,9 @@ class OutputTenantInfo:
                 return data
             return cast(None | str | Unset, data)
 
-        minimum_acceptable_margin = _parse_minimum_acceptable_margin(d.pop("minimum_acceptable_margin", UNSET))
-
+        minimum_acceptable_margin = _parse_minimum_acceptable_margin(
+            d.pop("minimum_acceptable_margin", UNSET)
+        )
 
         bridge_requests_allowed = d.pop("bridge_requests_allowed", UNSET)
 
@@ -155,15 +144,12 @@ class OutputTenantInfo:
                     raise TypeError()
                 plan_type_0 = PlanInfo.from_dict(data)
 
-
-
                 return plan_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(None | PlanInfo | Unset, data)
 
         plan = _parse_plan(d.pop("plan", UNSET))
-
 
         output_tenant_info = cls(
             name=name,
@@ -174,7 +160,6 @@ class OutputTenantInfo:
             bridge_requests_allowed=bridge_requests_allowed,
             plan=plan,
         )
-
 
         output_tenant_info.additional_properties = d
         return output_tenant_info

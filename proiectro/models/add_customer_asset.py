@@ -1,44 +1,35 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AddCustomerAsset")
-
 
 
 @_attrs_define
 class AddCustomerAsset:
-    """ 
-        Attributes:
-            customer (str):
-            category (str):
-            name (str):
-            customer_location (None | str | Unset):
-            project (None | str | Unset):
-            product (None | str | Unset):
-            parent (None | str | Unset):
-            description (None | str | Unset):
-            internal_code (None | str | Unset):
-            serial_number_or_uri (None | str | Unset):
-            status (str | Unset):  Default: 'active'.
-            installation_date (None | str | Unset):
-            warranty_expiration (None | str | Unset):
-            is_customer_visible (bool | Unset):  Default: False.
-     """
+    """
+    Attributes:
+        customer (str):
+        category (str):
+        name (str):
+        customer_location (None | str | Unset):
+        project (None | str | Unset):
+        product (None | str | Unset):
+        parent (None | str | Unset):
+        description (None | str | Unset):
+        internal_code (None | str | Unset):
+        serial_number_or_uri (None | str | Unset):
+        status (str | Unset):  Default: 'active'.
+        installation_date (None | str | Unset):
+        warranty_expiration (None | str | Unset):
+        is_customer_visible (bool | Unset):  Default: False.
+    """
 
     customer: str
     category: str
@@ -50,15 +41,11 @@ class AddCustomerAsset:
     description: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
     serial_number_or_uri: None | str | Unset = UNSET
-    status: str | Unset = 'active'
+    status: str | Unset = "active"
     installation_date: None | str | Unset = UNSET
     warranty_expiration: None | str | Unset = UNSET
     is_customer_visible: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         customer = self.customer
@@ -125,14 +112,15 @@ class AddCustomerAsset:
 
         is_customer_visible = self.is_customer_visible
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "customer": customer,
-            "category": category,
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "customer": customer,
+                "category": category,
+                "name": name,
+            }
+        )
         if customer_location is not UNSET:
             field_dict["customer_location"] = customer_location
         if project is not UNSET:
@@ -158,8 +146,6 @@ class AddCustomerAsset:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
@@ -178,7 +164,6 @@ class AddCustomerAsset:
 
         customer_location = _parse_customer_location(d.pop("customer_location", UNSET))
 
-
         def _parse_project(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -187,7 +172,6 @@ class AddCustomerAsset:
             return cast(None | str | Unset, data)
 
         project = _parse_project(d.pop("project", UNSET))
-
 
         def _parse_product(data: object) -> None | str | Unset:
             if data is None:
@@ -198,7 +182,6 @@ class AddCustomerAsset:
 
         product = _parse_product(d.pop("product", UNSET))
 
-
         def _parse_parent(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -207,7 +190,6 @@ class AddCustomerAsset:
             return cast(None | str | Unset, data)
 
         parent = _parse_parent(d.pop("parent", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -218,7 +200,6 @@ class AddCustomerAsset:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -228,7 +209,6 @@ class AddCustomerAsset:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_serial_number_or_uri(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -236,8 +216,9 @@ class AddCustomerAsset:
                 return data
             return cast(None | str | Unset, data)
 
-        serial_number_or_uri = _parse_serial_number_or_uri(d.pop("serial_number_or_uri", UNSET))
-
+        serial_number_or_uri = _parse_serial_number_or_uri(
+            d.pop("serial_number_or_uri", UNSET)
+        )
 
         status = d.pop("status", UNSET)
 
@@ -250,7 +231,6 @@ class AddCustomerAsset:
 
         installation_date = _parse_installation_date(d.pop("installation_date", UNSET))
 
-
         def _parse_warranty_expiration(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -258,8 +238,9 @@ class AddCustomerAsset:
                 return data
             return cast(None | str | Unset, data)
 
-        warranty_expiration = _parse_warranty_expiration(d.pop("warranty_expiration", UNSET))
-
+        warranty_expiration = _parse_warranty_expiration(
+            d.pop("warranty_expiration", UNSET)
+        )
 
         is_customer_visible = d.pop("is_customer_visible", UNSET)
 
@@ -279,7 +260,6 @@ class AddCustomerAsset:
             warranty_expiration=warranty_expiration,
             is_customer_visible=is_customer_visible,
         )
-
 
         add_customer_asset.additional_properties = d
         return add_customer_asset

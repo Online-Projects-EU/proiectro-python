@@ -1,36 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.tagged_entity_stats import TaggedEntityStats
-
-
-
+    from ..models.tagged_entity_stats import TaggedEntityStats
 
 
 T = TypeVar("T", bound="OutputTagDetails")
 
 
-
 @_attrs_define
 class OutputTagDetails:
-    """ 
-        Attributes:
-            tag_id (str):
-            tag_name (str):
-            tag_color (str):
-            entity_stats (list[TaggedEntityStats]):
-            total_usage_count (int):
-     """
+    """
+    Attributes:
+        tag_id (str):
+        tag_name (str):
+        tag_color (str):
+        entity_stats (list[TaggedEntityStats]):
+        total_usage_count (int):
+    """
 
     tag_id: str
     tag_name: str
@@ -39,12 +31,7 @@ class OutputTagDetails:
     total_usage_count: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.tagged_entity_stats import TaggedEntityStats
         tag_id = self.tag_id
 
         tag_name = self.tag_name
@@ -56,28 +43,26 @@ class OutputTagDetails:
             entity_stats_item = entity_stats_item_data.to_dict()
             entity_stats.append(entity_stats_item)
 
-
-
         total_usage_count = self.total_usage_count
-
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "tag_id": tag_id,
-            "tag_name": tag_name,
-            "tag_color": tag_color,
-            "entity_stats": entity_stats,
-            "total_usage_count": total_usage_count,
-        })
+        field_dict.update(
+            {
+                "tag_id": tag_id,
+                "tag_name": tag_name,
+                "tag_color": tag_color,
+                "entity_stats": entity_stats,
+                "total_usage_count": total_usage_count,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tagged_entity_stats import TaggedEntityStats
+
         d = dict(src_dict)
         tag_id = d.pop("tag_id")
 
@@ -87,13 +72,10 @@ class OutputTagDetails:
 
         entity_stats = []
         _entity_stats = d.pop("entity_stats")
-        for entity_stats_item_data in (_entity_stats):
+        for entity_stats_item_data in _entity_stats:
             entity_stats_item = TaggedEntityStats.from_dict(entity_stats_item_data)
 
-
-
             entity_stats.append(entity_stats_item)
-
 
         total_usage_count = d.pop("total_usage_count")
 
@@ -104,7 +86,6 @@ class OutputTagDetails:
             entity_stats=entity_stats,
             total_usage_count=total_usage_count,
         )
-
 
         output_tag_details.additional_properties = d
         return output_tag_details

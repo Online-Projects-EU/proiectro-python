@@ -1,62 +1,56 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.output_tag import OutputTag
-
-
-
+    from ..models.output_tag import OutputTag
 
 
 T = TypeVar("T", bound="OutputLeadSummary")
 
 
-
 @_attrs_define
 class OutputLeadSummary:
-    """ Compact representation used in list/bucket views and the worklist.
+    """Compact representation used in list/bucket views and the worklist.
 
-        Attributes:
-            id (str):
-            name (str):
-            status (str):
-            status_label (str):
-            source (str):
-            source_label (str):
-            company_name (str | Unset):  Default: ''.
-            email (None | str | Unset):
-            phone (str | Unset):  Default: ''.
-            job_title (str | Unset):  Default: ''.
-            owner_id (None | str | Unset):
-            owner_name (None | str | Unset):
-            owner_avatar_url (None | str | Unset):
-            lead_list_id (None | str | Unset):
-            lead_list_name (None | str | Unset):
-            next_action_at (datetime.datetime | None | Unset):
-            next_action_channel (str | Unset):  Default: ''.
-            last_action_at (datetime.datetime | None | Unset):
-            last_actor_name (None | str | Unset):
-            last_actor_avatar_url (None | str | Unset):
-            score (int | None | Unset):
-            country (None | str | Unset):
-            tags (list[OutputTag] | Unset):
-            converted_at (datetime.datetime | None | Unset):
-            converted_to_org_id (None | str | Unset):
-            converted_to_org_name (None | str | Unset):
-            closed_at (datetime.datetime | None | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        status (str):
+        status_label (str):
+        source (str):
+        source_label (str):
+        company_name (str | Unset):  Default: ''.
+        email (None | str | Unset):
+        phone (str | Unset):  Default: ''.
+        job_title (str | Unset):  Default: ''.
+        owner_id (None | str | Unset):
+        owner_name (None | str | Unset):
+        owner_avatar_url (None | str | Unset):
+        lead_list_id (None | str | Unset):
+        lead_list_name (None | str | Unset):
+        next_action_at (datetime.datetime | None | Unset):
+        next_action_channel (str | Unset):  Default: ''.
+        next_action_channel_label (str | Unset):  Default: ''.
+        last_action_at (datetime.datetime | None | Unset):
+        last_actor_name (None | str | Unset):
+        last_actor_avatar_url (None | str | Unset):
+        score (int | None | Unset):
+        country (None | str | Unset):
+        tags (list[OutputTag] | Unset):
+        converted_at (datetime.datetime | None | Unset):
+        converted_to_org_id (None | str | Unset):
+        converted_to_org_name (None | str | Unset):
+        closed_at (datetime.datetime | None | Unset):
+    """
 
     id: str
     name: str
@@ -64,17 +58,18 @@ class OutputLeadSummary:
     status_label: str
     source: str
     source_label: str
-    company_name: str | Unset = ''
+    company_name: str | Unset = ""
     email: None | str | Unset = UNSET
-    phone: str | Unset = ''
-    job_title: str | Unset = ''
+    phone: str | Unset = ""
+    job_title: str | Unset = ""
     owner_id: None | str | Unset = UNSET
     owner_name: None | str | Unset = UNSET
     owner_avatar_url: None | str | Unset = UNSET
     lead_list_id: None | str | Unset = UNSET
     lead_list_name: None | str | Unset = UNSET
     next_action_at: datetime.datetime | None | Unset = UNSET
-    next_action_channel: str | Unset = ''
+    next_action_channel: str | Unset = ""
+    next_action_channel_label: str | Unset = ""
     last_action_at: datetime.datetime | None | Unset = UNSET
     last_actor_name: None | str | Unset = UNSET
     last_actor_avatar_url: None | str | Unset = UNSET
@@ -87,12 +82,7 @@ class OutputLeadSummary:
     closed_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_tag import OutputTag
         id = self.id
 
         name = self.name
@@ -157,6 +147,8 @@ class OutputLeadSummary:
 
         next_action_channel = self.next_action_channel
 
+        next_action_channel_label = self.next_action_channel_label
+
         last_action_at: None | str | Unset
         if isinstance(self.last_action_at, Unset):
             last_action_at = UNSET
@@ -196,8 +188,6 @@ class OutputLeadSummary:
                 tags_item = tags_item_data.to_dict()
                 tags.append(tags_item)
 
-
-
         converted_at: None | str | Unset
         if isinstance(self.converted_at, Unset):
             converted_at = UNSET
@@ -226,17 +216,18 @@ class OutputLeadSummary:
         else:
             closed_at = self.closed_at
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "status": status,
-            "status_label": status_label,
-            "source": source,
-            "source_label": source_label,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "status": status,
+                "status_label": status_label,
+                "source": source,
+                "source_label": source_label,
+            }
+        )
         if company_name is not UNSET:
             field_dict["company_name"] = company_name
         if email is not UNSET:
@@ -259,6 +250,8 @@ class OutputLeadSummary:
             field_dict["next_action_at"] = next_action_at
         if next_action_channel is not UNSET:
             field_dict["next_action_channel"] = next_action_channel
+        if next_action_channel_label is not UNSET:
+            field_dict["next_action_channel_label"] = next_action_channel_label
         if last_action_at is not UNSET:
             field_dict["last_action_at"] = last_action_at
         if last_actor_name is not UNSET:
@@ -282,11 +275,10 @@ class OutputLeadSummary:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_tag import OutputTag
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -311,7 +303,6 @@ class OutputLeadSummary:
 
         email = _parse_email(d.pop("email", UNSET))
 
-
         phone = d.pop("phone", UNSET)
 
         job_title = d.pop("job_title", UNSET)
@@ -325,7 +316,6 @@ class OutputLeadSummary:
 
         owner_id = _parse_owner_id(d.pop("owner_id", UNSET))
 
-
         def _parse_owner_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -334,7 +324,6 @@ class OutputLeadSummary:
             return cast(None | str | Unset, data)
 
         owner_name = _parse_owner_name(d.pop("owner_name", UNSET))
-
 
         def _parse_owner_avatar_url(data: object) -> None | str | Unset:
             if data is None:
@@ -345,7 +334,6 @@ class OutputLeadSummary:
 
         owner_avatar_url = _parse_owner_avatar_url(d.pop("owner_avatar_url", UNSET))
 
-
         def _parse_lead_list_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -355,7 +343,6 @@ class OutputLeadSummary:
 
         lead_list_id = _parse_lead_list_id(d.pop("lead_list_id", UNSET))
 
-
         def _parse_lead_list_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -364,7 +351,6 @@ class OutputLeadSummary:
             return cast(None | str | Unset, data)
 
         lead_list_name = _parse_lead_list_name(d.pop("lead_list_name", UNSET))
-
 
         def _parse_next_action_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -376,8 +362,6 @@ class OutputLeadSummary:
                     raise TypeError()
                 next_action_at_type_0 = isoparse(data)
 
-
-
                 return next_action_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
@@ -385,8 +369,9 @@ class OutputLeadSummary:
 
         next_action_at = _parse_next_action_at(d.pop("next_action_at", UNSET))
 
-
         next_action_channel = d.pop("next_action_channel", UNSET)
+
+        next_action_channel_label = d.pop("next_action_channel_label", UNSET)
 
         def _parse_last_action_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -398,15 +383,12 @@ class OutputLeadSummary:
                     raise TypeError()
                 last_action_at_type_0 = isoparse(data)
 
-
-
                 return last_action_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         last_action_at = _parse_last_action_at(d.pop("last_action_at", UNSET))
-
 
         def _parse_last_actor_name(data: object) -> None | str | Unset:
             if data is None:
@@ -417,7 +399,6 @@ class OutputLeadSummary:
 
         last_actor_name = _parse_last_actor_name(d.pop("last_actor_name", UNSET))
 
-
         def _parse_last_actor_avatar_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -425,8 +406,9 @@ class OutputLeadSummary:
                 return data
             return cast(None | str | Unset, data)
 
-        last_actor_avatar_url = _parse_last_actor_avatar_url(d.pop("last_actor_avatar_url", UNSET))
-
+        last_actor_avatar_url = _parse_last_actor_avatar_url(
+            d.pop("last_actor_avatar_url", UNSET)
+        )
 
         def _parse_score(data: object) -> int | None | Unset:
             if data is None:
@@ -437,7 +419,6 @@ class OutputLeadSummary:
 
         score = _parse_score(d.pop("score", UNSET))
 
-
         def _parse_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -447,7 +428,6 @@ class OutputLeadSummary:
 
         country = _parse_country(d.pop("country", UNSET))
 
-
         _tags = d.pop("tags", UNSET)
         tags: list[OutputTag] | Unset = UNSET
         if _tags is not UNSET:
@@ -455,10 +435,7 @@ class OutputLeadSummary:
             for tags_item_data in _tags:
                 tags_item = OutputTag.from_dict(tags_item_data)
 
-
-
                 tags.append(tags_item)
-
 
         def _parse_converted_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -470,15 +447,12 @@ class OutputLeadSummary:
                     raise TypeError()
                 converted_at_type_0 = isoparse(data)
 
-
-
                 return converted_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         converted_at = _parse_converted_at(d.pop("converted_at", UNSET))
-
 
         def _parse_converted_to_org_id(data: object) -> None | str | Unset:
             if data is None:
@@ -487,8 +461,9 @@ class OutputLeadSummary:
                 return data
             return cast(None | str | Unset, data)
 
-        converted_to_org_id = _parse_converted_to_org_id(d.pop("converted_to_org_id", UNSET))
-
+        converted_to_org_id = _parse_converted_to_org_id(
+            d.pop("converted_to_org_id", UNSET)
+        )
 
         def _parse_converted_to_org_name(data: object) -> None | str | Unset:
             if data is None:
@@ -497,8 +472,9 @@ class OutputLeadSummary:
                 return data
             return cast(None | str | Unset, data)
 
-        converted_to_org_name = _parse_converted_to_org_name(d.pop("converted_to_org_name", UNSET))
-
+        converted_to_org_name = _parse_converted_to_org_name(
+            d.pop("converted_to_org_name", UNSET)
+        )
 
         def _parse_closed_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -510,15 +486,12 @@ class OutputLeadSummary:
                     raise TypeError()
                 closed_at_type_0 = isoparse(data)
 
-
-
                 return closed_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         closed_at = _parse_closed_at(d.pop("closed_at", UNSET))
-
 
         output_lead_summary = cls(
             id=id,
@@ -538,6 +511,7 @@ class OutputLeadSummary:
             lead_list_name=lead_list_name,
             next_action_at=next_action_at,
             next_action_channel=next_action_channel,
+            next_action_channel_label=next_action_channel_label,
             last_action_at=last_action_at,
             last_actor_name=last_actor_name,
             last_actor_avatar_url=last_actor_avatar_url,
@@ -549,7 +523,6 @@ class OutputLeadSummary:
             converted_to_org_name=converted_to_org_name,
             closed_at=closed_at,
         )
-
 
         output_lead_summary.additional_properties = d
         return output_lead_summary

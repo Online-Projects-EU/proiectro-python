@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EditTenantLeadVisibilityType0(str, Enum):
     OPEN = "open"
     OWN_AND_LISTS = "own_and_lists"

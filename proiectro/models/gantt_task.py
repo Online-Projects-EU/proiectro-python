@@ -1,38 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="GanttTask")
-
 
 
 @_attrs_define
 class GanttTask:
-    """ Single task for Frappe Gantt visualization
+    """Single task for Frappe Gantt visualization
 
-        Attributes:
-            id (str):
-            name (str):
-            start (str):
-            end (str):
-            progress (int):
-            dependencies (str):
-            custom_class (str):
-            bg_color (str):
-            text_color (str):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        start (str):
+        end (str):
+        progress (int):
+        dependencies (str):
+        custom_class (str):
+        bg_color (str):
+        text_color (str):
+    """
 
     id: str
     name: str
@@ -44,10 +35,6 @@ class GanttTask:
     bg_color: str
     text_color: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -68,24 +55,23 @@ class GanttTask:
 
         text_color = self.text_color
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "start": start,
-            "end": end,
-            "progress": progress,
-            "dependencies": dependencies,
-            "custom_class": custom_class,
-            "bg_color": bg_color,
-            "text_color": text_color,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "start": start,
+                "end": end,
+                "progress": progress,
+                "dependencies": dependencies,
+                "custom_class": custom_class,
+                "bg_color": bg_color,
+                "text_color": text_color,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -119,7 +105,6 @@ class GanttTask:
             bg_color=bg_color,
             text_color=text_color,
         )
-
 
         gantt_task.additional_properties = d
         return gantt_task

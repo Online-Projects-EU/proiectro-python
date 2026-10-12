@@ -1,62 +1,67 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.product_status_detail import ProductStatusDetail
-
-
-
+    from ..models.product_status_detail import ProductStatusDetail
 
 
 T = TypeVar("T", bound="ProposalProduct")
 
 
-
 @_attrs_define
 class ProposalProduct:
-    """ 
-        Attributes:
-            id (str):
-            name (str):
-            description (str):
-            product_type (str):
-            pricing_type (str):
-            pricing_type_display (str):
-            pricing_value (float | str):
-            pricing_currency (str):
-            pricing_currency_symbol (str):
-            product_count (int):
-            total_price (float | str):
-            is_active (bool):
-            created_at (datetime.datetime):
-            original_value (float | str):
-            original_currency (str):
-            is_converted (bool):
-            current_status (ProductStatusDetail): Product status for lifecycle display.
-                Used in status dropdowns to show current status and all available lifecycle stages.
-                Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
-            lifecycle_statuses (list[ProductStatusDetail]):
-            catalog_name (None | str | Unset):
-            exchange_rate (float | None | str | Unset):
-            cost_value (float | None | str | Unset):
-            cost_currency (None | str | Unset):
-            proposal_cost (float | None | str | Unset):
-            margin_percent (float | None | str | Unset):
-            total_margin (float | None | str | Unset):
-            total_cost (float | None | str | Unset):
-     """
+    """
+    Attributes:
+        id (str):
+        name (str):
+        description (str):
+        product_type (str):
+        pricing_type (str):
+        pricing_type_display (str):
+        pricing_value (float | str):
+        pricing_currency (str):
+        pricing_currency_symbol (str):
+        product_count (int):
+        total_price (float | str):
+        is_active (bool):
+        created_at (datetime.datetime):
+        original_value (float | str):
+        original_currency (str):
+        is_converted (bool):
+        current_status (ProductStatusDetail): Product status for lifecycle display.
+            Used in status dropdowns to show current status and all available lifecycle stages.
+            Use lifecycle_type with templatetags for styling (status_bg, status_text, status_icon, etc.)
+        lifecycle_statuses (list[ProductStatusDetail]):
+        description_for_customer (str | Unset):  Default: ''.
+        planned_start (datetime.datetime | None | Unset):
+        planned_end (datetime.datetime | None | Unset):
+        origin (str | Unset):  Default: 'staff'.
+        unit_of_measure (str | Unset):  Default: ''.
+        catalog_name (None | str | Unset):
+        catalog_internal_code (None | str | Unset):
+        is_linked (bool | Unset):  Default: False.
+        proposal_currency_symbol (str | Unset):  Default: ''.
+        margin_currency_symbol (None | str | Unset):
+        proposal_currency (str | Unset):  Default: ''.
+        margin_currency (None | str | Unset):
+        cost_percentage (float | None | str | Unset):
+        exchange_rate (float | None | str | Unset):
+        cost_value (float | None | str | Unset):
+        cost_currency (None | str | Unset):
+        proposal_cost (float | None | str | Unset):
+        margin_percent (float | None | str | Unset):
+        total_margin (float | None | str | Unset):
+        total_cost (float | None | str | Unset):
+    """
 
     id: str
     name: str
@@ -76,7 +81,19 @@ class ProposalProduct:
     is_converted: bool
     current_status: ProductStatusDetail
     lifecycle_statuses: list[ProductStatusDetail]
+    description_for_customer: str | Unset = ""
+    planned_start: datetime.datetime | None | Unset = UNSET
+    planned_end: datetime.datetime | None | Unset = UNSET
+    origin: str | Unset = "staff"
+    unit_of_measure: str | Unset = ""
     catalog_name: None | str | Unset = UNSET
+    catalog_internal_code: None | str | Unset = UNSET
+    is_linked: bool | Unset = False
+    proposal_currency_symbol: str | Unset = ""
+    margin_currency_symbol: None | str | Unset = UNSET
+    proposal_currency: str | Unset = ""
+    margin_currency: None | str | Unset = UNSET
+    cost_percentage: float | None | str | Unset = UNSET
     exchange_rate: float | None | str | Unset = UNSET
     cost_value: float | None | str | Unset = UNSET
     cost_currency: None | str | Unset = UNSET
@@ -86,12 +103,7 @@ class ProposalProduct:
     total_cost: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.product_status_detail import ProductStatusDetail
         id = self.id
 
         name = self.name
@@ -134,13 +146,63 @@ class ProposalProduct:
             lifecycle_statuses_item = lifecycle_statuses_item_data.to_dict()
             lifecycle_statuses.append(lifecycle_statuses_item)
 
+        description_for_customer = self.description_for_customer
 
+        planned_start: None | str | Unset
+        if isinstance(self.planned_start, Unset):
+            planned_start = UNSET
+        elif isinstance(self.planned_start, datetime.datetime):
+            planned_start = self.planned_start.isoformat()
+        else:
+            planned_start = self.planned_start
+
+        planned_end: None | str | Unset
+        if isinstance(self.planned_end, Unset):
+            planned_end = UNSET
+        elif isinstance(self.planned_end, datetime.datetime):
+            planned_end = self.planned_end.isoformat()
+        else:
+            planned_end = self.planned_end
+
+        origin = self.origin
+
+        unit_of_measure = self.unit_of_measure
 
         catalog_name: None | str | Unset
         if isinstance(self.catalog_name, Unset):
             catalog_name = UNSET
         else:
             catalog_name = self.catalog_name
+
+        catalog_internal_code: None | str | Unset
+        if isinstance(self.catalog_internal_code, Unset):
+            catalog_internal_code = UNSET
+        else:
+            catalog_internal_code = self.catalog_internal_code
+
+        is_linked = self.is_linked
+
+        proposal_currency_symbol = self.proposal_currency_symbol
+
+        margin_currency_symbol: None | str | Unset
+        if isinstance(self.margin_currency_symbol, Unset):
+            margin_currency_symbol = UNSET
+        else:
+            margin_currency_symbol = self.margin_currency_symbol
+
+        proposal_currency = self.proposal_currency
+
+        margin_currency: None | str | Unset
+        if isinstance(self.margin_currency, Unset):
+            margin_currency = UNSET
+        else:
+            margin_currency = self.margin_currency
+
+        cost_percentage: float | None | str | Unset
+        if isinstance(self.cost_percentage, Unset):
+            cost_percentage = UNSET
+        else:
+            cost_percentage = self.cost_percentage
 
         exchange_rate: float | None | str | Unset
         if isinstance(self.exchange_rate, Unset):
@@ -184,31 +246,56 @@ class ProposalProduct:
         else:
             total_cost = self.total_cost
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "description": description,
-            "product_type": product_type,
-            "pricing_type": pricing_type,
-            "pricing_type_display": pricing_type_display,
-            "pricing_value": pricing_value,
-            "pricing_currency": pricing_currency,
-            "pricing_currency_symbol": pricing_currency_symbol,
-            "product_count": product_count,
-            "total_price": total_price,
-            "is_active": is_active,
-            "created_at": created_at,
-            "original_value": original_value,
-            "original_currency": original_currency,
-            "is_converted": is_converted,
-            "current_status": current_status,
-            "lifecycle_statuses": lifecycle_statuses,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "description": description,
+                "product_type": product_type,
+                "pricing_type": pricing_type,
+                "pricing_type_display": pricing_type_display,
+                "pricing_value": pricing_value,
+                "pricing_currency": pricing_currency,
+                "pricing_currency_symbol": pricing_currency_symbol,
+                "product_count": product_count,
+                "total_price": total_price,
+                "is_active": is_active,
+                "created_at": created_at,
+                "original_value": original_value,
+                "original_currency": original_currency,
+                "is_converted": is_converted,
+                "current_status": current_status,
+                "lifecycle_statuses": lifecycle_statuses,
+            }
+        )
+        if description_for_customer is not UNSET:
+            field_dict["description_for_customer"] = description_for_customer
+        if planned_start is not UNSET:
+            field_dict["planned_start"] = planned_start
+        if planned_end is not UNSET:
+            field_dict["planned_end"] = planned_end
+        if origin is not UNSET:
+            field_dict["origin"] = origin
+        if unit_of_measure is not UNSET:
+            field_dict["unit_of_measure"] = unit_of_measure
         if catalog_name is not UNSET:
             field_dict["catalog_name"] = catalog_name
+        if catalog_internal_code is not UNSET:
+            field_dict["catalog_internal_code"] = catalog_internal_code
+        if is_linked is not UNSET:
+            field_dict["is_linked"] = is_linked
+        if proposal_currency_symbol is not UNSET:
+            field_dict["proposal_currency_symbol"] = proposal_currency_symbol
+        if margin_currency_symbol is not UNSET:
+            field_dict["margin_currency_symbol"] = margin_currency_symbol
+        if proposal_currency is not UNSET:
+            field_dict["proposal_currency"] = proposal_currency
+        if margin_currency is not UNSET:
+            field_dict["margin_currency"] = margin_currency
+        if cost_percentage is not UNSET:
+            field_dict["cost_percentage"] = cost_percentage
         if exchange_rate is not UNSET:
             field_dict["exchange_rate"] = exchange_rate
         if cost_value is not UNSET:
@@ -226,11 +313,10 @@ class ProposalProduct:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.product_status_detail import ProductStatusDetail
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -249,7 +335,6 @@ class ProposalProduct:
 
         pricing_value = _parse_pricing_value(d.pop("pricing_value"))
 
-
         pricing_currency = d.pop("pricing_currency")
 
         pricing_currency_symbol = d.pop("pricing_currency_symbol")
@@ -261,19 +346,14 @@ class ProposalProduct:
 
         total_price = _parse_total_price(d.pop("total_price"))
 
-
         is_active = d.pop("is_active")
 
         created_at = isoparse(d.pop("created_at"))
-
-
-
 
         def _parse_original_value(data: object) -> float | str:
             return cast(float | str, data)
 
         original_value = _parse_original_value(d.pop("original_value"))
-
 
         original_currency = d.pop("original_currency")
 
@@ -281,18 +361,54 @@ class ProposalProduct:
 
         current_status = ProductStatusDetail.from_dict(d.pop("current_status"))
 
-
-
-
         lifecycle_statuses = []
         _lifecycle_statuses = d.pop("lifecycle_statuses")
-        for lifecycle_statuses_item_data in (_lifecycle_statuses):
-            lifecycle_statuses_item = ProductStatusDetail.from_dict(lifecycle_statuses_item_data)
-
-
+        for lifecycle_statuses_item_data in _lifecycle_statuses:
+            lifecycle_statuses_item = ProductStatusDetail.from_dict(
+                lifecycle_statuses_item_data
+            )
 
             lifecycle_statuses.append(lifecycle_statuses_item)
 
+        description_for_customer = d.pop("description_for_customer", UNSET)
+
+        def _parse_planned_start(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                planned_start_type_0 = isoparse(data)
+
+                return planned_start_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        planned_start = _parse_planned_start(d.pop("planned_start", UNSET))
+
+        def _parse_planned_end(data: object) -> datetime.datetime | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                planned_end_type_0 = isoparse(data)
+
+                return planned_end_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.datetime | None | Unset, data)
+
+        planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
+
+        origin = d.pop("origin", UNSET)
+
+        unit_of_measure = d.pop("unit_of_measure", UNSET)
 
         def _parse_catalog_name(data: object) -> None | str | Unset:
             if data is None:
@@ -303,6 +419,51 @@ class ProposalProduct:
 
         catalog_name = _parse_catalog_name(d.pop("catalog_name", UNSET))
 
+        def _parse_catalog_internal_code(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        catalog_internal_code = _parse_catalog_internal_code(
+            d.pop("catalog_internal_code", UNSET)
+        )
+
+        is_linked = d.pop("is_linked", UNSET)
+
+        proposal_currency_symbol = d.pop("proposal_currency_symbol", UNSET)
+
+        def _parse_margin_currency_symbol(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        margin_currency_symbol = _parse_margin_currency_symbol(
+            d.pop("margin_currency_symbol", UNSET)
+        )
+
+        proposal_currency = d.pop("proposal_currency", UNSET)
+
+        def _parse_margin_currency(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        margin_currency = _parse_margin_currency(d.pop("margin_currency", UNSET))
+
+        def _parse_cost_percentage(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        cost_percentage = _parse_cost_percentage(d.pop("cost_percentage", UNSET))
 
         def _parse_exchange_rate(data: object) -> float | None | str | Unset:
             if data is None:
@@ -313,7 +474,6 @@ class ProposalProduct:
 
         exchange_rate = _parse_exchange_rate(d.pop("exchange_rate", UNSET))
 
-
         def _parse_cost_value(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -322,7 +482,6 @@ class ProposalProduct:
             return cast(float | None | str | Unset, data)
 
         cost_value = _parse_cost_value(d.pop("cost_value", UNSET))
-
 
         def _parse_cost_currency(data: object) -> None | str | Unset:
             if data is None:
@@ -333,7 +492,6 @@ class ProposalProduct:
 
         cost_currency = _parse_cost_currency(d.pop("cost_currency", UNSET))
 
-
         def _parse_proposal_cost(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -342,7 +500,6 @@ class ProposalProduct:
             return cast(float | None | str | Unset, data)
 
         proposal_cost = _parse_proposal_cost(d.pop("proposal_cost", UNSET))
-
 
         def _parse_margin_percent(data: object) -> float | None | str | Unset:
             if data is None:
@@ -353,7 +510,6 @@ class ProposalProduct:
 
         margin_percent = _parse_margin_percent(d.pop("margin_percent", UNSET))
 
-
         def _parse_total_margin(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -363,7 +519,6 @@ class ProposalProduct:
 
         total_margin = _parse_total_margin(d.pop("total_margin", UNSET))
 
-
         def _parse_total_cost(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -372,7 +527,6 @@ class ProposalProduct:
             return cast(float | None | str | Unset, data)
 
         total_cost = _parse_total_cost(d.pop("total_cost", UNSET))
-
 
         proposal_product = cls(
             id=id,
@@ -393,7 +547,19 @@ class ProposalProduct:
             is_converted=is_converted,
             current_status=current_status,
             lifecycle_statuses=lifecycle_statuses,
+            description_for_customer=description_for_customer,
+            planned_start=planned_start,
+            planned_end=planned_end,
+            origin=origin,
+            unit_of_measure=unit_of_measure,
             catalog_name=catalog_name,
+            catalog_internal_code=catalog_internal_code,
+            is_linked=is_linked,
+            proposal_currency_symbol=proposal_currency_symbol,
+            margin_currency_symbol=margin_currency_symbol,
+            proposal_currency=proposal_currency,
+            margin_currency=margin_currency,
+            cost_percentage=cost_percentage,
             exchange_rate=exchange_rate,
             cost_value=cost_value,
             cost_currency=cost_currency,
@@ -402,7 +568,6 @@ class ProposalProduct:
             total_margin=total_margin,
             total_cost=total_cost,
         )
-
 
         proposal_product.additional_properties = d
         return proposal_product

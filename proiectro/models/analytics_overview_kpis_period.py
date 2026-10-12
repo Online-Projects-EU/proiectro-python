@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AnalyticsOverviewKpisPeriod(str, Enum):
     MTD = "MTD"
     Q1 = "Q1"

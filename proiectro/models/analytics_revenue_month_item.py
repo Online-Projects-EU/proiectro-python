@@ -1,93 +1,101 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AnalyticsRevenueMonthItem")
-
 
 
 @_attrs_define
 class AnalyticsRevenueMonthItem:
-    """ Revenue for a single month
+    """Revenue for a single month. Null where that month holds a payment with no rate.
 
-        Attributes:
-            month (str):
-            recurring (float | str):
-            one_time (float | str):
-            total (float | str):
-     """
+    Attributes:
+        month (str):
+        recurring (float | None | str | Unset):
+        one_time (float | None | str | Unset):
+        total (float | None | str | Unset):
+    """
 
     month: str
-    recurring: float | str
-    one_time: float | str
-    total: float | str
+    recurring: float | None | str | Unset = UNSET
+    one_time: float | None | str | Unset = UNSET
+    total: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         month = self.month
 
-        recurring: float | str
-        recurring = self.recurring
+        recurring: float | None | str | Unset
+        if isinstance(self.recurring, Unset):
+            recurring = UNSET
+        else:
+            recurring = self.recurring
 
-        one_time: float | str
-        one_time = self.one_time
+        one_time: float | None | str | Unset
+        if isinstance(self.one_time, Unset):
+            one_time = UNSET
+        else:
+            one_time = self.one_time
 
-        total: float | str
-        total = self.total
-
+        total: float | None | str | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "month": month,
-            "recurring": recurring,
-            "one_time": one_time,
-            "total": total,
-        })
+        field_dict.update(
+            {
+                "month": month,
+            }
+        )
+        if recurring is not UNSET:
+            field_dict["recurring"] = recurring
+        if one_time is not UNSET:
+            field_dict["one_time"] = one_time
+        if total is not UNSET:
+            field_dict["total"] = total
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         month = d.pop("month")
 
-        def _parse_recurring(data: object) -> float | str:
-            return cast(float | str, data)
+        def _parse_recurring(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
 
-        recurring = _parse_recurring(d.pop("recurring"))
+        recurring = _parse_recurring(d.pop("recurring", UNSET))
 
+        def _parse_one_time(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
 
-        def _parse_one_time(data: object) -> float | str:
-            return cast(float | str, data)
+        one_time = _parse_one_time(d.pop("one_time", UNSET))
 
-        one_time = _parse_one_time(d.pop("one_time"))
+        def _parse_total(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
 
-
-        def _parse_total(data: object) -> float | str:
-            return cast(float | str, data)
-
-        total = _parse_total(d.pop("total"))
-
+        total = _parse_total(d.pop("total", UNSET))
 
         analytics_revenue_month_item = cls(
             month=month,
@@ -95,7 +103,6 @@ class AnalyticsRevenueMonthItem:
             one_time=one_time,
             total=total,
         )
-
 
         analytics_revenue_month_item.additional_properties = d
         return analytics_revenue_month_item

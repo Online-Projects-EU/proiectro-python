@@ -1,28 +1,19 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditRFP")
-
 
 
 @_attrs_define
 class EditRFP:
-    """ Input schema for editing an RFP.
+    """Input schema for editing an RFP.
 
     In DRAFT status, all fields can be edited.
     In PUBLISHED/CLOSED status, only description and submission_deadline can be changed.
@@ -36,7 +27,7 @@ class EditRFP:
             budget_min (float | None | str | Unset):
             budget_max (float | None | str | Unset):
             submission_deadline (None | str | Unset):
-     """
+    """
 
     name: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
@@ -47,10 +38,6 @@ class EditRFP:
     budget_max: float | None | str | Unset = UNSET
     submission_deadline: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name: None | str | Unset
@@ -101,11 +88,9 @@ class EditRFP:
         else:
             submission_deadline = self.submission_deadline
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if name is not UNSET:
             field_dict["name"] = name
         if internal_code is not UNSET:
@@ -125,11 +110,10 @@ class EditRFP:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -138,7 +122,6 @@ class EditRFP:
             return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
-
 
         def _parse_internal_code(data: object) -> None | str | Unset:
             if data is None:
@@ -149,7 +132,6 @@ class EditRFP:
 
         internal_code = _parse_internal_code(d.pop("internal_code", UNSET))
 
-
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -158,7 +140,6 @@ class EditRFP:
             return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
-
 
         def _parse_category(data: object) -> None | str | Unset:
             if data is None:
@@ -169,7 +150,6 @@ class EditRFP:
 
         category = _parse_category(d.pop("category", UNSET))
 
-
         def _parse_currency(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -178,7 +158,6 @@ class EditRFP:
             return cast(None | str | Unset, data)
 
         currency = _parse_currency(d.pop("currency", UNSET))
-
 
         def _parse_budget_min(data: object) -> float | None | str | Unset:
             if data is None:
@@ -189,7 +168,6 @@ class EditRFP:
 
         budget_min = _parse_budget_min(d.pop("budget_min", UNSET))
 
-
         def _parse_budget_max(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -199,7 +177,6 @@ class EditRFP:
 
         budget_max = _parse_budget_max(d.pop("budget_max", UNSET))
 
-
         def _parse_submission_deadline(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -207,8 +184,9 @@ class EditRFP:
                 return data
             return cast(None | str | Unset, data)
 
-        submission_deadline = _parse_submission_deadline(d.pop("submission_deadline", UNSET))
-
+        submission_deadline = _parse_submission_deadline(
+            d.pop("submission_deadline", UNSET)
+        )
 
         edit_rfp = cls(
             name=name,
@@ -220,7 +198,6 @@ class EditRFP:
             budget_max=budget_max,
             submission_deadline=submission_deadline,
         )
-
 
         edit_rfp.additional_properties = d
         return edit_rfp

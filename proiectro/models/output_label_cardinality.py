@@ -1,36 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.label_value_stats import LabelValueStats
-
-
-
+    from ..models.label_value_stats import LabelValueStats
 
 
 T = TypeVar("T", bound="OutputLabelCardinality")
 
 
-
 @_attrs_define
 class OutputLabelCardinality:
-    """ 
-        Attributes:
-            label_id (str):
-            label_name (str):
-            total_entities (int):
-            cardinality (int):
-            value_distribution (list[LabelValueStats]):
-     """
+    """
+    Attributes:
+        label_id (str):
+        label_name (str):
+        total_entities (int):
+        cardinality (int):
+        value_distribution (list[LabelValueStats]):
+    """
 
     label_id: str
     label_name: str
@@ -39,12 +31,7 @@ class OutputLabelCardinality:
     value_distribution: list[LabelValueStats]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.label_value_stats import LabelValueStats
         label_id = self.label_id
 
         label_name = self.label_name
@@ -58,26 +45,24 @@ class OutputLabelCardinality:
             value_distribution_item = value_distribution_item_data.to_dict()
             value_distribution.append(value_distribution_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "label_id": label_id,
-            "label_name": label_name,
-            "total_entities": total_entities,
-            "cardinality": cardinality,
-            "value_distribution": value_distribution,
-        })
+        field_dict.update(
+            {
+                "label_id": label_id,
+                "label_name": label_name,
+                "total_entities": total_entities,
+                "cardinality": cardinality,
+                "value_distribution": value_distribution,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.label_value_stats import LabelValueStats
+
         d = dict(src_dict)
         label_id = d.pop("label_id")
 
@@ -89,13 +74,12 @@ class OutputLabelCardinality:
 
         value_distribution = []
         _value_distribution = d.pop("value_distribution")
-        for value_distribution_item_data in (_value_distribution):
-            value_distribution_item = LabelValueStats.from_dict(value_distribution_item_data)
-
-
+        for value_distribution_item_data in _value_distribution:
+            value_distribution_item = LabelValueStats.from_dict(
+                value_distribution_item_data
+            )
 
             value_distribution.append(value_distribution_item)
-
 
         output_label_cardinality = cls(
             label_id=label_id,
@@ -104,7 +88,6 @@ class OutputLabelCardinality:
             cardinality=cardinality,
             value_distribution=value_distribution,
         )
-
 
         output_label_cardinality.additional_properties = d
         return output_label_cardinality

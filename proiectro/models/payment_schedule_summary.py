@@ -1,34 +1,25 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="PaymentScheduleSummary")
-
 
 
 @_attrs_define
 class PaymentScheduleSummary:
-    """ 
-        Attributes:
-            total_blocks (int):
-            upfront_payments (int):
-            milestone_payments (int):
-            progress_payments (int):
-            completion_payments (int):
-            consumption_payments (int):
-     """
+    """
+    Attributes:
+        total_blocks (int):
+        upfront_payments (int):
+        milestone_payments (int):
+        progress_payments (int):
+        completion_payments (int):
+        consumption_payments (int):
+    """
 
     total_blocks: int
     upfront_payments: int
@@ -37,10 +28,6 @@ class PaymentScheduleSummary:
     completion_payments: int
     consumption_payments: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         total_blocks = self.total_blocks
@@ -55,21 +42,20 @@ class PaymentScheduleSummary:
 
         consumption_payments = self.consumption_payments
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "total_blocks": total_blocks,
-            "upfront_payments": upfront_payments,
-            "milestone_payments": milestone_payments,
-            "progress_payments": progress_payments,
-            "completion_payments": completion_payments,
-            "consumption_payments": consumption_payments,
-        })
+        field_dict.update(
+            {
+                "total_blocks": total_blocks,
+                "upfront_payments": upfront_payments,
+                "milestone_payments": milestone_payments,
+                "progress_payments": progress_payments,
+                "completion_payments": completion_payments,
+                "consumption_payments": consumption_payments,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -94,7 +80,6 @@ class PaymentScheduleSummary:
             completion_payments=completion_payments,
             consumption_payments=consumption_payments,
         )
-
 
         payment_schedule_summary.additional_properties = d
         return payment_schedule_summary

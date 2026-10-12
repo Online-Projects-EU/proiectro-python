@@ -1,45 +1,32 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ReassignLeadList")
 
 
-
 @_attrs_define
 class ReassignLeadList:
-    """ Change the owner of a list (own-scope: change my list to someone else).
+    """Change the owner of a list (own-scope: change my list to someone else).
 
-        Attributes:
-            updated_at (datetime.datetime):
-            owner (None | str | Unset):
-            cascade_to_leads (bool | Unset):  Default: False.
-     """
+    Attributes:
+        updated_at (datetime.datetime):
+        owner (None | str | Unset):
+        cascade_to_leads (bool | Unset):  Default: False.
+    """
 
     updated_at: datetime.datetime
     owner: None | str | Unset = UNSET
     cascade_to_leads: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         updated_at = self.updated_at.isoformat()
@@ -52,12 +39,13 @@ class ReassignLeadList:
 
         cascade_to_leads = self.cascade_to_leads
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "updated_at": updated_at,
+            }
+        )
         if owner is not UNSET:
             field_dict["owner"] = owner
         if cascade_to_leads is not UNSET:
@@ -65,15 +53,10 @@ class ReassignLeadList:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_owner(data: object) -> None | str | Unset:
             if data is None:
@@ -84,7 +67,6 @@ class ReassignLeadList:
 
         owner = _parse_owner(d.pop("owner", UNSET))
 
-
         cascade_to_leads = d.pop("cascade_to_leads", UNSET)
 
         reassign_lead_list = cls(
@@ -92,7 +74,6 @@ class ReassignLeadList:
             owner=owner,
             cascade_to_leads=cascade_to_leads,
         )
-
 
         reassign_lead_list.additional_properties = d
         return reassign_lead_list

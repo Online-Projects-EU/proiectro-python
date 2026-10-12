@@ -1,78 +1,61 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_asset_category import OutputAssetCategory
-
-
-
+    from ..models.output_asset_category import OutputAssetCategory
 
 
 T = TypeVar("T", bound="OutputAssetCategories")
 
 
-
 @_attrs_define
 class OutputAssetCategories:
-    """ 
-        Attributes:
-            asset_categories (list[OutputAssetCategory]):
-     """
+    """
+    Attributes:
+        asset_categories (list[OutputAssetCategory]):
+    """
 
     asset_categories: list[OutputAssetCategory]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_asset_category import OutputAssetCategory
         asset_categories = []
         for asset_categories_item_data in self.asset_categories:
             asset_categories_item = asset_categories_item_data.to_dict()
             asset_categories.append(asset_categories_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "asset_categories": asset_categories,
-        })
+        field_dict.update(
+            {
+                "asset_categories": asset_categories,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_asset_category import OutputAssetCategory
+
         d = dict(src_dict)
         asset_categories = []
         _asset_categories = d.pop("asset_categories")
-        for asset_categories_item_data in (_asset_categories):
-            asset_categories_item = OutputAssetCategory.from_dict(asset_categories_item_data)
-
-
+        for asset_categories_item_data in _asset_categories:
+            asset_categories_item = OutputAssetCategory.from_dict(
+                asset_categories_item_data
+            )
 
             asset_categories.append(asset_categories_item)
-
 
         output_asset_categories = cls(
             asset_categories=asset_categories,
         )
-
 
         output_asset_categories.additional_properties = d
         return output_asset_categories

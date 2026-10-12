@@ -1,30 +1,21 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="MarkLeadConverted")
 
 
-
 @_attrs_define
 class MarkLeadConverted:
-    """ Convert a lead to an Opportunity.
+    """Convert a lead to an Opportunity.
 
     Two branches:
       1. Existing-org branch: caller supplies `org` (a 32-hex external_id of
@@ -44,7 +35,7 @@ class MarkLeadConverted:
             new_org_country (None | str | Unset):
             new_org_timezone (None | str | Unset):
             new_org_manager (None | str | Unset):
-     """
+    """
 
     updated_at: datetime.datetime
     org: None | str | Unset = UNSET
@@ -54,10 +45,6 @@ class MarkLeadConverted:
     new_org_timezone: None | str | Unset = UNSET
     new_org_manager: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         updated_at = self.updated_at.isoformat()
@@ -98,12 +85,13 @@ class MarkLeadConverted:
         else:
             new_org_manager = self.new_org_manager
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "updated_at": updated_at,
+            }
+        )
         if org is not UNSET:
             field_dict["org"] = org
         if new_org_name is not UNSET:
@@ -119,15 +107,10 @@ class MarkLeadConverted:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_org(data: object) -> None | str | Unset:
             if data is None:
@@ -138,7 +121,6 @@ class MarkLeadConverted:
 
         org = _parse_org(d.pop("org", UNSET))
 
-
         def _parse_new_org_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -147,7 +129,6 @@ class MarkLeadConverted:
             return cast(None | str | Unset, data)
 
         new_org_name = _parse_new_org_name(d.pop("new_org_name", UNSET))
-
 
         def _parse_new_org_currency(data: object) -> None | str | Unset:
             if data is None:
@@ -158,7 +139,6 @@ class MarkLeadConverted:
 
         new_org_currency = _parse_new_org_currency(d.pop("new_org_currency", UNSET))
 
-
         def _parse_new_org_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -167,7 +147,6 @@ class MarkLeadConverted:
             return cast(None | str | Unset, data)
 
         new_org_country = _parse_new_org_country(d.pop("new_org_country", UNSET))
-
 
         def _parse_new_org_timezone(data: object) -> None | str | Unset:
             if data is None:
@@ -178,7 +157,6 @@ class MarkLeadConverted:
 
         new_org_timezone = _parse_new_org_timezone(d.pop("new_org_timezone", UNSET))
 
-
         def _parse_new_org_manager(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -187,7 +165,6 @@ class MarkLeadConverted:
             return cast(None | str | Unset, data)
 
         new_org_manager = _parse_new_org_manager(d.pop("new_org_manager", UNSET))
-
 
         mark_lead_converted = cls(
             updated_at=updated_at,
@@ -198,7 +175,6 @@ class MarkLeadConverted:
             new_org_timezone=new_org_timezone,
             new_org_manager=new_org_manager,
         )
-
 
         mark_lead_converted.additional_properties = d
         return mark_lead_converted

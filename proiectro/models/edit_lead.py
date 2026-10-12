@@ -1,78 +1,65 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
+from dateutil.parser import isoparse
 
 from ..models.edit_lead_source import EditLeadSource
 from ..models.edit_lead_status import EditLeadStatus
 from ..types import UNSET, Unset
-from dateutil.parser import isoparse
-from typing import cast
-import datetime
-
-
-
-
-
 
 T = TypeVar("T", bound="EditLead")
 
 
-
 @_attrs_define
 class EditLead:
-    """ 
-        Attributes:
-            name (str):
-            updated_at (datetime.datetime):
-            company_name (None | str | Unset):  Default: ''.
-            email (None | str | Unset):
-            phone (None | str | Unset):  Default: ''.
-            job_title (None | str | Unset):  Default: ''.
-            source (EditLeadSource | Unset):  Default: EditLeadSource.OTHER.
-            source_note (None | str | Unset):  Default: ''.
-            status (EditLeadStatus | Unset):  Default: EditLeadStatus.NEW.
-            owner (None | str | Unset):
-            lead_list (None | str | Unset):
-            next_action_at (None | str | Unset):
-            next_action_channel (None | str | Unset):  Default: ''.
-            next_action_note (None | str | Unset):  Default: ''.
-            notes (None | str | Unset):  Default: ''.
-            profile_url (None | str | Unset):  Default: ''.
-            company_url (None | str | Unset):  Default: ''.
-            country (None | str | Unset):
-            score (int | None | Unset):
-     """
+    """
+    Attributes:
+        name (str):
+        updated_at (datetime.datetime):
+        company_name (None | str | Unset):  Default: ''.
+        email (None | str | Unset):
+        phone (None | str | Unset):  Default: ''.
+        job_title (None | str | Unset):  Default: ''.
+        source (EditLeadSource | Unset):  Default: EditLeadSource.OTHER.
+        source_note (None | str | Unset):  Default: ''.
+        status (EditLeadStatus | Unset):  Default: EditLeadStatus.NEW.
+        owner (None | str | Unset):
+        lead_list (None | str | Unset):
+        next_action_at (None | str | Unset):
+        next_action_channel (None | str | Unset):  Default: ''.
+        next_action_note (None | str | Unset):  Default: ''.
+        notes (None | str | Unset):  Default: ''.
+        profile_url (None | str | Unset):  Default: ''.
+        company_url (None | str | Unset):  Default: ''.
+        country (None | str | Unset):
+        score (int | None | Unset):
+    """
 
     name: str
     updated_at: datetime.datetime
-    company_name: None | str | Unset = ''
+    company_name: None | str | Unset = ""
     email: None | str | Unset = UNSET
-    phone: None | str | Unset = ''
-    job_title: None | str | Unset = ''
+    phone: None | str | Unset = ""
+    job_title: None | str | Unset = ""
     source: EditLeadSource | Unset = EditLeadSource.OTHER
-    source_note: None | str | Unset = ''
+    source_note: None | str | Unset = ""
     status: EditLeadStatus | Unset = EditLeadStatus.NEW
     owner: None | str | Unset = UNSET
     lead_list: None | str | Unset = UNSET
     next_action_at: None | str | Unset = UNSET
-    next_action_channel: None | str | Unset = ''
-    next_action_note: None | str | Unset = ''
-    notes: None | str | Unset = ''
-    profile_url: None | str | Unset = ''
-    company_url: None | str | Unset = ''
+    next_action_channel: None | str | Unset = ""
+    next_action_note: None | str | Unset = ""
+    notes: None | str | Unset = ""
+    profile_url: None | str | Unset = ""
+    company_url: None | str | Unset = ""
     country: None | str | Unset = UNSET
     score: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
@@ -107,7 +94,6 @@ class EditLead:
         if not isinstance(self.source, Unset):
             source = self.source.value
 
-
         source_note: None | str | Unset
         if isinstance(self.source_note, Unset):
             source_note = UNSET
@@ -117,7 +103,6 @@ class EditLead:
         status: str | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.value
-
 
         owner: None | str | Unset
         if isinstance(self.owner, Unset):
@@ -179,13 +164,14 @@ class EditLead:
         else:
             score = self.score
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "name": name,
-            "updated_at": updated_at,
-        })
+        field_dict.update(
+            {
+                "name": name,
+                "updated_at": updated_at,
+            }
+        )
         if company_name is not UNSET:
             field_dict["company_name"] = company_name
         if email is not UNSET:
@@ -223,17 +209,12 @@ class EditLead:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         name = d.pop("name")
 
         updated_at = isoparse(d.pop("updated_at"))
-
-
-
 
         def _parse_company_name(data: object) -> None | str | Unset:
             if data is None:
@@ -244,7 +225,6 @@ class EditLead:
 
         company_name = _parse_company_name(d.pop("company_name", UNSET))
 
-
         def _parse_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -253,7 +233,6 @@ class EditLead:
             return cast(None | str | Unset, data)
 
         email = _parse_email(d.pop("email", UNSET))
-
 
         def _parse_phone(data: object) -> None | str | Unset:
             if data is None:
@@ -264,7 +243,6 @@ class EditLead:
 
         phone = _parse_phone(d.pop("phone", UNSET))
 
-
         def _parse_job_title(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -274,16 +252,12 @@ class EditLead:
 
         job_title = _parse_job_title(d.pop("job_title", UNSET))
 
-
         _source = d.pop("source", UNSET)
         source: EditLeadSource | Unset
-        if isinstance(_source,  Unset):
+        if isinstance(_source, Unset):
             source = UNSET
         else:
             source = EditLeadSource(_source)
-
-
-
 
         def _parse_source_note(data: object) -> None | str | Unset:
             if data is None:
@@ -294,16 +268,12 @@ class EditLead:
 
         source_note = _parse_source_note(d.pop("source_note", UNSET))
 
-
         _status = d.pop("status", UNSET)
         status: EditLeadStatus | Unset
-        if isinstance(_status,  Unset):
+        if isinstance(_status, Unset):
             status = UNSET
         else:
             status = EditLeadStatus(_status)
-
-
-
 
         def _parse_owner(data: object) -> None | str | Unset:
             if data is None:
@@ -314,7 +284,6 @@ class EditLead:
 
         owner = _parse_owner(d.pop("owner", UNSET))
 
-
         def _parse_lead_list(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -323,7 +292,6 @@ class EditLead:
             return cast(None | str | Unset, data)
 
         lead_list = _parse_lead_list(d.pop("lead_list", UNSET))
-
 
         def _parse_next_action_at(data: object) -> None | str | Unset:
             if data is None:
@@ -334,7 +302,6 @@ class EditLead:
 
         next_action_at = _parse_next_action_at(d.pop("next_action_at", UNSET))
 
-
         def _parse_next_action_channel(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -342,8 +309,9 @@ class EditLead:
                 return data
             return cast(None | str | Unset, data)
 
-        next_action_channel = _parse_next_action_channel(d.pop("next_action_channel", UNSET))
-
+        next_action_channel = _parse_next_action_channel(
+            d.pop("next_action_channel", UNSET)
+        )
 
         def _parse_next_action_note(data: object) -> None | str | Unset:
             if data is None:
@@ -354,7 +322,6 @@ class EditLead:
 
         next_action_note = _parse_next_action_note(d.pop("next_action_note", UNSET))
 
-
         def _parse_notes(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -363,7 +330,6 @@ class EditLead:
             return cast(None | str | Unset, data)
 
         notes = _parse_notes(d.pop("notes", UNSET))
-
 
         def _parse_profile_url(data: object) -> None | str | Unset:
             if data is None:
@@ -374,7 +340,6 @@ class EditLead:
 
         profile_url = _parse_profile_url(d.pop("profile_url", UNSET))
 
-
         def _parse_company_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -383,7 +348,6 @@ class EditLead:
             return cast(None | str | Unset, data)
 
         company_url = _parse_company_url(d.pop("company_url", UNSET))
-
 
         def _parse_country(data: object) -> None | str | Unset:
             if data is None:
@@ -394,7 +358,6 @@ class EditLead:
 
         country = _parse_country(d.pop("country", UNSET))
 
-
         def _parse_score(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -403,7 +366,6 @@ class EditLead:
             return cast(int | None | Unset, data)
 
         score = _parse_score(d.pop("score", UNSET))
-
 
         edit_lead = cls(
             name=name,
@@ -426,7 +388,6 @@ class EditLead:
             country=country,
             score=score,
         )
-
 
         edit_lead.additional_properties = d
         return edit_lead

@@ -1,43 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="MyTicketItem")
-
 
 
 @_attrs_define
 class MyTicketItem:
-    """ Individual support ticket for cross-tenant My Tickets view
+    """Individual support ticket for cross-tenant My Tickets view
 
-        Attributes:
-            id (str):
-            public_reference (str):
-            title (str):
-            status_name (str):
-            status_lifecycle (str):
-            tenant_name (str):
-            tenant_path (str):
-            ticket_type (str):
-            url (str):
-            severity_name (None | str | Unset):
-            severity_score (int | None | Unset):
-            customer_name (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        public_reference (str):
+        title (str):
+        status_name (str):
+        status_lifecycle (str):
+        tenant_name (str):
+        tenant_path (str):
+        ticket_type (str):
+        url (str):
+        severity_name (None | str | Unset):
+        severity_score (int | None | Unset):
+        customer_name (None | str | Unset):
+    """
 
     id: str
     public_reference: str
@@ -52,10 +43,6 @@ class MyTicketItem:
     severity_score: int | None | Unset = UNSET
     customer_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -94,20 +81,21 @@ class MyTicketItem:
         else:
             customer_name = self.customer_name
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "public_reference": public_reference,
-            "title": title,
-            "status_name": status_name,
-            "status_lifecycle": status_lifecycle,
-            "tenant_name": tenant_name,
-            "tenant_path": tenant_path,
-            "ticket_type": ticket_type,
-            "url": url,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "public_reference": public_reference,
+                "title": title,
+                "status_name": status_name,
+                "status_lifecycle": status_lifecycle,
+                "tenant_name": tenant_name,
+                "tenant_path": tenant_path,
+                "ticket_type": ticket_type,
+                "url": url,
+            }
+        )
         if severity_name is not UNSET:
             field_dict["severity_name"] = severity_name
         if severity_score is not UNSET:
@@ -116,8 +104,6 @@ class MyTicketItem:
             field_dict["customer_name"] = customer_name
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -149,7 +135,6 @@ class MyTicketItem:
 
         severity_name = _parse_severity_name(d.pop("severity_name", UNSET))
 
-
         def _parse_severity_score(data: object) -> int | None | Unset:
             if data is None:
                 return data
@@ -159,7 +144,6 @@ class MyTicketItem:
 
         severity_score = _parse_severity_score(d.pop("severity_score", UNSET))
 
-
         def _parse_customer_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -168,7 +152,6 @@ class MyTicketItem:
             return cast(None | str | Unset, data)
 
         customer_name = _parse_customer_name(d.pop("customer_name", UNSET))
-
 
         my_ticket_item = cls(
             id=id,
@@ -184,7 +167,6 @@ class MyTicketItem:
             severity_score=severity_score,
             customer_name=customer_name,
         )
-
 
         my_ticket_item.additional_properties = d
         return my_ticket_item

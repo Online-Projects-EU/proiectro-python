@@ -1,41 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="AddHoliday")
-
 
 
 @_attrs_define
 class AddHoliday:
-    """ Input schema for adding a holiday
+    """Input schema for adding a holiday
 
-        Attributes:
-            date (str):
-            name (str):
-            territory (str):
-     """
+    Attributes:
+        date (str):
+        name (str):
+        territory (str):
+    """
 
     date: str
     name: str
     territory: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         date = self.date
@@ -44,18 +31,17 @@ class AddHoliday:
 
         territory = self.territory
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "date": date,
-            "name": name,
-            "territory": territory,
-        })
+        field_dict.update(
+            {
+                "date": date,
+                "name": name,
+                "territory": territory,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -71,7 +57,6 @@ class AddHoliday:
             name=name,
             territory=territory,
         )
-
 
         add_holiday.additional_properties = d
         return add_holiday

@@ -1,50 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="ReassignExternalSupportRequest")
-
 
 
 @_attrs_define
 class ReassignExternalSupportRequest:
-    """ 
-        Attributes:
-            assignee_id (str):
-     """
+    """
+    Attributes:
+        assignee_id (str):
+    """
 
     assignee_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
         assignee_id = self.assignee_id
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "assignee_id": assignee_id,
-        })
+        field_dict.update(
+            {
+                "assignee_id": assignee_id,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -54,7 +40,6 @@ class ReassignExternalSupportRequest:
         reassign_external_support_request = cls(
             assignee_id=assignee_id,
         )
-
 
         reassign_external_support_request.additional_properties = d
         return reassign_external_support_request

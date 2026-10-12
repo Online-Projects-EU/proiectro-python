@@ -19,6 +19,7 @@ def _get_kwargs(
     source: None | str | Unset = UNSET,
     owner: None | str | Unset = UNSET,
     lead_list: None | str | Unset = UNSET,
+    unclaimed: bool | None | Unset = UNSET,
     has_email: bool | None | Unset = UNSET,
     has_phone: bool | None | Unset = UNSET,
     next_action_window: None | str | Unset = UNSET,
@@ -82,6 +83,13 @@ def _get_kwargs(
     else:
         json_lead_list = lead_list
     params["lead_list"] = json_lead_list
+
+    json_unclaimed: bool | None | Unset
+    if isinstance(unclaimed, Unset):
+        json_unclaimed = UNSET
+    else:
+        json_unclaimed = unclaimed
+    params["unclaimed"] = json_unclaimed
 
     json_has_email: bool | None | Unset
     if isinstance(has_email, Unset):
@@ -266,6 +274,7 @@ def sync_detailed(
     source: None | str | Unset = UNSET,
     owner: None | str | Unset = UNSET,
     lead_list: None | str | Unset = UNSET,
+    unclaimed: bool | None | Unset = UNSET,
     has_email: bool | None | Unset = UNSET,
     has_phone: bool | None | Unset = UNSET,
     next_action_window: None | str | Unset = UNSET,
@@ -298,6 +307,7 @@ def sync_detailed(
         source (None | str | Unset): Filter by source
         owner (None | str | Unset): Filter by owning team member
         lead_list (None | str | Unset): Filter by list assignment
+        unclaimed (bool | None | Unset): Only leads nobody owns that sit in no list
         has_email (bool | None | Unset): Only leads with an email address
         has_phone (bool | None | Unset): Only leads with a phone number
         next_action_window (None | str | Unset): Worklist bucket: overdue / today / scheduled /
@@ -334,6 +344,7 @@ def sync_detailed(
         source=source,
         owner=owner,
         lead_list=lead_list,
+        unclaimed=unclaimed,
         has_email=has_email,
         has_phone=has_phone,
         next_action_window=next_action_window,
@@ -371,6 +382,7 @@ def sync(
     source: None | str | Unset = UNSET,
     owner: None | str | Unset = UNSET,
     lead_list: None | str | Unset = UNSET,
+    unclaimed: bool | None | Unset = UNSET,
     has_email: bool | None | Unset = UNSET,
     has_phone: bool | None | Unset = UNSET,
     next_action_window: None | str | Unset = UNSET,
@@ -403,6 +415,7 @@ def sync(
         source (None | str | Unset): Filter by source
         owner (None | str | Unset): Filter by owning team member
         lead_list (None | str | Unset): Filter by list assignment
+        unclaimed (bool | None | Unset): Only leads nobody owns that sit in no list
         has_email (bool | None | Unset): Only leads with an email address
         has_phone (bool | None | Unset): Only leads with a phone number
         next_action_window (None | str | Unset): Worklist bucket: overdue / today / scheduled /
@@ -440,6 +453,7 @@ def sync(
         source=source,
         owner=owner,
         lead_list=lead_list,
+        unclaimed=unclaimed,
         has_email=has_email,
         has_phone=has_phone,
         next_action_window=next_action_window,
@@ -471,6 +485,7 @@ async def asyncio_detailed(
     source: None | str | Unset = UNSET,
     owner: None | str | Unset = UNSET,
     lead_list: None | str | Unset = UNSET,
+    unclaimed: bool | None | Unset = UNSET,
     has_email: bool | None | Unset = UNSET,
     has_phone: bool | None | Unset = UNSET,
     next_action_window: None | str | Unset = UNSET,
@@ -503,6 +518,7 @@ async def asyncio_detailed(
         source (None | str | Unset): Filter by source
         owner (None | str | Unset): Filter by owning team member
         lead_list (None | str | Unset): Filter by list assignment
+        unclaimed (bool | None | Unset): Only leads nobody owns that sit in no list
         has_email (bool | None | Unset): Only leads with an email address
         has_phone (bool | None | Unset): Only leads with a phone number
         next_action_window (None | str | Unset): Worklist bucket: overdue / today / scheduled /
@@ -539,6 +555,7 @@ async def asyncio_detailed(
         source=source,
         owner=owner,
         lead_list=lead_list,
+        unclaimed=unclaimed,
         has_email=has_email,
         has_phone=has_phone,
         next_action_window=next_action_window,
@@ -574,6 +591,7 @@ async def asyncio(
     source: None | str | Unset = UNSET,
     owner: None | str | Unset = UNSET,
     lead_list: None | str | Unset = UNSET,
+    unclaimed: bool | None | Unset = UNSET,
     has_email: bool | None | Unset = UNSET,
     has_phone: bool | None | Unset = UNSET,
     next_action_window: None | str | Unset = UNSET,
@@ -606,6 +624,7 @@ async def asyncio(
         source (None | str | Unset): Filter by source
         owner (None | str | Unset): Filter by owning team member
         lead_list (None | str | Unset): Filter by list assignment
+        unclaimed (bool | None | Unset): Only leads nobody owns that sit in no list
         has_email (bool | None | Unset): Only leads with an email address
         has_phone (bool | None | Unset): Only leads with a phone number
         next_action_window (None | str | Unset): Worklist bucket: overdue / today / scheduled /
@@ -644,6 +663,7 @@ async def asyncio(
             source=source,
             owner=owner,
             lead_list=lead_list,
+            unclaimed=unclaimed,
             has_email=has_email,
             has_phone=has_phone,
             next_action_window=next_action_window,

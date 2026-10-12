@@ -1,45 +1,36 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="MyWorkItem")
-
 
 
 @_attrs_define
 class MyWorkItem:
-    """ Individual work item for cross-tenant My Work view
+    """Individual work item for cross-tenant My Work view
 
-        Attributes:
-            id (str):
-            name (str):
-            percent_complete (int):
-            tenant_name (str):
-            tenant_path (str):
-            urgency_group (str):
-            url (str):
-            description (None | str | Unset):
-            planned_end (None | str | Unset):
-            project_name (None | str | Unset):
-            project_id (None | str | Unset):
-            hierarchy_id (None | str | Unset):
-            item_type_name (None | str | Unset):
-            item_type_behaviour (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        percent_complete (int):
+        tenant_name (str):
+        tenant_path (str):
+        urgency_group (str):
+        url (str):
+        description (None | str | Unset):
+        planned_end (None | str | Unset):
+        project_name (None | str | Unset):
+        project_id (None | str | Unset):
+        hierarchy_id (None | str | Unset):
+        item_type_name (None | str | Unset):
+        item_type_behaviour (None | str | Unset):
+    """
 
     id: str
     name: str
@@ -56,10 +47,6 @@ class MyWorkItem:
     item_type_name: None | str | Unset = UNSET
     item_type_behaviour: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -118,18 +105,19 @@ class MyWorkItem:
         else:
             item_type_behaviour = self.item_type_behaviour
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "percent_complete": percent_complete,
-            "tenant_name": tenant_name,
-            "tenant_path": tenant_path,
-            "urgency_group": urgency_group,
-            "url": url,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "percent_complete": percent_complete,
+                "tenant_name": tenant_name,
+                "tenant_path": tenant_path,
+                "urgency_group": urgency_group,
+                "url": url,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
         if planned_end is not UNSET:
@@ -146,8 +134,6 @@ class MyWorkItem:
             field_dict["item_type_behaviour"] = item_type_behaviour
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -175,7 +161,6 @@ class MyWorkItem:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_planned_end(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -184,7 +169,6 @@ class MyWorkItem:
             return cast(None | str | Unset, data)
 
         planned_end = _parse_planned_end(d.pop("planned_end", UNSET))
-
 
         def _parse_project_name(data: object) -> None | str | Unset:
             if data is None:
@@ -195,7 +179,6 @@ class MyWorkItem:
 
         project_name = _parse_project_name(d.pop("project_name", UNSET))
 
-
         def _parse_project_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -204,7 +187,6 @@ class MyWorkItem:
             return cast(None | str | Unset, data)
 
         project_id = _parse_project_id(d.pop("project_id", UNSET))
-
 
         def _parse_hierarchy_id(data: object) -> None | str | Unset:
             if data is None:
@@ -215,7 +197,6 @@ class MyWorkItem:
 
         hierarchy_id = _parse_hierarchy_id(d.pop("hierarchy_id", UNSET))
 
-
         def _parse_item_type_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -225,7 +206,6 @@ class MyWorkItem:
 
         item_type_name = _parse_item_type_name(d.pop("item_type_name", UNSET))
 
-
         def _parse_item_type_behaviour(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -233,8 +213,9 @@ class MyWorkItem:
                 return data
             return cast(None | str | Unset, data)
 
-        item_type_behaviour = _parse_item_type_behaviour(d.pop("item_type_behaviour", UNSET))
-
+        item_type_behaviour = _parse_item_type_behaviour(
+            d.pop("item_type_behaviour", UNSET)
+        )
 
         my_work_item = cls(
             id=id,
@@ -252,7 +233,6 @@ class MyWorkItem:
             item_type_name=item_type_name,
             item_type_behaviour=item_type_behaviour,
         )
-
 
         my_work_item.additional_properties = d
         return my_work_item

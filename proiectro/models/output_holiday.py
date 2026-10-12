@@ -1,46 +1,32 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
-
-
-
-
-
 
 T = TypeVar("T", bound="OutputHoliday")
 
 
-
 @_attrs_define
 class OutputHoliday:
-    """ Output schema for a single holiday
+    """Output schema for a single holiday
 
-        Attributes:
-            id (str):
-            date (datetime.date):
-            name (str):
-            territory (str):
-     """
+    Attributes:
+        id (str):
+        date (datetime.date):
+        name (str):
+        territory (str):
+    """
 
     id: str
     date: datetime.date
     name: str
     territory: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -51,19 +37,18 @@ class OutputHoliday:
 
         territory = self.territory
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "date": date,
-            "name": name,
-            "territory": territory,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "date": date,
+                "name": name,
+                "territory": territory,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -71,9 +56,6 @@ class OutputHoliday:
         id = d.pop("id")
 
         date = isoparse(d.pop("date")).date()
-
-
-
 
         name = d.pop("name")
 
@@ -85,7 +67,6 @@ class OutputHoliday:
             name=name,
             territory=territory,
         )
-
 
         output_holiday.additional_properties = d
         return output_holiday

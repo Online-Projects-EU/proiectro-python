@@ -1,78 +1,59 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.output_process import OutputProcess
-
-
-
+    from ..models.output_process import OutputProcess
 
 
 T = TypeVar("T", bound="OutputProcesses")
 
 
-
 @_attrs_define
 class OutputProcesses:
-    """ 
-        Attributes:
-            processes (list[OutputProcess]):
-     """
+    """
+    Attributes:
+        processes (list[OutputProcess]):
+    """
 
     processes: list[OutputProcess]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.output_process import OutputProcess
         processes = []
         for processes_item_data in self.processes:
             processes_item = processes_item_data.to_dict()
             processes.append(processes_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "processes": processes,
-        })
+        field_dict.update(
+            {
+                "processes": processes,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.output_process import OutputProcess
+
         d = dict(src_dict)
         processes = []
         _processes = d.pop("processes")
-        for processes_item_data in (_processes):
+        for processes_item_data in _processes:
             processes_item = OutputProcess.from_dict(processes_item_data)
 
-
-
             processes.append(processes_item)
-
 
         output_processes = cls(
             processes=processes,
         )
-
 
         output_processes.additional_properties = d
         return output_processes

@@ -1,61 +1,55 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.project_cash_balance_chart_data_cash_balance_data_item import ProjectCashBalanceChartDataCashBalanceDataItem
-
-
-
+    from ..models.project_cash_balance_chart_data_cash_balance_data_item import (
+        ProjectCashBalanceChartDataCashBalanceDataItem,
+    )
 
 
 T = TypeVar("T", bound="ProjectCashBalanceChartData")
 
 
-
 @_attrs_define
 class ProjectCashBalanceChartData:
-    """ Cash balance chart data for S-curve visualization.
+    """Cash balance chart data for S-curve visualization.
     Shows cumulative cash balance over project duration by week.
 
         Attributes:
             cash_balance_data (list[ProjectCashBalanceChartDataCashBalanceDataItem]):
             currency_symbol (str):
+            uncovered_currencies (list[str] | Unset):
             currency_code (None | str | Unset):
             project_start (None | str | Unset):
             project_end (None | str | Unset):
-     """
+    """
 
     cash_balance_data: list[ProjectCashBalanceChartDataCashBalanceDataItem]
     currency_symbol: str
+    uncovered_currencies: list[str] | Unset = UNSET
     currency_code: None | str | Unset = UNSET
     project_start: None | str | Unset = UNSET
     project_end: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.project_cash_balance_chart_data_cash_balance_data_item import ProjectCashBalanceChartDataCashBalanceDataItem
         cash_balance_data = []
         for cash_balance_data_item_data in self.cash_balance_data:
             cash_balance_data_item = cash_balance_data_item_data.to_dict()
             cash_balance_data.append(cash_balance_data_item)
 
-
-
         currency_symbol = self.currency_symbol
+
+        uncovered_currencies: list[str] | Unset = UNSET
+        if not isinstance(self.uncovered_currencies, Unset):
+            uncovered_currencies = self.uncovered_currencies
 
         currency_code: None | str | Unset
         if isinstance(self.currency_code, Unset):
@@ -75,13 +69,16 @@ class ProjectCashBalanceChartData:
         else:
             project_end = self.project_end
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "cash_balance_data": cash_balance_data,
-            "currency_symbol": currency_symbol,
-        })
+        field_dict.update(
+            {
+                "cash_balance_data": cash_balance_data,
+                "currency_symbol": currency_symbol,
+            }
+        )
+        if uncovered_currencies is not UNSET:
+            field_dict["uncovered_currencies"] = uncovered_currencies
         if currency_code is not UNSET:
             field_dict["currency_code"] = currency_code
         if project_start is not UNSET:
@@ -91,23 +88,27 @@ class ProjectCashBalanceChartData:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.project_cash_balance_chart_data_cash_balance_data_item import ProjectCashBalanceChartDataCashBalanceDataItem
+        from ..models.project_cash_balance_chart_data_cash_balance_data_item import (
+            ProjectCashBalanceChartDataCashBalanceDataItem,
+        )
+
         d = dict(src_dict)
         cash_balance_data = []
         _cash_balance_data = d.pop("cash_balance_data")
-        for cash_balance_data_item_data in (_cash_balance_data):
-            cash_balance_data_item = ProjectCashBalanceChartDataCashBalanceDataItem.from_dict(cash_balance_data_item_data)
-
-
+        for cash_balance_data_item_data in _cash_balance_data:
+            cash_balance_data_item = (
+                ProjectCashBalanceChartDataCashBalanceDataItem.from_dict(
+                    cash_balance_data_item_data
+                )
+            )
 
             cash_balance_data.append(cash_balance_data_item)
 
-
         currency_symbol = d.pop("currency_symbol")
+
+        uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
 
         def _parse_currency_code(data: object) -> None | str | Unset:
             if data is None:
@@ -118,7 +119,6 @@ class ProjectCashBalanceChartData:
 
         currency_code = _parse_currency_code(d.pop("currency_code", UNSET))
 
-
         def _parse_project_start(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -127,7 +127,6 @@ class ProjectCashBalanceChartData:
             return cast(None | str | Unset, data)
 
         project_start = _parse_project_start(d.pop("project_start", UNSET))
-
 
         def _parse_project_end(data: object) -> None | str | Unset:
             if data is None:
@@ -138,15 +137,14 @@ class ProjectCashBalanceChartData:
 
         project_end = _parse_project_end(d.pop("project_end", UNSET))
 
-
         project_cash_balance_chart_data = cls(
             cash_balance_data=cash_balance_data,
             currency_symbol=currency_symbol,
+            uncovered_currencies=uncovered_currencies,
             currency_code=currency_code,
             project_start=project_start,
             project_end=project_end,
         )
-
 
         project_cash_balance_chart_data.additional_properties = d
         return project_cash_balance_chart_data

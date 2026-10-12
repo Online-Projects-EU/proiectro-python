@@ -1,42 +1,32 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from ..models.close_internal_support_request_resolution import CloseInternalSupportRequestResolution
-
-
-
-
-
+from ..models.close_internal_support_request_resolution import (
+    CloseInternalSupportRequestResolution,
+)
 
 T = TypeVar("T", bound="CloseInternalSupportRequest")
 
 
-
 @_attrs_define
 class CloseInternalSupportRequest:
-    """ Input schema for closing internal support request with resolution
+    """Input schema for closing internal support request with resolution
 
-        Attributes:
-            status_id (str):
-            resolution (CloseInternalSupportRequestResolution):
-            reason (str): Reason for closing the support request
-     """
+    Attributes:
+        status_id (str):
+        resolution (CloseInternalSupportRequestResolution):
+        reason (str): Reason for closing the support request
+    """
 
     status_id: str
     resolution: CloseInternalSupportRequestResolution
     reason: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         status_id = self.status_id
@@ -45,18 +35,17 @@ class CloseInternalSupportRequest:
 
         reason = self.reason
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "status_id": status_id,
-            "resolution": resolution,
-            "reason": reason,
-        })
+        field_dict.update(
+            {
+                "status_id": status_id,
+                "resolution": resolution,
+                "reason": reason,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -65,9 +54,6 @@ class CloseInternalSupportRequest:
 
         resolution = CloseInternalSupportRequestResolution(d.pop("resolution"))
 
-
-
-
         reason = d.pop("reason")
 
         close_internal_support_request = cls(
@@ -75,7 +61,6 @@ class CloseInternalSupportRequest:
             resolution=resolution,
             reason=reason,
         )
-
 
         close_internal_support_request.additional_properties = d
         return close_internal_support_request

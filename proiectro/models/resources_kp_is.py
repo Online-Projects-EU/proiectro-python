@@ -1,33 +1,26 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-  from ..models.compare_option import CompareOption
-  from ..models.horizon_option import HorizonOption
-
-
-
+    from ..models.compare_option import CompareOption
+    from ..models.horizon_option import HorizonOption
 
 
 T = TypeVar("T", bound="ResourcesKPIs")
 
 
-
 @_attrs_define
 class ResourcesKPIs:
-    """ Resources KPIs - equipment utilization and capacity health over the next `horizon_days`.
+    """Resources KPIs - equipment utilization and capacity health over the next `horizon_days`.
 
     "Resource" is the Resource model: equipment, vehicles, rooms. Every figure comes from
     ResourceBooking measured against each resource's weekly Availability.
@@ -38,7 +31,6 @@ class ResourcesKPIs:
 
         Attributes:
             horizon_days (int):
-            utilization_percent (float | str):
             utilization_target_low (float | str):
             utilization_target_high (float | str):
             utilization_target_band (float | str):
@@ -47,7 +39,6 @@ class ResourcesKPIs:
             allocated_hours (float | str):
             available_hours (float | str):
             capacity_status (str):
-            weeks_of_capacity (float | str):
             total_resources (int):
             resources_overallocated (int):
             resources_underallocated (int):
@@ -71,10 +62,11 @@ class ResourcesKPIs:
             filter_category_label (None | str | Unset):
             filter_type (None | str | Unset):
             filter_type_label (None | str | Unset):
-     """
+            utilization_percent (float | None | str | Unset):
+            weeks_of_capacity (float | None | str | Unset):
+    """
 
     horizon_days: int
-    utilization_percent: float | str
     utilization_target_low: float | str
     utilization_target_high: float | str
     utilization_target_band: float | str
@@ -83,7 +75,6 @@ class ResourcesKPIs:
     allocated_hours: float | str
     available_hours: float | str
     capacity_status: str
-    weeks_of_capacity: float | str
     total_resources: int
     resources_overallocated: int
     resources_underallocated: int
@@ -91,8 +82,8 @@ class ResourcesKPIs:
     resources_scheduled: int
     resources_unscheduled: int
     fleet_status: str
-    period: str | Unset = 'YTD'
-    temporal_type: str | Unset = 'snapshot'
+    period: str | Unset = "YTD"
+    temporal_type: str | Unset = "snapshot"
     generated_at: datetime.datetime | None | Unset = UNSET
     period_label: None | str | Unset = UNSET
     horizon: None | str | Unset = UNSET
@@ -107,19 +98,12 @@ class ResourcesKPIs:
     filter_category_label: None | str | Unset = UNSET
     filter_type: None | str | Unset = UNSET
     filter_type_label: None | str | Unset = UNSET
+    utilization_percent: float | None | str | Unset = UNSET
+    weeks_of_capacity: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.compare_option import CompareOption
-        from ..models.horizon_option import HorizonOption
         horizon_days = self.horizon_days
-
-        utilization_percent: float | str
-        utilization_percent = self.utilization_percent
 
         utilization_target_low: float | str
         utilization_target_low = self.utilization_target_low
@@ -142,9 +126,6 @@ class ResourcesKPIs:
         available_hours = self.available_hours
 
         capacity_status = self.capacity_status
-
-        weeks_of_capacity: float | str
-        weeks_of_capacity = self.weeks_of_capacity
 
         total_resources = self.total_resources
 
@@ -199,7 +180,6 @@ class ResourcesKPIs:
                 horizon_options_type_0_item = horizon_options_type_0_item_data.to_dict()
                 horizon_options.append(horizon_options_type_0_item)
 
-
         else:
             horizon_options = self.horizon_options
 
@@ -223,7 +203,6 @@ class ResourcesKPIs:
             for compare_options_type_0_item_data in self.compare_options:
                 compare_options_type_0_item = compare_options_type_0_item_data.to_dict()
                 compare_options.append(compare_options_type_0_item)
-
 
         else:
             compare_options = self.compare_options
@@ -264,29 +243,40 @@ class ResourcesKPIs:
         else:
             filter_type_label = self.filter_type_label
 
+        utilization_percent: float | None | str | Unset
+        if isinstance(self.utilization_percent, Unset):
+            utilization_percent = UNSET
+        else:
+            utilization_percent = self.utilization_percent
+
+        weeks_of_capacity: float | None | str | Unset
+        if isinstance(self.weeks_of_capacity, Unset):
+            weeks_of_capacity = UNSET
+        else:
+            weeks_of_capacity = self.weeks_of_capacity
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "horizon_days": horizon_days,
-            "utilization_percent": utilization_percent,
-            "utilization_target_low": utilization_target_low,
-            "utilization_target_high": utilization_target_high,
-            "utilization_target_band": utilization_target_band,
-            "utilization_status": utilization_status,
-            "total_capacity_hours": total_capacity_hours,
-            "allocated_hours": allocated_hours,
-            "available_hours": available_hours,
-            "capacity_status": capacity_status,
-            "weeks_of_capacity": weeks_of_capacity,
-            "total_resources": total_resources,
-            "resources_overallocated": resources_overallocated,
-            "resources_underallocated": resources_underallocated,
-            "resources_optimal": resources_optimal,
-            "resources_scheduled": resources_scheduled,
-            "resources_unscheduled": resources_unscheduled,
-            "fleet_status": fleet_status,
-        })
+        field_dict.update(
+            {
+                "horizon_days": horizon_days,
+                "utilization_target_low": utilization_target_low,
+                "utilization_target_high": utilization_target_high,
+                "utilization_target_band": utilization_target_band,
+                "utilization_status": utilization_status,
+                "total_capacity_hours": total_capacity_hours,
+                "allocated_hours": allocated_hours,
+                "available_hours": available_hours,
+                "capacity_status": capacity_status,
+                "total_resources": total_resources,
+                "resources_overallocated": resources_overallocated,
+                "resources_underallocated": resources_underallocated,
+                "resources_optimal": resources_optimal,
+                "resources_scheduled": resources_scheduled,
+                "resources_unscheduled": resources_unscheduled,
+                "fleet_status": fleet_status,
+            }
+        )
         if period is not UNSET:
             field_dict["period"] = period
         if temporal_type is not UNSET:
@@ -319,69 +309,62 @@ class ResourcesKPIs:
             field_dict["filter_type"] = filter_type
         if filter_type_label is not UNSET:
             field_dict["filter_type_label"] = filter_type_label
+        if utilization_percent is not UNSET:
+            field_dict["utilization_percent"] = utilization_percent
+        if weeks_of_capacity is not UNSET:
+            field_dict["weeks_of_capacity"] = weeks_of_capacity
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+
         d = dict(src_dict)
         horizon_days = d.pop("horizon_days")
-
-        def _parse_utilization_percent(data: object) -> float | str:
-            return cast(float | str, data)
-
-        utilization_percent = _parse_utilization_percent(d.pop("utilization_percent"))
-
 
         def _parse_utilization_target_low(data: object) -> float | str:
             return cast(float | str, data)
 
-        utilization_target_low = _parse_utilization_target_low(d.pop("utilization_target_low"))
-
+        utilization_target_low = _parse_utilization_target_low(
+            d.pop("utilization_target_low")
+        )
 
         def _parse_utilization_target_high(data: object) -> float | str:
             return cast(float | str, data)
 
-        utilization_target_high = _parse_utilization_target_high(d.pop("utilization_target_high"))
-
+        utilization_target_high = _parse_utilization_target_high(
+            d.pop("utilization_target_high")
+        )
 
         def _parse_utilization_target_band(data: object) -> float | str:
             return cast(float | str, data)
 
-        utilization_target_band = _parse_utilization_target_band(d.pop("utilization_target_band"))
-
+        utilization_target_band = _parse_utilization_target_band(
+            d.pop("utilization_target_band")
+        )
 
         utilization_status = d.pop("utilization_status")
 
         def _parse_total_capacity_hours(data: object) -> float | str:
             return cast(float | str, data)
 
-        total_capacity_hours = _parse_total_capacity_hours(d.pop("total_capacity_hours"))
-
+        total_capacity_hours = _parse_total_capacity_hours(
+            d.pop("total_capacity_hours")
+        )
 
         def _parse_allocated_hours(data: object) -> float | str:
             return cast(float | str, data)
 
         allocated_hours = _parse_allocated_hours(d.pop("allocated_hours"))
 
-
         def _parse_available_hours(data: object) -> float | str:
             return cast(float | str, data)
 
         available_hours = _parse_available_hours(d.pop("available_hours"))
 
-
         capacity_status = d.pop("capacity_status")
-
-        def _parse_weeks_of_capacity(data: object) -> float | str:
-            return cast(float | str, data)
-
-        weeks_of_capacity = _parse_weeks_of_capacity(d.pop("weeks_of_capacity"))
-
 
         total_resources = d.pop("total_resources")
 
@@ -411,15 +394,12 @@ class ResourcesKPIs:
                     raise TypeError()
                 generated_at_type_0 = isoparse(data)
 
-
-
                 return generated_at_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
             return cast(datetime.datetime | None | Unset, data)
 
         generated_at = _parse_generated_at(d.pop("generated_at", UNSET))
-
 
         def _parse_period_label(data: object) -> None | str | Unset:
             if data is None:
@@ -430,7 +410,6 @@ class ResourcesKPIs:
 
         period_label = _parse_period_label(d.pop("period_label", UNSET))
 
-
         def _parse_horizon(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -440,7 +419,6 @@ class ResourcesKPIs:
 
         horizon = _parse_horizon(d.pop("horizon", UNSET))
 
-
         def _parse_horizon_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -449,7 +427,6 @@ class ResourcesKPIs:
             return cast(None | str | Unset, data)
 
         horizon_label = _parse_horizon_label(d.pop("horizon_label", UNSET))
-
 
         def _parse_horizon_options(data: object) -> list[HorizonOption] | None | Unset:
             if data is None:
@@ -461,10 +438,10 @@ class ResourcesKPIs:
                     raise TypeError()
                 horizon_options_type_0 = []
                 _horizon_options_type_0 = data
-                for horizon_options_type_0_item_data in (_horizon_options_type_0):
-                    horizon_options_type_0_item = HorizonOption.from_dict(horizon_options_type_0_item_data)
-
-
+                for horizon_options_type_0_item_data in _horizon_options_type_0:
+                    horizon_options_type_0_item = HorizonOption.from_dict(
+                        horizon_options_type_0_item_data
+                    )
 
                     horizon_options_type_0.append(horizon_options_type_0_item)
 
@@ -475,7 +452,6 @@ class ResourcesKPIs:
 
         horizon_options = _parse_horizon_options(d.pop("horizon_options", UNSET))
 
-
         def _parse_compare(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -485,7 +461,6 @@ class ResourcesKPIs:
 
         compare = _parse_compare(d.pop("compare", UNSET))
 
-
         def _parse_compare_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -494,7 +469,6 @@ class ResourcesKPIs:
             return cast(None | str | Unset, data)
 
         compare_label = _parse_compare_label(d.pop("compare_label", UNSET))
-
 
         def _parse_compare_options(data: object) -> list[CompareOption] | None | Unset:
             if data is None:
@@ -506,10 +480,10 @@ class ResourcesKPIs:
                     raise TypeError()
                 compare_options_type_0 = []
                 _compare_options_type_0 = data
-                for compare_options_type_0_item_data in (_compare_options_type_0):
-                    compare_options_type_0_item = CompareOption.from_dict(compare_options_type_0_item_data)
-
-
+                for compare_options_type_0_item_data in _compare_options_type_0:
+                    compare_options_type_0_item = CompareOption.from_dict(
+                        compare_options_type_0_item_data
+                    )
 
                     compare_options_type_0.append(compare_options_type_0_item)
 
@@ -520,7 +494,6 @@ class ResourcesKPIs:
 
         compare_options = _parse_compare_options(d.pop("compare_options", UNSET))
 
-
         def _parse_filter_severity(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -530,7 +503,6 @@ class ResourcesKPIs:
 
         filter_severity = _parse_filter_severity(d.pop("filter_severity", UNSET))
 
-
         def _parse_filter_severity_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -538,8 +510,9 @@ class ResourcesKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_severity_label = _parse_filter_severity_label(d.pop("filter_severity_label", UNSET))
-
+        filter_severity_label = _parse_filter_severity_label(
+            d.pop("filter_severity_label", UNSET)
+        )
 
         def _parse_filter_category(data: object) -> None | str | Unset:
             if data is None:
@@ -550,7 +523,6 @@ class ResourcesKPIs:
 
         filter_category = _parse_filter_category(d.pop("filter_category", UNSET))
 
-
         def _parse_filter_category_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -558,8 +530,9 @@ class ResourcesKPIs:
                 return data
             return cast(None | str | Unset, data)
 
-        filter_category_label = _parse_filter_category_label(d.pop("filter_category_label", UNSET))
-
+        filter_category_label = _parse_filter_category_label(
+            d.pop("filter_category_label", UNSET)
+        )
 
         def _parse_filter_type(data: object) -> None | str | Unset:
             if data is None:
@@ -570,7 +543,6 @@ class ResourcesKPIs:
 
         filter_type = _parse_filter_type(d.pop("filter_type", UNSET))
 
-
         def _parse_filter_type_label(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -580,10 +552,28 @@ class ResourcesKPIs:
 
         filter_type_label = _parse_filter_type_label(d.pop("filter_type_label", UNSET))
 
+        def _parse_utilization_percent(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        utilization_percent = _parse_utilization_percent(
+            d.pop("utilization_percent", UNSET)
+        )
+
+        def _parse_weeks_of_capacity(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        weeks_of_capacity = _parse_weeks_of_capacity(d.pop("weeks_of_capacity", UNSET))
 
         resources_kp_is = cls(
             horizon_days=horizon_days,
-            utilization_percent=utilization_percent,
             utilization_target_low=utilization_target_low,
             utilization_target_high=utilization_target_high,
             utilization_target_band=utilization_target_band,
@@ -592,7 +582,6 @@ class ResourcesKPIs:
             allocated_hours=allocated_hours,
             available_hours=available_hours,
             capacity_status=capacity_status,
-            weeks_of_capacity=weeks_of_capacity,
             total_resources=total_resources,
             resources_overallocated=resources_overallocated,
             resources_underallocated=resources_underallocated,
@@ -616,8 +605,9 @@ class ResourcesKPIs:
             filter_category_label=filter_category_label,
             filter_type=filter_type,
             filter_type_label=filter_type_label,
+            utilization_percent=utilization_percent,
+            weeks_of_capacity=weeks_of_capacity,
         )
-
 
         resources_kp_is.additional_properties = d
         return resources_kp_is

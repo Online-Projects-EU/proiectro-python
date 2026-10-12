@@ -1,45 +1,36 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
-
-from ..types import UNSET, Unset
 from dateutil.parser import isoparse
-from typing import cast
-import datetime
 
-
-
-
-
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OutputTeamBooking")
 
 
-
 @_attrs_define
 class OutputTeamBooking:
-    """ Output schema for a single team booking
+    """Output schema for a single team booking
 
-        Attributes:
-            id (str):
-            member_id (str):
-            member_name (str):
-            project_id (str):
-            project_name (str):
-            start_date (datetime.date):
-            end_date (datetime.date):
-            hours_per_day (int):
-            name (str):
-            member_avatar_url (None | str | Unset):
-            product_id (None | str | Unset):
-            product_name (None | str | Unset):
-     """
+    Attributes:
+        id (str):
+        member_id (str):
+        member_name (str):
+        project_id (str):
+        project_name (str):
+        start_date (datetime.date):
+        end_date (datetime.date):
+        hours_per_day (int):
+        name (str):
+        member_avatar_url (None | str | Unset):
+        product_id (None | str | Unset):
+        product_name (None | str | Unset):
+    """
 
     id: str
     member_id: str
@@ -54,10 +45,6 @@ class OutputTeamBooking:
     product_id: None | str | Unset = UNSET
     product_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -96,20 +83,21 @@ class OutputTeamBooking:
         else:
             product_name = self.product_name
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "member_id": member_id,
-            "member_name": member_name,
-            "project_id": project_id,
-            "project_name": project_name,
-            "start_date": start_date,
-            "end_date": end_date,
-            "hours_per_day": hours_per_day,
-            "name": name,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "member_id": member_id,
+                "member_name": member_name,
+                "project_id": project_id,
+                "project_name": project_name,
+                "start_date": start_date,
+                "end_date": end_date,
+                "hours_per_day": hours_per_day,
+                "name": name,
+            }
+        )
         if member_avatar_url is not UNSET:
             field_dict["member_avatar_url"] = member_avatar_url
         if product_id is not UNSET:
@@ -118,8 +106,6 @@ class OutputTeamBooking:
             field_dict["product_name"] = product_name
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -136,13 +122,7 @@ class OutputTeamBooking:
 
         start_date = isoparse(d.pop("start_date")).date()
 
-
-
-
         end_date = isoparse(d.pop("end_date")).date()
-
-
-
 
         hours_per_day = d.pop("hours_per_day")
 
@@ -157,7 +137,6 @@ class OutputTeamBooking:
 
         member_avatar_url = _parse_member_avatar_url(d.pop("member_avatar_url", UNSET))
 
-
         def _parse_product_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -167,7 +146,6 @@ class OutputTeamBooking:
 
         product_id = _parse_product_id(d.pop("product_id", UNSET))
 
-
         def _parse_product_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -176,7 +154,6 @@ class OutputTeamBooking:
             return cast(None | str | Unset, data)
 
         product_name = _parse_product_name(d.pop("product_name", UNSET))
-
 
         output_team_booking = cls(
             id=id,
@@ -192,7 +169,6 @@ class OutputTeamBooking:
             product_id=product_id,
             product_name=product_name,
         )
-
 
         output_team_booking.additional_properties = d
         return output_team_booking

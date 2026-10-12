@@ -1,40 +1,27 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="DownloadUrlGCS")
-
 
 
 @_attrs_define
 class DownloadUrlGCS:
-    """ 
-        Attributes:
-            signed_url (str):
-            gcs_object_name (str):
-            bucket (str):
-     """
+    """
+    Attributes:
+        signed_url (str):
+        gcs_object_name (str):
+        bucket (str):
+    """
 
     signed_url: str
     gcs_object_name: str
     bucket: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         signed_url = self.signed_url
@@ -43,18 +30,17 @@ class DownloadUrlGCS:
 
         bucket = self.bucket
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "signedUrl": signed_url,
-            "gcsObjectName": gcs_object_name,
-            "bucket": bucket,
-        })
+        field_dict.update(
+            {
+                "signedUrl": signed_url,
+                "gcsObjectName": gcs_object_name,
+                "bucket": bucket,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -70,7 +56,6 @@ class DownloadUrlGCS:
             gcs_object_name=gcs_object_name,
             bucket=bucket,
         )
-
 
         download_url_gcs.additional_properties = d
         return download_url_gcs

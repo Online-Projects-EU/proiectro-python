@@ -1,42 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="EditFormStep")
-
 
 
 @_attrs_define
 class EditFormStep:
-    """ 
-        Attributes:
-            title (None | str | Unset):
-            description (None | str | Unset):
-            submit_button_text (None | str | Unset):
-     """
+    """
+    Attributes:
+        title (None | str | Unset):
+        description (None | str | Unset):
+        submit_button_text (None | str | Unset):
+    """
 
     title: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     submit_button_text: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         title: None | str | Unset
@@ -57,11 +44,9 @@ class EditFormStep:
         else:
             submit_button_text = self.submit_button_text
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if title is not UNSET:
             field_dict["title"] = title
         if description is not UNSET:
@@ -71,11 +56,10 @@ class EditFormStep:
 
         return field_dict
 
-
-
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_title(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -84,7 +68,6 @@ class EditFormStep:
             return cast(None | str | Unset, data)
 
         title = _parse_title(d.pop("title", UNSET))
-
 
         def _parse_description(data: object) -> None | str | Unset:
             if data is None:
@@ -95,7 +78,6 @@ class EditFormStep:
 
         description = _parse_description(d.pop("description", UNSET))
 
-
         def _parse_submit_button_text(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -103,15 +85,15 @@ class EditFormStep:
                 return data
             return cast(None | str | Unset, data)
 
-        submit_button_text = _parse_submit_button_text(d.pop("submit_button_text", UNSET))
-
+        submit_button_text = _parse_submit_button_text(
+            d.pop("submit_button_text", UNSET)
+        )
 
         edit_form_step = cls(
             title=title,
             description=description,
             submit_button_text=submit_button_text,
         )
-
 
         edit_form_step.additional_properties = d
         return edit_form_step

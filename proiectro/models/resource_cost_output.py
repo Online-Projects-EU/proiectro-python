@@ -1,36 +1,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.resource_cost_histogram import ResourceCostHistogram
-  from ..models.resource_cost_record import ResourceCostRecord
-
-
-
+    from ..models.resource_cost_histogram import ResourceCostHistogram
+    from ..models.resource_cost_record import ResourceCostRecord
 
 
 T = TypeVar("T", bound="ResourceCostOutput")
 
 
-
 @_attrs_define
 class ResourceCostOutput:
-    """ 
-        Attributes:
-            resource (str):
-            current_record (ResourceCostRecord):
-            history (list[ResourceCostRecord]):
-            histogram (list[ResourceCostHistogram]):
-     """
+    """
+    Attributes:
+        resource (str):
+        current_record (ResourceCostRecord):
+        history (list[ResourceCostRecord]):
+        histogram (list[ResourceCostHistogram]):
+    """
 
     resource: str
     current_record: ResourceCostRecord
@@ -38,13 +30,7 @@ class ResourceCostOutput:
     histogram: list[ResourceCostHistogram]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.resource_cost_histogram import ResourceCostHistogram
-        from ..models.resource_cost_record import ResourceCostRecord
         resource = self.resource
 
         current_record = self.current_record.to_dict()
@@ -54,60 +40,47 @@ class ResourceCostOutput:
             history_item = history_item_data.to_dict()
             history.append(history_item)
 
-
-
         histogram = []
         for histogram_item_data in self.histogram:
             histogram_item = histogram_item_data.to_dict()
             histogram.append(histogram_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "resource": resource,
-            "current_record": current_record,
-            "history": history,
-            "histogram": histogram,
-        })
+        field_dict.update(
+            {
+                "resource": resource,
+                "current_record": current_record,
+                "history": history,
+                "histogram": histogram,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.resource_cost_histogram import ResourceCostHistogram
         from ..models.resource_cost_record import ResourceCostRecord
+
         d = dict(src_dict)
         resource = d.pop("resource")
 
         current_record = ResourceCostRecord.from_dict(d.pop("current_record"))
 
-
-
-
         history = []
         _history = d.pop("history")
-        for history_item_data in (_history):
+        for history_item_data in _history:
             history_item = ResourceCostRecord.from_dict(history_item_data)
-
-
 
             history.append(history_item)
 
-
         histogram = []
         _histogram = d.pop("histogram")
-        for histogram_item_data in (_histogram):
+        for histogram_item_data in _histogram:
             histogram_item = ResourceCostHistogram.from_dict(histogram_item_data)
 
-
-
             histogram.append(histogram_item)
-
 
         resource_cost_output = cls(
             resource=resource,
@@ -115,7 +88,6 @@ class ResourceCostOutput:
             history=history,
             histogram=histogram,
         )
-
 
         resource_cost_output.additional_properties = d
         return resource_cost_output

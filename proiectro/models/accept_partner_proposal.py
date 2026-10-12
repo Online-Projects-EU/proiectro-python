@@ -1,43 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="AcceptPartnerProposal")
-
 
 
 @_attrs_define
 class AcceptPartnerProposal:
-    """ Input schema for accepting a proposal from a partner through partner portal
+    """Input schema for accepting a proposal from a partner through partner portal
 
-        Attributes:
-            bridge_id (str):
-            proposal_id (str):
-            notes (None | str | Unset):
-     """
+    Attributes:
+        bridge_id (str):
+        proposal_id (str):
+        notes (None | str | Unset):
+    """
 
     bridge_id: str
     proposal_id: str
     notes: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         bridge_id = self.bridge_id
@@ -50,19 +37,18 @@ class AcceptPartnerProposal:
         else:
             notes = self.notes
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "bridge_id": bridge_id,
-            "proposal_id": proposal_id,
-        })
+        field_dict.update(
+            {
+                "bridge_id": bridge_id,
+                "proposal_id": proposal_id,
+            }
+        )
         if notes is not UNSET:
             field_dict["notes"] = notes
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -80,13 +66,11 @@ class AcceptPartnerProposal:
 
         notes = _parse_notes(d.pop("notes", UNSET))
 
-
         accept_partner_proposal = cls(
             bridge_id=bridge_id,
             proposal_id=proposal_id,
             notes=notes,
         )
-
 
         accept_partner_proposal.additional_properties = d
         return accept_partner_proposal

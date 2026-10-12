@@ -1,45 +1,33 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
 T = TypeVar("T", bound="KPIBlockedDeliverablesSummary")
-
 
 
 @_attrs_define
 class KPIBlockedDeliverablesSummary:
-    """ 
-        Attributes:
-            description (str | Unset):  Default: ''.
-            count (str | Unset):  Default: '0'.
-            blocked_count (str | Unset):  Default: '0'.
-            customer_pending_count (str | Unset):  Default: '0'.
-            rejected_count (str | Unset):  Default: '0'.
-     """
+    """
+    Attributes:
+        description (str | Unset):  Default: ''.
+        count (str | Unset):  Default: '0'.
+        blocked_count (str | Unset):  Default: '0'.
+        customer_pending_count (str | Unset):  Default: '0'.
+        rejected_count (str | Unset):  Default: '0'.
+    """
 
-    description: str | Unset = ''
-    count: str | Unset = '0'
-    blocked_count: str | Unset = '0'
-    customer_pending_count: str | Unset = '0'
-    rejected_count: str | Unset = '0'
+    description: str | Unset = ""
+    count: str | Unset = "0"
+    blocked_count: str | Unset = "0"
+    customer_pending_count: str | Unset = "0"
+    rejected_count: str | Unset = "0"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         description = self.description
@@ -52,11 +40,9 @@ class KPIBlockedDeliverablesSummary:
 
         rejected_count = self.rejected_count
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if description is not UNSET:
             field_dict["description"] = description
         if count is not UNSET:
@@ -69,8 +55,6 @@ class KPIBlockedDeliverablesSummary:
             field_dict["rejectedCount"] = rejected_count
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -92,7 +76,6 @@ class KPIBlockedDeliverablesSummary:
             customer_pending_count=customer_pending_count,
             rejected_count=rejected_count,
         )
-
 
         kpi_blocked_deliverables_summary.additional_properties = d
         return kpi_blocked_deliverables_summary

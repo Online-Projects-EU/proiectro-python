@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EditFormFieldFieldType(str, Enum):
     BOOLEAN = "boolean"
     COORDINATES = "coordinates"

@@ -1,44 +1,31 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.catalog_product import CatalogProduct
-
-
-
+    from ..models.catalog_product import CatalogProduct
 
 
 T = TypeVar("T", bound="CatalogProducts")
 
 
-
 @_attrs_define
 class CatalogProducts:
-    """ 
-        Attributes:
-            pricing_type (str):
-            products (list[CatalogProduct]):
-     """
+    """
+    Attributes:
+        pricing_type (str):
+        products (list[CatalogProduct]):
+    """
 
     pricing_type: str
     products: list[CatalogProduct]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.catalog_product import CatalogProduct
         pricing_type = self.pricing_type
 
         products = []
@@ -46,41 +33,35 @@ class CatalogProducts:
             products_item = products_item_data.to_dict()
             products.append(products_item)
 
-
-
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "pricing_type": pricing_type,
-            "products": products,
-        })
+        field_dict.update(
+            {
+                "pricing_type": pricing_type,
+                "products": products,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.catalog_product import CatalogProduct
+
         d = dict(src_dict)
         pricing_type = d.pop("pricing_type")
 
         products = []
         _products = d.pop("products")
-        for products_item_data in (_products):
+        for products_item_data in _products:
             products_item = CatalogProduct.from_dict(products_item_data)
 
-
-
             products.append(products_item)
-
 
         catalog_products = cls(
             pricing_type=pricing_type,
             products=products,
         )
-
 
         catalog_products.additional_properties = d
         return catalog_products

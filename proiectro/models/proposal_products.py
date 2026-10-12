@@ -1,37 +1,29 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-from typing import cast
-
 if TYPE_CHECKING:
-  from ..models.proposal_product import ProposalProduct
-  from ..models.proposal_product_summary import ProposalProductSummary
-  from ..models.proposal_products_proposal import ProposalProductsProposal
-
-
-
+    from ..models.proposal_product import ProposalProduct
+    from ..models.proposal_product_summary import ProposalProductSummary
+    from ..models.proposal_products_proposal import ProposalProductsProposal
 
 
 T = TypeVar("T", bound="ProposalProducts")
 
 
-
 @_attrs_define
 class ProposalProducts:
-    """ 
-        Attributes:
-            products (list[ProposalProduct]):
-            proposal (ProposalProductsProposal):
-            proposal_summary (ProposalProductSummary):
-            is_locked (bool):
-     """
+    """
+    Attributes:
+        products (list[ProposalProduct]):
+        proposal (ProposalProductsProposal):
+        proposal_summary (ProposalProductSummary):
+        is_locked (bool):
+    """
 
     products: list[ProposalProduct]
     proposal: ProposalProductsProposal
@@ -39,20 +31,11 @@ class ProposalProducts:
     is_locked: bool
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-
-
-
-
     def to_dict(self) -> dict[str, Any]:
-        from ..models.proposal_products_proposal import ProposalProductsProposal
-        from ..models.proposal_product import ProposalProduct
-        from ..models.proposal_product_summary import ProposalProductSummary
         products = []
         for products_item_data in self.products:
             products_item = products_item_data.to_dict()
             products.append(products_item)
-
-
 
         proposal = self.proposal.to_dict()
 
@@ -60,45 +43,36 @@ class ProposalProducts:
 
         is_locked = self.is_locked
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "products": products,
-            "proposal": proposal,
-            "proposal_summary": proposal_summary,
-            "is_locked": is_locked,
-        })
+        field_dict.update(
+            {
+                "products": products,
+                "proposal": proposal,
+                "proposal_summary": proposal_summary,
+                "is_locked": is_locked,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.proposal_product import ProposalProduct
         from ..models.proposal_product_summary import ProposalProductSummary
         from ..models.proposal_products_proposal import ProposalProductsProposal
+
         d = dict(src_dict)
         products = []
         _products = d.pop("products")
-        for products_item_data in (_products):
+        for products_item_data in _products:
             products_item = ProposalProduct.from_dict(products_item_data)
-
-
 
             products.append(products_item)
 
-
         proposal = ProposalProductsProposal.from_dict(d.pop("proposal"))
 
-
-
-
         proposal_summary = ProposalProductSummary.from_dict(d.pop("proposal_summary"))
-
-
-
 
         is_locked = d.pop("is_locked")
 
@@ -108,7 +82,6 @@ class ProposalProducts:
             proposal_summary=proposal_summary,
             is_locked=is_locked,
         )
-
 
         proposal_products.additional_properties = d
         return proposal_products

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class UpdateLeadStatusStatus(str, Enum):
     CONTACTED = "contacted"
     NEW = "new"

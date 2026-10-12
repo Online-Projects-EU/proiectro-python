@@ -1,40 +1,34 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-from ..types import UNSET, Unset
-from typing import cast
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputTenantPortalSettings")
-
 
 
 @_attrs_define
 class OutputTenantPortalSettings:
-    """ Output schema for tenant customer portal settings (GET endpoint).
+    """Output schema for tenant customer portal settings (GET endpoint).
 
-        Attributes:
-            portal_top_message (None | str | Unset):
-            portal_bottom_message (None | str | Unset):
-            portal_menu_background_color (None | str | Unset):
-            portal_menu_link_color (None | str | Unset):
-            portal_menu_divider_color (None | str | Unset):
-            portal_logo_background_color (None | str | Unset):
-            portal_background_color (None | str | Unset):
-            portal_button_color (None | str | Unset):
-            portal_icon_color (None | str | Unset):
-     """
+    Attributes:
+        portal_top_message (None | str | Unset):
+        portal_bottom_message (None | str | Unset):
+        portal_menu_background_color (None | str | Unset):
+        portal_menu_link_color (None | str | Unset):
+        portal_menu_divider_color (None | str | Unset):
+        portal_logo_background_color (None | str | Unset):
+        portal_background_color (None | str | Unset):
+        portal_button_color (None | str | Unset):
+        portal_icon_color (None | str | Unset):
+        portal_orders_auto_accept (bool | Unset):  Default: False.
+        portal_orders_payment_terms (str | Unset):  Default: 'on_accept'.
+        portal_orders_payment_days (int | Unset):  Default: 0.
+    """
 
     portal_top_message: None | str | Unset = UNSET
     portal_bottom_message: None | str | Unset = UNSET
@@ -45,11 +39,10 @@ class OutputTenantPortalSettings:
     portal_background_color: None | str | Unset = UNSET
     portal_button_color: None | str | Unset = UNSET
     portal_icon_color: None | str | Unset = UNSET
+    portal_orders_auto_accept: bool | Unset = False
+    portal_orders_payment_terms: str | Unset = "on_accept"
+    portal_orders_payment_days: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         portal_top_message: None | str | Unset
@@ -106,11 +99,15 @@ class OutputTenantPortalSettings:
         else:
             portal_icon_color = self.portal_icon_color
 
+        portal_orders_auto_accept = self.portal_orders_auto_accept
+
+        portal_orders_payment_terms = self.portal_orders_payment_terms
+
+        portal_orders_payment_days = self.portal_orders_payment_days
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-        })
+        field_dict.update({})
         if portal_top_message is not UNSET:
             field_dict["portal_top_message"] = portal_top_message
         if portal_bottom_message is not UNSET:
@@ -129,14 +126,19 @@ class OutputTenantPortalSettings:
             field_dict["portal_button_color"] = portal_button_color
         if portal_icon_color is not UNSET:
             field_dict["portal_icon_color"] = portal_icon_color
+        if portal_orders_auto_accept is not UNSET:
+            field_dict["portal_orders_auto_accept"] = portal_orders_auto_accept
+        if portal_orders_payment_terms is not UNSET:
+            field_dict["portal_orders_payment_terms"] = portal_orders_payment_terms
+        if portal_orders_payment_days is not UNSET:
+            field_dict["portal_orders_payment_days"] = portal_orders_payment_days
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
+
         def _parse_portal_top_message(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -144,8 +146,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_top_message = _parse_portal_top_message(d.pop("portal_top_message", UNSET))
-
+        portal_top_message = _parse_portal_top_message(
+            d.pop("portal_top_message", UNSET)
+        )
 
         def _parse_portal_bottom_message(data: object) -> None | str | Unset:
             if data is None:
@@ -154,8 +157,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_bottom_message = _parse_portal_bottom_message(d.pop("portal_bottom_message", UNSET))
-
+        portal_bottom_message = _parse_portal_bottom_message(
+            d.pop("portal_bottom_message", UNSET)
+        )
 
         def _parse_portal_menu_background_color(data: object) -> None | str | Unset:
             if data is None:
@@ -164,8 +168,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_menu_background_color = _parse_portal_menu_background_color(d.pop("portal_menu_background_color", UNSET))
-
+        portal_menu_background_color = _parse_portal_menu_background_color(
+            d.pop("portal_menu_background_color", UNSET)
+        )
 
         def _parse_portal_menu_link_color(data: object) -> None | str | Unset:
             if data is None:
@@ -174,8 +179,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_menu_link_color = _parse_portal_menu_link_color(d.pop("portal_menu_link_color", UNSET))
-
+        portal_menu_link_color = _parse_portal_menu_link_color(
+            d.pop("portal_menu_link_color", UNSET)
+        )
 
         def _parse_portal_menu_divider_color(data: object) -> None | str | Unset:
             if data is None:
@@ -184,8 +190,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_menu_divider_color = _parse_portal_menu_divider_color(d.pop("portal_menu_divider_color", UNSET))
-
+        portal_menu_divider_color = _parse_portal_menu_divider_color(
+            d.pop("portal_menu_divider_color", UNSET)
+        )
 
         def _parse_portal_logo_background_color(data: object) -> None | str | Unset:
             if data is None:
@@ -194,8 +201,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_logo_background_color = _parse_portal_logo_background_color(d.pop("portal_logo_background_color", UNSET))
-
+        portal_logo_background_color = _parse_portal_logo_background_color(
+            d.pop("portal_logo_background_color", UNSET)
+        )
 
         def _parse_portal_background_color(data: object) -> None | str | Unset:
             if data is None:
@@ -204,8 +212,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_background_color = _parse_portal_background_color(d.pop("portal_background_color", UNSET))
-
+        portal_background_color = _parse_portal_background_color(
+            d.pop("portal_background_color", UNSET)
+        )
 
         def _parse_portal_button_color(data: object) -> None | str | Unset:
             if data is None:
@@ -214,8 +223,9 @@ class OutputTenantPortalSettings:
                 return data
             return cast(None | str | Unset, data)
 
-        portal_button_color = _parse_portal_button_color(d.pop("portal_button_color", UNSET))
-
+        portal_button_color = _parse_portal_button_color(
+            d.pop("portal_button_color", UNSET)
+        )
 
         def _parse_portal_icon_color(data: object) -> None | str | Unset:
             if data is None:
@@ -226,6 +236,11 @@ class OutputTenantPortalSettings:
 
         portal_icon_color = _parse_portal_icon_color(d.pop("portal_icon_color", UNSET))
 
+        portal_orders_auto_accept = d.pop("portal_orders_auto_accept", UNSET)
+
+        portal_orders_payment_terms = d.pop("portal_orders_payment_terms", UNSET)
+
+        portal_orders_payment_days = d.pop("portal_orders_payment_days", UNSET)
 
         output_tenant_portal_settings = cls(
             portal_top_message=portal_top_message,
@@ -237,8 +252,10 @@ class OutputTenantPortalSettings:
             portal_background_color=portal_background_color,
             portal_button_color=portal_button_color,
             portal_icon_color=portal_icon_color,
+            portal_orders_auto_accept=portal_orders_auto_accept,
+            portal_orders_payment_terms=portal_orders_payment_terms,
+            portal_orders_payment_days=portal_orders_payment_days,
         )
-
 
         output_tenant_portal_settings.additional_properties = d
         return output_tenant_portal_settings

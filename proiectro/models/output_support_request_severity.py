@@ -1,35 +1,26 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, BinaryIO, TextIO, TYPE_CHECKING, Generator
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-
-
-
-
-
-
 T = TypeVar("T", bound="OutputSupportRequestSeverity")
-
 
 
 @_attrs_define
 class OutputSupportRequestSeverity:
-    """ Output schema for a single support request severity
+    """Output schema for a single support request severity
 
-        Attributes:
-            id (str):
-            name (str):
-            internal (bool):
-            active (bool):
-            sequence_no (int):
-            score (int):
-     """
+    Attributes:
+        id (str):
+        name (str):
+        internal (bool):
+        active (bool):
+        sequence_no (int):
+        score (int):
+    """
 
     id: str
     name: str
@@ -38,10 +29,6 @@ class OutputSupportRequestSeverity:
     sequence_no: int
     score: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
-
-
-
-
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -56,21 +43,20 @@ class OutputSupportRequestSeverity:
 
         score = self.score
 
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({
-            "id": id,
-            "name": name,
-            "internal": internal,
-            "active": active,
-            "sequence_no": sequence_no,
-            "score": score,
-        })
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "internal": internal,
+                "active": active,
+                "sequence_no": sequence_no,
+                "score": score,
+            }
+        )
 
         return field_dict
-
-
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
@@ -95,7 +81,6 @@ class OutputSupportRequestSeverity:
             sequence_no=sequence_no,
             score=score,
         )
-
 
         output_support_request_severity.additional_properties = d
         return output_support_request_severity
