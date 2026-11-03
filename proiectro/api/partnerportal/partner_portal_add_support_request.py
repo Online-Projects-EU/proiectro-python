@@ -87,11 +87,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Partner Portal Add Support Request
 
-     Submit support requests to your partner organization for assistance with technical issues,
-    collaboration questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team in your partner's organization.
-    You'll receive a unique reference number to track progress and can monitor status updates
-    in the partner portal.
+     Ask your partner for help with a problem, a question about your work together or anything else.
+    You can link the request to a project or a product, and follow it here.
 
     Args:
         tenant_path (str):
@@ -126,11 +123,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Partner Portal Add Support Request
 
-     Submit support requests to your partner organization for assistance with technical issues,
-    collaboration questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team in your partner's organization.
-    You'll receive a unique reference number to track progress and can monitor status updates
-    in the partner portal.
+     Ask your partner for help with a problem, a question about your work together or anything else.
+    You can link the request to a project or a product, and follow it here.
 
     Args:
         tenant_path (str):
@@ -160,11 +154,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Partner Portal Add Support Request
 
-     Submit support requests to your partner organization for assistance with technical issues,
-    collaboration questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team in your partner's organization.
-    You'll receive a unique reference number to track progress and can monitor status updates
-    in the partner portal.
+     Ask your partner for help with a problem, a question about your work together or anything else.
+    You can link the request to a project or a product, and follow it here.
 
     Args:
         tenant_path (str):
@@ -197,11 +188,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Partner Portal Add Support Request
 
-     Submit support requests to your partner organization for assistance with technical issues,
-    collaboration questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team in your partner's organization.
-    You'll receive a unique reference number to track progress and can monitor status updates
-    in the partner portal.
+     Ask your partner for help with a problem, a question about your work together or anything else.
+    You can link the request to a project or a product, and follow it here.
 
     Args:
         tenant_path (str):

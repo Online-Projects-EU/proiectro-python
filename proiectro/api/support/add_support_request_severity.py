@@ -76,10 +76,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Support Request Severity
 
-     Define new urgency levels to match service level agreements and customer tiers.
-    Set response times, escalation triggers, and notification rules.
-    Consider existing severities to maintain clear differentiation.
-    Affects prioritization and resource allocation immediately.
+     Add a severity for support requests, internal or external. The name must be unique among
+    severities of the same kind; its score sets how urgent it is.
 
     Args:
         tenant_path (str):
@@ -113,10 +111,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Support Request Severity
 
-     Define new urgency levels to match service level agreements and customer tiers.
-    Set response times, escalation triggers, and notification rules.
-    Consider existing severities to maintain clear differentiation.
-    Affects prioritization and resource allocation immediately.
+     Add a severity for support requests, internal or external. The name must be unique among
+    severities of the same kind; its score sets how urgent it is.
 
     Args:
         tenant_path (str):
@@ -145,10 +141,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Support Request Severity
 
-     Define new urgency levels to match service level agreements and customer tiers.
-    Set response times, escalation triggers, and notification rules.
-    Consider existing severities to maintain clear differentiation.
-    Affects prioritization and resource allocation immediately.
+     Add a severity for support requests, internal or external. The name must be unique among
+    severities of the same kind; its score sets how urgent it is.
 
     Args:
         tenant_path (str):
@@ -180,10 +174,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Support Request Severity
 
-     Define new urgency levels to match service level agreements and customer tiers.
-    Set response times, escalation triggers, and notification rules.
-    Consider existing severities to maintain clear differentiation.
-    Affects prioritization and resource allocation immediately.
+     Add a severity for support requests, internal or external. The name must be unique among
+    severities of the same kind; its score sets how urgent it is.
 
     Args:
         tenant_path (str):

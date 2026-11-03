@@ -11,7 +11,7 @@ T = TypeVar("T", bound="PortalEditExternalSupportRequest")
 
 @_attrs_define
 class PortalEditExternalSupportRequest:
-    """Portal-safe schema — excludes root_cause_asset (internal-only field).
+    """Portal-safe schema, excludes root_cause_asset (internal-only field).
 
     Attributes:
         title (str):

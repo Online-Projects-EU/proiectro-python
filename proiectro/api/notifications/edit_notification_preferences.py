@@ -95,7 +95,7 @@ def sync_detailed(
             opinion about: `{"support": {"web": false}, "support_assigned": {"mobile": true}}`.
 
             Only the keys sent are written. An absent key keeps whatever was stored, and a stored key
-            that is absent here is not cleared — matching how every other edit in this codebase
+            that is absent here is not cleared, matching how every other edit in this codebase
             behaves. To go back to following the product default, send the key with an empty object
             and it is removed.
 
@@ -140,7 +140,7 @@ def sync(
             opinion about: `{"support": {"web": false}, "support_assigned": {"mobile": true}}`.
 
             Only the keys sent are written. An absent key keeps whatever was stored, and a stored key
-            that is absent here is not cleared — matching how every other edit in this codebase
+            that is absent here is not cleared, matching how every other edit in this codebase
             behaves. To go back to following the product default, send the key with an empty object
             and it is removed.
 
@@ -180,7 +180,7 @@ async def asyncio_detailed(
             opinion about: `{"support": {"web": false}, "support_assigned": {"mobile": true}}`.
 
             Only the keys sent are written. An absent key keeps whatever was stored, and a stored key
-            that is absent here is not cleared — matching how every other edit in this codebase
+            that is absent here is not cleared, matching how every other edit in this codebase
             behaves. To go back to following the product default, send the key with an empty object
             and it is removed.
 
@@ -223,7 +223,7 @@ async def asyncio(
             opinion about: `{"support": {"web": false}, "support_assigned": {"mobile": true}}`.
 
             Only the keys sent are written. An absent key keeps whatever was stored, and a stored key
-            that is absent here is not cleared — matching how every other edit in this codebase
+            that is absent here is not cleared, matching how every other edit in this codebase
             behaves. To go back to following the product default, send the key with an empty object
             and it is removed.
 

@@ -13,9 +13,8 @@ T = TypeVar("T", bound="EditMyProfile")
 
 @_attrs_define
 class EditMyProfile:
-    """Partial: an omitted key keeps the stored value. Valid languages are
-    settings.LANGUAGES, validated in the function so new languages need no
-    schema change.
+    """Partial: an omitted key keeps the stored value. `language` is one of the platform's
+    languages, such as `en` or `ro`.
 
         Attributes:
             language (None | str | Unset):

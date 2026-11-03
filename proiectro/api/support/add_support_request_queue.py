@@ -76,10 +76,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Support Request Queue
 
-     Create specialized queues for different support teams or request categories.
-    Define team assignments, routing rules, and escalation paths. Queues enable
-    parallel processing and skill-based routing. Consider team capacity and
-    expertise when creating new queues.
+     Add a support queue. Queue rules send new requests to it by type and severity. With automatic
+    assignment and an owner role, each new request goes to the member of that role with the fewest
+    open requests.
 
     Args:
         tenant_path (str):
@@ -113,10 +112,9 @@ def sync(
 ) -> APIResponse | None:
     """Add Support Request Queue
 
-     Create specialized queues for different support teams or request categories.
-    Define team assignments, routing rules, and escalation paths. Queues enable
-    parallel processing and skill-based routing. Consider team capacity and
-    expertise when creating new queues.
+     Add a support queue. Queue rules send new requests to it by type and severity. With automatic
+    assignment and an owner role, each new request goes to the member of that role with the fewest
+    open requests.
 
     Args:
         tenant_path (str):
@@ -145,10 +143,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Support Request Queue
 
-     Create specialized queues for different support teams or request categories.
-    Define team assignments, routing rules, and escalation paths. Queues enable
-    parallel processing and skill-based routing. Consider team capacity and
-    expertise when creating new queues.
+     Add a support queue. Queue rules send new requests to it by type and severity. With automatic
+    assignment and an owner role, each new request goes to the member of that role with the fewest
+    open requests.
 
     Args:
         tenant_path (str):
@@ -180,10 +177,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Support Request Queue
 
-     Create specialized queues for different support teams or request categories.
-    Define team assignments, routing rules, and escalation paths. Queues enable
-    parallel processing and skill-based routing. Consider team capacity and
-    expertise when creating new queues.
+     Add a support queue. Queue rules send new requests to it by type and severity. With automatic
+    assignment and an owner role, each new request goes to the member of that role with the fewest
+    open requests.
 
     Args:
         tenant_path (str):

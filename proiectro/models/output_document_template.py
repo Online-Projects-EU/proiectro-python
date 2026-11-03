@@ -21,6 +21,8 @@ class OutputDocumentTemplate:
         entity_type_display (str):
         data_classification (str):
         is_active (bool):
+        kind (str | Unset):  Default: 'document'.
+        kind_display (str | Unset):  Default: ''.
         default_series (None | str | Unset):
         default_series_code (None | str | Unset):
         retention_days (int | None | Unset):
@@ -32,6 +34,8 @@ class OutputDocumentTemplate:
     entity_type_display: str
     data_classification: str
     is_active: bool
+    kind: str | Unset = "document"
+    kind_display: str | Unset = ""
     default_series: None | str | Unset = UNSET
     default_series_code: None | str | Unset = UNSET
     retention_days: int | None | Unset = UNSET
@@ -49,6 +53,10 @@ class OutputDocumentTemplate:
         data_classification = self.data_classification
 
         is_active = self.is_active
+
+        kind = self.kind
+
+        kind_display = self.kind_display
 
         default_series: None | str | Unset
         if isinstance(self.default_series, Unset):
@@ -80,6 +88,10 @@ class OutputDocumentTemplate:
                 "is_active": is_active,
             }
         )
+        if kind is not UNSET:
+            field_dict["kind"] = kind
+        if kind_display is not UNSET:
+            field_dict["kind_display"] = kind_display
         if default_series is not UNSET:
             field_dict["default_series"] = default_series
         if default_series_code is not UNSET:
@@ -103,6 +115,10 @@ class OutputDocumentTemplate:
         data_classification = d.pop("data_classification")
 
         is_active = d.pop("is_active")
+
+        kind = d.pop("kind", UNSET)
+
+        kind_display = d.pop("kind_display", UNSET)
 
         def _parse_default_series(data: object) -> None | str | Unset:
             if data is None:
@@ -140,6 +156,8 @@ class OutputDocumentTemplate:
             entity_type_display=entity_type_display,
             data_classification=data_classification,
             is_active=is_active,
+            kind=kind,
+            kind_display=kind_display,
             default_series=default_series,
             default_series_code=default_series_code,
             retention_days=retention_days,

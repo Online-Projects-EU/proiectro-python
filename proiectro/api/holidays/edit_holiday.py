@@ -80,10 +80,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Holiday
 
-     Modify holiday details when dates change or territories need adjustment. Useful for
-    floating holidays that move each year or correcting entry errors. Changes propagate
-    to all affected calendars and capacity calculations immediately. Review existing
-    bookings that might conflict with modified holiday dates.
+     Change a holiday's date, name or territory, for example for a holiday that moves every year, or
+    to fix a mistake.
 
     Args:
         tenant_path (str):
@@ -120,10 +118,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Holiday
 
-     Modify holiday details when dates change or territories need adjustment. Useful for
-    floating holidays that move each year or correcting entry errors. Changes propagate
-    to all affected calendars and capacity calculations immediately. Review existing
-    bookings that might conflict with modified holiday dates.
+     Change a holiday's date, name or territory, for example for a holiday that moves every year, or
+    to fix a mistake.
 
     Args:
         tenant_path (str):
@@ -155,10 +151,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Holiday
 
-     Modify holiday details when dates change or territories need adjustment. Useful for
-    floating holidays that move each year or correcting entry errors. Changes propagate
-    to all affected calendars and capacity calculations immediately. Review existing
-    bookings that might conflict with modified holiday dates.
+     Change a holiday's date, name or territory, for example for a holiday that moves every year, or
+    to fix a mistake.
 
     Args:
         tenant_path (str):
@@ -193,10 +187,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Holiday
 
-     Modify holiday details when dates change or territories need adjustment. Useful for
-    floating holidays that move each year or correcting entry errors. Changes propagate
-    to all affected calendars and capacity calculations immediately. Review existing
-    bookings that might conflict with modified holiday dates.
+     Change a holiday's date, name or territory, for example for a holiday that moves every year, or
+    to fix a mistake.
 
     Args:
         tenant_path (str):

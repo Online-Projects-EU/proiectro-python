@@ -81,10 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Resource
 
-     Report issues with specific resources like equipment, facilities, or personnel.
-    Resource context enables targeted maintenance, repairs, or availability updates.
-    Helps track resource-related problems affecting project delivery.
-    Useful for capacity issues or skill gap identification.
+     Open an internal support request about a resource, such as equipment or a room. It goes to a
+    queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -122,10 +120,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request For Resource
 
-     Report issues with specific resources like equipment, facilities, or personnel.
-    Resource context enables targeted maintenance, repairs, or availability updates.
-    Helps track resource-related problems affecting project delivery.
-    Useful for capacity issues or skill gap identification.
+     Open an internal support request about a resource, such as equipment or a room. It goes to a
+    queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -158,10 +154,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Resource
 
-     Report issues with specific resources like equipment, facilities, or personnel.
-    Resource context enables targeted maintenance, repairs, or availability updates.
-    Helps track resource-related problems affecting project delivery.
-    Useful for capacity issues or skill gap identification.
+     Open an internal support request about a resource, such as equipment or a room. It goes to a
+    queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -197,10 +191,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request For Resource
 
-     Report issues with specific resources like equipment, facilities, or personnel.
-    Resource context enables targeted maintenance, repairs, or availability updates.
-    Helps track resource-related problems affecting project delivery.
-    Useful for capacity issues or skill gap identification.
+     Open an internal support request about a resource, such as equipment or a room. It goes to a
+    queue by its type and severity.
 
     Args:
         tenant_path (str):

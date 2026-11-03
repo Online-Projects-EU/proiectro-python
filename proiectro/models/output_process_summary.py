@@ -24,6 +24,7 @@ class OutputProcessSummary:
         total_items (int | Unset):  Default: 0.
         input_items (int | Unset):  Default: 0.
         pending_approval (int | Unset):  Default: 0.
+        can_add (bool | Unset):  Default: False.
         assignable_members (list[OutputProcessAssignee] | Unset):
     """
 
@@ -32,6 +33,7 @@ class OutputProcessSummary:
     total_items: int | Unset = 0
     input_items: int | Unset = 0
     pending_approval: int | Unset = 0
+    can_add: bool | Unset = False
     assignable_members: list[OutputProcessAssignee] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -45,6 +47,8 @@ class OutputProcessSummary:
         input_items = self.input_items
 
         pending_approval = self.pending_approval
+
+        can_add = self.can_add
 
         assignable_members: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.assignable_members, Unset):
@@ -67,6 +71,8 @@ class OutputProcessSummary:
             field_dict["input_items"] = input_items
         if pending_approval is not UNSET:
             field_dict["pending_approval"] = pending_approval
+        if can_add is not UNSET:
+            field_dict["can_add"] = can_add
         if assignable_members is not UNSET:
             field_dict["assignable_members"] = assignable_members
 
@@ -87,6 +93,8 @@ class OutputProcessSummary:
 
         pending_approval = d.pop("pending_approval", UNSET)
 
+        can_add = d.pop("can_add", UNSET)
+
         _assignable_members = d.pop("assignable_members", UNSET)
         assignable_members: list[OutputProcessAssignee] | Unset = UNSET
         if _assignable_members is not UNSET:
@@ -104,6 +112,7 @@ class OutputProcessSummary:
             total_items=total_items,
             input_items=input_items,
             pending_approval=pending_approval,
+            can_add=can_add,
             assignable_members=assignable_members,
         )
 

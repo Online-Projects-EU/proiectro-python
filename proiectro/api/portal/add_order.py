@@ -87,8 +87,9 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Order
 
-     Order catalog items from the supplier at today's catalog price.
-    Availability is checked first; the supplier accepts or rejects the order.
+     Order items from your supplier's catalog, at the prices in your price list. Stock is checked
+    when you send the order; the supplier accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         customer_org_id (str):
@@ -123,8 +124,9 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Order
 
-     Order catalog items from the supplier at today's catalog price.
-    Availability is checked first; the supplier accepts or rejects the order.
+     Order items from your supplier's catalog, at the prices in your price list. Stock is checked
+    when you send the order; the supplier accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         customer_org_id (str):
@@ -154,8 +156,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Order
 
-     Order catalog items from the supplier at today's catalog price.
-    Availability is checked first; the supplier accepts or rejects the order.
+     Order items from your supplier's catalog, at the prices in your price list. Stock is checked
+    when you send the order; the supplier accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         customer_org_id (str):
@@ -188,8 +191,9 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Order
 
-     Order catalog items from the supplier at today's catalog price.
-    Availability is checked first; the supplier accepts or rejects the order.
+     Order items from your supplier's catalog, at the prices in your price list. Stock is checked
+    when you send the order; the supplier accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         customer_org_id (str):

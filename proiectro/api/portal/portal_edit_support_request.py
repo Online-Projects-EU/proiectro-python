@@ -81,14 +81,13 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Edit Support Request
 
-     Update the title, description, type, or severity of your support request. This helps ensure
-    your request contains accurate information and is properly categorized for faster resolution.
-    You can edit requests that haven't been closed yet.
+     Edit the title, description, type or severity of your support request, as long as it is not
+    closed.
 
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+        body (PortalEditExternalSupportRequest): Portal-safe schema, excludes root_cause_asset
             (internal-only field).
 
     Raises:
@@ -121,14 +120,13 @@ def sync(
 ) -> APIResponse | None:
     """Portal Edit Support Request
 
-     Update the title, description, type, or severity of your support request. This helps ensure
-    your request contains accurate information and is properly categorized for faster resolution.
-    You can edit requests that haven't been closed yet.
+     Edit the title, description, type or severity of your support request, as long as it is not
+    closed.
 
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+        body (PortalEditExternalSupportRequest): Portal-safe schema, excludes root_cause_asset
             (internal-only field).
 
     Raises:
@@ -156,14 +154,13 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Edit Support Request
 
-     Update the title, description, type, or severity of your support request. This helps ensure
-    your request contains accurate information and is properly categorized for faster resolution.
-    You can edit requests that haven't been closed yet.
+     Edit the title, description, type or severity of your support request, as long as it is not
+    closed.
 
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+        body (PortalEditExternalSupportRequest): Portal-safe schema, excludes root_cause_asset
             (internal-only field).
 
     Raises:
@@ -194,14 +191,13 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Edit Support Request
 
-     Update the title, description, type, or severity of your support request. This helps ensure
-    your request contains accurate information and is properly categorized for faster resolution.
-    You can edit requests that haven't been closed yet.
+     Edit the title, description, type or severity of your support request, as long as it is not
+    closed.
 
     Args:
         customer_org_id (str):
         support_request_id (str):
-        body (PortalEditExternalSupportRequest): Portal-safe schema — excludes root_cause_asset
+        body (PortalEditExternalSupportRequest): Portal-safe schema, excludes root_cause_asset
             (internal-only field).
 
     Raises:

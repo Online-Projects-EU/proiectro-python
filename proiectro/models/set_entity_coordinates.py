@@ -15,7 +15,7 @@ T = TypeVar("T", bound="SetEntityCoordinates")
 class SetEntityCoordinates:
     """Field GPS capture for a location / customer location / customer asset.
 
-    `accuracy_m` is the device-reported fix accuracy and is mandatory — writes
+    `accuracy_m` is the device-reported fix accuracy and is mandatory, writes
     above the workspace's `geo_capture_max_accuracy_m` floor are rejected, so a
     500 m fix never gets stored as truth. An existing point is never silently
     overwritten: without `confirm_overwrite` the endpoint answers 409 with the

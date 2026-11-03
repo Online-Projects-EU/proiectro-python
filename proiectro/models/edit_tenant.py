@@ -26,6 +26,7 @@ class EditTenant:
         geo_capture_max_accuracy_m (int | None | Unset):
         geofence_enabled (bool | None | Unset):
         geofence_radius_m (int | None | Unset):
+        time_off_requires_approval (bool | None | Unset):
     """
 
     name: None | str | Unset = UNSET
@@ -38,6 +39,7 @@ class EditTenant:
     geo_capture_max_accuracy_m: int | None | Unset = UNSET
     geofence_enabled: bool | None | Unset = UNSET
     geofence_radius_m: int | None | Unset = UNSET
+    time_off_requires_approval: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -103,6 +105,12 @@ class EditTenant:
         else:
             geofence_radius_m = self.geofence_radius_m
 
+        time_off_requires_approval: bool | None | Unset
+        if isinstance(self.time_off_requires_approval, Unset):
+            time_off_requires_approval = UNSET
+        else:
+            time_off_requires_approval = self.time_off_requires_approval
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -126,6 +134,8 @@ class EditTenant:
             field_dict["geofence_enabled"] = geofence_enabled
         if geofence_radius_m is not UNSET:
             field_dict["geofence_radius_m"] = geofence_radius_m
+        if time_off_requires_approval is not UNSET:
+            field_dict["time_off_requires_approval"] = time_off_requires_approval
 
         return field_dict
 
@@ -241,6 +251,17 @@ class EditTenant:
 
         geofence_radius_m = _parse_geofence_radius_m(d.pop("geofence_radius_m", UNSET))
 
+        def _parse_time_off_requires_approval(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        time_off_requires_approval = _parse_time_off_requires_approval(
+            d.pop("time_off_requires_approval", UNSET)
+        )
+
         edit_tenant = cls(
             name=name,
             timezone=timezone,
@@ -252,6 +273,7 @@ class EditTenant:
             geo_capture_max_accuracy_m=geo_capture_max_accuracy_m,
             geofence_enabled=geofence_enabled,
             geofence_radius_m=geofence_radius_m,
+            time_off_requires_approval=time_off_requires_approval,
         )
 
         edit_tenant.additional_properties = d

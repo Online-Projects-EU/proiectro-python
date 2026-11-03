@@ -79,7 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Close External Support Request
 
-     Close an external support request with a resolution.
+     Close an external support request with a resolution. The requester and the assignee are notified
+    of the resolution.
 
     Args:
         tenant_path (str):
@@ -116,7 +117,8 @@ def sync(
 ) -> APIResponse | None:
     """Close External Support Request
 
-     Close an external support request with a resolution.
+     Close an external support request with a resolution. The requester and the assignee are notified
+    of the resolution.
 
     Args:
         tenant_path (str):
@@ -148,7 +150,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Close External Support Request
 
-     Close an external support request with a resolution.
+     Close an external support request with a resolution. The requester and the assignee are notified
+    of the resolution.
 
     Args:
         tenant_path (str):
@@ -183,7 +186,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Close External Support Request
 
-     Close an external support request with a resolution.
+     Close an external support request with a resolution. The requester and the assignee are notified
+    of the resolution.
 
     Args:
         tenant_path (str):

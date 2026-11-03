@@ -90,8 +90,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Portal Accept Proposal
 
-     Accept a proposal from customer portal.
-    This confirms acceptance and converts the proposal to an active project.
+     Accept a proposal your supplier sent you. It becomes an active project, and your name and email
+    are kept with the acceptance.
 
     Args:
         customer_org_id (str):
@@ -128,8 +128,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Portal Accept Proposal
 
-     Accept a proposal from customer portal.
-    This confirms acceptance and converts the proposal to an active project.
+     Accept a proposal your supplier sent you. It becomes an active project, and your name and email
+    are kept with the acceptance.
 
     Args:
         customer_org_id (str):
@@ -161,8 +161,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Portal Accept Proposal
 
-     Accept a proposal from customer portal.
-    This confirms acceptance and converts the proposal to an active project.
+     Accept a proposal your supplier sent you. It becomes an active project, and your name and email
+    are kept with the acceptance.
 
     Args:
         customer_org_id (str):
@@ -197,8 +197,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Portal Accept Proposal
 
-     Accept a proposal from customer portal.
-    This confirms acceptance and converts the proposal to an active project.
+     Accept a proposal your supplier sent you. It becomes an active project, and your name and email
+    are kept with the acceptance.
 
     Args:
         customer_org_id (str):

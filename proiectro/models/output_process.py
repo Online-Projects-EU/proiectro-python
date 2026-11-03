@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -23,6 +23,7 @@ class OutputProcess:
         allow_skip_move (bool):
         stage_count (int | Unset):  Default: 0.
         item_count (int | Unset):  Default: 0.
+        setup_warnings (list[str] | Unset):
     """
 
     id: str
@@ -33,6 +34,7 @@ class OutputProcess:
     allow_skip_move: bool
     stage_count: int | Unset = 0
     item_count: int | Unset = 0
+    setup_warnings: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -52,6 +54,10 @@ class OutputProcess:
 
         item_count = self.item_count
 
+        setup_warnings: list[str] | Unset = UNSET
+        if not isinstance(self.setup_warnings, Unset):
+            setup_warnings = self.setup_warnings
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -68,6 +74,8 @@ class OutputProcess:
             field_dict["stage_count"] = stage_count
         if item_count is not UNSET:
             field_dict["item_count"] = item_count
+        if setup_warnings is not UNSET:
+            field_dict["setup_warnings"] = setup_warnings
 
         return field_dict
 
@@ -90,6 +98,8 @@ class OutputProcess:
 
         item_count = d.pop("item_count", UNSET)
 
+        setup_warnings = cast(list[str], d.pop("setup_warnings", UNSET))
+
         output_process = cls(
             id=id,
             name=name,
@@ -99,6 +109,7 @@ class OutputProcess:
             allow_skip_move=allow_skip_move,
             stage_count=stage_count,
             item_count=item_count,
+            setup_warnings=setup_warnings,
         )
 
         output_process.additional_properties = d

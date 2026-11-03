@@ -82,8 +82,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Rfp
 
-     Create a Request for Proposal to solicit bids from partners. RFP is created in draft status and must
-    be published to be visible.
+     Create a request for proposal to get offers from your partners. It starts as a draft: publish it
+    to partners when it is ready.
 
     Args:
         tenant_path (str):
@@ -117,8 +117,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Rfp
 
-     Create a Request for Proposal to solicit bids from partners. RFP is created in draft status and must
-    be published to be visible.
+     Create a request for proposal to get offers from your partners. It starts as a draft: publish it
+    to partners when it is ready.
 
     Args:
         tenant_path (str):
@@ -147,8 +147,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Rfp
 
-     Create a Request for Proposal to solicit bids from partners. RFP is created in draft status and must
-    be published to be visible.
+     Create a request for proposal to get offers from your partners. It starts as a draft: publish it
+    to partners when it is ready.
 
     Args:
         tenant_path (str):
@@ -180,8 +180,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Rfp
 
-     Create a Request for Proposal to solicit bids from partners. RFP is created in draft status and must
-    be published to be visible.
+     Create a request for proposal to get offers from your partners. It starts as a draft: publish it
+    to partners when it is ready.
 
     Args:
         tenant_path (str):

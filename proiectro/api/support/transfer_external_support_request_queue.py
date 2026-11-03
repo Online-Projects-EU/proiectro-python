@@ -79,7 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Transfer External Support Request Queue
 
-     Transfer external support request to a different queue.
+     Move an external support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):
@@ -117,7 +118,8 @@ def sync(
 ) -> APIResponse | None:
     """Transfer External Support Request Queue
 
-     Transfer external support request to a different queue.
+     Move an external support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):
@@ -150,7 +152,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Transfer External Support Request Queue
 
-     Transfer external support request to a different queue.
+     Move an external support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):
@@ -186,7 +189,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Transfer External Support Request Queue
 
-     Transfer external support request to a different queue.
+     Move an external support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):

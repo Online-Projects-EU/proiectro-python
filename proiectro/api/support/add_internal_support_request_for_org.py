@@ -81,10 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Org
 
-     Create support requests linked to specific customer organizations for account issues.
-    Enables tracking customer-related problems and account management tasks.
-    Organization context helps support teams understand impact and prioritize
-    accordingly. Useful for onboarding issues or customer-specific configurations.
+     Open an internal support request about one of your customers. It goes to a queue by its type and
+    severity, like any internal request.
 
     Args:
         tenant_path (str):
@@ -122,10 +120,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request For Org
 
-     Create support requests linked to specific customer organizations for account issues.
-    Enables tracking customer-related problems and account management tasks.
-    Organization context helps support teams understand impact and prioritize
-    accordingly. Useful for onboarding issues or customer-specific configurations.
+     Open an internal support request about one of your customers. It goes to a queue by its type and
+    severity, like any internal request.
 
     Args:
         tenant_path (str):
@@ -158,10 +154,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Org
 
-     Create support requests linked to specific customer organizations for account issues.
-    Enables tracking customer-related problems and account management tasks.
-    Organization context helps support teams understand impact and prioritize
-    accordingly. Useful for onboarding issues or customer-specific configurations.
+     Open an internal support request about one of your customers. It goes to a queue by its type and
+    severity, like any internal request.
 
     Args:
         tenant_path (str):
@@ -197,10 +191,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request For Org
 
-     Create support requests linked to specific customer organizations for account issues.
-    Enables tracking customer-related problems and account management tasks.
-    Organization context helps support teams understand impact and prioritize
-    accordingly. Useful for onboarding issues or customer-specific configurations.
+     Open an internal support request about one of your customers. It goes to a queue by its type and
+    severity, like any internal request.
 
     Args:
         tenant_path (str):

@@ -28,6 +28,7 @@ class AddCustomerAsset:
         status (str | Unset):  Default: 'active'.
         installation_date (None | str | Unset):
         warranty_expiration (None | str | Unset):
+        next_service_date (None | str | Unset):
         is_customer_visible (bool | Unset):  Default: False.
     """
 
@@ -44,6 +45,7 @@ class AddCustomerAsset:
     status: str | Unset = "active"
     installation_date: None | str | Unset = UNSET
     warranty_expiration: None | str | Unset = UNSET
+    next_service_date: None | str | Unset = UNSET
     is_customer_visible: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -110,6 +112,12 @@ class AddCustomerAsset:
         else:
             warranty_expiration = self.warranty_expiration
 
+        next_service_date: None | str | Unset
+        if isinstance(self.next_service_date, Unset):
+            next_service_date = UNSET
+        else:
+            next_service_date = self.next_service_date
+
         is_customer_visible = self.is_customer_visible
 
         field_dict: dict[str, Any] = {}
@@ -141,6 +149,8 @@ class AddCustomerAsset:
             field_dict["installation_date"] = installation_date
         if warranty_expiration is not UNSET:
             field_dict["warranty_expiration"] = warranty_expiration
+        if next_service_date is not UNSET:
+            field_dict["next_service_date"] = next_service_date
         if is_customer_visible is not UNSET:
             field_dict["is_customer_visible"] = is_customer_visible
 
@@ -242,6 +252,15 @@ class AddCustomerAsset:
             d.pop("warranty_expiration", UNSET)
         )
 
+        def _parse_next_service_date(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        next_service_date = _parse_next_service_date(d.pop("next_service_date", UNSET))
+
         is_customer_visible = d.pop("is_customer_visible", UNSET)
 
         add_customer_asset = cls(
@@ -258,6 +277,7 @@ class AddCustomerAsset:
             status=status,
             installation_date=installation_date,
             warranty_expiration=warranty_expiration,
+            next_service_date=next_service_date,
             is_customer_visible=is_customer_visible,
         )
 

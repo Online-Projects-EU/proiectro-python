@@ -74,9 +74,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Archive Project
 
-     Hide a delivered or cancelled project from default lists while preserving
-    its record. Used after the post-delivery window has closed. Reversible via
-    unarchive.
+     Hide a delivered or cancelled project from the default project lists, keeping all its records.
+    An archived project cannot be reopened until you unarchive it.
 
     Args:
         tenant_path (str):
@@ -110,9 +109,8 @@ def sync(
 ) -> APIResponse | None:
     """Archive Project
 
-     Hide a delivered or cancelled project from default lists while preserving
-    its record. Used after the post-delivery window has closed. Reversible via
-    unarchive.
+     Hide a delivered or cancelled project from the default project lists, keeping all its records.
+    An archived project cannot be reopened until you unarchive it.
 
     Args:
         tenant_path (str):
@@ -141,9 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Archive Project
 
-     Hide a delivered or cancelled project from default lists while preserving
-    its record. Used after the post-delivery window has closed. Reversible via
-    unarchive.
+     Hide a delivered or cancelled project from the default project lists, keeping all its records.
+    An archived project cannot be reopened until you unarchive it.
 
     Args:
         tenant_path (str):
@@ -175,9 +172,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Archive Project
 
-     Hide a delivered or cancelled project from default lists while preserving
-    its record. Used after the post-delivery window has closed. Reversible via
-    unarchive.
+     Hide a delivered or cancelled project from the default project lists, keeping all its records.
+    An archived project cannot be reopened until you unarchive it.
 
     Args:
         tenant_path (str):

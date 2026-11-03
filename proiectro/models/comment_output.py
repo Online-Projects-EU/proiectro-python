@@ -26,7 +26,6 @@ class CommentOutput:
         created (datetime.datetime):
         updated (datetime.datetime):
         edited (bool):
-        attachments (bool):
         author_avatar (None | str | Unset):
         replies (list[CommentOutput] | Unset):
     """
@@ -39,7 +38,6 @@ class CommentOutput:
     created: datetime.datetime
     updated: datetime.datetime
     edited: bool
-    attachments: bool
     author_avatar: None | str | Unset = UNSET
     replies: list[CommentOutput] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -60,8 +58,6 @@ class CommentOutput:
         updated = self.updated.isoformat()
 
         edited = self.edited
-
-        attachments = self.attachments
 
         author_avatar: None | str | Unset
         if isinstance(self.author_avatar, Unset):
@@ -88,7 +84,6 @@ class CommentOutput:
                 "created": created,
                 "updated": updated,
                 "edited": edited,
-                "attachments": attachments,
             }
         )
         if author_avatar is not UNSET:
@@ -117,8 +112,6 @@ class CommentOutput:
 
         edited = d.pop("edited")
 
-        attachments = d.pop("attachments")
-
         def _parse_author_avatar(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -146,7 +139,6 @@ class CommentOutput:
             created=created,
             updated=updated,
             edited=edited,
-            attachments=attachments,
             author_avatar=author_avatar,
             replies=replies,
         )

@@ -90,8 +90,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Partner Approve Product
 
-     Approve deliverable in partner portal.
-    Partner can mark product as accepted if grant and permissions allow.
+     Approve a deliverable waiting for your review. It is accepted, and your partner is notified.
 
     Args:
         tenant_path (str):
@@ -135,8 +134,7 @@ def sync(
 ) -> APIResponse | None:
     """Partner Approve Product
 
-     Approve deliverable in partner portal.
-    Partner can mark product as accepted if grant and permissions allow.
+     Approve a deliverable waiting for your review. It is accepted, and your partner is notified.
 
     Args:
         tenant_path (str):
@@ -175,8 +173,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Partner Approve Product
 
-     Approve deliverable in partner portal.
-    Partner can mark product as accepted if grant and permissions allow.
+     Approve a deliverable waiting for your review. It is accepted, and your partner is notified.
 
     Args:
         tenant_path (str):
@@ -218,8 +215,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Partner Approve Product
 
-     Approve deliverable in partner portal.
-    Partner can mark product as accepted if grant and permissions allow.
+     Approve a deliverable waiting for your review. It is accepted, and your partner is notified.
 
     Args:
         tenant_path (str):

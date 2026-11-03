@@ -82,10 +82,9 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Support Request Status
 
-     Create workflow states to match your support process stages and checkpoints.
-    Define lifecycle position (open/closed), transition rules, and notifications.
-    Consider workflow continuity - ensure logical progression between statuses.
-    New statuses immediately available for request management.
+     Add a status for support requests, internal or external. Its lifecycle says whether a request in
+    it is new, open or closed. Only one active status of each kind can be the new, the pending
+    approval or the closed one.
 
     Args:
         tenant_path (str):
@@ -119,10 +118,9 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Support Request Status
 
-     Create workflow states to match your support process stages and checkpoints.
-    Define lifecycle position (open/closed), transition rules, and notifications.
-    Consider workflow continuity - ensure logical progression between statuses.
-    New statuses immediately available for request management.
+     Add a status for support requests, internal or external. Its lifecycle says whether a request in
+    it is new, open or closed. Only one active status of each kind can be the new, the pending
+    approval or the closed one.
 
     Args:
         tenant_path (str):
@@ -151,10 +149,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Support Request Status
 
-     Create workflow states to match your support process stages and checkpoints.
-    Define lifecycle position (open/closed), transition rules, and notifications.
-    Consider workflow continuity - ensure logical progression between statuses.
-    New statuses immediately available for request management.
+     Add a status for support requests, internal or external. Its lifecycle says whether a request in
+    it is new, open or closed. Only one active status of each kind can be the new, the pending
+    approval or the closed one.
 
     Args:
         tenant_path (str):
@@ -186,10 +183,9 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Support Request Status
 
-     Create workflow states to match your support process stages and checkpoints.
-    Define lifecycle position (open/closed), transition rules, and notifications.
-    Consider workflow continuity - ensure logical progression between statuses.
-    New statuses immediately available for request management.
+     Add a status for support requests, internal or external. Its lifecycle says whether a request in
+    it is new, open or closed. Only one active status of each kind can be the new, the pending
+    approval or the closed one.
 
     Args:
         tenant_path (str):

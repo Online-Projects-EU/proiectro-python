@@ -79,7 +79,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit Own External Support Request
 
-     Edit your own external support request (requester only).
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):
@@ -116,7 +116,7 @@ def sync(
 ) -> APIResponse | None:
     """Edit Own External Support Request
 
-     Edit your own external support request (requester only).
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):
@@ -148,7 +148,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit Own External Support Request
 
-     Edit your own external support request (requester only).
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):
@@ -183,7 +183,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit Own External Support Request
 
-     Edit your own external support request (requester only).
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):

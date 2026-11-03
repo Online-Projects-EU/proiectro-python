@@ -69,10 +69,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Close Internal Support Request No Longer Required
 
-     Cancel your own request when the issue resolves itself or needs change.
-    Frees support resources for other priorities. Only requesters can mark
-    their requests as no longer needed. Maintains audit trail of self-resolved
-    issues for pattern analysis.
+     Close a request you opened when you no longer need it. It closes as no longer required, and the
+    assignee is notified.
 
     Args:
         tenant_path (str):
@@ -106,10 +104,8 @@ def sync(
 ) -> APIResponse | None:
     """Close Internal Support Request No Longer Required
 
-     Cancel your own request when the issue resolves itself or needs change.
-    Frees support resources for other priorities. Only requesters can mark
-    their requests as no longer needed. Maintains audit trail of self-resolved
-    issues for pattern analysis.
+     Close a request you opened when you no longer need it. It closes as no longer required, and the
+    assignee is notified.
 
     Args:
         tenant_path (str):
@@ -138,10 +134,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Close Internal Support Request No Longer Required
 
-     Cancel your own request when the issue resolves itself or needs change.
-    Frees support resources for other priorities. Only requesters can mark
-    their requests as no longer needed. Maintains audit trail of self-resolved
-    issues for pattern analysis.
+     Close a request you opened when you no longer need it. It closes as no longer required, and the
+    assignee is notified.
 
     Args:
         tenant_path (str):
@@ -173,10 +167,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Close Internal Support Request No Longer Required
 
-     Cancel your own request when the issue resolves itself or needs change.
-    Frees support resources for other priorities. Only requesters can mark
-    their requests as no longer needed. Maintains audit trail of self-resolved
-    issues for pattern analysis.
+     Close a request you opened when you no longer need it. It closes as no longer required, and the
+    assignee is notified.
 
     Args:
         tenant_path (str):

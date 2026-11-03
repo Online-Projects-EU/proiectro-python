@@ -55,6 +55,7 @@ class FinancialKPIs:
                 compare against.
             recurring_revenue (float | None | str | Unset):
             one_time_revenue (float | None | str | Unset):
+            margin_tracked (bool | Unset):  Default: True.
             gross_margin_percent (float | None | str | Unset):
             outstanding_ar (float | None | str | Unset):
             ar_current (float | None | str | Unset):
@@ -95,6 +96,7 @@ class FinancialKPIs:
     revenue_growth_percent: float | None | str | Unset = UNSET
     recurring_revenue: float | None | str | Unset = UNSET
     one_time_revenue: float | None | str | Unset = UNSET
+    margin_tracked: bool | Unset = True
     gross_margin_percent: float | None | str | Unset = UNSET
     outstanding_ar: float | None | str | Unset = UNSET
     ar_current: float | None | str | Unset = UNSET
@@ -254,6 +256,8 @@ class FinancialKPIs:
         else:
             one_time_revenue = self.one_time_revenue
 
+        margin_tracked = self.margin_tracked
+
         gross_margin_percent: float | None | str | Unset
         if isinstance(self.gross_margin_percent, Unset):
             gross_margin_percent = UNSET
@@ -360,6 +364,8 @@ class FinancialKPIs:
             field_dict["recurring_revenue"] = recurring_revenue
         if one_time_revenue is not UNSET:
             field_dict["one_time_revenue"] = one_time_revenue
+        if margin_tracked is not UNSET:
+            field_dict["margin_tracked"] = margin_tracked
         if gross_margin_percent is not UNSET:
             field_dict["gross_margin_percent"] = gross_margin_percent
         if outstanding_ar is not UNSET:
@@ -618,6 +624,8 @@ class FinancialKPIs:
 
         one_time_revenue = _parse_one_time_revenue(d.pop("one_time_revenue", UNSET))
 
+        margin_tracked = d.pop("margin_tracked", UNSET)
+
         def _parse_gross_margin_percent(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -730,6 +738,7 @@ class FinancialKPIs:
             revenue_growth_percent=revenue_growth_percent,
             recurring_revenue=recurring_revenue,
             one_time_revenue=one_time_revenue,
+            margin_tracked=margin_tracked,
             gross_margin_percent=gross_margin_percent,
             outstanding_ar=outstanding_ar,
             ar_current=ar_current,

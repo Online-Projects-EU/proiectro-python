@@ -79,10 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Close Internal Support Request
 
-     Complete request resolution with documented solution and outcomes.
-    Captures resolution details for knowledge base and reporting.
-    Notifies requester with solution summary. Closed requests enter
-    reopening window before permanent archival.
+     Close an internal support request with a resolution. The requester and the assignee are
+    notified. The requester can reopen it within a day.
 
     Args:
         tenant_path (str):
@@ -120,10 +118,8 @@ def sync(
 ) -> APIResponse | None:
     """Close Internal Support Request
 
-     Complete request resolution with documented solution and outcomes.
-    Captures resolution details for knowledge base and reporting.
-    Notifies requester with solution summary. Closed requests enter
-    reopening window before permanent archival.
+     Close an internal support request with a resolution. The requester and the assignee are
+    notified. The requester can reopen it within a day.
 
     Args:
         tenant_path (str):
@@ -156,10 +152,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Close Internal Support Request
 
-     Complete request resolution with documented solution and outcomes.
-    Captures resolution details for knowledge base and reporting.
-    Notifies requester with solution summary. Closed requests enter
-    reopening window before permanent archival.
+     Close an internal support request with a resolution. The requester and the assignee are
+    notified. The requester can reopen it within a day.
 
     Args:
         tenant_path (str):
@@ -195,10 +189,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Close Internal Support Request
 
-     Complete request resolution with documented solution and outcomes.
-    Captures resolution details for knowledge base and reporting.
-    Notifies requester with solution summary. Closed requests enter
-    reopening window before permanent archival.
+     Close an internal support request with a resolution. The requester and the assignee are
+    notified. The requester can reopen it within a day.
 
     Args:
         tenant_path (str):

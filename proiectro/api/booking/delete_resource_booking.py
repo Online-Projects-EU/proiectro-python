@@ -64,10 +64,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Resource Booking
 
-     Cancel resource reservations to free assets for other projects. Immediately updates
-    availability calendars and removes blocking exceptions. Use when project requirements
-    change, resources are no longer needed, or better alternatives become available.
-    Notify relevant teams to avoid confusion about resource availability.
+     Cancel a resource booking. Its hours are free for other projects right away.
 
     Args:
         tenant_path (str):
@@ -101,10 +98,7 @@ def sync(
 ) -> APIResponse | None:
     """Delete Resource Booking
 
-     Cancel resource reservations to free assets for other projects. Immediately updates
-    availability calendars and removes blocking exceptions. Use when project requirements
-    change, resources are no longer needed, or better alternatives become available.
-    Notify relevant teams to avoid confusion about resource availability.
+     Cancel a resource booking. Its hours are free for other projects right away.
 
     Args:
         tenant_path (str):
@@ -133,10 +127,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Resource Booking
 
-     Cancel resource reservations to free assets for other projects. Immediately updates
-    availability calendars and removes blocking exceptions. Use when project requirements
-    change, resources are no longer needed, or better alternatives become available.
-    Notify relevant teams to avoid confusion about resource availability.
+     Cancel a resource booking. Its hours are free for other projects right away.
 
     Args:
         tenant_path (str):
@@ -168,10 +159,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Resource Booking
 
-     Cancel resource reservations to free assets for other projects. Immediately updates
-    availability calendars and removes blocking exceptions. Use when project requirements
-    change, resources are no longer needed, or better alternatives become available.
-    Notify relevant teams to avoid confusion about resource availability.
+     Cancel a resource booking. Its hours are free for other projects right away.
 
     Args:
         tenant_path (str):

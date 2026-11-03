@@ -18,6 +18,7 @@ class EditPayment:
         name (None | str | Unset):
         internal_code (None | str | Unset):
         due_date (None | str | Unset):
+        invoiced_date (None | str | Unset):
         amount (float | None | str | Unset):
         product_id (None | str | Unset):
         payment_integration_id (None | str | Unset):
@@ -27,6 +28,7 @@ class EditPayment:
     name: None | str | Unset = UNSET
     internal_code: None | str | Unset = UNSET
     due_date: None | str | Unset = UNSET
+    invoiced_date: None | str | Unset = UNSET
     amount: float | None | str | Unset = UNSET
     product_id: None | str | Unset = UNSET
     payment_integration_id: None | str | Unset = UNSET
@@ -51,6 +53,12 @@ class EditPayment:
             due_date = UNSET
         else:
             due_date = self.due_date
+
+        invoiced_date: None | str | Unset
+        if isinstance(self.invoiced_date, Unset):
+            invoiced_date = UNSET
+        else:
+            invoiced_date = self.invoiced_date
 
         amount: float | None | str | Unset
         if isinstance(self.amount, Unset):
@@ -85,6 +93,8 @@ class EditPayment:
             field_dict["internal_code"] = internal_code
         if due_date is not UNSET:
             field_dict["due_date"] = due_date
+        if invoiced_date is not UNSET:
+            field_dict["invoiced_date"] = invoiced_date
         if amount is not UNSET:
             field_dict["amount"] = amount
         if product_id is not UNSET:
@@ -126,6 +136,15 @@ class EditPayment:
             return cast(None | str | Unset, data)
 
         due_date = _parse_due_date(d.pop("due_date", UNSET))
+
+        def _parse_invoiced_date(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        invoiced_date = _parse_invoiced_date(d.pop("invoiced_date", UNSET))
 
         def _parse_amount(data: object) -> float | None | str | Unset:
             if data is None:
@@ -169,6 +188,7 @@ class EditPayment:
             name=name,
             internal_code=internal_code,
             due_date=due_date,
+            invoiced_date=invoiced_date,
             amount=amount,
             product_id=product_id,
             payment_integration_id=payment_integration_id,

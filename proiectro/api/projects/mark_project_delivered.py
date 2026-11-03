@@ -74,9 +74,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Mark Project Delivered
 
-     Mark an active project as delivered to the customer. Starts the post-delivery
-    window for warranty work, late payments, and acceptance follow-up. The project
-    becomes read-only; reopen within the grace period if delivery needs reverting.
+     Mark an active project as delivered to the customer. The project becomes read-only, payments
+    included; you can reopen it within 7 days.
 
     Args:
         tenant_path (str):
@@ -110,9 +109,8 @@ def sync(
 ) -> APIResponse | None:
     """Mark Project Delivered
 
-     Mark an active project as delivered to the customer. Starts the post-delivery
-    window for warranty work, late payments, and acceptance follow-up. The project
-    becomes read-only; reopen within the grace period if delivery needs reverting.
+     Mark an active project as delivered to the customer. The project becomes read-only, payments
+    included; you can reopen it within 7 days.
 
     Args:
         tenant_path (str):
@@ -141,9 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Mark Project Delivered
 
-     Mark an active project as delivered to the customer. Starts the post-delivery
-    window for warranty work, late payments, and acceptance follow-up. The project
-    becomes read-only; reopen within the grace period if delivery needs reverting.
+     Mark an active project as delivered to the customer. The project becomes read-only, payments
+    included; you can reopen it within 7 days.
 
     Args:
         tenant_path (str):
@@ -175,9 +172,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Mark Project Delivered
 
-     Mark an active project as delivered to the customer. Starts the post-delivery
-    window for warranty work, late payments, and acceptance follow-up. The project
-    becomes read-only; reopen within the grace period if delivery needs reverting.
+     Mark an active project as delivered to the customer. The project becomes read-only, payments
+    included; you can reopen it within 7 days.
 
     Args:
         tenant_path (str):

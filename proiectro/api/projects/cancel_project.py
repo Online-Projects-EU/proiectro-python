@@ -90,9 +90,8 @@ def sync_detailed(
 ) -> Response[APIResponse | CancelProjectResponse]:
     """Cancel Project
 
-     Stop an active project before delivery. Captures a cancellation reason for
-    the audit trail. Refunds, partial deliverables, and tax records persist
-    after cancellation. Reopen within the grace period to reverse.
+     Stop an active project before delivery, with a reason. The project becomes read-only; you can
+    reopen it within 7 days.
 
     Args:
         tenant_path (str):
@@ -129,9 +128,8 @@ def sync(
 ) -> APIResponse | CancelProjectResponse | None:
     """Cancel Project
 
-     Stop an active project before delivery. Captures a cancellation reason for
-    the audit trail. Refunds, partial deliverables, and tax records persist
-    after cancellation. Reopen within the grace period to reverse.
+     Stop an active project before delivery, with a reason. The project becomes read-only; you can
+    reopen it within 7 days.
 
     Args:
         tenant_path (str):
@@ -163,9 +161,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | CancelProjectResponse]:
     """Cancel Project
 
-     Stop an active project before delivery. Captures a cancellation reason for
-    the audit trail. Refunds, partial deliverables, and tax records persist
-    after cancellation. Reopen within the grace period to reverse.
+     Stop an active project before delivery, with a reason. The project becomes read-only; you can
+    reopen it within 7 days.
 
     Args:
         tenant_path (str):
@@ -200,9 +197,8 @@ async def asyncio(
 ) -> APIResponse | CancelProjectResponse | None:
     """Cancel Project
 
-     Stop an active project before delivery. Captures a cancellation reason for
-    the audit trail. Refunds, partial deliverables, and tax records persist
-    after cancellation. Reopen within the grace period to reverse.
+     Stop an active project before delivery, with a reason. The project becomes read-only; you can
+    reopen it within 7 days.
 
     Args:
         tenant_path (str):

@@ -74,10 +74,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Exchange
 
-     Remove exchange rates for discontinued currency pairs when exiting markets or
-    consolidating operations. Cannot delete if active transactions exist in this
-    currency. Historical transactions preserve their rates for reporting accuracy.
-    Consider deactivating instead of deleting for audit trail completeness.
+     Delete an exchange rate. You can delete only the latest rate of a pair, and not while its
+    currencies are in use in projects, the catalog or costs.
 
     Args:
         tenant_path (str):
@@ -111,10 +109,8 @@ def sync(
 ) -> APIResponse | None:
     """Delete Exchange
 
-     Remove exchange rates for discontinued currency pairs when exiting markets or
-    consolidating operations. Cannot delete if active transactions exist in this
-    currency. Historical transactions preserve their rates for reporting accuracy.
-    Consider deactivating instead of deleting for audit trail completeness.
+     Delete an exchange rate. You can delete only the latest rate of a pair, and not while its
+    currencies are in use in projects, the catalog or costs.
 
     Args:
         tenant_path (str):
@@ -143,10 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Exchange
 
-     Remove exchange rates for discontinued currency pairs when exiting markets or
-    consolidating operations. Cannot delete if active transactions exist in this
-    currency. Historical transactions preserve their rates for reporting accuracy.
-    Consider deactivating instead of deleting for audit trail completeness.
+     Delete an exchange rate. You can delete only the latest rate of a pair, and not while its
+    currencies are in use in projects, the catalog or costs.
 
     Args:
         tenant_path (str):
@@ -178,10 +172,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Exchange
 
-     Remove exchange rates for discontinued currency pairs when exiting markets or
-    consolidating operations. Cannot delete if active transactions exist in this
-    currency. Historical transactions preserve their rates for reporting accuracy.
-    Consider deactivating instead of deleting for audit trail completeness.
+     Delete an exchange rate. You can delete only the latest rate of a pair, and not while its
+    currencies are in use in projects, the catalog or costs.
 
     Args:
         tenant_path (str):

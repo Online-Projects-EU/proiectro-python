@@ -77,10 +77,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Resource Booking
 
-     Reserve equipment, rooms, or other assets for project use. The system prevents
-    double-booking and validates resource availability. Only leaf resources in the
-    hierarchy can be booked - you must select specific items, not categories.
-    Plan ahead for critical resources that are in high demand.
+     Book equipment, a room or another resource for a project. A booking cannot take the resource
+    past its daily availability. You can book only a specific resource, not a group of resources.
 
     Args:
         tenant_path (str):
@@ -114,10 +112,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Resource Booking
 
-     Reserve equipment, rooms, or other assets for project use. The system prevents
-    double-booking and validates resource availability. Only leaf resources in the
-    hierarchy can be booked - you must select specific items, not categories.
-    Plan ahead for critical resources that are in high demand.
+     Book equipment, a room or another resource for a project. A booking cannot take the resource
+    past its daily availability. You can book only a specific resource, not a group of resources.
 
     Args:
         tenant_path (str):
@@ -146,10 +142,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Resource Booking
 
-     Reserve equipment, rooms, or other assets for project use. The system prevents
-    double-booking and validates resource availability. Only leaf resources in the
-    hierarchy can be booked - you must select specific items, not categories.
-    Plan ahead for critical resources that are in high demand.
+     Book equipment, a room or another resource for a project. A booking cannot take the resource
+    past its daily availability. You can book only a specific resource, not a group of resources.
 
     Args:
         tenant_path (str):
@@ -181,10 +175,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Resource Booking
 
-     Reserve equipment, rooms, or other assets for project use. The system prevents
-    double-booking and validates resource availability. Only leaf resources in the
-    hierarchy can be booked - you must select specific items, not categories.
-    Plan ahead for critical resources that are in high demand.
+     Book equipment, a room or another resource for a project. A booking cannot take the resource
+    past its daily availability. You can book only a specific resource, not a group of resources.
 
     Args:
         tenant_path (str):

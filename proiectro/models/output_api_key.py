@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.output_api_key_grant import OutputApiKeyGrant
+
 
 T = TypeVar("T", bound="OutputApiKey")
 
@@ -31,6 +35,10 @@ class OutputApiKey:
         expires_at (datetime.datetime | None | Unset):
         last_used_at (datetime.datetime | None | Unset):
         last_used_ip (None | str | Unset):
+        granted_permissions (list[str] | Unset):
+        access (list[OutputApiKeyGrant] | Unset):
+        access_working (int | Unset):  Default: 0.
+        access_not_working (int | Unset):  Default: 0.
     """
 
     external_id_str: str
@@ -46,6 +54,10 @@ class OutputApiKey:
     expires_at: datetime.datetime | None | Unset = UNSET
     last_used_at: datetime.datetime | None | Unset = UNSET
     last_used_ip: None | str | Unset = UNSET
+    granted_permissions: list[str] | Unset = UNSET
+    access: list[OutputApiKeyGrant] | Unset = UNSET
+    access_working: int | Unset = 0
+    access_not_working: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -95,6 +107,21 @@ class OutputApiKey:
         else:
             last_used_ip = self.last_used_ip
 
+        granted_permissions: list[str] | Unset = UNSET
+        if not isinstance(self.granted_permissions, Unset):
+            granted_permissions = self.granted_permissions
+
+        access: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.access, Unset):
+            access = []
+            for access_item_data in self.access:
+                access_item = access_item_data.to_dict()
+                access.append(access_item)
+
+        access_working = self.access_working
+
+        access_not_working = self.access_not_working
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -118,11 +145,21 @@ class OutputApiKey:
             field_dict["last_used_at"] = last_used_at
         if last_used_ip is not UNSET:
             field_dict["last_used_ip"] = last_used_ip
+        if granted_permissions is not UNSET:
+            field_dict["granted_permissions"] = granted_permissions
+        if access is not UNSET:
+            field_dict["access"] = access
+        if access_working is not UNSET:
+            field_dict["access_working"] = access_working
+        if access_not_working is not UNSET:
+            field_dict["access_not_working"] = access_not_working
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.output_api_key_grant import OutputApiKeyGrant
+
         d = dict(src_dict)
         external_id_str = d.pop("external_id_str")
 
@@ -194,6 +231,21 @@ class OutputApiKey:
 
         last_used_ip = _parse_last_used_ip(d.pop("last_used_ip", UNSET))
 
+        granted_permissions = cast(list[str], d.pop("granted_permissions", UNSET))
+
+        _access = d.pop("access", UNSET)
+        access: list[OutputApiKeyGrant] | Unset = UNSET
+        if _access is not UNSET:
+            access = []
+            for access_item_data in _access:
+                access_item = OutputApiKeyGrant.from_dict(access_item_data)
+
+                access.append(access_item)
+
+        access_working = d.pop("access_working", UNSET)
+
+        access_not_working = d.pop("access_not_working", UNSET)
+
         output_api_key = cls(
             external_id_str=external_id_str,
             name=name,
@@ -208,6 +260,10 @@ class OutputApiKey:
             expires_at=expires_at,
             last_used_at=last_used_at,
             last_used_ip=last_used_ip,
+            granted_permissions=granted_permissions,
+            access=access,
+            access_working=access_working,
+            access_not_working=access_not_working,
         )
 
         output_api_key.additional_properties = d

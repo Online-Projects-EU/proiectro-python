@@ -79,7 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Reassign External Support Request
 
-     Reassign an external support request to a different team member.
+     Assign an external support request to another team member. The previous assignee, the new one
+    and the requester are notified.
 
     Args:
         tenant_path (str):
@@ -116,7 +117,8 @@ def sync(
 ) -> APIResponse | None:
     """Reassign External Support Request
 
-     Reassign an external support request to a different team member.
+     Assign an external support request to another team member. The previous assignee, the new one
+    and the requester are notified.
 
     Args:
         tenant_path (str):
@@ -148,7 +150,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Reassign External Support Request
 
-     Reassign an external support request to a different team member.
+     Assign an external support request to another team member. The previous assignee, the new one
+    and the requester are notified.
 
     Args:
         tenant_path (str):
@@ -183,7 +186,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Reassign External Support Request
 
-     Reassign an external support request to a different team member.
+     Assign an external support request to another team member. The previous assignee, the new one
+    and the requester are notified.
 
     Args:
         tenant_path (str):

@@ -60,7 +60,7 @@ def sync_detailed(
     """Lead Tags
 
      Show the tags applied to a lead, and the tags still available to apply. Tags group leads
-    by any dimension you choose — campaign, territory, product interest — so the list can be
+    by any dimension you choose, campaign, territory, product interest, so the list can be
     sliced without adding fields to the lead itself.
 
     Args:
@@ -96,7 +96,7 @@ def sync(
     """Lead Tags
 
      Show the tags applied to a lead, and the tags still available to apply. Tags group leads
-    by any dimension you choose — campaign, territory, product interest — so the list can be
+    by any dimension you choose, campaign, territory, product interest, so the list can be
     sliced without adding fields to the lead itself.
 
     Args:
@@ -127,7 +127,7 @@ async def asyncio_detailed(
     """Lead Tags
 
      Show the tags applied to a lead, and the tags still available to apply. Tags group leads
-    by any dimension you choose — campaign, territory, product interest — so the list can be
+    by any dimension you choose, campaign, territory, product interest, so the list can be
     sliced without adding fields to the lead itself.
 
     Args:
@@ -161,7 +161,7 @@ async def asyncio(
     """Lead Tags
 
      Show the tags applied to a lead, and the tags still available to apply. Tags group leads
-    by any dimension you choose — campaign, territory, product interest — so the list can be
+    by any dimension you choose, campaign, territory, product interest, so the list can be
     sliced without adding fields to the lead itself.
 
     Args:

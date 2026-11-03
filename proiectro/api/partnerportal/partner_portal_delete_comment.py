@@ -80,7 +80,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Partner Portal Delete Comment
 
-     Partner deletes their own comment from support request.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):
@@ -120,7 +120,7 @@ def sync(
 ) -> APIResponse | None:
     """Partner Portal Delete Comment
 
-     Partner deletes their own comment from support request.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):
@@ -155,7 +155,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Partner Portal Delete Comment
 
-     Partner deletes their own comment from support request.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):
@@ -193,7 +193,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Partner Portal Delete Comment
 
-     Partner deletes their own comment from support request.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):

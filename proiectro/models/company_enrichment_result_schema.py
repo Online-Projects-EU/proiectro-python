@@ -13,7 +13,8 @@ T = TypeVar("T", bound="CompanyEnrichmentResultSchema")
 
 @_attrs_define
 class CompanyEnrichmentResultSchema:
-    """
+    """A Romanian company looked up by CUI (enrich_company, through enrichment_anaf).
+
     Attributes:
         cui (str):
         name (str):

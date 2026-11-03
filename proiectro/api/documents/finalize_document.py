@@ -49,6 +49,11 @@ def _parse_response(
 
         return response_400
 
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
+
     if response.status_code == 404:
         response_404 = APIResponse.from_dict(response.json())
 
@@ -90,7 +95,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Finalize Document
 
-     Finalize a draft document, assigning its series number and locking the content.
+     Finalize a draft document. With a series it gets the next number, and its content locks if the
+    series locks; without one it stays unnumbered and editable.
 
     Args:
         tenant_path (str):
@@ -127,7 +133,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Finalize Document
 
-     Finalize a draft document, assigning its series number and locking the content.
+     Finalize a draft document. With a series it gets the next number, and its content locks if the
+    series locks; without one it stays unnumbered and editable.
 
     Args:
         tenant_path (str):
@@ -159,7 +166,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Finalize Document
 
-     Finalize a draft document, assigning its series number and locking the content.
+     Finalize a draft document. With a series it gets the next number, and its content locks if the
+    series locks; without one it stays unnumbered and editable.
 
     Args:
         tenant_path (str):
@@ -194,7 +202,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Finalize Document
 
-     Finalize a draft document, assigning its series number and locking the content.
+     Finalize a draft document. With a series it gets the next number, and its content locks if the
+    series locks; without one it stays unnumbered and editable.
 
     Args:
         tenant_path (str):

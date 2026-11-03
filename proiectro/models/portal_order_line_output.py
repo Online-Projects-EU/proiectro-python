@@ -24,6 +24,7 @@ class PortalOrderLineOutput:
         unit_of_measure (str | Unset):  Default: ''.
         status_name (None | str | Unset):
         status_type (None | str | Unset):
+        image_url (None | str | Unset):
     """
 
     id: str
@@ -34,6 +35,7 @@ class PortalOrderLineOutput:
     unit_of_measure: str | Unset = ""
     status_name: None | str | Unset = UNSET
     status_type: None | str | Unset = UNSET
+    image_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -63,6 +65,12 @@ class PortalOrderLineOutput:
         else:
             status_type = self.status_type
 
+        image_url: None | str | Unset
+        if isinstance(self.image_url, Unset):
+            image_url = UNSET
+        else:
+            image_url = self.image_url
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -80,6 +88,8 @@ class PortalOrderLineOutput:
             field_dict["status_name"] = status_name
         if status_type is not UNSET:
             field_dict["status_type"] = status_type
+        if image_url is not UNSET:
+            field_dict["image_url"] = image_url
 
         return field_dict
 
@@ -122,6 +132,15 @@ class PortalOrderLineOutput:
 
         status_type = _parse_status_type(d.pop("status_type", UNSET))
 
+        def _parse_image_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        image_url = _parse_image_url(d.pop("image_url", UNSET))
+
         portal_order_line_output = cls(
             id=id,
             name=name,
@@ -131,6 +150,7 @@ class PortalOrderLineOutput:
             unit_of_measure=unit_of_measure,
             status_name=status_name,
             status_type=status_type,
+            image_url=image_url,
         )
 
         portal_order_line_output.additional_properties = d

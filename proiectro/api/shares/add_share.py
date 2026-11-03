@@ -98,7 +98,7 @@ def sync_detailed(
         org_id (str):
         body (AddShare): A new share starts as a draft. The message is plain text. The language
             defaults from the
-            organization's country; valid languages are settings.LANGUAGES, validated in the function.
+            organization's country; it is one of the platform's languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -138,7 +138,7 @@ def sync(
         org_id (str):
         body (AddShare): A new share starts as a draft. The message is plain text. The language
             defaults from the
-            organization's country; valid languages are settings.LANGUAGES, validated in the function.
+            organization's country; it is one of the platform's languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -173,7 +173,7 @@ async def asyncio_detailed(
         org_id (str):
         body (AddShare): A new share starts as a draft. The message is plain text. The language
             defaults from the
-            organization's country; valid languages are settings.LANGUAGES, validated in the function.
+            organization's country; it is one of the platform's languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -211,7 +211,7 @@ async def asyncio(
         org_id (str):
         body (AddShare): A new share starts as a draft. The message is plain text. The language
             defaults from the
-            organization's country; valid languages are settings.LANGUAGES, validated in the function.
+            organization's country; it is one of the platform's languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

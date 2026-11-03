@@ -81,10 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Change Internal Support Request Status
 
-     Update request workflow state to reflect progress or blockages.
-    Status changes trigger notifications to requesters and may affect
-    queue routing. Follow defined workflow transitions for consistency.
-    Document reasons for status changes in comments.
+     Change the status of an internal support request and say why. The requester and the assignee are
+    notified. A closed request can no longer change.
 
     Args:
         tenant_path (str):
@@ -122,10 +120,8 @@ def sync(
 ) -> APIResponse | None:
     """Change Internal Support Request Status
 
-     Update request workflow state to reflect progress or blockages.
-    Status changes trigger notifications to requesters and may affect
-    queue routing. Follow defined workflow transitions for consistency.
-    Document reasons for status changes in comments.
+     Change the status of an internal support request and say why. The requester and the assignee are
+    notified. A closed request can no longer change.
 
     Args:
         tenant_path (str):
@@ -158,10 +154,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Change Internal Support Request Status
 
-     Update request workflow state to reflect progress or blockages.
-    Status changes trigger notifications to requesters and may affect
-    queue routing. Follow defined workflow transitions for consistency.
-    Document reasons for status changes in comments.
+     Change the status of an internal support request and say why. The requester and the assignee are
+    notified. A closed request can no longer change.
 
     Args:
         tenant_path (str):
@@ -197,10 +191,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Change Internal Support Request Status
 
-     Update request workflow state to reflect progress or blockages.
-    Status changes trigger notifications to requesters and may affect
-    queue routing. Follow defined workflow transitions for consistency.
-    Document reasons for status changes in comments.
+     Change the status of an internal support request and say why. The requester and the assignee are
+    notified. A closed request can no longer change.
 
     Args:
         tenant_path (str):

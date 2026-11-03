@@ -86,10 +86,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Request For Project
 
-     Submit support requests related to a specific project for assistance with deliverables,
-    project-specific issues, or questions about your purchase. Request is automatically
-    linked to the project for better context and tracking. Automatic routing ensures your
-    request reaches the team responsible for this project.
+     Ask your supplier for help with a project you bought: a deliverable, a problem or a question.
+    The request is linked to the project.
 
     Args:
         customer_org_id (str):
@@ -127,10 +125,8 @@ def sync(
 ) -> APIResponse | None:
     """Add External Support Request For Project
 
-     Submit support requests related to a specific project for assistance with deliverables,
-    project-specific issues, or questions about your purchase. Request is automatically
-    linked to the project for better context and tracking. Automatic routing ensures your
-    request reaches the team responsible for this project.
+     Ask your supplier for help with a project you bought: a deliverable, a problem or a question.
+    The request is linked to the project.
 
     Args:
         customer_org_id (str):
@@ -163,10 +159,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Request For Project
 
-     Submit support requests related to a specific project for assistance with deliverables,
-    project-specific issues, or questions about your purchase. Request is automatically
-    linked to the project for better context and tracking. Automatic routing ensures your
-    request reaches the team responsible for this project.
+     Ask your supplier for help with a project you bought: a deliverable, a problem or a question.
+    The request is linked to the project.
 
     Args:
         customer_org_id (str):
@@ -202,10 +196,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add External Support Request For Project
 
-     Submit support requests related to a specific project for assistance with deliverables,
-    project-specific issues, or questions about your purchase. Request is automatically
-    linked to the project for better context and tracking. Automatic routing ensures your
-    request reaches the team responsible for this project.
+     Ask your supplier for help with a project you bought: a deliverable, a problem or a question.
+    The request is linked to the project.
 
     Args:
         customer_org_id (str):

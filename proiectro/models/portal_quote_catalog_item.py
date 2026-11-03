@@ -23,6 +23,7 @@ class PortalQuoteCatalogItem:
         unit_of_measure (str | Unset):  Default: ''.
         price (float | None | str | Unset):
         currency (str | Unset):  Default: ''.
+        image_url (None | str | Unset):
     """
 
     id: str
@@ -32,6 +33,7 @@ class PortalQuoteCatalogItem:
     unit_of_measure: str | Unset = ""
     price: float | None | str | Unset = UNSET
     currency: str | Unset = ""
+    image_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -53,6 +55,12 @@ class PortalQuoteCatalogItem:
 
         currency = self.currency
 
+        image_url: None | str | Unset
+        if isinstance(self.image_url, Unset):
+            image_url = UNSET
+        else:
+            image_url = self.image_url
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -70,6 +78,8 @@ class PortalQuoteCatalogItem:
             field_dict["price"] = price
         if currency is not UNSET:
             field_dict["currency"] = currency
+        if image_url is not UNSET:
+            field_dict["image_url"] = image_url
 
         return field_dict
 
@@ -97,6 +107,15 @@ class PortalQuoteCatalogItem:
 
         currency = d.pop("currency", UNSET)
 
+        def _parse_image_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        image_url = _parse_image_url(d.pop("image_url", UNSET))
+
         portal_quote_catalog_item = cls(
             id=id,
             name=name,
@@ -105,6 +124,7 @@ class PortalQuoteCatalogItem:
             unit_of_measure=unit_of_measure,
             price=price,
             currency=currency,
+            image_url=image_url,
         )
 
         portal_quote_catalog_item.additional_properties = d

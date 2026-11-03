@@ -13,7 +13,7 @@ T = TypeVar("T", bound="WebhookCreated")
 
 @_attrs_define
 class WebhookCreated:
-    """`add_webhook` answer: the new endpoint's id, and — for a secure endpoint — its
+    """`add_webhook` answer: the new endpoint's id, and, for a secure endpoint, its
     signing secret, returned once, here only. The browser also gets it via the session
     for one-time display; an API client has no session, so this is its only chance.
 

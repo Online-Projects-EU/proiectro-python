@@ -11,6 +11,7 @@ from dateutil.parser import isoparse
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.output_operational_item_actions import OutputOperationalItemActions
     from ..models.output_operational_item_transition import (
         OutputOperationalItemTransition,
     )
@@ -49,9 +50,14 @@ class OutputOperationalItem:
         stage_age_hours (int | Unset):  Default: 0.
         stage_instructions (str | Unset):  Default: ''.
         transitions (list[OutputOperationalItemTransition] | Unset):
+        actions (OutputOperationalItemActions | Unset): What the caller's participation in the process allows on this
+            item.
         is_billed (bool | Unset):  Default: False.
         payment_name (None | str | Unset):
         proposal_id (None | str | Unset):
+        source_type (None | str | Unset):
+        source_id (None | str | Unset):
+        source_url (None | str | Unset):
         anchor_latitude (float | None | Unset):
         anchor_longitude (float | None | Unset):
         anchor_source (None | str | Unset):
@@ -86,9 +92,13 @@ class OutputOperationalItem:
     stage_age_hours: int | Unset = 0
     stage_instructions: str | Unset = ""
     transitions: list[OutputOperationalItemTransition] | Unset = UNSET
+    actions: OutputOperationalItemActions | Unset = UNSET
     is_billed: bool | Unset = False
     payment_name: None | str | Unset = UNSET
     proposal_id: None | str | Unset = UNSET
+    source_type: None | str | Unset = UNSET
+    source_id: None | str | Unset = UNSET
+    source_url: None | str | Unset = UNSET
     anchor_latitude: float | None | Unset = UNSET
     anchor_longitude: float | None | Unset = UNSET
     anchor_source: None | str | Unset = UNSET
@@ -185,6 +195,10 @@ class OutputOperationalItem:
                 transitions_item = transitions_item_data.to_dict()
                 transitions.append(transitions_item)
 
+        actions: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.actions, Unset):
+            actions = self.actions.to_dict()
+
         is_billed = self.is_billed
 
         payment_name: None | str | Unset
@@ -198,6 +212,24 @@ class OutputOperationalItem:
             proposal_id = UNSET
         else:
             proposal_id = self.proposal_id
+
+        source_type: None | str | Unset
+        if isinstance(self.source_type, Unset):
+            source_type = UNSET
+        else:
+            source_type = self.source_type
+
+        source_id: None | str | Unset
+        if isinstance(self.source_id, Unset):
+            source_id = UNSET
+        else:
+            source_id = self.source_id
+
+        source_url: None | str | Unset
+        if isinstance(self.source_url, Unset):
+            source_url = UNSET
+        else:
+            source_url = self.source_url
 
         anchor_latitude: float | None | Unset
         if isinstance(self.anchor_latitude, Unset):
@@ -278,12 +310,20 @@ class OutputOperationalItem:
             field_dict["stage_instructions"] = stage_instructions
         if transitions is not UNSET:
             field_dict["transitions"] = transitions
+        if actions is not UNSET:
+            field_dict["actions"] = actions
         if is_billed is not UNSET:
             field_dict["is_billed"] = is_billed
         if payment_name is not UNSET:
             field_dict["payment_name"] = payment_name
         if proposal_id is not UNSET:
             field_dict["proposal_id"] = proposal_id
+        if source_type is not UNSET:
+            field_dict["source_type"] = source_type
+        if source_id is not UNSET:
+            field_dict["source_id"] = source_id
+        if source_url is not UNSET:
+            field_dict["source_url"] = source_url
         if anchor_latitude is not UNSET:
             field_dict["anchor_latitude"] = anchor_latitude
         if anchor_longitude is not UNSET:
@@ -301,6 +341,9 @@ class OutputOperationalItem:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.output_operational_item_actions import (
+            OutputOperationalItemActions,
+        )
         from ..models.output_operational_item_transition import (
             OutputOperationalItemTransition,
         )
@@ -426,6 +469,13 @@ class OutputOperationalItem:
 
                 transitions.append(transitions_item)
 
+        _actions = d.pop("actions", UNSET)
+        actions: OutputOperationalItemActions | Unset
+        if isinstance(_actions, Unset):
+            actions = UNSET
+        else:
+            actions = OutputOperationalItemActions.from_dict(_actions)
+
         is_billed = d.pop("is_billed", UNSET)
 
         def _parse_payment_name(data: object) -> None | str | Unset:
@@ -445,6 +495,33 @@ class OutputOperationalItem:
             return cast(None | str | Unset, data)
 
         proposal_id = _parse_proposal_id(d.pop("proposal_id", UNSET))
+
+        def _parse_source_type(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_type = _parse_source_type(d.pop("source_type", UNSET))
+
+        def _parse_source_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_id = _parse_source_id(d.pop("source_id", UNSET))
+
+        def _parse_source_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_url = _parse_source_url(d.pop("source_url", UNSET))
 
         def _parse_anchor_latitude(data: object) -> float | None | Unset:
             if data is None:
@@ -529,9 +606,13 @@ class OutputOperationalItem:
             stage_age_hours=stage_age_hours,
             stage_instructions=stage_instructions,
             transitions=transitions,
+            actions=actions,
             is_billed=is_billed,
             payment_name=payment_name,
             proposal_id=proposal_id,
+            source_type=source_type,
+            source_id=source_id,
+            source_url=source_url,
             anchor_latitude=anchor_latitude,
             anchor_longitude=anchor_longitude,
             anchor_source=anchor_source,

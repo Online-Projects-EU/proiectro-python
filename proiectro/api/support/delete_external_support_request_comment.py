@@ -64,7 +64,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete External Support Request Comment
 
-     Delete an external support request comment (admin).
+     Delete any comment on an external support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):
@@ -98,7 +99,8 @@ def sync(
 ) -> APIResponse | None:
     """Delete External Support Request Comment
 
-     Delete an external support request comment (admin).
+     Delete any comment on an external support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):
@@ -127,7 +129,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete External Support Request Comment
 
-     Delete an external support request comment (admin).
+     Delete any comment on an external support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):
@@ -159,7 +162,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete External Support Request Comment
 
-     Delete an external support request comment (admin).
+     Delete any comment on an external support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):

@@ -13,11 +13,9 @@ T = TypeVar("T", bound="OutputCoordinatesConflict")
 
 @_attrs_define
 class OutputCoordinatesConflict:
-    """409 body for GPS capture on an entity that already has a pin.
-
-    APIResponse-superset: the middleware still renders the message as a toast,
-    and the client gets the stored point so it can show how far the pin would
-    move before the user confirms the overwrite.
+    """409 body for GPS capture on an entity that already has a pin: the message, plus the
+    stored point, so the client can show how far the pin would move before the user confirms
+    the overwrite.
 
         Attributes:
             response_id (str):

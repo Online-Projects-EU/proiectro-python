@@ -64,10 +64,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Team Booking
 
-     Release a team member from project allocation, freeing their capacity for other work.
-    Automatically removes calendar blocks and availability exceptions. Use when projects
-    are cancelled, team members leave, or responsibilities are reassigned. Consider
-    creating a replacement booking before deletion to maintain project coverage.
+     Cancel a team member's booking. Their hours are free for other work right away, and they are
+    notified unless they cancelled it themselves.
 
     Args:
         tenant_path (str):
@@ -101,10 +99,8 @@ def sync(
 ) -> APIResponse | None:
     """Delete Team Booking
 
-     Release a team member from project allocation, freeing their capacity for other work.
-    Automatically removes calendar blocks and availability exceptions. Use when projects
-    are cancelled, team members leave, or responsibilities are reassigned. Consider
-    creating a replacement booking before deletion to maintain project coverage.
+     Cancel a team member's booking. Their hours are free for other work right away, and they are
+    notified unless they cancelled it themselves.
 
     Args:
         tenant_path (str):
@@ -133,10 +129,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Team Booking
 
-     Release a team member from project allocation, freeing their capacity for other work.
-    Automatically removes calendar blocks and availability exceptions. Use when projects
-    are cancelled, team members leave, or responsibilities are reassigned. Consider
-    creating a replacement booking before deletion to maintain project coverage.
+     Cancel a team member's booking. Their hours are free for other work right away, and they are
+    notified unless they cancelled it themselves.
 
     Args:
         tenant_path (str):
@@ -168,10 +162,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Team Booking
 
-     Release a team member from project allocation, freeing their capacity for other work.
-    Automatically removes calendar blocks and availability exceptions. Use when projects
-    are cancelled, team members leave, or responsibilities are reassigned. Consider
-    creating a replacement booking before deletion to maintain project coverage.
+     Cancel a team member's booking. Their hours are free for other work right away, and they are
+    notified unless they cancelled it themselves.
 
     Args:
         tenant_path (str):

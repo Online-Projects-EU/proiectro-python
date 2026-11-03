@@ -81,8 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Requests To Payment
 
-     Attach one or more closed support requests to a consumption-type Payment as
-    billable sources. Each entry contributes its amount to the Payment total.
+     Attach one or more support requests closed as fixed or done to a consumption-type
+    Payment as billable sources. Each entry contributes its amount to the Payment total.
 
     Args:
         tenant_path (str):
@@ -119,8 +119,8 @@ def sync(
 ) -> APIResponse | None:
     """Add External Support Requests To Payment
 
-     Attach one or more closed support requests to a consumption-type Payment as
-    billable sources. Each entry contributes its amount to the Payment total.
+     Attach one or more support requests closed as fixed or done to a consumption-type
+    Payment as billable sources. Each entry contributes its amount to the Payment total.
 
     Args:
         tenant_path (str):
@@ -152,8 +152,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Requests To Payment
 
-     Attach one or more closed support requests to a consumption-type Payment as
-    billable sources. Each entry contributes its amount to the Payment total.
+     Attach one or more support requests closed as fixed or done to a consumption-type
+    Payment as billable sources. Each entry contributes its amount to the Payment total.
 
     Args:
         tenant_path (str):
@@ -188,8 +188,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add External Support Requests To Payment
 
-     Attach one or more closed support requests to a consumption-type Payment as
-    billable sources. Each entry contributes its amount to the Payment total.
+     Attach one or more support requests closed as fixed or done to a consumption-type
+    Payment as billable sources. Each entry contributes its amount to the Payment total.
 
     Args:
         tenant_path (str):

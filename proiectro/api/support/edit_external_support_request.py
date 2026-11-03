@@ -79,7 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit External Support Request
 
-     Edit external support request details (title, description, type, severity).
+     Edit the title, description, type or severity of an external support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):
@@ -116,7 +117,8 @@ def sync(
 ) -> APIResponse | None:
     """Edit External Support Request
 
-     Edit external support request details (title, description, type, severity).
+     Edit the title, description, type or severity of an external support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):
@@ -148,7 +150,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit External Support Request
 
-     Edit external support request details (title, description, type, severity).
+     Edit the title, description, type or severity of an external support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):
@@ -183,7 +186,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit External Support Request
 
-     Edit external support request details (title, description, type, severity).
+     Edit the title, description, type or severity of an external support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):

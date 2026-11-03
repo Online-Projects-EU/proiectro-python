@@ -79,9 +79,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Reopen Proposal
 
-     Reopen a closed proposal (won or lost) back to its previous stage within the grace period.
-    This allows for correcting mistakes in pipeline management. The proposal will be moved
-    back to the stage it was in before being closed, with all closure-related fields cleared.
+     Reopen a won or lost proposal within 30 days, to fix a mistake in your funnel. It goes back to
+    the stage it was in before closing. A won proposal's project is deactivated and its catalog
+    stock returned.
 
     Args:
         tenant_path (str):
@@ -115,9 +115,9 @@ def sync(
 ) -> APIResponse | None:
     """Reopen Proposal
 
-     Reopen a closed proposal (won or lost) back to its previous stage within the grace period.
-    This allows for correcting mistakes in pipeline management. The proposal will be moved
-    back to the stage it was in before being closed, with all closure-related fields cleared.
+     Reopen a won or lost proposal within 30 days, to fix a mistake in your funnel. It goes back to
+    the stage it was in before closing. A won proposal's project is deactivated and its catalog
+    stock returned.
 
     Args:
         tenant_path (str):
@@ -146,9 +146,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Reopen Proposal
 
-     Reopen a closed proposal (won or lost) back to its previous stage within the grace period.
-    This allows for correcting mistakes in pipeline management. The proposal will be moved
-    back to the stage it was in before being closed, with all closure-related fields cleared.
+     Reopen a won or lost proposal within 30 days, to fix a mistake in your funnel. It goes back to
+    the stage it was in before closing. A won proposal's project is deactivated and its catalog
+    stock returned.
 
     Args:
         tenant_path (str):
@@ -180,9 +180,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Reopen Proposal
 
-     Reopen a closed proposal (won or lost) back to its previous stage within the grace period.
-    This allows for correcting mistakes in pipeline management. The proposal will be moved
-    back to the stage it was in before being closed, with all closure-related fields cleared.
+     Reopen a won or lost proposal within 30 days, to fix a mistake in your funnel. It goes back to
+    the stage it was in before closing. A won proposal's project is deactivated and its catalog
+    stock returned.
 
     Args:
         tenant_path (str):

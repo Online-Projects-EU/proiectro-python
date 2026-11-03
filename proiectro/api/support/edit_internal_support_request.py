@@ -79,10 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit Internal Support Request
 
-     Update request details when requirements change or clarification is needed.
-    Modify type, severity, or description to ensure accurate handling.
-    Changes may trigger re-routing or priority adjustments. Document
-    reasons for modifications to maintain audit trail.
+     Edit the title, description, type or severity of an internal support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):
@@ -119,10 +117,8 @@ def sync(
 ) -> APIResponse | None:
     """Edit Internal Support Request
 
-     Update request details when requirements change or clarification is needed.
-    Modify type, severity, or description to ensure accurate handling.
-    Changes may trigger re-routing or priority adjustments. Document
-    reasons for modifications to maintain audit trail.
+     Edit the title, description, type or severity of an internal support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):
@@ -154,10 +150,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit Internal Support Request
 
-     Update request details when requirements change or clarification is needed.
-    Modify type, severity, or description to ensure accurate handling.
-    Changes may trigger re-routing or priority adjustments. Document
-    reasons for modifications to maintain audit trail.
+     Edit the title, description, type or severity of an internal support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):
@@ -192,10 +186,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit Internal Support Request
 
-     Update request details when requirements change or clarification is needed.
-    Modify type, severity, or description to ensure accurate handling.
-    Changes may trigger re-routing or priority adjustments. Document
-    reasons for modifications to maintain audit trail.
+     Edit the title, description, type or severity of an internal support request. The request stays
+    in its queue. A closed request can no longer be edited.
 
     Args:
         tenant_path (str):

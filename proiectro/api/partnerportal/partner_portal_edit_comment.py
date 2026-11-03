@@ -89,7 +89,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Partner Portal Edit Comment
 
-     Partner edits their own comment on support request.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         tenant_path (str):
@@ -130,7 +130,7 @@ def sync(
 ) -> APIResponse | None:
     """Partner Portal Edit Comment
 
-     Partner edits their own comment on support request.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         tenant_path (str):
@@ -166,7 +166,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Partner Portal Edit Comment
 
-     Partner edits their own comment on support request.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         tenant_path (str):
@@ -205,7 +205,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Partner Portal Edit Comment
 
-     Partner edits their own comment on support request.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         tenant_path (str):

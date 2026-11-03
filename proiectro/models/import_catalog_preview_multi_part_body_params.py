@@ -1,0 +1,147 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from io import BytesIO
+from typing import Any, TypeVar, cast
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from .. import types
+from ..types import UNSET, File, Unset
+
+T = TypeVar("T", bound="ImportCatalogPreviewMultiPartBodyParams")
+
+
+@_attrs_define
+class ImportCatalogPreviewMultiPartBodyParams:
+    """
+    Attributes:
+        file (File):
+        make_new_active (bool | None | Unset):  Default: False.
+        upload_token (None | str | Unset):
+    """
+
+    file: File
+    make_new_active: bool | None | Unset = False
+    upload_token: None | str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        file = self.file.to_tuple()
+
+        make_new_active: bool | None | Unset
+        if isinstance(self.make_new_active, Unset):
+            make_new_active = UNSET
+        else:
+            make_new_active = self.make_new_active
+
+        upload_token: None | str | Unset
+        if isinstance(self.upload_token, Unset):
+            upload_token = UNSET
+        else:
+            upload_token = self.upload_token
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "file": file,
+            }
+        )
+        if make_new_active is not UNSET:
+            field_dict["make_new_active"] = make_new_active
+        if upload_token is not UNSET:
+            field_dict["upload_token"] = upload_token
+
+        return field_dict
+
+    def to_multipart(self) -> types.RequestFiles:
+        files: types.RequestFiles = []
+
+        files.append(("file", self.file.to_tuple()))
+
+        if not isinstance(self.make_new_active, Unset):
+            if isinstance(self.make_new_active, bool):
+                files.append(
+                    (
+                        "make_new_active",
+                        (None, str(self.make_new_active).encode(), "text/plain"),
+                    )
+                )
+            else:
+                files.append(
+                    (
+                        "make_new_active",
+                        (None, str(self.make_new_active).encode(), "text/plain"),
+                    )
+                )
+
+        if not isinstance(self.upload_token, Unset):
+            if isinstance(self.upload_token, str):
+                files.append(
+                    (
+                        "upload_token",
+                        (None, str(self.upload_token).encode(), "text/plain"),
+                    )
+                )
+            else:
+                files.append(
+                    (
+                        "upload_token",
+                        (None, str(self.upload_token).encode(), "text/plain"),
+                    )
+                )
+
+        for prop_name, prop in self.additional_properties.items():
+            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
+
+        return files
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        file = File(payload=BytesIO(d.pop("file")))
+
+        def _parse_make_new_active(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        make_new_active = _parse_make_new_active(d.pop("make_new_active", UNSET))
+
+        def _parse_upload_token(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        upload_token = _parse_upload_token(d.pop("upload_token", UNSET))
+
+        import_catalog_preview_multi_part_body_params = cls(
+            file=file,
+            make_new_active=make_new_active,
+            upload_token=upload_token,
+        )
+
+        import_catalog_preview_multi_part_body_params.additional_properties = d
+        return import_catalog_preview_multi_part_body_params
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

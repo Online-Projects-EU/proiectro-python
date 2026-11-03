@@ -70,8 +70,8 @@ def sync_detailed(
 ) -> Response[APIResponse | OutputBillableSourceList]:
     """List Billable External Support Requests For Payment
 
-     List closed support requests for this Payment's customer that have not yet been
-    billed on any Payment. Used by the consumption picker to attach support work as
+     List support requests closed as fixed or done for this Payment's customer that have
+    not yet been billed on any Payment. Used by the consumption picker to attach support work as
     Payment sources. Each row carries the per-source amount suggestion (when rate
     cards exist) so the revenue officer can confirm or override before bulk-saving.
 
@@ -107,8 +107,8 @@ def sync(
 ) -> APIResponse | OutputBillableSourceList | None:
     """List Billable External Support Requests For Payment
 
-     List closed support requests for this Payment's customer that have not yet been
-    billed on any Payment. Used by the consumption picker to attach support work as
+     List support requests closed as fixed or done for this Payment's customer that have
+    not yet been billed on any Payment. Used by the consumption picker to attach support work as
     Payment sources. Each row carries the per-source amount suggestion (when rate
     cards exist) so the revenue officer can confirm or override before bulk-saving.
 
@@ -139,8 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | OutputBillableSourceList]:
     """List Billable External Support Requests For Payment
 
-     List closed support requests for this Payment's customer that have not yet been
-    billed on any Payment. Used by the consumption picker to attach support work as
+     List support requests closed as fixed or done for this Payment's customer that have
+    not yet been billed on any Payment. Used by the consumption picker to attach support work as
     Payment sources. Each row carries the per-source amount suggestion (when rate
     cards exist) so the revenue officer can confirm or override before bulk-saving.
 
@@ -174,8 +174,8 @@ async def asyncio(
 ) -> APIResponse | OutputBillableSourceList | None:
     """List Billable External Support Requests For Payment
 
-     List closed support requests for this Payment's customer that have not yet been
-    billed on any Payment. Used by the consumption picker to attach support work as
+     List support requests closed as fixed or done for this Payment's customer that have
+    not yet been billed on any Payment. Used by the consumption picker to attach support work as
     Payment sources. Each row carries the per-source amount suggestion (when rate
     cards exist) so the revenue officer can confirm or override before bulk-saving.
 

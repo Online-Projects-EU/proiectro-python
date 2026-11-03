@@ -6,38 +6,29 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.download_url_gcs import DownloadUrlGCS
-from ...models.request_download_url_gcs import RequestDownloadUrlGCS
+from ...models.output_time_off_list import OutputTimeOffList
 from ...types import Response
 
 
 def _get_kwargs(
     tenant_path: str,
-    *,
-    body: RequestDownloadUrlGCS,
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
-        "method": "post",
-        "url": "/api/v1/{tenant_path}/generate_download_url_member_avatar".format(
+        "method": "get",
+        "url": "/api/v1/{tenant_path}/my_time_off".format(
             tenant_path=quote(str(tenant_path), safe=""),
         ),
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DownloadUrlGCS | None:
+) -> OutputTimeOffList | None:
     if response.status_code == 200:
-        response_200 = DownloadUrlGCS.from_dict(response.json())
+        response_200 = OutputTimeOffList.from_dict(response.json())
 
         return response_200
 
@@ -49,7 +40,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DownloadUrlGCS]:
+) -> Response[OutputTimeOffList]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,29 +53,25 @@ def sync_detailed(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url Member Avatar
+) -> Response[OutputTimeOffList]:
+    """List My Time Off
 
-     Download your workspace-specific avatar. Access your team member profile picture
-    with a time-limited secure URL that expires after 1 minute. Retrieve your workspace
-    avatar for backup or review purposes.
+     View your time off from the past year onwards, with whether each one is approved, waiting for
+    approval, or was turned down and why.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[OutputTimeOffList]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
-        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -98,30 +85,26 @@ def sync(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url Member Avatar
+) -> OutputTimeOffList | None:
+    """List My Time Off
 
-     Download your workspace-specific avatar. Access your team member profile picture
-    with a time-limited secure URL that expires after 1 minute. Retrieve your workspace
-    avatar for backup or review purposes.
+     View your time off from the past year onwards, with whether each one is approved, waiting for
+    approval, or was turned down and why.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        OutputTimeOffList
     """
 
     return sync_detailed(
         tenant_path=tenant_path,
         client=client,
-        body=body,
     ).parsed
 
 
@@ -129,29 +112,25 @@ async def asyncio_detailed(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url Member Avatar
+) -> Response[OutputTimeOffList]:
+    """List My Time Off
 
-     Download your workspace-specific avatar. Access your team member profile picture
-    with a time-limited secure URL that expires after 1 minute. Retrieve your workspace
-    avatar for backup or review purposes.
+     View your time off from the past year onwards, with whether each one is approved, waiting for
+    approval, or was turned down and why.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[OutputTimeOffList]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
-        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -163,30 +142,26 @@ async def asyncio(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url Member Avatar
+) -> OutputTimeOffList | None:
+    """List My Time Off
 
-     Download your workspace-specific avatar. Access your team member profile picture
-    with a time-limited secure URL that expires after 1 minute. Retrieve your workspace
-    avatar for backup or review purposes.
+     View your time off from the past year onwards, with whether each one is approved, waiting for
+    approval, or was turned down and why.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        OutputTimeOffList
     """
 
     return (
         await asyncio_detailed(
             tenant_path=tenant_path,
             client=client,
-            body=body,
         )
     ).parsed

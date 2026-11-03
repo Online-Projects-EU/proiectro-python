@@ -92,10 +92,9 @@ def sync_detailed(
 ) -> Response[APIResponse | AddCustomProductResponse]:
     """Add Custom Product
 
-     Create one-off products for unique customer requirements not in your standard catalog.
-    Allows complete flexibility in specifications, pricing, and terms. Custom products
-    require additional approval workflows to ensure profitability. Consider adding
-    successful custom products to your catalog for future reuse.
+     Add a product that is not in your catalog, for a customer's special request, with its own
+    specification, price and cost. Prices are converted to the proposal's currency. If you sell it
+    again, add it to the catalog.
 
     Args:
         tenant_path (str):
@@ -129,10 +128,9 @@ def sync(
 ) -> APIResponse | AddCustomProductResponse | None:
     """Add Custom Product
 
-     Create one-off products for unique customer requirements not in your standard catalog.
-    Allows complete flexibility in specifications, pricing, and terms. Custom products
-    require additional approval workflows to ensure profitability. Consider adding
-    successful custom products to your catalog for future reuse.
+     Add a product that is not in your catalog, for a customer's special request, with its own
+    specification, price and cost. Prices are converted to the proposal's currency. If you sell it
+    again, add it to the catalog.
 
     Args:
         tenant_path (str):
@@ -161,10 +159,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | AddCustomProductResponse]:
     """Add Custom Product
 
-     Create one-off products for unique customer requirements not in your standard catalog.
-    Allows complete flexibility in specifications, pricing, and terms. Custom products
-    require additional approval workflows to ensure profitability. Consider adding
-    successful custom products to your catalog for future reuse.
+     Add a product that is not in your catalog, for a customer's special request, with its own
+    specification, price and cost. Prices are converted to the proposal's currency. If you sell it
+    again, add it to the catalog.
 
     Args:
         tenant_path (str):
@@ -196,10 +193,9 @@ async def asyncio(
 ) -> APIResponse | AddCustomProductResponse | None:
     """Add Custom Product
 
-     Create one-off products for unique customer requirements not in your standard catalog.
-    Allows complete flexibility in specifications, pricing, and terms. Custom products
-    require additional approval workflows to ensure profitability. Consider adding
-    successful custom products to your catalog for future reuse.
+     Add a product that is not in your catalog, for a customer's special request, with its own
+    specification, price and cost. Prices are converted to the proposal's currency. If you sell it
+    again, add it to the catalog.
 
     Args:
         tenant_path (str):

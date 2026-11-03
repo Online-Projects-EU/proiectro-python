@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 from ..models.edit_document_template_data_classification_type_0 import (
     EditDocumentTemplateDataClassificationType0,
 )
+from ..models.edit_document_template_kind_type_0 import EditDocumentTemplateKindType0
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="EditDocumentTemplate")
@@ -21,6 +22,8 @@ class EditDocumentTemplate:
         name (None | str | Unset):
         description (None | str | Unset):
         entity_type (None | str | Unset):
+        kind (EditDocumentTemplateKindType0 | None | Unset):
+        subject (None | str | Unset):
         body (None | str | Unset):
         default_series_id (None | str | Unset):
         retention_days (int | None | Unset):
@@ -31,6 +34,8 @@ class EditDocumentTemplate:
     name: None | str | Unset = UNSET
     description: None | str | Unset = UNSET
     entity_type: None | str | Unset = UNSET
+    kind: EditDocumentTemplateKindType0 | None | Unset = UNSET
+    subject: None | str | Unset = UNSET
     body: None | str | Unset = UNSET
     default_series_id: None | str | Unset = UNSET
     retention_days: int | None | Unset = UNSET
@@ -58,6 +63,20 @@ class EditDocumentTemplate:
             entity_type = UNSET
         else:
             entity_type = self.entity_type
+
+        kind: None | str | Unset
+        if isinstance(self.kind, Unset):
+            kind = UNSET
+        elif isinstance(self.kind, EditDocumentTemplateKindType0):
+            kind = self.kind.value
+        else:
+            kind = self.kind
+
+        subject: None | str | Unset
+        if isinstance(self.subject, Unset):
+            subject = UNSET
+        else:
+            subject = self.subject
 
         body: None | str | Unset
         if isinstance(self.body, Unset):
@@ -102,6 +121,10 @@ class EditDocumentTemplate:
             field_dict["description"] = description
         if entity_type is not UNSET:
             field_dict["entity_type"] = entity_type
+        if kind is not UNSET:
+            field_dict["kind"] = kind
+        if subject is not UNSET:
+            field_dict["subject"] = subject
         if body is not UNSET:
             field_dict["body"] = body
         if default_series_id is not UNSET:
@@ -145,6 +168,32 @@ class EditDocumentTemplate:
             return cast(None | str | Unset, data)
 
         entity_type = _parse_entity_type(d.pop("entity_type", UNSET))
+
+        def _parse_kind(data: object) -> EditDocumentTemplateKindType0 | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                kind_type_0 = EditDocumentTemplateKindType0(data)
+
+                return kind_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(EditDocumentTemplateKindType0 | None | Unset, data)
+
+        kind = _parse_kind(d.pop("kind", UNSET))
+
+        def _parse_subject(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        subject = _parse_subject(d.pop("subject", UNSET))
 
         def _parse_body(data: object) -> None | str | Unset:
             if data is None:
@@ -211,6 +260,8 @@ class EditDocumentTemplate:
             name=name,
             description=description,
             entity_type=entity_type,
+            kind=kind,
+            subject=subject,
             body=body,
             default_series_id=default_series_id,
             retention_days=retention_days,

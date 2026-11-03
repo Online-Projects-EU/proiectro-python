@@ -64,10 +64,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Catalog Product
 
-     Remove discontinued products from the catalog to prevent new proposals. Existing
-    proposals retain their product configurations. Cannot delete products actively
-    used in open deals. Consider marking as inactive rather than deleting for
-    historical reference.
+     Delete a catalog item no proposal or project uses. An item already used cannot be deleted: make
+    it inactive instead, so it no longer shows in new proposals.
 
     Args:
         tenant_path (str):
@@ -101,10 +99,8 @@ def sync(
 ) -> APIResponse | None:
     """Delete Catalog Product
 
-     Remove discontinued products from the catalog to prevent new proposals. Existing
-    proposals retain their product configurations. Cannot delete products actively
-    used in open deals. Consider marking as inactive rather than deleting for
-    historical reference.
+     Delete a catalog item no proposal or project uses. An item already used cannot be deleted: make
+    it inactive instead, so it no longer shows in new proposals.
 
     Args:
         tenant_path (str):
@@ -133,10 +129,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Catalog Product
 
-     Remove discontinued products from the catalog to prevent new proposals. Existing
-    proposals retain their product configurations. Cannot delete products actively
-    used in open deals. Consider marking as inactive rather than deleting for
-    historical reference.
+     Delete a catalog item no proposal or project uses. An item already used cannot be deleted: make
+    it inactive instead, so it no longer shows in new proposals.
 
     Args:
         tenant_path (str):
@@ -168,10 +162,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Catalog Product
 
-     Remove discontinued products from the catalog to prevent new proposals. Existing
-    proposals retain their product configurations. Cannot delete products actively
-    used in open deals. Consider marking as inactive rather than deleting for
-    historical reference.
+     Delete a catalog item no proposal or project uses. An item already used cannot be deleted: make
+    it inactive instead, so it no longer shows in new proposals.
 
     Args:
         tenant_path (str):

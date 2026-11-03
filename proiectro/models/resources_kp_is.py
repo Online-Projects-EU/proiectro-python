@@ -27,7 +27,7 @@ class ResourcesKPIs:
 
     Billable/non-billable percentages and the skills-gap counts are GONE: the product models
     neither (WorkLog has no billable flag, and there is no Skill model), so they could only ever
-    have been invented — which is exactly what the old implementation did.
+    have been invented, which is exactly what the old implementation did.
 
         Attributes:
             horizon_days (int):

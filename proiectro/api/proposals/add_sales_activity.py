@@ -71,10 +71,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Sales Activity
 
-     Log customer interactions, meeting notes, and deal progress for complete activity
-    history. Creates searchable record of all sales touches for handoffs and reviews.
-    Essential for CRM hygiene and team collaboration. Activities drive engagement
-    scoring and next-best-action recommendations.
+     Log a call, a meeting or a note on a customer or a proposal. Activities make up the customer's
+    sales history and show when you last talked to them.
 
     Args:
         tenant_path (str):
@@ -108,10 +106,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Sales Activity
 
-     Log customer interactions, meeting notes, and deal progress for complete activity
-    history. Creates searchable record of all sales touches for handoffs and reviews.
-    Essential for CRM hygiene and team collaboration. Activities drive engagement
-    scoring and next-best-action recommendations.
+     Log a call, a meeting or a note on a customer or a proposal. Activities make up the customer's
+    sales history and show when you last talked to them.
 
     Args:
         tenant_path (str):
@@ -140,10 +136,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Sales Activity
 
-     Log customer interactions, meeting notes, and deal progress for complete activity
-    history. Creates searchable record of all sales touches for handoffs and reviews.
-    Essential for CRM hygiene and team collaboration. Activities drive engagement
-    scoring and next-best-action recommendations.
+     Log a call, a meeting or a note on a customer or a proposal. Activities make up the customer's
+    sales history and show when you last talked to them.
 
     Args:
         tenant_path (str):
@@ -175,10 +169,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Sales Activity
 
-     Log customer interactions, meeting notes, and deal progress for complete activity
-    history. Creates searchable record of all sales touches for handoffs and reviews.
-    Essential for CRM hygiene and team collaboration. Activities drive engagement
-    scoring and next-best-action recommendations.
+     Log a call, a meeting or a note on a customer or a proposal. Activities make up the customer's
+    sales history and show when you last talked to them.
 
     Args:
         tenant_path (str):

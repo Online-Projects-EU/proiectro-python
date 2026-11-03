@@ -82,10 +82,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Change Proposal Stage
 
-     Advance proposals through your sales pipeline as milestones are achieved. Stage
-    changes update probability, forecast inclusion, and trigger workflow automations.
-    Moving to 'Won' converts the proposal to an active project. Document stage-specific
-    exit criteria to ensure consistent pipeline progression and accurate forecasting.
+     Move a proposal to another stage of your sales funnel. Moving it to Won makes it an active
+    project; moving it to Lost needs a reason. Both are final, but you can reopen the proposal
+    within 30 days.
 
     Args:
         tenant_path (str):
@@ -125,10 +124,9 @@ def sync(
 ) -> APIResponse | None:
     """Change Proposal Stage
 
-     Advance proposals through your sales pipeline as milestones are achieved. Stage
-    changes update probability, forecast inclusion, and trigger workflow automations.
-    Moving to 'Won' converts the proposal to an active project. Document stage-specific
-    exit criteria to ensure consistent pipeline progression and accurate forecasting.
+     Move a proposal to another stage of your sales funnel. Moving it to Won makes it an active
+    project; moving it to Lost needs a reason. Both are final, but you can reopen the proposal
+    within 30 days.
 
     Args:
         tenant_path (str):
@@ -163,10 +161,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Change Proposal Stage
 
-     Advance proposals through your sales pipeline as milestones are achieved. Stage
-    changes update probability, forecast inclusion, and trigger workflow automations.
-    Moving to 'Won' converts the proposal to an active project. Document stage-specific
-    exit criteria to ensure consistent pipeline progression and accurate forecasting.
+     Move a proposal to another stage of your sales funnel. Moving it to Won makes it an active
+    project; moving it to Lost needs a reason. Both are final, but you can reopen the proposal
+    within 30 days.
 
     Args:
         tenant_path (str):
@@ -204,10 +201,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Change Proposal Stage
 
-     Advance proposals through your sales pipeline as milestones are achieved. Stage
-    changes update probability, forecast inclusion, and trigger workflow automations.
-    Moving to 'Won' converts the proposal to an active project. Document stage-specific
-    exit criteria to ensure consistent pipeline progression and accurate forecasting.
+     Move a proposal to another stage of your sales funnel. Moving it to Won makes it an active
+    project; moving it to Lost needs a reason. Both are final, but you can reopen the proposal
+    within 30 days.
 
     Args:
         tenant_path (str):

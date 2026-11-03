@@ -80,10 +80,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Team Booking
 
-     Adjust team member allocation when project timelines shift or requirements change.
-    Extends or shortens booking periods, reassigns to different deliverables, or updates
-    allocation percentages. Changes immediately affect availability calculations and capacity
-    reports. Notify affected team members of significant schedule changes.
+     Change a team member's booking: the dates, the hours per day or the deliverable. The change is
+    checked against their availability again. If you book someone else, both are notified.
 
     Args:
         tenant_path (str):
@@ -120,10 +118,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Team Booking
 
-     Adjust team member allocation when project timelines shift or requirements change.
-    Extends or shortens booking periods, reassigns to different deliverables, or updates
-    allocation percentages. Changes immediately affect availability calculations and capacity
-    reports. Notify affected team members of significant schedule changes.
+     Change a team member's booking: the dates, the hours per day or the deliverable. The change is
+    checked against their availability again. If you book someone else, both are notified.
 
     Args:
         tenant_path (str):
@@ -155,10 +151,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Team Booking
 
-     Adjust team member allocation when project timelines shift or requirements change.
-    Extends or shortens booking periods, reassigns to different deliverables, or updates
-    allocation percentages. Changes immediately affect availability calculations and capacity
-    reports. Notify affected team members of significant schedule changes.
+     Change a team member's booking: the dates, the hours per day or the deliverable. The change is
+    checked against their availability again. If you book someone else, both are notified.
 
     Args:
         tenant_path (str):
@@ -193,10 +187,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Team Booking
 
-     Adjust team member allocation when project timelines shift or requirements change.
-    Extends or shortens booking periods, reassigns to different deliverables, or updates
-    allocation percentages. Changes immediately affect availability calculations and capacity
-    reports. Notify affected team members of significant schedule changes.
+     Change a team member's booking: the dates, the hours per day or the deliverable. The change is
+    checked against their availability again. If you book someone else, both are notified.
 
     Args:
         tenant_path (str):

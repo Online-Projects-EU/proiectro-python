@@ -8,6 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.add_tag import AddTag
 from ...models.api_response import APIResponse
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -35,7 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
@@ -51,6 +52,11 @@ def _parse_response(
 
         return response_409
 
+    if response.status_code == 422:
+        response_422 = PydanticDetail.from_dict(response.json())
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -59,7 +65,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,13 +79,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddTag,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Tag
 
-     Create new tags to expand your categorization system. Choose distinctive colors
-    for visual recognition in lists and filters. Tag names must be unique within
-    your workspace. Consider establishing naming conventions for consistency.
-    Keep tags concise for effective display in UI elements.
+     Add a tag, with a color that makes it easy to spot in lists and filters. The name must be unique
+    in your workspace and short, up to 25 characters.
 
     Args:
         tenant_path (str):
@@ -90,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -110,13 +114,11 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddTag,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Tag
 
-     Create new tags to expand your categorization system. Choose distinctive colors
-    for visual recognition in lists and filters. Tag names must be unique within
-    your workspace. Consider establishing naming conventions for consistency.
-    Keep tags concise for effective display in UI elements.
+     Add a tag, with a color that makes it easy to spot in lists and filters. The name must be unique
+    in your workspace and short, up to 25 characters.
 
     Args:
         tenant_path (str):
@@ -127,7 +129,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -142,13 +144,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddTag,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Tag
 
-     Create new tags to expand your categorization system. Choose distinctive colors
-    for visual recognition in lists and filters. Tag names must be unique within
-    your workspace. Consider establishing naming conventions for consistency.
-    Keep tags concise for effective display in UI elements.
+     Add a tag, with a color that makes it easy to spot in lists and filters. The name must be unique
+    in your workspace and short, up to 25 characters.
 
     Args:
         tenant_path (str):
@@ -159,7 +159,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -177,13 +177,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddTag,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Tag
 
-     Create new tags to expand your categorization system. Choose distinctive colors
-    for visual recognition in lists and filters. Tag names must be unique within
-    your workspace. Consider establishing naming conventions for consistency.
-    Keep tags concise for effective display in UI elements.
+     Add a tag, with a color that makes it easy to spot in lists and filters. The name must be unique
+    in your workspace and short, up to 25 characters.
 
     Args:
         tenant_path (str):
@@ -194,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return (

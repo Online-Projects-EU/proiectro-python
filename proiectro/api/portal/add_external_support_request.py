@@ -81,10 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Request
 
-     Submit support requests to your service provider for assistance with technical issues,
-    billing questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team. You'll receive a unique
-    reference number to track progress and can monitor status updates in your portal.
+     Ask your supplier for help with a problem, a billing question or anything else. You get a
+    reference for the request and can follow it here, in the portal.
 
     Args:
         customer_org_id (str):
@@ -119,10 +117,8 @@ def sync(
 ) -> APIResponse | None:
     """Add External Support Request
 
-     Submit support requests to your service provider for assistance with technical issues,
-    billing questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team. You'll receive a unique
-    reference number to track progress and can monitor status updates in your portal.
+     Ask your supplier for help with a problem, a billing question or anything else. You get a
+    reference for the request and can follow it here, in the portal.
 
     Args:
         customer_org_id (str):
@@ -152,10 +148,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Request
 
-     Submit support requests to your service provider for assistance with technical issues,
-    billing questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team. You'll receive a unique
-    reference number to track progress and can monitor status updates in your portal.
+     Ask your supplier for help with a problem, a billing question or anything else. You get a
+    reference for the request and can follow it here, in the portal.
 
     Args:
         customer_org_id (str):
@@ -188,10 +182,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add External Support Request
 
-     Submit support requests to your service provider for assistance with technical issues,
-    billing questions, or general inquiries. Automatic routing based on request type and
-    severity ensures your request reaches the right support team. You'll receive a unique
-    reference number to track progress and can monitor status updates in your portal.
+     Ask your supplier for help with a problem, a billing question or anything else. You get a
+    reference for the request and can follow it here, in the portal.
 
     Args:
         customer_org_id (str):

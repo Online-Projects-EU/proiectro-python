@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.request_upload_url_gcs import RequestUploadUrlGCS
 from ...models.upload_url_gcs import UploadUrlGCS
 from ...types import Response
@@ -35,11 +36,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> UploadUrlGCS | None:
+) -> APIResponse | UploadUrlGCS | None:
     if response.status_code == 200:
         response_200 = UploadUrlGCS.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 422:
+        response_422 = APIResponse.from_dict(response.json())
+
+        return response_422
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -49,7 +55,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[UploadUrlGCS]:
+) -> Response[APIResponse | UploadUrlGCS]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,12 +69,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> Response[UploadUrlGCS]:
+) -> Response[APIResponse | UploadUrlGCS]:
     """Generate Upload Url Tenant Branding
 
-     Upload workspace branding assets like logos and banners. Customize the visual
-    identity across your entire workspace. Files are immediately available after
-    upload. Maintain brand consistency throughout your platform experience.
+     Upload the workspace logo: a JPG, PNG, GIF or WebP picture, cropped square, shown to
+    your team, your customers and your partners. A new upload replaces the previous one.
 
     Args:
         tenant_path (str):
@@ -79,7 +84,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[UploadUrlGCS]
+        Response[APIResponse | UploadUrlGCS]
     """
 
     kwargs = _get_kwargs(
@@ -99,12 +104,11 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> UploadUrlGCS | None:
+) -> APIResponse | UploadUrlGCS | None:
     """Generate Upload Url Tenant Branding
 
-     Upload workspace branding assets like logos and banners. Customize the visual
-    identity across your entire workspace. Files are immediately available after
-    upload. Maintain brand consistency throughout your platform experience.
+     Upload the workspace logo: a JPG, PNG, GIF or WebP picture, cropped square, shown to
+    your team, your customers and your partners. A new upload replaces the previous one.
 
     Args:
         tenant_path (str):
@@ -115,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        UploadUrlGCS
+        APIResponse | UploadUrlGCS
     """
 
     return sync_detailed(
@@ -130,12 +134,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> Response[UploadUrlGCS]:
+) -> Response[APIResponse | UploadUrlGCS]:
     """Generate Upload Url Tenant Branding
 
-     Upload workspace branding assets like logos and banners. Customize the visual
-    identity across your entire workspace. Files are immediately available after
-    upload. Maintain brand consistency throughout your platform experience.
+     Upload the workspace logo: a JPG, PNG, GIF or WebP picture, cropped square, shown to
+    your team, your customers and your partners. A new upload replaces the previous one.
 
     Args:
         tenant_path (str):
@@ -146,7 +149,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[UploadUrlGCS]
+        Response[APIResponse | UploadUrlGCS]
     """
 
     kwargs = _get_kwargs(
@@ -164,12 +167,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> UploadUrlGCS | None:
+) -> APIResponse | UploadUrlGCS | None:
     """Generate Upload Url Tenant Branding
 
-     Upload workspace branding assets like logos and banners. Customize the visual
-    identity across your entire workspace. Files are immediately available after
-    upload. Maintain brand consistency throughout your platform experience.
+     Upload the workspace logo: a JPG, PNG, GIF or WebP picture, cropped square, shown to
+    your team, your customers and your partners. A new upload replaces the previous one.
 
     Args:
         tenant_path (str):
@@ -180,7 +182,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        UploadUrlGCS
+        APIResponse | UploadUrlGCS
     """
 
     return (

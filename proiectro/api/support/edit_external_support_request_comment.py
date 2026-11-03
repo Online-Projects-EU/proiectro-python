@@ -76,7 +76,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit External Support Request Comment
 
-     Edit an external support request comment (admin).
+     Edit any comment on an external support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):
@@ -113,7 +114,8 @@ def sync(
 ) -> APIResponse | None:
     """Edit External Support Request Comment
 
-     Edit an external support request comment (admin).
+     Edit any comment on an external support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):
@@ -145,7 +147,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit External Support Request Comment
 
-     Edit an external support request comment (admin).
+     Edit any comment on an external support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):
@@ -180,7 +183,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit External Support Request Comment
 
-     Edit an external support request comment (admin).
+     Edit any comment on an external support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):

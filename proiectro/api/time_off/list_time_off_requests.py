@@ -6,40 +6,29 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.download_url_gcs import DownloadUrlGCS
-from ...models.request_download_url_gcs import RequestDownloadUrlGCS
+from ...models.output_time_off_list import OutputTimeOffList
 from ...types import Response
 
 
 def _get_kwargs(
     tenant_path: str,
-    org_id: str,
-    *,
-    body: RequestDownloadUrlGCS,
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
-        "method": "post",
-        "url": "/api/v1/{tenant_path}/generate_download_url_org_branding/{org_id}".format(
+        "method": "get",
+        "url": "/api/v1/{tenant_path}/time_off_requests".format(
             tenant_path=quote(str(tenant_path), safe=""),
-            org_id=quote(str(org_id), safe=""),
         ),
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DownloadUrlGCS | None:
+) -> OutputTimeOffList | None:
     if response.status_code == 200:
-        response_200 = DownloadUrlGCS.from_dict(response.json())
+        response_200 = OutputTimeOffList.from_dict(response.json())
 
         return response_200
 
@@ -51,7 +40,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DownloadUrlGCS]:
+) -> Response[OutputTimeOffList]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,34 +51,26 @@ def _build_response(
 
 def sync_detailed(
     tenant_path: str,
-    org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url Org Branding
+) -> Response[OutputTimeOffList]:
+    """List Time Off Requests
 
-     Download organization branding assets. Access customer organization logos with
-    time-limited secure URLs. Retrieve white-label branding for backup or migration
-    purposes. URL expires after 1 minute for security.
+     View the team's time off waiting for a decision, followed by the decisions of the last 30 days.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[OutputTimeOffList]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
-        org_id=org_id,
-        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -101,68 +82,52 @@ def sync_detailed(
 
 def sync(
     tenant_path: str,
-    org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url Org Branding
+) -> OutputTimeOffList | None:
+    """List Time Off Requests
 
-     Download organization branding assets. Access customer organization logos with
-    time-limited secure URLs. Retrieve white-label branding for backup or migration
-    purposes. URL expires after 1 minute for security.
+     View the team's time off waiting for a decision, followed by the decisions of the last 30 days.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        OutputTimeOffList
     """
 
     return sync_detailed(
         tenant_path=tenant_path,
-        org_id=org_id,
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
     tenant_path: str,
-    org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url Org Branding
+) -> Response[OutputTimeOffList]:
+    """List Time Off Requests
 
-     Download organization branding assets. Access customer organization logos with
-    time-limited secure URLs. Retrieve white-label branding for backup or migration
-    purposes. URL expires after 1 minute for security.
+     View the team's time off waiting for a decision, followed by the decisions of the last 30 days.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[OutputTimeOffList]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
-        org_id=org_id,
-        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -172,35 +137,27 @@ async def asyncio_detailed(
 
 async def asyncio(
     tenant_path: str,
-    org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url Org Branding
+) -> OutputTimeOffList | None:
+    """List Time Off Requests
 
-     Download organization branding assets. Access customer organization logos with
-    time-limited secure URLs. Retrieve white-label branding for backup or migration
-    purposes. URL expires after 1 minute for security.
+     View the team's time off waiting for a decision, followed by the decisions of the last 30 days.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDownloadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        OutputTimeOffList
     """
 
     return (
         await asyncio_detailed(
             tenant_path=tenant_path,
-            org_id=org_id,
             client=client,
-            body=body,
         )
     ).parsed

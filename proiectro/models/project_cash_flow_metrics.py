@@ -28,6 +28,8 @@ class ProjectCashFlowMetrics:
             total_outflow (float | str):
             net_cash_flow (float | str):
             monthly_projections (list[MonthlyProjection] | Unset):
+            expenses_tracked (bool | Unset):  Default: True.
+            costs_tracked (bool | Unset):  Default: True.
     """
 
     project_id: str
@@ -37,6 +39,8 @@ class ProjectCashFlowMetrics:
     total_outflow: float | str
     net_cash_flow: float | str
     monthly_projections: list[MonthlyProjection] | Unset = UNSET
+    expenses_tracked: bool | Unset = True
+    costs_tracked: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -62,6 +66,10 @@ class ProjectCashFlowMetrics:
                 monthly_projections_item = monthly_projections_item_data.to_dict()
                 monthly_projections.append(monthly_projections_item)
 
+        expenses_tracked = self.expenses_tracked
+
+        costs_tracked = self.costs_tracked
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -76,6 +84,10 @@ class ProjectCashFlowMetrics:
         )
         if monthly_projections is not UNSET:
             field_dict["monthly_projections"] = monthly_projections
+        if expenses_tracked is not UNSET:
+            field_dict["expenses_tracked"] = expenses_tracked
+        if costs_tracked is not UNSET:
+            field_dict["costs_tracked"] = costs_tracked
 
         return field_dict
 
@@ -116,6 +128,10 @@ class ProjectCashFlowMetrics:
 
                 monthly_projections.append(monthly_projections_item)
 
+        expenses_tracked = d.pop("expenses_tracked", UNSET)
+
+        costs_tracked = d.pop("costs_tracked", UNSET)
+
         project_cash_flow_metrics = cls(
             project_id=project_id,
             project_name=project_name,
@@ -124,6 +140,8 @@ class ProjectCashFlowMetrics:
             total_outflow=total_outflow,
             net_cash_flow=net_cash_flow,
             monthly_projections=monthly_projections,
+            expenses_tracked=expenses_tracked,
+            costs_tracked=costs_tracked,
         )
 
         project_cash_flow_metrics.additional_properties = d

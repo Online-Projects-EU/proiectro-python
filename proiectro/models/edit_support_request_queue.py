@@ -22,6 +22,7 @@ class EditSupportRequestQueue:
         sequence_no (int | None | Unset):  Default: 1.
         owner_role_id (None | str | Unset):
         automatically_assign (bool | None | Unset):
+        expire_after_days (int | None | Unset):
     """
 
     name: str
@@ -30,6 +31,7 @@ class EditSupportRequestQueue:
     sequence_no: int | None | Unset = 1
     owner_role_id: None | str | Unset = UNSET
     automatically_assign: bool | None | Unset = UNSET
+    expire_after_days: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -65,6 +67,12 @@ class EditSupportRequestQueue:
         else:
             automatically_assign = self.automatically_assign
 
+        expire_after_days: int | None | Unset
+        if isinstance(self.expire_after_days, Unset):
+            expire_after_days = UNSET
+        else:
+            expire_after_days = self.expire_after_days
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -82,6 +90,8 @@ class EditSupportRequestQueue:
             field_dict["owner_role_id"] = owner_role_id
         if automatically_assign is not UNSET:
             field_dict["automatically_assign"] = automatically_assign
+        if expire_after_days is not UNSET:
+            field_dict["expire_after_days"] = expire_after_days
 
         return field_dict
 
@@ -137,6 +147,15 @@ class EditSupportRequestQueue:
             d.pop("automatically_assign", UNSET)
         )
 
+        def _parse_expire_after_days(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        expire_after_days = _parse_expire_after_days(d.pop("expire_after_days", UNSET))
+
         edit_support_request_queue = cls(
             name=name,
             internal=internal,
@@ -144,6 +163,7 @@ class EditSupportRequestQueue:
             sequence_no=sequence_no,
             owner_role_id=owner_role_id,
             automatically_assign=automatically_assign,
+            expire_after_days=expire_after_days,
         )
 
         edit_support_request_queue.additional_properties = d

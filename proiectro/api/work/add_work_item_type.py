@@ -77,9 +77,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Work Item Type
 
-     Create a new work item type to categorize work in projects. Define whether it's a
-    summary container, execution task, or milestone event. Custom types allow you to
-    match your organization's terminology and processes while maintaining scheduling integrity.
+     Add a work item type to classify the work in your projects. Its behavior says whether it groups
+    other items, is work to do, or is a milestone.
 
     Args:
         tenant_path (str):
@@ -113,9 +112,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Work Item Type
 
-     Create a new work item type to categorize work in projects. Define whether it's a
-    summary container, execution task, or milestone event. Custom types allow you to
-    match your organization's terminology and processes while maintaining scheduling integrity.
+     Add a work item type to classify the work in your projects. Its behavior says whether it groups
+    other items, is work to do, or is a milestone.
 
     Args:
         tenant_path (str):
@@ -144,9 +142,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Work Item Type
 
-     Create a new work item type to categorize work in projects. Define whether it's a
-    summary container, execution task, or milestone event. Custom types allow you to
-    match your organization's terminology and processes while maintaining scheduling integrity.
+     Add a work item type to classify the work in your projects. Its behavior says whether it groups
+    other items, is work to do, or is a milestone.
 
     Args:
         tenant_path (str):
@@ -178,9 +175,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Work Item Type
 
-     Create a new work item type to categorize work in projects. Define whether it's a
-    summary container, execution task, or milestone event. Custom types allow you to
-    match your organization's terminology and processes while maintaining scheduling integrity.
+     Add a work item type to classify the work in your projects. Its behavior says whether it groups
+    other items, is work to do, or is a milestone.
 
     Args:
         tenant_path (str):

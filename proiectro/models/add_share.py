@@ -14,7 +14,7 @@ T = TypeVar("T", bound="AddShare")
 @_attrs_define
 class AddShare:
     """A new share starts as a draft. The message is plain text. The language defaults from the
-    organization's country; valid languages are settings.LANGUAGES, validated in the function.
+    organization's country; it is one of the platform's languages, such as `en` or `ro`.
 
         Attributes:
             title (str):

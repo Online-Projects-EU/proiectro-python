@@ -67,10 +67,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Internal Support Request Comment
 
-     Administrative removal of any comment for moderation purposes.
-    Requires support:comment:delete permission. Permanently deletes
-    comment and all replies. Document reason for deletion when significant.
-    Cannot be recovered after deletion.
+     Delete any comment on an internal support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):
@@ -107,10 +105,8 @@ def sync(
 ) -> APIResponse | None:
     """Delete Internal Support Request Comment
 
-     Administrative removal of any comment for moderation purposes.
-    Requires support:comment:delete permission. Permanently deletes
-    comment and all replies. Document reason for deletion when significant.
-    Cannot be recovered after deletion.
+     Delete any comment on an internal support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):
@@ -142,10 +138,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Internal Support Request Comment
 
-     Administrative removal of any comment for moderation purposes.
-    Requires support:comment:delete permission. Permanently deletes
-    comment and all replies. Document reason for deletion when significant.
-    Cannot be recovered after deletion.
+     Delete any comment on an internal support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):
@@ -180,10 +174,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Internal Support Request Comment
 
-     Administrative removal of any comment for moderation purposes.
-    Requires support:comment:delete permission. Permanently deletes
-    comment and all replies. Document reason for deletion when significant.
-    Cannot be recovered after deletion.
+     Delete any comment on an internal support request, for moderation. Its replies are deleted with
+    it, permanently.
 
     Args:
         tenant_path (str):

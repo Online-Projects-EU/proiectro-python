@@ -83,10 +83,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request Comment
 
-     Provide updates, ask questions, or share findings on active requests.
-    Comments maintain communication thread between requesters and agents.
-    Include relevant details to avoid back-and-forth delays. Comments
-    trigger notifications to keep all parties informed.
+     Add a comment to an internal support request. The requester and the assignee are notified. You
+    can reply to a comment, but not to a reply.
 
     Args:
         tenant_path (str):
@@ -121,10 +119,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request Comment
 
-     Provide updates, ask questions, or share findings on active requests.
-    Comments maintain communication thread between requesters and agents.
-    Include relevant details to avoid back-and-forth delays. Comments
-    trigger notifications to keep all parties informed.
+     Add a comment to an internal support request. The requester and the assignee are notified. You
+    can reply to a comment, but not to a reply.
 
     Args:
         tenant_path (str):
@@ -154,10 +150,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request Comment
 
-     Provide updates, ask questions, or share findings on active requests.
-    Comments maintain communication thread between requesters and agents.
-    Include relevant details to avoid back-and-forth delays. Comments
-    trigger notifications to keep all parties informed.
+     Add a comment to an internal support request. The requester and the assignee are notified. You
+    can reply to a comment, but not to a reply.
 
     Args:
         tenant_path (str):
@@ -190,10 +184,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request Comment
 
-     Provide updates, ask questions, or share findings on active requests.
-    Comments maintain communication thread between requesters and agents.
-    Include relevant details to avoid back-and-forth delays. Comments
-    trigger notifications to keep all parties informed.
+     Add a comment to an internal support request. The requester and the assignee are notified. You
+    can reply to a comment, but not to a reply.
 
     Args:
         tenant_path (str):

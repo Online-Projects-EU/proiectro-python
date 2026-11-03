@@ -69,10 +69,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Mark Payment Unpaid
 
-     Reverse payment collection status for corrections, refunds, or payment failures.
-    Use when payments bounce, disputes arise, or entry errors occur. Affects revenue
-    reporting and cash position immediately. Requires appropriate permissions to maintain
-    financial control. Document reversal reasons for audit trail.
+     Mark a paid payment as not paid, for a refund, a bounced payment or a mistake. The owner and the
+    customer's account manager are notified.
 
     Args:
         tenant_path (str):
@@ -106,10 +104,8 @@ def sync(
 ) -> APIResponse | None:
     """Mark Payment Unpaid
 
-     Reverse payment collection status for corrections, refunds, or payment failures.
-    Use when payments bounce, disputes arise, or entry errors occur. Affects revenue
-    reporting and cash position immediately. Requires appropriate permissions to maintain
-    financial control. Document reversal reasons for audit trail.
+     Mark a paid payment as not paid, for a refund, a bounced payment or a mistake. The owner and the
+    customer's account manager are notified.
 
     Args:
         tenant_path (str):
@@ -138,10 +134,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Mark Payment Unpaid
 
-     Reverse payment collection status for corrections, refunds, or payment failures.
-    Use when payments bounce, disputes arise, or entry errors occur. Affects revenue
-    reporting and cash position immediately. Requires appropriate permissions to maintain
-    financial control. Document reversal reasons for audit trail.
+     Mark a paid payment as not paid, for a refund, a bounced payment or a mistake. The owner and the
+    customer's account manager are notified.
 
     Args:
         tenant_path (str):
@@ -173,10 +167,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Mark Payment Unpaid
 
-     Reverse payment collection status for corrections, refunds, or payment failures.
-    Use when payments bounce, disputes arise, or entry errors occur. Affects revenue
-    reporting and cash position immediately. Requires appropriate permissions to maintain
-    financial control. Document reversal reasons for audit trail.
+     Mark a paid payment as not paid, for a refund, a bounced payment or a mistake. The owner and the
+    customer's account manager are notified.
 
     Args:
         tenant_path (str):

@@ -79,9 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit Internal Support Request Comment
 
-     Administrative edit of any comment for moderation purposes.
-    Requires support:comment:edit permission. Use to correct inappropriate
-    content or sensitive information. All edits are tracked in audit trail.
+     Edit any comment on an internal support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):
@@ -122,9 +121,8 @@ def sync(
 ) -> APIResponse | None:
     """Edit Internal Support Request Comment
 
-     Administrative edit of any comment for moderation purposes.
-    Requires support:comment:edit permission. Use to correct inappropriate
-    content or sensitive information. All edits are tracked in audit trail.
+     Edit any comment on an internal support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):
@@ -160,9 +158,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit Internal Support Request Comment
 
-     Administrative edit of any comment for moderation purposes.
-    Requires support:comment:edit permission. Use to correct inappropriate
-    content or sensitive information. All edits are tracked in audit trail.
+     Edit any comment on an internal support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):
@@ -201,9 +198,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit Internal Support Request Comment
 
-     Administrative edit of any comment for moderation purposes.
-    Requires support:comment:edit permission. Use to correct inappropriate
-    content or sensitive information. All edits are tracked in audit trail.
+     Edit any comment on an internal support request, for moderation. The comment is marked as
+    edited.
 
     Args:
         tenant_path (str):

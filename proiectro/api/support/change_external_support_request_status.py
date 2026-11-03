@@ -81,7 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Change External Support Request Status
 
-     Change the status of an external support request.
+     Change the status of an external support request. The requester and the assignee are notified. A
+    closed request can no longer change.
 
     Args:
         tenant_path (str):
@@ -118,7 +119,8 @@ def sync(
 ) -> APIResponse | None:
     """Change External Support Request Status
 
-     Change the status of an external support request.
+     Change the status of an external support request. The requester and the assignee are notified. A
+    closed request can no longer change.
 
     Args:
         tenant_path (str):
@@ -150,7 +152,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Change External Support Request Status
 
-     Change the status of an external support request.
+     Change the status of an external support request. The requester and the assignee are notified. A
+    closed request can no longer change.
 
     Args:
         tenant_path (str):
@@ -185,7 +188,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Change External Support Request Status
 
-     Change the status of an external support request.
+     Change the status of an external support request. The requester and the assignee are notified. A
+    closed request can no longer change.
 
     Args:
         tenant_path (str):

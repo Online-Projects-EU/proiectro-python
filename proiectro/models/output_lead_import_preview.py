@@ -13,7 +13,7 @@ T = TypeVar("T", bound="OutputLeadImportPreview")
 
 @_attrs_define
 class OutputLeadImportPreview:
-    """Preview-state of CSV import — shown before the rep clicks Confirm.
+    """Preview-state of CSV import, shown before the rep clicks Confirm.
 
     Attributes:
         mapped_columns (list[str]):

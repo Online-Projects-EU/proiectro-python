@@ -86,9 +86,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Add Support Request Comment
 
-     Add a comment or question to your support request. All comments you add are automatically
-    visible to support agents and will be included in the request timeline. Use this to provide
-    additional information, answer agent questions, or check on request status.
+     Add a comment or a question to your support request. The supplier's support team sees it on the
+    request.
 
     Args:
         customer_org_id (str):
@@ -125,9 +124,8 @@ def sync(
 ) -> APIResponse | None:
     """Portal Add Support Request Comment
 
-     Add a comment or question to your support request. All comments you add are automatically
-    visible to support agents and will be included in the request timeline. Use this to provide
-    additional information, answer agent questions, or check on request status.
+     Add a comment or a question to your support request. The supplier's support team sees it on the
+    request.
 
     Args:
         customer_org_id (str):
@@ -159,9 +157,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Add Support Request Comment
 
-     Add a comment or question to your support request. All comments you add are automatically
-    visible to support agents and will be included in the request timeline. Use this to provide
-    additional information, answer agent questions, or check on request status.
+     Add a comment or a question to your support request. The supplier's support team sees it on the
+    request.
 
     Args:
         customer_org_id (str):
@@ -196,9 +193,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Add Support Request Comment
 
-     Add a comment or question to your support request. All comments you add are automatically
-    visible to support agents and will be included in the request timeline. Use this to provide
-    additional information, answer agent questions, or check on request status.
+     Add a comment or a question to your support request. The supplier's support team sees it on the
+    request.
 
     Args:
         customer_org_id (str):

@@ -80,10 +80,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Resource Booking
 
-     Modify resource reservations when project needs evolve. Extend rental periods,
-    change quantities, or adjust booking dates. Updates immediately affect resource
-    availability for other projects. Check for conflicts before extending bookings
-    during peak usage periods.
+     Change a resource booking: the resource, the dates or the hours per day. The change is checked
+    against the resource's availability again.
 
     Args:
         tenant_path (str):
@@ -120,10 +118,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Resource Booking
 
-     Modify resource reservations when project needs evolve. Extend rental periods,
-    change quantities, or adjust booking dates. Updates immediately affect resource
-    availability for other projects. Check for conflicts before extending bookings
-    during peak usage periods.
+     Change a resource booking: the resource, the dates or the hours per day. The change is checked
+    against the resource's availability again.
 
     Args:
         tenant_path (str):
@@ -155,10 +151,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Resource Booking
 
-     Modify resource reservations when project needs evolve. Extend rental periods,
-    change quantities, or adjust booking dates. Updates immediately affect resource
-    availability for other projects. Check for conflicts before extending bookings
-    during peak usage periods.
+     Change a resource booking: the resource, the dates or the hours per day. The change is checked
+    against the resource's availability again.
 
     Args:
         tenant_path (str):
@@ -193,10 +187,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Resource Booking
 
-     Modify resource reservations when project needs evolve. Extend rental periods,
-    change quantities, or adjust booking dates. Updates immediately affect resource
-    availability for other projects. Check for conflicts before extending bookings
-    during peak usage periods.
+     Change a resource booking: the resource, the dates or the hours per day. The change is checked
+    against the resource's availability again.
 
     Args:
         tenant_path (str):

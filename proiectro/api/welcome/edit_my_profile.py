@@ -72,9 +72,9 @@ def sync_detailed(
     value.
 
     Args:
-        body (EditMyProfile): Partial: an omitted key keeps the stored value. Valid languages are
-            settings.LANGUAGES, validated in the function so new languages need no
-            schema change.
+        body (EditMyProfile): Partial: an omitted key keeps the stored value. `language` is one of
+            the platform's
+            languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,9 +107,9 @@ def sync(
     value.
 
     Args:
-        body (EditMyProfile): Partial: an omitted key keeps the stored value. Valid languages are
-            settings.LANGUAGES, validated in the function so new languages need no
-            schema change.
+        body (EditMyProfile): Partial: an omitted key keeps the stored value. `language` is one of
+            the platform's
+            languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -137,9 +137,9 @@ async def asyncio_detailed(
     value.
 
     Args:
-        body (EditMyProfile): Partial: an omitted key keeps the stored value. Valid languages are
-            settings.LANGUAGES, validated in the function so new languages need no
-            schema change.
+        body (EditMyProfile): Partial: an omitted key keeps the stored value. `language` is one of
+            the platform's
+            languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -170,9 +170,9 @@ async def asyncio(
     value.
 
     Args:
-        body (EditMyProfile): Partial: an omitted key keeps the stored value. Valid languages are
-            settings.LANGUAGES, validated in the function so new languages need no
-            schema change.
+        body (EditMyProfile): Partial: an omitted key keeps the stored value. `language` is one of
+            the platform's
+            languages, such as `en` or `ro`.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

@@ -95,8 +95,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Reject Product
 
-     Reject a product that is pending customer review.
-    Moves the product to a rejection status with the provided reason.
+     Reject a deliverable waiting for your review, and say why. The supplier sees your reason.
 
     Args:
         customer_org_id (str):
@@ -139,8 +138,7 @@ def sync(
 ) -> APIResponse | None:
     """Portal Reject Product
 
-     Reject a product that is pending customer review.
-    Moves the product to a rejection status with the provided reason.
+     Reject a deliverable waiting for your review, and say why. The supplier sees your reason.
 
     Args:
         customer_org_id (str):
@@ -178,8 +176,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Reject Product
 
-     Reject a product that is pending customer review.
-    Moves the product to a rejection status with the provided reason.
+     Reject a deliverable waiting for your review, and say why. The supplier sees your reason.
 
     Args:
         customer_org_id (str):
@@ -220,8 +217,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Reject Product
 
-     Reject a product that is pending customer review.
-    Moves the product to a rejection status with the provided reason.
+     Reject a deliverable waiting for your review, and say why. The supplier sees your reason.
 
     Args:
         customer_org_id (str):

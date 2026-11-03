@@ -18,7 +18,7 @@ T = TypeVar("T", bound="OutputProjectGanttData")
 
 @_attrs_define
 class OutputProjectGanttData:
-    """Frappe Gantt data for project visualization
+    """A project's work items as a Gantt timeline.
 
     Attributes:
         tasks (list[GanttTask]):

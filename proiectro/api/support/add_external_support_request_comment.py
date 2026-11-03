@@ -83,7 +83,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Request Comment
 
-     Add a comment to an external support request.
+     Add a comment to an external support request. The requester sees it only if you show it to them.
+    The assignee is notified.
 
     Args:
         tenant_path (str):
@@ -117,7 +118,8 @@ def sync(
 ) -> APIResponse | None:
     """Add External Support Request Comment
 
-     Add a comment to an external support request.
+     Add a comment to an external support request. The requester sees it only if you show it to them.
+    The assignee is notified.
 
     Args:
         tenant_path (str):
@@ -146,7 +148,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add External Support Request Comment
 
-     Add a comment to an external support request.
+     Add a comment to an external support request. The requester sees it only if you show it to them.
+    The assignee is notified.
 
     Args:
         tenant_path (str):
@@ -178,7 +181,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add External Support Request Comment
 
-     Add a comment to an external support request.
+     Add a comment to an external support request. The requester sees it only if you show it to them.
+    The assignee is notified.
 
     Args:
         tenant_path (str):

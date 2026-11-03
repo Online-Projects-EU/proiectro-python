@@ -82,10 +82,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Catalog Product
 
-     Build your product catalog with standardized offerings for consistent pricing and
-    rapid proposal creation. Define products with descriptions, pricing tiers, and
-    default terms. Catalog products ensure pricing discipline and reduce configuration
-    errors. Templates can be customized per deal while maintaining baseline standards.
+     Add an item to your catalog, with its description, price and default terms, to add it to
+    proposals quickly and at a consistent price. A new item starts inactive; activate it to use it.
 
     Args:
         tenant_path (str):
@@ -119,10 +117,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Catalog Product
 
-     Build your product catalog with standardized offerings for consistent pricing and
-    rapid proposal creation. Define products with descriptions, pricing tiers, and
-    default terms. Catalog products ensure pricing discipline and reduce configuration
-    errors. Templates can be customized per deal while maintaining baseline standards.
+     Add an item to your catalog, with its description, price and default terms, to add it to
+    proposals quickly and at a consistent price. A new item starts inactive; activate it to use it.
 
     Args:
         tenant_path (str):
@@ -151,10 +147,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Catalog Product
 
-     Build your product catalog with standardized offerings for consistent pricing and
-    rapid proposal creation. Define products with descriptions, pricing tiers, and
-    default terms. Catalog products ensure pricing discipline and reduce configuration
-    errors. Templates can be customized per deal while maintaining baseline standards.
+     Add an item to your catalog, with its description, price and default terms, to add it to
+    proposals quickly and at a consistent price. A new item starts inactive; activate it to use it.
 
     Args:
         tenant_path (str):
@@ -186,10 +180,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Catalog Product
 
-     Build your product catalog with standardized offerings for consistent pricing and
-    rapid proposal creation. Define products with descriptions, pricing tiers, and
-    default terms. Catalog products ensure pricing discipline and reduce configuration
-    errors. Templates can be customized per deal while maintaining baseline standards.
+     Add an item to your catalog, with its description, price and default terms, to add it to
+    proposals quickly and at a consistent price. A new item starts inactive; activate it to use it.
 
     Args:
         tenant_path (str):

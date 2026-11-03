@@ -81,7 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Accept Partner Proposal
 
-     Accept a partner's proposal.
+     Accept a proposal your partner sent you. If it answers one of your RFPs, the RFP is awarded to
+    this partner.
 
     Args:
         tenant_path (str):
@@ -116,7 +117,8 @@ def sync(
 ) -> APIResponse | None:
     """Accept Partner Proposal
 
-     Accept a partner's proposal.
+     Accept a proposal your partner sent you. If it answers one of your RFPs, the RFP is awarded to
+    this partner.
 
     Args:
         tenant_path (str):
@@ -146,7 +148,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Accept Partner Proposal
 
-     Accept a partner's proposal.
+     Accept a proposal your partner sent you. If it answers one of your RFPs, the RFP is awarded to
+    this partner.
 
     Args:
         tenant_path (str):
@@ -179,7 +182,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Accept Partner Proposal
 
-     Accept a partner's proposal.
+     Accept a proposal your partner sent you. If it answers one of your RFPs, the RFP is awarded to
+    this partner.
 
     Args:
         tenant_path (str):

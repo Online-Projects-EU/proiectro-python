@@ -76,9 +76,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Productlifecycle
 
-     Create a new product lifecycle workflow for tracking deliverable status.
-    Define custom status stages, transitions, and customer visibility settings.
-    Each lifecycle can have its own progression rules tailored to specific product types.
+     Add a product lifecycle, to track the delivery status of products. It starts empty: add its
+    statuses, and choose which ones the customer sees.
 
     Args:
         tenant_path (str):
@@ -112,9 +111,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Productlifecycle
 
-     Create a new product lifecycle workflow for tracking deliverable status.
-    Define custom status stages, transitions, and customer visibility settings.
-    Each lifecycle can have its own progression rules tailored to specific product types.
+     Add a product lifecycle, to track the delivery status of products. It starts empty: add its
+    statuses, and choose which ones the customer sees.
 
     Args:
         tenant_path (str):
@@ -143,9 +141,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Productlifecycle
 
-     Create a new product lifecycle workflow for tracking deliverable status.
-    Define custom status stages, transitions, and customer visibility settings.
-    Each lifecycle can have its own progression rules tailored to specific product types.
+     Add a product lifecycle, to track the delivery status of products. It starts empty: add its
+    statuses, and choose which ones the customer sees.
 
     Args:
         tenant_path (str):
@@ -177,9 +174,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Productlifecycle
 
-     Create a new product lifecycle workflow for tracking deliverable status.
-    Define custom status stages, transitions, and customer visibility settings.
-    Each lifecycle can have its own progression rules tailored to specific product types.
+     Add a product lifecycle, to track the delivery status of products. It starts empty: add its
+    statuses, and choose which ones the customer sees.
 
     Args:
         tenant_path (str):

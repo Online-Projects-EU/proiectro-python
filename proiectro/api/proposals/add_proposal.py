@@ -92,10 +92,8 @@ def sync_detailed(
 ) -> Response[APIResponse | AddProposalResponse]:
     """Add Proposal
 
-     Create new sales opportunities to track potential deals through your pipeline. Captures
-    essential deal information including customer, value, timeline, and initial requirements.
-    Proposals start in the first pipeline stage and progress through your sales process.
-    Consider using templates for common proposal types to ensure consistency.
+     Create a proposal to track a possible deal: the customer, the value, the dates and what they
+    need. It starts in the funnel stage you choose and moves through your sales funnel.
 
     Args:
         tenant_path (str):
@@ -129,10 +127,8 @@ def sync(
 ) -> APIResponse | AddProposalResponse | None:
     """Add Proposal
 
-     Create new sales opportunities to track potential deals through your pipeline. Captures
-    essential deal information including customer, value, timeline, and initial requirements.
-    Proposals start in the first pipeline stage and progress through your sales process.
-    Consider using templates for common proposal types to ensure consistency.
+     Create a proposal to track a possible deal: the customer, the value, the dates and what they
+    need. It starts in the funnel stage you choose and moves through your sales funnel.
 
     Args:
         tenant_path (str):
@@ -161,10 +157,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | AddProposalResponse]:
     """Add Proposal
 
-     Create new sales opportunities to track potential deals through your pipeline. Captures
-    essential deal information including customer, value, timeline, and initial requirements.
-    Proposals start in the first pipeline stage and progress through your sales process.
-    Consider using templates for common proposal types to ensure consistency.
+     Create a proposal to track a possible deal: the customer, the value, the dates and what they
+    need. It starts in the funnel stage you choose and moves through your sales funnel.
 
     Args:
         tenant_path (str):
@@ -196,10 +190,8 @@ async def asyncio(
 ) -> APIResponse | AddProposalResponse | None:
     """Add Proposal
 
-     Create new sales opportunities to track potential deals through your pipeline. Captures
-    essential deal information including customer, value, timeline, and initial requirements.
-    Proposals start in the first pipeline stage and progress through your sales process.
-    Consider using templates for common proposal types to ensure consistency.
+     Create a proposal to track a possible deal: the customer, the value, the dates and what they
+    need. It starts in the funnel stage you choose and moves through your sales funnel.
 
     Args:
         tenant_path (str):

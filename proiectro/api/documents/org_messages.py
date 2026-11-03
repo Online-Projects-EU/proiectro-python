@@ -6,40 +6,40 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.request_upload_url_gcs import RequestUploadUrlGCS
-from ...models.upload_url_gcs import UploadUrlGCS
-from ...types import Response
+from ...models.output_sent_messages import OutputSentMessages
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     tenant_path: str,
     org_id: str,
     *,
-    body: RequestUploadUrlGCS,
+    page: int | Unset = 1,
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
+
+    params: dict[str, Any] = {}
+
+    params["page"] = page
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
-        "method": "post",
-        "url": "/api/v1/{tenant_path}/generate_upload_url_org_branding/{org_id}".format(
+        "method": "get",
+        "url": "/api/v1/{tenant_path}/org_messages/{org_id}".format(
             tenant_path=quote(str(tenant_path), safe=""),
             org_id=quote(str(org_id), safe=""),
         ),
+        "params": params,
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> UploadUrlGCS | None:
+) -> OutputSentMessages | None:
     if response.status_code == 200:
-        response_200 = UploadUrlGCS.from_dict(response.json())
+        response_200 = OutputSentMessages.from_dict(response.json())
 
         return response_200
 
@@ -51,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[UploadUrlGCS]:
+) -> Response[OutputSentMessages]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,31 +65,29 @@ def sync_detailed(
     org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestUploadUrlGCS,
-) -> Response[UploadUrlGCS]:
-    """Generate Upload Url Org Branding
+    page: int | Unset = 1,
+) -> Response[OutputSentMessages]:
+    """Org Messages
 
-     Upload branding for customer organizations to provide white-label experiences.
-    Each organization can have unique logos and visual identity. Perfect for
-    multi-brand operations or customer-specific portals.
+     List the emails and chat messages sent to a customer organization, about any of its records.
 
     Args:
         tenant_path (str):
         org_id (str):
-        body (RequestUploadUrlGCS):
+        page (int | Unset):  Default: 1.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[UploadUrlGCS]
+        Response[OutputSentMessages]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
         org_id=org_id,
-        body=body,
+        page=page,
     )
 
     response = client.get_httpx_client().request(
@@ -104,32 +102,30 @@ def sync(
     org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestUploadUrlGCS,
-) -> UploadUrlGCS | None:
-    """Generate Upload Url Org Branding
+    page: int | Unset = 1,
+) -> OutputSentMessages | None:
+    """Org Messages
 
-     Upload branding for customer organizations to provide white-label experiences.
-    Each organization can have unique logos and visual identity. Perfect for
-    multi-brand operations or customer-specific portals.
+     List the emails and chat messages sent to a customer organization, about any of its records.
 
     Args:
         tenant_path (str):
         org_id (str):
-        body (RequestUploadUrlGCS):
+        page (int | Unset):  Default: 1.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        UploadUrlGCS
+        OutputSentMessages
     """
 
     return sync_detailed(
         tenant_path=tenant_path,
         org_id=org_id,
         client=client,
-        body=body,
+        page=page,
     ).parsed
 
 
@@ -138,31 +134,29 @@ async def asyncio_detailed(
     org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestUploadUrlGCS,
-) -> Response[UploadUrlGCS]:
-    """Generate Upload Url Org Branding
+    page: int | Unset = 1,
+) -> Response[OutputSentMessages]:
+    """Org Messages
 
-     Upload branding for customer organizations to provide white-label experiences.
-    Each organization can have unique logos and visual identity. Perfect for
-    multi-brand operations or customer-specific portals.
+     List the emails and chat messages sent to a customer organization, about any of its records.
 
     Args:
         tenant_path (str):
         org_id (str):
-        body (RequestUploadUrlGCS):
+        page (int | Unset):  Default: 1.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[UploadUrlGCS]
+        Response[OutputSentMessages]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
         org_id=org_id,
-        body=body,
+        page=page,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -175,25 +169,23 @@ async def asyncio(
     org_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestUploadUrlGCS,
-) -> UploadUrlGCS | None:
-    """Generate Upload Url Org Branding
+    page: int | Unset = 1,
+) -> OutputSentMessages | None:
+    """Org Messages
 
-     Upload branding for customer organizations to provide white-label experiences.
-    Each organization can have unique logos and visual identity. Perfect for
-    multi-brand operations or customer-specific portals.
+     List the emails and chat messages sent to a customer organization, about any of its records.
 
     Args:
         tenant_path (str):
         org_id (str):
-        body (RequestUploadUrlGCS):
+        page (int | Unset):  Default: 1.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        UploadUrlGCS
+        OutputSentMessages
     """
 
     return (
@@ -201,6 +193,6 @@ async def asyncio(
             tenant_path=tenant_path,
             org_id=org_id,
             client=client,
-            body=body,
+            page=page,
         )
     ).parsed

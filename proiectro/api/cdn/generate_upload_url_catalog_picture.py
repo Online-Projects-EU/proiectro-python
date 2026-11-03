@@ -7,23 +7,24 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
-from ...models.request_delete_file_gcs import RequestDeleteFileGCS
+from ...models.request_upload_url_gcs import RequestUploadUrlGCS
+from ...models.upload_url_gcs import UploadUrlGCS
 from ...types import Response
 
 
 def _get_kwargs(
     tenant_path: str,
-    org_id: str,
+    catalog_id: str,
     *,
-    body: RequestDeleteFileGCS,
+    body: RequestUploadUrlGCS,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/api/v1/{tenant_path}/mark_org_branding_as_deleted/{org_id}".format(
+        "url": "/api/v1/{tenant_path}/generate_upload_url_catalog_picture/{catalog_id}".format(
             tenant_path=quote(str(tenant_path), safe=""),
-            org_id=quote(str(org_id), safe=""),
+            catalog_id=quote(str(catalog_id), safe=""),
         ),
     }
 
@@ -37,16 +38,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | UploadUrlGCS | None:
     if response.status_code == 200:
-        response_200 = APIResponse.from_dict(response.json())
+        response_200 = UploadUrlGCS.from_dict(response.json())
 
         return response_200
 
-    if response.status_code == 400:
-        response_400 = APIResponse.from_dict(response.json())
+    if response.status_code == 422:
+        response_422 = APIResponse.from_dict(response.json())
 
-        return response_400
+        return response_422
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -56,7 +57,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | UploadUrlGCS]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -67,29 +68,33 @@ def _build_response(
 
 def sync_detailed(
     tenant_path: str,
-    org_id: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
-) -> Response[APIResponse]:
-    """Mark Org Branding As Deleted
+    body: RequestUploadUrlGCS,
+) -> Response[APIResponse | UploadUrlGCS]:
+    """Generate Upload Url Catalog Picture
+
+     Upload the picture of a catalog item: a JPG, PNG, GIF or WebP image, shown as a square thumbnail
+    wherever the item is listed, including your customers' and partners' portals. A new upload
+    replaces the previous picture.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDeleteFileGCS):
+        catalog_id (str):
+        body (RequestUploadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | UploadUrlGCS]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
-        org_id=org_id,
+        catalog_id=catalog_id,
         body=body,
     )
 
@@ -102,29 +107,33 @@ def sync_detailed(
 
 def sync(
     tenant_path: str,
-    org_id: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
-) -> APIResponse | None:
-    """Mark Org Branding As Deleted
+    body: RequestUploadUrlGCS,
+) -> APIResponse | UploadUrlGCS | None:
+    """Generate Upload Url Catalog Picture
+
+     Upload the picture of a catalog item: a JPG, PNG, GIF or WebP image, shown as a square thumbnail
+    wherever the item is listed, including your customers' and partners' portals. A new upload
+    replaces the previous picture.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDeleteFileGCS):
+        catalog_id (str):
+        body (RequestUploadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | UploadUrlGCS
     """
 
     return sync_detailed(
         tenant_path=tenant_path,
-        org_id=org_id,
+        catalog_id=catalog_id,
         client=client,
         body=body,
     ).parsed
@@ -132,29 +141,33 @@ def sync(
 
 async def asyncio_detailed(
     tenant_path: str,
-    org_id: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
-) -> Response[APIResponse]:
-    """Mark Org Branding As Deleted
+    body: RequestUploadUrlGCS,
+) -> Response[APIResponse | UploadUrlGCS]:
+    """Generate Upload Url Catalog Picture
+
+     Upload the picture of a catalog item: a JPG, PNG, GIF or WebP image, shown as a square thumbnail
+    wherever the item is listed, including your customers' and partners' portals. A new upload
+    replaces the previous picture.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDeleteFileGCS):
+        catalog_id (str):
+        body (RequestUploadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | UploadUrlGCS]
     """
 
     kwargs = _get_kwargs(
         tenant_path=tenant_path,
-        org_id=org_id,
+        catalog_id=catalog_id,
         body=body,
     )
 
@@ -165,30 +178,34 @@ async def asyncio_detailed(
 
 async def asyncio(
     tenant_path: str,
-    org_id: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
-) -> APIResponse | None:
-    """Mark Org Branding As Deleted
+    body: RequestUploadUrlGCS,
+) -> APIResponse | UploadUrlGCS | None:
+    """Generate Upload Url Catalog Picture
+
+     Upload the picture of a catalog item: a JPG, PNG, GIF or WebP image, shown as a square thumbnail
+    wherever the item is listed, including your customers' and partners' portals. A new upload
+    replaces the previous picture.
 
     Args:
         tenant_path (str):
-        org_id (str):
-        body (RequestDeleteFileGCS):
+        catalog_id (str):
+        body (RequestUploadUrlGCS):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | UploadUrlGCS
     """
 
     return (
         await asyncio_detailed(
             tenant_path=tenant_path,
-            org_id=org_id,
+            catalog_id=catalog_id,
             client=client,
             body=body,
         )

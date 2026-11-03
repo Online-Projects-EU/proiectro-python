@@ -76,10 +76,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Support Request Type
 
-     Create new request categories to expand support coverage for emerging needs.
-    Define routing rules, default severities, and resolution workflows.
-    Consider existing types to avoid overlap. New types immediately available
-    for request creation and affect queue routing decisions.
+     Add a type of support request, internal or external. The name must be unique among types of the
+    same kind. Queue rules can send requests to a queue by their type.
 
     Args:
         tenant_path (str):
@@ -113,10 +111,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Support Request Type
 
-     Create new request categories to expand support coverage for emerging needs.
-    Define routing rules, default severities, and resolution workflows.
-    Consider existing types to avoid overlap. New types immediately available
-    for request creation and affect queue routing decisions.
+     Add a type of support request, internal or external. The name must be unique among types of the
+    same kind. Queue rules can send requests to a queue by their type.
 
     Args:
         tenant_path (str):
@@ -145,10 +141,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Support Request Type
 
-     Create new request categories to expand support coverage for emerging needs.
-    Define routing rules, default severities, and resolution workflows.
-    Consider existing types to avoid overlap. New types immediately available
-    for request creation and affect queue routing decisions.
+     Add a type of support request, internal or external. The name must be unique among types of the
+    same kind. Queue rules can send requests to a queue by their type.
 
     Args:
         tenant_path (str):
@@ -180,10 +174,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Support Request Type
 
-     Create new request categories to expand support coverage for emerging needs.
-    Define routing rules, default severities, and resolution workflows.
-    Consider existing types to avoid overlap. New types immediately available
-    for request creation and affect queue routing decisions.
+     Add a type of support request, internal or external. The name must be unique among types of the
+    same kind. Queue rules can send requests to a queue by their type.
 
     Args:
         tenant_path (str):

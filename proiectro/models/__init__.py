@@ -28,6 +28,7 @@ from .add_document_template import AddDocumentTemplate
 from .add_document_template_data_classification import (
     AddDocumentTemplateDataClassification,
 )
+from .add_document_template_kind import AddDocumentTemplateKind
 from .add_exchange import AddExchange
 from .add_external_support_request import AddExternalSupportRequest
 from .add_external_support_request_comment import AddExternalSupportRequestComment
@@ -74,6 +75,7 @@ from .add_lead_source import AddLeadSource
 from .add_lead_status import AddLeadStatus
 from .add_location import AddLocation
 from .add_member_to_role import AddMemberToRole
+from .add_my_time_off import AddMyTimeOff
 from .add_operational_item import AddOperationalItem
 from .add_operational_item_priority import AddOperationalItemPriority
 from .add_operational_work_item_comment import AddOperationalWorkItemComment
@@ -373,6 +375,7 @@ from .edit_document_template import EditDocumentTemplate
 from .edit_document_template_data_classification_type_0 import (
     EditDocumentTemplateDataClassificationType0,
 )
+from .edit_document_template_kind_type_0 import EditDocumentTemplateKindType0
 from .edit_exchange import EditExchange
 from .edit_external_support_request import EditExternalSupportRequest
 from .edit_external_support_request_comment import EditExternalSupportRequestComment
@@ -393,6 +396,7 @@ from .edit_location import EditLocation
 from .edit_member_misc_preferences import EditMemberMiscPreferences
 from .edit_member_preferences import EditMemberPreferences
 from .edit_my_profile import EditMyProfile
+from .edit_my_time_off import EditMyTimeOff
 from .edit_notification_preferences import EditNotificationPreferences
 from .edit_notification_preferences_preferences import (
     EditNotificationPreferencesPreferences,
@@ -519,6 +523,10 @@ from .generate_document_data_classification_type_0 import (
     GenerateDocumentDataClassificationType0,
 )
 from .horizon_option import HorizonOption
+from .import_catalog_multi_part_body_params import ImportCatalogMultiPartBodyParams
+from .import_catalog_preview_multi_part_body_params import (
+    ImportCatalogPreviewMultiPartBodyParams,
+)
 from .import_leads_multi_part_body_params import ImportLeadsMultiPartBodyParams
 from .import_leads_multi_part_body_params_default_next_action import (
     ImportLeadsMultiPartBodyParamsDefaultNextAction,
@@ -528,6 +536,10 @@ from .import_leads_preview_multi_part_body_params import (
 )
 from .import_leads_preview_multi_part_body_params_default_next_action import (
     ImportLeadsPreviewMultiPartBodyParamsDefaultNextAction,
+)
+from .import_orgs_multi_part_body_params import ImportOrgsMultiPartBodyParams
+from .import_orgs_preview_multi_part_body_params import (
+    ImportOrgsPreviewMultiPartBodyParams,
 )
 from .initiated_partnership_item import InitiatedPartnershipItem
 from .instantiate_work_item_template import InstantiateWorkItemTemplate
@@ -604,6 +616,7 @@ from .output_action_output_fields_fields import OutputActionOutputFieldsFields
 from .output_active_partners import OutputActivePartners
 from .output_all_leads import OutputAllLeads
 from .output_api_key import OutputApiKey
+from .output_api_key_grant import OutputApiKeyGrant
 from .output_api_key_list import OutputApiKeyList
 from .output_asset_categories import OutputAssetCategories
 from .output_asset_category import OutputAssetCategory
@@ -617,6 +630,11 @@ from .output_business_processes_list import OutputBusinessProcessesList
 from .output_calendar_tokens import OutputCalendarTokens
 from .output_comments_feed import OutputCommentsFeed
 from .output_coordinates_conflict import OutputCoordinatesConflict
+from .output_csv_import_cell import OutputCsvImportCell
+from .output_csv_import_preview import OutputCsvImportPreview
+from .output_csv_import_row import OutputCsvImportRow
+from .output_csv_import_row_action import OutputCsvImportRowAction
+from .output_csv_import_summary import OutputCsvImportSummary
 from .output_custom_form import OutputCustomForm
 from .output_custom_forms import OutputCustomForms
 from .output_customer_asset import OutputCustomerAsset
@@ -823,6 +841,7 @@ from .output_my_tickets import OutputMyTickets
 from .output_my_work_items import OutputMyWorkItems
 from .output_notification_preferences import OutputNotificationPreferences
 from .output_operational_item import OutputOperationalItem
+from .output_operational_item_actions import OutputOperationalItemActions
 from .output_operational_item_history import OutputOperationalItemHistory
 from .output_operational_item_transition import OutputOperationalItemTransition
 from .output_operational_items import OutputOperationalItems
@@ -957,6 +976,8 @@ from .output_role_tags import OutputRoleTags
 from .output_sale_activity_types import OutputSaleActivityTypes
 from .output_sales_target import OutputSalesTarget
 from .output_sales_targets import OutputSalesTargets
+from .output_sent_message import OutputSentMessage
+from .output_sent_messages import OutputSentMessages
 from .output_share import OutputShare
 from .output_share_access import OutputShareAccess
 from .output_share_accesses import OutputShareAccesses
@@ -1021,6 +1042,9 @@ from .output_tenant_resource_types_resources import OutputTenantResourceTypesRes
 from .output_tenant_rf_ps import OutputTenantRFPs
 from .output_tenant_trash_files import OutputTenantTrashFiles
 from .output_test_webhook_result import OutputTestWebhookResult
+from .output_time_off import OutputTimeOff
+from .output_time_off_list import OutputTimeOffList
+from .output_time_off_type import OutputTimeOffType
 from .output_timer_item import OutputTimerItem
 from .output_timers import OutputTimers
 from .output_top_entities_by_storage import OutputTopEntitiesByStorage
@@ -1230,6 +1254,7 @@ from .reassign_operational_item import ReassignOperationalItem
 from .received_partnership_item import ReceivedPartnershipItem
 from .reject_operational_item import RejectOperationalItem
 from .reject_portal_order import RejectPortalOrder
+from .reject_time_off import RejectTimeOff
 from .reopen_lead import ReopenLead
 from .reorder_actions import ReorderActions
 from .reorder_actions_item import ReorderActionsItem
@@ -1244,9 +1269,6 @@ from .reorder_payment_schedule_blocks_response import (
 from .request_delete_file_gcs import RequestDeleteFileGCS
 from .request_download_url_gcs import RequestDownloadUrlGCS
 from .request_upload_url_gcs import RequestUploadUrlGCS
-from .request_upload_url_gcs_attachmentnodetype import (
-    RequestUploadUrlGCSAttachmentnodetype,
-)
 from .reschedule_lead import RescheduleLead
 from .resource_activity_item import ResourceActivityItem
 from .resource_availability import ResourceAvailability
@@ -1421,6 +1443,7 @@ __all__ = (
     "AddDocumentSeries",
     "AddDocumentTemplate",
     "AddDocumentTemplateDataClassification",
+    "AddDocumentTemplateKind",
     "AddExchange",
     "AddExternalSupportRequest",
     "AddExternalSupportRequestComment",
@@ -1455,6 +1478,7 @@ __all__ = (
     "AddLeadStatus",
     "AddLocation",
     "AddMemberToRole",
+    "AddMyTimeOff",
     "AddOperationalItem",
     "AddOperationalItemPriority",
     "AddOperationalWorkItemComment",
@@ -1732,6 +1756,7 @@ __all__ = (
     "EditDocumentSeries",
     "EditDocumentTemplate",
     "EditDocumentTemplateDataClassificationType0",
+    "EditDocumentTemplateKindType0",
     "EditExchange",
     "EditExternalSupportRequest",
     "EditExternalSupportRequestComment",
@@ -1752,6 +1777,7 @@ __all__ = (
     "EditMemberMiscPreferences",
     "EditMemberPreferences",
     "EditMyProfile",
+    "EditMyTimeOff",
     "EditNotificationPreferences",
     "EditNotificationPreferencesPreferences",
     "EditNotificationPreferencesScope",
@@ -1856,10 +1882,14 @@ __all__ = (
     "GenerateDocument",
     "GenerateDocumentDataClassificationType0",
     "HorizonOption",
+    "ImportCatalogMultiPartBodyParams",
+    "ImportCatalogPreviewMultiPartBodyParams",
     "ImportLeadsMultiPartBodyParams",
     "ImportLeadsMultiPartBodyParamsDefaultNextAction",
     "ImportLeadsPreviewMultiPartBodyParams",
     "ImportLeadsPreviewMultiPartBodyParamsDefaultNextAction",
+    "ImportOrgsMultiPartBodyParams",
+    "ImportOrgsPreviewMultiPartBodyParams",
     "InitiatedPartnershipItem",
     "InstantiateWorkItemTemplate",
     "InstantiateWorkItemTemplateMilestoneDatesType0",
@@ -1933,6 +1963,7 @@ __all__ = (
     "OutputActivePartners",
     "OutputAllLeads",
     "OutputApiKey",
+    "OutputApiKeyGrant",
     "OutputApiKeyList",
     "OutputAssetCategories",
     "OutputAssetCategory",
@@ -1946,6 +1977,11 @@ __all__ = (
     "OutputCalendarTokens",
     "OutputCommentsFeed",
     "OutputCoordinatesConflict",
+    "OutputCsvImportCell",
+    "OutputCsvImportPreview",
+    "OutputCsvImportRow",
+    "OutputCsvImportRowAction",
+    "OutputCsvImportSummary",
     "OutputCustomerAsset",
     "OutputCustomerAssets",
     "OutputCustomerAssetTickets",
@@ -2092,6 +2128,7 @@ __all__ = (
     "OutputMyWorkItems",
     "OutputNotificationPreferences",
     "OutputOperationalItem",
+    "OutputOperationalItemActions",
     "OutputOperationalItemHistory",
     "OutputOperationalItems",
     "OutputOperationalItemTransition",
@@ -2188,6 +2225,8 @@ __all__ = (
     "OutputSaleActivityTypes",
     "OutputSalesTarget",
     "OutputSalesTargets",
+    "OutputSentMessage",
+    "OutputSentMessages",
     "OutputShare",
     "OutputShareAccess",
     "OutputShareAccesses",
@@ -2244,6 +2283,9 @@ __all__ = (
     "OutputTenantRFPs",
     "OutputTenantTrashFiles",
     "OutputTestWebhookResult",
+    "OutputTimeOff",
+    "OutputTimeOffList",
+    "OutputTimeOffType",
     "OutputTimerItem",
     "OutputTimers",
     "OutputTopEntitiesByStorage",
@@ -2409,6 +2451,7 @@ __all__ = (
     "ReceivedPartnershipItem",
     "RejectOperationalItem",
     "RejectPortalOrder",
+    "RejectTimeOff",
     "ReopenLead",
     "ReorderActions",
     "ReorderActionsItem",
@@ -2419,7 +2462,6 @@ __all__ = (
     "RequestDeleteFileGCS",
     "RequestDownloadUrlGCS",
     "RequestUploadUrlGCS",
-    "RequestUploadUrlGCSAttachmentnodetype",
     "RescheduleLead",
     "ResourceActivityItem",
     "ResourceAvailability",

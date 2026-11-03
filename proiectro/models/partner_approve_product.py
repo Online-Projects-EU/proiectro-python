@@ -16,25 +16,13 @@ class PartnerApproveProduct:
     """Input schema for partner approving a deliverable in partner portal
 
     Attributes:
-        bridge_id (str):
-        project_id (str):
-        product_id (str):
         notes (None | str | Unset):
     """
 
-    bridge_id: str
-    project_id: str
-    product_id: str
     notes: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        bridge_id = self.bridge_id
-
-        project_id = self.project_id
-
-        product_id = self.product_id
-
         notes: None | str | Unset
         if isinstance(self.notes, Unset):
             notes = UNSET
@@ -43,13 +31,7 @@ class PartnerApproveProduct:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "bridge_id": bridge_id,
-                "project_id": project_id,
-                "product_id": product_id,
-            }
-        )
+        field_dict.update({})
         if notes is not UNSET:
             field_dict["notes"] = notes
 
@@ -58,11 +40,6 @@ class PartnerApproveProduct:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        bridge_id = d.pop("bridge_id")
-
-        project_id = d.pop("project_id")
-
-        product_id = d.pop("product_id")
 
         def _parse_notes(data: object) -> None | str | Unset:
             if data is None:
@@ -74,9 +51,6 @@ class PartnerApproveProduct:
         notes = _parse_notes(d.pop("notes", UNSET))
 
         partner_approve_product = cls(
-            bridge_id=bridge_id,
-            project_id=project_id,
-            product_id=product_id,
             notes=notes,
         )
 

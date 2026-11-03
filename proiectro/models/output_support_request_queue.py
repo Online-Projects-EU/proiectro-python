@@ -24,6 +24,7 @@ class OutputSupportRequestQueue:
         automatically_assign (bool):
         owner_role_id (None | str | Unset):
         owner_role_name (None | str | Unset):
+        expire_after_days (int | None | Unset):
         open_count (int | Unset):  Default: 0.
         unassigned_count (int | Unset):  Default: 0.
     """
@@ -36,6 +37,7 @@ class OutputSupportRequestQueue:
     automatically_assign: bool
     owner_role_id: None | str | Unset = UNSET
     owner_role_name: None | str | Unset = UNSET
+    expire_after_days: int | None | Unset = UNSET
     open_count: int | Unset = 0
     unassigned_count: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -65,6 +67,12 @@ class OutputSupportRequestQueue:
         else:
             owner_role_name = self.owner_role_name
 
+        expire_after_days: int | None | Unset
+        if isinstance(self.expire_after_days, Unset):
+            expire_after_days = UNSET
+        else:
+            expire_after_days = self.expire_after_days
+
         open_count = self.open_count
 
         unassigned_count = self.unassigned_count
@@ -85,6 +93,8 @@ class OutputSupportRequestQueue:
             field_dict["owner_role_id"] = owner_role_id
         if owner_role_name is not UNSET:
             field_dict["owner_role_name"] = owner_role_name
+        if expire_after_days is not UNSET:
+            field_dict["expire_after_days"] = expire_after_days
         if open_count is not UNSET:
             field_dict["open_count"] = open_count
         if unassigned_count is not UNSET:
@@ -125,6 +135,15 @@ class OutputSupportRequestQueue:
 
         owner_role_name = _parse_owner_role_name(d.pop("owner_role_name", UNSET))
 
+        def _parse_expire_after_days(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        expire_after_days = _parse_expire_after_days(d.pop("expire_after_days", UNSET))
+
         open_count = d.pop("open_count", UNSET)
 
         unassigned_count = d.pop("unassigned_count", UNSET)
@@ -138,6 +157,7 @@ class OutputSupportRequestQueue:
             automatically_assign=automatically_assign,
             owner_role_id=owner_role_id,
             owner_role_name=owner_role_name,
+            expire_after_days=expire_after_days,
             open_count=open_count,
             unassigned_count=unassigned_count,
         )

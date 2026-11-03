@@ -29,6 +29,7 @@ class OutputDocument:
         context_type (None | str | Unset):
         context_id (None | str | Unset):
         context_label (str | Unset):  Default: ''.
+        redacted (bool | Unset):  Default: False.
         render_route (None | str | Unset):
         page_route (None | str | Unset):
         org_id (None | str | Unset):
@@ -51,6 +52,7 @@ class OutputDocument:
     context_type: None | str | Unset = UNSET
     context_id: None | str | Unset = UNSET
     context_label: str | Unset = ""
+    redacted: bool | Unset = False
     render_route: None | str | Unset = UNSET
     page_route: None | str | Unset = UNSET
     org_id: None | str | Unset = UNSET
@@ -113,6 +115,8 @@ class OutputDocument:
             context_id = self.context_id
 
         context_label = self.context_label
+
+        redacted = self.redacted
 
         render_route: None | str | Unset
         if isinstance(self.render_route, Unset):
@@ -191,6 +195,8 @@ class OutputDocument:
             field_dict["context_id"] = context_id
         if context_label is not UNSET:
             field_dict["context_label"] = context_label
+        if redacted is not UNSET:
+            field_dict["redacted"] = redacted
         if render_route is not UNSET:
             field_dict["render_route"] = render_route
         if page_route is not UNSET:
@@ -285,6 +291,8 @@ class OutputDocument:
         context_id = _parse_context_id(d.pop("context_id", UNSET))
 
         context_label = d.pop("context_label", UNSET)
+
+        redacted = d.pop("redacted", UNSET)
 
         def _parse_render_route(data: object) -> None | str | Unset:
             if data is None:
@@ -390,6 +398,7 @@ class OutputDocument:
             context_type=context_type,
             context_id=context_id,
             context_label=context_label,
+            redacted=redacted,
             render_route=render_route,
             page_route=page_route,
             org_id=org_id,

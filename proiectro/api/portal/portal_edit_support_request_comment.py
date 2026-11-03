@@ -89,8 +89,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Edit Support Request Comment
 
-     Edit your own comment on a support request. You can only edit comments that you authored.
-    This allows you to correct mistakes or add additional information to your previous comments.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         customer_org_id (str):
@@ -130,8 +129,7 @@ def sync(
 ) -> APIResponse | None:
     """Portal Edit Support Request Comment
 
-     Edit your own comment on a support request. You can only edit comments that you authored.
-    This allows you to correct mistakes or add additional information to your previous comments.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         customer_org_id (str):
@@ -166,8 +164,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Edit Support Request Comment
 
-     Edit your own comment on a support request. You can only edit comments that you authored.
-    This allows you to correct mistakes or add additional information to your previous comments.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         customer_org_id (str):
@@ -205,8 +202,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Edit Support Request Comment
 
-     Edit your own comment on a support request. You can only edit comments that you authored.
-    This allows you to correct mistakes or add additional information to your previous comments.
+     Edit a comment you wrote, to fix a mistake or add details. It is marked as edited.
 
     Args:
         customer_org_id (str):

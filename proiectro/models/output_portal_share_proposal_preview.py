@@ -61,6 +61,7 @@ class OutputPortalShareProposalPreview:
         proposal_id (str):
         share_id (str):
         item_id (str):
+        has_product_pictures (bool | Unset):  Default: False.
         customer_org_id (None | str | Unset):
         updated_on (datetime.datetime | None | Unset):
     """
@@ -79,6 +80,7 @@ class OutputPortalShareProposalPreview:
     proposal_id: str
     share_id: str
     item_id: str
+    has_product_pictures: bool | Unset = False
     customer_org_id: None | str | Unset = UNSET
     updated_on: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -118,6 +120,8 @@ class OutputPortalShareProposalPreview:
 
         item_id = self.item_id
 
+        has_product_pictures = self.has_product_pictures
+
         customer_org_id: None | str | Unset
         if isinstance(self.customer_org_id, Unset):
             customer_org_id = UNSET
@@ -152,6 +156,8 @@ class OutputPortalShareProposalPreview:
                 "item_id": item_id,
             }
         )
+        if has_product_pictures is not UNSET:
+            field_dict["has_product_pictures"] = has_product_pictures
         if customer_org_id is not UNSET:
             field_dict["customer_org_id"] = customer_org_id
         if updated_on is not UNSET:
@@ -244,6 +250,8 @@ class OutputPortalShareProposalPreview:
 
         item_id = d.pop("item_id")
 
+        has_product_pictures = d.pop("has_product_pictures", UNSET)
+
         def _parse_customer_org_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -285,6 +293,7 @@ class OutputPortalShareProposalPreview:
             proposal_id=proposal_id,
             share_id=share_id,
             item_id=item_id,
+            has_product_pictures=has_product_pictures,
             customer_org_id=customer_org_id,
             updated_on=updated_on,
         )

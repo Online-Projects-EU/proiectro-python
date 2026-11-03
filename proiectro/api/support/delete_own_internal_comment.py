@@ -69,9 +69,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Own Internal Comment
 
-     Delete your own comment from an internal support request. Permanently removes the
-    comment and all its replies. Cannot be undone. Consider editing
-    instead when possible to preserve discussion context.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):
@@ -105,9 +103,7 @@ def sync(
 ) -> APIResponse | None:
     """Delete Own Internal Comment
 
-     Delete your own comment from an internal support request. Permanently removes the
-    comment and all its replies. Cannot be undone. Consider editing
-    instead when possible to preserve discussion context.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):
@@ -136,9 +132,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Own Internal Comment
 
-     Delete your own comment from an internal support request. Permanently removes the
-    comment and all its replies. Cannot be undone. Consider editing
-    instead when possible to preserve discussion context.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):
@@ -170,9 +164,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Own Internal Comment
 
-     Delete your own comment from an internal support request. Permanently removes the
-    comment and all its replies. Cannot be undone. Consider editing
-    instead when possible to preserve discussion context.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         tenant_path (str):

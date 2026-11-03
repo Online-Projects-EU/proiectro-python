@@ -87,8 +87,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Approve Product
 
-     Approve a product that is pending customer review.
-    This confirms the deliverable meets requirements and triggers any associated payment schedules.
+     Approve a deliverable waiting for your review. You confirm it meets what was agreed, and it is
+    accepted.
 
     Args:
         customer_org_id (str):
@@ -128,8 +128,8 @@ def sync(
 ) -> APIResponse | None:
     """Portal Approve Product
 
-     Approve a product that is pending customer review.
-    This confirms the deliverable meets requirements and triggers any associated payment schedules.
+     Approve a deliverable waiting for your review. You confirm it meets what was agreed, and it is
+    accepted.
 
     Args:
         customer_org_id (str):
@@ -164,8 +164,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Approve Product
 
-     Approve a product that is pending customer review.
-    This confirms the deliverable meets requirements and triggers any associated payment schedules.
+     Approve a deliverable waiting for your review. You confirm it meets what was agreed, and it is
+    accepted.
 
     Args:
         customer_org_id (str):
@@ -203,8 +203,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Approve Product
 
-     Approve a product that is pending customer review.
-    This confirms the deliverable meets requirements and triggers any associated payment schedules.
+     Approve a deliverable waiting for your review. You confirm it meets what was agreed, and it is
+    accepted.
 
     Args:
         customer_org_id (str):

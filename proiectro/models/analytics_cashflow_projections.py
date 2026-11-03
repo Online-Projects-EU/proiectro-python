@@ -46,6 +46,7 @@ class AnalyticsCashflowProjections:
         uncovered_currencies (list[str] | Unset):
         buckets (list[AnalyticsCashflowBucket] | Unset):
         quarters (list[AnalyticsCashflowBucket] | Unset):
+        outflows_tracked (bool | Unset):  Default: True.
     """
 
     fiscal_year: int
@@ -70,6 +71,7 @@ class AnalyticsCashflowProjections:
     uncovered_currencies: list[str] | Unset = UNSET
     buckets: list[AnalyticsCashflowBucket] | Unset = UNSET
     quarters: list[AnalyticsCashflowBucket] | Unset = UNSET
+    outflows_tracked: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -199,6 +201,8 @@ class AnalyticsCashflowProjections:
                 quarters_item = quarters_item_data.to_dict()
                 quarters.append(quarters_item)
 
+        outflows_tracked = self.outflows_tracked
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -247,6 +251,8 @@ class AnalyticsCashflowProjections:
             field_dict["buckets"] = buckets
         if quarters is not UNSET:
             field_dict["quarters"] = quarters
+        if outflows_tracked is not UNSET:
+            field_dict["outflows_tracked"] = outflows_tracked
 
         return field_dict
 
@@ -455,6 +461,8 @@ class AnalyticsCashflowProjections:
 
                 quarters.append(quarters_item)
 
+        outflows_tracked = d.pop("outflows_tracked", UNSET)
+
         analytics_cashflow_projections = cls(
             fiscal_year=fiscal_year,
             currency=currency,
@@ -478,6 +486,7 @@ class AnalyticsCashflowProjections:
             uncovered_currencies=uncovered_currencies,
             buckets=buckets,
             quarters=quarters,
+            outflows_tracked=outflows_tracked,
         )
 
         analytics_cashflow_projections.additional_properties = d

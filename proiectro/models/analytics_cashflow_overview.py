@@ -48,6 +48,7 @@ class AnalyticsCashflowOverview:
         net_position_realized (float | None | str | Unset):
         income_collected_percent (float | None | str | Unset):
         payments_made_percent (float | None | str | Unset):
+        outflows_tracked (bool | Unset):  Default: True.
         uncovered_currencies (list[str] | Unset):
     """
 
@@ -76,6 +77,7 @@ class AnalyticsCashflowOverview:
     net_position_realized: float | None | str | Unset = UNSET
     income_collected_percent: float | None | str | Unset = UNSET
     payments_made_percent: float | None | str | Unset = UNSET
+    outflows_tracked: bool | Unset = True
     uncovered_currencies: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -232,6 +234,8 @@ class AnalyticsCashflowOverview:
         else:
             payments_made_percent = self.payments_made_percent
 
+        outflows_tracked = self.outflows_tracked
+
         uncovered_currencies: list[str] | Unset = UNSET
         if not isinstance(self.uncovered_currencies, Unset):
             uncovered_currencies = self.uncovered_currencies
@@ -291,6 +295,8 @@ class AnalyticsCashflowOverview:
             field_dict["income_collected_percent"] = income_collected_percent
         if payments_made_percent is not UNSET:
             field_dict["payments_made_percent"] = payments_made_percent
+        if outflows_tracked is not UNSET:
+            field_dict["outflows_tracked"] = outflows_tracked
         if uncovered_currencies is not UNSET:
             field_dict["uncovered_currencies"] = uncovered_currencies
 
@@ -564,6 +570,8 @@ class AnalyticsCashflowOverview:
             d.pop("payments_made_percent", UNSET)
         )
 
+        outflows_tracked = d.pop("outflows_tracked", UNSET)
+
         uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
 
         analytics_cashflow_overview = cls(
@@ -592,6 +600,7 @@ class AnalyticsCashflowOverview:
             net_position_realized=net_position_realized,
             income_collected_percent=income_collected_percent,
             payments_made_percent=payments_made_percent,
+            outflows_tracked=outflows_tracked,
             uncovered_currencies=uncovered_currencies,
         )
 

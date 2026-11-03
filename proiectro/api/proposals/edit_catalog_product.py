@@ -85,10 +85,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Catalog Product
 
-     Update product specifications, pricing, or terms as offerings evolve. Changes
-    apply to future proposals while existing deals maintain their snapshot. Regular
-    updates keep catalog current with market conditions. Consider versioning for
-    significant changes to track product evolution.
+     Change an item's description, price, terms, stock or portal availability. Proposals that already
+    have the item keep their own copy.
 
     Args:
         tenant_path (str):
@@ -125,10 +123,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Catalog Product
 
-     Update product specifications, pricing, or terms as offerings evolve. Changes
-    apply to future proposals while existing deals maintain their snapshot. Regular
-    updates keep catalog current with market conditions. Consider versioning for
-    significant changes to track product evolution.
+     Change an item's description, price, terms, stock or portal availability. Proposals that already
+    have the item keep their own copy.
 
     Args:
         tenant_path (str):
@@ -160,10 +156,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Catalog Product
 
-     Update product specifications, pricing, or terms as offerings evolve. Changes
-    apply to future proposals while existing deals maintain their snapshot. Regular
-    updates keep catalog current with market conditions. Consider versioning for
-    significant changes to track product evolution.
+     Change an item's description, price, terms, stock or portal availability. Proposals that already
+    have the item keep their own copy.
 
     Args:
         tenant_path (str):
@@ -198,10 +192,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Catalog Product
 
-     Update product specifications, pricing, or terms as offerings evolve. Changes
-    apply to future proposals while existing deals maintain their snapshot. Regular
-    updates keep catalog current with market conditions. Consider versioning for
-    significant changes to track product evolution.
+     Change an item's description, price, terms, stock or portal availability. Proposals that already
+    have the item keep their own copy.
 
     Args:
         tenant_path (str):

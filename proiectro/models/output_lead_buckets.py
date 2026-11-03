@@ -17,7 +17,7 @@ T = TypeVar("T", bound="OutputLeadBuckets")
 
 @_attrs_define
 class OutputLeadBuckets:
-    """Worklist response — four buckets stacked vertically.
+    """Worklist response, four buckets stacked vertically.
 
     Attributes:
         overdue (OutputLeadBucket): One bucket of the worklist (overdue / today / untriaged / scheduled).

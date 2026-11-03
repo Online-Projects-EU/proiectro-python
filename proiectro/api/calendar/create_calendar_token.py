@@ -71,11 +71,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Create Calendar Token
 
-     Generate a secure subscription link for external calendar applications. Create
-    different subscriptions for various views - personal schedule, team availability,
-    resource bookings, or project milestones. Each token is unique and can be
-    independently managed. Share subscription URLs only with trusted applications
-    as they provide read access to calendar data.
+     Create a subscription link for an external calendar app, for a team member, a resource, a
+    project or a customer. Anyone with the link can read that calendar without signing in, so share
+    it only with apps you trust.
 
     Args:
         tenant_path (str):
@@ -109,11 +107,9 @@ def sync(
 ) -> APIResponse | None:
     """Create Calendar Token
 
-     Generate a secure subscription link for external calendar applications. Create
-    different subscriptions for various views - personal schedule, team availability,
-    resource bookings, or project milestones. Each token is unique and can be
-    independently managed. Share subscription URLs only with trusted applications
-    as they provide read access to calendar data.
+     Create a subscription link for an external calendar app, for a team member, a resource, a
+    project or a customer. Anyone with the link can read that calendar without signing in, so share
+    it only with apps you trust.
 
     Args:
         tenant_path (str):
@@ -142,11 +138,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Create Calendar Token
 
-     Generate a secure subscription link for external calendar applications. Create
-    different subscriptions for various views - personal schedule, team availability,
-    resource bookings, or project milestones. Each token is unique and can be
-    independently managed. Share subscription URLs only with trusted applications
-    as they provide read access to calendar data.
+     Create a subscription link for an external calendar app, for a team member, a resource, a
+    project or a customer. Anyone with the link can read that calendar without signing in, so share
+    it only with apps you trust.
 
     Args:
         tenant_path (str):
@@ -178,11 +172,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Create Calendar Token
 
-     Generate a secure subscription link for external calendar applications. Create
-    different subscriptions for various views - personal schedule, team availability,
-    resource bookings, or project milestones. Each token is unique and can be
-    independently managed. Share subscription URLs only with trusted applications
-    as they provide read access to calendar data.
+     Create a subscription link for an external calendar app, for a team member, a resource, a
+    project or a customer. Anyone with the link can read that calendar without signing in, so share
+    it only with apps you trust.
 
     Args:
         tenant_path (str):

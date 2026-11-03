@@ -54,6 +54,7 @@ class OutputProposalPreview:
         generated_at (datetime.datetime):
         tenant_path (str):
         proposal_id (str):
+        has_product_pictures (bool | Unset):  Default: False.
         customer_org_id (None | str | Unset):
     """
 
@@ -69,6 +70,7 @@ class OutputProposalPreview:
     generated_at: datetime.datetime
     tenant_path: str
     proposal_id: str
+    has_product_pictures: bool | Unset = False
     customer_org_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -103,6 +105,8 @@ class OutputProposalPreview:
 
         proposal_id = self.proposal_id
 
+        has_product_pictures = self.has_product_pictures
+
         customer_org_id: None | str | Unset
         if isinstance(self.customer_org_id, Unset):
             customer_org_id = UNSET
@@ -127,6 +131,8 @@ class OutputProposalPreview:
                 "proposal_id": proposal_id,
             }
         )
+        if has_product_pictures is not UNSET:
+            field_dict["has_product_pictures"] = has_product_pictures
         if customer_org_id is not UNSET:
             field_dict["customer_org_id"] = customer_org_id
 
@@ -207,6 +213,8 @@ class OutputProposalPreview:
 
         proposal_id = d.pop("proposal_id")
 
+        has_product_pictures = d.pop("has_product_pictures", UNSET)
+
         def _parse_customer_org_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -229,6 +237,7 @@ class OutputProposalPreview:
             generated_at=generated_at,
             tenant_path=tenant_path,
             proposal_id=proposal_id,
+            has_product_pictures=has_product_pictures,
             customer_org_id=customer_org_id,
         )
 

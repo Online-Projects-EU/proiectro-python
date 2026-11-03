@@ -6,26 +6,16 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
-from ...models.request_delete_file_gcs import RequestDeleteFileGCS
 from ...types import Response
 
 
-def _get_kwargs(
-    *,
-    body: RequestDeleteFileGCS,
-) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
+def _get_kwargs() -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/api/v1/mark_user_avatar_as_deleted",
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -62,12 +52,11 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
 ) -> Response[APIResponse]:
     """Mark User Avatar As Deleted
 
-    Args:
-        body (RequestDeleteFileGCS):
+     Remove your avatar: you show your initials again, except in workspaces where you set
+    an avatar of your own. The uploaded file is moved to the trash.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -77,9 +66,7 @@ def sync_detailed(
         Response[APIResponse]
     """
 
-    kwargs = _get_kwargs(
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -91,12 +78,11 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
 ) -> APIResponse | None:
     """Mark User Avatar As Deleted
 
-    Args:
-        body (RequestDeleteFileGCS):
+     Remove your avatar: you show your initials again, except in workspaces where you set
+    an avatar of your own. The uploaded file is moved to the trash.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -108,19 +94,17 @@ def sync(
 
     return sync_detailed(
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
 ) -> Response[APIResponse]:
     """Mark User Avatar As Deleted
 
-    Args:
-        body (RequestDeleteFileGCS):
+     Remove your avatar: you show your initials again, except in workspaces where you set
+    an avatar of your own. The uploaded file is moved to the trash.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -130,9 +114,7 @@ async def asyncio_detailed(
         Response[APIResponse]
     """
 
-    kwargs = _get_kwargs(
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -142,12 +124,11 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    body: RequestDeleteFileGCS,
 ) -> APIResponse | None:
     """Mark User Avatar As Deleted
 
-    Args:
-        body (RequestDeleteFileGCS):
+     Remove your avatar: you show your initials again, except in workspaces where you set
+    an avatar of your own. The uploaded file is moved to the trash.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -160,6 +141,5 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            body=body,
         )
     ).parsed

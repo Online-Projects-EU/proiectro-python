@@ -82,10 +82,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Change Product Status
 
-     Update a product's lifecycle status to track progress through delivery stages.
-    Status changes are recorded in history and may affect customer visibility and
-    payment schedules. Confirm transitions carefully as they influence project
-    tracking and customer communications.
+     Change a product's status as its delivery moves on. Every change is kept in the product's
+    history with its reason, and the customer sees the statuses marked visible to them.
 
     Args:
         tenant_path (str):
@@ -125,10 +123,8 @@ def sync(
 ) -> APIResponse | None:
     """Change Product Status
 
-     Update a product's lifecycle status to track progress through delivery stages.
-    Status changes are recorded in history and may affect customer visibility and
-    payment schedules. Confirm transitions carefully as they influence project
-    tracking and customer communications.
+     Change a product's status as its delivery moves on. Every change is kept in the product's
+    history with its reason, and the customer sees the statuses marked visible to them.
 
     Args:
         tenant_path (str):
@@ -163,10 +159,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Change Product Status
 
-     Update a product's lifecycle status to track progress through delivery stages.
-    Status changes are recorded in history and may affect customer visibility and
-    payment schedules. Confirm transitions carefully as they influence project
-    tracking and customer communications.
+     Change a product's status as its delivery moves on. Every change is kept in the product's
+    history with its reason, and the customer sees the statuses marked visible to them.
 
     Args:
         tenant_path (str):
@@ -204,10 +198,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Change Product Status
 
-     Update a product's lifecycle status to track progress through delivery stages.
-    Status changes are recorded in history and may affect customer visibility and
-    payment schedules. Confirm transitions carefully as they influence project
-    tracking and customer communications.
+     Change a product's status as its delivery moves on. Every change is kept in the product's
+    history with its reason, and the customer sees the statuses marked visible to them.
 
     Args:
         tenant_path (str):

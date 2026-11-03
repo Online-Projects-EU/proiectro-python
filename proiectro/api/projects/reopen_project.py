@@ -74,9 +74,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Reopen Project
 
-     Move a delivered or cancelled project back to active within the grace period.
-    Used to correct a premature mark-delivered or to resume a cancelled engagement.
-    Returns 409 if grace period has expired.
+     Move a delivered or cancelled project back to active, within 7 days. Use it to undo a delivery
+    marked too early or to resume a cancelled project.
 
     Args:
         tenant_path (str):
@@ -110,9 +109,8 @@ def sync(
 ) -> APIResponse | None:
     """Reopen Project
 
-     Move a delivered or cancelled project back to active within the grace period.
-    Used to correct a premature mark-delivered or to resume a cancelled engagement.
-    Returns 409 if grace period has expired.
+     Move a delivered or cancelled project back to active, within 7 days. Use it to undo a delivery
+    marked too early or to resume a cancelled project.
 
     Args:
         tenant_path (str):
@@ -141,9 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Reopen Project
 
-     Move a delivered or cancelled project back to active within the grace period.
-    Used to correct a premature mark-delivered or to resume a cancelled engagement.
-    Returns 409 if grace period has expired.
+     Move a delivered or cancelled project back to active, within 7 days. Use it to undo a delivery
+    marked too early or to resume a cancelled project.
 
     Args:
         tenant_path (str):
@@ -175,9 +172,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Reopen Project
 
-     Move a delivered or cancelled project back to active within the grace period.
-    Used to correct a premature mark-delivered or to resume a cancelled engagement.
-    Returns 409 if grace period has expired.
+     Move a delivered or cancelled project back to active, within 7 days. Use it to undo a delivery
+    marked too early or to resume a cancelled project.
 
     Args:
         tenant_path (str):

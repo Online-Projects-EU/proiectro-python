@@ -79,12 +79,9 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: EditExternalSupportRequestComment,
 ) -> Response[APIResponse]:
-    r"""Edit Own External Comment
+    """Edit Own External Comment
 
-     Edit your own comment on an external support request.
-    Correct typos, clarify information, or update details. Only your own
-    comments can be edited. Edits are tracked for audit purposes and
-    marked with an \"edited\" indicator.
+     Edit a comment you wrote. It is marked as edited.
 
     Args:
         tenant_path (str):
@@ -119,12 +116,9 @@ def sync(
     client: AuthenticatedClient,
     body: EditExternalSupportRequestComment,
 ) -> APIResponse | None:
-    r"""Edit Own External Comment
+    """Edit Own External Comment
 
-     Edit your own comment on an external support request.
-    Correct typos, clarify information, or update details. Only your own
-    comments can be edited. Edits are tracked for audit purposes and
-    marked with an \"edited\" indicator.
+     Edit a comment you wrote. It is marked as edited.
 
     Args:
         tenant_path (str):
@@ -154,12 +148,9 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: EditExternalSupportRequestComment,
 ) -> Response[APIResponse]:
-    r"""Edit Own External Comment
+    """Edit Own External Comment
 
-     Edit your own comment on an external support request.
-    Correct typos, clarify information, or update details. Only your own
-    comments can be edited. Edits are tracked for audit purposes and
-    marked with an \"edited\" indicator.
+     Edit a comment you wrote. It is marked as edited.
 
     Args:
         tenant_path (str):
@@ -192,12 +183,9 @@ async def asyncio(
     client: AuthenticatedClient,
     body: EditExternalSupportRequestComment,
 ) -> APIResponse | None:
-    r"""Edit Own External Comment
+    """Edit Own External Comment
 
-     Edit your own comment on an external support request.
-    Correct typos, clarify information, or update details. Only your own
-    comments can be edited. Edits are tracked for audit purposes and
-    marked with an \"edited\" indicator.
+     Edit a comment you wrote. It is marked as edited.
 
     Args:
         tenant_path (str):

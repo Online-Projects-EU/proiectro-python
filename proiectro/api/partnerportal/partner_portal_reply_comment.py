@@ -89,7 +89,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Partner Portal Reply Comment
 
-     Partner replies to a comment on support request (creates nested reply).
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         tenant_path (str):
@@ -130,7 +131,8 @@ def sync(
 ) -> APIResponse | None:
     """Partner Portal Reply Comment
 
-     Partner replies to a comment on support request (creates nested reply).
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         tenant_path (str):
@@ -166,7 +168,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Partner Portal Reply Comment
 
-     Partner replies to a comment on support request (creates nested reply).
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         tenant_path (str):
@@ -205,7 +208,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Partner Portal Reply Comment
 
-     Partner replies to a comment on support request (creates nested reply).
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         tenant_path (str):

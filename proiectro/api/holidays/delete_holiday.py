@@ -64,10 +64,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Delete Holiday
 
-     Remove holidays that no longer apply or were entered incorrectly. Deletion immediately
-    restores availability for the affected dates. Existing bookings are not automatically
-    adjusted - review schedules after deletion. Consider the impact on project timelines
-    that assumed the holiday as non-working time.
+     Delete a holiday that no longer applies or was entered by mistake. The day becomes a working day
+    again in calendars and in the team load.
 
     Args:
         tenant_path (str):
@@ -101,10 +99,8 @@ def sync(
 ) -> APIResponse | None:
     """Delete Holiday
 
-     Remove holidays that no longer apply or were entered incorrectly. Deletion immediately
-    restores availability for the affected dates. Existing bookings are not automatically
-    adjusted - review schedules after deletion. Consider the impact on project timelines
-    that assumed the holiday as non-working time.
+     Delete a holiday that no longer applies or was entered by mistake. The day becomes a working day
+    again in calendars and in the team load.
 
     Args:
         tenant_path (str):
@@ -133,10 +129,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Delete Holiday
 
-     Remove holidays that no longer apply or were entered incorrectly. Deletion immediately
-    restores availability for the affected dates. Existing bookings are not automatically
-    adjusted - review schedules after deletion. Consider the impact on project timelines
-    that assumed the holiday as non-working time.
+     Delete a holiday that no longer applies or was entered by mistake. The day becomes a working day
+    again in calendars and in the team load.
 
     Args:
         tenant_path (str):
@@ -168,10 +162,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Delete Holiday
 
-     Remove holidays that no longer apply or were entered incorrectly. Deletion immediately
-    restores availability for the affected dates. Existing bookings are not automatically
-    adjusted - review schedules after deletion. Consider the impact on project timelines
-    that assumed the holiday as non-working time.
+     Delete a holiday that no longer applies or was entered by mistake. The day becomes a working day
+    again in calendars and in the team load.
 
     Args:
         tenant_path (str):

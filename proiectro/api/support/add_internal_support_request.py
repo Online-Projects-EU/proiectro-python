@@ -76,10 +76,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request
 
-     Submit internal support requests for operational needs like IT, HR, or facilities.
-    Automatic queue routing based on type and severity ensures proper handling.
-    Include detailed descriptions for faster resolution. Requesters receive
-    notifications on status changes and can track progress throughout lifecycle.
+     Open an internal support request. Its type and severity decide its queue, and the queue may
+    assign it to someone automatically. You are notified when someone else changes its status.
 
     Args:
         tenant_path (str):
@@ -113,10 +111,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request
 
-     Submit internal support requests for operational needs like IT, HR, or facilities.
-    Automatic queue routing based on type and severity ensures proper handling.
-    Include detailed descriptions for faster resolution. Requesters receive
-    notifications on status changes and can track progress throughout lifecycle.
+     Open an internal support request. Its type and severity decide its queue, and the queue may
+    assign it to someone automatically. You are notified when someone else changes its status.
 
     Args:
         tenant_path (str):
@@ -145,10 +141,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request
 
-     Submit internal support requests for operational needs like IT, HR, or facilities.
-    Automatic queue routing based on type and severity ensures proper handling.
-    Include detailed descriptions for faster resolution. Requesters receive
-    notifications on status changes and can track progress throughout lifecycle.
+     Open an internal support request. Its type and severity decide its queue, and the queue may
+    assign it to someone automatically. You are notified when someone else changes its status.
 
     Args:
         tenant_path (str):
@@ -180,10 +174,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request
 
-     Submit internal support requests for operational needs like IT, HR, or facilities.
-    Automatic queue routing based on type and severity ensures proper handling.
-    Include detailed descriptions for faster resolution. Requesters receive
-    notifications on status changes and can track progress throughout lifecycle.
+     Open an internal support request. Its type and severity decide its queue, and the queue may
+    assign it to someone automatically. You are notified when someone else changes its status.
 
     Args:
         tenant_path (str):

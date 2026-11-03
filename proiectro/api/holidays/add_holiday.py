@@ -82,10 +82,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Holiday
 
-     Define new holidays or company-wide non-working days for capacity planning. Specify
-    territory to handle regional differences in observances. New holidays immediately
-    affect availability calculations and scheduling. Consider adding holidays well in
-    advance to prevent scheduling conflicts with existing commitments.
+     Add a public holiday or a day off for a territory. It applies to the team members in that
+    territory and shows in their calendars and in the team load.
 
     Args:
         tenant_path (str):
@@ -119,10 +117,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Holiday
 
-     Define new holidays or company-wide non-working days for capacity planning. Specify
-    territory to handle regional differences in observances. New holidays immediately
-    affect availability calculations and scheduling. Consider adding holidays well in
-    advance to prevent scheduling conflicts with existing commitments.
+     Add a public holiday or a day off for a territory. It applies to the team members in that
+    territory and shows in their calendars and in the team load.
 
     Args:
         tenant_path (str):
@@ -151,10 +147,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Holiday
 
-     Define new holidays or company-wide non-working days for capacity planning. Specify
-    territory to handle regional differences in observances. New holidays immediately
-    affect availability calculations and scheduling. Consider adding holidays well in
-    advance to prevent scheduling conflicts with existing commitments.
+     Add a public holiday or a day off for a territory. It applies to the team members in that
+    territory and shows in their calendars and in the team load.
 
     Args:
         tenant_path (str):
@@ -186,10 +180,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Holiday
 
-     Define new holidays or company-wide non-working days for capacity planning. Specify
-    territory to handle regional differences in observances. New holidays immediately
-    affect availability calculations and scheduling. Consider adding holidays well in
-    advance to prevent scheduling conflicts with existing commitments.
+     Add a public holiday or a day off for a territory. It applies to the team members in that
+    territory and shows in their calendars and in the team load.
 
     Args:
         tenant_path (str):

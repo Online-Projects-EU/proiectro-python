@@ -39,6 +39,7 @@ class OutputCustomerAsset:
         serial_number_or_uri (None | str | Unset):
         installation_date (datetime.date | None | Unset):
         warranty_expiration (None | str | Unset):
+        next_service_date (datetime.date | None | Unset):
         hierarchy_id (None | str | Unset):
         parent_id (None | str | Unset):
         parent_name (None | str | Unset):
@@ -68,6 +69,7 @@ class OutputCustomerAsset:
     serial_number_or_uri: None | str | Unset = UNSET
     installation_date: datetime.date | None | Unset = UNSET
     warranty_expiration: None | str | Unset = UNSET
+    next_service_date: datetime.date | None | Unset = UNSET
     hierarchy_id: None | str | Unset = UNSET
     parent_id: None | str | Unset = UNSET
     parent_name: None | str | Unset = UNSET
@@ -166,6 +168,14 @@ class OutputCustomerAsset:
         else:
             warranty_expiration = self.warranty_expiration
 
+        next_service_date: None | str | Unset
+        if isinstance(self.next_service_date, Unset):
+            next_service_date = UNSET
+        elif isinstance(self.next_service_date, datetime.date):
+            next_service_date = self.next_service_date.isoformat()
+        else:
+            next_service_date = self.next_service_date
+
         hierarchy_id: None | str | Unset
         if isinstance(self.hierarchy_id, Unset):
             hierarchy_id = UNSET
@@ -235,6 +245,8 @@ class OutputCustomerAsset:
             field_dict["installation_date"] = installation_date
         if warranty_expiration is not UNSET:
             field_dict["warranty_expiration"] = warranty_expiration
+        if next_service_date is not UNSET:
+            field_dict["next_service_date"] = next_service_date
         if hierarchy_id is not UNSET:
             field_dict["hierarchy_id"] = hierarchy_id
         if parent_id is not UNSET:
@@ -388,6 +400,23 @@ class OutputCustomerAsset:
             d.pop("warranty_expiration", UNSET)
         )
 
+        def _parse_next_service_date(data: object) -> datetime.date | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                next_service_date_type_0 = isoparse(data).date()
+
+                return next_service_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
+
+        next_service_date = _parse_next_service_date(d.pop("next_service_date", UNSET))
+
         def _parse_hierarchy_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -456,6 +485,7 @@ class OutputCustomerAsset:
             serial_number_or_uri=serial_number_or_uri,
             installation_date=installation_date,
             warranty_expiration=warranty_expiration,
+            next_service_date=next_service_date,
             hierarchy_id=hierarchy_id,
             parent_id=parent_id,
             parent_name=parent_name,

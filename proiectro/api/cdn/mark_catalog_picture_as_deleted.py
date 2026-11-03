@@ -1,41 +1,43 @@
 from http import HTTPStatus
 from typing import Any
+from urllib.parse import quote
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.download_url_gcs import DownloadUrlGCS
-from ...models.request_download_url_gcs import RequestDownloadUrlGCS
+from ...models.api_response import APIResponse
 from ...types import Response
 
 
 def _get_kwargs(
-    *,
-    body: RequestDownloadUrlGCS,
+    tenant_path: str,
+    catalog_id: str,
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/api/v1/generate_download_url_user_avatar",
+        "url": "/api/v1/{tenant_path}/mark_catalog_picture_as_deleted/{catalog_id}".format(
+            tenant_path=quote(str(tenant_path), safe=""),
+            catalog_id=quote(str(catalog_id), safe=""),
+        ),
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DownloadUrlGCS | None:
+) -> APIResponse | None:
     if response.status_code == 200:
-        response_200 = DownloadUrlGCS.from_dict(response.json())
+        response_200 = APIResponse.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 400:
+        response_400 = APIResponse.from_dict(response.json())
+
+        return response_400
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -45,7 +47,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DownloadUrlGCS]:
+) -> Response[APIResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,29 +57,31 @@ def _build_response(
 
 
 def sync_detailed(
+    tenant_path: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url User Avatar
+) -> Response[APIResponse]:
+    """Mark Catalog Picture As Deleted
 
-     Download your global user avatar. Access your profile picture with a time-limited
-    secure URL that expires after 1 minute. Useful for viewing or backing up your
-    avatar image before making changes.
+     Remove the picture of a catalog item. The item shows a placeholder again wherever it
+    is listed, and the uploaded file is moved to the trash.
 
     Args:
-        body (RequestDownloadUrlGCS):
+        tenant_path (str):
+        catalog_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[APIResponse]
     """
 
     kwargs = _get_kwargs(
-        body=body,
+        tenant_path=tenant_path,
+        catalog_id=catalog_id,
     )
 
     response = client.get_httpx_client().request(
@@ -88,57 +92,61 @@ def sync_detailed(
 
 
 def sync(
+    tenant_path: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url User Avatar
+) -> APIResponse | None:
+    """Mark Catalog Picture As Deleted
 
-     Download your global user avatar. Access your profile picture with a time-limited
-    secure URL that expires after 1 minute. Useful for viewing or backing up your
-    avatar image before making changes.
+     Remove the picture of a catalog item. The item shows a placeholder again wherever it
+    is listed, and the uploaded file is moved to the trash.
 
     Args:
-        body (RequestDownloadUrlGCS):
+        tenant_path (str):
+        catalog_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        APIResponse
     """
 
     return sync_detailed(
+        tenant_path=tenant_path,
+        catalog_id=catalog_id,
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
+    tenant_path: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url User Avatar
+) -> Response[APIResponse]:
+    """Mark Catalog Picture As Deleted
 
-     Download your global user avatar. Access your profile picture with a time-limited
-    secure URL that expires after 1 minute. Useful for viewing or backing up your
-    avatar image before making changes.
+     Remove the picture of a catalog item. The item shows a placeholder again wherever it
+    is listed, and the uploaded file is moved to the trash.
 
     Args:
-        body (RequestDownloadUrlGCS):
+        tenant_path (str):
+        catalog_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[APIResponse]
     """
 
     kwargs = _get_kwargs(
-        body=body,
+        tenant_path=tenant_path,
+        catalog_id=catalog_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -147,30 +155,32 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    tenant_path: str,
+    catalog_id: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url User Avatar
+) -> APIResponse | None:
+    """Mark Catalog Picture As Deleted
 
-     Download your global user avatar. Access your profile picture with a time-limited
-    secure URL that expires after 1 minute. Useful for viewing or backing up your
-    avatar image before making changes.
+     Remove the picture of a catalog item. The item shows a placeholder again wherever it
+    is listed, and the uploaded file is moved to the trash.
 
     Args:
-        body (RequestDownloadUrlGCS):
+        tenant_path (str):
+        catalog_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        APIResponse
     """
 
     return (
         await asyncio_detailed(
+            tenant_path=tenant_path,
+            catalog_id=catalog_id,
             client=client,
-            body=body,
         )
     ).parsed

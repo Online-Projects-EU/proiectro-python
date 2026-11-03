@@ -17,7 +17,7 @@ T = TypeVar("T", bound="OutputLeadListList")
 
 @_attrs_define
 class OutputLeadListList:
-    """Lists tab payload — owned, peer-owned and pool lists, plus the unclaimed leads in no list.
+    """Lists tab payload, owned, peer-owned and pool lists, plus the unclaimed leads in no list.
 
     Attributes:
         mine (list[OutputLeadListSummary] | Unset):

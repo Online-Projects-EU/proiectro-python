@@ -48,6 +48,7 @@ class ProposalProduct:
         unit_of_measure (str | Unset):  Default: ''.
         catalog_name (None | str | Unset):
         catalog_internal_code (None | str | Unset):
+        image_url (None | str | Unset):
         is_linked (bool | Unset):  Default: False.
         proposal_currency_symbol (str | Unset):  Default: ''.
         margin_currency_symbol (None | str | Unset):
@@ -88,6 +89,7 @@ class ProposalProduct:
     unit_of_measure: str | Unset = ""
     catalog_name: None | str | Unset = UNSET
     catalog_internal_code: None | str | Unset = UNSET
+    image_url: None | str | Unset = UNSET
     is_linked: bool | Unset = False
     proposal_currency_symbol: str | Unset = ""
     margin_currency_symbol: None | str | Unset = UNSET
@@ -179,6 +181,12 @@ class ProposalProduct:
             catalog_internal_code = UNSET
         else:
             catalog_internal_code = self.catalog_internal_code
+
+        image_url: None | str | Unset
+        if isinstance(self.image_url, Unset):
+            image_url = UNSET
+        else:
+            image_url = self.image_url
 
         is_linked = self.is_linked
 
@@ -284,6 +292,8 @@ class ProposalProduct:
             field_dict["catalog_name"] = catalog_name
         if catalog_internal_code is not UNSET:
             field_dict["catalog_internal_code"] = catalog_internal_code
+        if image_url is not UNSET:
+            field_dict["image_url"] = image_url
         if is_linked is not UNSET:
             field_dict["is_linked"] = is_linked
         if proposal_currency_symbol is not UNSET:
@@ -430,6 +440,15 @@ class ProposalProduct:
             d.pop("catalog_internal_code", UNSET)
         )
 
+        def _parse_image_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        image_url = _parse_image_url(d.pop("image_url", UNSET))
+
         is_linked = d.pop("is_linked", UNSET)
 
         proposal_currency_symbol = d.pop("proposal_currency_symbol", UNSET)
@@ -554,6 +573,7 @@ class ProposalProduct:
             unit_of_measure=unit_of_measure,
             catalog_name=catalog_name,
             catalog_internal_code=catalog_internal_code,
+            image_url=image_url,
             is_linked=is_linked,
             proposal_currency_symbol=proposal_currency_symbol,
             margin_currency_symbol=margin_currency_symbol,

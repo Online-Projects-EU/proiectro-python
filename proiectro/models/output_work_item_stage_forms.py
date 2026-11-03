@@ -22,11 +22,15 @@ class OutputWorkItemStageForms:
         item_id (str):
         forms (list[OutputWorkItemStageForm]):
         has_blocking (bool | Unset):  Default: False.
+        can_fill (bool | Unset):  Default: False.
+        fill_locked_reason (str | Unset):  Default: ''.
     """
 
     item_id: str
     forms: list[OutputWorkItemStageForm]
     has_blocking: bool | Unset = False
+    can_fill: bool | Unset = False
+    fill_locked_reason: str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -39,6 +43,10 @@ class OutputWorkItemStageForms:
 
         has_blocking = self.has_blocking
 
+        can_fill = self.can_fill
+
+        fill_locked_reason = self.fill_locked_reason
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -49,6 +57,10 @@ class OutputWorkItemStageForms:
         )
         if has_blocking is not UNSET:
             field_dict["has_blocking"] = has_blocking
+        if can_fill is not UNSET:
+            field_dict["can_fill"] = can_fill
+        if fill_locked_reason is not UNSET:
+            field_dict["fill_locked_reason"] = fill_locked_reason
 
         return field_dict
 
@@ -68,10 +80,16 @@ class OutputWorkItemStageForms:
 
         has_blocking = d.pop("has_blocking", UNSET)
 
+        can_fill = d.pop("can_fill", UNSET)
+
+        fill_locked_reason = d.pop("fill_locked_reason", UNSET)
+
         output_work_item_stage_forms = cls(
             item_id=item_id,
             forms=forms,
             has_blocking=has_blocking,
+            can_fill=can_fill,
+            fill_locked_reason=fill_locked_reason,
         )
 
         output_work_item_stage_forms.additional_properties = d

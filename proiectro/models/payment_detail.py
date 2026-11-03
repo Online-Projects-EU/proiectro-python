@@ -34,6 +34,7 @@ class PaymentDetail:
         internal_code (None | str | Unset):
         currency_code (None | str | Unset):
         paid_date (datetime.date | None | Unset):
+        invoiced_date (datetime.date | None | Unset):
         payment_integration_id (None | str | Unset):
         product_id (None | str | Unset):
         product_name (None | str | Unset):
@@ -54,6 +55,7 @@ class PaymentDetail:
     internal_code: None | str | Unset = UNSET
     currency_code: None | str | Unset = UNSET
     paid_date: datetime.date | None | Unset = UNSET
+    invoiced_date: datetime.date | None | Unset = UNSET
     payment_integration_id: None | str | Unset = UNSET
     product_id: None | str | Unset = UNSET
     product_name: None | str | Unset = UNSET
@@ -102,6 +104,14 @@ class PaymentDetail:
             paid_date = self.paid_date.isoformat()
         else:
             paid_date = self.paid_date
+
+        invoiced_date: None | str | Unset
+        if isinstance(self.invoiced_date, Unset):
+            invoiced_date = UNSET
+        elif isinstance(self.invoiced_date, datetime.date):
+            invoiced_date = self.invoiced_date.isoformat()
+        else:
+            invoiced_date = self.invoiced_date
 
         payment_integration_id: None | str | Unset
         if isinstance(self.payment_integration_id, Unset):
@@ -152,6 +162,8 @@ class PaymentDetail:
             field_dict["currency_code"] = currency_code
         if paid_date is not UNSET:
             field_dict["paid_date"] = paid_date
+        if invoiced_date is not UNSET:
+            field_dict["invoiced_date"] = invoiced_date
         if payment_integration_id is not UNSET:
             field_dict["payment_integration_id"] = payment_integration_id
         if product_id is not UNSET:
@@ -228,6 +240,23 @@ class PaymentDetail:
 
         paid_date = _parse_paid_date(d.pop("paid_date", UNSET))
 
+        def _parse_invoiced_date(data: object) -> datetime.date | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, str):
+                    raise TypeError()
+                invoiced_date_type_0 = isoparse(data).date()
+
+                return invoiced_date_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(datetime.date | None | Unset, data)
+
+        invoiced_date = _parse_invoiced_date(d.pop("invoiced_date", UNSET))
+
         def _parse_payment_integration_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -282,6 +311,7 @@ class PaymentDetail:
             internal_code=internal_code,
             currency_code=currency_code,
             paid_date=paid_date,
+            invoiced_date=invoiced_date,
             payment_integration_id=payment_integration_id,
             product_id=product_id,
             product_name=product_name,

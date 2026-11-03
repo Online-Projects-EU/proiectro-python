@@ -71,10 +71,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Funnel Configuration
 
-     Create new sales processes tailored to different customer types or product offerings.
-    Define unique stage progressions, qualification criteria, and conversion rules.
-    Multiple funnels enable specialized handling of enterprise vs SMB sales, or product
-    vs service offerings. Consider your sales methodology before configuration.
+     Add a sales funnel, for a different kind of customer or of sale. It starts empty and inactive:
+    add its stages, then activate it.
 
     Args:
         tenant_path (str):
@@ -108,10 +106,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Funnel Configuration
 
-     Create new sales processes tailored to different customer types or product offerings.
-    Define unique stage progressions, qualification criteria, and conversion rules.
-    Multiple funnels enable specialized handling of enterprise vs SMB sales, or product
-    vs service offerings. Consider your sales methodology before configuration.
+     Add a sales funnel, for a different kind of customer or of sale. It starts empty and inactive:
+    add its stages, then activate it.
 
     Args:
         tenant_path (str):
@@ -140,10 +136,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Funnel Configuration
 
-     Create new sales processes tailored to different customer types or product offerings.
-    Define unique stage progressions, qualification criteria, and conversion rules.
-    Multiple funnels enable specialized handling of enterprise vs SMB sales, or product
-    vs service offerings. Consider your sales methodology before configuration.
+     Add a sales funnel, for a different kind of customer or of sale. It starts empty and inactive:
+    add its stages, then activate it.
 
     Args:
         tenant_path (str):
@@ -175,10 +169,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Funnel Configuration
 
-     Create new sales processes tailored to different customer types or product offerings.
-    Define unique stage progressions, qualification criteria, and conversion rules.
-    Multiple funnels enable specialized handling of enterprise vs SMB sales, or product
-    vs service offerings. Consider your sales methodology before configuration.
+     Add a sales funnel, for a different kind of customer or of sale. It starts empty and inactive:
+    add its stages, then activate it.
 
     Args:
         tenant_path (str):

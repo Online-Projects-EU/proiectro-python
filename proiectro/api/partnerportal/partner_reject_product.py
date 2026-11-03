@@ -93,8 +93,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Partner Reject Product
 
-     Reject deliverable in partner portal.
-    Partner can reject product with reason if grant and permissions allow.
+     Reject a deliverable waiting for your review, and say why. Your partner sees your reason.
 
     Args:
         tenant_path (str):
@@ -141,8 +140,7 @@ def sync(
 ) -> APIResponse | None:
     """Partner Reject Product
 
-     Reject deliverable in partner portal.
-    Partner can reject product with reason if grant and permissions allow.
+     Reject a deliverable waiting for your review, and say why. Your partner sees your reason.
 
     Args:
         tenant_path (str):
@@ -184,8 +182,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Partner Reject Product
 
-     Reject deliverable in partner portal.
-    Partner can reject product with reason if grant and permissions allow.
+     Reject a deliverable waiting for your review, and say why. Your partner sees your reason.
 
     Args:
         tenant_path (str):
@@ -230,8 +227,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Partner Reject Product
 
-     Reject deliverable in partner portal.
-    Partner can reject product with reason if grant and permissions allow.
+     Reject a deliverable waiting for your review, and say why. Your partner sees your reason.
 
     Args:
         tenant_path (str):

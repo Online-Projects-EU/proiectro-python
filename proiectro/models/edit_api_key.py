@@ -23,6 +23,7 @@ class EditApiKey:
         is_update (bool | None | Unset):
         is_delete (bool | None | Unset):
         expires_at (None | str | Unset):
+        granted_permissions (list[str] | None | Unset):
     """
 
     name: None | str | Unset = UNSET
@@ -32,6 +33,7 @@ class EditApiKey:
     is_update: bool | None | Unset = UNSET
     is_delete: bool | None | Unset = UNSET
     expires_at: None | str | Unset = UNSET
+    granted_permissions: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -77,6 +79,15 @@ class EditApiKey:
         else:
             expires_at = self.expires_at
 
+        granted_permissions: list[str] | None | Unset
+        if isinstance(self.granted_permissions, Unset):
+            granted_permissions = UNSET
+        elif isinstance(self.granted_permissions, list):
+            granted_permissions = self.granted_permissions
+
+        else:
+            granted_permissions = self.granted_permissions
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -94,6 +105,8 @@ class EditApiKey:
             field_dict["is_delete"] = is_delete
         if expires_at is not UNSET:
             field_dict["expires_at"] = expires_at
+        if granted_permissions is not UNSET:
+            field_dict["granted_permissions"] = granted_permissions
 
         return field_dict
 
@@ -164,6 +177,25 @@ class EditApiKey:
 
         expires_at = _parse_expires_at(d.pop("expires_at", UNSET))
 
+        def _parse_granted_permissions(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                granted_permissions_type_0 = cast(list[str], data)
+
+                return granted_permissions_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        granted_permissions = _parse_granted_permissions(
+            d.pop("granted_permissions", UNSET)
+        )
+
         edit_api_key = cls(
             name=name,
             description=description,
@@ -172,6 +204,7 @@ class EditApiKey:
             is_update=is_update,
             is_delete=is_delete,
             expires_at=expires_at,
+            granted_permissions=granted_permissions,
         )
 
         edit_api_key.additional_properties = d

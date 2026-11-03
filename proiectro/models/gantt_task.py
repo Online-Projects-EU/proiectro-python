@@ -11,7 +11,7 @@ T = TypeVar("T", bound="GanttTask")
 
 @_attrs_define
 class GanttTask:
-    """Single task for Frappe Gantt visualization
+    """One work item on a Gantt timeline.
 
     Attributes:
         id (str):

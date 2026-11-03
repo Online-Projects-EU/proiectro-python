@@ -95,8 +95,9 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Partner Order
 
-     Order catalog items from your partner at today's catalog price.
-    Availability is checked first; your partner accepts or rejects the order.
+     Order items from your partner's catalog, at the prices in your price list. Stock is checked when
+    you send the order; your partner accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         tenant_path (str):
@@ -134,8 +135,9 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Partner Order
 
-     Order catalog items from your partner at today's catalog price.
-    Availability is checked first; your partner accepts or rejects the order.
+     Order items from your partner's catalog, at the prices in your price list. Stock is checked when
+    you send the order; your partner accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         tenant_path (str):
@@ -168,8 +170,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Partner Order
 
-     Order catalog items from your partner at today's catalog price.
-    Availability is checked first; your partner accepts or rejects the order.
+     Order items from your partner's catalog, at the prices in your price list. Stock is checked when
+    you send the order; your partner accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         tenant_path (str):
@@ -205,8 +208,9 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Partner Order
 
-     Order catalog items from your partner at today's catalog price.
-    Availability is checked first; your partner accepts or rejects the order.
+     Order items from your partner's catalog, at the prices in your price list. Stock is checked when
+    you send the order; your partner accepts or rejects it, unless orders are accepted
+    automatically.
 
     Args:
         tenant_path (str):

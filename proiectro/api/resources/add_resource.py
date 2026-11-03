@@ -76,10 +76,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Resource
 
-     Add new resources to your catalog for tracking and allocation. Create people,
-    equipment, facilities, or services with appropriate categorization. Resources
-    inherit timezone settings for accurate global scheduling. Consider your hierarchy
-    structure carefully as it affects reporting and resource discovery.
+     Add a resource you book and cost on projects, such as equipment, a room or a vehicle, under a
+    parent resource. Only resources with nothing under them can be booked, so adding one under
+    another makes the parent a group.
 
     Args:
         tenant_path (str):
@@ -113,10 +112,9 @@ def sync(
 ) -> APIResponse | None:
     """Add Resource
 
-     Add new resources to your catalog for tracking and allocation. Create people,
-    equipment, facilities, or services with appropriate categorization. Resources
-    inherit timezone settings for accurate global scheduling. Consider your hierarchy
-    structure carefully as it affects reporting and resource discovery.
+     Add a resource you book and cost on projects, such as equipment, a room or a vehicle, under a
+    parent resource. Only resources with nothing under them can be booked, so adding one under
+    another makes the parent a group.
 
     Args:
         tenant_path (str):
@@ -145,10 +143,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Resource
 
-     Add new resources to your catalog for tracking and allocation. Create people,
-    equipment, facilities, or services with appropriate categorization. Resources
-    inherit timezone settings for accurate global scheduling. Consider your hierarchy
-    structure carefully as it affects reporting and resource discovery.
+     Add a resource you book and cost on projects, such as equipment, a room or a vehicle, under a
+    parent resource. Only resources with nothing under them can be booked, so adding one under
+    another makes the parent a group.
 
     Args:
         tenant_path (str):
@@ -180,10 +177,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Resource
 
-     Add new resources to your catalog for tracking and allocation. Create people,
-    equipment, facilities, or services with appropriate categorization. Resources
-    inherit timezone settings for accurate global scheduling. Consider your hierarchy
-    structure carefully as it affects reporting and resource discovery.
+     Add a resource you book and cost on projects, such as equipment, a room or a vehicle, under a
+    parent resource. Only resources with nothing under them can be booked, so adding one under
+    another makes the parent a group.
 
     Args:
         tenant_path (str):

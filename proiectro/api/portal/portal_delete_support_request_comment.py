@@ -77,8 +77,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Delete Support Request Comment
 
-     Delete your own comment from a support request. You can only delete comments that you authored.
-    Once deleted, the comment will be permanently removed from the timeline.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         customer_org_id (str):
@@ -115,8 +114,7 @@ def sync(
 ) -> APIResponse | None:
     """Portal Delete Support Request Comment
 
-     Delete your own comment from a support request. You can only delete comments that you authored.
-    Once deleted, the comment will be permanently removed from the timeline.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         customer_org_id (str):
@@ -148,8 +146,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Delete Support Request Comment
 
-     Delete your own comment from a support request. You can only delete comments that you authored.
-    Once deleted, the comment will be permanently removed from the timeline.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         customer_org_id (str):
@@ -184,8 +181,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Delete Support Request Comment
 
-     Delete your own comment from a support request. You can only delete comments that you authored.
-    Once deleted, the comment will be permanently removed from the timeline.
+     Delete a comment you wrote. Its replies are deleted with it, permanently.
 
     Args:
         customer_org_id (str):

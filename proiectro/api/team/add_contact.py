@@ -90,10 +90,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Contact
 
-     Register external contacts for customer organizations without granting system access.
-    Track client representatives, vendors, or partners for projects and communications.
-    Contacts can later be invited to customer portals for controlled data access.
-    Essential for maintaining stakeholder relationships and communication channels.
+     Add a contact person at a customer, without access to the app. You need a contact to send a
+    proposal, and you can invite contacts to the customer portal later.
 
     Args:
         tenant_path (str):
@@ -130,10 +128,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Contact
 
-     Register external contacts for customer organizations without granting system access.
-    Track client representatives, vendors, or partners for projects and communications.
-    Contacts can later be invited to customer portals for controlled data access.
-    Essential for maintaining stakeholder relationships and communication channels.
+     Add a contact person at a customer, without access to the app. You need a contact to send a
+    proposal, and you can invite contacts to the customer portal later.
 
     Args:
         tenant_path (str):
@@ -165,10 +161,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Contact
 
-     Register external contacts for customer organizations without granting system access.
-    Track client representatives, vendors, or partners for projects and communications.
-    Contacts can later be invited to customer portals for controlled data access.
-    Essential for maintaining stakeholder relationships and communication channels.
+     Add a contact person at a customer, without access to the app. You need a contact to send a
+    proposal, and you can invite contacts to the customer portal later.
 
     Args:
         tenant_path (str):
@@ -203,10 +197,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Contact
 
-     Register external contacts for customer organizations without granting system access.
-    Track client representatives, vendors, or partners for projects and communications.
-    Contacts can later be invited to customer portals for controlled data access.
-    Essential for maintaining stakeholder relationships and communication channels.
+     Add a contact person at a customer, without access to the app. You need a contact to send a
+    proposal, and you can invite contacts to the customer portal later.
 
     Args:
         tenant_path (str):

@@ -82,10 +82,8 @@ def sync_detailed(
 ) -> Response[APIResponse | AddProductFromCatalogResponse]:
     """Add Product From Catalog
 
-     Add pre-defined products from your catalog to proposals for standardized offerings.
-    Ensures pricing consistency and reduces configuration errors. Catalog products include
-    approved descriptions, pricing tiers, and delivery terms. Modify after adding if
-    customer-specific adjustments are needed.
+     Add a catalog item to a proposal, with its description and price. The line is a copy: change it
+    here if this customer needs something different, and later catalog changes leave it as it is.
 
     Args:
         tenant_path (str):
@@ -119,10 +117,8 @@ def sync(
 ) -> APIResponse | AddProductFromCatalogResponse | None:
     """Add Product From Catalog
 
-     Add pre-defined products from your catalog to proposals for standardized offerings.
-    Ensures pricing consistency and reduces configuration errors. Catalog products include
-    approved descriptions, pricing tiers, and delivery terms. Modify after adding if
-    customer-specific adjustments are needed.
+     Add a catalog item to a proposal, with its description and price. The line is a copy: change it
+    here if this customer needs something different, and later catalog changes leave it as it is.
 
     Args:
         tenant_path (str):
@@ -151,10 +147,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | AddProductFromCatalogResponse]:
     """Add Product From Catalog
 
-     Add pre-defined products from your catalog to proposals for standardized offerings.
-    Ensures pricing consistency and reduces configuration errors. Catalog products include
-    approved descriptions, pricing tiers, and delivery terms. Modify after adding if
-    customer-specific adjustments are needed.
+     Add a catalog item to a proposal, with its description and price. The line is a copy: change it
+    here if this customer needs something different, and later catalog changes leave it as it is.
 
     Args:
         tenant_path (str):
@@ -186,10 +180,8 @@ async def asyncio(
 ) -> APIResponse | AddProductFromCatalogResponse | None:
     """Add Product From Catalog
 
-     Add pre-defined products from your catalog to proposals for standardized offerings.
-    Ensures pricing consistency and reduces configuration errors. Catalog products include
-    approved descriptions, pricing tiers, and delivery terms. Modify after adding if
-    customer-specific adjustments are needed.
+     Add a catalog item to a proposal, with its description and price. The line is a copy: change it
+    here if this customer needs something different, and later catalog changes leave it as it is.
 
     Args:
         tenant_path (str):

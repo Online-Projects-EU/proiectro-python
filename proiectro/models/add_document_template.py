@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 from ..models.add_document_template_data_classification import (
     AddDocumentTemplateDataClassification,
 )
+from ..models.add_document_template_kind import AddDocumentTemplateKind
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="AddDocumentTemplate")
@@ -21,6 +22,8 @@ class AddDocumentTemplate:
         name (str):
         description (None | str | Unset):  Default: ''.
         entity_type (str | Unset):  Default: 'general'.
+        kind (AddDocumentTemplateKind | Unset):  Default: AddDocumentTemplateKind.DOCUMENT.
+        subject (None | str | Unset):  Default: ''.
         body (None | str | Unset):  Default: ''.
         default_series_id (None | str | Unset):
         retention_days (int | None | Unset):
@@ -32,6 +35,8 @@ class AddDocumentTemplate:
     name: str
     description: None | str | Unset = ""
     entity_type: str | Unset = "general"
+    kind: AddDocumentTemplateKind | Unset = AddDocumentTemplateKind.DOCUMENT
+    subject: None | str | Unset = ""
     body: None | str | Unset = ""
     default_series_id: None | str | Unset = UNSET
     retention_days: int | None | Unset = UNSET
@@ -51,6 +56,16 @@ class AddDocumentTemplate:
             description = self.description
 
         entity_type = self.entity_type
+
+        kind: str | Unset = UNSET
+        if not isinstance(self.kind, Unset):
+            kind = self.kind.value
+
+        subject: None | str | Unset
+        if isinstance(self.subject, Unset):
+            subject = UNSET
+        else:
+            subject = self.subject
 
         body: None | str | Unset
         if isinstance(self.body, Unset):
@@ -87,6 +102,10 @@ class AddDocumentTemplate:
             field_dict["description"] = description
         if entity_type is not UNSET:
             field_dict["entity_type"] = entity_type
+        if kind is not UNSET:
+            field_dict["kind"] = kind
+        if subject is not UNSET:
+            field_dict["subject"] = subject
         if body is not UNSET:
             field_dict["body"] = body
         if default_series_id is not UNSET:
@@ -115,6 +134,22 @@ class AddDocumentTemplate:
         description = _parse_description(d.pop("description", UNSET))
 
         entity_type = d.pop("entity_type", UNSET)
+
+        _kind = d.pop("kind", UNSET)
+        kind: AddDocumentTemplateKind | Unset
+        if isinstance(_kind, Unset):
+            kind = UNSET
+        else:
+            kind = AddDocumentTemplateKind(_kind)
+
+        def _parse_subject(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        subject = _parse_subject(d.pop("subject", UNSET))
 
         def _parse_body(data: object) -> None | str | Unset:
             if data is None:
@@ -158,6 +193,8 @@ class AddDocumentTemplate:
             name=name,
             description=description,
             entity_type=entity_type,
+            kind=kind,
+            subject=subject,
             body=body,
             default_series_id=default_series_id,
             retention_days=retention_days,

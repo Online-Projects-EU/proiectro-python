@@ -74,10 +74,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Reopen Internal Support Request
 
-     Reactivate recently closed requests when issues recur or solutions fail.
-    Available within configured time window after closure (typically 7-30 days).
-    Preserves original context and history for faster re-resolution.
-    Prevents duplicate request creation for ongoing issues.
+     Reopen a request you opened, within a day of its last change. It goes back to the new status
+    without an assignee, and the previous assignee is notified.
 
     Args:
         tenant_path (str):
@@ -111,10 +109,8 @@ def sync(
 ) -> APIResponse | None:
     """Reopen Internal Support Request
 
-     Reactivate recently closed requests when issues recur or solutions fail.
-    Available within configured time window after closure (typically 7-30 days).
-    Preserves original context and history for faster re-resolution.
-    Prevents duplicate request creation for ongoing issues.
+     Reopen a request you opened, within a day of its last change. It goes back to the new status
+    without an assignee, and the previous assignee is notified.
 
     Args:
         tenant_path (str):
@@ -143,10 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Reopen Internal Support Request
 
-     Reactivate recently closed requests when issues recur or solutions fail.
-    Available within configured time window after closure (typically 7-30 days).
-    Preserves original context and history for faster re-resolution.
-    Prevents duplicate request creation for ongoing issues.
+     Reopen a request you opened, within a day of its last change. It goes back to the new status
+    without an assignee, and the previous assignee is notified.
 
     Args:
         tenant_path (str):
@@ -178,10 +172,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Reopen Internal Support Request
 
-     Reactivate recently closed requests when issues recur or solutions fail.
-    Available within configured time window after closure (typically 7-30 days).
-    Preserves original context and history for faster re-resolution.
-    Prevents duplicate request creation for ongoing issues.
+     Reopen a request you opened, within a day of its last change. It goes back to the new status
+    without an assignee, and the previous assignee is notified.
 
     Args:
         tenant_path (str):

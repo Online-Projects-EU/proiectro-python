@@ -6,28 +6,30 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.download_url_gcs import DownloadUrlGCS
-from ...models.request_download_url_gcs import RequestDownloadUrlGCS
+from ...models.api_response import APIResponse
+from ...models.import_orgs_preview_multi_part_body_params import (
+    ImportOrgsPreviewMultiPartBodyParams,
+)
+from ...models.output_csv_import_preview import OutputCsvImportPreview
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
 def _get_kwargs(
     tenant_path: str,
     *,
-    body: RequestDownloadUrlGCS,
+    body: ImportOrgsPreviewMultiPartBodyParams,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/api/v1/{tenant_path}/generate_download_url_tenant_branding".format(
+        "url": "/api/v1/{tenant_path}/import_orgs_preview".format(
             tenant_path=quote(str(tenant_path), safe=""),
         ),
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
+    _kwargs["files"] = body.to_multipart()
 
     _kwargs["headers"] = headers
     return _kwargs
@@ -35,11 +37,31 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DownloadUrlGCS | None:
+) -> APIResponse | OutputCsvImportPreview | PydanticDetail | None:
     if response.status_code == 200:
-        response_200 = DownloadUrlGCS.from_dict(response.json())
+        response_200 = OutputCsvImportPreview.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 400:
+        response_400 = APIResponse.from_dict(response.json())
+
+        return response_400
+
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
+
+    if response.status_code == 413:
+        response_413 = APIResponse.from_dict(response.json())
+
+        return response_413
+
+    if response.status_code == 422:
+        response_422 = PydanticDetail.from_dict(response.json())
+
+        return response_422
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -49,7 +71,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DownloadUrlGCS]:
+) -> Response[APIResponse | OutputCsvImportPreview | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,24 +84,23 @@ def sync_detailed(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url Tenant Branding
+    body: ImportOrgsPreviewMultiPartBodyParams,
+) -> Response[APIResponse | OutputCsvImportPreview | PydanticDetail]:
+    """Import Orgs Preview
 
-     Download workspace branding assets. Access your workspace logo or banner with
-    a time-limited secure URL that expires after 1 minute. Useful for reviewing or
-    backing up your branding before updates.
+     Check a CSV of customers without writing anything. Shows, row by row, what would be added, what
+    would change and what is wrong, and returns an upload token for import_orgs.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
+        body (ImportOrgsPreviewMultiPartBodyParams):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[APIResponse | OutputCsvImportPreview | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -98,24 +119,23 @@ def sync(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url Tenant Branding
+    body: ImportOrgsPreviewMultiPartBodyParams,
+) -> APIResponse | OutputCsvImportPreview | PydanticDetail | None:
+    """Import Orgs Preview
 
-     Download workspace branding assets. Access your workspace logo or banner with
-    a time-limited secure URL that expires after 1 minute. Useful for reviewing or
-    backing up your branding before updates.
+     Check a CSV of customers without writing anything. Shows, row by row, what would be added, what
+    would change and what is wrong, and returns an upload token for import_orgs.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
+        body (ImportOrgsPreviewMultiPartBodyParams):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        APIResponse | OutputCsvImportPreview | PydanticDetail
     """
 
     return sync_detailed(
@@ -129,24 +149,23 @@ async def asyncio_detailed(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> Response[DownloadUrlGCS]:
-    """Generate Download Url Tenant Branding
+    body: ImportOrgsPreviewMultiPartBodyParams,
+) -> Response[APIResponse | OutputCsvImportPreview | PydanticDetail]:
+    """Import Orgs Preview
 
-     Download workspace branding assets. Access your workspace logo or banner with
-    a time-limited secure URL that expires after 1 minute. Useful for reviewing or
-    backing up your branding before updates.
+     Check a CSV of customers without writing anything. Shows, row by row, what would be added, what
+    would change and what is wrong, and returns an upload token for import_orgs.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
+        body (ImportOrgsPreviewMultiPartBodyParams):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DownloadUrlGCS]
+        Response[APIResponse | OutputCsvImportPreview | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -163,24 +182,23 @@ async def asyncio(
     tenant_path: str,
     *,
     client: AuthenticatedClient,
-    body: RequestDownloadUrlGCS,
-) -> DownloadUrlGCS | None:
-    """Generate Download Url Tenant Branding
+    body: ImportOrgsPreviewMultiPartBodyParams,
+) -> APIResponse | OutputCsvImportPreview | PydanticDetail | None:
+    """Import Orgs Preview
 
-     Download workspace branding assets. Access your workspace logo or banner with
-    a time-limited secure URL that expires after 1 minute. Useful for reviewing or
-    backing up your branding before updates.
+     Check a CSV of customers without writing anything. Shows, row by row, what would be added, what
+    would change and what is wrong, and returns an upload token for import_orgs.
 
     Args:
         tenant_path (str):
-        body (RequestDownloadUrlGCS):
+        body (ImportOrgsPreviewMultiPartBodyParams):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DownloadUrlGCS
+        APIResponse | OutputCsvImportPreview | PydanticDetail
     """
 
     return (

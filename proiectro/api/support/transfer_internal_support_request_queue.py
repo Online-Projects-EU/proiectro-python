@@ -79,10 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Transfer Internal Support Request Queue
 
-     Move requests between queues when expertise needs change or misrouted.
-    Maintains request context while ensuring proper team assignment.
-    Transfer may trigger reassignment based on queue ownership.
-    Document transfer reasons for process improvement.
+     Move an internal support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):
@@ -120,10 +118,8 @@ def sync(
 ) -> APIResponse | None:
     """Transfer Internal Support Request Queue
 
-     Move requests between queues when expertise needs change or misrouted.
-    Maintains request context while ensuring proper team assignment.
-    Transfer may trigger reassignment based on queue ownership.
-    Document transfer reasons for process improvement.
+     Move an internal support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):
@@ -156,10 +152,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Transfer Internal Support Request Queue
 
-     Move requests between queues when expertise needs change or misrouted.
-    Maintains request context while ensuring proper team assignment.
-    Transfer may trigger reassignment based on queue ownership.
-    Document transfer reasons for process improvement.
+     Move an internal support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):
@@ -195,10 +189,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Transfer Internal Support Request Queue
 
-     Move requests between queues when expertise needs change or misrouted.
-    Maintains request context while ensuring proper team assignment.
-    Transfer may trigger reassignment based on queue ownership.
-    Document transfer reasons for process improvement.
+     Move an internal support request to another queue. It loses its assignee, and the new queue may
+    assign it automatically.
 
     Args:
         tenant_path (str):

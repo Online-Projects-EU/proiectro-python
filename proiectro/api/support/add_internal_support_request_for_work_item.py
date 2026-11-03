@@ -81,10 +81,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Work Item
 
-     Create support requests linked to specific work items for task-related issues.
-    Enables tracking blockers, dependencies, or clarifications needed for work items.
-    Work item context helps support teams understand project impact and prioritize
-    accordingly. Useful for technical blockers or requirement clarifications.
+     Open an internal support request about a work item. It goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -122,10 +119,7 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request For Work Item
 
-     Create support requests linked to specific work items for task-related issues.
-    Enables tracking blockers, dependencies, or clarifications needed for work items.
-    Work item context helps support teams understand project impact and prioritize
-    accordingly. Useful for technical blockers or requirement clarifications.
+     Open an internal support request about a work item. It goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -158,10 +152,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Work Item
 
-     Create support requests linked to specific work items for task-related issues.
-    Enables tracking blockers, dependencies, or clarifications needed for work items.
-    Work item context helps support teams understand project impact and prioritize
-    accordingly. Useful for technical blockers or requirement clarifications.
+     Open an internal support request about a work item. It goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -197,10 +188,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request For Work Item
 
-     Create support requests linked to specific work items for task-related issues.
-    Enables tracking blockers, dependencies, or clarifications needed for work items.
-    Work item context helps support teams understand project impact and prioritize
-    accordingly. Useful for technical blockers or requirement clarifications.
+     Open an internal support request about a work item. It goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):

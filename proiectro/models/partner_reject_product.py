@@ -14,39 +14,19 @@ class PartnerRejectProduct:
     """Input schema for partner rejecting a deliverable in partner portal
 
     Attributes:
-        bridge_id (str):
-        project_id (str):
-        product_id (str):
-        status_id (str):
         reason (str):
     """
 
-    bridge_id: str
-    project_id: str
-    product_id: str
-    status_id: str
     reason: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        bridge_id = self.bridge_id
-
-        project_id = self.project_id
-
-        product_id = self.product_id
-
-        status_id = self.status_id
-
         reason = self.reason
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "bridge_id": bridge_id,
-                "project_id": project_id,
-                "product_id": product_id,
-                "status_id": status_id,
                 "reason": reason,
             }
         )
@@ -56,21 +36,9 @@ class PartnerRejectProduct:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        bridge_id = d.pop("bridge_id")
-
-        project_id = d.pop("project_id")
-
-        product_id = d.pop("product_id")
-
-        status_id = d.pop("status_id")
-
         reason = d.pop("reason")
 
         partner_reject_product = cls(
-            bridge_id=bridge_id,
-            project_id=project_id,
-            product_id=product_id,
-            status_id=status_id,
             reason=reason,
         )
 

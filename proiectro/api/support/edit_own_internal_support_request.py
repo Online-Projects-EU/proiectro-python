@@ -79,10 +79,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit Own Internal Support Request
 
-     Clarify or correct your own support request details for better resolution.
-    Add missing information or adjust severity based on impact. Updates
-    notify assigned agents of changes. Helps prevent misunderstandings
-    and accelerates resolution.
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):
@@ -119,10 +116,7 @@ def sync(
 ) -> APIResponse | None:
     """Edit Own Internal Support Request
 
-     Clarify or correct your own support request details for better resolution.
-    Add missing information or adjust severity based on impact. Updates
-    notify assigned agents of changes. Helps prevent misunderstandings
-    and accelerates resolution.
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):
@@ -154,10 +148,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit Own Internal Support Request
 
-     Clarify or correct your own support request details for better resolution.
-    Add missing information or adjust severity based on impact. Updates
-    notify assigned agents of changes. Helps prevent misunderstandings
-    and accelerates resolution.
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):
@@ -192,10 +183,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit Own Internal Support Request
 
-     Clarify or correct your own support request details for better resolution.
-    Add missing information or adjust severity based on impact. Updates
-    notify assigned agents of changes. Helps prevent misunderstandings
-    and accelerates resolution.
+     Edit a support request you opened, as long as it is not closed.
 
     Args:
         tenant_path (str):

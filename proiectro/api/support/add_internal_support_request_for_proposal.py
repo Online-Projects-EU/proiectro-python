@@ -81,10 +81,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Proposal
 
-     Link support requests to active proposals for deal-specific assistance.
-    Helps track proposal blockers, technical clarifications, or pricing approvals.
-    Proposal context ensures appropriate urgency and expertise assignment.
-    Critical for maintaining deal momentum and meeting deadlines.
+     Open an internal support request about a proposal or project. It is also linked to the customer,
+    and goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -122,10 +120,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request For Proposal
 
-     Link support requests to active proposals for deal-specific assistance.
-    Helps track proposal blockers, technical clarifications, or pricing approvals.
-    Proposal context ensures appropriate urgency and expertise assignment.
-    Critical for maintaining deal momentum and meeting deadlines.
+     Open an internal support request about a proposal or project. It is also linked to the customer,
+    and goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -158,10 +154,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request For Proposal
 
-     Link support requests to active proposals for deal-specific assistance.
-    Helps track proposal blockers, technical clarifications, or pricing approvals.
-    Proposal context ensures appropriate urgency and expertise assignment.
-    Critical for maintaining deal momentum and meeting deadlines.
+     Open an internal support request about a proposal or project. It is also linked to the customer,
+    and goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):
@@ -197,10 +191,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request For Proposal
 
-     Link support requests to active proposals for deal-specific assistance.
-    Helps track proposal blockers, technical clarifications, or pricing approvals.
-    Proposal context ensures appropriate urgency and expertise assignment.
-    Critical for maintaining deal momentum and meeting deadlines.
+     Open an internal support request about a proposal or project. It is also linked to the customer,
+    and goes to a queue by its type and severity.
 
     Args:
         tenant_path (str):

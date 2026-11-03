@@ -17,7 +17,7 @@ class AnalyticsTeamWorkloadItem:
 
     ``remaining_hours`` is the open work-item backlog and has no time horizon. ``booked_hours`` and
     ``available_hours`` are both summed over the utilization horizon, and utilization is the ratio
-    of the two — ``available_hours`` is None when the member has no weekly schedule on file, which
+    of the two, ``available_hours`` is None when the member has no weekly schedule on file, which
     makes utilization unknowable rather than zero.
 
         Attributes:

@@ -81,10 +81,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Exchange
 
-     Configure exchange rates for new currency pairs as you expand internationally.
-    Set rates manually based on your preferred source (bank rates, market rates, or
-    hedged rates). New rates apply to future transactions immediately while preserving
-    historical calculations. Consider adding buffer margins for exchange volatility.
+     Add an exchange rate for a pair of currencies, valid from a date. It ends the rate in use before
+    it. A pair is kept in one direction only, and a new rate cannot start inside a period already
+    covered.
 
     Args:
         tenant_path (str):
@@ -118,10 +117,9 @@ def sync(
 ) -> APIResponse | None:
     """Add Exchange
 
-     Configure exchange rates for new currency pairs as you expand internationally.
-    Set rates manually based on your preferred source (bank rates, market rates, or
-    hedged rates). New rates apply to future transactions immediately while preserving
-    historical calculations. Consider adding buffer margins for exchange volatility.
+     Add an exchange rate for a pair of currencies, valid from a date. It ends the rate in use before
+    it. A pair is kept in one direction only, and a new rate cannot start inside a period already
+    covered.
 
     Args:
         tenant_path (str):
@@ -150,10 +148,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Exchange
 
-     Configure exchange rates for new currency pairs as you expand internationally.
-    Set rates manually based on your preferred source (bank rates, market rates, or
-    hedged rates). New rates apply to future transactions immediately while preserving
-    historical calculations. Consider adding buffer margins for exchange volatility.
+     Add an exchange rate for a pair of currencies, valid from a date. It ends the rate in use before
+    it. A pair is kept in one direction only, and a new rate cannot start inside a period already
+    covered.
 
     Args:
         tenant_path (str):
@@ -185,10 +182,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Exchange
 
-     Configure exchange rates for new currency pairs as you expand internationally.
-    Set rates manually based on your preferred source (bank rates, market rates, or
-    hedged rates). New rates apply to future transactions immediately while preserving
-    historical calculations. Consider adding buffer margins for exchange volatility.
+     Add an exchange rate for a pair of currencies, valid from a date. It ends the rate in use before
+    it. A pair is kept in one direction only, and a new rate cannot start inside a period already
+    covered.
 
     Args:
         tenant_path (str):

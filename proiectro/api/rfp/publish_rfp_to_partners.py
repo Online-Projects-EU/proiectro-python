@@ -92,11 +92,9 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Publish Rfp To Partners
 
-     Publish your Request for Proposal to selected partners.
-
-    Selected partners will be notified and can review your requirements,
-    budget, and deadline in their partner portal. They can then indicate
-    whether they intend to submit a proposal or decline.
+     Send your request for proposal to the partners you choose. Their managers are notified, and each
+    partner says whether it will send a proposal or declines. Partners that already have it are
+    skipped.
 
     Args:
         tenant_path (str):
@@ -130,11 +128,9 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Publish Rfp To Partners
 
-     Publish your Request for Proposal to selected partners.
-
-    Selected partners will be notified and can review your requirements,
-    budget, and deadline in their partner portal. They can then indicate
-    whether they intend to submit a proposal or decline.
+     Send your request for proposal to the partners you choose. Their managers are notified, and each
+    partner says whether it will send a proposal or declines. Partners that already have it are
+    skipped.
 
     Args:
         tenant_path (str):
@@ -163,11 +159,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Publish Rfp To Partners
 
-     Publish your Request for Proposal to selected partners.
-
-    Selected partners will be notified and can review your requirements,
-    budget, and deadline in their partner portal. They can then indicate
-    whether they intend to submit a proposal or decline.
+     Send your request for proposal to the partners you choose. Their managers are notified, and each
+    partner says whether it will send a proposal or declines. Partners that already have it are
+    skipped.
 
     Args:
         tenant_path (str):
@@ -199,11 +193,9 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Publish Rfp To Partners
 
-     Publish your Request for Proposal to selected partners.
-
-    Selected partners will be notified and can review your requirements,
-    budget, and deadline in their partner portal. They can then indicate
-    whether they intend to submit a proposal or decline.
+     Send your request for proposal to the partners you choose. Their managers are notified, and each
+    partner says whether it will send a proposal or declines. Partners that already have it are
+    skipped.
 
     Args:
         tenant_path (str):

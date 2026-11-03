@@ -79,10 +79,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Reassign Internal Support Request
 
-     Transfer request ownership to team members with appropriate expertise.
-    Maintains request continuity while ensuring proper skill match.
-    New assignee receives notification with full context. Consider workload
-    balance when reassigning requests.
+     Assign an internal support request to another team member. The previous and the new assignee are
+    notified.
 
     Args:
         tenant_path (str):
@@ -120,10 +118,8 @@ def sync(
 ) -> APIResponse | None:
     """Reassign Internal Support Request
 
-     Transfer request ownership to team members with appropriate expertise.
-    Maintains request continuity while ensuring proper skill match.
-    New assignee receives notification with full context. Consider workload
-    balance when reassigning requests.
+     Assign an internal support request to another team member. The previous and the new assignee are
+    notified.
 
     Args:
         tenant_path (str):
@@ -156,10 +152,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Reassign Internal Support Request
 
-     Transfer request ownership to team members with appropriate expertise.
-    Maintains request continuity while ensuring proper skill match.
-    New assignee receives notification with full context. Consider workload
-    balance when reassigning requests.
+     Assign an internal support request to another team member. The previous and the new assignee are
+    notified.
 
     Args:
         tenant_path (str):
@@ -195,10 +189,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Reassign Internal Support Request
 
-     Transfer request ownership to team members with appropriate expertise.
-    Maintains request continuity while ensuring proper skill match.
-    New assignee receives notification with full context. Consider workload
-    balance when reassigning requests.
+     Assign an internal support request to another team member. The previous and the new assignee are
+    notified.
 
     Args:
         tenant_path (str):

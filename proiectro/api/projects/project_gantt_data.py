@@ -59,22 +59,9 @@ def sync_detailed(
 ) -> Response[OutputProjectGanttData]:
     """Project Gantt Data
 
-     Get project data formatted for Frappe Gantt visualization.
-
-    Supports two modes based on project.project_settings.enable_schedule_management:
-
-    1. CPM Mode (schedule_management enabled):
-       - Uses calculated WorkItemSchedule dates (early_start, early_finish)
-       - Shows critical path, float calculations
-       - Includes summary work items with aggregated child timelines
-
-    2. Manual Mode (schedule_management disabled):
-       - Uses work_item.planned_start and planned_finish fields
-       - Simple timeline visualization without critical path analysis
-       - Still shows dependencies and progress
-
-    Returns all work items with dates, dependencies, progress, and custom styling
-    classes for Gantt chart rendering.
+     Get a project's work items as a Gantt timeline: dates, dependencies and progress. With schedule
+    management on, dates come from the calculated schedule and the critical path is marked;
+    otherwise they are the planned start and finish dates.
 
     Args:
         tenant_path (str):
@@ -108,22 +95,9 @@ def sync(
 ) -> OutputProjectGanttData | None:
     """Project Gantt Data
 
-     Get project data formatted for Frappe Gantt visualization.
-
-    Supports two modes based on project.project_settings.enable_schedule_management:
-
-    1. CPM Mode (schedule_management enabled):
-       - Uses calculated WorkItemSchedule dates (early_start, early_finish)
-       - Shows critical path, float calculations
-       - Includes summary work items with aggregated child timelines
-
-    2. Manual Mode (schedule_management disabled):
-       - Uses work_item.planned_start and planned_finish fields
-       - Simple timeline visualization without critical path analysis
-       - Still shows dependencies and progress
-
-    Returns all work items with dates, dependencies, progress, and custom styling
-    classes for Gantt chart rendering.
+     Get a project's work items as a Gantt timeline: dates, dependencies and progress. With schedule
+    management on, dates come from the calculated schedule and the critical path is marked;
+    otherwise they are the planned start and finish dates.
 
     Args:
         tenant_path (str):
@@ -152,22 +126,9 @@ async def asyncio_detailed(
 ) -> Response[OutputProjectGanttData]:
     """Project Gantt Data
 
-     Get project data formatted for Frappe Gantt visualization.
-
-    Supports two modes based on project.project_settings.enable_schedule_management:
-
-    1. CPM Mode (schedule_management enabled):
-       - Uses calculated WorkItemSchedule dates (early_start, early_finish)
-       - Shows critical path, float calculations
-       - Includes summary work items with aggregated child timelines
-
-    2. Manual Mode (schedule_management disabled):
-       - Uses work_item.planned_start and planned_finish fields
-       - Simple timeline visualization without critical path analysis
-       - Still shows dependencies and progress
-
-    Returns all work items with dates, dependencies, progress, and custom styling
-    classes for Gantt chart rendering.
+     Get a project's work items as a Gantt timeline: dates, dependencies and progress. With schedule
+    management on, dates come from the calculated schedule and the critical path is marked;
+    otherwise they are the planned start and finish dates.
 
     Args:
         tenant_path (str):
@@ -199,22 +160,9 @@ async def asyncio(
 ) -> OutputProjectGanttData | None:
     """Project Gantt Data
 
-     Get project data formatted for Frappe Gantt visualization.
-
-    Supports two modes based on project.project_settings.enable_schedule_management:
-
-    1. CPM Mode (schedule_management enabled):
-       - Uses calculated WorkItemSchedule dates (early_start, early_finish)
-       - Shows critical path, float calculations
-       - Includes summary work items with aggregated child timelines
-
-    2. Manual Mode (schedule_management disabled):
-       - Uses work_item.planned_start and planned_finish fields
-       - Simple timeline visualization without critical path analysis
-       - Still shows dependencies and progress
-
-    Returns all work items with dates, dependencies, progress, and custom styling
-    classes for Gantt chart rendering.
+     Get a project's work items as a Gantt timeline: dates, dependencies and progress. With schedule
+    management on, dates come from the calculated schedule and the critical path is marked;
+    otherwise they are the planned start and finish dates.
 
     Args:
         tenant_path (str):

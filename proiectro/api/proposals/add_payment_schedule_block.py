@@ -87,10 +87,8 @@ def sync_detailed(
 ) -> Response[APIResponse | AddPaymentScheduleBlockResponse]:
     """Add Payment Schedule Block
 
-     Define payment milestones tied to project deliverables or time periods. Each block
-    groups related payments for clear customer communication. Blocks can trigger based
-    on completion criteria, dates, or approval gates. Essential for aligning cash flow
-    with project progress and managing working capital requirements.
+     Add a block to the payment schedule, to group payments of one kind: upfront, milestone,
+    progress, on completion or consumption. Blocks show the customer how and when they pay.
 
     Args:
         tenant_path (str):
@@ -127,10 +125,8 @@ def sync(
 ) -> APIResponse | AddPaymentScheduleBlockResponse | None:
     """Add Payment Schedule Block
 
-     Define payment milestones tied to project deliverables or time periods. Each block
-    groups related payments for clear customer communication. Blocks can trigger based
-    on completion criteria, dates, or approval gates. Essential for aligning cash flow
-    with project progress and managing working capital requirements.
+     Add a block to the payment schedule, to group payments of one kind: upfront, milestone,
+    progress, on completion or consumption. Blocks show the customer how and when they pay.
 
     Args:
         tenant_path (str):
@@ -162,10 +158,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | AddPaymentScheduleBlockResponse]:
     """Add Payment Schedule Block
 
-     Define payment milestones tied to project deliverables or time periods. Each block
-    groups related payments for clear customer communication. Blocks can trigger based
-    on completion criteria, dates, or approval gates. Essential for aligning cash flow
-    with project progress and managing working capital requirements.
+     Add a block to the payment schedule, to group payments of one kind: upfront, milestone,
+    progress, on completion or consumption. Blocks show the customer how and when they pay.
 
     Args:
         tenant_path (str):
@@ -200,10 +194,8 @@ async def asyncio(
 ) -> APIResponse | AddPaymentScheduleBlockResponse | None:
     """Add Payment Schedule Block
 
-     Define payment milestones tied to project deliverables or time periods. Each block
-    groups related payments for clear customer communication. Blocks can trigger based
-    on completion criteria, dates, or approval gates. Essential for aligning cash flow
-    with project progress and managing working capital requirements.
+     Add a block to the payment schedule, to group payments of one kind: upfront, milestone,
+    progress, on completion or consumption. Blocks show the customer how and when they pay.
 
     Args:
         tenant_path (str):

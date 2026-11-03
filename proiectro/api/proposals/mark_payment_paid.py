@@ -85,10 +85,8 @@ def sync_detailed(
 ) -> Response[APIResponse | MarkPaymentPaidResponse]:
     """Mark Payment Paid
 
-     Record payment collection for revenue recognition and accounts receivable reconciliation.
-    Captures payment date, method, and reference for complete audit trail. Updates
-    dashboard metrics and cash position immediately. Triggers notifications for
-    dependent workflows like project phase releases.
+     Record that a payment was collected, with the date. The owner and the customer's account manager
+    are notified. A delivered, cancelled or archived project takes no more payment changes.
 
     Args:
         tenant_path (str):
@@ -125,10 +123,8 @@ def sync(
 ) -> APIResponse | MarkPaymentPaidResponse | None:
     """Mark Payment Paid
 
-     Record payment collection for revenue recognition and accounts receivable reconciliation.
-    Captures payment date, method, and reference for complete audit trail. Updates
-    dashboard metrics and cash position immediately. Triggers notifications for
-    dependent workflows like project phase releases.
+     Record that a payment was collected, with the date. The owner and the customer's account manager
+    are notified. A delivered, cancelled or archived project takes no more payment changes.
 
     Args:
         tenant_path (str):
@@ -160,10 +156,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | MarkPaymentPaidResponse]:
     """Mark Payment Paid
 
-     Record payment collection for revenue recognition and accounts receivable reconciliation.
-    Captures payment date, method, and reference for complete audit trail. Updates
-    dashboard metrics and cash position immediately. Triggers notifications for
-    dependent workflows like project phase releases.
+     Record that a payment was collected, with the date. The owner and the customer's account manager
+    are notified. A delivered, cancelled or archived project takes no more payment changes.
 
     Args:
         tenant_path (str):
@@ -198,10 +192,8 @@ async def asyncio(
 ) -> APIResponse | MarkPaymentPaidResponse | None:
     """Mark Payment Paid
 
-     Record payment collection for revenue recognition and accounts receivable reconciliation.
-    Captures payment date, method, and reference for complete audit trail. Updates
-    dashboard metrics and cash position immediately. Triggers notifications for
-    dependent workflows like project phase releases.
+     Record that a payment was collected, with the date. The owner and the customer's account manager
+    are notified. A delivered, cancelled or archived project takes no more payment changes.
 
     Args:
         tenant_path (str):

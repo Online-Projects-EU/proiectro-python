@@ -71,11 +71,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Wbs Configuration
 
-     Create custom project breakdown methodologies tailored to your industry or processes.
-    Define whether you follow waterfall with strict deliverable-activity-task hierarchies,
-    agile with epic-story structures, or hybrid approaches. New configurations start
-    empty - add rules to specify allowed relationships. Consider creating separate
-    configurations for different project types or client requirements.
+     Add a work breakdown configuration: the rules that say which work item types can sit under
+    which. It starts empty; add rules, then make it active.
 
     Args:
         tenant_path (str):
@@ -109,11 +106,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Wbs Configuration
 
-     Create custom project breakdown methodologies tailored to your industry or processes.
-    Define whether you follow waterfall with strict deliverable-activity-task hierarchies,
-    agile with epic-story structures, or hybrid approaches. New configurations start
-    empty - add rules to specify allowed relationships. Consider creating separate
-    configurations for different project types or client requirements.
+     Add a work breakdown configuration: the rules that say which work item types can sit under
+    which. It starts empty; add rules, then make it active.
 
     Args:
         tenant_path (str):
@@ -142,11 +136,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Wbs Configuration
 
-     Create custom project breakdown methodologies tailored to your industry or processes.
-    Define whether you follow waterfall with strict deliverable-activity-task hierarchies,
-    agile with epic-story structures, or hybrid approaches. New configurations start
-    empty - add rules to specify allowed relationships. Consider creating separate
-    configurations for different project types or client requirements.
+     Add a work breakdown configuration: the rules that say which work item types can sit under
+    which. It starts empty; add rules, then make it active.
 
     Args:
         tenant_path (str):
@@ -178,11 +169,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Wbs Configuration
 
-     Create custom project breakdown methodologies tailored to your industry or processes.
-    Define whether you follow waterfall with strict deliverable-activity-task hierarchies,
-    agile with epic-story structures, or hybrid approaches. New configurations start
-    empty - add rules to specify allowed relationships. Consider creating separate
-    configurations for different project types or client requirements.
+     Add a work breakdown configuration: the rules that say which work item types can sit under
+    which. It starts empty; add rules, then make it active.
 
     Args:
         tenant_path (str):

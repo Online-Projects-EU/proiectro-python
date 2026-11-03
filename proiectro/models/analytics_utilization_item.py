@@ -15,7 +15,7 @@ T = TypeVar("T", bound="AnalyticsUtilizationItem")
 class AnalyticsUtilizationItem:
     """Booked against available hours, for one resource or one category.
 
-    `utilization_rate` is None when the entity has no weekly schedule on file — capacity is
+    `utilization_rate` is None when the entity has no weekly schedule on file, capacity is
     unknown, not zero, and a rate of 0% would read as "idle".
 
         Attributes:

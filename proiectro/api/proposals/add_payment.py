@@ -82,10 +82,8 @@ def sync_detailed(
 ) -> Response[APIResponse | AddPaymentResponse]:
     """Add Payment
 
-     Create payment obligations within milestone blocks for granular revenue tracking.
-    Specify amounts, due dates, and payment types (deposit, progress, final). Payments
-    can be percentage-based or fixed amounts. Multiple payments per block enable
-    flexible commercial terms while maintaining clear collection schedules.
+     Add a payment to a payment block: a fixed amount with a due date, in the project's currency. A
+    payment in a milestone block is tied to a product.
 
     Args:
         tenant_path (str):
@@ -119,10 +117,8 @@ def sync(
 ) -> APIResponse | AddPaymentResponse | None:
     """Add Payment
 
-     Create payment obligations within milestone blocks for granular revenue tracking.
-    Specify amounts, due dates, and payment types (deposit, progress, final). Payments
-    can be percentage-based or fixed amounts. Multiple payments per block enable
-    flexible commercial terms while maintaining clear collection schedules.
+     Add a payment to a payment block: a fixed amount with a due date, in the project's currency. A
+    payment in a milestone block is tied to a product.
 
     Args:
         tenant_path (str):
@@ -151,10 +147,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | AddPaymentResponse]:
     """Add Payment
 
-     Create payment obligations within milestone blocks for granular revenue tracking.
-    Specify amounts, due dates, and payment types (deposit, progress, final). Payments
-    can be percentage-based or fixed amounts. Multiple payments per block enable
-    flexible commercial terms while maintaining clear collection schedules.
+     Add a payment to a payment block: a fixed amount with a due date, in the project's currency. A
+    payment in a milestone block is tied to a product.
 
     Args:
         tenant_path (str):
@@ -186,10 +180,8 @@ async def asyncio(
 ) -> APIResponse | AddPaymentResponse | None:
     """Add Payment
 
-     Create payment obligations within milestone blocks for granular revenue tracking.
-    Specify amounts, due dates, and payment types (deposit, progress, final). Payments
-    can be percentage-based or fixed amounts. Multiple payments per block enable
-    flexible commercial terms while maintaining clear collection schedules.
+     Add a payment to a payment block: a fixed amount with a due date, in the project's currency. A
+    payment in a milestone block is tied to a product.
 
     Args:
         tenant_path (str):

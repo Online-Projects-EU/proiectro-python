@@ -76,10 +76,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Queue Rule
 
-     Create intelligent routing to automatically distribute requests appropriately.
-    Define conditions and target queues for specific request patterns.
-    Rules execute in priority order - position matters. Test thoroughly
-    to avoid unintended routing loops or dead ends.
+     Send new support requests to a queue by their type, their severity, or both. The rule with the
+    lowest priority number wins, and among equals the more specific one. A request no rule matches
+    goes to the first queue.
 
     Args:
         tenant_path (str):
@@ -113,10 +112,9 @@ def sync(
 ) -> APIResponse | None:
     """Add Queue Rule
 
-     Create intelligent routing to automatically distribute requests appropriately.
-    Define conditions and target queues for specific request patterns.
-    Rules execute in priority order - position matters. Test thoroughly
-    to avoid unintended routing loops or dead ends.
+     Send new support requests to a queue by their type, their severity, or both. The rule with the
+    lowest priority number wins, and among equals the more specific one. A request no rule matches
+    goes to the first queue.
 
     Args:
         tenant_path (str):
@@ -145,10 +143,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Queue Rule
 
-     Create intelligent routing to automatically distribute requests appropriately.
-    Define conditions and target queues for specific request patterns.
-    Rules execute in priority order - position matters. Test thoroughly
-    to avoid unintended routing loops or dead ends.
+     Send new support requests to a queue by their type, their severity, or both. The rule with the
+    lowest priority number wins, and among equals the more specific one. A request no rule matches
+    goes to the first queue.
 
     Args:
         tenant_path (str):
@@ -180,10 +177,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Queue Rule
 
-     Create intelligent routing to automatically distribute requests appropriately.
-    Define conditions and target queues for specific request patterns.
-    Rules execute in priority order - position matters. Test thoroughly
-    to avoid unintended routing loops or dead ends.
+     Send new support requests to a queue by their type, their severity, or both. The rule with the
+    lowest priority number wins, and among equals the more specific one. A request no rule matches
+    goes to the first queue.
 
     Args:
         tenant_path (str):

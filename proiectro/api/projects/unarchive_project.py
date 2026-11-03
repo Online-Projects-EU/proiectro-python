@@ -74,8 +74,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Unarchive Project
 
-     Bring an archived project back into the default project list without
-    changing its lifecycle state. Pairs with archive_project.
+     Bring an archived project back into the default project lists, without changing its status.
 
     Args:
         tenant_path (str):
@@ -109,8 +108,7 @@ def sync(
 ) -> APIResponse | None:
     """Unarchive Project
 
-     Bring an archived project back into the default project list without
-    changing its lifecycle state. Pairs with archive_project.
+     Bring an archived project back into the default project lists, without changing its status.
 
     Args:
         tenant_path (str):
@@ -139,8 +137,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Unarchive Project
 
-     Bring an archived project back into the default project list without
-    changing its lifecycle state. Pairs with archive_project.
+     Bring an archived project back into the default project lists, without changing its status.
 
     Args:
         tenant_path (str):
@@ -172,8 +169,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Unarchive Project
 
-     Bring an archived project back into the default project list without
-    changing its lifecycle state. Pairs with archive_project.
+     Bring an archived project back into the default project lists, without changing its status.
 
     Args:
         tenant_path (str):

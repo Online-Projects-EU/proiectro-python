@@ -84,10 +84,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Edit Exchange
 
-     Update exchange rates to reflect current market conditions or negotiated bank rates.
-    Changes affect only new transactions - completed invoices and payments retain their
-    original rates for consistency. Update frequently for volatile currency pairs or
-    set quarterly for stable currencies. Document rate sources for audit purposes.
+     Change an exchange rate or the period it is valid for. Reports for that period use the new rate;
+    proposal lines keep the rate they were priced with. Leave the end date empty for a rate with no
+    end.
 
     Args:
         tenant_path (str):
@@ -124,10 +123,9 @@ def sync(
 ) -> APIResponse | None:
     """Edit Exchange
 
-     Update exchange rates to reflect current market conditions or negotiated bank rates.
-    Changes affect only new transactions - completed invoices and payments retain their
-    original rates for consistency. Update frequently for volatile currency pairs or
-    set quarterly for stable currencies. Document rate sources for audit purposes.
+     Change an exchange rate or the period it is valid for. Reports for that period use the new rate;
+    proposal lines keep the rate they were priced with. Leave the end date empty for a rate with no
+    end.
 
     Args:
         tenant_path (str):
@@ -159,10 +157,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Edit Exchange
 
-     Update exchange rates to reflect current market conditions or negotiated bank rates.
-    Changes affect only new transactions - completed invoices and payments retain their
-    original rates for consistency. Update frequently for volatile currency pairs or
-    set quarterly for stable currencies. Document rate sources for audit purposes.
+     Change an exchange rate or the period it is valid for. Reports for that period use the new rate;
+    proposal lines keep the rate they were priced with. Leave the end date empty for a rate with no
+    end.
 
     Args:
         tenant_path (str):
@@ -197,10 +194,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Edit Exchange
 
-     Update exchange rates to reflect current market conditions or negotiated bank rates.
-    Changes affect only new transactions - completed invoices and payments retain their
-    original rates for consistency. Update frequently for volatile currency pairs or
-    set quarterly for stable currencies. Document rate sources for audit purposes.
+     Change an exchange rate or the period it is valid for. Reports for that period use the new rate;
+    proposal lines keep the rate they were priced with. Leave the end date empty for a rate with no
+    end.
 
     Args:
         tenant_path (str):

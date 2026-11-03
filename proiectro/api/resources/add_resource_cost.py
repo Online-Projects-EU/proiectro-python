@@ -77,10 +77,9 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Resource Cost
 
-     Define cost rates for resources to enable accurate project costing and profitability
-    analysis. Set hourly, daily, or unit-based rates with effective dates for rate
-    changes over time. Multiple cost types per resource support different billing
-    scenarios (internal vs external rates). Essential for margin calculations.
+     Set what a resource costs, per hour, per day or per unit, for one cost type. The new rate
+    applies from now and replaces the previous rate for that cost type. Costs set this way feed the
+    project margin.
 
     Args:
         tenant_path (str):
@@ -114,10 +113,9 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Resource Cost
 
-     Define cost rates for resources to enable accurate project costing and profitability
-    analysis. Set hourly, daily, or unit-based rates with effective dates for rate
-    changes over time. Multiple cost types per resource support different billing
-    scenarios (internal vs external rates). Essential for margin calculations.
+     Set what a resource costs, per hour, per day or per unit, for one cost type. The new rate
+    applies from now and replaces the previous rate for that cost type. Costs set this way feed the
+    project margin.
 
     Args:
         tenant_path (str):
@@ -146,10 +144,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Resource Cost
 
-     Define cost rates for resources to enable accurate project costing and profitability
-    analysis. Set hourly, daily, or unit-based rates with effective dates for rate
-    changes over time. Multiple cost types per resource support different billing
-    scenarios (internal vs external rates). Essential for margin calculations.
+     Set what a resource costs, per hour, per day or per unit, for one cost type. The new rate
+    applies from now and replaces the previous rate for that cost type. Costs set this way feed the
+    project margin.
 
     Args:
         tenant_path (str):
@@ -181,10 +178,9 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Resource Cost
 
-     Define cost rates for resources to enable accurate project costing and profitability
-    analysis. Set hourly, daily, or unit-based rates with effective dates for rate
-    changes over time. Multiple cost types per resource support different billing
-    scenarios (internal vs external rates). Essential for margin calculations.
+     Set what a resource costs, per hour, per day or per unit, for one cost type. The new rate
+    applies from now and replaces the previous rate for that cost type. Costs set this way feed the
+    project margin.
 
     Args:
         tenant_path (str):

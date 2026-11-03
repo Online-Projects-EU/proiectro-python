@@ -74,8 +74,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Reopen Support Request
 
-     Reopen a recently closed support request if the issue has returned or wasn't fully resolved.
-    Requests can be reopened within 24 hours of closure.
+     Reopen a support request you closed, if the problem came back. You can do this within a day of
+    its last change.
 
     Args:
         customer_org_id (str):
@@ -109,8 +109,8 @@ def sync(
 ) -> APIResponse | None:
     """Portal Reopen Support Request
 
-     Reopen a recently closed support request if the issue has returned or wasn't fully resolved.
-    Requests can be reopened within 24 hours of closure.
+     Reopen a support request you closed, if the problem came back. You can do this within a day of
+    its last change.
 
     Args:
         customer_org_id (str):
@@ -139,8 +139,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Reopen Support Request
 
-     Reopen a recently closed support request if the issue has returned or wasn't fully resolved.
-    Requests can be reopened within 24 hours of closure.
+     Reopen a support request you closed, if the problem came back. You can do this within a day of
+    its last change.
 
     Args:
         customer_org_id (str):
@@ -172,8 +172,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Reopen Support Request
 
-     Reopen a recently closed support request if the issue has returned or wasn't fully resolved.
-    Requests can be reopened within 24 hours of closure.
+     Reopen a support request you closed, if the problem came back. You can do this within a day of
+    its last change.
 
     Args:
         customer_org_id (str):

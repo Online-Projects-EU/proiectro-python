@@ -69,8 +69,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Close Support Request
 
-     Close your support request if it's no longer needed or the issue has been resolved independently.
-    Closed requests can be reopened within 24 hours if needed.
+     Close your support request if you no longer need it or solved the problem yourself. You can
+    reopen it within a day.
 
     Args:
         customer_org_id (str):
@@ -104,8 +104,8 @@ def sync(
 ) -> APIResponse | None:
     """Portal Close Support Request
 
-     Close your support request if it's no longer needed or the issue has been resolved independently.
-    Closed requests can be reopened within 24 hours if needed.
+     Close your support request if you no longer need it or solved the problem yourself. You can
+    reopen it within a day.
 
     Args:
         customer_org_id (str):
@@ -134,8 +134,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Close Support Request
 
-     Close your support request if it's no longer needed or the issue has been resolved independently.
-    Closed requests can be reopened within 24 hours if needed.
+     Close your support request if you no longer need it or solved the problem yourself. You can
+    reopen it within a day.
 
     Args:
         customer_org_id (str):
@@ -167,8 +167,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Close Support Request
 
-     Close your support request if it's no longer needed or the issue has been resolved independently.
-    Closed requests can be reopened within 24 hours if needed.
+     Close your support request if you no longer need it or solved the problem yourself. You can
+    reopen it within a day.
 
     Args:
         customer_org_id (str):

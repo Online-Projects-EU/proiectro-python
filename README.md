@@ -34,7 +34,7 @@ if response.status_code == 200:
 
 ## Authentication
 
-Create an API key in your workspace under **Settings > API Keys**. The SDK sends it as a Bearer token automatically.
+Create an API key in your workspace under **Personal > My API Keys**. The SDK sends it as a Bearer token automatically.
 
 ```python
 from proiectro.client import AuthenticatedClient

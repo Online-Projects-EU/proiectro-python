@@ -5,6 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.request_upload_url_gcs import RequestUploadUrlGCS
 from ...models.upload_url_gcs import UploadUrlGCS
 from ...types import Response
@@ -31,11 +32,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> UploadUrlGCS | None:
+) -> APIResponse | UploadUrlGCS | None:
     if response.status_code == 200:
         response_200 = UploadUrlGCS.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 422:
+        response_422 = APIResponse.from_dict(response.json())
+
+        return response_422
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -45,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[UploadUrlGCS]:
+) -> Response[APIResponse | UploadUrlGCS]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,13 +64,11 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> Response[UploadUrlGCS]:
+) -> Response[APIResponse | UploadUrlGCS]:
     """Generate Upload Url User Avatar
 
-     Upload your global user avatar that appears across all workspaces you access.
-    This avatar is your default identity throughout the platform. The secure URL
-    expires in 15 minutes - upload immediately after generation. Previous global
-    avatars are replaced. Workspace-specific avatars can override this in individual tenants.
+     Upload your avatar: a JPG, PNG, GIF or WebP picture, cropped square, shown in every
+    workspace where you have not set one of your own. A new upload replaces the previous one.
 
     Args:
         body (RequestUploadUrlGCS):
@@ -74,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[UploadUrlGCS]
+        Response[APIResponse | UploadUrlGCS]
     """
 
     kwargs = _get_kwargs(
@@ -92,13 +96,11 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> UploadUrlGCS | None:
+) -> APIResponse | UploadUrlGCS | None:
     """Generate Upload Url User Avatar
 
-     Upload your global user avatar that appears across all workspaces you access.
-    This avatar is your default identity throughout the platform. The secure URL
-    expires in 15 minutes - upload immediately after generation. Previous global
-    avatars are replaced. Workspace-specific avatars can override this in individual tenants.
+     Upload your avatar: a JPG, PNG, GIF or WebP picture, cropped square, shown in every
+    workspace where you have not set one of your own. A new upload replaces the previous one.
 
     Args:
         body (RequestUploadUrlGCS):
@@ -108,7 +110,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        UploadUrlGCS
+        APIResponse | UploadUrlGCS
     """
 
     return sync_detailed(
@@ -121,13 +123,11 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> Response[UploadUrlGCS]:
+) -> Response[APIResponse | UploadUrlGCS]:
     """Generate Upload Url User Avatar
 
-     Upload your global user avatar that appears across all workspaces you access.
-    This avatar is your default identity throughout the platform. The secure URL
-    expires in 15 minutes - upload immediately after generation. Previous global
-    avatars are replaced. Workspace-specific avatars can override this in individual tenants.
+     Upload your avatar: a JPG, PNG, GIF or WebP picture, cropped square, shown in every
+    workspace where you have not set one of your own. A new upload replaces the previous one.
 
     Args:
         body (RequestUploadUrlGCS):
@@ -137,7 +137,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[UploadUrlGCS]
+        Response[APIResponse | UploadUrlGCS]
     """
 
     kwargs = _get_kwargs(
@@ -153,13 +153,11 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: RequestUploadUrlGCS,
-) -> UploadUrlGCS | None:
+) -> APIResponse | UploadUrlGCS | None:
     """Generate Upload Url User Avatar
 
-     Upload your global user avatar that appears across all workspaces you access.
-    This avatar is your default identity throughout the platform. The secure URL
-    expires in 15 minutes - upload immediately after generation. Previous global
-    avatars are replaced. Workspace-specific avatars can override this in individual tenants.
+     Upload your avatar: a JPG, PNG, GIF or WebP picture, cropped square, shown in every
+    workspace where you have not set one of your own. A new upload replaces the previous one.
 
     Args:
         body (RequestUploadUrlGCS):
@@ -169,7 +167,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        UploadUrlGCS
+        APIResponse | UploadUrlGCS
     """
 
     return (

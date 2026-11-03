@@ -28,6 +28,7 @@ class FeedEventContent:
         author_phone (None | str | Unset):
         is_system (bool | Unset):  Default: False.
         tenant_logo_url (None | str | Unset):
+        link_url (None | str | Unset):
     """
 
     source: str
@@ -41,6 +42,7 @@ class FeedEventContent:
     author_phone: None | str | Unset = UNSET
     is_system: bool | Unset = False
     tenant_logo_url: None | str | Unset = UNSET
+    link_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -82,6 +84,12 @@ class FeedEventContent:
         else:
             tenant_logo_url = self.tenant_logo_url
 
+        link_url: None | str | Unset
+        if isinstance(self.link_url, Unset):
+            link_url = UNSET
+        else:
+            link_url = self.link_url
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -104,6 +112,8 @@ class FeedEventContent:
             field_dict["is_system"] = is_system
         if tenant_logo_url is not UNSET:
             field_dict["tenant_logo_url"] = tenant_logo_url
+        if link_url is not UNSET:
+            field_dict["link_url"] = link_url
 
         return field_dict
 
@@ -160,6 +170,15 @@ class FeedEventContent:
 
         tenant_logo_url = _parse_tenant_logo_url(d.pop("tenant_logo_url", UNSET))
 
+        def _parse_link_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        link_url = _parse_link_url(d.pop("link_url", UNSET))
+
         feed_event_content = cls(
             source=source,
             author_id=author_id,
@@ -172,6 +191,7 @@ class FeedEventContent:
             author_phone=author_phone,
             is_system=is_system,
             tenant_logo_url=tenant_logo_url,
+            link_url=link_url,
         )
 
         feed_event_content.additional_properties = d

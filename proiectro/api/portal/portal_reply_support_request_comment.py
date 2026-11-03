@@ -89,8 +89,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Portal Reply Support Request Comment
 
-     Reply to a comment on a support request. Creates a threaded reply that maintains conversation
-    context. Your reply will be visible to both support agents and other team members.
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         customer_org_id (str):
@@ -130,8 +130,8 @@ def sync(
 ) -> APIResponse | None:
     """Portal Reply Support Request Comment
 
-     Reply to a comment on a support request. Creates a threaded reply that maintains conversation
-    context. Your reply will be visible to both support agents and other team members.
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         customer_org_id (str):
@@ -166,8 +166,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Portal Reply Support Request Comment
 
-     Reply to a comment on a support request. Creates a threaded reply that maintains conversation
-    context. Your reply will be visible to both support agents and other team members.
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         customer_org_id (str):
@@ -205,8 +205,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Portal Reply Support Request Comment
 
-     Reply to a comment on a support request. Creates a threaded reply that maintains conversation
-    context. Your reply will be visible to both support agents and other team members.
+     Reply to a comment on a support request. The reply shows under the comment; you cannot reply to
+    a reply.
 
     Args:
         customer_org_id (str):

@@ -77,10 +77,8 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Team Booking
 
-     Allocate a team member to a project, blocking their calendar for the specified period.
-    Link bookings to specific deliverables for granular work tracking. The system automatically
-    creates availability exceptions to prevent double-booking. Consider team member workload
-    and existing commitments before creating new bookings.
+     Book a team member on a project for a period, optionally on a specific deliverable. A booking
+    cannot take them past their daily availability. They are notified unless they booked themselves.
 
     Args:
         tenant_path (str):
@@ -114,10 +112,8 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Add Team Booking
 
-     Allocate a team member to a project, blocking their calendar for the specified period.
-    Link bookings to specific deliverables for granular work tracking. The system automatically
-    creates availability exceptions to prevent double-booking. Consider team member workload
-    and existing commitments before creating new bookings.
+     Book a team member on a project for a period, optionally on a specific deliverable. A booking
+    cannot take them past their daily availability. They are notified unless they booked themselves.
 
     Args:
         tenant_path (str):
@@ -146,10 +142,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Add Team Booking
 
-     Allocate a team member to a project, blocking their calendar for the specified period.
-    Link bookings to specific deliverables for granular work tracking. The system automatically
-    creates availability exceptions to prevent double-booking. Consider team member workload
-    and existing commitments before creating new bookings.
+     Book a team member on a project for a period, optionally on a specific deliverable. A booking
+    cannot take them past their daily availability. They are notified unless they booked themselves.
 
     Args:
         tenant_path (str):
@@ -181,10 +175,8 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Add Team Booking
 
-     Allocate a team member to a project, blocking their calendar for the specified period.
-    Link bookings to specific deliverables for granular work tracking. The system automatically
-    creates availability exceptions to prevent double-booking. Consider team member workload
-    and existing commitments before creating new bookings.
+     Book a team member on a project for a period, optionally on a specific deliverable. A booking
+    cannot take them past their daily availability. They are notified unless they booked themselves.
 
     Args:
         tenant_path (str):

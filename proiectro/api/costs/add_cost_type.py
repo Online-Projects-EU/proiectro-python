@@ -41,6 +41,11 @@ def _parse_response(
 
         return response_200
 
+    if response.status_code == 409:
+        response_409 = APIResponse.from_dict(response.json())
+
+        return response_409
+
     if response.status_code == 500:
         response_500 = APIResponse.from_dict(response.json())
 
@@ -71,10 +76,8 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Cost Type
 
-     Create new cost categories to expand your financial tracking capabilities.
-    Add subcategories under existing types for detailed breakdowns. Include internal
-    codes to sync with accounting systems. Maximum depth of 5 levels prevents
-    over-complication while providing sufficient detail for most businesses.
+     Add a cost type under an existing one, to break your costs down in more detail. The internal
+    code helps you match it to your accounting. Cost types go at most 5 levels deep.
 
     Args:
         tenant_path (str):
@@ -108,10 +111,8 @@ def sync(
 ) -> APIResponse | None:
     """Add Cost Type
 
-     Create new cost categories to expand your financial tracking capabilities.
-    Add subcategories under existing types for detailed breakdowns. Include internal
-    codes to sync with accounting systems. Maximum depth of 5 levels prevents
-    over-complication while providing sufficient detail for most businesses.
+     Add a cost type under an existing one, to break your costs down in more detail. The internal
+    code helps you match it to your accounting. Cost types go at most 5 levels deep.
 
     Args:
         tenant_path (str):
@@ -140,10 +141,8 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Cost Type
 
-     Create new cost categories to expand your financial tracking capabilities.
-    Add subcategories under existing types for detailed breakdowns. Include internal
-    codes to sync with accounting systems. Maximum depth of 5 levels prevents
-    over-complication while providing sufficient detail for most businesses.
+     Add a cost type under an existing one, to break your costs down in more detail. The internal
+    code helps you match it to your accounting. Cost types go at most 5 levels deep.
 
     Args:
         tenant_path (str):
@@ -175,10 +174,8 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Cost Type
 
-     Create new cost categories to expand your financial tracking capabilities.
-    Add subcategories under existing types for detailed breakdowns. Include internal
-    codes to sync with accounting systems. Maximum depth of 5 levels prevents
-    over-complication while providing sufficient detail for most businesses.
+     Add a cost type under an existing one, to break your costs down in more detail. The internal
+    code helps you match it to your accounting. Cost types go at most 5 levels deep.
 
     Args:
         tenant_path (str):

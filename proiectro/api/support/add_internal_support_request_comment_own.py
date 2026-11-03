@@ -83,10 +83,7 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request Comment Own
 
-     Add clarifications or updates to your own support requests actively.
-    Provide additional context discovered after submission. Respond to
-    agent questions promptly to maintain momentum. Comments help build
-    complete picture for effective resolution.
+     Add a comment to a support request you opened. The assignee is notified.
 
     Args:
         tenant_path (str):
@@ -121,10 +118,7 @@ def sync(
 ) -> APIResponse | None:
     """Add Internal Support Request Comment Own
 
-     Add clarifications or updates to your own support requests actively.
-    Provide additional context discovered after submission. Respond to
-    agent questions promptly to maintain momentum. Comments help build
-    complete picture for effective resolution.
+     Add a comment to a support request you opened. The assignee is notified.
 
     Args:
         tenant_path (str):
@@ -154,10 +148,7 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Internal Support Request Comment Own
 
-     Add clarifications or updates to your own support requests actively.
-    Provide additional context discovered after submission. Respond to
-    agent questions promptly to maintain momentum. Comments help build
-    complete picture for effective resolution.
+     Add a comment to a support request you opened. The assignee is notified.
 
     Args:
         tenant_path (str):
@@ -190,10 +181,7 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Internal Support Request Comment Own
 
-     Add clarifications or updates to your own support requests actively.
-    Provide additional context discovered after submission. Respond to
-    agent questions promptly to maintain momentum. Comments help build
-    complete picture for effective resolution.
+     Add a comment to a support request you opened. The assignee is notified.
 
     Args:
         tenant_path (str):

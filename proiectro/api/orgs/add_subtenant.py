@@ -86,10 +86,9 @@ def sync_detailed(
 ) -> Response[APIResponse]:
     """Add Subtenant
 
-     Onboard new customers, subsidiaries, or business units with isolated data environments.
-    Creates separate organizational context while inheriting workspace configurations.
-    Essential for B2B operations requiring customer data separation. Consider timezone
-    and currency settings carefully as they affect all future transactions.
+     Add a customer organization. It gets your workspace's portal settings and the default price list
+    for new customers. Its currency needs an exchange rate; the account manager you choose is
+    notified.
 
     Args:
         tenant_path (str):
@@ -123,10 +122,9 @@ def sync(
 ) -> APIResponse | None:
     """Add Subtenant
 
-     Onboard new customers, subsidiaries, or business units with isolated data environments.
-    Creates separate organizational context while inheriting workspace configurations.
-    Essential for B2B operations requiring customer data separation. Consider timezone
-    and currency settings carefully as they affect all future transactions.
+     Add a customer organization. It gets your workspace's portal settings and the default price list
+    for new customers. Its currency needs an exchange rate; the account manager you choose is
+    notified.
 
     Args:
         tenant_path (str):
@@ -155,10 +153,9 @@ async def asyncio_detailed(
 ) -> Response[APIResponse]:
     """Add Subtenant
 
-     Onboard new customers, subsidiaries, or business units with isolated data environments.
-    Creates separate organizational context while inheriting workspace configurations.
-    Essential for B2B operations requiring customer data separation. Consider timezone
-    and currency settings carefully as they affect all future transactions.
+     Add a customer organization. It gets your workspace's portal settings and the default price list
+    for new customers. Its currency needs an exchange rate; the account manager you choose is
+    notified.
 
     Args:
         tenant_path (str):
@@ -190,10 +187,9 @@ async def asyncio(
 ) -> APIResponse | None:
     """Add Subtenant
 
-     Onboard new customers, subsidiaries, or business units with isolated data environments.
-    Creates separate organizational context while inheriting workspace configurations.
-    Essential for B2B operations requiring customer data separation. Consider timezone
-    and currency settings carefully as they affect all future transactions.
+     Add a customer organization. It gets your workspace's portal settings and the default price list
+    for new customers. Its currency needs an exchange rate; the account manager you choose is
+    notified.
 
     Args:
         tenant_path (str):
