@@ -9,7 +9,6 @@ from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..models.edit_lead_source import EditLeadSource
-from ..models.edit_lead_status import EditLeadStatus
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="EditLead")
@@ -27,7 +26,7 @@ class EditLead:
         job_title (None | str | Unset):  Default: ''.
         source (EditLeadSource | Unset):  Default: EditLeadSource.OTHER.
         source_note (None | str | Unset):  Default: ''.
-        status (EditLeadStatus | Unset):  Default: EditLeadStatus.NEW.
+        status (None | str | Unset): Read-only here: a lead changes status through the status actions, never by editing.
         owner (None | str | Unset):
         lead_list (None | str | Unset):
         next_action_at (None | str | Unset):
@@ -48,7 +47,7 @@ class EditLead:
     job_title: None | str | Unset = ""
     source: EditLeadSource | Unset = EditLeadSource.OTHER
     source_note: None | str | Unset = ""
-    status: EditLeadStatus | Unset = EditLeadStatus.NEW
+    status: None | str | Unset = UNSET
     owner: None | str | Unset = UNSET
     lead_list: None | str | Unset = UNSET
     next_action_at: None | str | Unset = UNSET
@@ -100,9 +99,11 @@ class EditLead:
         else:
             source_note = self.source_note
 
-        status: str | Unset = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.value
+        status: None | str | Unset
+        if isinstance(self.status, Unset):
+            status = UNSET
+        else:
+            status = self.status
 
         owner: None | str | Unset
         if isinstance(self.owner, Unset):
@@ -268,12 +269,14 @@ class EditLead:
 
         source_note = _parse_source_note(d.pop("source_note", UNSET))
 
-        _status = d.pop("status", UNSET)
-        status: EditLeadStatus | Unset
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = EditLeadStatus(_status)
+        def _parse_status(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        status = _parse_status(d.pop("status", UNSET))
 
         def _parse_owner(data: object) -> None | str | Unset:
             if data is None:

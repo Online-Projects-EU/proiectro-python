@@ -38,6 +38,9 @@ if TYPE_CHECKING:
     from ..models.output_portal_share_proposal_preview_terms_conditions import (
         OutputPortalShareProposalPreviewTermsConditions,
     )
+    from ..models.output_portal_share_proposal_preview_workspace_type_0 import (
+        OutputPortalShareProposalPreviewWorkspaceType0,
+    )
 
 
 T = TypeVar("T", bound="OutputPortalShareProposalPreview")
@@ -61,6 +64,7 @@ class OutputPortalShareProposalPreview:
         proposal_id (str):
         share_id (str):
         item_id (str):
+        workspace (None | OutputPortalShareProposalPreviewWorkspaceType0 | Unset):
         has_product_pictures (bool | Unset):  Default: False.
         customer_org_id (None | str | Unset):
         updated_on (datetime.datetime | None | Unset):
@@ -80,12 +84,17 @@ class OutputPortalShareProposalPreview:
     proposal_id: str
     share_id: str
     item_id: str
+    workspace: None | OutputPortalShareProposalPreviewWorkspaceType0 | Unset = UNSET
     has_product_pictures: bool | Unset = False
     customer_org_id: None | str | Unset = UNSET
     updated_on: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_portal_share_proposal_preview_workspace_type_0 import (
+            OutputPortalShareProposalPreviewWorkspaceType0,
+        )
+
         company = self.company.to_dict()
 
         customer = self.customer.to_dict()
@@ -119,6 +128,14 @@ class OutputPortalShareProposalPreview:
         share_id = self.share_id
 
         item_id = self.item_id
+
+        workspace: dict[str, Any] | None | Unset
+        if isinstance(self.workspace, Unset):
+            workspace = UNSET
+        elif isinstance(self.workspace, OutputPortalShareProposalPreviewWorkspaceType0):
+            workspace = self.workspace.to_dict()
+        else:
+            workspace = self.workspace
 
         has_product_pictures = self.has_product_pictures
 
@@ -156,6 +173,8 @@ class OutputPortalShareProposalPreview:
                 "item_id": item_id,
             }
         )
+        if workspace is not UNSET:
+            field_dict["workspace"] = workspace
         if has_product_pictures is not UNSET:
             field_dict["has_product_pictures"] = has_product_pictures
         if customer_org_id is not UNSET:
@@ -193,6 +212,9 @@ class OutputPortalShareProposalPreview:
         )
         from ..models.output_portal_share_proposal_preview_terms_conditions import (
             OutputPortalShareProposalPreviewTermsConditions,
+        )
+        from ..models.output_portal_share_proposal_preview_workspace_type_0 import (
+            OutputPortalShareProposalPreviewWorkspaceType0,
         )
 
         d = dict(src_dict)
@@ -250,6 +272,29 @@ class OutputPortalShareProposalPreview:
 
         item_id = d.pop("item_id")
 
+        def _parse_workspace(
+            data: object,
+        ) -> None | OutputPortalShareProposalPreviewWorkspaceType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                workspace_type_0 = (
+                    OutputPortalShareProposalPreviewWorkspaceType0.from_dict(data)
+                )
+
+                return workspace_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(
+                None | OutputPortalShareProposalPreviewWorkspaceType0 | Unset, data
+            )
+
+        workspace = _parse_workspace(d.pop("workspace", UNSET))
+
         has_product_pictures = d.pop("has_product_pictures", UNSET)
 
         def _parse_customer_org_id(data: object) -> None | str | Unset:
@@ -293,6 +338,7 @@ class OutputPortalShareProposalPreview:
             proposal_id=proposal_id,
             share_id=share_id,
             item_id=item_id,
+            workspace=workspace,
             has_product_pictures=has_product_pictures,
             customer_org_id=customer_org_id,
             updated_on=updated_on,

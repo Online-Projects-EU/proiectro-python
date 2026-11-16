@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.output_projects_list import OutputProjectsList
 from ...types import UNSET, Response, Unset
 
@@ -244,11 +245,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> OutputProjectsList | None:
+) -> APIResponse | OutputProjectsList | None:
     if response.status_code == 200:
         response_200 = OutputProjectsList.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -258,7 +264,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[OutputProjectsList]:
+) -> Response[APIResponse | OutputProjectsList]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -296,7 +302,7 @@ def sync_detailed(
     label_id3: None | str | Unset = UNSET,
     label_op3: None | str | Unset = UNSET,
     label_val3: None | str | Unset = UNSET,
-) -> Response[OutputProjectsList]:
+) -> Response[APIResponse | OutputProjectsList]:
     """List Projects
 
      List all active projects (proposals in closed_won stage) in the tenant.
@@ -339,7 +345,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[OutputProjectsList]
+        Response[APIResponse | OutputProjectsList]
     """
 
     kwargs = _get_kwargs(
@@ -407,7 +413,7 @@ def sync(
     label_id3: None | str | Unset = UNSET,
     label_op3: None | str | Unset = UNSET,
     label_val3: None | str | Unset = UNSET,
-) -> OutputProjectsList | None:
+) -> APIResponse | OutputProjectsList | None:
     """List Projects
 
      List all active projects (proposals in closed_won stage) in the tenant.
@@ -450,7 +456,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        OutputProjectsList
+        APIResponse | OutputProjectsList
     """
 
     return sync_detailed(
@@ -513,7 +519,7 @@ async def asyncio_detailed(
     label_id3: None | str | Unset = UNSET,
     label_op3: None | str | Unset = UNSET,
     label_val3: None | str | Unset = UNSET,
-) -> Response[OutputProjectsList]:
+) -> Response[APIResponse | OutputProjectsList]:
     """List Projects
 
      List all active projects (proposals in closed_won stage) in the tenant.
@@ -556,7 +562,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[OutputProjectsList]
+        Response[APIResponse | OutputProjectsList]
     """
 
     kwargs = _get_kwargs(
@@ -622,7 +628,7 @@ async def asyncio(
     label_id3: None | str | Unset = UNSET,
     label_op3: None | str | Unset = UNSET,
     label_val3: None | str | Unset = UNSET,
-) -> OutputProjectsList | None:
+) -> APIResponse | OutputProjectsList | None:
     """List Projects
 
      List all active projects (proposals in closed_won stage) in the tenant.
@@ -665,7 +671,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        OutputProjectsList
+        APIResponse | OutputProjectsList
     """
 
     return (

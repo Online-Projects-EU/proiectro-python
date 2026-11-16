@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.comment_output import CommentOutput
@@ -23,6 +25,7 @@ class OutputCommentsFeed:
         next_page (int):
         entity_type (str):
         entity_id (str):
+        total (int | None | Unset):
     """
 
     comments: list[CommentOutput]
@@ -30,6 +33,7 @@ class OutputCommentsFeed:
     next_page: int
     entity_type: str
     entity_id: str
+    total: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -46,6 +50,12 @@ class OutputCommentsFeed:
 
         entity_id = self.entity_id
 
+        total: int | None | Unset
+        if isinstance(self.total, Unset):
+            total = UNSET
+        else:
+            total = self.total
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -57,6 +67,8 @@ class OutputCommentsFeed:
                 "entity_id": entity_id,
             }
         )
+        if total is not UNSET:
+            field_dict["total"] = total
 
         return field_dict
 
@@ -80,12 +92,22 @@ class OutputCommentsFeed:
 
         entity_id = d.pop("entity_id")
 
+        def _parse_total(data: object) -> int | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(int | None | Unset, data)
+
+        total = _parse_total(d.pop("total", UNSET))
+
         output_comments_feed = cls(
             comments=comments,
             per_page=per_page,
             next_page=next_page,
             entity_type=entity_type,
             entity_id=entity_id,
+            total=total,
         )
 
         output_comments_feed.additional_properties = d

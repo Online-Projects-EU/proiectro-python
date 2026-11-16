@@ -44,6 +44,11 @@ def _parse_response(
 
         return response_200
 
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
+
     if response.status_code == 404:
         response_404 = APIResponse.from_dict(response.json())
 
@@ -88,7 +93,7 @@ def sync_detailed(
      Accept an order a customer placed in the customer portal.
     It becomes a project, takes the items from availability and schedules its payment by your ordering
     terms.
-    It is refused while a tracked item is short.
+    It is refused while a tracked item is short. With send_email, whoever placed it is also emailed.
 
     Args:
         tenant_path (str):
@@ -129,7 +134,7 @@ def sync(
      Accept an order a customer placed in the customer portal.
     It becomes a project, takes the items from availability and schedules its payment by your ordering
     terms.
-    It is refused while a tracked item is short.
+    It is refused while a tracked item is short. With send_email, whoever placed it is also emailed.
 
     Args:
         tenant_path (str):
@@ -165,7 +170,7 @@ async def asyncio_detailed(
      Accept an order a customer placed in the customer portal.
     It becomes a project, takes the items from availability and schedules its payment by your ordering
     terms.
-    It is refused while a tracked item is short.
+    It is refused while a tracked item is short. With send_email, whoever placed it is also emailed.
 
     Args:
         tenant_path (str):
@@ -204,7 +209,7 @@ async def asyncio(
      Accept an order a customer placed in the customer portal.
     It becomes a project, takes the items from availability and schedules its payment by your ordering
     terms.
-    It is refused while a tracked item is short.
+    It is refused while a tracked item is short. With send_email, whoever placed it is also emailed.
 
     Args:
         tenant_path (str):

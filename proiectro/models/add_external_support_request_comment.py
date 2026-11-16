@@ -19,12 +19,14 @@ class AddExternalSupportRequestComment:
         content (str):
         parent_id (None | str | Unset):
         show_to_requester (bool | Unset):  Default: False.
+        send_email (bool | Unset):  Default: False.
     """
 
     support_request_id: str
     content: str
     parent_id: None | str | Unset = UNSET
     show_to_requester: bool | Unset = False
+    send_email: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -40,6 +42,8 @@ class AddExternalSupportRequestComment:
 
         show_to_requester = self.show_to_requester
 
+        send_email = self.send_email
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -52,6 +56,8 @@ class AddExternalSupportRequestComment:
             field_dict["parent_id"] = parent_id
         if show_to_requester is not UNSET:
             field_dict["show_to_requester"] = show_to_requester
+        if send_email is not UNSET:
+            field_dict["send_email"] = send_email
 
         return field_dict
 
@@ -73,11 +79,14 @@ class AddExternalSupportRequestComment:
 
         show_to_requester = d.pop("show_to_requester", UNSET)
 
+        send_email = d.pop("send_email", UNSET)
+
         add_external_support_request_comment = cls(
             support_request_id=support_request_id,
             content=content,
             parent_id=parent_id,
             show_to_requester=show_to_requester,
+            send_email=send_email,
         )
 
         add_external_support_request_comment.additional_properties = d

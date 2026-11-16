@@ -21,6 +21,7 @@ class OutputProcess:
         is_active (bool):
         allow_backward_move (bool):
         allow_skip_move (bool):
+        allow_take_over (bool | Unset):  Default: False.
         stage_count (int | Unset):  Default: 0.
         item_count (int | Unset):  Default: 0.
         setup_warnings (list[str] | Unset):
@@ -32,6 +33,7 @@ class OutputProcess:
     is_active: bool
     allow_backward_move: bool
     allow_skip_move: bool
+    allow_take_over: bool | Unset = False
     stage_count: int | Unset = 0
     item_count: int | Unset = 0
     setup_warnings: list[str] | Unset = UNSET
@@ -49,6 +51,8 @@ class OutputProcess:
         allow_backward_move = self.allow_backward_move
 
         allow_skip_move = self.allow_skip_move
+
+        allow_take_over = self.allow_take_over
 
         stage_count = self.stage_count
 
@@ -70,6 +74,8 @@ class OutputProcess:
                 "allow_skip_move": allow_skip_move,
             }
         )
+        if allow_take_over is not UNSET:
+            field_dict["allow_take_over"] = allow_take_over
         if stage_count is not UNSET:
             field_dict["stage_count"] = stage_count
         if item_count is not UNSET:
@@ -94,6 +100,8 @@ class OutputProcess:
 
         allow_skip_move = d.pop("allow_skip_move")
 
+        allow_take_over = d.pop("allow_take_over", UNSET)
+
         stage_count = d.pop("stage_count", UNSET)
 
         item_count = d.pop("item_count", UNSET)
@@ -107,6 +115,7 @@ class OutputProcess:
             is_active=is_active,
             allow_backward_move=allow_backward_move,
             allow_skip_move=allow_skip_move,
+            allow_take_over=allow_take_over,
             stage_count=stage_count,
             item_count=item_count,
             setup_warnings=setup_warnings,

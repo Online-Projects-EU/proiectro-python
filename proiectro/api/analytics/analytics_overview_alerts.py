@@ -90,8 +90,8 @@ def sync_detailed(
     """Analytics Overview Alerts
 
      Business health alerts requiring attention. Identifies critical issues across
-    all domains: overdue payments, at-risk projects, SLA breaches, resource
-    overallocation, and other actionable items for executive review.
+    all domains: overdue payments, at-risk projects, resource overallocation,
+    and other actionable items for executive review.
 
     Filters:
         filter_severity: critical, warning, info (comma-separated for multiple)
@@ -137,8 +137,8 @@ def sync(
     """Analytics Overview Alerts
 
      Business health alerts requiring attention. Identifies critical issues across
-    all domains: overdue payments, at-risk projects, SLA breaches, resource
-    overallocation, and other actionable items for executive review.
+    all domains: overdue payments, at-risk projects, resource overallocation,
+    and other actionable items for executive review.
 
     Filters:
         filter_severity: critical, warning, info (comma-separated for multiple)
@@ -179,8 +179,8 @@ async def asyncio_detailed(
     """Analytics Overview Alerts
 
      Business health alerts requiring attention. Identifies critical issues across
-    all domains: overdue payments, at-risk projects, SLA breaches, resource
-    overallocation, and other actionable items for executive review.
+    all domains: overdue payments, at-risk projects, resource overallocation,
+    and other actionable items for executive review.
 
     Filters:
         filter_severity: critical, warning, info (comma-separated for multiple)
@@ -224,8 +224,8 @@ async def asyncio(
     """Analytics Overview Alerts
 
      Business health alerts requiring attention. Identifies critical issues across
-    all domains: overdue payments, at-risk projects, SLA breaches, resource
-    overallocation, and other actionable items for executive review.
+    all domains: overdue payments, at-risk projects, resource overallocation,
+    and other actionable items for executive review.
 
     Filters:
         filter_severity: critical, warning, info (comma-separated for multiple)

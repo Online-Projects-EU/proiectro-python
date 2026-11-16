@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.work_item_costs_output import WorkItemCostsOutput
 from ...types import Response
 
@@ -30,11 +31,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> WorkItemCostsOutput | None:
+) -> APIResponse | WorkItemCostsOutput | None:
     if response.status_code == 200:
         response_200 = WorkItemCostsOutput.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -44,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[WorkItemCostsOutput]:
+) -> Response[APIResponse | WorkItemCostsOutput]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,7 +65,7 @@ def sync_detailed(
     member_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[WorkItemCostsOutput]:
+) -> Response[APIResponse | WorkItemCostsOutput]:
     """Project Team Member Costs
 
      List all planned costs created by a specific team member in a project.
@@ -75,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[WorkItemCostsOutput]
+        Response[APIResponse | WorkItemCostsOutput]
     """
 
     kwargs = _get_kwargs(
@@ -97,7 +103,7 @@ def sync(
     member_id: str,
     *,
     client: AuthenticatedClient,
-) -> WorkItemCostsOutput | None:
+) -> APIResponse | WorkItemCostsOutput | None:
     """Project Team Member Costs
 
      List all planned costs created by a specific team member in a project.
@@ -113,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        WorkItemCostsOutput
+        APIResponse | WorkItemCostsOutput
     """
 
     return sync_detailed(
@@ -130,7 +136,7 @@ async def asyncio_detailed(
     member_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[WorkItemCostsOutput]:
+) -> Response[APIResponse | WorkItemCostsOutput]:
     """Project Team Member Costs
 
      List all planned costs created by a specific team member in a project.
@@ -146,7 +152,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[WorkItemCostsOutput]
+        Response[APIResponse | WorkItemCostsOutput]
     """
 
     kwargs = _get_kwargs(
@@ -166,7 +172,7 @@ async def asyncio(
     member_id: str,
     *,
     client: AuthenticatedClient,
-) -> WorkItemCostsOutput | None:
+) -> APIResponse | WorkItemCostsOutput | None:
     """Project Team Member Costs
 
      List all planned costs created by a specific team member in a project.
@@ -182,7 +188,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        WorkItemCostsOutput
+        APIResponse | WorkItemCostsOutput
     """
 
     return (

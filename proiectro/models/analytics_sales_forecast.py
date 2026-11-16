@@ -14,6 +14,8 @@ if TYPE_CHECKING:
     from ..models.analytics_sales_forecast_bucket import AnalyticsSalesForecastBucket
     from ..models.compare_option import CompareOption
     from ..models.horizon_option import HorizonOption
+    from ..models.stage_not_measured_yet import StageNotMeasuredYet
+    from ..models.stage_not_timed_yet import StageNotTimedYet
 
 
 T = TypeVar("T", bound="AnalyticsSalesForecast")
@@ -24,8 +26,8 @@ class AnalyticsSalesForecast:
     """Sales forecast - aggregated across all funnels.
 
     Projects future revenue based on current pipeline deals weighted by
-    stage probability. Deals are grouped by expected close date into
-    time buckets (monthly for short horizons, quarterly for long).
+    their stage's measured win probability. Deals are grouped by expected
+    close date into time buckets (monthly for short horizons, quarterly for long).
 
     Note: Comparisons (YoY, PoP) are not applicable to forecasts since
     forecasts are projections, not historical data.
@@ -56,10 +58,16 @@ class AnalyticsSalesForecast:
             total_weighted_value (float | None | str | Unset):
             total_best_case (float | None | str | Unset):
             total_worst_case (float | None | str | Unset):
+            weighted_waiting_on (list[StageNotMeasuredYet] | Unset):
+            deals_slower_than_usual (int | Unset):  Default: 0.
+            value_slower_than_usual (float | None | str | Unset):
             avg_deal_size (float | None | str | Unset):
             buckets (list[AnalyticsSalesForecastBucket] | Unset):
             deals_without_close_date (int | Unset):  Default: 0.
             value_without_close_date (float | None | str | Unset):  Default: 0.0.
+            deals_placed_by_estimate (int | Unset):  Default: 0.
+            value_placed_by_estimate (float | None | str | Unset):
+            close_date_waiting_on (list[StageNotTimedYet] | Unset):
             weighted_value_explanation (str | Unset):  Default: ''.
     """
 
@@ -88,10 +96,16 @@ class AnalyticsSalesForecast:
     total_weighted_value: float | None | str | Unset = UNSET
     total_best_case: float | None | str | Unset = UNSET
     total_worst_case: float | None | str | Unset = UNSET
+    weighted_waiting_on: list[StageNotMeasuredYet] | Unset = UNSET
+    deals_slower_than_usual: int | Unset = 0
+    value_slower_than_usual: float | None | str | Unset = UNSET
     avg_deal_size: float | None | str | Unset = UNSET
     buckets: list[AnalyticsSalesForecastBucket] | Unset = UNSET
     deals_without_close_date: int | Unset = 0
     value_without_close_date: float | None | str | Unset = 0.0
+    deals_placed_by_estimate: int | Unset = 0
+    value_placed_by_estimate: float | None | str | Unset = UNSET
+    close_date_waiting_on: list[StageNotTimedYet] | Unset = UNSET
     weighted_value_explanation: str | Unset = ""
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -234,6 +248,21 @@ class AnalyticsSalesForecast:
         else:
             total_worst_case = self.total_worst_case
 
+        weighted_waiting_on: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.weighted_waiting_on, Unset):
+            weighted_waiting_on = []
+            for weighted_waiting_on_item_data in self.weighted_waiting_on:
+                weighted_waiting_on_item = weighted_waiting_on_item_data.to_dict()
+                weighted_waiting_on.append(weighted_waiting_on_item)
+
+        deals_slower_than_usual = self.deals_slower_than_usual
+
+        value_slower_than_usual: float | None | str | Unset
+        if isinstance(self.value_slower_than_usual, Unset):
+            value_slower_than_usual = UNSET
+        else:
+            value_slower_than_usual = self.value_slower_than_usual
+
         avg_deal_size: float | None | str | Unset
         if isinstance(self.avg_deal_size, Unset):
             avg_deal_size = UNSET
@@ -254,6 +283,21 @@ class AnalyticsSalesForecast:
             value_without_close_date = UNSET
         else:
             value_without_close_date = self.value_without_close_date
+
+        deals_placed_by_estimate = self.deals_placed_by_estimate
+
+        value_placed_by_estimate: float | None | str | Unset
+        if isinstance(self.value_placed_by_estimate, Unset):
+            value_placed_by_estimate = UNSET
+        else:
+            value_placed_by_estimate = self.value_placed_by_estimate
+
+        close_date_waiting_on: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.close_date_waiting_on, Unset):
+            close_date_waiting_on = []
+            for close_date_waiting_on_item_data in self.close_date_waiting_on:
+                close_date_waiting_on_item = close_date_waiting_on_item_data.to_dict()
+                close_date_waiting_on.append(close_date_waiting_on_item)
 
         weighted_value_explanation = self.weighted_value_explanation
 
@@ -309,6 +353,12 @@ class AnalyticsSalesForecast:
             field_dict["total_best_case"] = total_best_case
         if total_worst_case is not UNSET:
             field_dict["total_worst_case"] = total_worst_case
+        if weighted_waiting_on is not UNSET:
+            field_dict["weighted_waiting_on"] = weighted_waiting_on
+        if deals_slower_than_usual is not UNSET:
+            field_dict["deals_slower_than_usual"] = deals_slower_than_usual
+        if value_slower_than_usual is not UNSET:
+            field_dict["value_slower_than_usual"] = value_slower_than_usual
         if avg_deal_size is not UNSET:
             field_dict["avg_deal_size"] = avg_deal_size
         if buckets is not UNSET:
@@ -317,6 +367,12 @@ class AnalyticsSalesForecast:
             field_dict["deals_without_close_date"] = deals_without_close_date
         if value_without_close_date is not UNSET:
             field_dict["value_without_close_date"] = value_without_close_date
+        if deals_placed_by_estimate is not UNSET:
+            field_dict["deals_placed_by_estimate"] = deals_placed_by_estimate
+        if value_placed_by_estimate is not UNSET:
+            field_dict["value_placed_by_estimate"] = value_placed_by_estimate
+        if close_date_waiting_on is not UNSET:
+            field_dict["close_date_waiting_on"] = close_date_waiting_on
         if weighted_value_explanation is not UNSET:
             field_dict["weighted_value_explanation"] = weighted_value_explanation
 
@@ -329,6 +385,8 @@ class AnalyticsSalesForecast:
         )
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+        from ..models.stage_not_measured_yet import StageNotMeasuredYet
+        from ..models.stage_not_timed_yet import StageNotTimedYet
 
         d = dict(src_dict)
         total_deals = d.pop("total_deals")
@@ -553,6 +611,30 @@ class AnalyticsSalesForecast:
 
         total_worst_case = _parse_total_worst_case(d.pop("total_worst_case", UNSET))
 
+        _weighted_waiting_on = d.pop("weighted_waiting_on", UNSET)
+        weighted_waiting_on: list[StageNotMeasuredYet] | Unset = UNSET
+        if _weighted_waiting_on is not UNSET:
+            weighted_waiting_on = []
+            for weighted_waiting_on_item_data in _weighted_waiting_on:
+                weighted_waiting_on_item = StageNotMeasuredYet.from_dict(
+                    weighted_waiting_on_item_data
+                )
+
+                weighted_waiting_on.append(weighted_waiting_on_item)
+
+        deals_slower_than_usual = d.pop("deals_slower_than_usual", UNSET)
+
+        def _parse_value_slower_than_usual(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        value_slower_than_usual = _parse_value_slower_than_usual(
+            d.pop("value_slower_than_usual", UNSET)
+        )
+
         def _parse_avg_deal_size(data: object) -> float | None | str | Unset:
             if data is None:
                 return data
@@ -584,6 +666,30 @@ class AnalyticsSalesForecast:
             d.pop("value_without_close_date", UNSET)
         )
 
+        deals_placed_by_estimate = d.pop("deals_placed_by_estimate", UNSET)
+
+        def _parse_value_placed_by_estimate(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        value_placed_by_estimate = _parse_value_placed_by_estimate(
+            d.pop("value_placed_by_estimate", UNSET)
+        )
+
+        _close_date_waiting_on = d.pop("close_date_waiting_on", UNSET)
+        close_date_waiting_on: list[StageNotTimedYet] | Unset = UNSET
+        if _close_date_waiting_on is not UNSET:
+            close_date_waiting_on = []
+            for close_date_waiting_on_item_data in _close_date_waiting_on:
+                close_date_waiting_on_item = StageNotTimedYet.from_dict(
+                    close_date_waiting_on_item_data
+                )
+
+                close_date_waiting_on.append(close_date_waiting_on_item)
+
         weighted_value_explanation = d.pop("weighted_value_explanation", UNSET)
 
         analytics_sales_forecast = cls(
@@ -612,10 +718,16 @@ class AnalyticsSalesForecast:
             total_weighted_value=total_weighted_value,
             total_best_case=total_best_case,
             total_worst_case=total_worst_case,
+            weighted_waiting_on=weighted_waiting_on,
+            deals_slower_than_usual=deals_slower_than_usual,
+            value_slower_than_usual=value_slower_than_usual,
             avg_deal_size=avg_deal_size,
             buckets=buckets,
             deals_without_close_date=deals_without_close_date,
             value_without_close_date=value_without_close_date,
+            deals_placed_by_estimate=deals_placed_by_estimate,
+            value_placed_by_estimate=value_placed_by_estimate,
+            close_date_waiting_on=close_date_waiting_on,
             weighted_value_explanation=weighted_value_explanation,
         )
 

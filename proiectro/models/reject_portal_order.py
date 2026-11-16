@@ -6,6 +6,8 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 T = TypeVar("T", bound="RejectPortalOrder")
 
 
@@ -15,13 +17,17 @@ class RejectPortalOrder:
 
     Attributes:
         reason (str):
+        send_email (bool | Unset):  Default: False.
     """
 
     reason: str
+    send_email: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         reason = self.reason
+
+        send_email = self.send_email
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -30,6 +36,8 @@ class RejectPortalOrder:
                 "reason": reason,
             }
         )
+        if send_email is not UNSET:
+            field_dict["send_email"] = send_email
 
         return field_dict
 
@@ -38,8 +46,11 @@ class RejectPortalOrder:
         d = dict(src_dict)
         reason = d.pop("reason")
 
+        send_email = d.pop("send_email", UNSET)
+
         reject_portal_order = cls(
             reason=reason,
+            send_email=send_email,
         )
 
         reject_portal_order.additional_properties = d

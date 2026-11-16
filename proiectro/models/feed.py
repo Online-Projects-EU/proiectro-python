@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 if TYPE_CHECKING:
     from ..models.feed_event import FeedEvent
     from ..models.feed_reactions import FeedReactions
@@ -22,12 +24,14 @@ class Feed:
         reactions (FeedReactions):
         per_page (int):
         next_page (int):
+        can_post (bool | Unset):  Default: False.
     """
 
     events: list[FeedEvent]
     reactions: FeedReactions
     per_page: int
     next_page: int
+    can_post: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,6 +46,8 @@ class Feed:
 
         next_page = self.next_page
 
+        can_post = self.can_post
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -52,6 +58,8 @@ class Feed:
                 "next_page": next_page,
             }
         )
+        if can_post is not UNSET:
+            field_dict["can_post"] = can_post
 
         return field_dict
 
@@ -74,11 +82,14 @@ class Feed:
 
         next_page = d.pop("next_page")
 
+        can_post = d.pop("can_post", UNSET)
+
         feed = cls(
             events=events,
             reactions=reactions,
             per_page=per_page,
             next_page=next_page,
+            can_post=can_post,
         )
 
         feed.additional_properties = d

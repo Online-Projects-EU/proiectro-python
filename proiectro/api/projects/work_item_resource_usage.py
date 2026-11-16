@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.work_item_resource_usage_output import WorkItemResourceUsageOutput
 from ...types import Response
 
@@ -28,11 +29,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> WorkItemResourceUsageOutput | None:
+) -> APIResponse | WorkItemResourceUsageOutput | None:
     if response.status_code == 200:
         response_200 = WorkItemResourceUsageOutput.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -42,7 +48,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[WorkItemResourceUsageOutput]:
+) -> Response[APIResponse | WorkItemResourceUsageOutput]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,7 +62,7 @@ def sync_detailed(
     work_item_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[WorkItemResourceUsageOutput]:
+) -> Response[APIResponse | WorkItemResourceUsageOutput]:
     """Work Item Resource Usage
 
      List all resource usage for a work item.
@@ -71,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[WorkItemResourceUsageOutput]
+        Response[APIResponse | WorkItemResourceUsageOutput]
     """
 
     kwargs = _get_kwargs(
@@ -91,7 +97,7 @@ def sync(
     work_item_id: str,
     *,
     client: AuthenticatedClient,
-) -> WorkItemResourceUsageOutput | None:
+) -> APIResponse | WorkItemResourceUsageOutput | None:
     """Work Item Resource Usage
 
      List all resource usage for a work item.
@@ -106,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        WorkItemResourceUsageOutput
+        APIResponse | WorkItemResourceUsageOutput
     """
 
     return sync_detailed(
@@ -121,7 +127,7 @@ async def asyncio_detailed(
     work_item_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[WorkItemResourceUsageOutput]:
+) -> Response[APIResponse | WorkItemResourceUsageOutput]:
     """Work Item Resource Usage
 
      List all resource usage for a work item.
@@ -136,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[WorkItemResourceUsageOutput]
+        Response[APIResponse | WorkItemResourceUsageOutput]
     """
 
     kwargs = _get_kwargs(
@@ -154,7 +160,7 @@ async def asyncio(
     work_item_id: str,
     *,
     client: AuthenticatedClient,
-) -> WorkItemResourceUsageOutput | None:
+) -> APIResponse | WorkItemResourceUsageOutput | None:
     """Work Item Resource Usage
 
      List all resource usage for a work item.
@@ -169,7 +175,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        WorkItemResourceUsageOutput
+        APIResponse | WorkItemResourceUsageOutput
     """
 
     return (

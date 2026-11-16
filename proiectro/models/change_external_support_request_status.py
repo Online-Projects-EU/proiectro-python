@@ -6,6 +6,8 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 T = TypeVar("T", bound="ChangeExternalSupportRequestStatus")
 
 
@@ -15,16 +17,20 @@ class ChangeExternalSupportRequestStatus:
     Attributes:
         status_id (str):
         reason (str):
+        send_email (bool | Unset):  Default: False.
     """
 
     status_id: str
     reason: str
+    send_email: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         status_id = self.status_id
 
         reason = self.reason
+
+        send_email = self.send_email
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -34,6 +40,8 @@ class ChangeExternalSupportRequestStatus:
                 "reason": reason,
             }
         )
+        if send_email is not UNSET:
+            field_dict["send_email"] = send_email
 
         return field_dict
 
@@ -44,9 +52,12 @@ class ChangeExternalSupportRequestStatus:
 
         reason = d.pop("reason")
 
+        send_email = d.pop("send_email", UNSET)
+
         change_external_support_request_status = cls(
             status_id=status_id,
             reason=reason,
+            send_email=send_email,
         )
 
         change_external_support_request_status.additional_properties = d

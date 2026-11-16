@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.project_resource_bookings import ProjectResourceBookings
 from ...types import Response
 
@@ -30,11 +31,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> ProjectResourceBookings | None:
+) -> APIResponse | ProjectResourceBookings | None:
     if response.status_code == 200:
         response_200 = ProjectResourceBookings.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -44,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[ProjectResourceBookings]:
+) -> Response[APIResponse | ProjectResourceBookings]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,7 +65,7 @@ def sync_detailed(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProjectResourceBookings]:
+) -> Response[APIResponse | ProjectResourceBookings]:
     """Project Resource Bookings
 
      List all bookings for a specific resource on a project.
@@ -76,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProjectResourceBookings]
+        Response[APIResponse | ProjectResourceBookings]
     """
 
     kwargs = _get_kwargs(
@@ -98,7 +104,7 @@ def sync(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProjectResourceBookings | None:
+) -> APIResponse | ProjectResourceBookings | None:
     """Project Resource Bookings
 
      List all bookings for a specific resource on a project.
@@ -115,7 +121,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProjectResourceBookings
+        APIResponse | ProjectResourceBookings
     """
 
     return sync_detailed(
@@ -132,7 +138,7 @@ async def asyncio_detailed(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProjectResourceBookings]:
+) -> Response[APIResponse | ProjectResourceBookings]:
     """Project Resource Bookings
 
      List all bookings for a specific resource on a project.
@@ -149,7 +155,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProjectResourceBookings]
+        Response[APIResponse | ProjectResourceBookings]
     """
 
     kwargs = _get_kwargs(
@@ -169,7 +175,7 @@ async def asyncio(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProjectResourceBookings | None:
+) -> APIResponse | ProjectResourceBookings | None:
     """Project Resource Bookings
 
      List all bookings for a specific resource on a project.
@@ -186,7 +192,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProjectResourceBookings
+        APIResponse | ProjectResourceBookings
     """
 
     return (

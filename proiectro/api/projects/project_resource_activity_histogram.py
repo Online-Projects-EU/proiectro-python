@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.project_resource_activity_histogram_schema import (
     ProjectResourceActivityHistogramSchema,
 )
@@ -32,11 +33,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> ProjectResourceActivityHistogramSchema | None:
+) -> APIResponse | ProjectResourceActivityHistogramSchema | None:
     if response.status_code == 200:
         response_200 = ProjectResourceActivityHistogramSchema.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -46,7 +52,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[ProjectResourceActivityHistogramSchema]:
+) -> Response[APIResponse | ProjectResourceActivityHistogramSchema]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,7 +67,7 @@ def sync_detailed(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProjectResourceActivityHistogramSchema]:
+) -> Response[APIResponse | ProjectResourceActivityHistogramSchema]:
     """Project Resource Activity Histogram
 
      Get histogram of resource usage by ISO year-week for a specific resource in a project.
@@ -79,7 +85,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProjectResourceActivityHistogramSchema]
+        Response[APIResponse | ProjectResourceActivityHistogramSchema]
     """
 
     kwargs = _get_kwargs(
@@ -101,7 +107,7 @@ def sync(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProjectResourceActivityHistogramSchema | None:
+) -> APIResponse | ProjectResourceActivityHistogramSchema | None:
     """Project Resource Activity Histogram
 
      Get histogram of resource usage by ISO year-week for a specific resource in a project.
@@ -119,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProjectResourceActivityHistogramSchema
+        APIResponse | ProjectResourceActivityHistogramSchema
     """
 
     return sync_detailed(
@@ -136,7 +142,7 @@ async def asyncio_detailed(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProjectResourceActivityHistogramSchema]:
+) -> Response[APIResponse | ProjectResourceActivityHistogramSchema]:
     """Project Resource Activity Histogram
 
      Get histogram of resource usage by ISO year-week for a specific resource in a project.
@@ -154,7 +160,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProjectResourceActivityHistogramSchema]
+        Response[APIResponse | ProjectResourceActivityHistogramSchema]
     """
 
     kwargs = _get_kwargs(
@@ -174,7 +180,7 @@ async def asyncio(
     resource_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProjectResourceActivityHistogramSchema | None:
+) -> APIResponse | ProjectResourceActivityHistogramSchema | None:
     """Project Resource Activity Histogram
 
      Get histogram of resource usage by ISO year-week for a specific resource in a project.
@@ -192,7 +198,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProjectResourceActivityHistogramSchema
+        APIResponse | ProjectResourceActivityHistogramSchema
     """
 
     return (

@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.proposal_products import ProposalProducts
 from ...types import Response
 
@@ -28,11 +29,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> ProposalProducts | None:
+) -> APIResponse | ProposalProducts | None:
     if response.status_code == 200:
         response_200 = ProposalProducts.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -42,7 +48,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[ProposalProducts]:
+) -> Response[APIResponse | ProposalProducts]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,7 +62,7 @@ def sync_detailed(
     proposal_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProposalProducts]:
+) -> Response[APIResponse | ProposalProducts]:
     """Proposal Products
 
      View all products and services included in a proposal with quantities, pricing, and
@@ -73,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProposalProducts]
+        Response[APIResponse | ProposalProducts]
     """
 
     kwargs = _get_kwargs(
@@ -93,7 +99,7 @@ def sync(
     proposal_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProposalProducts | None:
+) -> APIResponse | ProposalProducts | None:
     """Proposal Products
 
      View all products and services included in a proposal with quantities, pricing, and
@@ -110,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProposalProducts
+        APIResponse | ProposalProducts
     """
 
     return sync_detailed(
@@ -125,7 +131,7 @@ async def asyncio_detailed(
     proposal_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProposalProducts]:
+) -> Response[APIResponse | ProposalProducts]:
     """Proposal Products
 
      View all products and services included in a proposal with quantities, pricing, and
@@ -142,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProposalProducts]
+        Response[APIResponse | ProposalProducts]
     """
 
     kwargs = _get_kwargs(
@@ -160,7 +166,7 @@ async def asyncio(
     proposal_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProposalProducts | None:
+) -> APIResponse | ProposalProducts | None:
     """Proposal Products
 
      View all products and services included in a proposal with quantities, pricing, and
@@ -177,7 +183,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProposalProducts
+        APIResponse | ProposalProducts
     """
 
     return (

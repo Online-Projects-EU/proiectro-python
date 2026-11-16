@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.output_sent_message_attachment import OutputSentMessageAttachment
+
 
 T = TypeVar("T", bound="OutputSentMessage")
 
@@ -24,8 +28,11 @@ class OutputSentMessage:
         sent_at (datetime.datetime | None | Unset):
         sent_through (str | Unset):  Default: ''.
         sent_by (str | Unset):  Default: ''.
+        sent_by_rule (str | Unset):  Default: ''.
         delivery_state (str | Unset):  Default: ''.
         delivery_error (str | Unset):  Default: ''.
+        delivery_reason (str | Unset):  Default: ''.
+        attachments (list[OutputSentMessageAttachment] | Unset):
         recipients (list[str] | Unset):
         context_type (None | str | Unset):
         context_label (str | Unset):  Default: ''.
@@ -39,8 +46,11 @@ class OutputSentMessage:
     sent_at: datetime.datetime | None | Unset = UNSET
     sent_through: str | Unset = ""
     sent_by: str | Unset = ""
+    sent_by_rule: str | Unset = ""
     delivery_state: str | Unset = ""
     delivery_error: str | Unset = ""
+    delivery_reason: str | Unset = ""
+    attachments: list[OutputSentMessageAttachment] | Unset = UNSET
     recipients: list[str] | Unset = UNSET
     context_type: None | str | Unset = UNSET
     context_label: str | Unset = ""
@@ -67,9 +77,20 @@ class OutputSentMessage:
 
         sent_by = self.sent_by
 
+        sent_by_rule = self.sent_by_rule
+
         delivery_state = self.delivery_state
 
         delivery_error = self.delivery_error
+
+        delivery_reason = self.delivery_reason
+
+        attachments: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.attachments, Unset):
+            attachments = []
+            for attachments_item_data in self.attachments:
+                attachments_item = attachments_item_data.to_dict()
+                attachments.append(attachments_item)
 
         recipients: list[str] | Unset = UNSET
         if not isinstance(self.recipients, Unset):
@@ -106,10 +127,16 @@ class OutputSentMessage:
             field_dict["sent_through"] = sent_through
         if sent_by is not UNSET:
             field_dict["sent_by"] = sent_by
+        if sent_by_rule is not UNSET:
+            field_dict["sent_by_rule"] = sent_by_rule
         if delivery_state is not UNSET:
             field_dict["delivery_state"] = delivery_state
         if delivery_error is not UNSET:
             field_dict["delivery_error"] = delivery_error
+        if delivery_reason is not UNSET:
+            field_dict["delivery_reason"] = delivery_reason
+        if attachments is not UNSET:
+            field_dict["attachments"] = attachments
         if recipients is not UNSET:
             field_dict["recipients"] = recipients
         if context_type is not UNSET:
@@ -125,6 +152,8 @@ class OutputSentMessage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.output_sent_message_attachment import OutputSentMessageAttachment
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -153,9 +182,24 @@ class OutputSentMessage:
 
         sent_by = d.pop("sent_by", UNSET)
 
+        sent_by_rule = d.pop("sent_by_rule", UNSET)
+
         delivery_state = d.pop("delivery_state", UNSET)
 
         delivery_error = d.pop("delivery_error", UNSET)
+
+        delivery_reason = d.pop("delivery_reason", UNSET)
+
+        _attachments = d.pop("attachments", UNSET)
+        attachments: list[OutputSentMessageAttachment] | Unset = UNSET
+        if _attachments is not UNSET:
+            attachments = []
+            for attachments_item_data in _attachments:
+                attachments_item = OutputSentMessageAttachment.from_dict(
+                    attachments_item_data
+                )
+
+                attachments.append(attachments_item)
 
         recipients = cast(list[str], d.pop("recipients", UNSET))
 
@@ -188,8 +232,11 @@ class OutputSentMessage:
             sent_at=sent_at,
             sent_through=sent_through,
             sent_by=sent_by,
+            sent_by_rule=sent_by_rule,
             delivery_state=delivery_state,
             delivery_error=delivery_error,
+            delivery_reason=delivery_reason,
+            attachments=attachments,
             recipients=recipients,
             context_type=context_type,
             context_label=context_label,

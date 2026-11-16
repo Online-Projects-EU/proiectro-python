@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..models.proposal_history_entry_kind import ProposalHistoryEntryKind
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ProposalHistoryEntry")
 
@@ -29,6 +30,7 @@ class ProposalHistoryEntry:
         member_email (str):
         note (None | str):
         is_current (bool):
+        activity_icon (None | str | Unset):
     """
 
     kind: ProposalHistoryEntryKind
@@ -42,6 +44,7 @@ class ProposalHistoryEntry:
     member_email: str
     note: None | str
     is_current: bool
+    activity_icon: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -74,6 +77,12 @@ class ProposalHistoryEntry:
 
         is_current = self.is_current
 
+        activity_icon: None | str | Unset
+        if isinstance(self.activity_icon, Unset):
+            activity_icon = UNSET
+        else:
+            activity_icon = self.activity_icon
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -91,6 +100,8 @@ class ProposalHistoryEntry:
                 "is_current": is_current,
             }
         )
+        if activity_icon is not UNSET:
+            field_dict["activity_icon"] = activity_icon
 
         return field_dict
 
@@ -147,6 +158,15 @@ class ProposalHistoryEntry:
 
         is_current = d.pop("is_current")
 
+        def _parse_activity_icon(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        activity_icon = _parse_activity_icon(d.pop("activity_icon", UNSET))
+
         proposal_history_entry = cls(
             kind=kind,
             name=name,
@@ -159,6 +179,7 @@ class ProposalHistoryEntry:
             member_email=member_email,
             note=note,
             is_current=is_current,
+            activity_icon=activity_icon,
         )
 
         proposal_history_entry.additional_properties = d

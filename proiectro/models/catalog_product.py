@@ -32,6 +32,7 @@ class CatalogProduct:
         stock_quantity (int | Unset):  Default: 0.
         available_in_customer_portal (bool | Unset):  Default: False.
         available_in_partner_portals (bool | Unset):  Default: False.
+        available_on_public_page (bool | Unset):  Default: False.
         image_url (None | str | Unset):
     """
 
@@ -52,6 +53,7 @@ class CatalogProduct:
     stock_quantity: int | Unset = 0
     available_in_customer_portal: bool | Unset = False
     available_in_partner_portals: bool | Unset = False
+    available_on_public_page: bool | Unset = False
     image_url: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -103,6 +105,8 @@ class CatalogProduct:
 
         available_in_partner_portals = self.available_in_partner_portals
 
+        available_on_public_page = self.available_on_public_page
+
         image_url: None | str | Unset
         if isinstance(self.image_url, Unset):
             image_url = UNSET
@@ -140,6 +144,8 @@ class CatalogProduct:
             field_dict["available_in_customer_portal"] = available_in_customer_portal
         if available_in_partner_portals is not UNSET:
             field_dict["available_in_partner_portals"] = available_in_partner_portals
+        if available_on_public_page is not UNSET:
+            field_dict["available_on_public_page"] = available_on_public_page
         if image_url is not UNSET:
             field_dict["image_url"] = image_url
 
@@ -208,6 +214,8 @@ class CatalogProduct:
 
         available_in_partner_portals = d.pop("available_in_partner_portals", UNSET)
 
+        available_on_public_page = d.pop("available_on_public_page", UNSET)
+
         def _parse_image_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -235,6 +243,7 @@ class CatalogProduct:
             stock_quantity=stock_quantity,
             available_in_customer_portal=available_in_customer_portal,
             available_in_partner_portals=available_in_partner_portals,
+            available_on_public_page=available_on_public_page,
             image_url=image_url,
         )
 

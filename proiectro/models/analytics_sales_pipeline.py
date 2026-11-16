@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from ..models.analytics_sales_pipeline_stage import AnalyticsSalesPipelineStage
     from ..models.compare_option import CompareOption
     from ..models.horizon_option import HorizonOption
+    from ..models.stage_not_measured_yet import StageNotMeasuredYet
 
 
 T = TypeVar("T", bound="AnalyticsSalesPipeline")
@@ -25,11 +26,14 @@ class AnalyticsSalesPipeline:
     """Sales pipeline analysis for a specific funnel.
 
     Weighted Value Explanation:
-    Weighted pipeline value adjusts the raw deal values by the probability
-    of winning at each stage. For example, a $100K deal in Negotiation (75%
-    probability) contributes $75K to weighted value, while the same deal in
-    Lead stage (10% probability) would only contribute $10K. This gives a
-    more realistic view of expected revenue from the pipeline.
+    Weighted pipeline value multiplies the open value in each stage by that
+    stage's win probability, measured from the workspace's own deals. A deal
+    worth 100K in a stage where 60% of the deals with a known outcome were
+    won contributes 60K. A stage with too few known outcomes has no win
+    probability yet, and the weighted total waits for every stage that holds
+    a deal to weigh: `weighted_waiting_on` lists them. A deal sitting in its
+    stage longer than is usual there is set aside: it stays in the pipeline
+    total and is reported in `value_slower_than_usual` instead of being weighed.
 
         Attributes:
             funnel_id (str):
@@ -55,6 +59,9 @@ class AnalyticsSalesPipeline:
             available_funnels (list[AnalyticsSalesFunnel] | Unset):
             total_pipeline_value (float | None | str | Unset):
             weighted_pipeline_value (float | None | str | Unset):
+            weighted_waiting_on (list[StageNotMeasuredYet] | Unset):
+            deals_slower_than_usual (int | Unset):  Default: 0.
+            value_slower_than_usual (float | None | str | Unset):
             uncovered_currencies (list[str] | Unset):
             coverage_percent (float | None | str | Unset):
             stages (list[AnalyticsSalesPipelineStage] | Unset):
@@ -84,6 +91,9 @@ class AnalyticsSalesPipeline:
     available_funnels: list[AnalyticsSalesFunnel] | Unset = UNSET
     total_pipeline_value: float | None | str | Unset = UNSET
     weighted_pipeline_value: float | None | str | Unset = UNSET
+    weighted_waiting_on: list[StageNotMeasuredYet] | Unset = UNSET
+    deals_slower_than_usual: int | Unset = 0
+    value_slower_than_usual: float | None | str | Unset = UNSET
     uncovered_currencies: list[str] | Unset = UNSET
     coverage_percent: float | None | str | Unset = UNSET
     stages: list[AnalyticsSalesPipelineStage] | Unset = UNSET
@@ -220,6 +230,21 @@ class AnalyticsSalesPipeline:
         else:
             weighted_pipeline_value = self.weighted_pipeline_value
 
+        weighted_waiting_on: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.weighted_waiting_on, Unset):
+            weighted_waiting_on = []
+            for weighted_waiting_on_item_data in self.weighted_waiting_on:
+                weighted_waiting_on_item = weighted_waiting_on_item_data.to_dict()
+                weighted_waiting_on.append(weighted_waiting_on_item)
+
+        deals_slower_than_usual = self.deals_slower_than_usual
+
+        value_slower_than_usual: float | None | str | Unset
+        if isinstance(self.value_slower_than_usual, Unset):
+            value_slower_than_usual = UNSET
+        else:
+            value_slower_than_usual = self.value_slower_than_usual
+
         uncovered_currencies: list[str] | Unset = UNSET
         if not isinstance(self.uncovered_currencies, Unset):
             uncovered_currencies = self.uncovered_currencies
@@ -287,6 +312,12 @@ class AnalyticsSalesPipeline:
             field_dict["total_pipeline_value"] = total_pipeline_value
         if weighted_pipeline_value is not UNSET:
             field_dict["weighted_pipeline_value"] = weighted_pipeline_value
+        if weighted_waiting_on is not UNSET:
+            field_dict["weighted_waiting_on"] = weighted_waiting_on
+        if deals_slower_than_usual is not UNSET:
+            field_dict["deals_slower_than_usual"] = deals_slower_than_usual
+        if value_slower_than_usual is not UNSET:
+            field_dict["value_slower_than_usual"] = value_slower_than_usual
         if uncovered_currencies is not UNSET:
             field_dict["uncovered_currencies"] = uncovered_currencies
         if coverage_percent is not UNSET:
@@ -304,6 +335,7 @@ class AnalyticsSalesPipeline:
         from ..models.analytics_sales_pipeline_stage import AnalyticsSalesPipelineStage
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+        from ..models.stage_not_measured_yet import StageNotMeasuredYet
 
         d = dict(src_dict)
         funnel_id = d.pop("funnel_id")
@@ -519,6 +551,30 @@ class AnalyticsSalesPipeline:
             d.pop("weighted_pipeline_value", UNSET)
         )
 
+        _weighted_waiting_on = d.pop("weighted_waiting_on", UNSET)
+        weighted_waiting_on: list[StageNotMeasuredYet] | Unset = UNSET
+        if _weighted_waiting_on is not UNSET:
+            weighted_waiting_on = []
+            for weighted_waiting_on_item_data in _weighted_waiting_on:
+                weighted_waiting_on_item = StageNotMeasuredYet.from_dict(
+                    weighted_waiting_on_item_data
+                )
+
+                weighted_waiting_on.append(weighted_waiting_on_item)
+
+        deals_slower_than_usual = d.pop("deals_slower_than_usual", UNSET)
+
+        def _parse_value_slower_than_usual(data: object) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        value_slower_than_usual = _parse_value_slower_than_usual(
+            d.pop("value_slower_than_usual", UNSET)
+        )
+
         uncovered_currencies = cast(list[str], d.pop("uncovered_currencies", UNSET))
 
         def _parse_coverage_percent(data: object) -> float | None | str | Unset:
@@ -565,6 +621,9 @@ class AnalyticsSalesPipeline:
             available_funnels=available_funnels,
             total_pipeline_value=total_pipeline_value,
             weighted_pipeline_value=weighted_pipeline_value,
+            weighted_waiting_on=weighted_waiting_on,
+            deals_slower_than_usual=deals_slower_than_usual,
+            value_slower_than_usual=value_slower_than_usual,
             uncovered_currencies=uncovered_currencies,
             coverage_percent=coverage_percent,
             stages=stages,

@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.output_project_schedule import OutputProjectSchedule
 from ...types import Response
 
@@ -28,11 +29,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> OutputProjectSchedule | None:
+) -> APIResponse | OutputProjectSchedule | None:
     if response.status_code == 200:
         response_200 = OutputProjectSchedule.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -42,7 +48,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[OutputProjectSchedule]:
+) -> Response[APIResponse | OutputProjectSchedule]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,7 +62,7 @@ def sync_detailed(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[OutputProjectSchedule]:
+) -> Response[APIResponse | OutputProjectSchedule]:
     """Project Schedule
 
      Get project schedule with critical path calculation.
@@ -73,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[OutputProjectSchedule]
+        Response[APIResponse | OutputProjectSchedule]
     """
 
     kwargs = _get_kwargs(
@@ -93,7 +99,7 @@ def sync(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> OutputProjectSchedule | None:
+) -> APIResponse | OutputProjectSchedule | None:
     """Project Schedule
 
      Get project schedule with critical path calculation.
@@ -110,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        OutputProjectSchedule
+        APIResponse | OutputProjectSchedule
     """
 
     return sync_detailed(
@@ -125,7 +131,7 @@ async def asyncio_detailed(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[OutputProjectSchedule]:
+) -> Response[APIResponse | OutputProjectSchedule]:
     """Project Schedule
 
      Get project schedule with critical path calculation.
@@ -142,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[OutputProjectSchedule]
+        Response[APIResponse | OutputProjectSchedule]
     """
 
     kwargs = _get_kwargs(
@@ -160,7 +166,7 @@ async def asyncio(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> OutputProjectSchedule | None:
+) -> APIResponse | OutputProjectSchedule | None:
     """Project Schedule
 
      Get project schedule with critical path calculation.
@@ -177,7 +183,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        OutputProjectSchedule
+        APIResponse | OutputProjectSchedule
     """
 
     return (

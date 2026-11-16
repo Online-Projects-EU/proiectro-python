@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "proiectro"
-version = "0.5.0"
+version = "0.6.0"
 description = "Official Python SDK for the Proiect.ro API"
 readme = "README.md"
 license = "MIT"
@@ -41,4 +41,4 @@ include = ["proiectro*"]
 proiectro = ["py.typed"]
 
 [tool.proiectro]
-api-version = "3.0.0"
+api-version = "3.2.0"

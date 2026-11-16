@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 from ..models.close_external_support_request_resolution import (
     CloseExternalSupportRequestResolution,
 )
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CloseExternalSupportRequest")
 
@@ -20,11 +21,13 @@ class CloseExternalSupportRequest:
         status_id (str):
         resolution (CloseExternalSupportRequestResolution):
         reason (str):
+        send_email (bool | Unset):  Default: False.
     """
 
     status_id: str
     resolution: CloseExternalSupportRequestResolution
     reason: str
+    send_email: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -33,6 +36,8 @@ class CloseExternalSupportRequest:
         resolution = self.resolution.value
 
         reason = self.reason
+
+        send_email = self.send_email
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -43,6 +48,8 @@ class CloseExternalSupportRequest:
                 "reason": reason,
             }
         )
+        if send_email is not UNSET:
+            field_dict["send_email"] = send_email
 
         return field_dict
 
@@ -55,10 +62,13 @@ class CloseExternalSupportRequest:
 
         reason = d.pop("reason")
 
+        send_email = d.pop("send_email", UNSET)
+
         close_external_support_request = cls(
             status_id=status_id,
             resolution=resolution,
             reason=reason,
+            send_email=send_email,
         )
 
         close_external_support_request.additional_properties = d

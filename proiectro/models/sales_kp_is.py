@@ -13,6 +13,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.compare_option import CompareOption
     from ..models.horizon_option import HorizonOption
+    from ..models.stage_not_measured_yet import StageNotMeasuredYet
 
 
 T = TypeVar("T", bound="SalesKPIs")
@@ -75,6 +76,9 @@ class SalesKPIs:
             uncovered_currencies (list[str] | Unset):
             pipeline_total_value (float | None | str | Unset):
             pipeline_weighted_value (float | None | str | Unset):
+            pipeline_weighted_waiting_on (list[StageNotMeasuredYet] | Unset):
+            pipeline_deals_slower_than_usual (int | Unset):  Default: 0.
+            pipeline_value_slower_than_usual (float | None | str | Unset):
     """
 
     win_rate_benchmark: float | str
@@ -121,6 +125,9 @@ class SalesKPIs:
     uncovered_currencies: list[str] | Unset = UNSET
     pipeline_total_value: float | None | str | Unset = UNSET
     pipeline_weighted_value: float | None | str | Unset = UNSET
+    pipeline_weighted_waiting_on: list[StageNotMeasuredYet] | Unset = UNSET
+    pipeline_deals_slower_than_usual: int | Unset = 0
+    pipeline_value_slower_than_usual: float | None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -321,6 +328,25 @@ class SalesKPIs:
         else:
             pipeline_weighted_value = self.pipeline_weighted_value
 
+        pipeline_weighted_waiting_on: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.pipeline_weighted_waiting_on, Unset):
+            pipeline_weighted_waiting_on = []
+            for (
+                pipeline_weighted_waiting_on_item_data
+            ) in self.pipeline_weighted_waiting_on:
+                pipeline_weighted_waiting_on_item = (
+                    pipeline_weighted_waiting_on_item_data.to_dict()
+                )
+                pipeline_weighted_waiting_on.append(pipeline_weighted_waiting_on_item)
+
+        pipeline_deals_slower_than_usual = self.pipeline_deals_slower_than_usual
+
+        pipeline_value_slower_than_usual: float | None | str | Unset
+        if isinstance(self.pipeline_value_slower_than_usual, Unset):
+            pipeline_value_slower_than_usual = UNSET
+        else:
+            pipeline_value_slower_than_usual = self.pipeline_value_slower_than_usual
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -397,6 +423,16 @@ class SalesKPIs:
             field_dict["pipeline_total_value"] = pipeline_total_value
         if pipeline_weighted_value is not UNSET:
             field_dict["pipeline_weighted_value"] = pipeline_weighted_value
+        if pipeline_weighted_waiting_on is not UNSET:
+            field_dict["pipeline_weighted_waiting_on"] = pipeline_weighted_waiting_on
+        if pipeline_deals_slower_than_usual is not UNSET:
+            field_dict["pipeline_deals_slower_than_usual"] = (
+                pipeline_deals_slower_than_usual
+            )
+        if pipeline_value_slower_than_usual is not UNSET:
+            field_dict["pipeline_value_slower_than_usual"] = (
+                pipeline_value_slower_than_usual
+            )
 
         return field_dict
 
@@ -404,6 +440,7 @@ class SalesKPIs:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.compare_option import CompareOption
         from ..models.horizon_option import HorizonOption
+        from ..models.stage_not_measured_yet import StageNotMeasuredYet
 
         d = dict(src_dict)
 
@@ -713,6 +750,34 @@ class SalesKPIs:
             d.pop("pipeline_weighted_value", UNSET)
         )
 
+        _pipeline_weighted_waiting_on = d.pop("pipeline_weighted_waiting_on", UNSET)
+        pipeline_weighted_waiting_on: list[StageNotMeasuredYet] | Unset = UNSET
+        if _pipeline_weighted_waiting_on is not UNSET:
+            pipeline_weighted_waiting_on = []
+            for pipeline_weighted_waiting_on_item_data in _pipeline_weighted_waiting_on:
+                pipeline_weighted_waiting_on_item = StageNotMeasuredYet.from_dict(
+                    pipeline_weighted_waiting_on_item_data
+                )
+
+                pipeline_weighted_waiting_on.append(pipeline_weighted_waiting_on_item)
+
+        pipeline_deals_slower_than_usual = d.pop(
+            "pipeline_deals_slower_than_usual", UNSET
+        )
+
+        def _parse_pipeline_value_slower_than_usual(
+            data: object,
+        ) -> float | None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | str | Unset, data)
+
+        pipeline_value_slower_than_usual = _parse_pipeline_value_slower_than_usual(
+            d.pop("pipeline_value_slower_than_usual", UNSET)
+        )
+
         sales_kp_is = cls(
             win_rate_benchmark=win_rate_benchmark,
             win_rate_status=win_rate_status,
@@ -758,6 +823,9 @@ class SalesKPIs:
             uncovered_currencies=uncovered_currencies,
             pipeline_total_value=pipeline_total_value,
             pipeline_weighted_value=pipeline_weighted_value,
+            pipeline_weighted_waiting_on=pipeline_weighted_waiting_on,
+            pipeline_deals_slower_than_usual=pipeline_deals_slower_than_usual,
+            pipeline_value_slower_than_usual=pipeline_value_slower_than_usual,
         )
 
         sales_kp_is.additional_properties = d

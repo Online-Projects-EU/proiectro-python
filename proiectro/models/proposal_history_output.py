@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Any, TypeVar, cast
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 if TYPE_CHECKING:
     from ..models.proposal_history_entry import ProposalHistoryEntry
 
@@ -24,6 +26,7 @@ class ProposalHistoryOutput:
         current_stage (str):
         history (list[ProposalHistoryEntry]):
         total_duration_days (int):
+        has_lead_history (bool | Unset):  Default: False.
     """
 
     proposal_id: str
@@ -32,6 +35,7 @@ class ProposalHistoryOutput:
     current_stage: str
     history: list[ProposalHistoryEntry]
     total_duration_days: int
+    has_lead_history: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -51,6 +55,8 @@ class ProposalHistoryOutput:
 
         total_duration_days = self.total_duration_days
 
+        has_lead_history = self.has_lead_history
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -63,6 +69,8 @@ class ProposalHistoryOutput:
                 "total_duration_days": total_duration_days,
             }
         )
+        if has_lead_history is not UNSET:
+            field_dict["has_lead_history"] = has_lead_history
 
         return field_dict
 
@@ -93,6 +101,8 @@ class ProposalHistoryOutput:
 
         total_duration_days = d.pop("total_duration_days")
 
+        has_lead_history = d.pop("has_lead_history", UNSET)
+
         proposal_history_output = cls(
             proposal_id=proposal_id,
             proposal_name=proposal_name,
@@ -100,6 +110,7 @@ class ProposalHistoryOutput:
             current_stage=current_stage,
             history=history,
             total_duration_days=total_duration_days,
+            has_lead_history=has_lead_history,
         )
 
         proposal_history_output.additional_properties = d

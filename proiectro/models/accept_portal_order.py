@@ -6,6 +6,8 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..types import UNSET, Unset
+
 T = TypeVar("T", bound="AcceptPortalOrder")
 
 
@@ -15,13 +17,17 @@ class AcceptPortalOrder:
 
     Attributes:
         confirmation (bool):
+        send_email (bool | Unset):  Default: False.
     """
 
     confirmation: bool
+    send_email: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         confirmation = self.confirmation
+
+        send_email = self.send_email
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -30,6 +36,8 @@ class AcceptPortalOrder:
                 "confirmation": confirmation,
             }
         )
+        if send_email is not UNSET:
+            field_dict["send_email"] = send_email
 
         return field_dict
 
@@ -38,8 +46,11 @@ class AcceptPortalOrder:
         d = dict(src_dict)
         confirmation = d.pop("confirmation")
 
+        send_email = d.pop("send_email", UNSET)
+
         accept_portal_order = cls(
             confirmation=confirmation,
+            send_email=send_email,
         )
 
         accept_portal_order.additional_properties = d

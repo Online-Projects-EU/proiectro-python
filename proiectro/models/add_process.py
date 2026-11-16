@@ -19,12 +19,14 @@ class AddProcess:
         description (str | Unset):  Default: ''.
         allow_backward_move (bool | None | Unset):  Default: False.
         allow_skip_move (bool | None | Unset):  Default: False.
+        allow_take_over (bool | None | Unset):  Default: False.
     """
 
     name: str
     description: str | Unset = ""
     allow_backward_move: bool | None | Unset = False
     allow_skip_move: bool | None | Unset = False
+    allow_take_over: bool | None | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -44,6 +46,12 @@ class AddProcess:
         else:
             allow_skip_move = self.allow_skip_move
 
+        allow_take_over: bool | None | Unset
+        if isinstance(self.allow_take_over, Unset):
+            allow_take_over = UNSET
+        else:
+            allow_take_over = self.allow_take_over
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -57,6 +65,8 @@ class AddProcess:
             field_dict["allow_backward_move"] = allow_backward_move
         if allow_skip_move is not UNSET:
             field_dict["allow_skip_move"] = allow_skip_move
+        if allow_take_over is not UNSET:
+            field_dict["allow_take_over"] = allow_take_over
 
         return field_dict
 
@@ -87,11 +97,21 @@ class AddProcess:
 
         allow_skip_move = _parse_allow_skip_move(d.pop("allow_skip_move", UNSET))
 
+        def _parse_allow_take_over(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        allow_take_over = _parse_allow_take_over(d.pop("allow_take_over", UNSET))
+
         add_process = cls(
             name=name,
             description=description,
             allow_backward_move=allow_backward_move,
             allow_skip_move=allow_skip_move,
+            allow_take_over=allow_take_over,
         )
 
         add_process.additional_properties = d

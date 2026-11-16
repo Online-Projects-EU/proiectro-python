@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.inbound_summary import InboundSummary
+
 
 T = TypeVar("T", bound="SalesActivityContent")
 
@@ -28,6 +32,7 @@ class SalesActivityContent:
         proposal_id (None | str | Unset):
         proposal_name (None | str | Unset):
         addable_contacts (list[str] | Unset):
+        inbound (InboundSummary | None | Unset):
     """
 
     activity_type: str
@@ -43,9 +48,12 @@ class SalesActivityContent:
     proposal_id: None | str | Unset = UNSET
     proposal_name: None | str | Unset = UNSET
     addable_contacts: list[str] | Unset = UNSET
+    inbound: InboundSummary | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.inbound_summary import InboundSummary
+
         activity_type = self.activity_type
 
         activity_icon = self.activity_icon
@@ -98,6 +106,14 @@ class SalesActivityContent:
         if not isinstance(self.addable_contacts, Unset):
             addable_contacts = self.addable_contacts
 
+        inbound: dict[str, Any] | None | Unset
+        if isinstance(self.inbound, Unset):
+            inbound = UNSET
+        elif isinstance(self.inbound, InboundSummary):
+            inbound = self.inbound.to_dict()
+        else:
+            inbound = self.inbound
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -124,11 +140,15 @@ class SalesActivityContent:
             field_dict["proposal_name"] = proposal_name
         if addable_contacts is not UNSET:
             field_dict["addable_contacts"] = addable_contacts
+        if inbound is not UNSET:
+            field_dict["inbound"] = inbound
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.inbound_summary import InboundSummary
+
         d = dict(src_dict)
         activity_type = d.pop("activity_type")
 
@@ -198,6 +218,23 @@ class SalesActivityContent:
 
         addable_contacts = cast(list[str], d.pop("addable_contacts", UNSET))
 
+        def _parse_inbound(data: object) -> InboundSummary | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                inbound_type_0 = InboundSummary.from_dict(data)
+
+                return inbound_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(InboundSummary | None | Unset, data)
+
+        inbound = _parse_inbound(d.pop("inbound", UNSET))
+
         sales_activity_content = cls(
             activity_type=activity_type,
             activity_icon=activity_icon,
@@ -212,6 +249,7 @@ class SalesActivityContent:
             proposal_id=proposal_id,
             proposal_name=proposal_name,
             addable_contacts=addable_contacts,
+            inbound=inbound,
         )
 
         sales_activity_content.additional_properties = d

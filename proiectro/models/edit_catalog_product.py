@@ -35,6 +35,7 @@ class EditCatalogProduct:
         stock_quantity (int | None | Unset):
         available_in_customer_portal (bool | None | Unset):
         available_in_partner_portals (bool | None | Unset):
+        available_on_public_page (bool | None | Unset):
         price_lists (list[str] | None | Unset):
     """
 
@@ -56,6 +57,7 @@ class EditCatalogProduct:
     stock_quantity: int | None | Unset = UNSET
     available_in_customer_portal: bool | None | Unset = UNSET
     available_in_partner_portals: bool | None | Unset = UNSET
+    available_on_public_page: bool | None | Unset = UNSET
     price_lists: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -144,6 +146,12 @@ class EditCatalogProduct:
         else:
             available_in_partner_portals = self.available_in_partner_portals
 
+        available_on_public_page: bool | None | Unset
+        if isinstance(self.available_on_public_page, Unset):
+            available_on_public_page = UNSET
+        else:
+            available_on_public_page = self.available_on_public_page
+
         price_lists: list[str] | None | Unset
         if isinstance(self.price_lists, Unset):
             price_lists = UNSET
@@ -189,6 +197,8 @@ class EditCatalogProduct:
             field_dict["available_in_customer_portal"] = available_in_customer_portal
         if available_in_partner_portals is not UNSET:
             field_dict["available_in_partner_portals"] = available_in_partner_portals
+        if available_on_public_page is not UNSET:
+            field_dict["available_on_public_page"] = available_on_public_page
         if price_lists is not UNSET:
             field_dict["price_lists"] = price_lists
 
@@ -323,6 +333,17 @@ class EditCatalogProduct:
             d.pop("available_in_partner_portals", UNSET)
         )
 
+        def _parse_available_on_public_page(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        available_on_public_page = _parse_available_on_public_page(
+            d.pop("available_on_public_page", UNSET)
+        )
+
         def _parse_price_lists(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
@@ -359,6 +380,7 @@ class EditCatalogProduct:
             stock_quantity=stock_quantity,
             available_in_customer_portal=available_in_customer_portal,
             available_in_partner_portals=available_in_partner_portals,
+            available_on_public_page=available_on_public_page,
             price_lists=price_lists,
         )
 

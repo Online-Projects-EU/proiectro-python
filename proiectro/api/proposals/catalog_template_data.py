@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.catalog_template_data_response import CatalogTemplateDataResponse
 from ...types import Response
 
@@ -28,11 +29,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> CatalogTemplateDataResponse | None:
+) -> APIResponse | CatalogTemplateDataResponse | None:
     if response.status_code == 200:
         response_200 = CatalogTemplateDataResponse.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -42,7 +48,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[CatalogTemplateDataResponse]:
+) -> Response[APIResponse | CatalogTemplateDataResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,7 +62,7 @@ def sync_detailed(
     catalog_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[CatalogTemplateDataResponse]:
+) -> Response[APIResponse | CatalogTemplateDataResponse]:
     """Catalog Template Data
 
      Retrieve standardized product templates from your catalog for quick proposal creation.
@@ -73,7 +79,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CatalogTemplateDataResponse]
+        Response[APIResponse | CatalogTemplateDataResponse]
     """
 
     kwargs = _get_kwargs(
@@ -93,7 +99,7 @@ def sync(
     catalog_id: str,
     *,
     client: AuthenticatedClient,
-) -> CatalogTemplateDataResponse | None:
+) -> APIResponse | CatalogTemplateDataResponse | None:
     """Catalog Template Data
 
      Retrieve standardized product templates from your catalog for quick proposal creation.
@@ -110,7 +116,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CatalogTemplateDataResponse
+        APIResponse | CatalogTemplateDataResponse
     """
 
     return sync_detailed(
@@ -125,7 +131,7 @@ async def asyncio_detailed(
     catalog_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[CatalogTemplateDataResponse]:
+) -> Response[APIResponse | CatalogTemplateDataResponse]:
     """Catalog Template Data
 
      Retrieve standardized product templates from your catalog for quick proposal creation.
@@ -142,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CatalogTemplateDataResponse]
+        Response[APIResponse | CatalogTemplateDataResponse]
     """
 
     kwargs = _get_kwargs(
@@ -160,7 +166,7 @@ async def asyncio(
     catalog_id: str,
     *,
     client: AuthenticatedClient,
-) -> CatalogTemplateDataResponse | None:
+) -> APIResponse | CatalogTemplateDataResponse | None:
     """Catalog Template Data
 
      Retrieve standardized product templates from your catalog for quick proposal creation.
@@ -177,7 +183,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CatalogTemplateDataResponse
+        APIResponse | CatalogTemplateDataResponse
     """
 
     return (

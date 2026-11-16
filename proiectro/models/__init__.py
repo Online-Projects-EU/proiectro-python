@@ -9,6 +9,10 @@ from .active_proposals_list import ActiveProposalsList
 from .add_api_key import AddApiKey
 from .add_asset_category import AddAssetCategory
 from .add_availability import AddAvailability
+from .add_belief import AddBelief
+from .add_belief_evidence import AddBeliefEvidence
+from .add_belief_split_by_type_0 import AddBeliefSplitByType0
+from .add_belief_threshold_side_type_0 import AddBeliefThresholdSideType0
 from .add_billable_source_entry import AddBillableSourceEntry
 from .add_catalog_product import AddCatalogProduct
 from .add_catalog_product_pricing_type import AddCatalogProductPricingType
@@ -41,6 +45,8 @@ from .add_external_support_request_for_project import (
 from .add_external_support_requests_to_payment import (
     AddExternalSupportRequestsToPayment,
 )
+from .add_feed_post import AddFeedPost
+from .add_feed_post_comment import AddFeedPostComment
 from .add_form_field import AddFormField
 from .add_form_field_field_type import AddFormFieldFieldType
 from .add_form_step import AddFormStep
@@ -103,6 +109,7 @@ from .add_product_lifecycle import AddProductLifecycle
 from .add_proposal import AddProposal
 from .add_proposal_pricing_strategy_type_0 import AddProposalPricingStrategyType0
 from .add_proposal_response import AddProposalResponse
+from .add_public_form import AddPublicForm
 from .add_queue_rule import AddQueueRule
 from .add_resource import AddResource
 from .add_resource_booking import AddResourceBooking
@@ -132,6 +139,7 @@ from .add_team_booking import AddTeamBooking
 from .add_timer import AddTimer
 from .add_wbs_configuration import AddWBSConfiguration
 from .add_wbs_rule_to_wbs_configuration import AddWBSRuleToWBSConfiguration
+from .add_web_link import AddWebLink
 from .add_webhook import AddWebhook
 from .add_work_item import AddWorkItem
 from .add_work_item_comment import AddWorkItemComment
@@ -142,7 +150,6 @@ from .add_work_item_successor import AddWorkItemSuccessor
 from .add_work_item_template import AddWorkItemTemplate
 from .add_work_item_type import AddWorkItemType
 from .add_work_log import AddWorkLog
-from .add_work_log_response import AddWorkLogResponse
 from .add_work_resource_usage import AddWorkResourceUsage
 from .all_partners_payment_item import AllPartnersPaymentItem
 from .all_partners_payments import AllPartnersPayments
@@ -238,6 +245,10 @@ from .analytics_sales_forecast_horizon import AnalyticsSalesForecastHorizon
 from .analytics_sales_forecast_period import AnalyticsSalesForecastPeriod
 from .analytics_sales_funnel import AnalyticsSalesFunnel
 from .analytics_sales_kpis_period import AnalyticsSalesKpisPeriod
+from .analytics_sales_leads import AnalyticsSalesLeads
+from .analytics_sales_leads_period import AnalyticsSalesLeadsPeriod
+from .analytics_sales_leads_row import AnalyticsSalesLeadsRow
+from .analytics_sales_leads_split_by import AnalyticsSalesLeadsSplitBy
 from .analytics_sales_performance import AnalyticsSalesPerformance
 from .analytics_sales_performance_compare import AnalyticsSalesPerformanceCompare
 from .analytics_sales_performance_period import AnalyticsSalesPerformancePeriod
@@ -264,6 +275,7 @@ from .analytics_trend_month_item import AnalyticsTrendMonthItem
 from .analytics_trends import AnalyticsTrends
 from .analytics_utilization_item import AnalyticsUtilizationItem
 from .analytics_workload_chart_item import AnalyticsWorkloadChartItem
+from .answer_meeting_request import AnswerMeetingRequest
 from .api_error import APIError
 from .api_key_created import ApiKeyCreated
 from .api_response import APIResponse
@@ -302,6 +314,9 @@ from .automation_filters_response_operators import AutomationFiltersResponseOper
 from .automation_pipeline_variables_response import AutomationPipelineVariablesResponse
 from .automation_rule_info import AutomationRuleInfo
 from .availability_hours import AvailabilityHours
+from .belief_estimate import BeliefEstimate
+from .belief_over_time_point import BeliefOverTimePoint
+from .belief_split_row import BeliefSplitRow
 from .block_payments_summary import BlockPaymentsSummary
 from .booking_info_schema import BookingInfoSchema
 from .bridge_admin_contact import BridgeAdminContact
@@ -322,6 +337,12 @@ from .cancel_project_response import CancelProjectResponse
 from .catalog_product import CatalogProduct
 from .catalog_products import CatalogProducts
 from .catalog_template_data_response import CatalogTemplateDataResponse
+from .chain_finish import ChainFinish
+from .chain_next_step import ChainNextStep
+from .chain_option import ChainOption
+from .chain_outcome import ChainOutcome
+from .chain_state import ChainState
+from .chain_waiting_on import ChainWaitingOn
 from .change_external_support_request_status import ChangeExternalSupportRequestStatus
 from .change_internal_support_request_status import ChangeInternalSupportRequestStatus
 from .change_product_status import ChangeProductStatus
@@ -355,6 +376,9 @@ from .download_url_gcs import DownloadUrlGCS
 from .edit_api_key import EditApiKey
 from .edit_asset_category import EditAssetCategory
 from .edit_automation import EditAutomation
+from .edit_belief import EditBelief
+from .edit_belief_split_by_type_0 import EditBeliefSplitByType0
+from .edit_brand_cover_focus import EditBrandCoverFocus
 from .edit_bridge_grants import EditBridgeGrants
 from .edit_catalog_product import EditCatalogProduct
 from .edit_catalog_product_pricing_type import EditCatalogProductPricingType
@@ -379,6 +403,7 @@ from .edit_document_template_kind_type_0 import EditDocumentTemplateKindType0
 from .edit_exchange import EditExchange
 from .edit_external_support_request import EditExternalSupportRequest
 from .edit_external_support_request_comment import EditExternalSupportRequestComment
+from .edit_feed_post import EditFeedPost
 from .edit_form_field import EditFormField
 from .edit_form_field_field_type import EditFormFieldFieldType
 from .edit_form_step import EditFormStep
@@ -391,10 +416,10 @@ from .edit_label import EditLabel
 from .edit_lead import EditLead
 from .edit_lead_list import EditLeadList
 from .edit_lead_source import EditLeadSource
-from .edit_lead_status import EditLeadStatus
 from .edit_location import EditLocation
 from .edit_member_misc_preferences import EditMemberMiscPreferences
 from .edit_member_preferences import EditMemberPreferences
+from .edit_my_meeting_page import EditMyMeetingPage
 from .edit_my_profile import EditMyProfile
 from .edit_my_time_off import EditMyTimeOff
 from .edit_notification_preferences import EditNotificationPreferences
@@ -428,6 +453,7 @@ from .edit_project import EditProject
 from .edit_project_response import EditProjectResponse
 from .edit_proposal import EditProposal
 from .edit_proposal_pricing_strategy_type_0 import EditProposalPricingStrategyType0
+from .edit_public_form import EditPublicForm
 from .edit_queue_rule import EditQueueRule
 from .edit_resource import EditResource
 from .edit_resource_booking import EditResourceBooking
@@ -453,13 +479,16 @@ from .edit_team_booking import EditTeamBooking
 from .edit_tenant import EditTenant
 from .edit_tenant_lead_visibility_type_0 import EditTenantLeadVisibilityType0
 from .edit_tenant_legal_info import EditTenantLegalInfo
+from .edit_tenant_meetings_settings import EditTenantMeetingsSettings
 from .edit_tenant_portal_settings import EditTenantPortalSettings
 from .edit_tenant_portal_settings_portal_orders_payment_terms_type_0 import (
     EditTenantPortalSettingsPortalOrdersPaymentTermsType0,
 )
 from .edit_tenant_project_defaults import EditTenantProjectDefaults
+from .edit_tenant_public_page_settings import EditTenantPublicPageSettings
 from .edit_timer import EditTimer
 from .edit_wbs_configuration import EditWBSConfiguration
+from .edit_web_link import EditWebLink
 from .edit_webhook import EditWebhook
 from .edit_work_item import EditWorkItem
 from .edit_work_item_cost import EditWorkItemCost
@@ -541,6 +570,9 @@ from .import_orgs_multi_part_body_params import ImportOrgsMultiPartBodyParams
 from .import_orgs_preview_multi_part_body_params import (
     ImportOrgsPreviewMultiPartBodyParams,
 )
+from .inbound_item_summary import InboundItemSummary
+from .inbound_meeting_summary import InboundMeetingSummary
+from .inbound_summary import InboundSummary
 from .initiated_partnership_item import InitiatedPartnershipItem
 from .instantiate_work_item_template import InstantiateWorkItemTemplate
 from .instantiate_work_item_template_milestone_dates_type_0 import (
@@ -574,6 +606,8 @@ from .kpi_work_items_due_summary import KPIWorkItemsDueSummary
 from .label_lead_input import LabelLeadInput
 from .label_value_stats import LabelValueStats
 from .labeled_entity_stats import LabeledEntityStats
+from .lead_created import LeadCreated
+from .lead_milestone_rate import LeadMilestoneRate
 from .link_work_item_template_to_product import LinkWorkItemTemplateToProduct
 from .linked_product import LinkedProduct
 from .log_lead_activity import LogLeadActivity
@@ -582,6 +616,7 @@ from .mark_lead_do_not_contact import MarkLeadDoNotContact
 from .mark_payment_paid import MarkPaymentPaid
 from .mark_payment_paid_response import MarkPaymentPaidResponse
 from .mark_portal_order_delivered import MarkPortalOrderDelivered
+from .mark_project_delivered import MarkProjectDelivered
 from .member_availability import MemberAvailability
 from .member_availability_days import MemberAvailabilityDays
 from .member_load_detail_schema import MemberLoadDetailSchema
@@ -622,12 +657,19 @@ from .output_asset_categories import OutputAssetCategories
 from .output_asset_category import OutputAssetCategory
 from .output_asset_form import OutputAssetForm
 from .output_asset_forms import OutputAssetForms
+from .output_belief import OutputBelief
+from .output_belief_detail import OutputBeliefDetail
+from .output_belief_detail_items_item import OutputBeliefDetailItemsItem
+from .output_belief_over_time import OutputBeliefOverTime
+from .output_beliefs import OutputBeliefs
+from .output_beliefs_summary import OutputBeliefsSummary
 from .output_billable_source import OutputBillableSource
 from .output_billable_source_list import OutputBillableSourceList
 from .output_block_payments import OutputBlockPayments
 from .output_business_process import OutputBusinessProcess
 from .output_business_processes_list import OutputBusinessProcessesList
 from .output_calendar_tokens import OutputCalendarTokens
+from .output_chain import OutputChain
 from .output_comments_feed import OutputCommentsFeed
 from .output_coordinates_conflict import OutputCoordinatesConflict
 from .output_csv_import_cell import OutputCsvImportCell
@@ -709,6 +751,8 @@ from .output_document_tags import OutputDocumentTags
 from .output_document_template import OutputDocumentTemplate
 from .output_document_templates import OutputDocumentTemplates
 from .output_documents import OutputDocuments
+from .output_email_template_default import OutputEmailTemplateDefault
+from .output_email_template_defaults import OutputEmailTemplateDefaults
 from .output_exchange_rate import OutputExchangeRate
 from .output_exchange_rates import OutputExchangeRates
 from .output_external_support_request import OutputExternalSupportRequest
@@ -815,6 +859,9 @@ from .output_language_option import OutputLanguageOption
 from .output_lead import OutputLead
 from .output_lead_bucket import OutputLeadBucket
 from .output_lead_buckets import OutputLeadBuckets
+from .output_lead_history import OutputLeadHistory
+from .output_lead_history_entry import OutputLeadHistoryEntry
+from .output_lead_history_entry_kind import OutputLeadHistoryEntryKind
 from .output_lead_import_error import OutputLeadImportError
 from .output_lead_import_preview import OutputLeadImportPreview
 from .output_lead_import_summary import OutputLeadImportSummary
@@ -895,6 +942,9 @@ from .output_portal_share_proposal_preview_products_item import (
 from .output_portal_share_proposal_preview_terms_conditions import (
     OutputPortalShareProposalPreviewTermsConditions,
 )
+from .output_portal_share_proposal_preview_workspace_type_0 import (
+    OutputPortalShareProposalPreviewWorkspaceType0,
+)
 from .output_portal_share_proposal_state import OutputPortalShareProposalState
 from .output_portal_share_summary import OutputPortalShareSummary
 from .output_portal_shares import OutputPortalShares
@@ -941,6 +991,7 @@ from .output_project_work_items import OutputProjectWorkItems
 from .output_project_work_items_work_items import OutputProjectWorkItemsWorkItems
 from .output_projects_list import OutputProjectsList
 from .output_proposal_labels import OutputProposalLabels
+from .output_proposal_lead_history import OutputProposalLeadHistory
 from .output_proposal_list import OutputProposalList
 from .output_proposal_preview import OutputProposalPreview
 from .output_proposal_preview_acceptance_info import OutputProposalPreviewAcceptanceInfo
@@ -960,6 +1011,9 @@ from .output_proposal_preview_products_item import OutputProposalPreviewProducts
 from .output_proposal_preview_terms_conditions import (
     OutputProposalPreviewTermsConditions,
 )
+from .output_proposal_preview_workspace_type_0 import (
+    OutputProposalPreviewWorkspaceType0,
+)
 from .output_proposal_tags import OutputProposalTags
 from .output_queue_rule import OutputQueueRule
 from .output_queue_rules import OutputQueueRules
@@ -977,6 +1031,7 @@ from .output_sale_activity_types import OutputSaleActivityTypes
 from .output_sales_target import OutputSalesTarget
 from .output_sales_targets import OutputSalesTargets
 from .output_sent_message import OutputSentMessage
+from .output_sent_message_attachment import OutputSentMessageAttachment
 from .output_sent_messages import OutputSentMessages
 from .output_share import OutputShare
 from .output_share_access import OutputShareAccess
@@ -1266,6 +1321,7 @@ from .reorder_payment_schedule_blocks_block_sequences_item import (
 from .reorder_payment_schedule_blocks_response import (
     ReorderPaymentScheduleBlocksResponse,
 )
+from .reorder_web_links import ReorderWebLinks
 from .request_delete_file_gcs import RequestDeleteFileGCS
 from .request_download_url_gcs import RequestDownloadUrlGCS
 from .request_upload_url_gcs import RequestUploadUrlGCS
@@ -1305,8 +1361,15 @@ from .salesperson_sales_compare import SalespersonSalesCompare
 from .salesperson_sales_period import SalespersonSalesPeriod
 from .schedule_task_item import ScheduleTaskItem
 from .schedule_warning import ScheduleWarning
+from .send_document_by_email import SendDocumentByEmail
+from .send_proposal_by_email import SendProposalByEmail
+from .send_proposal_by_email_and_move import SendProposalByEmailAndMove
+from .set_email_template_default import SetEmailTemplateDefault
 from .set_entity_coordinates import SetEntityCoordinates
 from .set_price_lists import SetPriceLists
+from .split_option import SplitOption
+from .stage_not_measured_yet import StageNotMeasuredYet
+from .stage_not_timed_yet import StageNotTimedYet
 from .stage_proposals import StageProposals
 from .submit_asset_form_response import SubmitAssetFormResponse
 from .submit_custom_form import SubmitCustomForm
@@ -1426,6 +1489,10 @@ __all__ = (
     "AddApiKey",
     "AddAssetCategory",
     "AddAvailability",
+    "AddBelief",
+    "AddBeliefEvidence",
+    "AddBeliefSplitByType0",
+    "AddBeliefThresholdSideType0",
     "AddBillableSourceEntry",
     "AddCatalogProduct",
     "AddCatalogProductPricingType",
@@ -1450,6 +1517,8 @@ __all__ = (
     "AddExternalSupportRequestForCustomer",
     "AddExternalSupportRequestForProject",
     "AddExternalSupportRequestsToPayment",
+    "AddFeedPost",
+    "AddFeedPostComment",
     "AddFormField",
     "AddFormFieldFieldType",
     "AddFormStep",
@@ -1504,6 +1573,7 @@ __all__ = (
     "AddProposal",
     "AddProposalPricingStrategyType0",
     "AddProposalResponse",
+    "AddPublicForm",
     "AddQueueRule",
     "AddResource",
     "AddResourceBooking",
@@ -1534,6 +1604,7 @@ __all__ = (
     "AddWBSConfiguration",
     "AddWBSRuleToWBSConfiguration",
     "AddWebhook",
+    "AddWebLink",
     "AddWorkItem",
     "AddWorkItemComment",
     "AddWorkItemCost",
@@ -1543,7 +1614,6 @@ __all__ = (
     "AddWorkItemTemplate",
     "AddWorkItemType",
     "AddWorkLog",
-    "AddWorkLogResponse",
     "AddWorkResourceUsage",
     "AllowedChildType",
     "AllPartnersPaymentItem",
@@ -1635,6 +1705,10 @@ __all__ = (
     "AnalyticsSalesForecastPeriod",
     "AnalyticsSalesFunnel",
     "AnalyticsSalesKpisPeriod",
+    "AnalyticsSalesLeads",
+    "AnalyticsSalesLeadsPeriod",
+    "AnalyticsSalesLeadsRow",
+    "AnalyticsSalesLeadsSplitBy",
     "AnalyticsSalesPerformance",
     "AnalyticsSalesPerformanceCompare",
     "AnalyticsSalesPerformancePeriod",
@@ -1661,6 +1735,7 @@ __all__ = (
     "AnalyticsTrends",
     "AnalyticsUtilizationItem",
     "AnalyticsWorkloadChartItem",
+    "AnswerMeetingRequest",
     "APIError",
     "ApiKeyCreated",
     "APIResponse",
@@ -1691,6 +1766,9 @@ __all__ = (
     "AutomationPipelineVariablesResponse",
     "AutomationRuleInfo",
     "AvailabilityHours",
+    "BeliefEstimate",
+    "BeliefOverTimePoint",
+    "BeliefSplitRow",
     "BlockPaymentsSummary",
     "BookingInfoSchema",
     "BridgeAdminContact",
@@ -1711,6 +1789,12 @@ __all__ = (
     "CatalogProduct",
     "CatalogProducts",
     "CatalogTemplateDataResponse",
+    "ChainFinish",
+    "ChainNextStep",
+    "ChainOption",
+    "ChainOutcome",
+    "ChainState",
+    "ChainWaitingOn",
     "ChangeExternalSupportRequestStatus",
     "ChangeInternalSupportRequestStatus",
     "ChangeProductStatus",
@@ -1740,6 +1824,9 @@ __all__ = (
     "EditApiKey",
     "EditAssetCategory",
     "EditAutomation",
+    "EditBelief",
+    "EditBeliefSplitByType0",
+    "EditBrandCoverFocus",
     "EditBridgeGrants",
     "EditCatalogProduct",
     "EditCatalogProductPricingType",
@@ -1760,6 +1847,7 @@ __all__ = (
     "EditExchange",
     "EditExternalSupportRequest",
     "EditExternalSupportRequestComment",
+    "EditFeedPost",
     "EditFormField",
     "EditFormFieldFieldType",
     "EditFormStep",
@@ -1772,10 +1860,10 @@ __all__ = (
     "EditLead",
     "EditLeadList",
     "EditLeadSource",
-    "EditLeadStatus",
     "EditLocation",
     "EditMemberMiscPreferences",
     "EditMemberPreferences",
+    "EditMyMeetingPage",
     "EditMyProfile",
     "EditMyTimeOff",
     "EditNotificationPreferences",
@@ -1805,6 +1893,7 @@ __all__ = (
     "EditProjectResponse",
     "EditProposal",
     "EditProposalPricingStrategyType0",
+    "EditPublicForm",
     "EditQueueRule",
     "EditResource",
     "EditResourceBooking",
@@ -1830,12 +1919,15 @@ __all__ = (
     "EditTenant",
     "EditTenantLeadVisibilityType0",
     "EditTenantLegalInfo",
+    "EditTenantMeetingsSettings",
     "EditTenantPortalSettings",
     "EditTenantPortalSettingsPortalOrdersPaymentTermsType0",
     "EditTenantProjectDefaults",
+    "EditTenantPublicPageSettings",
     "EditTimer",
     "EditWBSConfiguration",
     "EditWebhook",
+    "EditWebLink",
     "EditWorkItem",
     "EditWorkItemCost",
     "EditWorkItemExpense",
@@ -1890,6 +1982,9 @@ __all__ = (
     "ImportLeadsPreviewMultiPartBodyParamsDefaultNextAction",
     "ImportOrgsMultiPartBodyParams",
     "ImportOrgsPreviewMultiPartBodyParams",
+    "InboundItemSummary",
+    "InboundMeetingSummary",
+    "InboundSummary",
     "InitiatedPartnershipItem",
     "InstantiateWorkItemTemplate",
     "InstantiateWorkItemTemplateMilestoneDatesType0",
@@ -1921,6 +2016,8 @@ __all__ = (
     "LabeledEntityStats",
     "LabelLeadInput",
     "LabelValueStats",
+    "LeadCreated",
+    "LeadMilestoneRate",
     "LinkedProduct",
     "LinkWorkItemTemplateToProduct",
     "LogLeadActivity",
@@ -1929,6 +2026,7 @@ __all__ = (
     "MarkPaymentPaid",
     "MarkPaymentPaidResponse",
     "MarkPortalOrderDelivered",
+    "MarkProjectDelivered",
     "MemberAvailability",
     "MemberAvailabilityDays",
     "MemberLoadDetailSchema",
@@ -1969,12 +2067,19 @@ __all__ = (
     "OutputAssetCategory",
     "OutputAssetForm",
     "OutputAssetForms",
+    "OutputBelief",
+    "OutputBeliefDetail",
+    "OutputBeliefDetailItemsItem",
+    "OutputBeliefOverTime",
+    "OutputBeliefs",
+    "OutputBeliefsSummary",
     "OutputBillableSource",
     "OutputBillableSourceList",
     "OutputBlockPayments",
     "OutputBusinessProcess",
     "OutputBusinessProcessesList",
     "OutputCalendarTokens",
+    "OutputChain",
     "OutputCommentsFeed",
     "OutputCoordinatesConflict",
     "OutputCsvImportCell",
@@ -2026,6 +2131,8 @@ __all__ = (
     "OutputDocumentTags",
     "OutputDocumentTemplate",
     "OutputDocumentTemplates",
+    "OutputEmailTemplateDefault",
+    "OutputEmailTemplateDefaults",
     "OutputExchangeRate",
     "OutputExchangeRates",
     "OutputExternalSupportRequest",
@@ -2102,6 +2209,9 @@ __all__ = (
     "OutputLead",
     "OutputLeadBucket",
     "OutputLeadBuckets",
+    "OutputLeadHistory",
+    "OutputLeadHistoryEntry",
+    "OutputLeadHistoryEntryKind",
     "OutputLeadImportError",
     "OutputLeadImportPreview",
     "OutputLeadImportSummary",
@@ -2164,6 +2274,7 @@ __all__ = (
     "OutputPortalShareProposalPreviewPaymentScheduleItem",
     "OutputPortalShareProposalPreviewProductsItem",
     "OutputPortalShareProposalPreviewTermsConditions",
+    "OutputPortalShareProposalPreviewWorkspaceType0",
     "OutputPortalShareProposalState",
     "OutputPortalShares",
     "OutputPortalShareSummary",
@@ -2198,6 +2309,7 @@ __all__ = (
     "OutputProjectWorkItems",
     "OutputProjectWorkItemsWorkItems",
     "OutputProposalLabels",
+    "OutputProposalLeadHistory",
     "OutputProposalList",
     "OutputProposalPreview",
     "OutputProposalPreviewAcceptanceInfo",
@@ -2209,6 +2321,7 @@ __all__ = (
     "OutputProposalPreviewPaymentScheduleItem",
     "OutputProposalPreviewProductsItem",
     "OutputProposalPreviewTermsConditions",
+    "OutputProposalPreviewWorkspaceType0",
     "OutputProposalTags",
     "OutputQueueRule",
     "OutputQueueRules",
@@ -2226,6 +2339,7 @@ __all__ = (
     "OutputSalesTarget",
     "OutputSalesTargets",
     "OutputSentMessage",
+    "OutputSentMessageAttachment",
     "OutputSentMessages",
     "OutputShare",
     "OutputShareAccess",
@@ -2459,6 +2573,7 @@ __all__ = (
     "ReorderPaymentScheduleBlocks",
     "ReorderPaymentScheduleBlocksBlockSequencesItem",
     "ReorderPaymentScheduleBlocksResponse",
+    "ReorderWebLinks",
     "RequestDeleteFileGCS",
     "RequestDownloadUrlGCS",
     "RequestUploadUrlGCS",
@@ -2496,8 +2611,15 @@ __all__ = (
     "SalesSeriesPoint",
     "ScheduleTaskItem",
     "ScheduleWarning",
+    "SendDocumentByEmail",
+    "SendProposalByEmail",
+    "SendProposalByEmailAndMove",
+    "SetEmailTemplateDefault",
     "SetEntityCoordinates",
     "SetPriceLists",
+    "SplitOption",
+    "StageNotMeasuredYet",
+    "StageNotTimedYet",
     "StageProposals",
     "SubmitAssetFormResponse",
     "SubmitCustomForm",

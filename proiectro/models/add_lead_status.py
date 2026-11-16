@@ -3,7 +3,6 @@ from enum import Enum
 
 class AddLeadStatus(str, Enum):
     CONTACTED = "contacted"
-    CONVERTED = "converted"
     DISQUALIFIED = "disqualified"
     DO_NOT_CONTACT = "do_not_contact"
     NEW = "new"

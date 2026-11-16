@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.project_cash_balance_chart_data import ProjectCashBalanceChartData
 from ...types import Response
 
@@ -28,11 +29,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> ProjectCashBalanceChartData | None:
+) -> APIResponse | ProjectCashBalanceChartData | None:
     if response.status_code == 200:
         response_200 = ProjectCashBalanceChartData.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -42,7 +48,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[ProjectCashBalanceChartData]:
+) -> Response[APIResponse | ProjectCashBalanceChartData]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,7 +62,7 @@ def sync_detailed(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProjectCashBalanceChartData]:
+) -> Response[APIResponse | ProjectCashBalanceChartData]:
     """Project Cash Balance Chart
 
      Get cumulative cash balance chart (S-curve) for project financial tracking.
@@ -72,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProjectCashBalanceChartData]
+        Response[APIResponse | ProjectCashBalanceChartData]
     """
 
     kwargs = _get_kwargs(
@@ -92,7 +98,7 @@ def sync(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProjectCashBalanceChartData | None:
+) -> APIResponse | ProjectCashBalanceChartData | None:
     """Project Cash Balance Chart
 
      Get cumulative cash balance chart (S-curve) for project financial tracking.
@@ -108,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProjectCashBalanceChartData
+        APIResponse | ProjectCashBalanceChartData
     """
 
     return sync_detailed(
@@ -123,7 +129,7 @@ async def asyncio_detailed(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[ProjectCashBalanceChartData]:
+) -> Response[APIResponse | ProjectCashBalanceChartData]:
     """Project Cash Balance Chart
 
      Get cumulative cash balance chart (S-curve) for project financial tracking.
@@ -139,7 +145,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ProjectCashBalanceChartData]
+        Response[APIResponse | ProjectCashBalanceChartData]
     """
 
     kwargs = _get_kwargs(
@@ -157,7 +163,7 @@ async def asyncio(
     project_id: str,
     *,
     client: AuthenticatedClient,
-) -> ProjectCashBalanceChartData | None:
+) -> APIResponse | ProjectCashBalanceChartData | None:
     """Project Cash Balance Chart
 
      Get cumulative cash balance chart (S-curve) for project financial tracking.
@@ -173,7 +179,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ProjectCashBalanceChartData
+        APIResponse | ProjectCashBalanceChartData
     """
 
     return (

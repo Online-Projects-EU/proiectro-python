@@ -72,8 +72,8 @@ def sync_detailed(
     """Analytics Delivery Kpis
 
      Delivery KPIs for the Delivery dashboard. Provides project portfolio health
-    distribution, on-time delivery status, health score breakdown by dimension,
-    and milestone urgency indicators. Status badges show portfolio health.
+    distribution, on-time delivery status and health score breakdown by dimension.
+    Status badges show portfolio health.
 
     Args:
         tenant_path (str):
@@ -108,8 +108,8 @@ def sync(
     """Analytics Delivery Kpis
 
      Delivery KPIs for the Delivery dashboard. Provides project portfolio health
-    distribution, on-time delivery status, health score breakdown by dimension,
-    and milestone urgency indicators. Status badges show portfolio health.
+    distribution, on-time delivery status and health score breakdown by dimension.
+    Status badges show portfolio health.
 
     Args:
         tenant_path (str):
@@ -139,8 +139,8 @@ async def asyncio_detailed(
     """Analytics Delivery Kpis
 
      Delivery KPIs for the Delivery dashboard. Provides project portfolio health
-    distribution, on-time delivery status, health score breakdown by dimension,
-    and milestone urgency indicators. Status badges show portfolio health.
+    distribution, on-time delivery status and health score breakdown by dimension.
+    Status badges show portfolio health.
 
     Args:
         tenant_path (str):
@@ -173,8 +173,8 @@ async def asyncio(
     """Analytics Delivery Kpis
 
      Delivery KPIs for the Delivery dashboard. Provides project portfolio health
-    distribution, on-time delivery status, health score breakdown by dimension,
-    and milestone urgency indicators. Status badges show portfolio health.
+    distribution, on-time delivery status and health score breakdown by dimension.
+    Status badges show portfolio health.
 
     Args:
         tenant_path (str):

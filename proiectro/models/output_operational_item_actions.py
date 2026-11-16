@@ -22,6 +22,7 @@ class OutputOperationalItemActions:
         can_move (bool | Unset):  Default: False.
         can_approve (bool | Unset):  Default: False.
         can_reject (bool | Unset):  Default: False.
+        can_claim (bool | Unset):  Default: False.
         can_reassign (bool | Unset):  Default: False.
     """
 
@@ -31,6 +32,7 @@ class OutputOperationalItemActions:
     can_move: bool | Unset = False
     can_approve: bool | Unset = False
     can_reject: bool | Unset = False
+    can_claim: bool | Unset = False
     can_reassign: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -46,6 +48,8 @@ class OutputOperationalItemActions:
         can_approve = self.can_approve
 
         can_reject = self.can_reject
+
+        can_claim = self.can_claim
 
         can_reassign = self.can_reassign
 
@@ -64,6 +68,8 @@ class OutputOperationalItemActions:
             field_dict["can_approve"] = can_approve
         if can_reject is not UNSET:
             field_dict["can_reject"] = can_reject
+        if can_claim is not UNSET:
+            field_dict["can_claim"] = can_claim
         if can_reassign is not UNSET:
             field_dict["can_reassign"] = can_reassign
 
@@ -84,6 +90,8 @@ class OutputOperationalItemActions:
 
         can_reject = d.pop("can_reject", UNSET)
 
+        can_claim = d.pop("can_claim", UNSET)
+
         can_reassign = d.pop("can_reassign", UNSET)
 
         output_operational_item_actions = cls(
@@ -93,6 +101,7 @@ class OutputOperationalItemActions:
             can_move=can_move,
             can_approve=can_approve,
             can_reject=can_reject,
+            can_claim=can_claim,
             can_reassign=can_reassign,
         )
 

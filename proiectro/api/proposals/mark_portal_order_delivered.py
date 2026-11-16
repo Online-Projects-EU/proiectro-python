@@ -44,6 +44,11 @@ def _parse_response(
 
         return response_200
 
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
+
     if response.status_code == 404:
         response_404 = APIResponse.from_dict(response.json())
 
@@ -86,7 +91,8 @@ def sync_detailed(
     """Mark Portal Order Delivered
 
      Mark a whole portal order delivered: every item still open is accepted on the customer's behalf.
-    An order paid on delivery has its payment re-dated from today.
+    An order paid on delivery has its payment re-dated from today. With send_email, whoever placed it is
+    also emailed.
 
     Args:
         tenant_path (str):
@@ -125,7 +131,8 @@ def sync(
     """Mark Portal Order Delivered
 
      Mark a whole portal order delivered: every item still open is accepted on the customer's behalf.
-    An order paid on delivery has its payment re-dated from today.
+    An order paid on delivery has its payment re-dated from today. With send_email, whoever placed it is
+    also emailed.
 
     Args:
         tenant_path (str):
@@ -159,7 +166,8 @@ async def asyncio_detailed(
     """Mark Portal Order Delivered
 
      Mark a whole portal order delivered: every item still open is accepted on the customer's behalf.
-    An order paid on delivery has its payment re-dated from today.
+    An order paid on delivery has its payment re-dated from today. With send_email, whoever placed it is
+    also emailed.
 
     Args:
         tenant_path (str):
@@ -196,7 +204,8 @@ async def asyncio(
     """Mark Portal Order Delivered
 
      Mark a whole portal order delivered: every item still open is accepted on the customer's behalf.
-    An order paid on delivery has its payment re-dated from today.
+    An order paid on delivery has its payment re-dated from today. With send_email, whoever placed it is
+    also emailed.
 
     Args:
         tenant_path (str):

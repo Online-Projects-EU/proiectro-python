@@ -84,6 +84,12 @@ def sync_detailed(
     counts, weighted pipeline value, and stage velocity metrics. Identifies
     bottlenecks and opportunities for pipeline optimization.
 
+    A stage's win probability is measured from the workspace's own deals: the share
+    won among the deals that went through the stage and are won, lost or slower than
+    usual. It is given from the first such deal, with its count and likely range, and
+    is empty only while there is none, when the weighted value waits with it. An open deal that is
+    slower than usual stays in the stage's value and is set aside from its weighted value.
+
     This is a SNAPSHOT view showing current pipeline state regardless of period.
     The period parameter is included for UI consistency but doesn't filter data.
 
@@ -130,6 +136,12 @@ def sync(
     counts, weighted pipeline value, and stage velocity metrics. Identifies
     bottlenecks and opportunities for pipeline optimization.
 
+    A stage's win probability is measured from the workspace's own deals: the share
+    won among the deals that went through the stage and are won, lost or slower than
+    usual. It is given from the first such deal, with its count and likely range, and
+    is empty only while there is none, when the weighted value waits with it. An open deal that is
+    slower than usual stays in the stage's value and is set aside from its weighted value.
+
     This is a SNAPSHOT view showing current pipeline state regardless of period.
     The period parameter is included for UI consistency but doesn't filter data.
 
@@ -170,6 +182,12 @@ async def asyncio_detailed(
      Sales pipeline analysis with value distribution across stages. Shows deal
     counts, weighted pipeline value, and stage velocity metrics. Identifies
     bottlenecks and opportunities for pipeline optimization.
+
+    A stage's win probability is measured from the workspace's own deals: the share
+    won among the deals that went through the stage and are won, lost or slower than
+    usual. It is given from the first such deal, with its count and likely range, and
+    is empty only while there is none, when the weighted value waits with it. An open deal that is
+    slower than usual stays in the stage's value and is set aside from its weighted value.
 
     This is a SNAPSHOT view showing current pipeline state regardless of period.
     The period parameter is included for UI consistency but doesn't filter data.
@@ -214,6 +232,12 @@ async def asyncio(
      Sales pipeline analysis with value distribution across stages. Shows deal
     counts, weighted pipeline value, and stage velocity metrics. Identifies
     bottlenecks and opportunities for pipeline optimization.
+
+    A stage's win probability is measured from the workspace's own deals: the share
+    won among the deals that went through the stage and are won, lost or slower than
+    usual. It is given from the first such deal, with its count and likely range, and
+    is empty only while there is none, when the weighted value waits with it. An open deal that is
+    slower than usual stays in the stage's value and is set aside from its weighted value.
 
     This is a SNAPSHOT view showing current pipeline state regardless of period.
     The period parameter is included for UI consistency but doesn't filter data.

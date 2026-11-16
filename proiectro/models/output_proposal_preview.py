@@ -32,6 +32,9 @@ if TYPE_CHECKING:
     from ..models.output_proposal_preview_terms_conditions import (
         OutputProposalPreviewTermsConditions,
     )
+    from ..models.output_proposal_preview_workspace_type_0 import (
+        OutputProposalPreviewWorkspaceType0,
+    )
 
 
 T = TypeVar("T", bound="OutputProposalPreview")
@@ -54,6 +57,7 @@ class OutputProposalPreview:
         generated_at (datetime.datetime):
         tenant_path (str):
         proposal_id (str):
+        workspace (None | OutputProposalPreviewWorkspaceType0 | Unset):
         has_product_pictures (bool | Unset):  Default: False.
         customer_org_id (None | str | Unset):
     """
@@ -70,11 +74,16 @@ class OutputProposalPreview:
     generated_at: datetime.datetime
     tenant_path: str
     proposal_id: str
+    workspace: None | OutputProposalPreviewWorkspaceType0 | Unset = UNSET
     has_product_pictures: bool | Unset = False
     customer_org_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_proposal_preview_workspace_type_0 import (
+            OutputProposalPreviewWorkspaceType0,
+        )
+
         company = self.company.to_dict()
 
         customer = self.customer.to_dict()
@@ -105,6 +114,14 @@ class OutputProposalPreview:
 
         proposal_id = self.proposal_id
 
+        workspace: dict[str, Any] | None | Unset
+        if isinstance(self.workspace, Unset):
+            workspace = UNSET
+        elif isinstance(self.workspace, OutputProposalPreviewWorkspaceType0):
+            workspace = self.workspace.to_dict()
+        else:
+            workspace = self.workspace
+
         has_product_pictures = self.has_product_pictures
 
         customer_org_id: None | str | Unset
@@ -131,6 +148,8 @@ class OutputProposalPreview:
                 "proposal_id": proposal_id,
             }
         )
+        if workspace is not UNSET:
+            field_dict["workspace"] = workspace
         if has_product_pictures is not UNSET:
             field_dict["has_product_pictures"] = has_product_pictures
         if customer_org_id is not UNSET:
@@ -164,6 +183,9 @@ class OutputProposalPreview:
         )
         from ..models.output_proposal_preview_terms_conditions import (
             OutputProposalPreviewTermsConditions,
+        )
+        from ..models.output_proposal_preview_workspace_type_0 import (
+            OutputProposalPreviewWorkspaceType0,
         )
 
         d = dict(src_dict)
@@ -213,6 +235,25 @@ class OutputProposalPreview:
 
         proposal_id = d.pop("proposal_id")
 
+        def _parse_workspace(
+            data: object,
+        ) -> None | OutputProposalPreviewWorkspaceType0 | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                workspace_type_0 = OutputProposalPreviewWorkspaceType0.from_dict(data)
+
+                return workspace_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | OutputProposalPreviewWorkspaceType0 | Unset, data)
+
+        workspace = _parse_workspace(d.pop("workspace", UNSET))
+
         has_product_pictures = d.pop("has_product_pictures", UNSET)
 
         def _parse_customer_org_id(data: object) -> None | str | Unset:
@@ -237,6 +278,7 @@ class OutputProposalPreview:
             generated_at=generated_at,
             tenant_path=tenant_path,
             proposal_id=proposal_id,
+            workspace=workspace,
             has_product_pictures=has_product_pictures,
             customer_org_id=customer_org_id,
         )

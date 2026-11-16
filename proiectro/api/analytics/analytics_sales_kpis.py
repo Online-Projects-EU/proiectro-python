@@ -74,6 +74,9 @@ def sync_detailed(
      Sales KPIs for the Sales dashboard. Provides pipeline health and deal flow status
     with stage breakdown, win rate vs benchmark, deal size distribution, and active
     deal health. Status indicators show whether metrics are healthy or need attention.
+    The weighted pipeline value is empty until every stage holding a deal to weigh has a
+    measured win probability, and the stages it is waiting on are listed. Deals slower
+    than usual in their stage are set aside from it and reported with their value.
 
     Args:
         tenant_path (str):
@@ -110,6 +113,9 @@ def sync(
      Sales KPIs for the Sales dashboard. Provides pipeline health and deal flow status
     with stage breakdown, win rate vs benchmark, deal size distribution, and active
     deal health. Status indicators show whether metrics are healthy or need attention.
+    The weighted pipeline value is empty until every stage holding a deal to weigh has a
+    measured win probability, and the stages it is waiting on are listed. Deals slower
+    than usual in their stage are set aside from it and reported with their value.
 
     Args:
         tenant_path (str):
@@ -141,6 +147,9 @@ async def asyncio_detailed(
      Sales KPIs for the Sales dashboard. Provides pipeline health and deal flow status
     with stage breakdown, win rate vs benchmark, deal size distribution, and active
     deal health. Status indicators show whether metrics are healthy or need attention.
+    The weighted pipeline value is empty until every stage holding a deal to weigh has a
+    measured win probability, and the stages it is waiting on are listed. Deals slower
+    than usual in their stage are set aside from it and reported with their value.
 
     Args:
         tenant_path (str):
@@ -175,6 +184,9 @@ async def asyncio(
      Sales KPIs for the Sales dashboard. Provides pipeline health and deal flow status
     with stage breakdown, win rate vs benchmark, deal size distribution, and active
     deal health. Status indicators show whether metrics are healthy or need attention.
+    The weighted pipeline value is empty until every stage holding a deal to weigh has a
+    measured win probability, and the stages it is waiting on are listed. Deals slower
+    than usual in their stage are set aside from it and reported with their value.
 
     Args:
         tenant_path (str):

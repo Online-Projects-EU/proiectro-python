@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.api_response import APIResponse
 from ...models.output_internal_support_request_timeline import (
     OutputInternalSupportRequestTimeline,
 )
@@ -30,11 +31,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> OutputInternalSupportRequestTimeline | None:
+) -> APIResponse | OutputInternalSupportRequestTimeline | None:
     if response.status_code == 200:
         response_200 = OutputInternalSupportRequestTimeline.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -44,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[OutputInternalSupportRequestTimeline]:
+) -> Response[APIResponse | OutputInternalSupportRequestTimeline]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,7 +64,7 @@ def sync_detailed(
     support_request_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[OutputInternalSupportRequestTimeline]:
+) -> Response[APIResponse | OutputInternalSupportRequestTimeline]:
     """Internal Support Request Timeline Own
 
      Track progress timeline for your submitted requests transparently.
@@ -75,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[OutputInternalSupportRequestTimeline]
+        Response[APIResponse | OutputInternalSupportRequestTimeline]
     """
 
     kwargs = _get_kwargs(
@@ -95,7 +101,7 @@ def sync(
     support_request_id: str,
     *,
     client: AuthenticatedClient,
-) -> OutputInternalSupportRequestTimeline | None:
+) -> APIResponse | OutputInternalSupportRequestTimeline | None:
     """Internal Support Request Timeline Own
 
      Track progress timeline for your submitted requests transparently.
@@ -112,7 +118,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        OutputInternalSupportRequestTimeline
+        APIResponse | OutputInternalSupportRequestTimeline
     """
 
     return sync_detailed(
@@ -127,7 +133,7 @@ async def asyncio_detailed(
     support_request_id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[OutputInternalSupportRequestTimeline]:
+) -> Response[APIResponse | OutputInternalSupportRequestTimeline]:
     """Internal Support Request Timeline Own
 
      Track progress timeline for your submitted requests transparently.
@@ -144,7 +150,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[OutputInternalSupportRequestTimeline]
+        Response[APIResponse | OutputInternalSupportRequestTimeline]
     """
 
     kwargs = _get_kwargs(
@@ -162,7 +168,7 @@ async def asyncio(
     support_request_id: str,
     *,
     client: AuthenticatedClient,
-) -> OutputInternalSupportRequestTimeline | None:
+) -> APIResponse | OutputInternalSupportRequestTimeline | None:
     """Internal Support Request Timeline Own
 
      Track progress timeline for your submitted requests transparently.
@@ -179,7 +185,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        OutputInternalSupportRequestTimeline
+        APIResponse | OutputInternalSupportRequestTimeline
     """
 
     return (

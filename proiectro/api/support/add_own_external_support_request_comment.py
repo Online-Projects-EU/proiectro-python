@@ -10,6 +10,7 @@ from ...models.add_external_support_request_comment import (
     AddExternalSupportRequestComment,
 )
 from ...models.api_response import APIResponse
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -37,11 +38,16 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
         return response_200
+
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
 
     if response.status_code == 404:
         response_404 = APIResponse.from_dict(response.json())
@@ -52,6 +58,11 @@ def _parse_response(
         response_409 = APIResponse.from_dict(response.json())
 
         return response_409
+
+    if response.status_code == 422:
+        response_422 = PydanticDetail.from_dict(response.json())
+
+        return response_422
 
     if response.status_code == 500:
         response_500 = APIResponse.from_dict(response.json())
@@ -66,7 +77,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -80,7 +91,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddExternalSupportRequestComment,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Own External Support Request Comment
 
      Add a comment to a support request you opened. The assignee is notified.
@@ -94,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -114,7 +125,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddExternalSupportRequestComment,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Own External Support Request Comment
 
      Add a comment to a support request you opened. The assignee is notified.
@@ -128,7 +139,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -143,7 +154,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddExternalSupportRequestComment,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Own External Support Request Comment
 
      Add a comment to a support request you opened. The assignee is notified.
@@ -157,7 +168,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -175,7 +186,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddExternalSupportRequestComment,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Own External Support Request Comment
 
      Add a comment to a support request you opened. The assignee is notified.
@@ -189,7 +200,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return (

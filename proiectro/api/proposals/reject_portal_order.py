@@ -44,6 +44,11 @@ def _parse_response(
 
         return response_200
 
+    if response.status_code == 403:
+        response_403 = APIResponse.from_dict(response.json())
+
+        return response_403
+
     if response.status_code == 404:
         response_404 = APIResponse.from_dict(response.json())
 
@@ -86,7 +91,8 @@ def sync_detailed(
     """Reject Portal Order
 
      Reject an order a customer placed in the customer portal.
-    The customer sees the reason with the order.
+    The customer sees the reason with the order. With send_email, whoever placed it is also emailed the
+    reason.
 
     Args:
         tenant_path (str):
@@ -125,7 +131,8 @@ def sync(
     """Reject Portal Order
 
      Reject an order a customer placed in the customer portal.
-    The customer sees the reason with the order.
+    The customer sees the reason with the order. With send_email, whoever placed it is also emailed the
+    reason.
 
     Args:
         tenant_path (str):
@@ -159,7 +166,8 @@ async def asyncio_detailed(
     """Reject Portal Order
 
      Reject an order a customer placed in the customer portal.
-    The customer sees the reason with the order.
+    The customer sees the reason with the order. With send_email, whoever placed it is also emailed the
+    reason.
 
     Args:
         tenant_path (str):
@@ -196,7 +204,8 @@ async def asyncio(
     """Reject Portal Order
 
      Reject an order a customer placed in the customer portal.
-    The customer sees the reason with the order.
+    The customer sees the reason with the order. With send_email, whoever placed it is also emailed the
+    reason.
 
     Args:
         tenant_path (str):

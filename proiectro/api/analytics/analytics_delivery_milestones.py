@@ -75,9 +75,9 @@ def sync_detailed(
 ) -> Response[AnalyticsDeliveryMilestones]:
     """Analytics Delivery Milestones
 
-     Milestone tracking and delivery metrics. Shows on-time delivery rates,
-    upcoming milestones, and milestone slip trends. Critical for customer
-    communication and project planning.
+     Team workload distribution. Shows each member's remaining hours, pending and
+    overdue work items, and booked against available hours over the coming days.
+    Identifies who is overloaded and who can take on more.
 
     Args:
         tenant_path (str):
@@ -113,9 +113,9 @@ def sync(
 ) -> AnalyticsDeliveryMilestones | None:
     """Analytics Delivery Milestones
 
-     Milestone tracking and delivery metrics. Shows on-time delivery rates,
-    upcoming milestones, and milestone slip trends. Critical for customer
-    communication and project planning.
+     Team workload distribution. Shows each member's remaining hours, pending and
+    overdue work items, and booked against available hours over the coming days.
+    Identifies who is overloaded and who can take on more.
 
     Args:
         tenant_path (str):
@@ -146,9 +146,9 @@ async def asyncio_detailed(
 ) -> Response[AnalyticsDeliveryMilestones]:
     """Analytics Delivery Milestones
 
-     Milestone tracking and delivery metrics. Shows on-time delivery rates,
-    upcoming milestones, and milestone slip trends. Critical for customer
-    communication and project planning.
+     Team workload distribution. Shows each member's remaining hours, pending and
+    overdue work items, and booked against available hours over the coming days.
+    Identifies who is overloaded and who can take on more.
 
     Args:
         tenant_path (str):
@@ -182,9 +182,9 @@ async def asyncio(
 ) -> AnalyticsDeliveryMilestones | None:
     """Analytics Delivery Milestones
 
-     Milestone tracking and delivery metrics. Shows on-time delivery rates,
-    upcoming milestones, and milestone slip trends. Critical for customer
-    communication and project planning.
+     Team workload distribution. Shows each member's remaining hours, pending and
+    overdue work items, and booked against available hours over the coming days.
+    Identifies who is overloaded and who can take on more.
 
     Args:
         tenant_path (str):

@@ -7,8 +7,8 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.add_work_log import AddWorkLog
-from ...models.add_work_log_response import AddWorkLogResponse
 from ...models.api_response import APIResponse
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -36,7 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | AddWorkLogResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
@@ -47,13 +47,18 @@ def _parse_response(
 
         return response_400
 
+    if response.status_code == 404:
+        response_404 = APIResponse.from_dict(response.json())
+
+        return response_404
+
     if response.status_code == 409:
         response_409 = APIResponse.from_dict(response.json())
 
         return response_409
 
     if response.status_code == 422:
-        response_422 = AddWorkLogResponse.from_dict(response.json())
+        response_422 = PydanticDetail.from_dict(response.json())
 
         return response_422
 
@@ -65,7 +70,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse | AddWorkLogResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -79,7 +84,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> Response[APIResponse | AddWorkLogResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -94,7 +99,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | AddWorkLogResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -114,7 +119,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> APIResponse | AddWorkLogResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -129,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | AddWorkLogResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -144,7 +149,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> Response[APIResponse | AddWorkLogResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -159,7 +164,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse | AddWorkLogResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -177,7 +182,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: AddWorkLog,
-) -> APIResponse | AddWorkLogResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Add Work Log
 
      Log work hours against a work item. Requires valid team booking.
@@ -192,7 +197,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse | AddWorkLogResponse
+        APIResponse | PydanticDetail
     """
 
     return (

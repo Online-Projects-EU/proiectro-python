@@ -83,8 +83,14 @@ def sync_detailed(
     """Analytics Sales Forecast
 
      Sales forecasting based on current pipeline. Projects future revenue by
-    weighting pipeline deals by stage probability and grouping by expected
-    close date. Aggregates ALL deals across ALL funnels.
+    weighting pipeline deals by their stage's measured win probability and grouping
+    by expected close date. Aggregates ALL deals across ALL funnels. Best and worst
+    case use the two ends of each win probability's likely range. The weighted
+    figures are empty until every stage holding a dated deal to weigh has been
+    measured, and leave out the deals slower than usual in their stage, which are
+    reported with their value as deals without a close date are. A deal without a
+    close date is placed in a period by estimate once a deal was won from its stage,
+    and stays listed as undated until then.
 
     Note: Comparisons (YoY, PoP) are not applicable to forecasts since
     forecasts are projections, not historical data.
@@ -131,8 +137,14 @@ def sync(
     """Analytics Sales Forecast
 
      Sales forecasting based on current pipeline. Projects future revenue by
-    weighting pipeline deals by stage probability and grouping by expected
-    close date. Aggregates ALL deals across ALL funnels.
+    weighting pipeline deals by their stage's measured win probability and grouping
+    by expected close date. Aggregates ALL deals across ALL funnels. Best and worst
+    case use the two ends of each win probability's likely range. The weighted
+    figures are empty until every stage holding a dated deal to weigh has been
+    measured, and leave out the deals slower than usual in their stage, which are
+    reported with their value as deals without a close date are. A deal without a
+    close date is placed in a period by estimate once a deal was won from its stage,
+    and stays listed as undated until then.
 
     Note: Comparisons (YoY, PoP) are not applicable to forecasts since
     forecasts are projections, not historical data.
@@ -174,8 +186,14 @@ async def asyncio_detailed(
     """Analytics Sales Forecast
 
      Sales forecasting based on current pipeline. Projects future revenue by
-    weighting pipeline deals by stage probability and grouping by expected
-    close date. Aggregates ALL deals across ALL funnels.
+    weighting pipeline deals by their stage's measured win probability and grouping
+    by expected close date. Aggregates ALL deals across ALL funnels. Best and worst
+    case use the two ends of each win probability's likely range. The weighted
+    figures are empty until every stage holding a dated deal to weigh has been
+    measured, and leave out the deals slower than usual in their stage, which are
+    reported with their value as deals without a close date are. A deal without a
+    close date is placed in a period by estimate once a deal was won from its stage,
+    and stays listed as undated until then.
 
     Note: Comparisons (YoY, PoP) are not applicable to forecasts since
     forecasts are projections, not historical data.
@@ -220,8 +238,14 @@ async def asyncio(
     """Analytics Sales Forecast
 
      Sales forecasting based on current pipeline. Projects future revenue by
-    weighting pipeline deals by stage probability and grouping by expected
-    close date. Aggregates ALL deals across ALL funnels.
+    weighting pipeline deals by their stage's measured win probability and grouping
+    by expected close date. Aggregates ALL deals across ALL funnels. Best and worst
+    case use the two ends of each win probability's likely range. The weighted
+    figures are empty until every stage holding a dated deal to weigh has been
+    measured, and leave out the deals slower than usual in their stage, which are
+    reported with their value as deals without a close date are. A deal without a
+    close date is placed in a period by estimate once a deal was won from its stage,
+    and stays listed as undated until then.
 
     Note: Comparisons (YoY, PoP) are not applicable to forecasts since
     forecasts are projections, not historical data.

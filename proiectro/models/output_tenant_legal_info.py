@@ -43,6 +43,9 @@ class OutputTenantLegalInfo:
         legal_address_line_1 (None | str | Unset):
         legal_address_line_2 (None | str | Unset):
         legal_postal_code (None | str | Unset):
+        legal_contact_email (None | str | Unset):
+        legal_contact_phone (None | str | Unset):
+        legal_brand_name (None | str | Unset):
     """
 
     legal_name: None | str | Unset = UNSET
@@ -72,6 +75,9 @@ class OutputTenantLegalInfo:
     legal_address_line_1: None | str | Unset = UNSET
     legal_address_line_2: None | str | Unset = UNSET
     legal_postal_code: None | str | Unset = UNSET
+    legal_contact_email: None | str | Unset = UNSET
+    legal_contact_phone: None | str | Unset = UNSET
+    legal_brand_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -237,6 +243,24 @@ class OutputTenantLegalInfo:
         else:
             legal_postal_code = self.legal_postal_code
 
+        legal_contact_email: None | str | Unset
+        if isinstance(self.legal_contact_email, Unset):
+            legal_contact_email = UNSET
+        else:
+            legal_contact_email = self.legal_contact_email
+
+        legal_contact_phone: None | str | Unset
+        if isinstance(self.legal_contact_phone, Unset):
+            legal_contact_phone = UNSET
+        else:
+            legal_contact_phone = self.legal_contact_phone
+
+        legal_brand_name: None | str | Unset
+        if isinstance(self.legal_brand_name, Unset):
+            legal_brand_name = UNSET
+        else:
+            legal_brand_name = self.legal_brand_name
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -296,6 +320,12 @@ class OutputTenantLegalInfo:
             field_dict["legal_address_line_2"] = legal_address_line_2
         if legal_postal_code is not UNSET:
             field_dict["legal_postal_code"] = legal_postal_code
+        if legal_contact_email is not UNSET:
+            field_dict["legal_contact_email"] = legal_contact_email
+        if legal_contact_phone is not UNSET:
+            field_dict["legal_contact_phone"] = legal_contact_phone
+        if legal_brand_name is not UNSET:
+            field_dict["legal_brand_name"] = legal_brand_name
 
         return field_dict
 
@@ -592,6 +622,37 @@ class OutputTenantLegalInfo:
 
         legal_postal_code = _parse_legal_postal_code(d.pop("legal_postal_code", UNSET))
 
+        def _parse_legal_contact_email(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        legal_contact_email = _parse_legal_contact_email(
+            d.pop("legal_contact_email", UNSET)
+        )
+
+        def _parse_legal_contact_phone(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        legal_contact_phone = _parse_legal_contact_phone(
+            d.pop("legal_contact_phone", UNSET)
+        )
+
+        def _parse_legal_brand_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        legal_brand_name = _parse_legal_brand_name(d.pop("legal_brand_name", UNSET))
+
         output_tenant_legal_info = cls(
             legal_name=legal_name,
             legal_country=legal_country,
@@ -620,6 +681,9 @@ class OutputTenantLegalInfo:
             legal_address_line_1=legal_address_line_1,
             legal_address_line_2=legal_address_line_2,
             legal_postal_code=legal_postal_code,
+            legal_contact_email=legal_contact_email,
+            legal_contact_phone=legal_contact_phone,
+            legal_brand_name=legal_brand_name,
         )
 
         output_tenant_legal_info.additional_properties = d

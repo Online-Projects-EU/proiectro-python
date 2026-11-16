@@ -72,8 +72,8 @@ def sync_detailed(
     """Analytics Support Kpis
 
      Support KPIs for the Support dashboard. Provides ticket volume with severity
-    breakdown, SLA compliance vs target, resolution efficiency status, and customer
-    satisfaction scores. Each metric includes status badges for quick assessment.
+    breakdown, response and resolution times, and resolution efficiency status.
+    Each metric includes status badges for quick assessment.
 
     Args:
         tenant_path (str):
@@ -108,8 +108,8 @@ def sync(
     """Analytics Support Kpis
 
      Support KPIs for the Support dashboard. Provides ticket volume with severity
-    breakdown, SLA compliance vs target, resolution efficiency status, and customer
-    satisfaction scores. Each metric includes status badges for quick assessment.
+    breakdown, response and resolution times, and resolution efficiency status.
+    Each metric includes status badges for quick assessment.
 
     Args:
         tenant_path (str):
@@ -139,8 +139,8 @@ async def asyncio_detailed(
     """Analytics Support Kpis
 
      Support KPIs for the Support dashboard. Provides ticket volume with severity
-    breakdown, SLA compliance vs target, resolution efficiency status, and customer
-    satisfaction scores. Each metric includes status badges for quick assessment.
+    breakdown, response and resolution times, and resolution efficiency status.
+    Each metric includes status badges for quick assessment.
 
     Args:
         tenant_path (str):
@@ -173,8 +173,8 @@ async def asyncio(
     """Analytics Support Kpis
 
      Support KPIs for the Support dashboard. Provides ticket volume with severity
-    breakdown, SLA compliance vs target, resolution efficiency status, and customer
-    satisfaction scores. Each metric includes status badges for quick assessment.
+    breakdown, response and resolution times, and resolution efficiency status.
+    Each metric includes status badges for quick assessment.
 
     Args:
         tenant_path (str):
