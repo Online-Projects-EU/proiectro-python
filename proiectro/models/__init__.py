@@ -329,6 +329,8 @@ from .bridge_history_output import BridgeHistoryOutput
 from .bridge_tenant_info import BridgeTenantInfo
 from .business_process_artifact import BusinessProcessArtifact
 from .business_process_category import BusinessProcessCategory
+from .business_process_dependency import BusinessProcessDependency
+from .business_process_link import BusinessProcessLink
 from .business_process_summary import BusinessProcessSummary
 from .business_process_task import BusinessProcessTask
 from .calendar_token import CalendarToken
@@ -857,8 +859,10 @@ from .output_label_cardinality import OutputLabelCardinality
 from .output_label_details import OutputLabelDetails
 from .output_language_option import OutputLanguageOption
 from .output_lead import OutputLead
+from .output_lead_at_company import OutputLeadAtCompany
 from .output_lead_bucket import OutputLeadBucket
 from .output_lead_buckets import OutputLeadBuckets
+from .output_lead_company import OutputLeadCompany
 from .output_lead_history import OutputLeadHistory
 from .output_lead_history_entry import OutputLeadHistoryEntry
 from .output_lead_history_entry_kind import OutputLeadHistoryEntryKind
@@ -1781,6 +1785,8 @@ __all__ = (
     "BridgeTenantInfo",
     "BusinessProcessArtifact",
     "BusinessProcessCategory",
+    "BusinessProcessDependency",
+    "BusinessProcessLink",
     "BusinessProcessSummary",
     "BusinessProcessTask",
     "CalendarToken",
@@ -2207,8 +2213,10 @@ __all__ = (
     "OutputLabelDetails",
     "OutputLanguageOption",
     "OutputLead",
+    "OutputLeadAtCompany",
     "OutputLeadBucket",
     "OutputLeadBuckets",
+    "OutputLeadCompany",
     "OutputLeadHistory",
     "OutputLeadHistoryEntry",
     "OutputLeadHistoryEntryKind",

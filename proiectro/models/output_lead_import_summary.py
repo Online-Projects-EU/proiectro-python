@@ -23,6 +23,7 @@ class OutputLeadImportSummary:
         imported_count (int):
         skipped_count (int):
         error_count (int):
+        company_matches (int | Unset):  Default: 0.
         lead_list_id (None | str | Unset):
         errors (list[OutputLeadImportError] | Unset):
     """
@@ -30,6 +31,7 @@ class OutputLeadImportSummary:
     imported_count: int
     skipped_count: int
     error_count: int
+    company_matches: int | Unset = 0
     lead_list_id: None | str | Unset = UNSET
     errors: list[OutputLeadImportError] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -40,6 +42,8 @@ class OutputLeadImportSummary:
         skipped_count = self.skipped_count
 
         error_count = self.error_count
+
+        company_matches = self.company_matches
 
         lead_list_id: None | str | Unset
         if isinstance(self.lead_list_id, Unset):
@@ -63,6 +67,8 @@ class OutputLeadImportSummary:
                 "error_count": error_count,
             }
         )
+        if company_matches is not UNSET:
+            field_dict["company_matches"] = company_matches
         if lead_list_id is not UNSET:
             field_dict["lead_list_id"] = lead_list_id
         if errors is not UNSET:
@@ -80,6 +86,8 @@ class OutputLeadImportSummary:
         skipped_count = d.pop("skipped_count")
 
         error_count = d.pop("error_count")
+
+        company_matches = d.pop("company_matches", UNSET)
 
         def _parse_lead_list_id(data: object) -> None | str | Unset:
             if data is None:
@@ -103,6 +111,7 @@ class OutputLeadImportSummary:
             imported_count=imported_count,
             skipped_count=skipped_count,
             error_count=error_count,
+            company_matches=company_matches,
             lead_list_id=lead_list_id,
             errors=errors,
         )

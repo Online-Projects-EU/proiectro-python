@@ -16,7 +16,6 @@ class EditSubtenantLegalInfo:
     """Schema for editing subtenant (organization) legal info
 
     Attributes:
-        tenant (str):
         legal_name (None | str | Unset):
         legal_country (None | str | Unset):
         legal_country_registration_id_name (None | str | Unset):
@@ -46,7 +45,6 @@ class EditSubtenantLegalInfo:
         legal_postal_code (None | str | Unset):
     """
 
-    tenant: str
     legal_name: None | str | Unset = UNSET
     legal_country: None | str | Unset = UNSET
     legal_country_registration_id_name: None | str | Unset = UNSET
@@ -77,8 +75,6 @@ class EditSubtenantLegalInfo:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        tenant = self.tenant
-
         legal_name: None | str | Unset
         if isinstance(self.legal_name, Unset):
             legal_name = UNSET
@@ -243,11 +239,7 @@ class EditSubtenantLegalInfo:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tenant": tenant,
-            }
-        )
+        field_dict.update({})
         if legal_name is not UNSET:
             field_dict["legal_name"] = legal_name
         if legal_country is not UNSET:
@@ -310,7 +302,6 @@ class EditSubtenantLegalInfo:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        tenant = d.pop("tenant")
 
         def _parse_legal_name(data: object) -> None | str | Unset:
             if data is None:
@@ -602,7 +593,6 @@ class EditSubtenantLegalInfo:
         legal_postal_code = _parse_legal_postal_code(d.pop("legal_postal_code", UNSET))
 
         edit_subtenant_legal_info = cls(
-            tenant=tenant,
             legal_name=legal_name,
             legal_country=legal_country,
             legal_country_registration_id_name=legal_country_registration_id_name,

@@ -27,6 +27,7 @@ class EditTenant:
         geofence_enabled (bool | None | Unset):
         geofence_radius_m (int | None | Unset):
         time_off_requires_approval (bool | None | Unset):
+        llm_may_change_data (bool | None | Unset):
     """
 
     name: None | str | Unset = UNSET
@@ -40,6 +41,7 @@ class EditTenant:
     geofence_enabled: bool | None | Unset = UNSET
     geofence_radius_m: int | None | Unset = UNSET
     time_off_requires_approval: bool | None | Unset = UNSET
+    llm_may_change_data: bool | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -111,6 +113,12 @@ class EditTenant:
         else:
             time_off_requires_approval = self.time_off_requires_approval
 
+        llm_may_change_data: bool | None | Unset
+        if isinstance(self.llm_may_change_data, Unset):
+            llm_may_change_data = UNSET
+        else:
+            llm_may_change_data = self.llm_may_change_data
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -136,6 +144,8 @@ class EditTenant:
             field_dict["geofence_radius_m"] = geofence_radius_m
         if time_off_requires_approval is not UNSET:
             field_dict["time_off_requires_approval"] = time_off_requires_approval
+        if llm_may_change_data is not UNSET:
+            field_dict["llm_may_change_data"] = llm_may_change_data
 
         return field_dict
 
@@ -262,6 +272,17 @@ class EditTenant:
             d.pop("time_off_requires_approval", UNSET)
         )
 
+        def _parse_llm_may_change_data(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        llm_may_change_data = _parse_llm_may_change_data(
+            d.pop("llm_may_change_data", UNSET)
+        )
+
         edit_tenant = cls(
             name=name,
             timezone=timezone,
@@ -274,6 +295,7 @@ class EditTenant:
             geofence_enabled=geofence_enabled,
             geofence_radius_m=geofence_radius_m,
             time_off_requires_approval=time_off_requires_approval,
+            llm_may_change_data=llm_may_change_data,
         )
 
         edit_tenant.additional_properties = d

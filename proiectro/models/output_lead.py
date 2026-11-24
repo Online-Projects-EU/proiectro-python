@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.output_lead_company import OutputLeadCompany
+
 
 T = TypeVar("T", bound="OutputLead")
 
@@ -44,6 +48,8 @@ class OutputLead:
         notes (str | Unset):  Default: ''.
         profile_url (str | Unset):  Default: ''.
         company_url (str | Unset):  Default: ''.
+        company_domain (str | Unset):  Default: ''.
+        company (None | OutputLeadCompany | Unset):
         country (None | str | Unset):
         score (int | None | Unset):
         converted_to_org_id (None | str | Unset):
@@ -78,6 +84,8 @@ class OutputLead:
     notes: str | Unset = ""
     profile_url: str | Unset = ""
     company_url: str | Unset = ""
+    company_domain: str | Unset = ""
+    company: None | OutputLeadCompany | Unset = UNSET
     country: None | str | Unset = UNSET
     score: int | None | Unset = UNSET
     converted_to_org_id: None | str | Unset = UNSET
@@ -87,6 +95,8 @@ class OutputLead:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.output_lead_company import OutputLeadCompany
+
         id = self.id
 
         name = self.name
@@ -174,6 +184,16 @@ class OutputLead:
         profile_url = self.profile_url
 
         company_url = self.company_url
+
+        company_domain = self.company_domain
+
+        company: dict[str, Any] | None | Unset
+        if isinstance(self.company, Unset):
+            company = UNSET
+        elif isinstance(self.company, OutputLeadCompany):
+            company = self.company.to_dict()
+        else:
+            company = self.company
 
         country: None | str | Unset
         if isinstance(self.country, Unset):
@@ -263,6 +283,10 @@ class OutputLead:
             field_dict["profile_url"] = profile_url
         if company_url is not UNSET:
             field_dict["company_url"] = company_url
+        if company_domain is not UNSET:
+            field_dict["company_domain"] = company_domain
+        if company is not UNSET:
+            field_dict["company"] = company
         if country is not UNSET:
             field_dict["country"] = country
         if score is not UNSET:
@@ -280,6 +304,8 @@ class OutputLead:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.output_lead_company import OutputLeadCompany
+
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -405,6 +431,25 @@ class OutputLead:
 
         company_url = d.pop("company_url", UNSET)
 
+        company_domain = d.pop("company_domain", UNSET)
+
+        def _parse_company(data: object) -> None | OutputLeadCompany | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                company_type_0 = OutputLeadCompany.from_dict(data)
+
+                return company_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | OutputLeadCompany | Unset, data)
+
+        company = _parse_company(d.pop("company", UNSET))
+
         def _parse_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -498,6 +543,8 @@ class OutputLead:
             notes=notes,
             profile_url=profile_url,
             company_url=company_url,
+            company_domain=company_domain,
+            company=company,
             country=country,
             score=score,
             converted_to_org_id=converted_to_org_id,

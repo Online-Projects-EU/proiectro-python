@@ -22,6 +22,7 @@ class OutputLeadImportPreview:
         has_header (bool):
         upload_token (str):
         estimated_duplicates (int | Unset):  Default: 0.
+        company_matches (int | Unset):  Default: 0.
         assigned_list_name (str | Unset):  Default: ''.
         default_next_action (str | Unset):  Default: 'triage_later'.
     """
@@ -32,6 +33,7 @@ class OutputLeadImportPreview:
     has_header: bool
     upload_token: str
     estimated_duplicates: int | Unset = 0
+    company_matches: int | Unset = 0
     assigned_list_name: str | Unset = ""
     default_next_action: str | Unset = "triage_later"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -48,6 +50,8 @@ class OutputLeadImportPreview:
         upload_token = self.upload_token
 
         estimated_duplicates = self.estimated_duplicates
+
+        company_matches = self.company_matches
 
         assigned_list_name = self.assigned_list_name
 
@@ -66,6 +70,8 @@ class OutputLeadImportPreview:
         )
         if estimated_duplicates is not UNSET:
             field_dict["estimated_duplicates"] = estimated_duplicates
+        if company_matches is not UNSET:
+            field_dict["company_matches"] = company_matches
         if assigned_list_name is not UNSET:
             field_dict["assigned_list_name"] = assigned_list_name
         if default_next_action is not UNSET:
@@ -88,6 +94,8 @@ class OutputLeadImportPreview:
 
         estimated_duplicates = d.pop("estimated_duplicates", UNSET)
 
+        company_matches = d.pop("company_matches", UNSET)
+
         assigned_list_name = d.pop("assigned_list_name", UNSET)
 
         default_next_action = d.pop("default_next_action", UNSET)
@@ -99,6 +107,7 @@ class OutputLeadImportPreview:
             has_header=has_header,
             upload_token=upload_token,
             estimated_duplicates=estimated_duplicates,
+            company_matches=company_matches,
             assigned_list_name=assigned_list_name,
             default_next_action=default_next_action,
         )

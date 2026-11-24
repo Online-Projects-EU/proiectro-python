@@ -15,7 +15,6 @@ T = TypeVar("T", bound="AddSubtenant")
 class AddSubtenant:
     """
     Attributes:
-        parent_id (str):
         name (str):
         timezone (str):
         default_currency (str):
@@ -24,7 +23,6 @@ class AddSubtenant:
         domains (None | str | Unset):
     """
 
-    parent_id: str
     name: str
     timezone: str
     default_currency: str
@@ -34,8 +32,6 @@ class AddSubtenant:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        parent_id = self.parent_id
-
         name = self.name
 
         timezone = self.timezone
@@ -56,7 +52,6 @@ class AddSubtenant:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "parent_id": parent_id,
                 "name": name,
                 "timezone": timezone,
                 "default_currency": default_currency,
@@ -72,8 +67,6 @@ class AddSubtenant:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        parent_id = d.pop("parent_id")
-
         name = d.pop("name")
 
         timezone = d.pop("timezone")
@@ -94,7 +87,6 @@ class AddSubtenant:
         domains = _parse_domains(d.pop("domains", UNSET))
 
         add_subtenant = cls(
-            parent_id=parent_id,
             name=name,
             timezone=timezone,
             default_currency=default_currency,

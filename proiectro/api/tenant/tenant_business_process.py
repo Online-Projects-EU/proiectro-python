@@ -15,6 +15,7 @@ def _get_kwargs(
     process_name: str,
     *,
     highlight_task: int | None | Unset = UNSET,
+    back: None | str | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -25,6 +26,13 @@ def _get_kwargs(
     else:
         json_highlight_task = highlight_task
     params["highlight_task"] = json_highlight_task
+
+    json_back: None | str | Unset
+    if isinstance(back, Unset):
+        json_back = UNSET
+    else:
+        json_back = back
+    params["back"] = json_back
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -71,16 +79,19 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     highlight_task: int | None | Unset = UNSET,
+    back: None | str | Unset = UNSET,
 ) -> Response[OutputBusinessProcess]:
     """Tenant Business Process
 
      Get detailed information about a business process.
-    Shows all tasks in order with optional highlighting of the current task.
+    Shows all tasks in order with optional highlighting of the current task, the processes it
+    depends on and the ones it enables. `back` names the process this one was opened from.
 
     Args:
         tenant_path (str):
         process_name (str):
         highlight_task (int | None | Unset):
+        back (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -94,6 +105,7 @@ def sync_detailed(
         tenant_path=tenant_path,
         process_name=process_name,
         highlight_task=highlight_task,
+        back=back,
     )
 
     response = client.get_httpx_client().request(
@@ -109,16 +121,19 @@ def sync(
     *,
     client: AuthenticatedClient,
     highlight_task: int | None | Unset = UNSET,
+    back: None | str | Unset = UNSET,
 ) -> OutputBusinessProcess | None:
     """Tenant Business Process
 
      Get detailed information about a business process.
-    Shows all tasks in order with optional highlighting of the current task.
+    Shows all tasks in order with optional highlighting of the current task, the processes it
+    depends on and the ones it enables. `back` names the process this one was opened from.
 
     Args:
         tenant_path (str):
         process_name (str):
         highlight_task (int | None | Unset):
+        back (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -133,6 +148,7 @@ def sync(
         process_name=process_name,
         client=client,
         highlight_task=highlight_task,
+        back=back,
     ).parsed
 
 
@@ -142,16 +158,19 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     highlight_task: int | None | Unset = UNSET,
+    back: None | str | Unset = UNSET,
 ) -> Response[OutputBusinessProcess]:
     """Tenant Business Process
 
      Get detailed information about a business process.
-    Shows all tasks in order with optional highlighting of the current task.
+    Shows all tasks in order with optional highlighting of the current task, the processes it
+    depends on and the ones it enables. `back` names the process this one was opened from.
 
     Args:
         tenant_path (str):
         process_name (str):
         highlight_task (int | None | Unset):
+        back (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -165,6 +184,7 @@ async def asyncio_detailed(
         tenant_path=tenant_path,
         process_name=process_name,
         highlight_task=highlight_task,
+        back=back,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -178,16 +198,19 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     highlight_task: int | None | Unset = UNSET,
+    back: None | str | Unset = UNSET,
 ) -> OutputBusinessProcess | None:
     """Tenant Business Process
 
      Get detailed information about a business process.
-    Shows all tasks in order with optional highlighting of the current task.
+    Shows all tasks in order with optional highlighting of the current task, the processes it
+    depends on and the ones it enables. `back` names the process this one was opened from.
 
     Args:
         tenant_path (str):
         process_name (str):
         highlight_task (int | None | Unset):
+        back (None | str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -203,5 +226,6 @@ async def asyncio(
             process_name=process_name,
             client=client,
             highlight_task=highlight_task,
+            back=back,
         )
     ).parsed

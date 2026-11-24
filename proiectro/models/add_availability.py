@@ -13,21 +13,17 @@ T = TypeVar("T", bound="AddAvailability")
 class AddAvailability:
     """
     Attributes:
-        tenant (str):
         day_of_week (int):
         start_time (int):
         end_time (int):
     """
 
-    tenant: str
     day_of_week: int
     start_time: int
     end_time: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        tenant = self.tenant
-
         day_of_week = self.day_of_week
 
         start_time = self.start_time
@@ -38,7 +34,6 @@ class AddAvailability:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "tenant": tenant,
                 "day_of_week": day_of_week,
                 "start_time": start_time,
                 "end_time": end_time,
@@ -50,8 +45,6 @@ class AddAvailability:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        tenant = d.pop("tenant")
-
         day_of_week = d.pop("day_of_week")
 
         start_time = d.pop("start_time")
@@ -59,7 +52,6 @@ class AddAvailability:
         end_time = d.pop("end_time")
 
         add_availability = cls(
-            tenant=tenant,
             day_of_week=day_of_week,
             start_time=start_time,
             end_time=end_time,
