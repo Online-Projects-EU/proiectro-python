@@ -28,6 +28,9 @@ class EditTenant:
         geofence_radius_m (int | None | Unset):
         time_off_requires_approval (bool | None | Unset):
         llm_may_change_data (bool | None | Unset):
+        intake_owner (None | str | Unset):
+        intake_role (None | str | Unset):
+        intake_lead_list (None | str | Unset):
     """
 
     name: None | str | Unset = UNSET
@@ -42,6 +45,9 @@ class EditTenant:
     geofence_radius_m: int | None | Unset = UNSET
     time_off_requires_approval: bool | None | Unset = UNSET
     llm_may_change_data: bool | None | Unset = UNSET
+    intake_owner: None | str | Unset = UNSET
+    intake_role: None | str | Unset = UNSET
+    intake_lead_list: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -119,6 +125,24 @@ class EditTenant:
         else:
             llm_may_change_data = self.llm_may_change_data
 
+        intake_owner: None | str | Unset
+        if isinstance(self.intake_owner, Unset):
+            intake_owner = UNSET
+        else:
+            intake_owner = self.intake_owner
+
+        intake_role: None | str | Unset
+        if isinstance(self.intake_role, Unset):
+            intake_role = UNSET
+        else:
+            intake_role = self.intake_role
+
+        intake_lead_list: None | str | Unset
+        if isinstance(self.intake_lead_list, Unset):
+            intake_lead_list = UNSET
+        else:
+            intake_lead_list = self.intake_lead_list
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -146,6 +170,12 @@ class EditTenant:
             field_dict["time_off_requires_approval"] = time_off_requires_approval
         if llm_may_change_data is not UNSET:
             field_dict["llm_may_change_data"] = llm_may_change_data
+        if intake_owner is not UNSET:
+            field_dict["intake_owner"] = intake_owner
+        if intake_role is not UNSET:
+            field_dict["intake_role"] = intake_role
+        if intake_lead_list is not UNSET:
+            field_dict["intake_lead_list"] = intake_lead_list
 
         return field_dict
 
@@ -283,6 +313,33 @@ class EditTenant:
             d.pop("llm_may_change_data", UNSET)
         )
 
+        def _parse_intake_owner(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        intake_owner = _parse_intake_owner(d.pop("intake_owner", UNSET))
+
+        def _parse_intake_role(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        intake_role = _parse_intake_role(d.pop("intake_role", UNSET))
+
+        def _parse_intake_lead_list(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        intake_lead_list = _parse_intake_lead_list(d.pop("intake_lead_list", UNSET))
+
         edit_tenant = cls(
             name=name,
             timezone=timezone,
@@ -296,6 +353,9 @@ class EditTenant:
             geofence_radius_m=geofence_radius_m,
             time_off_requires_approval=time_off_requires_approval,
             llm_may_change_data=llm_may_change_data,
+            intake_owner=intake_owner,
+            intake_role=intake_role,
+            intake_lead_list=intake_lead_list,
         )
 
         edit_tenant.additional_properties = d

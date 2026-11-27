@@ -84,7 +84,11 @@ def sync_detailed(
         tenant_path (str):
         body (EditTenantPublicPageSettings): The workspace's public page (plans/PUBLIC_INBOUND.md
             C3). An omitted key keeps the stored
-            value; an empty lead list or questions form means none.
+            value; an empty owner, role, lead list or questions form means none. `inherits_default`
+            makes the
+            page use the workspace's intake settings instead of its own owner, role and list; sending
+            one of
+            those three gives the page its own, starting from the workspace's.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -121,7 +125,11 @@ def sync(
         tenant_path (str):
         body (EditTenantPublicPageSettings): The workspace's public page (plans/PUBLIC_INBOUND.md
             C3). An omitted key keeps the stored
-            value; an empty lead list or questions form means none.
+            value; an empty owner, role, lead list or questions form means none. `inherits_default`
+            makes the
+            page use the workspace's intake settings instead of its own owner, role and list; sending
+            one of
+            those three gives the page its own, starting from the workspace's.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,7 +161,11 @@ async def asyncio_detailed(
         tenant_path (str):
         body (EditTenantPublicPageSettings): The workspace's public page (plans/PUBLIC_INBOUND.md
             C3). An omitted key keeps the stored
-            value; an empty lead list or questions form means none.
+            value; an empty owner, role, lead list or questions form means none. `inherits_default`
+            makes the
+            page use the workspace's intake settings instead of its own owner, role and list; sending
+            one of
+            those three gives the page its own, starting from the workspace's.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -188,7 +200,11 @@ async def asyncio(
         tenant_path (str):
         body (EditTenantPublicPageSettings): The workspace's public page (plans/PUBLIC_INBOUND.md
             C3). An omitted key keeps the stored
-            value; an empty lead list or questions form means none.
+            value; an empty owner, role, lead list or questions form means none. `inherits_default`
+            makes the
+            page use the workspace's intake settings instead of its own owner, role and list; sending
+            one of
+            those three gives the page its own, starting from the workspace's.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

@@ -8,6 +8,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.api_response import APIResponse
 from ...models.edit_tenant import EditTenant
+from ...models.pydantic_detail import PydanticDetail
 from ...types import Response
 
 
@@ -35,7 +36,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     if response.status_code == 200:
         response_200 = APIResponse.from_dict(response.json())
 
@@ -46,6 +47,11 @@ def _parse_response(
 
         return response_409
 
+    if response.status_code == 422:
+        response_422 = PydanticDetail.from_dict(response.json())
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -54,7 +60,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -68,15 +74,16 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: EditTenant,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Edit Tenant
 
      Update fundamental workspace settings that affect all operations and users. Changes
     to timezone impact scheduling and reporting timestamps. Currency modifications affect
     financial calculations and default pricing. Country settings influence tax calculations
     and regulatory compliance. Minimum margin thresholds enforce profitability controls
-    on all proposals. Exercise caution as these changes have workspace-wide impact on
-    all transactions and reports.
+    on all proposals. The intake settings name who owns new leads from the public page and
+    public forms, which role is told and which list they go to, unless one has its own.
+    Exercise caution as these changes have workspace-wide impact on all transactions and reports.
 
     Args:
         tenant_path (str):
@@ -87,7 +94,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -107,15 +114,16 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: EditTenant,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Edit Tenant
 
      Update fundamental workspace settings that affect all operations and users. Changes
     to timezone impact scheduling and reporting timestamps. Currency modifications affect
     financial calculations and default pricing. Country settings influence tax calculations
     and regulatory compliance. Minimum margin thresholds enforce profitability controls
-    on all proposals. Exercise caution as these changes have workspace-wide impact on
-    all transactions and reports.
+    on all proposals. The intake settings name who owns new leads from the public page and
+    public forms, which role is told and which list they go to, unless one has its own.
+    Exercise caution as these changes have workspace-wide impact on all transactions and reports.
 
     Args:
         tenant_path (str):
@@ -126,7 +134,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return sync_detailed(
@@ -141,15 +149,16 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: EditTenant,
-) -> Response[APIResponse]:
+) -> Response[APIResponse | PydanticDetail]:
     """Edit Tenant
 
      Update fundamental workspace settings that affect all operations and users. Changes
     to timezone impact scheduling and reporting timestamps. Currency modifications affect
     financial calculations and default pricing. Country settings influence tax calculations
     and regulatory compliance. Minimum margin thresholds enforce profitability controls
-    on all proposals. Exercise caution as these changes have workspace-wide impact on
-    all transactions and reports.
+    on all proposals. The intake settings name who owns new leads from the public page and
+    public forms, which role is told and which list they go to, unless one has its own.
+    Exercise caution as these changes have workspace-wide impact on all transactions and reports.
 
     Args:
         tenant_path (str):
@@ -160,7 +169,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[APIResponse]
+        Response[APIResponse | PydanticDetail]
     """
 
     kwargs = _get_kwargs(
@@ -178,15 +187,16 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: EditTenant,
-) -> APIResponse | None:
+) -> APIResponse | PydanticDetail | None:
     """Edit Tenant
 
      Update fundamental workspace settings that affect all operations and users. Changes
     to timezone impact scheduling and reporting timestamps. Currency modifications affect
     financial calculations and default pricing. Country settings influence tax calculations
     and regulatory compliance. Minimum margin thresholds enforce profitability controls
-    on all proposals. Exercise caution as these changes have workspace-wide impact on
-    all transactions and reports.
+    on all proposals. The intake settings name who owns new leads from the public page and
+    public forms, which role is told and which list they go to, unless one has its own.
+    Exercise caution as these changes have workspace-wide impact on all transactions and reports.
 
     Args:
         tenant_path (str):
@@ -197,7 +207,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        APIResponse
+        APIResponse | PydanticDetail
     """
 
     return (

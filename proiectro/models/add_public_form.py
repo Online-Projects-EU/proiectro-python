@@ -15,15 +15,18 @@ T = TypeVar("T", bound="AddPublicForm")
 class AddPublicForm:
     """A custom form published at its own address (PUBLIC_INBOUND.md Part E). The address is the last
     part of the link, lowercase letters, digits and dashes; left empty, it is made from the title.
-    `lead_list` empty means no list.
+    Without an owner, role or lead list the form uses the workspace's intake settings; sending one of
+    them gives the form its own, starting from the workspace's, where an empty one means none.
 
         Attributes:
             custom_form (str):
             title (str):
-            owner (str):
             slug (None | str | Unset):  Default: ''.
             intro (None | str | Unset):  Default: ''.
-            lead_list (None | str | Unset):  Default: ''.
+            inherits_default (bool | None | Unset):
+            owner (None | str | Unset):
+            role (None | str | Unset):
+            lead_list (None | str | Unset):
             phone_required (bool | None | Unset):  Default: False.
             company_required (bool | None | Unset):  Default: False.
             is_active (bool | None | Unset):  Default: False.
@@ -32,10 +35,12 @@ class AddPublicForm:
 
     custom_form: str
     title: str
-    owner: str
     slug: None | str | Unset = ""
     intro: None | str | Unset = ""
-    lead_list: None | str | Unset = ""
+    inherits_default: bool | None | Unset = UNSET
+    owner: None | str | Unset = UNSET
+    role: None | str | Unset = UNSET
+    lead_list: None | str | Unset = UNSET
     phone_required: bool | None | Unset = False
     company_required: bool | None | Unset = False
     is_active: bool | None | Unset = False
@@ -46,8 +51,6 @@ class AddPublicForm:
         custom_form = self.custom_form
 
         title = self.title
-
-        owner = self.owner
 
         slug: None | str | Unset
         if isinstance(self.slug, Unset):
@@ -60,6 +63,24 @@ class AddPublicForm:
             intro = UNSET
         else:
             intro = self.intro
+
+        inherits_default: bool | None | Unset
+        if isinstance(self.inherits_default, Unset):
+            inherits_default = UNSET
+        else:
+            inherits_default = self.inherits_default
+
+        owner: None | str | Unset
+        if isinstance(self.owner, Unset):
+            owner = UNSET
+        else:
+            owner = self.owner
+
+        role: None | str | Unset
+        if isinstance(self.role, Unset):
+            role = UNSET
+        else:
+            role = self.role
 
         lead_list: None | str | Unset
         if isinstance(self.lead_list, Unset):
@@ -97,13 +118,18 @@ class AddPublicForm:
             {
                 "custom_form": custom_form,
                 "title": title,
-                "owner": owner,
             }
         )
         if slug is not UNSET:
             field_dict["slug"] = slug
         if intro is not UNSET:
             field_dict["intro"] = intro
+        if inherits_default is not UNSET:
+            field_dict["inherits_default"] = inherits_default
+        if owner is not UNSET:
+            field_dict["owner"] = owner
+        if role is not UNSET:
+            field_dict["role"] = role
         if lead_list is not UNSET:
             field_dict["lead_list"] = lead_list
         if phone_required is not UNSET:
@@ -124,8 +150,6 @@ class AddPublicForm:
 
         title = d.pop("title")
 
-        owner = d.pop("owner")
-
         def _parse_slug(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -143,6 +167,33 @@ class AddPublicForm:
             return cast(None | str | Unset, data)
 
         intro = _parse_intro(d.pop("intro", UNSET))
+
+        def _parse_inherits_default(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        inherits_default = _parse_inherits_default(d.pop("inherits_default", UNSET))
+
+        def _parse_owner(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        owner = _parse_owner(d.pop("owner", UNSET))
+
+        def _parse_role(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        role = _parse_role(d.pop("role", UNSET))
 
         def _parse_lead_list(data: object) -> None | str | Unset:
             if data is None:
@@ -192,9 +243,11 @@ class AddPublicForm:
         add_public_form = cls(
             custom_form=custom_form,
             title=title,
-            owner=owner,
             slug=slug,
             intro=intro,
+            inherits_default=inherits_default,
+            owner=owner,
+            role=role,
             lead_list=lead_list,
             phone_required=phone_required,
             company_required=company_required,

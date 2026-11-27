@@ -14,14 +14,18 @@ T = TypeVar("T", bound="EditTenantPublicPageSettings")
 @_attrs_define
 class EditTenantPublicPageSettings:
     """The workspace's public page (plans/PUBLIC_INBOUND.md C3). An omitted key keeps the stored
-    value; an empty lead list or questions form means none.
+    value; an empty owner, role, lead list or questions form means none. `inherits_default` makes the
+    page use the workspace's intake settings instead of its own owner, role and list; sending one of
+    those three gives the page its own, starting from the workspace's.
 
         Attributes:
             published (bool | None | Unset):
             description (None | str | Unset):
             show_prices (bool | None | Unset):
             show_forms (bool | None | Unset):
+            inherits_default (bool | None | Unset):
             lead_owner (None | str | Unset):
+            lead_role (None | str | Unset):
             lead_list (None | str | Unset):
             phone_required (bool | None | Unset):
             company_required (bool | None | Unset):
@@ -33,7 +37,9 @@ class EditTenantPublicPageSettings:
     description: None | str | Unset = UNSET
     show_prices: bool | None | Unset = UNSET
     show_forms: bool | None | Unset = UNSET
+    inherits_default: bool | None | Unset = UNSET
     lead_owner: None | str | Unset = UNSET
+    lead_role: None | str | Unset = UNSET
     lead_list: None | str | Unset = UNSET
     phone_required: bool | None | Unset = UNSET
     company_required: bool | None | Unset = UNSET
@@ -66,11 +72,23 @@ class EditTenantPublicPageSettings:
         else:
             show_forms = self.show_forms
 
+        inherits_default: bool | None | Unset
+        if isinstance(self.inherits_default, Unset):
+            inherits_default = UNSET
+        else:
+            inherits_default = self.inherits_default
+
         lead_owner: None | str | Unset
         if isinstance(self.lead_owner, Unset):
             lead_owner = UNSET
         else:
             lead_owner = self.lead_owner
+
+        lead_role: None | str | Unset
+        if isinstance(self.lead_role, Unset):
+            lead_role = UNSET
+        else:
+            lead_role = self.lead_role
 
         lead_list: None | str | Unset
         if isinstance(self.lead_list, Unset):
@@ -113,8 +131,12 @@ class EditTenantPublicPageSettings:
             field_dict["show_prices"] = show_prices
         if show_forms is not UNSET:
             field_dict["show_forms"] = show_forms
+        if inherits_default is not UNSET:
+            field_dict["inherits_default"] = inherits_default
         if lead_owner is not UNSET:
             field_dict["lead_owner"] = lead_owner
+        if lead_role is not UNSET:
+            field_dict["lead_role"] = lead_role
         if lead_list is not UNSET:
             field_dict["lead_list"] = lead_list
         if phone_required is not UNSET:
@@ -168,6 +190,15 @@ class EditTenantPublicPageSettings:
 
         show_forms = _parse_show_forms(d.pop("show_forms", UNSET))
 
+        def _parse_inherits_default(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        inherits_default = _parse_inherits_default(d.pop("inherits_default", UNSET))
+
         def _parse_lead_owner(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -176,6 +207,15 @@ class EditTenantPublicPageSettings:
             return cast(None | str | Unset, data)
 
         lead_owner = _parse_lead_owner(d.pop("lead_owner", UNSET))
+
+        def _parse_lead_role(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        lead_role = _parse_lead_role(d.pop("lead_role", UNSET))
 
         def _parse_lead_list(data: object) -> None | str | Unset:
             if data is None:
@@ -227,7 +267,9 @@ class EditTenantPublicPageSettings:
             description=description,
             show_prices=show_prices,
             show_forms=show_forms,
+            inherits_default=inherits_default,
             lead_owner=lead_owner,
+            lead_role=lead_role,
             lead_list=lead_list,
             phone_required=phone_required,
             company_required=company_required,

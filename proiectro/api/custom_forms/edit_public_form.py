@@ -85,13 +85,15 @@ def sync_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Public Form
 
-     Change a public form: its form, address, texts, who new leads go to, or switch it on or off.
+     Change a public form: its form, address, texts, who owns and hears of its new leads, or switch it on
+    or off.
 
     Args:
         tenant_path (str):
         link_id (str):
-        body (EditPublicForm): Every field may be left out to keep its stored value. `lead_list`
-            empty means no list.
+        body (EditPublicForm): Every field may be left out to keep its stored value. An empty
+            owner, role or lead list means
+            none; `inherits_default` makes the form use the workspace's intake settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -123,13 +125,15 @@ def sync(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Public Form
 
-     Change a public form: its form, address, texts, who new leads go to, or switch it on or off.
+     Change a public form: its form, address, texts, who owns and hears of its new leads, or switch it on
+    or off.
 
     Args:
         tenant_path (str):
         link_id (str):
-        body (EditPublicForm): Every field may be left out to keep its stored value. `lead_list`
-            empty means no list.
+        body (EditPublicForm): Every field may be left out to keep its stored value. An empty
+            owner, role or lead list means
+            none; `inherits_default` makes the form use the workspace's intake settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -156,13 +160,15 @@ async def asyncio_detailed(
 ) -> Response[APIResponse | PydanticDetail]:
     """Edit Public Form
 
-     Change a public form: its form, address, texts, who new leads go to, or switch it on or off.
+     Change a public form: its form, address, texts, who owns and hears of its new leads, or switch it on
+    or off.
 
     Args:
         tenant_path (str):
         link_id (str):
-        body (EditPublicForm): Every field may be left out to keep its stored value. `lead_list`
-            empty means no list.
+        body (EditPublicForm): Every field may be left out to keep its stored value. An empty
+            owner, role or lead list means
+            none; `inherits_default` makes the form use the workspace's intake settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -192,13 +198,15 @@ async def asyncio(
 ) -> APIResponse | PydanticDetail | None:
     """Edit Public Form
 
-     Change a public form: its form, address, texts, who new leads go to, or switch it on or off.
+     Change a public form: its form, address, texts, who owns and hears of its new leads, or switch it on
+    or off.
 
     Args:
         tenant_path (str):
         link_id (str):
-        body (EditPublicForm): Every field may be left out to keep its stored value. `lead_list`
-            empty means no list.
+        body (EditPublicForm): Every field may be left out to keep its stored value. An empty
+            owner, role or lead list means
+            none; `inherits_default` makes the form use the workspace's intake settings.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

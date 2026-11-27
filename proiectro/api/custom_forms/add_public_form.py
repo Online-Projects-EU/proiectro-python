@@ -78,8 +78,8 @@ def sync_detailed(
     """Add Public Form
 
      Publish a custom form at its own address, for anyone to fill in without an account.
-    Each answer becomes a website inquiry on the matching contact or lead, or a new lead for the member
-    you choose.
+    Each answer becomes a website inquiry on the matching contact or lead, or a new lead with the owner,
+    role and list the form or the workspace sets.
 
     Args:
         tenant_path (str):
@@ -87,7 +87,9 @@ def sync_detailed(
             E). The address is the last
             part of the link, lowercase letters, digits and dashes; left empty, it is made from the
             title.
-            `lead_list` empty means no list.
+            Without an owner, role or lead list the form uses the workspace's intake settings; sending
+            one of
+            them gives the form its own, starting from the workspace's, where an empty one means none.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -118,8 +120,8 @@ def sync(
     """Add Public Form
 
      Publish a custom form at its own address, for anyone to fill in without an account.
-    Each answer becomes a website inquiry on the matching contact or lead, or a new lead for the member
-    you choose.
+    Each answer becomes a website inquiry on the matching contact or lead, or a new lead with the owner,
+    role and list the form or the workspace sets.
 
     Args:
         tenant_path (str):
@@ -127,7 +129,9 @@ def sync(
             E). The address is the last
             part of the link, lowercase letters, digits and dashes; left empty, it is made from the
             title.
-            `lead_list` empty means no list.
+            Without an owner, role or lead list the form uses the workspace's intake settings; sending
+            one of
+            them gives the form its own, starting from the workspace's, where an empty one means none.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,8 +157,8 @@ async def asyncio_detailed(
     """Add Public Form
 
      Publish a custom form at its own address, for anyone to fill in without an account.
-    Each answer becomes a website inquiry on the matching contact or lead, or a new lead for the member
-    you choose.
+    Each answer becomes a website inquiry on the matching contact or lead, or a new lead with the owner,
+    role and list the form or the workspace sets.
 
     Args:
         tenant_path (str):
@@ -162,7 +166,9 @@ async def asyncio_detailed(
             E). The address is the last
             part of the link, lowercase letters, digits and dashes; left empty, it is made from the
             title.
-            `lead_list` empty means no list.
+            Without an owner, role or lead list the form uses the workspace's intake settings; sending
+            one of
+            them gives the form its own, starting from the workspace's, where an empty one means none.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -191,8 +197,8 @@ async def asyncio(
     """Add Public Form
 
      Publish a custom form at its own address, for anyone to fill in without an account.
-    Each answer becomes a website inquiry on the matching contact or lead, or a new lead for the member
-    you choose.
+    Each answer becomes a website inquiry on the matching contact or lead, or a new lead with the owner,
+    role and list the form or the workspace sets.
 
     Args:
         tenant_path (str):
@@ -200,7 +206,9 @@ async def asyncio(
             E). The address is the last
             part of the link, lowercase letters, digits and dashes; left empty, it is made from the
             title.
-            `lead_list` empty means no list.
+            Without an owner, role or lead list the form uses the workspace's intake settings; sending
+            one of
+            them gives the form its own, starting from the workspace's, where an empty one means none.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

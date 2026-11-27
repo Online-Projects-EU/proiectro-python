@@ -13,26 +13,31 @@ T = TypeVar("T", bound="EditPublicForm")
 
 @_attrs_define
 class EditPublicForm:
-    """Every field may be left out to keep its stored value. `lead_list` empty means no list.
+    """Every field may be left out to keep its stored value. An empty owner, role or lead list means
+    none; `inherits_default` makes the form use the workspace's intake settings.
 
-    Attributes:
-        custom_form (None | str | Unset):
-        title (None | str | Unset):
-        slug (None | str | Unset):
-        intro (None | str | Unset):
-        owner (None | str | Unset):
-        lead_list (None | str | Unset):
-        phone_required (bool | None | Unset):
-        company_required (bool | None | Unset):
-        is_active (bool | None | Unset):
-        thank_you_text (None | str | Unset):
+        Attributes:
+            custom_form (None | str | Unset):
+            title (None | str | Unset):
+            slug (None | str | Unset):
+            intro (None | str | Unset):
+            inherits_default (bool | None | Unset):
+            owner (None | str | Unset):
+            role (None | str | Unset):
+            lead_list (None | str | Unset):
+            phone_required (bool | None | Unset):
+            company_required (bool | None | Unset):
+            is_active (bool | None | Unset):
+            thank_you_text (None | str | Unset):
     """
 
     custom_form: None | str | Unset = UNSET
     title: None | str | Unset = UNSET
     slug: None | str | Unset = UNSET
     intro: None | str | Unset = UNSET
+    inherits_default: bool | None | Unset = UNSET
     owner: None | str | Unset = UNSET
+    role: None | str | Unset = UNSET
     lead_list: None | str | Unset = UNSET
     phone_required: bool | None | Unset = UNSET
     company_required: bool | None | Unset = UNSET
@@ -65,11 +70,23 @@ class EditPublicForm:
         else:
             intro = self.intro
 
+        inherits_default: bool | None | Unset
+        if isinstance(self.inherits_default, Unset):
+            inherits_default = UNSET
+        else:
+            inherits_default = self.inherits_default
+
         owner: None | str | Unset
         if isinstance(self.owner, Unset):
             owner = UNSET
         else:
             owner = self.owner
+
+        role: None | str | Unset
+        if isinstance(self.role, Unset):
+            role = UNSET
+        else:
+            role = self.role
 
         lead_list: None | str | Unset
         if isinstance(self.lead_list, Unset):
@@ -112,8 +129,12 @@ class EditPublicForm:
             field_dict["slug"] = slug
         if intro is not UNSET:
             field_dict["intro"] = intro
+        if inherits_default is not UNSET:
+            field_dict["inherits_default"] = inherits_default
         if owner is not UNSET:
             field_dict["owner"] = owner
+        if role is not UNSET:
+            field_dict["role"] = role
         if lead_list is not UNSET:
             field_dict["lead_list"] = lead_list
         if phone_required is not UNSET:
@@ -167,6 +188,15 @@ class EditPublicForm:
 
         intro = _parse_intro(d.pop("intro", UNSET))
 
+        def _parse_inherits_default(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        inherits_default = _parse_inherits_default(d.pop("inherits_default", UNSET))
+
         def _parse_owner(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -175,6 +205,15 @@ class EditPublicForm:
             return cast(None | str | Unset, data)
 
         owner = _parse_owner(d.pop("owner", UNSET))
+
+        def _parse_role(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        role = _parse_role(d.pop("role", UNSET))
 
         def _parse_lead_list(data: object) -> None | str | Unset:
             if data is None:
@@ -226,7 +265,9 @@ class EditPublicForm:
             title=title,
             slug=slug,
             intro=intro,
+            inherits_default=inherits_default,
             owner=owner,
+            role=role,
             lead_list=lead_list,
             phone_required=phone_required,
             company_required=company_required,
